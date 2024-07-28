@@ -3,7 +3,7 @@ npm start
 npm run deploy
 
 cd C:\Users\takuk\Documents\GitHub
-git clone --bare https://github.com/ed-ev/lbol-logs-dev.git --single-branch --branch gh-pages lbol-logs-dev-gh-pages
+git clone --bare https://github.com/ed-ev/lbol-logs-dev.git --single-branch --branch public lbol-logs-dev-gh-pages
 cd lbol-logs-dev-gh-pages
-git remote add gh-pages https://github.com/ed-ev/lbol-logs.git
-git push gh-pages gh-pages
+git remote add public https://github.com/ed-ev/lbol-logs.git
+git push public public
