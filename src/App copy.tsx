@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import i18next from 'i18next';
 import { Helmet } from 'react-helmet';
+import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 
 function App() {
