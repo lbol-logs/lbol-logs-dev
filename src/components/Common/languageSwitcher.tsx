@@ -1,26 +1,24 @@
-import globals from 'configs/globals';
+import { languages } from 'configs/globals';
 import i18next from 'i18next';
-import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function LanguageSwitcher() {
-  const [language, setLanguage] = useState(i18next.language);
+  useTranslation();
 
   type languageProps = {
     code: string
+    text: string
   };
 
   function handleLanguage(code: string) {
     i18next.changeLanguage(code);
-    setLanguage(code);
   }
   
   function Lang(props: languageProps) {
-    const { code } = props;
-    const isCurrentLanguage = language === code;
+    const { code, text } = props;
+    const isCurrentLanguage = i18next.language === code;
     const lang = (
-      <>
-        {globals[code]}
-      </>
+      text
     );
     if (isCurrentLanguage) {
       return (
@@ -34,9 +32,9 @@ function LanguageSwitcher() {
 
   return (
     <>
-      <Lang code={'en'} />
-      /
-      <Lang code={'ja'} />
+      {Object.entries(languages).map(([code, text]) => {
+        return <Lang key={code} code={code} text={text} />
+      })}
     </>
   );
 };

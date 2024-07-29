@@ -1,9 +1,15 @@
 import { useParams } from 'react-router-dom';
-import About from './about';
-import LanguageSwitcher from 'components/Common/languageSwitcher';
+import About from 'components/top/about';
+import LanguageSwitcher from 'components/common/languageSwitcher';
+// import VersionCheck from 'components/utils/versionCheck';
+import VersionChecker from 'components/common/versionChecker';
+import { defaultVersion } from 'configs/globals';
 
 function Top() {
-  const { ver } = useParams<{ ver: string }>();
+  const { ver = defaultVersion } = useParams<{ ver: string }>();
+  // const valid = VersionCheck(ver);
+  // console.log({valid, ver});
+  
   /*
    * TODO: バージョン検証
    * サポート外の例外処理
@@ -14,7 +20,7 @@ function Top() {
     <>
       <LanguageSwitcher />
       <h1>Topページです</h1>
-      <p>バージョン: {ver}</p>
+      <VersionChecker ver={ver} />
       <About />
     </>
   );

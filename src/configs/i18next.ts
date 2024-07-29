@@ -2,7 +2,9 @@ import i18next, { ReadCallback } from 'i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
+import { languages, namespaces } from 'configs/globals';
 
+const lngs = Object.keys(languages);
 i18next
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -16,9 +18,9 @@ i18next
       })
   }))
   .init({
-    supportedLngs: ['en', 'ja'],
-    fallbackLng: 'en',
-    ns: ['common'],
+    supportedLngs: lngs,
+    fallbackLng: lngs[0],
+    ns: namespaces,
     debug: true
   });
 
