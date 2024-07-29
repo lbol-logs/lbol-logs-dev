@@ -2,8 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import i18next from 'i18next';
-import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 
 function App() {
   const { t } = useTranslation();
@@ -11,13 +11,14 @@ function App() {
     <div className="App">
       <Helmet>
         <html lang={i18next.language} /> 
-        <title>{t('common.title')}</title>
-        <meta name="description" content={t('common.description')} />
+        <title>{t('title')}</title>
+        <meta name="description" content={t('description')} />
         <link rel="manifest" href={`${process.env.PUBLIC_URL}/locales/${i18next.language}/manifest.json`} />
       </Helmet>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
+          {t('title')}
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <a
