@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 
-import Top from './components/Top';
-import Log from './components/Log';
+import Top from 'components/Top';
+import Log from 'components/Log';
 
 function App() {
   return (
