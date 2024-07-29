@@ -11,14 +11,14 @@ function App() {
     <div className="App">
       <Helmet>
         <html lang={i18next.language} /> 
-        <title>{t('title')}</title>
-        <meta name="description" content={t('description')} />
+        <title>{t('title', {ns: 'common'})}</title>
+        <meta name="description" content={t('description', {ns: 'common'})} />
         <link rel="manifest" href={`${process.env.PUBLIC_URL}/locales/${i18next.language}/manifest.json`} />
       </Helmet>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          {t('title')}
+          {t('title', {ns: 'common'})}
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <a
