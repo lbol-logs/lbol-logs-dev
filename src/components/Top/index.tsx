@@ -1,14 +1,11 @@
 import { useParams } from 'react-router-dom';
 import About from 'components/top/about';
 import LanguageSwitcher from 'components/common/languageSwitcher';
-// import VersionCheck from 'components/utils/versionCheck';
 import VersionChecker from 'components/common/versionChecker';
 import { defaultVersion } from 'configs/globals';
 
 function Top() {
   const { ver = defaultVersion } = useParams<{ ver: string }>();
-  // const valid = VersionCheck(ver);
-  // console.log({valid, ver});
   
   /*
    * TODO: バージョン検証
