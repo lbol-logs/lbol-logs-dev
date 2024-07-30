@@ -19,8 +19,8 @@ function About() {
     [key: string]: Array<string>
   };
 
-  const categories: Categories = t('roadmap.categories', { returnObjects: true });
-  const done: Array<string> = t('done.value', { returnObjects: true });
+  const roadmapCategories: Categories = t('roadmap.categories', { returnObjects: true });
+  const doneCategories: Categories = t('done.categories', { returnObjects: true });
 
   return (
     <section className="p-about">
@@ -33,7 +33,7 @@ function About() {
       <div className="p-about__break"></div>
       <div className="p-about__roadmap c-roadmap">
         <h2 className="c-roadmap__title">{t('roadmap.keys.roadmap', { ns: 'common' })}</h2>
-        {Object.entries(categories).map(([category, array]) => {
+        {Object.entries(roadmapCategories).map(([category, array]) => {
           const key = `c-roadmap-${category}`;
           return (
             <div className={key} key={key}>
@@ -50,23 +50,31 @@ function About() {
         })}
       </div>
       <div className="p-about__done c-done">
-        <h2 className="c-done__title">{t('done.key', { ns: 'common' })}</h2>
-        <ul className="c-done__list">
-          {done.map((item, i) => {
-            return (
-              <li className={`c-done__list-item`} key={`done${i}`}>{item}</li>
-            );
-          })}
-        </ul>
+      <h2 className="c-done__title">{t('done.keys.done', { ns: 'common' })}</h2>
+        {Object.entries(doneCategories).map(([category, array]) => {
+          const key = `c-done-${category}`;
+          return (
+            <div className={key} key={key}>
+              <h3 className={`${key}__title`}>{t(`done.keys.${category}`, { ns: 'common' })}</h3>
+              <ul className={`${key}__list`}>
+                {array.map((item, i) => {
+                  return (
+                    <li className={`${key}__list-item`} key={`${category}${i}`}>{item}</li>
+                  );
+                })}
+              </ul>
+            </div>
+          );
+        })}
       </div>
       <div className="p-about__about">
         <Trans
           i18nKey="about"
           ns="common"
           components={{
-            steam: <a href="https://store.steampowered.com/app/1140150/" target="_blank">steam</a>,
-            mod: <a href={modUrl} target="_blank">mod</a>,
-            discord: <a href={discordUrl} target="_blank">discord</a>
+            steam: <a href="https://store.steampowered.com/app/1140150/" target="_blank" rel="noreferrer">steam</a>,
+            mod: <a href={modUrl} target="_blank" rel="noreferrer">mod</a>,
+            discord: <a href={discordUrl} target="_blank" rel="noreferrer">discord</a>
           }}
         />
       </div>

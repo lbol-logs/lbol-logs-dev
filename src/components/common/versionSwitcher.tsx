@@ -1,6 +1,6 @@
 import { VersionContext } from "contexts/versionContext";
 import { versions } from "configs/globals";
-import { ChangeEvent, useContext, useEffect } from "react";
+import { ChangeEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 function VersionSwitcher() {

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import LanguageSwitcher from 'components/common/languageSwitcher';
 import VersionSwitcher from 'components/common/versionSwitcher';
-import { baseUrl, defaultVersion } from 'configs/globals';
+import { baseUrl } from 'configs/globals';
 
 function Header() {
   const { t } = useTranslation();
