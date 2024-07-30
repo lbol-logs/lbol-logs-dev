@@ -6,18 +6,18 @@ import { Navigate } from "react-router-dom";
 function VersionChecker({ ver }: { ver: string }) {
   console.log({ver, first: ver ? true : false, second: !versions.includes(ver), cond: ver && !versions.includes(ver) ? true : false});
   const { setVersion } = useContext(VersionContext);
-  let result;
-  if (!versions.includes(ver)) {
-    result = (<Navigate to="/" replace={true} />);
-  }
-  else {
-    result = (
-      <p>バージョン: {ver}</p>
-    );
-  }
+  const isValidVersion = versions.includes(ver);
 
-  setVersion(ver as string);
-  return result;
+  isValidVersion && setVersion(ver as string);
+
+  return (
+    <>
+      {isValidVersion
+        ? <p>バージョン: {ver}</p>
+        : <Navigate to="/" replace={true} />
+      }
+    </>
+  );
 }
 
 export default VersionChecker;

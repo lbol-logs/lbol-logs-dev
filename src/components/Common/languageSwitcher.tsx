@@ -20,13 +20,14 @@ function LanguageSwitcher() {
     const lang = (
       text
     );
-    if (isCurrentLanguage) {
-      return (
-        <strong>{lang}</strong>
-      );
-    }
+
     return (
-      <button onClick={() => handleLanguage(code)}>{lang}</button>
+      <>
+        {isCurrentLanguage
+          ? <strong>{lang}</strong>
+          : <button onClick={() => handleLanguage(code)}>{lang}</button>
+        }
+      </>
     );
   }
 
