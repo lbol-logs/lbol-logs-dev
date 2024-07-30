@@ -21,6 +21,7 @@ function About() {
 
   const roadmapCategories: Categories = t('roadmap.categories', { returnObjects: true });
   const doneCategories: Categories = t('done.categories', { returnObjects: true });
+  const disclaimers: Array<string> = t('disclaimers.value', { returnObjects: true });
 
   return (
     <section className="p-about">
@@ -77,6 +78,16 @@ function About() {
             discord: <a href={discordUrl} target="_blank" rel="noreferrer">discord</a>
           }}
         />
+      </div>
+      <div className="p-about__disclaimer">
+        <h2 className="c-disclaimer__title">{t('disclaimers.key', { ns: 'common' })}</h2>
+        <ul className="c-disclaimer__list">
+          {disclaimers.map((item, i) => {
+            return (
+              <li className="c-disclaimer__list-item" key={`disclaimer${i}`}>{item}</li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

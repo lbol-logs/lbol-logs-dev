@@ -59,5 +59,12 @@
       ]
     }
   },
+  "disclaimers": {
+    "key": "免責事項",
+    "value": [
+      "A",
+      "B"
+    ]
+  },
   "version": "Version"
 }
