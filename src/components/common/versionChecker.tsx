@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 
 function VersionChecker({ ver }: { ver: string }) {
-  console.log({ver, first: ver ? true : false, second: !versions.includes(ver), cond: ver && !versions.includes(ver) ? true : false});
   const { setVersion } = useContext(VersionContext);
   const isValidVersion = versions.includes(ver);
 
