@@ -5,7 +5,6 @@ import Log from 'components/log';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
-import Footer from 'components/common/footer';
 import VersionProvider from 'contexts/versionContext';
 import { baseUrl } from 'configs/globals';
 
@@ -14,23 +13,20 @@ function App() {
 
   return (
     <HelmetProvider>
-      <div className="App">
-        <Helmet>
-          <html lang={i18next.language} /> 
-          <title>{t('title', { ns: 'common' })}</title>
-          <meta name="description" content={t('description', { ns: 'common' })} />
-          <link rel="manifest" href={`${baseUrl}/locales/${i18next.language}/manifest.json`} />
-        </Helmet>
-        
-        <VersionProvider>
-          <Routes>
-            <Route path='/' element={<Top />} />
-            <Route path='/:ver/' element={<Top />} />
-            <Route path='/:ver/:id/' element={<Log />} />
-          </Routes>
-        </VersionProvider>
-        <Footer />
-      </div>
+      <Helmet>
+        <html lang={i18next.language} /> 
+        <title>{t('title', { ns: 'common' })}</title>
+        <meta name="description" content={t('description', { ns: 'common' })} />
+        <link rel="manifest" href={`${baseUrl}/locales/${i18next.language}/manifest.json`} />
+      </Helmet>
+      
+      <VersionProvider>
+        <Routes>
+          <Route path="/" element={<Top />} />
+          <Route path="/:ver/" element={<Top />} />
+          <Route path="/:ver/:id/" element={<Log />} />
+        </Routes>
+      </VersionProvider>
     </HelmetProvider>
   );
 }

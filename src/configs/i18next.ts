@@ -19,7 +19,7 @@ i18next
   }))
   .init({
     supportedLngs: lngs,
-    fallbackLng: lngs[0],
+    fallbackLng: false,
     ns: namespaces,
     // debug: true
   });

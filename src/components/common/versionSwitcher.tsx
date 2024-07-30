@@ -15,7 +15,7 @@ function VersionSwitcher() {
   }
 
   return (
-    <> 
+    <div className="l-header__version"> 
       <select onChange={handleChange} value={version}>
         {versions.map(v => {
           return (
@@ -23,8 +23,7 @@ function VersionSwitcher() {
           );
         })}
       </select>
-      <p>バージョン: {version}</p>
-    </>
+    </div>
   );
 }
 

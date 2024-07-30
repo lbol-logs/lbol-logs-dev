@@ -6,13 +6,12 @@ function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="App-footer">
-      <Link to='/'>
-        <img src={`${baseUrl}/logo.svg`} className="App-logo" alt="logo" />
-      </Link>
-      <p>
+    <footer className="l-footer">
+      <Link className="l-footer__link" to="/">
+        <img className="l-footer__logo" src={`${baseUrl}/logo.svg`} alt="" />
         {t('title', { ns: 'common' })}
-      </p>
+      </Link>
+      <div className="l-footer__copyright">©2024 ed-ev</div>
     </footer>
   );
 }

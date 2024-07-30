@@ -2,22 +2,17 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import LanguageSwitcher from 'components/common/languageSwitcher';
 import VersionSwitcher from 'components/common/versionSwitcher';
-import { useParams } from 'react-router-dom';
 import { baseUrl, defaultVersion } from 'configs/globals';
 
 function Header() {
   const { t } = useTranslation();
-  
-  // const { ver = defaultVersion } = useParams<{ ver: string }>();
 
   return (
-    <header className="App-header">
-      <Link to='/'>
-        <img src={`${baseUrl}/logo.svg`} className="App-logo" alt="logo" />
+    <header className="l-header">
+      <Link className="l-header__link" to="/">
+        <img className="l-header__logo" src={`${baseUrl}/logo.svg`} alt="" />
+        <h1 className="l-header__title">{t('title', { ns: 'common' })}</h1>
       </Link>
-      <p>
-        {t('title', { ns: 'common' })}
-      </p>
       <VersionSwitcher />
       <LanguageSwitcher />
     </header>

@@ -3,8 +3,9 @@ import Header from 'components/common/header';
 import About from 'components/top/about';
 import CheckVersion from 'components/utils/checkVersion';
 import { defaultVersion } from 'configs/globals';
-import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
+import RunList from 'components/top/runList';
+import Footer from 'components/common/footer';
 
 function Top() {  
   /*
@@ -19,10 +20,11 @@ function Top() {
   return (
     <>
       <Header />
-      <>
-        <h1>Topページです</h1>
+      <main className="l-top">
         <About />
-      </>
+        <RunList />
+      </main>
+      <Footer />
     </>
   );
 };
