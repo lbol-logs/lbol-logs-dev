@@ -1,6 +1,6 @@
 {
-    "title": "タイトル",
-    "description": "ディスクリプション",
-    "underConstruction": "このサイトは準備中です。<br />デモ目的に公開しています。",
-    "about": "LBoL Logsは<steam>東方光耀夜 〜 Lost Branch of Legend</steam> (LBoL)のプレイ履歴を共有するサービスです。<br />ゲーム内の履歴データは情報が少なく過去50回分しなかい保存されないため、自作Mod<mod>LBoL Run Logger</mod> (開発中)が生成したデータだけのサポートとなります。"
+  "title": "タイトル",
+  "description": "ディスクリプション",
+  "underConstruction": "このサイトは準備中です。<br />デモ目的に公開しています。",
+  "about": "LBoL Logsは<steam>東方光耀夜 〜 Lost Branch of Legend</steam> (LBoL)のプレイ履歴を共有するサービスです。<br />ゲーム内の履歴データは情報が少なく過去50回分しなかい保存されないため、自作Mod<mod>LBoL Run Logger</mod> (開発中)が生成したデータだけのサポートとなります。"
 }
