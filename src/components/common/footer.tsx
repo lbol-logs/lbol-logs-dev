@@ -1,3 +1,4 @@
+import { baseUrl } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +8,7 @@ function Footer() {
   return (
     <footer className="App-footer">
       <Link to='/'>
-        <img src="/logo.svg" className="App-logo" alt="logo" />
+        <img src={`${baseUrl}/logo.svg`} className="App-logo" alt="logo" />
       </Link>
       <p>
         {t('title', { ns: 'common' })}

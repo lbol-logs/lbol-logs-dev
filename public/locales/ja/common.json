@@ -11,16 +11,18 @@
       "later": "今後",
       "trash": "予定なし"
     },
-    "now": [
+    "categories": {
+      "now": [
 
-    ],
-    "next": [
+      ],
+      "next": [
 
-    ],
-    "later": [
-    ],
-    "trash": [
-      
-    ]
+      ],
+      "later": [
+      ],
+      "trash": [
+
+      ]
+    }
   }
 }

@@ -1,9 +1,9 @@
-import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Helmet } from 'react-helmet';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { baseUrl } from 'configs/globals';
 
 function App() {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ function App() {
         <html lang={i18next.language} /> 
         <title>{t('title', {ns: 'common'})}</title>
         <meta name="description" content={t('description', {ns: 'common'})} />
-        <link rel="manifest" href={`${process.env.PUBLIC_URL}/locales/${i18next.language}/manifest.json`} />
+        <link rel="manifest" href={`${baseUrl}/locales/${i18next.language}/manifest.json`} />
       </Helmet>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

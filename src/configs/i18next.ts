@@ -21,7 +21,7 @@ i18next
     supportedLngs: lngs,
     fallbackLng: lngs[0],
     ns: namespaces,
-    debug: true
+    // debug: true
   });
 
 export default i18next;

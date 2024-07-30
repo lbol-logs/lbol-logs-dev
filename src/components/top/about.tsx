@@ -12,6 +12,7 @@ function About() {
    */
 
   const socials = t("socials", { returnObjects: true });
+  console.log(socials);
 
   return (
     <>
@@ -27,8 +28,7 @@ function About() {
           ns="common"
           components={{
             steam: <a href="https://store.steampowered.com/app/1140150/">steam</a>,
-            // mod: <a href={modUrl}>mod</a>
-            mod: <a href="#">mod</a>
+            mod: <a href={modUrl}>mod</a>
           }}
         />
       </p>
