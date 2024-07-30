@@ -72,19 +72,19 @@ img {
 .p-about {
   display: flex;
   flex-wrap: wrap;
+  column-gap: 10px;
 }
 .p-about__under-construction {
   padding: 10px;
   background: #ffe3e3;
+  margin-left: auto;
+  margin-right: auto;
 }
 .p-about__break {
   flex-basis: 100%;
 }
-.p-about__roadmap {
-  flex-basis: 50%;
-}
-.p-about__done {
-  flex-basis: 50%;
+.p-about__roadmap, .p-about__done {
+  flex-basis: calc(50% - 5px);
 }
 
 .p-about__about {
@@ -103,5 +103,8 @@ img {
   }
   .u-pc {
     display: none;
+  }
+  .p-about__roadmap, .p-about__done {
+    flex-basis: 100%;
   }
 }
