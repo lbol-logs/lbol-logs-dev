@@ -73,9 +73,9 @@ function About() {
           i18nKey="about"
           ns="common"
           components={{
-            steam: <a href="https://store.steampowered.com/app/1140150/" target="_blank" rel="noreferrer">steam</a>,
-            mod: <a href={modUrl} target="_blank" rel="noreferrer">mod</a>,
-            discord: <a href={discordUrl} target="_blank" rel="noreferrer">discord</a>
+            steam: <a href="https://store.steampowered.com/app/1140150/" target="_blank" rel="noreferrer"></a>,
+            mod: <a href={modUrl} target="_blank" rel="noreferrer"></a>,
+            discord: <a href={discordUrl} target="_blank" rel="noreferrer"></a>
           }}
         />
       </div>

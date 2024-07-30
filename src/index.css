@@ -52,6 +52,8 @@ img {
   height: 100%;
   column-gap: 5px;
   color: #000;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .l-footer__logo {
   height: 20px;
@@ -64,6 +66,7 @@ img {
 .l-top {
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 10px;
 }
 
 .p-about {
@@ -87,4 +90,18 @@ img {
 .p-about__about {
   padding: 10px;
   background: #e3f8ff;
+}
+
+@media screen and (min-width: 601px) {
+  .u-sp {
+    display: none;
+  }
+}
+@media screen and (max-width: 600px) {
+  .l-footer__link {
+    max-width: 200px;
+  }
+  .u-pc {
+    display: none;
+  }
 }
