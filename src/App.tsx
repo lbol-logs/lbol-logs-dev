@@ -2,12 +2,13 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import { defaultVersion } from 'configs/globals';
 import { createContext, useState } from 'react';
 
-import Top from 'components/Top';
-import Log from 'components/Log';
+import Top from 'components/top';
+import Log from 'components/log';
 import { Helmet } from 'react-helmet';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
-import Header from 'components/Common/header';
+import Header from 'components/common/header';
+import Footer from 'components/common/footer';
 
 export const VersionContext = createContext({} as {
   version: string
