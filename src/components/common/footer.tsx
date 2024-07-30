@@ -10,7 +10,7 @@ function Footer() {
         <img src="/logo.svg" className="App-logo" alt="logo" />
       </Link>
       <p>
-        {t('title', {ns: 'common'})}
+        {t('title', { ns: 'common' })}
       </p>
     </footer>
   );

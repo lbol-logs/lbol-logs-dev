@@ -27,8 +27,8 @@ function App() {
     <div className="App">
       <Helmet>
         <html lang={i18next.language} /> 
-        <title>{t('title', {ns: 'common'})}</title>
-        <meta name="description" content={t('description', {ns: 'common'})} />
+        <title>{t('title', { ns: 'common' })}</title>
+        <meta name="description" content={t('description', { ns: 'common' })} />
         <link rel="manifest" href={`${process.env.PUBLIC_URL}/locales/${i18next.language}/manifest.json`} />
       </Helmet>
       <Header />
