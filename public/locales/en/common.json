@@ -60,10 +60,11 @@
     }
   },
   "disclaimers": {
-    "key": "免責事項",
+    "key": "Disclaimers",
     "value": [
-      "A",
-      "B"
+      "No cookie is collected. (Language prefernce is saved in cookie yet.)",
+      "No private information, such as PC information, Steam account information, payment information is collected by the Mod nor included in the generated data.",
+      "Although simple validation is performed upon uploading, no responsibility will be accepted for user accidentially uploading private information."
     ]
   },
   "version": "Version"
