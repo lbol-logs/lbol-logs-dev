@@ -8,8 +8,7 @@ const namespaces: Array<string> = [
 ];
 
 const versions: Array<string> = [
-  '1.5.1',
-  '1.5.0'
+  '1.5.1'
 ];
 
 const defaultVersion: string = versions[0];
