@@ -2,6 +2,7 @@ import { getList } from "components/utils/getData";
 import { VersionContext } from "contexts/versionContext";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 function RunList() {
   const { version } = useContext(VersionContext);
@@ -32,24 +33,22 @@ function RunList() {
           {/*
             * TODO: filter & sort
             */}
-            <table className="p-run-list__table">
-              <thead className="p-run-list__header-row">
-                {headers.map(header => <th className="p-run-list__header-cell">{header}</th>)}
-              </thead>
-              <tbody>
-                {Object.entries(list as TRunList).map(([id, o]) => {
-                  return (
-                    <tr className="p-run-list__row" key={id}>
-                      {Object.entries(o).map(([key, value]) => {
-                        return (
-                          <td className="p-run-list__cell" key={`${id}_${key}`}>{Array.isArray(value) ? value.join(', ') : value}</td>
-                        );
-                      })}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <div className="p-run-list__table">
+              <div className="p-run-list__header-row">
+                {headers.map(header => <div className="p-run-list__header-cell">{header}</div>)}
+              </div>
+              {Object.entries(list as TRunList).map(([id, o]) => {
+                return (
+                  <Link className="p-run-list__row" key={id} to={`/${version}/${id}/`}>
+                    {Object.entries(o).map(([key, value]) => {
+                      return (
+                        <div className="p-run-list__cell" key={`${id}_${key}`}>{Array.isArray(value) ? value.join(', ') : value}</div>
+                      );
+                    })}
+                  </Link>
+                );
+              })}
+            </div>
           </>
         }
       </section>

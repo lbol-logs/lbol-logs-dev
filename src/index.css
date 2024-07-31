@@ -11,15 +11,6 @@ img {
   max-width: 100%;
   height: auto;
 }
-table {
-  border-collapse: collapse;
-}
-table, th, td {
-  border:1px solid #000;
-}
-th, td {
-  padding: 5px;
-}
 
 .l-header {
   height: 20px;
@@ -101,6 +92,20 @@ th, td {
 .p-about__about {
   padding: 10px;
   background: #e3f8ff;
+}
+
+.p-run-list__table {
+  display: table;
+}
+.p-run-list__header-row, .p-run-list__row {
+  display: table-row;
+}
+.p-run-list__row {
+  color: inherit;
+}
+.p-run-list__header-cell, .p-run-list__cell {
+  display: table-cell;
+  padding: 5px;
 }
 
 @media screen and (min-width: 601px) {
