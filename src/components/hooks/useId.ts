@@ -1,9 +1,9 @@
 import { getLog } from "components/utils/getData";
+import { TRunLog } from "components/utils/TRunLog";
 import { LogContext } from "contexts/logContext";
 import { VersionContext } from "contexts/versionContext";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { TRunLog } from "configs/globals";
 
 function useId(id: string)  {
   const { version } = useContext(VersionContext);
