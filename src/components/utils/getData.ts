@@ -1,21 +1,21 @@
 import { dataUrl } from "configs/globals";
 
-function getData(path: string, version: string) {
+function getData(version: string, path: string) {
   const url = `${dataUrl}/${version}/${path}.json`;
   const promise = fetch(url).then(res => res.json());
   return promise;
 }
 
 function getList(version: string) {
-  return getData('list', version);
+  return getData(version, 'list');
 }
 
-function getLog(id: string, version: string) {
-  return getData(`logs/${id}`, version);
+function getLog(version: string, id: string) {
+  return getData(version, `logs/${id}`);
 }
 
-function getConfig(name: string, version: string) {
-  return getData(`configs/${name}`, version);
+function getConfig(version: string, name: string) {
+  return getData(version, `configs/${name}`);
 }
 
 export {
