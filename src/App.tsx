@@ -7,6 +7,7 @@ import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import VersionProvider from 'contexts/versionContext';
 import { baseUrl } from 'configs/globals';
+import RemoveTrailingSlash from 'components/common/removeTrailingSlash';
 
 function App() {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ function App() {
         <link rel="manifest" href={`${baseUrl}/locales/${i18next.language}/manifest.json`} />
       </Helmet>
       
+      <RemoveTrailingSlash />
       <VersionProvider>
         <Routes>
           <Route path="/" element={<Top />} />

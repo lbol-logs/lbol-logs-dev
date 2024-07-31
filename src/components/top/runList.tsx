@@ -37,7 +37,7 @@ function RunList() {
               <div className="p-run-list__header-row">
                 {headers.map(header => {
                   return (
-                    <div className="p-run-list__header-cell">{t(header, { ns: 'run' })}</div>
+                    <div className="p-run-list__header-cell" key={header}>{t(header, { ns: 'run' })}</div>
                   );
                 })}
               </div>
