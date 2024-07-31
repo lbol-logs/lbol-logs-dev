@@ -1,8 +1,7 @@
 import UseList from "components/hooks/useList";
-import { getList } from "components/utils/getData";
 import { TRunList } from "configs/globals";
 import { VersionContext } from "contexts/versionContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
