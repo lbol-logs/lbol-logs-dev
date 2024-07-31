@@ -15,10 +15,13 @@ const latestVersion: string = versions[0];
 
 const baseUrl: string = process.env.PUBLIC_URL;
 
+const dataUrl: string = 'https://ed-ev.github.io/lbol-logs-data';
+
 export {
   languages,
   namespaces,
   versions,
   latestVersion,
-  baseUrl
+  baseUrl,
+  dataUrl
 };

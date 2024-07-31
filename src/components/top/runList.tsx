@@ -9,6 +9,16 @@ function RunList() {
   return (
     <>
       <p>{t('version', { ns: 'common' })}: {version}</p>
+      TODO: table, filter & sort
+      {/*
+        * Character
+        * Type
+        * Shining
+        * Difficulty
+        * Requests
+        * Result
+        * Date
+        */}
     </>
   );
 }
