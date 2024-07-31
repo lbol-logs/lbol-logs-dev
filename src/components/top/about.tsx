@@ -9,12 +9,6 @@ function About() {
     ? 'https://discord.com/channels/1040229874176098344/1267772366054887506'
     : 'https://discord.com/channels/1040229874176098344/1267772986254163990';
 
-  /*
-   * TODO: バージョン検証
-   * サポート外の例外処理
-   * デフォルト値
-   */
-
   type Categories = {
     [key: string]: Array<string>
   };

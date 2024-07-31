@@ -8,12 +8,6 @@ import RunList from 'components/top/runList';
 import Footer from 'components/common/footer';
 
 function Top() {  
-  /*
-   * TODO: バージョン検証
-   * サポート外の例外処理
-   * デフォルト値
-   */
-
   const { ver = latestVersion } = useParams<{ ver: string }>();
   CheckVersion(ver);
 
