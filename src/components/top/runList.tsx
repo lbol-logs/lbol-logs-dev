@@ -11,23 +11,13 @@ function RunList() {
   const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState({});
 
-  // useRunList({ setIsLoading, setList });
-
   useEffect(() => {
     setIsLoading(true);
-    // fetch('https://ed-ev.github.io/lbol-logs-data/1.5.1/list.json').then(res => res.json()).then((list: TRunList) => {
     getList(version).then((list) => {
-    // getList().then((list: TRunList) => {
-      console.log(list);
       setList(list);
+      setIsLoading(false);
     });
-    /*
-    setTimeout(() => {
-      setList({'a':1,'b':2});
-    }, 5000);
-    */
-    setIsLoading(false);
-  }, [setIsLoading, setList]);
+  }, [setIsLoading, setList, version]);
 
   return (
     <>

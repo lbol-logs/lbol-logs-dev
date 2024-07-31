@@ -1,6 +1,4 @@
 import { dataUrl } from "configs/globals";
-import { VersionContext } from "contexts/versionContext";
-import { useContext } from "react";
 
 function getData(path: string, version: string) {
   const url = `${dataUrl}/${version}/${path}.json`;
