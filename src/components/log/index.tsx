@@ -1,3 +1,4 @@
+import Header from 'components/common/header';
 import { useParams } from 'react-router-dom';
 
 function Log() {
@@ -8,6 +9,7 @@ function Log() {
 
   return (
     <>
+      <Header />
       <h1>Logページです</h1>
       <p>バージョン: {ver}</p>
       <p>ID: {id}</p>

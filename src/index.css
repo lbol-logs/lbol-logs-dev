@@ -20,6 +20,9 @@ img {
   column-gap: 10px;
   border-bottom: 1px solid #ccc;
   margin-bottom: 10px;
+  position: sticky;
+  top: 0;
+  background: #fff;
 }
 .l-header__link {
   display: flex;

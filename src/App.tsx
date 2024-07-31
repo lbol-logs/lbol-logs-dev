@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Top from 'components/top';
 import Log from 'components/log';
@@ -25,6 +25,7 @@ function App() {
           <Route path="/" element={<Top />} />
           <Route path="/:ver/" element={<Top />} />
           <Route path="/:ver/:id/" element={<Log />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </VersionProvider>
     </HelmetProvider>

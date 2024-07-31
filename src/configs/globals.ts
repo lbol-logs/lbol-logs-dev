@@ -4,7 +4,8 @@ const languages: Record<string, any> = {
 };
 
 const namespaces: Array<string> = [
-  'common'
+  'common',
+  'run'
 ];
 
 const versions: Array<string> = [

@@ -11,7 +11,7 @@ function RunList() {
   const [isLoading, setIsLoading] = useState(false);
   const [list, setList] = useState({});
 
-  const headers = ['Character', 'Type', 'Shining', 'Difficulty', 'Requests', 'Result', 'Timestamp'];
+  const headers = ['character', 'type', 'shining', 'difficulty', 'requests', 'result', 'timestamp'];
 
   type TRunList = Record<string, Record<string, string | Array<string>>>;
 
@@ -35,7 +35,11 @@ function RunList() {
             */}
             <div className="p-run-list__table">
               <div className="p-run-list__header-row">
-                {headers.map(header => <div className="p-run-list__header-cell">{header}</div>)}
+                {headers.map(header => {
+                  return (
+                    <div className="p-run-list__header-cell">{t(header, { ns: 'run' })}</div>
+                  );
+                })}
               </div>
               {Object.entries(list as TRunList).map(([id, o]) => {
                 return (
