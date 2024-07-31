@@ -1,4 +1,6 @@
+import UseList from "components/hooks/useList";
 import { getList } from "components/utils/getData";
+import { TRunList } from "configs/globals";
 import { VersionContext } from "contexts/versionContext";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -13,20 +15,10 @@ function RunList() {
 
   const headers = ['character', 'type', 'shining', 'difficulty', 'requests', 'result', 'timestamp'];
 
-  type TRunList = Record<string, Record<string, string | Array<string>>>;
-
-  useEffect(() => {
-    setIsLoading(true);
-    getList(version).then((list: TRunList) => {
-      setList(list);
-      setIsLoading(false);
-    });
-  }, [setIsLoading, setList, version]);
-
   return (
     <>
-      <p>{t('version', { ns: 'common' })}: {version}</p>
       <section className="p-run-list">
+        <UseList setIsLoading={setIsLoading} setList={setList} version={version} />
         {isLoading
           ? 'loading'
           : <>

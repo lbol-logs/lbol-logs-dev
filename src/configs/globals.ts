@@ -18,6 +18,8 @@ const baseUrl: string = process.env.PUBLIC_URL;
 
 const dataUrl: string = 'https://ed-ev.github.io/lbol-logs-data';
 
+type TRunList = Record<string, Record<string, string | Array<string>>>;
+
 export {
   languages,
   namespaces,
@@ -25,4 +27,8 @@ export {
   latestVersion,
   baseUrl,
   dataUrl
+};
+
+export type {
+  TRunList
 };

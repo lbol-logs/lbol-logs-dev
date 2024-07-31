@@ -12,7 +12,7 @@ function useId(_id: string)  {
   const navigate = useNavigate();
   useEffect(() => {
     if (!isValidId) {
-      // navigate("/", { replace: true })
+      navigate("/", { replace: true })
     }
   }, [navigate, isValidId]);
 }
