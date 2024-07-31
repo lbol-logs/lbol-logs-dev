@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 function Footer() {
-  const { t } = useTranslation();
+  useTranslation();
 
   return (
     <footer className="l-footer">

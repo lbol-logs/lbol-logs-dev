@@ -5,7 +5,7 @@ import VersionSwitcher from 'components/common/versionSwitcher';
 import { baseUrl } from 'configs/globals';
 
 function Header() {
-  const { t } = useTranslation();
+  useTranslation();
 
   return (
     <header className="l-header">
