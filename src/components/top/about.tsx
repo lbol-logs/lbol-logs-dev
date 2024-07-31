@@ -21,7 +21,7 @@ function About() {
 
   const roadmapCategories: Categories = t('roadmap.categories', { returnObjects: true });
   const doneCategories: Categories = t('done.categories', { returnObjects: true });
-  const disclaimers: Array<string> = t('disclaimers.value', { returnObjects: true });
+  const attention: Array<string> = t('attention.value', { returnObjects: true });
 
   return (
     <section className="p-about">
@@ -79,12 +79,12 @@ function About() {
           }}
         />
       </div>
-      <div className="p-about__disclaimer">
-        <h2 className="c-disclaimer__title">{t('disclaimers.key', { ns: 'common' })}</h2>
-        <ul className="c-disclaimer__list">
-          {disclaimers.map((item, i) => {
+      <div className="p-about__attention">
+        <h2 className="c-attention__title">{t('attention.key', { ns: 'common' })}</h2>
+        <ul className="c-attention__list">
+          {attention.map((item, i) => {
             return (
-              <li className="c-disclaimer__list-item" key={`disclaimer${i}`}>{item}</li>
+              <li className="c-attention__list-item" key={`attention${i}`}>{item}</li>
             );
           })}
         </ul>

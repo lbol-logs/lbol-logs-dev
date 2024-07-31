@@ -61,12 +61,12 @@
       ]
     }
   },
-  "disclaimers": {
-    "key": "Disclaimers",
+  "attention": {
+    "key": "Attention",
     "value": [
       "No cookie is collected. (Language prefernce is saved in cookie yet.)",
       "No private information, such as PC information, Steam account information, payment information is collected by the Mod nor included in the generated data.",
-      "Although simple validation is performed upon uploading, no responsibility will be accepted for user accidentially uploading private information."
+      "Although validation is performed before uploading, no responsibility will be accepted for user accidentially uploading private information."
     ]
   },
   "version": "Version"
