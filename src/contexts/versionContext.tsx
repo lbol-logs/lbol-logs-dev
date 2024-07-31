@@ -1,4 +1,4 @@
-import { defaultVersion } from "configs/globals";
+import { latestVersion } from "configs/globals";
 import { createContext, useState } from "react";
 
 type IVersionContent = {
@@ -7,12 +7,12 @@ type IVersionContent = {
 };
 
 export const VersionContext = createContext<IVersionContent>({
-  version: defaultVersion,
+  version: latestVersion,
   setVersion: () => {}
 });
 
 function VersionProvider({ children }: { children: React.ReactNode }) {
-  const [version, setVersion] = useState(defaultVersion);
+  const [version, setVersion] = useState(latestVersion);
   const value = {
     version,
     setVersion
