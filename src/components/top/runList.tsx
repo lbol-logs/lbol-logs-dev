@@ -16,27 +16,18 @@ function RunList() {
   useEffect(() => {
     setIsLoading(true);
     // fetch('https://ed-ev.github.io/lbol-logs-data/1.5.1/list.json').then(res => res.json()).then((list: TRunList) => {
-    // getList(version).then((list) => {
-    // // getList().then((list: TRunList) => {
-    //   console.log(list);
-    //   setList(list);
-    // });
+    getList(version).then((list) => {
+    // getList().then((list: TRunList) => {
+      console.log(list);
+      setList(list);
+    });
     /*
     setTimeout(() => {
       setList({'a':1,'b':2});
     }, 5000);
     */
-    // setIsLoading(false);
-
-    (async() => {
-      getList(version).then((list) => {
-          console.log(new Date().toLocaleString());
-          console.log(list);
-          setList(list);
-        });
-        setIsLoading(false);
-    })();
-  }, []);
+    setIsLoading(false);
+  }, [setIsLoading, setList]);
 
   return (
     <>
