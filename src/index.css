@@ -11,6 +11,15 @@ img {
   max-width: 100%;
   height: auto;
 }
+table {
+  border-collapse: collapse;
+}
+table, th, td {
+  border:1px solid #000;
+}
+th, td {
+  padding: 5px;
+}
 
 .l-header {
   height: 20px;
@@ -19,6 +28,7 @@ img {
   align-items: center;
   column-gap: 10px;
   border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
 }
 .l-header__link {
   display: flex;
@@ -45,6 +55,7 @@ img {
   align-items: center;
   flex-direction: column;
   row-gap: 10px;
+  margin-top: 50px;
 }
 .l-footer__link {
   display: flex;
