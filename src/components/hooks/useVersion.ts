@@ -3,7 +3,7 @@ import { VersionContext } from "contexts/versionContext";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function CheckVersion(ver: string)  {
+function useVersion(ver: string)  {
   const { version, setVersion } = useContext(VersionContext);
 
   const isChanged = ver !== version;
@@ -21,4 +21,4 @@ function CheckVersion(ver: string)  {
   }, [navigate, isValidVersion]);
 }
 
-export default CheckVersion;
+export default useVersion;

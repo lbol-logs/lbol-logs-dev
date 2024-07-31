@@ -1,12 +1,12 @@
 import { latestVersion } from "configs/globals";
 import { createContext, useState } from "react";
 
-type IVersionContent = {
+type TVersionContent = {
   version: string
   setVersion: React.Dispatch<React.SetStateAction<string>>
 };
 
-export const VersionContext = createContext<IVersionContent>({
+export const VersionContext = createContext<TVersionContent>({
   version: latestVersion,
   setVersion: () => {}
 });
