@@ -20,6 +20,8 @@ const dataUrl: string = 'https://ed-ev.github.io/lbol-logs-data';
 
 type TRunList = Record<string, Record<string, string | Array<string>>>;
 
+type TRunLog = Record<string, any>;
+
 export {
   languages,
   namespaces,
@@ -30,5 +32,6 @@ export {
 };
 
 export type {
-  TRunList
+  TRunList,
+  TRunLog
 };

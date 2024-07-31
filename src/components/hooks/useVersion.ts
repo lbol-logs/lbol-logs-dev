@@ -16,7 +16,7 @@ function useVersion(ver: string)  {
   const navigate = useNavigate();
   useEffect(() => {
     if (!isValidVersion) {
-      navigate("/", { replace: true })
+      navigate("/", { replace: true });
     }
   }, [navigate, isValidVersion]);
 }

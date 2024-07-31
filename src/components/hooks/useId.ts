@@ -1,18 +1,29 @@
+import { getLog } from "components/utils/getData";
 import { LogContext } from "contexts/logContext";
+import { VersionContext } from "contexts/versionContext";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { TRunLog } from "configs/globals";
 
-function useId(_id: string)  {
+function useId(id: string)  {
+  const { version } = useContext(VersionContext);
   const { setId } = useContext(LogContext);
+  // TODO: setLog
 
-  const isValidId = _id;
-  console.log(_id);
-  if (isValidId) setId(_id);
+  const isValidId = id;
+  getLog(version, id)
+    .then((log: TRunLog) => {
+      console.log(log);
+      setId(id);
+    })
+    .catch(() => {
+      navigate("/", { replace: true });
+    });
 
   const navigate = useNavigate();
   useEffect(() => {
     if (!isValidId) {
-      navigate("/", { replace: true })
+      navigate("/", { replace: true });
     }
   }, [navigate, isValidId]);
 }
