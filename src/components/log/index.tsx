@@ -6,6 +6,7 @@ import LogProvider, { LogContext } from 'contexts/logContext';
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import RunData from 'components/log/runData';
 
 function Log() {
   const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();
@@ -28,7 +29,7 @@ function Log() {
         <p>ID: {id}</p>
         {isLoading
           ? t('loading', { ns: 'common' })
-          : 'loaded'
+          : <RunData />
         }
       </LogProvider>
     </>
