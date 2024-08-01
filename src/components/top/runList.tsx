@@ -25,10 +25,10 @@ function RunList() {
             * TODO: filter & sort, trans, icons, requests split
             */}
             <div className="p-run-list__table">
-              <div className="p-run-list__header-row">
+              <div className="p-run-list__row p-run-list__row--header">
                 {headers.map(header => {
                   return (
-                    <div className="p-run-list__header-cell" key={header}>{t(header, { ns: 'run' })}</div>
+                    <div className={`p-run-list__cell p-run-list__cell--${header}`} key={header}>{t(header, { ns: 'run' })}</div>
                   );
                 })}
               </div>
@@ -37,7 +37,7 @@ function RunList() {
                   <Link className="p-run-list__row" key={id} to={`/${version}/${id}/`}>
                     {Object.entries(o).map(([key, value]) => {
                       return (
-                        <div className="p-run-list__cell" key={`${id}_${key}`}>{Array.isArray(value) ? value.join(', ') : value}</div>
+                        <div className={`p-run-list__cell p-run-list__cell--${key}`} key={`${id}_${key}`}>{Array.isArray(value) ? value.join(', ') : value}</div>
                       );
                     })}
                   </Link>

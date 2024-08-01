@@ -98,17 +98,51 @@ img {
 }
 
 .p-run-list__table {
-  display: table;
+  overflow-x: auto;
+  overflow-wrap: break-word;
 }
-.p-run-list__header-row, .p-run-list__row {
-  display: table-row;
+.p-run-list__row {
+  display: flex;
+  margin: 5px 0;
+  padding: 5px;
 }
 .p-run-list__row {
   color: inherit;
+  border-radius: 15px;
 }
-.p-run-list__header-cell, .p-run-list__cell {
-  display: table-cell;
+.p-run-list__row:nth-child(odd) {
+  background: #e4fdff;
+}
+.p-run-list__row:nth-child(even) {
+  background: #fff9df;
+}
+.p-run-list__row--header {
+  background: none;
+  font-weight: bold;
+}
+.p-run-list__cell {
   padding: 5px;
+}
+.p-run-list__cell--character {
+  width: 5em;
+}
+.p-run-list__cell--type {
+  width: 2em;
+}
+.p-run-list__cell--shining {
+  width: 10em;
+}
+.p-run-list__cell--difficulty {
+  width: 4em;
+}
+.p-run-list__cell--requests {
+  width: 15em;
+}
+.p-run-list__cell--result {
+  width: 4em;
+}
+.p-run-list__cell--timestamp {
+  width: 12em;
 }
 
 @media screen and (min-width: 601px) {
