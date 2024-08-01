@@ -13,7 +13,6 @@ function Log() {
 
   const { t } = useTranslation();
   const { isLoading } = useContext(LogContext);
-  console.log(new Date().toLocaleTimeString(), 'begin');
 
   useVersion(ver);
   useRunData(id);

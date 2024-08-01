@@ -3,8 +3,8 @@ import { TAct, TLevel, TRunData } from 'utils/types';
 
 const defaultIsLoading = false;
 const defaultRunData = {};
-const defaultAct = 0;
-const defaultLevel = 0;
+const defaultAct: TAct = 0;
+const defaultLevel: TLevel = 0;
 
 type TLogContext = {
   isLoading: boolean,
