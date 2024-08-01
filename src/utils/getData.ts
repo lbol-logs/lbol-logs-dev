@@ -1,4 +1,4 @@
-import { dataUrl } from "configs/globals";
+import { dataUrl } from 'configs/globals';
 
 function getData(version: string, path: string) {
   const url = `${dataUrl}/${version}/${path}.json`;

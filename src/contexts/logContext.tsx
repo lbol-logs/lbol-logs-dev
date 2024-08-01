@@ -1,5 +1,5 @@
-import { createContext, useState } from "react";
-import { TRunData } from "utils/types";
+import { createContext, useState } from 'react';
+import { TRunData } from 'utils/types';
 
 type TLogContext = {
   isLoading: boolean,

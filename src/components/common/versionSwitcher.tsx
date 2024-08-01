@@ -1,7 +1,7 @@
-import { CommonContext } from "contexts/commonContext";
-import { versions } from "configs/globals";
-import { ChangeEvent, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { CommonContext } from 'contexts/commonContext';
+import { versions } from 'configs/globals';
+import { ChangeEvent, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function VersionSwitcher({ isLog }: { isLog: boolean }) {
   const { version, setVersion } = useContext(CommonContext);

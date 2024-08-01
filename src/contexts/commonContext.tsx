@@ -1,5 +1,5 @@
-import { latestVersion } from "configs/globals";
-import { createContext, useState } from "react";
+import { latestVersion } from 'configs/globals';
+import { createContext, useState } from 'react';
 
 type TCommonContext = {
   version: string

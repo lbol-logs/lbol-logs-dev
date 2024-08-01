@@ -1,4 +1,4 @@
-import { baseUrl } from "configs/globals";
+import { baseUrl } from 'configs/globals';
 
 function Logo({ className }: { className: string }) {
   return (

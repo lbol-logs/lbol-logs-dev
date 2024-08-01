@@ -1,9 +1,9 @@
-import UseList from "hooks/useList";
-import { TRunList } from "utils/types";
-import { CommonContext } from "contexts/commonContext";
-import { useContext, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import UseList from 'hooks/useList';
+import { TRunList } from 'utils/types';
+import { CommonContext } from 'contexts/commonContext';
+import { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 function RunList() {
   const { version } = useContext(CommonContext);

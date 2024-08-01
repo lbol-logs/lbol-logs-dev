@@ -1,9 +1,9 @@
-import { getLog } from "utils/getData";
-import { TRunData } from "utils/types";
-import { LogContext } from "contexts/logContext";
-import { CommonContext } from "contexts/commonContext";
-import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { getLog } from 'utils/getData';
+import { TRunData } from 'utils/types';
+import { LogContext } from 'contexts/logContext';
+import { CommonContext } from 'contexts/commonContext';
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
