@@ -1,5 +1,5 @@
-import { getLog } from "components/utils/getData";
-import { TRunLog } from "components/utils/TRunLog";
+import { getLog } from "utils/getData";
+import { TRunData } from "utils/types";
 import { LogContext } from "contexts/logContext";
 import { VersionContext } from "contexts/versionContext";
 import { useContext, useEffect } from "react";
@@ -7,14 +7,17 @@ import { useNavigate } from "react-router-dom";
 
 function useId(id: string)  {
   const { version } = useContext(VersionContext);
-  const { setId } = useContext(LogContext);
+  const { setIsLoading, setRunData } = useContext(LogContext);
   // TODO: setLog
 
-  const isValidId = id;
+  let isValidId = false;
+  setIsLoading(true);
   getLog(version, id)
-    .then((log: TRunLog) => {
-      console.log(log);
-      setId(id);
+    .then((runData: TRunData) => {
+      console.log(runData);
+      // TODO: validate
+      setRunData(runData);
+      setIsLoading(true);
     })
     .catch(() => {
       navigate("/", { replace: true });

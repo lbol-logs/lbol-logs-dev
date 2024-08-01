@@ -1,5 +1,5 @@
-import { getList } from "components/utils/getData";
-import { TRunList } from "configs/globals";
+import { getList } from "utils/getData";
+import { TRunList } from "utils/types";
 import { useEffect } from "react";
 
 type TUseList = {

@@ -1,20 +1,28 @@
 import { createContext, useState } from "react";
+import { TRunData } from "utils/types";
 
 type TLogContext = {
-  id: string
-  setId: React.Dispatch<React.SetStateAction<string>>
+  isLoading: boolean,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  runData: TRunData,
+  setRunData: React.Dispatch<React.SetStateAction<TRunData>>
 };
 
 export const LogContext = createContext<TLogContext>({
-  id: '',
-  setId: () => {}
+  isLoading: false,
+  setIsLoading: () => {},
+  runData: {},
+  setRunData: () => {}
 });
 
 function LogProvider({ children }: { children: React.ReactNode }) {
-  const [id, setId] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [runData, setRunData] = useState({});
   const value = {
-    id,
-    setId
+    isLoading,
+    setIsLoading,
+    runData,
+    setRunData
   };
 
   return (

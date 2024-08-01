@@ -1,6 +1,6 @@
 import Header from 'components/common/header';
-import useId from 'components/hooks/useId';
-import useVersion from 'components/hooks/useVersion';
+import useId from 'hooks/useId';
+import useVersion from 'hooks/useVersion';
 import { latestVersion } from 'configs/globals';
 import LogProvider from 'contexts/logContext';
 import { useParams } from 'react-router-dom';

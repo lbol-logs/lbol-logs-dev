@@ -1,5 +1,5 @@
-import UseList from "components/hooks/useList";
-import { TRunList } from "configs/globals";
+import UseList from "hooks/useList";
+import { TRunList } from "utils/types";
 import { VersionContext } from "contexts/versionContext";
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -19,7 +19,7 @@ function RunList() {
       <section className="p-run-list">
         <UseList setIsLoading={setIsLoading} setList={setList} version={version} />
         {isLoading
-          ? 'loading'
+          ? t('loading', { ns: 'common' })
           : <>
           {/*
             * TODO: filter & sort, trans, icons, requests split

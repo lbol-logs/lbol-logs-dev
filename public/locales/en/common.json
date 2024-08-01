@@ -68,5 +68,6 @@
       "Although validation is performed before uploading, no responsibility will be accepted for user accidentially uploading private information."
     ]
   },
-  "version": "Version"
+  "version": "Version",
+  "loading": "Loading..."
 }

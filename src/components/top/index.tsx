@@ -1,7 +1,7 @@
 
 import Header from 'components/common/header';
 import About from 'components/top/about';
-import useVersion from 'components/hooks/useVersion';
+import useVersion from 'hooks/useVersion';
 import { latestVersion } from 'configs/globals';
 import { useParams } from 'react-router-dom';
 import RunList from 'components/top/runList';
