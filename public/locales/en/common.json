@@ -69,5 +69,6 @@
     ]
   },
   "version": "Version",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "processing": "Processing..."
 }

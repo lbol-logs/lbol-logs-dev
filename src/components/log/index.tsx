@@ -10,11 +10,13 @@ import RunData from 'components/log/runData';
 
 function Log() {
   const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();
-  useVersion(ver);
-  useRunData(id);
 
   const { t } = useTranslation();
   const { isLoading } = useContext(LogContext);
+  console.log(new Date().toLocaleTimeString(), 'begin');
+
+  useVersion(ver);
+  useRunData(id);
 
   /*
    * TODO: id取得失敗は分岐表示
@@ -24,13 +26,13 @@ function Log() {
     <>
       <Header isLog={true} />
       <LogProvider>
-        <h1>Logページです</h1>
-        <p>バージョン: {ver}</p>
-        <p>ID: {id}</p>
         {isLoading
           ? t('loading', { ns: 'common' })
           : <RunData />
         }
+          <h1>Logページです</h1>
+          <p>バージョン: {ver}</p>
+          <p>ID: {id}</p>
       </LogProvider>
     </>
   );
