@@ -5,13 +5,10 @@ import Svg from 'components/log/svg';
 
 function Map() {
   const { t } = useTranslation();
-  const { runData, act, setAct } = useContext(LogContext);
-  const { Acts } = runData;
+  const { runData, act } = useContext(LogContext);
 
-  // setAct(1);
-  // console.log({act});
-  console.log(new Date().toLocaleTimeString(), 'map', runData);
-  const ActObj = Acts[1];
+  const { Acts } = runData;
+  const ActObj = Acts[act - 1];
 
   return (
     <section className="p-map">

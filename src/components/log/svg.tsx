@@ -19,9 +19,9 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
       const x1 = 0 + X * diff;
       const y1 = 0 + Y * diff;
       const x2 = x1 + length;
-      const y2 = y1 + length;
+      const y2 = y1;
       return (
-        <line key={`Act${Act}_x${X}_y${Y}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} stroke-width={width}></line>
+        <line key={`Act${Act}_x${X}_y${Y}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={width}></line>
       );
     });
   });

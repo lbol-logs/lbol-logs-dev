@@ -12,9 +12,9 @@ function useRunData(id: string)  {
   // TODO: setLog
 
   const navigate = useNavigate();
-  let isValidRunData = false;
 
   useEffect(() => {
+    let isValidRunData = false;
     getLog(version, id)
       .then((runData: TRunData) => {
         // TODO: validate
@@ -27,7 +27,7 @@ function useRunData(id: string)  {
         setIsLoading(false);
         navigate("/", { replace: true });
       });
-  }, [navigate, isValidRunData]);
+  }, [navigate, version, id, setIsLoading, setRunData]);
 }
 
 export default useRunData;

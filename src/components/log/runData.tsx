@@ -1,19 +1,23 @@
-import { useEffect, useState } from 'react';
-import Map from 'components/log/map';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { LogContext } from 'contexts/logContext';
+import useVersion from 'hooks/useVersion';
+import useRunData from 'hooks/useRunData';
+import RunDataProcessing from 'components/log/runDataProcessing';
 
-function RunData() {
-  const [isProcessing, setIsProcessing] = useState(true);
+function RunData({ ver, id }: { ver: string, id: string }) {
   const { t } = useTranslation();
+  const { isLoading } = useContext(LogContext);
 
-  useEffect(() => {
-    setIsProcessing(false);
-  }, [setIsProcessing]);
+  useVersion(ver);
+  useRunData(id);
   
   return (
     <main className="l-log">
-      {isProcessing && <div className="c-log__processing">{t('processing', { ns: 'common' })}</div>}
-      <Map />
+      {isLoading
+        ? t('loading', { ns: 'common' })
+        : <RunDataProcessing />
+      }
     </main>
   );
 }
