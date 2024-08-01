@@ -31,13 +31,15 @@ function About() {
       <div className="p-about__roadmap c-roadmap">
         <h2 className="c-roadmap__title">{t('roadmap.keys.roadmap', { ns: 'common' })}</h2>
         {Object.entries(roadmapCategories).map(([category, array]) => {
-          return <RoadMap category={category} array={array} />;
+          const key = `c-roadmap-${category}`;
+          return <RoadMap className={key} category={category} array={array} key={key} />;
         })}
       </div>
       <div className="p-about__done c-done">
       <h2 className="c-done__title">{t('done.keys.done', { ns: 'common' })}</h2>
         {Object.entries(doneCategories).map(([category, array]) => {
-          return <Done category={category} array={array} />;
+          const key = `c-done-${category}`;
+          return <Done className={key} category={category} array={array} key={key} />;
         })}
       </div>
       <div className="p-about__about">
