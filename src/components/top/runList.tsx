@@ -22,7 +22,9 @@ function RunList() {
           ? t('loading', { ns: 'common' })
           : <>
           {/*
-            * TODO: filter & sort, trans, icons, requests split
+            * TODO: filter & sort
+            * trans, icons, requests split
+            * css width adjustment
             */}
             <div className="p-run-list__table">
               <div className="p-run-list__row p-run-list__row--header">

@@ -13,13 +13,13 @@ img {
 }
 
 .l-header {
-  height: 20px;
-  padding: 10px;
+  height: 1.25em;
+  padding: 0.625em;
   display: flex;
   align-items: center;
-  column-gap: 10px;
+  column-gap: 0.625em;
   border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
+  margin-bottom: 0.625em;
   position: sticky;
   top: 0;
   background: #fff;
@@ -28,7 +28,7 @@ img {
   display: flex;
   align-items: center;
   height: 100%;
-  column-gap: 5px;
+  column-gap: 0.3125em;
   color: #000;
 }
 .l-header__title {
@@ -42,26 +42,26 @@ img {
 }
 
 .l-footer {
-  padding: 10px;
+  padding: 0.625em;
   border-top: 1px solid #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  row-gap: 10px;
-  margin-top: 50px;
+  row-gap: 0.625em;
+  margin-top: 3.125em;
 }
 .l-footer__link {
   display: flex;
   align-items: center;
   height: 100%;
-  column-gap: 5px;
+  column-gap: 0.3125em;
   color: #000;
   flex-wrap: wrap;
   justify-content: center;
 }
 .l-footer__logo {
-  height: 20px;
+  height: 1.25em;
 }
 .l-footer__copyright {
   color: #ccc;
@@ -71,16 +71,16 @@ img {
 .l-top {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 0.625em;
 }
 
 .p-about {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 10px;
+  column-gap: 0.625em;
 }
 .p-about__under-construction {
-  padding: 10px;
+  padding: 0.625em;
   background: #ffe3e3;
   margin-left: auto;
   margin-right: auto;
@@ -89,11 +89,11 @@ img {
   flex-basis: 100%;
 }
 .p-about__roadmap, .p-about__done {
-  flex-basis: calc(50% - 5px);
+  flex-basis: calc(50% - 0.3125em);
 }
 
 .p-about__about {
-  padding: 10px;
+  padding: 0.625em;
   background: #e3f8ff;
 }
 
@@ -104,12 +104,12 @@ img {
 .p-run-list__row {
   display: flex;
   width: fit-content;
-  margin: 5px 0;
-  padding: 5px;
+  margin: 0.3125em 0;
+  padding: 0.3125em;
 }
 .p-run-list__row {
   color: inherit;
-  border-radius: 10px;
+  border-radius: 0.625em;
 }
 .p-run-list__row:nth-child(odd) {
   background: #e4fdff;
@@ -121,7 +121,7 @@ img {
   font-weight: bold;
 }
 .p-run-list__cell {
-  padding: 5px;
+  padding: 0.3125em;
 }
 .p-run-list__cell--character {
   width: 5.5em;
@@ -152,7 +152,7 @@ img {
 }
 @media screen and (max-width: 600px) {
   .l-footer__link {
-    max-width: 200px;
+    max-width: 12.5em;
   }
   .u-pc {
     display: none;
