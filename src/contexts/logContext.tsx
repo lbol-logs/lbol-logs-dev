@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 import { TAct, TLevel, TRunData } from 'utils/types';
 
-const defaultIsLoading = false;
+const defaultIsLoading = true;
 const defaultRunData = {};
 const defaultAct: TAct = 0;
 const defaultLevel: TLevel = 0;
