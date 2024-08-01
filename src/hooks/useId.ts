@@ -1,12 +1,12 @@
 import { getLog } from "utils/getData";
 import { TRunData } from "utils/types";
 import { LogContext } from "contexts/logContext";
-import { VersionContext } from "contexts/versionContext";
+import { CommonContext } from "contexts/commonContext";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function useId(id: string)  {
-  const { version } = useContext(VersionContext);
+  const { version } = useContext(CommonContext);
   const { setIsLoading, setRunData } = useContext(LogContext);
   // TODO: setLog
 

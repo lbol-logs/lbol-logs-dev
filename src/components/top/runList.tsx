@@ -1,12 +1,12 @@
 import UseList from "hooks/useList";
 import { TRunList } from "utils/types";
-import { VersionContext } from "contexts/versionContext";
+import { CommonContext } from "contexts/commonContext";
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 function RunList() {
-  const { version } = useContext(VersionContext);
+  const { version } = useContext(CommonContext);
   const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(false);

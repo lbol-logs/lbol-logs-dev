@@ -5,7 +5,7 @@ import Log from 'components/log';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
-import VersionProvider from 'contexts/versionContext';
+import CommonProvider from 'contexts/commonContext';
 import { baseUrl } from 'configs/globals';
 import RemoveTrailingSlash from 'components/common/removeTrailingSlash';
 
@@ -22,14 +22,14 @@ function App() {
       </Helmet>
       
       <RemoveTrailingSlash />
-      <VersionProvider>
+      <CommonProvider>
         <Routes>
           <Route path="/" element={<Top />} />
           <Route path="/:ver/" element={<Top />} />
           <Route path="/:ver/:id/" element={<Log />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </VersionProvider>
+      </CommonProvider>
     </HelmetProvider>
   );
 }

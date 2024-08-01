@@ -1,17 +1,17 @@
 import { latestVersion } from "configs/globals";
 import { createContext, useState } from "react";
 
-type TVersionContent = {
+type TCommonContext = {
   version: string
   setVersion: React.Dispatch<React.SetStateAction<string>>
 };
 
-export const VersionContext = createContext<TVersionContent>({
+export const CommonContext = createContext<TCommonContext>({
   version: latestVersion,
   setVersion: () => {}
 });
 
-function VersionProvider({ children }: { children: React.ReactNode }) {
+function CommonProvider({ children }: { children: React.ReactNode }) {
   const [version, setVersion] = useState(latestVersion);
   const value = {
     version,
@@ -19,10 +19,10 @@ function VersionProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <VersionContext.Provider value={value}>
+    <CommonContext.Provider value={value}>
       {children}
-    </VersionContext.Provider>
+    </CommonContext.Provider>
   );
 }
 
-export default VersionProvider;
+export default CommonProvider;

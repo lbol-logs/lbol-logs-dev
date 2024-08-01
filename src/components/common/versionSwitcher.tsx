@@ -1,10 +1,10 @@
-import { VersionContext } from "contexts/versionContext";
+import { CommonContext } from "contexts/commonContext";
 import { versions } from "configs/globals";
 import { ChangeEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 function VersionSwitcher() {
-  const { version, setVersion } = useContext(VersionContext);
+  const { version, setVersion } = useContext(CommonContext);
   const navigate = useNavigate();
 
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
