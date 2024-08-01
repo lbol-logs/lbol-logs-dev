@@ -17,9 +17,7 @@ function VersionSwitcher({ isLog }: { isLog: boolean }) {
     Ver = (
       <select onChange={handleChange} value={version}>
         {versions.map(v => {
-          return (
-            <option key={v} value={v}>{v}</option>
-          );
+          return <option key={v} value={v}>{v}</option>;
         })}
       </select>
     )

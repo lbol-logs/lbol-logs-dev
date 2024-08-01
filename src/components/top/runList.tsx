@@ -1,7 +1,6 @@
-import UseList from 'hooks/useList';
 import { TRunList } from 'utils/types';
 import { CommonContext } from 'contexts/commonContext';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -21,9 +20,7 @@ function RunList({ list }: { list: TRunList }) {
     <div className="p-run-list__table">
       <div className="p-run-list__row p-run-list__row--header">
         {headers.map(header => {
-          return (
-            <div className={`p-run-list__cell p-run-list__cell--${header}`} key={header}>{t(header, { ns: 'run' })}</div>
-          );
+          return <div className={`p-run-list__cell p-run-list__cell--${header}`} key={header}>{t(header, { ns: 'run' })}</div>;
         })}
       </div>
       {Object.entries(list).map(([id, o]) => {

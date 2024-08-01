@@ -1,6 +1,8 @@
 import i18next from 'i18next';
 import { useTranslation, Trans } from 'react-i18next';
 import { languages } from 'configs/globals';
+import RoadMap from 'components/top/roadMap';
+import Done from 'components/top/done';
 
 function About() {
   const { t } = useTranslation();
@@ -29,37 +31,13 @@ function About() {
       <div className="p-about__roadmap c-roadmap">
         <h2 className="c-roadmap__title">{t('roadmap.keys.roadmap', { ns: 'common' })}</h2>
         {Object.entries(roadmapCategories).map(([category, array]) => {
-          const key = `c-roadmap-${category}`;
-          return (
-            <div className={key} key={key}>
-              <h3 className={`${key}__title`}>{t(`roadmap.keys.${category}`, { ns: 'common' })}</h3>
-              <ul className={`${key}__list`}>
-                {array.map((item, i) => {
-                  return (
-                    <li className={`${key}__list-item`} key={`${category}${i}`}>{item}</li>
-                  );
-                })}
-              </ul>
-            </div>
-          );
+          return <RoadMap category={category} array={array} />;
         })}
       </div>
       <div className="p-about__done c-done">
       <h2 className="c-done__title">{t('done.keys.done', { ns: 'common' })}</h2>
         {Object.entries(doneCategories).map(([category, array]) => {
-          const key = `c-done-${category}`;
-          return (
-            <div className={key} key={key}>
-              <h3 className={`${key}__title`}>{t(`done.keys.${category}`, { ns: 'common' })}</h3>
-              <ul className={`${key}__list`}>
-                {array.map((item, i) => {
-                  return (
-                    <li className={`${key}__list-item`} key={`${category}${i}`}>{item}</li>
-                  );
-                })}
-              </ul>
-            </div>
-          );
+          return <Done category={category} array={array} />;
         })}
       </div>
       <div className="p-about__about">
@@ -77,9 +55,7 @@ function About() {
         <h2 className="c-attention__title">{t('attention.key', { ns: 'common' })}</h2>
         <ul className="c-attention__list">
           {attention.map((item, i) => {
-            return (
-              <li className="c-attention__list-item" key={`attention${i}`}>{item}</li>
-            );
+            return <li className="c-attention__list-item" key={`attention${i}`}>{item}</li>;
           })}
         </ul>
       </div>
