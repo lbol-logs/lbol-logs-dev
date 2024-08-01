@@ -12,7 +12,6 @@ function useRunData(id: string)  {
 
   const navigate = useNavigate();
   let isValidRunData = false;
-  setIsLoading(true);
   (async() => {
     try {
       const runData: TRunData = await getLog(version, id);
