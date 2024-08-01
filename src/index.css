@@ -42,6 +42,14 @@ img {
 .l-header__version {
   margin-left: auto;
 }
+.c-version__text {
+  padding: 0.2em 0.5em;
+  background: #e4e4e4;
+  border-radius: 0.8em;
+}
+.c-version__text--latest {
+  background: #d6ffd6;
+}
 
 .l-footer {
   padding: 0.625em;

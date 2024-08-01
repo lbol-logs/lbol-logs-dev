@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Map from 'components/log/map';
 import { useTranslation } from 'react-i18next';
 
 function RunData() {
   const [isProcessing, setIsProcessing] = useState(true);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    setIsProcessing(false);
+  }, [setIsProcessing]);
   
   return (
     <main className="l-log">
