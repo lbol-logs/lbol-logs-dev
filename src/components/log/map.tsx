@@ -10,8 +10,7 @@ function Map() {
 
   // setAct(1);
   // console.log({act});
-  console.log(runData);
-  console.log(Acts);
+  console.log(new Date().toLocaleTimeString(), 'map', runData);
   const ActObj = Acts[1];
 
   return (

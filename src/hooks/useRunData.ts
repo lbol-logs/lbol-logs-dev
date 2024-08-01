@@ -15,10 +15,10 @@ function useRunData(id: string)  {
   setIsLoading(true);
   (async() => {
     try {
-      const runData: TRunData = getLog(version, id);
+      const runData: TRunData = await getLog(version, id);
       // TODO: validate
       isValidRunData = true;
-      console.log(runData);
+      console.log(new Date().toLocaleTimeString(), 'awaited', runData);
       setRunData(runData);
       setIsLoading(false);
     }
