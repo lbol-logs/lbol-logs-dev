@@ -103,12 +103,13 @@ img {
 }
 .p-run-list__row {
   display: flex;
+  width: fit-content;
   margin: 5px 0;
   padding: 5px;
 }
 .p-run-list__row {
   color: inherit;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 .p-run-list__row:nth-child(odd) {
   background: #e4fdff;
@@ -117,23 +118,22 @@ img {
   background: #fff9df;
 }
 .p-run-list__row--header {
-  background: none;
   font-weight: bold;
 }
 .p-run-list__cell {
   padding: 5px;
 }
 .p-run-list__cell--character {
-  width: 5em;
+  width: 5.5em;
 }
 .p-run-list__cell--type {
-  width: 2em;
+  width: 2.5em;
 }
 .p-run-list__cell--shining {
   width: 10em;
 }
 .p-run-list__cell--difficulty {
-  width: 4em;
+  width: 5em;
 }
 .p-run-list__cell--requests {
   width: 15em;
