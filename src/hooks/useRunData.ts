@@ -10,21 +10,24 @@ function useRunData(id: string)  {
   const { setIsLoading, setRunData } = useContext(LogContext);
   // TODO: setLog
 
+  const navigate = useNavigate();
   let isValidRunData = false;
   setIsLoading(true);
-  getLog(version, id)
-    .then((runData: TRunData) => {
+  (async() => {
+    try {
+      const runData: TRunData = getLog(version, id)
       console.log(runData);
       // TODO: validate
       isValidRunData = true;
       setRunData(runData);
-      setIsLoading(true);
-    })
-    .catch(() => {
+      setIsLoading(false);
+    }
+    catch(e) {
+      setIsLoading(false);
       navigate("/", { replace: true });
-    });
+    }
+  })();
 
-  const navigate = useNavigate();
   useEffect(() => {
     if (!isValidRunData) {
       navigate("/", { replace: true });

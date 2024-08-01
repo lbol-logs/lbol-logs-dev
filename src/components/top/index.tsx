@@ -13,7 +13,7 @@ function Top() {
 
   return (
     <>
-      <Header />
+      <Header isTop={true} />
       <main className="l-top">
         <About />
         <RunList />

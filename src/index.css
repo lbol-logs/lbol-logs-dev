@@ -13,16 +13,18 @@ img {
 }
 
 .l-header {
-  height: 1.25em;
+  height: 20px;
   padding: 0.625em;
   display: flex;
   align-items: center;
   column-gap: 0.625em;
   border-bottom: 1px solid #ccc;
   margin-bottom: 0.625em;
+  background: #fff;
+}
+.l-header--sticky {
   position: sticky;
   top: 0;
-  background: #fff;
 }
 .l-header__link {
   display: flex;

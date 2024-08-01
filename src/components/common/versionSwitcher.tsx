@@ -3,10 +3,27 @@ import { versions } from "configs/globals";
 import { ChangeEvent, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-function VersionSwitcher() {
+function VersionSwitcher({ isLog }: { isLog: boolean }) {
   const { version, setVersion } = useContext(CommonContext);
   const navigate = useNavigate();
 
+  let Ver;
+  if (isLog) {
+    Ver = (
+      'isLog'
+    )
+  }
+  else {
+    Ver = (
+      <select onChange={handleChange} value={version}>
+        {versions.map(v => {
+          return (
+            <option key={v} value={v}>{v}</option>
+          );
+        })}
+      </select>
+    )
+  }
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
     const v = e.target.value;
     setVersion(v);
@@ -16,13 +33,7 @@ function VersionSwitcher() {
 
   return (
     <div className="l-header__version"> 
-      <select onChange={handleChange} value={version}>
-        {versions.map(v => {
-          return (
-            <option key={v} value={v}>{v}</option>
-          );
-        })}
-      </select>
+      {Ver}
     </div>
   );
 }
