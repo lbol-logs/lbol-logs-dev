@@ -4,6 +4,7 @@ import { LogContext } from 'contexts/logContext';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import validateRunData from 'utils/validateRunData';
 
 function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
@@ -12,25 +13,20 @@ function useRunData(id: string)  {
 
   const navigate = useNavigate();
   let isValidRunData = false;
-  (async() => {
-    try {
-      const runData: TRunData = await getLog(version, id);
-      // TODO: validate
-      isValidRunData = true;
-      console.log(new Date().toLocaleTimeString(), 'awaited', runData);
-      setRunData(runData);
-      setIsLoading(false);
-    }
-    catch(e) {
-      setIsLoading(false);
-      navigate("/", { replace: true });
-    }
-  })();
 
   useEffect(() => {
-    if (!isValidRunData) {
-      navigate("/", { replace: true });
-    }
+    getLog(version, id)
+      .then((runData: TRunData) => {
+        // TODO: validate
+        isValidRunData = validateRunData(runData);
+        setIsLoading(false);
+        if (isValidRunData) setRunData(runData);
+        else navigate("/", { replace: true });
+      })
+      .catch(e => {
+        setIsLoading(false);
+        navigate("/", { replace: true });
+      });
   }, [navigate, isValidRunData]);
 }
 
