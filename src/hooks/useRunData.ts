@@ -5,17 +5,18 @@ import { CommonContext } from "contexts/commonContext";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function useId(id: string)  {
+function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
   const { setIsLoading, setRunData } = useContext(LogContext);
   // TODO: setLog
 
-  let isValidId = false;
+  let isValidRunData = false;
   setIsLoading(true);
   getLog(version, id)
     .then((runData: TRunData) => {
       console.log(runData);
       // TODO: validate
+      isValidRunData = true;
       setRunData(runData);
       setIsLoading(true);
     })
@@ -25,10 +26,10 @@ function useId(id: string)  {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isValidId) {
+    if (!isValidRunData) {
       navigate("/", { replace: true });
     }
-  }, [navigate, isValidId]);
+  }, [navigate, isValidRunData]);
 }
 
-export default useId;
+export default useRunData;
