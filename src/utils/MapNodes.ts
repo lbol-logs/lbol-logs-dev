@@ -20,7 +20,7 @@ class MapNodes {
 
   static x1x2(X: TNodeX) {
     const { length, gap } = this.mapOptions;
-    const x1 = gap + X * (length + gap);
+    const x1 = this._x(X);
     const x2 = x1 + length;
     return [x1, x2];
   }
@@ -41,6 +41,20 @@ class MapNodes {
       y2 = y1;
     }
     return [y1, y2];
+  }
+
+  static node(X: TNodeX, Y:TNodeY) {
+    const { gap, padding } = this.mapOptions;
+    const _Y = Y || 2.5;
+    const x = this._x(X) - gap + padding;
+    const y = this._y(_Y) - gap * 0.5 + padding;
+    return [x, y];
+  }
+
+  private static _x(X: TNodeX) {
+    const { gap, length } = this.mapOptions;
+    const x: number = gap + X * (length + gap);
+    return x;
   }
 
   private static _y(Y: TNodeY | 2.5) {

@@ -176,7 +176,13 @@ img {
 
 .p-map__map {
   overflow-x: auto;
-  padding: 10px;
+  position: relative;
+}
+
+.c-map__icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
 }
 
 @media screen and (min-width: 601px) {
