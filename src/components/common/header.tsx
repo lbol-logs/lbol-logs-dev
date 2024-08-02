@@ -9,15 +9,17 @@ function Header({ isTop, isLog }: { isTop?: boolean, isLog?: boolean }) {
 
   return (
     <header className={`l-header ${isTop && 'l-header--sticky'}`}>
-      <Link className="l-header__link" to="/">
-        <Logo className="l-header__logo" />
-        <h1 className="l-header__title">
-          <span className="c-header__title">{t('title', { ns: 'common' })}</span>
-          <span className="c-header__subtitle u-pc"> - {t('subtitle', { ns: 'common' })}</span>
-        </h1>
-      </Link>
-      <VersionSwitcher isLog={!!isLog} />
-      <LanguageSwitcher />
+      <div className="l-header__inner l-inner">
+        <Link className="l-header__link" to="/">
+          <Logo className="l-header__logo" />
+          <h1 className="l-header__title">
+            <span className="c-header__title">{t('title', { ns: 'common' })}</span>
+            <span className="c-header__subtitle u-pc"> - {t('subtitle', { ns: 'common' })}</span>
+          </h1>
+        </Link>
+        <VersionSwitcher isLog={!!isLog} />
+        <LanguageSwitcher />
+      </div>
     </header>
   );
 }

@@ -13,12 +13,12 @@ function RunData({ ver, id }: { ver: string, id: string }) {
   useRunData(id);
   
   return (
-    <main className="l-log">
+    <>
       {isLoading
         ? t('loading', { ns: 'common' })
         : <RunDataLoaded />
       }
-    </main>
+    </>
   );
 }
 

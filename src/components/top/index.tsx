@@ -23,14 +23,16 @@ function Top() {
     <>
       <Header isTop={true} />
       <main className="l-top">
-        <About />
-        <section className="p-run-list">
-          <UseList setIsLoading={setIsLoading} setList={setList} version={ver} />
-          {isLoading
-            ? t('loading', { ns: 'common' })
-            : <RunList list={list} />
-          }
-        </section>
+        <div className="l-inner">
+          <About />
+          <section className="p-run-list">
+            <UseList setIsLoading={setIsLoading} setList={setList} version={ver} />
+            {isLoading
+              ? t('loading', { ns: 'common' })
+              : <RunList list={list} />
+            }
+          </section>
+        </div>
       </main>
       <Footer />
     </>

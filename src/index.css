@@ -13,14 +13,16 @@ img {
 }
 
 .l-header {
-  height: 20px;
-  padding: 0.625em;
-  display: flex;
-  align-items: center;
-  column-gap: 0.625em;
   border-bottom: 1px solid #ccc;
   margin-bottom: 0.625em;
   background: #fff;
+}
+.l-header__inner {
+  display: flex;
+  align-items: center;
+  column-gap: 0.625em;
+  height: 20px;
+  padding: 0.625em;
 }
 .l-header--sticky {
   position: sticky;
@@ -52,14 +54,16 @@ img {
 }
 
 .l-footer {
-  padding: 0.625em;
   border-top: 1px solid #ccc;
+  margin-top: 3.125em;
+}
+.l-footer__inner {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   row-gap: 0.625em;
-  margin-top: 3.125em;
+  padding: 0.625em;
 }
 .l-footer__link {
   display: flex;
@@ -78,10 +82,11 @@ img {
   font-size: 0.8em;
 }
 
-.l-top {
+.l-inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 0.625em;
+  padding-left: 0.625em;
+  padding-right: 0.625em;
 }
 
 .p-about {
