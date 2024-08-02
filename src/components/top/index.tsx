@@ -6,18 +6,14 @@ import { latestVersion } from 'configs/globals';
 import { useParams } from 'react-router-dom';
 import RunList from './runList';
 import Footer from 'components/common/footer';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import UseList from 'hooks/useList';
-import { useTranslation } from 'react-i18next';
 import { TRunList } from 'utils/types';
+import Loading from 'components/common/loading';
 
 function Top() {  
   const { ver = latestVersion } = useParams<{ ver: string }>();
   useVersion(ver);
-
-  const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [list, setList]: [TRunList, React.Dispatch<React.SetStateAction<TRunList>>] = useState({});
 
   return (
     <>
@@ -26,11 +22,9 @@ function Top() {
         <div className="l-inner">
           <About />
           <section className="p-run-list">
-            <UseList setIsLoading={setIsLoading} setList={setList} version={ver} />
-            {isLoading
-              ? t('loading', { ns: 'common' })
-              : <RunList list={list} />
-            }
+            <Suspense fallback={<Loading />}>
+              <RunList />
+            </Suspense>
           </section>
         </div>
       </main>

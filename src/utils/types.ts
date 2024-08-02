@@ -31,7 +31,15 @@ type TNodes = Array<TNode>;
 type TFollower = TNodeY;
 type TFollowers = [TFollower?, TFollower?, TFollower?, TFollower?];
 
+type TPromise = {
+  status: string,
+  value: TObj,
+  reason: TObj,
+  then: (result: TObj, error: TObj) => {}
+};
+
 export type {
+  TObj,
   TRunList,
   TAboutComponent,
   TRunData,
@@ -44,5 +52,6 @@ export type {
   TNodeY,
   TFollower,
   TFollowers,
-  TNodes
+  TNodes,
+  TPromise
 };
