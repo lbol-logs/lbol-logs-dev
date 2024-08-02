@@ -8,6 +8,21 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     const { X, Y, Type } = node;
     const [x, y] = MapNodes.node(X, Y);
 
+/*  Types
+		None,
+		Enemy,
+		EliteEnemy,
+		Supply,
+		Gap,
+		Shop,
+		Adventure,
+		Entry,
+		Select,
+		Trade,
+		Boss,
+		BattleAdvTest
+    */
+
     return (
       <a className="c-map__icon" key={`Act${Act}_x${X}y${Y}`} style={{ left: x, top: y}}>
         {Type}
