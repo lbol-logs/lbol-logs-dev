@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { LogContext } from 'contexts/logContext';
 import useVersion from 'hooks/useVersion';
 import useRunData from 'hooks/useRunData';
-import RunDataProcessing from 'components/log/runDataProcessing';
+import RunDataLoaded from './runDataLoaded';
 
 function RunData({ ver, id }: { ver: string, id: string }) {
   const { t } = useTranslation();
@@ -16,7 +16,7 @@ function RunData({ ver, id }: { ver: string, id: string }) {
     <main className="l-log">
       {isLoading
         ? t('loading', { ns: 'common' })
-        : <RunDataProcessing />
+        : <RunDataLoaded />
       }
     </main>
   );

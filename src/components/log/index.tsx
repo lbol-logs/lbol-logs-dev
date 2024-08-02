@@ -2,7 +2,7 @@ import Header from 'components/common/header';
 import { latestVersion } from 'configs/globals';
 import LogProvider from 'contexts/logContext';
 import { useParams } from 'react-router-dom';
-import RunData from 'components/log/runData';
+import RunData from './runData';
 
 function Log() {
   const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();

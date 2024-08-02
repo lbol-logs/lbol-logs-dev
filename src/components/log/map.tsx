@@ -1,7 +1,7 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import Svg from 'components/log/svg';
+import Svg from './svg';
 
 function Map() {
   const { t } = useTranslation();

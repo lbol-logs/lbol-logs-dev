@@ -1,8 +1,8 @@
 import i18next from 'i18next';
 import { useTranslation, Trans } from 'react-i18next';
 import { languages } from 'configs/globals';
-import RoadMap from 'components/top/roadMap';
-import Done from 'components/top/done';
+import RoadMap from './roadMap';
+import Done from './done';
 
 function About() {
   const { t } = useTranslation();

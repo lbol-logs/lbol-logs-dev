@@ -1,10 +1,10 @@
 
 import Header from 'components/common/header';
-import About from 'components/top/about';
+import About from './about';
 import useVersion from 'hooks/useVersion';
 import { latestVersion } from 'configs/globals';
 import { useParams } from 'react-router-dom';
-import RunList from 'components/top/runList';
+import RunList from './runList';
 import Footer from 'components/common/footer';
 import { useState } from 'react';
 import UseList from 'hooks/useList';

@@ -1,4 +1,4 @@
-import Map from 'components/log/map';
+import Map from './map';
 
 function RunDataTemplate() {  
   return (
