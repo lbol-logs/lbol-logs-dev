@@ -19,14 +19,16 @@ type TActObj = {
   Nodes: TNodes
 };
 type TNode = {
-  X: TLevel,
-  Y: TRange04,
+  X: TNodeX,
+  Y: TNodeY,
   Followers: TFollowers,
   Type: TNodeType
 };
+type TNodeX = TLevel;
+type TNodeY = TRange04;
 type TNodeType = string; // TODO
 type TNodes = Array<TNode>;
-type TFollower = TRange04;
+type TFollower = TNodeY;
 type TFollowers = [TFollower?, TFollower?, TFollower?, TFollower?];
 
 export type {
@@ -38,6 +40,8 @@ export type {
   TLevel,
   TActObj,
   TNode,
+  TNodeX,
+  TNodeY,
   TFollower,
   TFollowers,
   TNodes

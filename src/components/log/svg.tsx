@@ -1,34 +1,34 @@
-import { TActObj } from 'utils/types';
+import MapNodes from 'utils/MapNodes';
+import { TActObj, TNodeY } from 'utils/types';
 
 function Svg({ ActObj }: { ActObj: TActObj }) {
   const { Act, Nodes } = ActObj;
 
-  const size = 40;
-  const padding = 8;
-  const diff = size + padding * 2;
+  const { length, gap, colors, widths } = MapNodes.mapOptions;
 
-  const length = 24;
-  // const diagonal = 32;
-  const width = 2;
-  const color = 'black';
-
-  const lines = Nodes.map((node) => {
+  const nodesY: Array<TNodeY> = [];
+  const lines = Nodes.map(node => {
     const { X, Y, Followers} = node;
-    return Followers.map((follower) => {
-      if (follower !== Y) return null;
-      const x1 = 0 + X * diff;
-      const y1 = 0 + Y * diff;
-      const x2 = x1 + length;
-      const y2 = y1;
+    if (Y && !nodesY.includes(Y)) nodesY.push(Y);
+    return Followers.map(Follower => {
+      const X2 = X + 1;
+      const Y2 = Follower as TNodeY;
+      const [x1, x2] = MapNodes.x1x2(X);
+      const [y1, y2] = MapNodes.y1y2(Y, Y2);
+
       return (
-        <line key={`Act${Act}_x${X}_y${Y}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth={width}></line>
+        <line key={`Act${Act}_x${X}y${Y}_x${X2}y${Y2}`} x1={x1} y1={y1} x2={x2} y2={y2} stroke={colors.normal} strokeWidth={widths.normal}></line>
       );
     });
   });
 
+  const width = (length + gap) * Nodes[Nodes.length - 1].X - length;
+  const height = gap * (Math.max(1, nodesY.length));
+
   return (
-    <svg>
+    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
       {lines}
+      {/* TODO: additionalLines */}
     </svg>
   );
 }
