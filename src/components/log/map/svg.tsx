@@ -22,7 +22,7 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
     });
   });
 
-  const width = (length + gap) * Nodes[Nodes.length - 1].X - length;
+  const width = (length + gap) * Nodes[Nodes.length - 1].X + gap;
   const height = gap * (Math.max(1, nodesY.length));
 
   return (
