@@ -3,12 +3,14 @@ import { latestVersion } from 'configs/globals';
 import LogProvider from 'contexts/logContext';
 import { useParams } from 'react-router-dom';
 import RunData from './runData';
+import { Suspense } from 'react';
+import Loading from 'components/common/loading';
 
 function Log() {
   const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();
 
   return (
-    <>
+    <Suspense fallback={<Loading />}>
       <Header isLog={true} />
       <main className="l-log">
         <div className="l-inner">
@@ -20,7 +22,7 @@ function Log() {
           </LogProvider>
         </div>
       </main>
-    </>
+    </Suspense>
   );
 };
 
