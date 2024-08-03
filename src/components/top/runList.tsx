@@ -11,8 +11,6 @@ function RunList() {
   const { version } = useContext(CommonContext);
   const { t } = useTranslation();
 
-  // const list = useList(version).read();
-  // const list = (async() => await getList(version))();
   const list = useList(version);
   console.log(list);
   
@@ -31,6 +29,7 @@ function RunList() {
           return <div className={`p-run-list__cell p-run-list__cell--${header}`} key={header}>{t(header, { ns: 'run' })}</div>;
         })}
       </div>
+      {!Object.keys(list).length && t('notAvailableYet', { ns: 'common' })}
       {Object.entries(list).map(([id, o]: [string, Record<string, string | Array<string>>]) => {
         return (
           <Link className="p-run-list__row" key={id} to={`/${version}/${id}/`}>

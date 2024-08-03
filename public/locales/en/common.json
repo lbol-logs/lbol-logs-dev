@@ -70,5 +70,6 @@
   },
   "version": "Version",
   "loading": "Loading...",
-  "processing": "Processing..."
+  "processing": "Processing...",
+  "notAvailableYet": "現在は利用できません"
 }

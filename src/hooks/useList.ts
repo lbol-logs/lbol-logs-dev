@@ -4,9 +4,13 @@ import { useEffect, useState } from 'react';
 import use from 'utils/use';
 
 function useList(version: string) {
-  // const list = use<Awaited<ReturnType<typeof getList>>>(getList(version));
-  const list = use(getList(version));
-  return list;
+  try {
+    const list = use(getList(version));
+    return list;
+  }
+  catch(e) {
+    return {};
+  }
 }
 
 export default useList;
