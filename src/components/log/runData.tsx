@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import { Suspense, useContext, useTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LogContext } from 'contexts/logContext';
 import useVersion from 'hooks/useVersion';
 import useRunData from 'hooks/useRunData';
 import RunDataLoaded from './runDataLoaded';
+import Loading from 'components/common/loading';
 
 function RunData({ ver, id }: { ver: string, id: string }) {
   const { t } = useTranslation();
@@ -14,10 +15,9 @@ function RunData({ ver, id }: { ver: string, id: string }) {
   
   return (
     <>
-      {isLoading
-        ? t('loading', { ns: 'common' })
-        : <RunDataLoaded />
-      }
+      <Suspense fallback={<Loading />}>
+        <RunDataLoaded />
+      </Suspense>
     </>
   );
 }

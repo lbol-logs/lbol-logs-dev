@@ -11,11 +11,12 @@ function RunDataLoaded() {
   const { act, setAct } = useContext(LogContext);
   const { level, setLevel } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
-  
+
   useEffect(() => {
     setAct(1);
+    setLevel(0);
     setIsProcessing(false);
-  }, [setIsProcessing, setAct]);
+  }, [setIsProcessing, setAct, setLevel]);
   
   return (
     <>
