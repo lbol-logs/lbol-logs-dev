@@ -14,6 +14,45 @@ type TAct = TRange04;
 
 type TLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
 
+
+type TData = Record<string, any>;
+
+type TStatus = {
+  Money: number,
+  Hp: number,
+  MaxHp: number,
+  Power: number,
+  MaxPower: number
+}
+
+type TCard = {
+  Id: string,
+  IsUpgraded: boolean,
+  UpgradeCounter?: number
+}
+
+type TExhibit = string;
+
+type TRewards = {
+  Money: number,
+  Cards: Array<Array<TCard>>,
+  Exhibits?: Array<TExhibit>
+}
+
+type TStation = {
+  Type: string,
+  Node: {
+    Act: TAct,
+    Level: TLevel
+  },
+  Status: TStatus,
+  Data: TData,
+  Id?: string | number,
+  Rewards?: TRewards
+};
+
+type TStations = Array<TStation>;
+
 type TActObj = {
   Act: TAct,
   Nodes: TNodes
@@ -46,6 +85,7 @@ export type {
   TOption,
   TAct,
   TLevel,
+  TStations,
   TActObj,
   TNode,
   TNodeX,

@@ -177,10 +177,17 @@ img {
 .p-map__map {
   overflow-x: auto;
   position: relative;
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -ms-transform: rotate(0);
+  -o-transform: rotate(0);
+  transform: rotate(0);
 }
 
-.c-map__icon {
-  position: absolute;
+.c-map-icon {
+}
+.c-map-icon__img {
+  position: fixed;
   width: 40px;
   height: 40px;
 }

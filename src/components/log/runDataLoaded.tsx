@@ -1,27 +1,23 @@
-import { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useContext, useEffect } from 'react';
 import { LogContext } from 'contexts/logContext';
 import RunDataTemplate from './runDataTemplate';
 import Summary from './summary';
-import { useSearchParams } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 
 function RunDataLoaded() {
-  const [isProcessing, setIsProcessing] = useState(true);
-  const { t } = useTranslation();
   const { act, setAct } = useContext(LogContext);
-  const { level, setLevel } = useContext(LogContext);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { setLevel } = useContext(LogContext);
+  // TODO: query string
+  // const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     setAct(1);
     setLevel(0);
-    setIsProcessing(false);
-  }, [setIsProcessing, setAct, setLevel]);
+  }, [setAct, setLevel]);
   
   return (
     <>
-      {/* {isProcessing && <div className="c-log__processing">{t('processing', { ns: 'common' })}</div>} */}
-      Act: {searchParams.get('a')}, Level: {searchParams.get('l')}
+      {/* Act: {searchParams.get('a')}, Level: {searchParams.get('l')} */}
       {act === 0
         ? <Summary />
         : <RunDataTemplate />

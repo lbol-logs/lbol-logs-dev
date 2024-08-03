@@ -24,16 +24,14 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     */
 
     return (
-      <a className="c-map__icon" key={`Act${Act}_x${X}y${Y}`} style={{ left: x, top: y}}>
-        {Type}
-      </a>
+      <img className="c-map-icon__img" key={`Act${Act}_x${X}y${Y}`} style={{ left: x, top: y}} alt={Type} />
     )
   });
 
   return (
-    <>
+    <div className="c-map-icon">
       {anchors}
-    </>
+    </div>
   );
 }
 
