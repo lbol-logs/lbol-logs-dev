@@ -12,7 +12,6 @@ function RunList() {
   const { t } = useTranslation();
 
   const list = useList(version);
-  console.log(list);
   
   const headers = ['character', 'type', 'shining', 'difficulty', 'requests', 'result', 'timestamp'];
 

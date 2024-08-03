@@ -13,21 +13,15 @@ function useRunData(id: string)  {
   // TODO: setLog
 
   const navigate = useNavigate();
+  let isValidRunData = false;
+  const runData: TRunData = use(getLog(version, id));
+  isValidRunData = validateRunData(runData);
 
   useEffect(() => {
-    let isValidRunData = false;
-    try {
-      const runData: TRunData = use(getLog(version, id));
-      isValidRunData = validateRunData(runData);
-      setIsLoading(false);
-      if (isValidRunData) setRunData(runData);
-      else navigate("/", { replace: true });
-    }
-    catch(e) {
-      setIsLoading(false);
-      navigate("/", { replace: true });
-    }
-  }, [navigate, version, id, setIsLoading, setRunData]);
+    setIsLoading(false);
+    if (isValidRunData) setRunData(runData);
+    else navigate("/", { replace: true });
+  }, [navigate, isValidRunData, setIsLoading, setRunData]);
 }
 
 export default useRunData;

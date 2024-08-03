@@ -11,9 +11,15 @@ function fetchData(version: string, path: string) {
 }
 
 async function getData(url: string) {
-  const res = await fetch(url);
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
+  }
+  catch(error) {
+    console.error({ error });
+    return {};
+  }
 }
 
 function getList(version: string) {

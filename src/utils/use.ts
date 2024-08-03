@@ -24,4 +24,3 @@ function use(promise: TPromise) {
 }
 
 export default use;
-
