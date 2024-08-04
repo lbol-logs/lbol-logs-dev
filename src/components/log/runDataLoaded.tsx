@@ -29,7 +29,7 @@ function RunDataLoaded() {
     if (height >= map.offsetTop) {
       map.classList.add(className);
     }
-  }, [runData, searchParams, setAct, setLevel, isLoaded]);
+  }, [runData, act, searchParams, setAct, setLevel, isLoaded]);
   
   return (
     <>
