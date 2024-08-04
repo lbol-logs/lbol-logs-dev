@@ -8,7 +8,7 @@ function Header({ isTop, isLog }: { isTop?: boolean, isLog?: boolean }) {
   const { t } = useTranslation();
 
   return (
-    <header className={`l-header ${isTop && 'l-header--sticky'}`}>
+    <header className={`l-header ${isTop ? 'l-header--sticky' : ''}`}>
       <div className="l-header__inner l-inner">
         <Link className="l-header__link" to="/">
           <Logo className="l-header__logo" />

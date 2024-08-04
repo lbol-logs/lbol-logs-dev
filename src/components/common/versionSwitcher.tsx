@@ -11,7 +11,7 @@ function VersionSwitcher({ isLog }: { isLog: boolean }) {
   let Ver;
   if (isLog) {
     Ver = (
-      <span className={`c-version__text ${isLatestVersion && 'c-version__text--latest'}`}>{version}</span>
+      <span className={`c-version__text ${isLatestVersion ? 'c-version__text--latest' : ''}`}>{version}</span>
     );
   }
   else {

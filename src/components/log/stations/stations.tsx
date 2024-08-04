@@ -20,7 +20,7 @@ function Stations() {
     if (!station.style.height && station.offsetHeight < height) {
       station.style.height = height + 'px';
     }
-  }, []);
+  }, [act]);
 
   return (
     <section className="p-stations" ref={stationsRef}>

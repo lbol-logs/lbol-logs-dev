@@ -1,12 +1,15 @@
+import { checkForce } from 'utils/checkForce';
 import MapNodes from 'utils/MapNodes';
 import { TActObj } from 'utils/types';
 
 function Icons({ ActObj }: { ActObj: TActObj }) {
   const { Act, Nodes } = ActObj;
 
+  const { force } = checkForce(Nodes);
+
   const anchors = Nodes.map(node => {
     const { X, Y, Type } = node;
-    const [x, y] = MapNodes.node(X, Y);
+    const [x, y] = MapNodes.node(X, Y, force);
 
 /*  Types
 		None,

@@ -19,16 +19,16 @@ class MapNodes {
   };
 
   static x1x2(X: TNodeX) {
-    const { length, gap } = this.mapOptions;
+    const { length } = this.mapOptions;
     const x1 = this._x(X);
     const x2 = x1 + length;
     return [x1, x2];
   }
 
-  static y1y2(Y: TNodeY, Y2: TNodeY) {
+  static y1y2(Y: TNodeY, Y2: TNodeY, force = true) {
     const { padding } = this.mapOptions;
-    const _Y = Y || 2.5;
-    const _Y2 = Y2 || 2.5;
+    const _Y = this._force(Y, force);
+    const _Y2 = this._force(Y2, force);
     let y1 = this._y(_Y);
     let y2;
     const diff = (_Y - _Y2);
@@ -43,9 +43,9 @@ class MapNodes {
     return [y1, y2];
   }
 
-  static node(X: TNodeX, Y:TNodeY) {
+  static node(X: TNodeX, Y:TNodeY, force = true) {
     const { gap, padding } = this.mapOptions;
-    const _Y = Y || 2.5;
+    const _Y = this._force(Y, force);
     const x = this._x(X) - gap + padding;
     const y = this._y(_Y) - gap * 0.5 + padding;
     return [x, y];
@@ -61,6 +61,16 @@ class MapNodes {
     const { gap } = this.mapOptions;
     const y: number = (Y - 0.5) * gap;
     return y;
+  }
+
+  private static _force(Y: TNodeY, force: boolean) {
+    let y;
+    if (!Y) {
+      if (force) y = 2.5;
+      else y = 1;
+    }
+    else y = Y;
+    return y as TNodeY | 2.5;
   }
 }
 

@@ -16,7 +16,7 @@ function Map() {
   useEffect(() => {
     const onScroll = () => {
       const map = mapRef.current;
-      const className = 'p-map--sticky'
+      const className = 'p-map--sticky';
       if (!map) return;
       if (window.scrollY >= map.offsetTop) {
         map.classList.add(className);

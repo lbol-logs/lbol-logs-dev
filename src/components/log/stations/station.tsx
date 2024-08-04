@@ -7,7 +7,7 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
   const { Level } = station.Node;
 
   return (
-    <div className="p-station" ref={innerRef}>
+    <div className={`p-station ${innerRef ? 'p-station--last' : ''} js-level-${Level}`} ref={innerRef}>
       <h3 className="P-station__level">
         <Trans
           i18nKey="level"

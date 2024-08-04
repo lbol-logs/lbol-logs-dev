@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { LogContext } from 'contexts/logContext';
 import RunDataTemplate from './runDataTemplate';
 import Summary from './summary';
+import Control from './control';
 // import { useSearchParams } from 'react-router-dom';
 
 function RunDataLoaded() {
@@ -22,6 +23,7 @@ function RunDataLoaded() {
         ? <Summary />
         : <RunDataTemplate />
       }
+      <Control />
     </>
   );
 }
