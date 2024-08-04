@@ -6,12 +6,10 @@ import { latestVersion } from 'configs/globals';
 import { useParams } from 'react-router-dom';
 import RunList from './runList';
 import Footer from 'components/common/footer';
-import { Suspense, useState } from 'react';
-import UseList from 'hooks/useList';
-import { TRunList } from 'utils/types';
+import { Suspense } from 'react';
 import Loading from 'components/common/loading';
 
-function Top() {  
+function Top() {
   const { ver = latestVersion } = useParams<{ ver: string }>();
   useVersion(ver);
 

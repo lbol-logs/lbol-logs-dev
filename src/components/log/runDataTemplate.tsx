@@ -1,17 +1,26 @@
-import { Suspense } from 'react';
+import { useContext } from 'react';
 import Map from './map/map';
-import Processing from 'components/common/processing';
 import Stations from './stations/stations';
+import { LogContext } from 'contexts/logContext';
+import { Trans, useTranslation } from 'react-i18next';
 
-function RunDataTemplate() {  
+function RunDataTemplate() {
+  useTranslation();
+  const { act } = useContext(LogContext);
+
   return (
     <>
-      <Suspense fallback={<Processing />}>
-        <Map />
-      </Suspense>
-      <Suspense fallback={<Processing />}>
-        <Stations />
-      </Suspense>
+      <h2 className="c-act__title">
+        <Trans
+            i18nKey="act"
+            ns="log"
+            children={{
+              act: act
+            }}
+          />
+      </h2>
+      <Map />
+      <Stations />
     </>
   );
 }

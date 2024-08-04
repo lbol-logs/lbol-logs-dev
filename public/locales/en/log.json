@@ -1,3 +1,5 @@
 {
-  "map": "Map"
+  "map": "Map",
+  "act": "Act {{act}}",
+  "level": "Level {{level}}"
 }
