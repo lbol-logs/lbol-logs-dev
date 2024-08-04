@@ -6,8 +6,6 @@ type TRunList = Record<string, Record<string, string | Array<string>>>;
 
 type TAboutComponent = { className: string, category: string, array: Array<string> };
 
-type TRunData = TObj;
-
 type TOption = TRange03;
 
 type TAct = TRange04;
@@ -17,19 +15,24 @@ type TLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 1
 
 type TData = Record<string, any>;
 
+type TNodeObj = {
+  Act: TAct,
+  Level: TLevel
+};
+
 type TStatus = {
   Money: number,
   Hp: number,
   MaxHp: number,
   Power: number,
   MaxPower: number
-}
+};
 
 type TCard = {
   Id: string,
   IsUpgraded: boolean,
   UpgradeCounter?: number
-}
+};
 
 type TExhibit = string;
 
@@ -37,14 +40,11 @@ type TRewards = {
   Money: number,
   Cards: Array<Array<TCard>>,
   Exhibits?: Array<TExhibit>
-}
+};
 
 type TStation = {
   Type: string,
-  Node: {
-    Act: TAct,
-    Level: TLevel
-  },
+  Node: TNodeObj,
   Status: TStatus,
   Data: TData,
   Id?: string | number,
@@ -70,6 +70,44 @@ type TNodes = Array<TNode>;
 type TFollower = TNodeY;
 type TFollowers = [TFollower?, TFollower?, TFollower?, TFollower?];
 
+type TRequests = Array<string>;
+
+type TSettings = {
+  Character: string,
+  PlayerType: string,
+  HasClearBonus: boolean,
+  ShowRandomResult: boolean,
+  IsAutoSeed: boolean,
+  Requests: TRequests,
+  Difficulty: string,
+  Status: TStatus
+};
+
+type TCardChange = {
+  Id: string,
+  Type: string,
+  Node: TNodeObj,
+  IsUpgraded: boolean,
+  UpgradeCounter?: number
+};
+
+type TExhibitChange = {
+  Id: string,
+  Type: string,
+  Node: TNodeObj,
+};
+
+type TRunData = {
+  Versions: string,
+  Settings: TSettings,
+  Stations: TStations,
+  Acts: Array<TActObj>,
+  Result: string,
+  Timestamp: string,
+  Cards?: Array<TCardChange>,
+  Exhibits?: Array<TExhibitChange>
+};
+
 type TPromise = {
   status: string,
   value: TObj,
@@ -85,6 +123,7 @@ export type {
   TOption,
   TAct,
   TLevel,
+  TStation,
   TStations,
   TActObj,
   TNode,

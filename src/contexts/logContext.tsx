@@ -2,7 +2,30 @@ import { createContext, useState } from 'react';
 import { TAct, TLevel, TRunData } from 'utils/types';
 
 const defaultIsLoading = true;
-const defaultRunData = {};
+const defaultRunData = {} as TRunData;
+// const defaultRunData = {
+//   Versions: '',
+//   Settings: {
+//     Character: '',
+//     PlayerType: '',
+//     HasClearBonus: false,
+//     ShowRandomResult: false,
+//     IsAutoSeed: false,
+//     Requests: [] as string[],
+//     Difficulty: '',
+//     Status: {
+//       Money: 0,
+//       Hp: 0,
+//       MaxHp: 0,
+//       Power: 0,
+//       MaxPower: 0
+//     }
+//   },
+//   Stations: [] as TStation[],
+//   Acts: [] as TActObj[],
+//   Result: '',
+//   Timestamp: ''
+// };
 const defaultAct: TAct = 0;
 const defaultLevel: TLevel = 0;
 
