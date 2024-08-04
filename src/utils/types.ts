@@ -74,7 +74,7 @@ type TRequests = Array<string>;
 
 type TSettings = {
   Character: string,
-  PlayerType: string,
+  PlayerType: 'A' | 'B',
   HasClearBonus: boolean,
   ShowRandomResult: boolean,
   IsAutoSeed: boolean,
@@ -83,9 +83,11 @@ type TSettings = {
   Status: TStatus
 };
 
+type TChangeType = 'Add' | 'Remove' | 'Upgrade' | 'Use';
+
 type TCardChange = {
   Id: string,
-  Type: string,
+  Type: TChangeType,
   Node: TNodeObj,
   IsUpgraded: boolean,
   UpgradeCounter?: number
@@ -93,8 +95,9 @@ type TCardChange = {
 
 type TExhibitChange = {
   Id: string,
-  Type: string,
+  Type: TChangeType,
   Node: TNodeObj,
+  Counter?: TRange03
 };
 
 type TRunData = {

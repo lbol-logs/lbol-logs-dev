@@ -3,29 +3,6 @@ import { TAct, TLevel, TRunData } from 'utils/types';
 
 const defaultIsLoading = true;
 const defaultRunData = {} as TRunData;
-// const defaultRunData = {
-//   Versions: '',
-//   Settings: {
-//     Character: '',
-//     PlayerType: '',
-//     HasClearBonus: false,
-//     ShowRandomResult: false,
-//     IsAutoSeed: false,
-//     Requests: [] as string[],
-//     Difficulty: '',
-//     Status: {
-//       Money: 0,
-//       Hp: 0,
-//       MaxHp: 0,
-//       Power: 0,
-//       MaxPower: 0
-//     }
-//   },
-//   Stations: [] as TStation[],
-//   Acts: [] as TActObj[],
-//   Result: '',
-//   Timestamp: ''
-// };
 const defaultAct: TAct = 0;
 const defaultLevel: TLevel = 0;
 
@@ -38,6 +15,8 @@ type TLogContext = {
   setAct: React.Dispatch<React.SetStateAction<TAct>>,
   level: TLevel,
   setLevel: React.Dispatch<React.SetStateAction<TLevel>>,
+  isLoaded: boolean,
+  setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>,
 };
 
 export const LogContext = createContext<TLogContext>({
@@ -48,7 +27,9 @@ export const LogContext = createContext<TLogContext>({
   act: defaultAct,
   setAct: () => {},
   level: defaultLevel,
-  setLevel: () => {}
+  setLevel: () => {},
+  isLoaded: false,
+  setIsLoaded: () => {}
 });
 
 function LogProvider({ children }: { children: React.ReactNode }) {
@@ -56,6 +37,7 @@ function LogProvider({ children }: { children: React.ReactNode }) {
   const [runData, setRunData] = useState(defaultRunData);
   const [act, setAct] = useState(defaultAct);
   const [level, setLevel] = useState(defaultLevel);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const value = {
     isLoading,
@@ -65,7 +47,9 @@ function LogProvider({ children }: { children: React.ReactNode }) {
     act,
     setAct,
     level,
-    setLevel
+    setLevel,
+    isLoaded,
+    setIsLoaded
   };
 
   return (

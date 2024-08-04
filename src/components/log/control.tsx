@@ -1,32 +1,39 @@
 import { LogContext } from 'contexts/logContext';
 import { ChangeEvent, useContext } from 'react';
 import { TAct, TLevel } from 'utils/types';
+import { useSearchParams } from 'react-router-dom';
+import ActLevel from 'utils/ActLevel';
 
 function Control() {
   const { runData, act, setAct, level, setLevel } = useContext(LogContext);
+  //   TODO: query string
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  if (!Object.keys(runData).length) return null;
+  const isLoaded = Object.keys(runData).length; 
+  if (!isLoaded) return null;
 
-  const maxAct = Object.keys(runData.Acts).length;
-  const minLevel = 0;
-  const maxLevel = runData.Stations.reduce((a, b) => {
-    const { Act, Level } = b.Node;
-    const level = Act === act ? Level : 0;
-    const max = Math.max(a, level);
-    return max;
-  }, 0);
+  const al = new ActLevel(runData, act);
+  const maxAct: TAct = al.maxAct();
+  const minLevel: TLevel = al.minLevel();
+  const maxLevel: TLevel = al.maxLevel();
 
   function handleClick(offset: number) {
     const nextAct = act + offset as TAct;
-    setAct(nextAct);
-    setLevel(0);
-    scrollToLevel(0);
+    triggerChange(nextAct, 0);
   }
   
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const nextLevel = Number(e.target.value) as TLevel;
-    setLevel(nextLevel);
-    scrollToLevel(nextLevel);
+    triggerChange(act, nextLevel);
+  }
+
+  function triggerChange(a: TAct, l: TLevel) {
+    a = al.act(a);
+    l = al.level(l);
+    setAct(a);
+    setLevel(l);
+    updateQs(a, l);
+    scrollToLevel(l);
   }
 
   function scrollToLevel(nextLevel: TLevel) {
@@ -35,6 +42,15 @@ function Control() {
     if (!station || !map) return;
     const height = station.offsetTop - map.offsetHeight;
     window.scrollTo(0, height);
+  }
+
+  function updateQs(a: TAct, l?: TLevel) {
+    const o: Record<string, string> = {};
+    if (a) o['a'] = a.toString();
+    else searchParams.delete('a');
+    if (l) o['l'] = l.toString();
+    else searchParams.delete('l');
+    setSearchParams(o);
   }
 
   return (
