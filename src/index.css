@@ -182,11 +182,8 @@ img {
   position: sticky;
   top: 0;
 }
-.p-map--sticky .p-map__title {
-  display: none;
-}
 
-.p-map__map {
+.p-map__inner {
   overflow-x: auto;
   position: relative;
   -webkit-transform: rotate(0);

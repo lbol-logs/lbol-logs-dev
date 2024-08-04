@@ -19,15 +19,22 @@ function Control() {
   function handleClick(offset: number) {
     const nextAct = act + offset as TAct;
     setAct(nextAct);
+    setLevel(0);
+    scrollToLevel(0);
   }
   
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const nextLevel = Number(e.target.value) as TLevel;
     setLevel(nextLevel);
+    scrollToLevel(nextLevel);
+  }
+
+  function scrollToLevel(nextLevel: TLevel) {
     const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
     const map = document.querySelector('.js-map') as HTMLDivElement;
+    if (!station || !map) return;
     const height = station.offsetTop - map.offsetHeight;
-    window.scroll({ top: height });
+    window.scrollTo(0, height);
   }
 
   return (

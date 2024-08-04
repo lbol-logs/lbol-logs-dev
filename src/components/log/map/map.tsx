@@ -1,12 +1,10 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import Svg from './svg';
 import Icons from './icons';
 import Links from './links';
 
 function Map() {
-  const { t } = useTranslation();
   const { runData, act } = useContext(LogContext);
 
   const { Stations, Acts } = runData;
@@ -29,9 +27,8 @@ function Map() {
   }, []);
 
   return (
-    <section className="p-map" ref={mapRef}>
-      <h3 className="p-map__title">{t('map', { ns: 'log' })}</h3>
-      <div className="p-map__map js-map">
+    <section className="p-map js-map" ref={mapRef}>
+      <div className="p-map__inner">
         <Links Stations={Stations} />
         <Icons ActObj={ActObj} />
         <Svg ActObj={ActObj} />

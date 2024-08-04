@@ -15,9 +15,6 @@ function Log() {
       <main className="l-log">
         <div className="l-inner">
           <LogProvider>
-            <h1>Logページです</h1>
-            <p>バージョン: {ver}</p>
-            <p>ID: {id}</p>
             <RunData ver={ver} id={id} />
           </LogProvider>
         </div>
