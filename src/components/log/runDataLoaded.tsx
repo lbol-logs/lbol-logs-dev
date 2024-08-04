@@ -10,11 +10,6 @@ function RunDataLoaded() {
   const { setLevel } = useContext(LogContext);
   // TODO: query string
   // const [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    setAct(1);
-    setLevel(0);
-  }, [setAct, setLevel]);
   
   return (
     <>
