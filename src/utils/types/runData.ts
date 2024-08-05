@@ -115,6 +115,7 @@ export type {
   TActObj,
   TStations,
   TStation,
+  TStatus,
   TNodes,
   TNodeX,
   TNodeY

@@ -198,9 +198,35 @@ img {
   height: 40px;
 }
 
+.p-station {
+  margin-bottom: 1em;
+}
+
 .p-station--last {
+  margin-bottom: 0;
   padding-bottom: var(--panel-height);
   box-sizing: border-box;
+}
+
+.p-station__head {
+  display: flex;
+  align-items: baseline;
+  column-gap: 0.3125em;;
+}
+
+.p-station__level {
+  margin: 0;
+  width: 5.5em;
+}
+
+.c-status__change {
+  font-size: 0.8em;
+}
+.c-status__change--positive {
+  color: green;
+}
+.c-status__change--negative {
+  color: red;
 }
 
 .p-control {
