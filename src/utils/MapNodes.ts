@@ -1,4 +1,4 @@
-import { TNodeX, TNodeY } from 'utils/types';
+import { TNodeX, TNodeY } from 'utils/types/runData';
 
 class MapNodes {
   static mapOptions = {

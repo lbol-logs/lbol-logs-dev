@@ -1,4 +1,4 @@
-import { TNodes, TNodeY } from 'utils/types';
+import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
   const nodesY: Array<TNodeY> = [];

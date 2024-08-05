@@ -1,6 +1,6 @@
 import { LogContext } from 'contexts/logContext';
 import { ChangeEvent, useContext } from 'react';
-import { TAct, TLevel } from 'utils/types';
+import { TAct, TLevel } from 'utils/types/runData';
 import { useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/ActLevel';
 

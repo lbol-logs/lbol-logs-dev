@@ -1,4 +1,4 @@
-import { TRunData } from 'utils/types';
+import { TRunData } from 'utils/types/runData';
 
 function validateRunData(runData: TRunData) {
   if (!Object.keys(runData)) return false;

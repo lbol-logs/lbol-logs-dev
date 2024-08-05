@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { TAboutComponent } from 'utils/types';
+import { TAboutComponent } from 'utils/types/others';
 
 function RoadMap({ className, category, array }: TAboutComponent) {
   const { t } = useTranslation();

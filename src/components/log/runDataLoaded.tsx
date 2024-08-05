@@ -3,12 +3,12 @@ import { LogContext } from 'contexts/logContext';
 import RunDataTemplate from './runDataTemplate';
 import Summary from './summary';
 import Control from './control';
-import { TAct, TLevel } from 'utils/types';
+import { TAct, TLevel } from 'utils/types/runData';
 import { useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/ActLevel';
 
 function RunDataLoaded() {
-  const { runData, act, setAct, setLevel, isLoaded } = useContext(LogContext);
+  const { runData, act, setAct, setLevel, isStationsLoaded: isLoaded } = useContext(LogContext);
   const [searchParams] = useSearchParams();
 
   useEffect(() => {

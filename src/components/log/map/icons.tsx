@@ -1,6 +1,6 @@
 import { checkForce } from 'utils/checkForce';
 import MapNodes from 'utils/MapNodes';
-import { TActObj } from 'utils/types';
+import { TActObj } from 'utils/types/runData';
 
 function Icons({ ActObj }: { ActObj: TActObj }) {
   const { Act, Nodes } = ActObj;

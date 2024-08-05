@@ -1,17 +1,15 @@
-import { TRunList } from 'utils/types';
 import { CommonContext } from 'contexts/commonContext';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import useList from 'hooks/useList';
-import Loading from 'components/common/loading';
-import { getList } from 'utils/fetchData';
+import { TRunList } from 'utils/types/others';
 
 function RunList() {
   const { version } = useContext(CommonContext);
   const { t } = useTranslation();
 
-  const list = useList(version);
+  const list: TRunList = useList(version);
   
   const headers = ['character', 'type', 'shining', 'difficulty', 'requests', 'result', 'timestamp'];
 
@@ -29,7 +27,7 @@ function RunList() {
         })}
       </div>
       {!Object.keys(list).length && t('notAvailableYet', { ns: 'common' })}
-      {Object.entries(list).map(([id, o]: [string, Record<string, string | Array<string>>]) => {
+      {Object.entries(list).map(([id, o]) => {
         return (
           <Link className="p-run-list__row" key={id} to={`/${version}/${id}/`}>
             {Object.entries(o).map(([key, value]) => {

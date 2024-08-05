@@ -1,4 +1,4 @@
-import { TStations } from 'utils/types';
+import { TStations } from 'utils/types/runData';
 
 function Links({ Stations }: { Stations: TStations }) {
   return null;

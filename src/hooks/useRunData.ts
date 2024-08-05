@@ -1,5 +1,5 @@
 import { getLog } from 'utils/fetchData';
-import { TRunData } from 'utils/types';
+import { TRunData } from 'utils/types/runData';
 import { LogContext } from 'contexts/logContext';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useEffect } from 'react';
@@ -9,7 +9,7 @@ import use from 'utils/use';
 
 function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
-  const { setIsLoading, setRunData } = useContext(LogContext);
+  const { setIsRunDataLoaded, setRunData } = useContext(LogContext);
   // TODO: setLog
 
   const navigate = useNavigate();
@@ -18,10 +18,10 @@ function useRunData(id: string)  {
   isValidRunData = validateRunData(runData);
 
   useEffect(() => {
-      setIsLoading(false);
+      setIsRunDataLoaded(true);
       if (isValidRunData) setRunData(runData);
       else navigate('/', { replace: true });
-  }, [navigate, isValidRunData, setIsLoading, runData, setRunData]);
+  }, [navigate, isValidRunData, setIsRunDataLoaded, runData, setRunData]);
 }
 
 export default useRunData;

@@ -1,4 +1,5 @@
-import { TObj, TPromise } from 'utils/types';
+import { TObjAny } from 'utils/types/common';
+import { TPromise } from 'utils/types/others';
 
 function use(promise: TPromise) {
   if (promise.status === 'fulfilled') {
@@ -10,11 +11,11 @@ function use(promise: TPromise) {
   } else {
     promise.status = 'pending';
     promise.then(
-      (result: TObj) => {
+      (result: TObjAny) => {
         promise.status = 'fulfilled';
         promise.value = result;
       },
-      (reason: TObj) => {
+      (reason: TObjAny) => {
         promise.status = 'rejected';
         promise.reason = reason;
       },      

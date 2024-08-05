@@ -1,55 +1,57 @@
 import { createContext, useState } from 'react';
-import { TAct, TLevel, TRunData } from 'utils/types';
+import { TDispatch } from 'utils/types/common';
+import { TAct, TLevel, TRunData } from 'utils/types/runData';
 
-const defaultIsLoading = true;
+const defaultIsRunDataLoaded = false;
 const defaultRunData = {} as TRunData;
 const defaultAct: TAct = 0;
 const defaultLevel: TLevel = 0;
+const defaultIsStationsLoaded = false;
 
 type TLogContext = {
-  isLoading: boolean,
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  isRunDataLoaded: boolean,
+  setIsRunDataLoaded: TDispatch<boolean>,
   runData: TRunData,
-  setRunData: React.Dispatch<React.SetStateAction<TRunData>>,
+  setRunData: TDispatch<TRunData>,
   act: TAct,
-  setAct: React.Dispatch<React.SetStateAction<TAct>>,
+  setAct: TDispatch<TAct>,
   level: TLevel,
-  setLevel: React.Dispatch<React.SetStateAction<TLevel>>,
-  isLoaded: boolean,
-  setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>,
+  setLevel: TDispatch<TLevel>,
+  isStationsLoaded: boolean,
+  setIsStationsLoaded: TDispatch<boolean>
 };
 
 export const LogContext = createContext<TLogContext>({
-  isLoading: defaultIsLoading,
-  setIsLoading: () => {},
+  isRunDataLoaded: defaultIsRunDataLoaded,
+  setIsRunDataLoaded: () => {},
   runData: defaultRunData,
   setRunData: () => {},
   act: defaultAct,
   setAct: () => {},
   level: defaultLevel,
   setLevel: () => {},
-  isLoaded: false,
-  setIsLoaded: () => {}
+  isStationsLoaded: defaultIsStationsLoaded,
+  setIsStationsLoaded: () => {}
 });
 
 function LogProvider({ children }: { children: React.ReactNode }) {
-  const [isLoading, setIsLoading] = useState(defaultIsLoading);
+  const [isRunDataLoaded, setIsRunDataLoaded] = useState(defaultIsRunDataLoaded);
   const [runData, setRunData] = useState(defaultRunData);
   const [act, setAct] = useState(defaultAct);
   const [level, setLevel] = useState(defaultLevel);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isStationsLoaded, setIsStationsLoaded] = useState(defaultIsStationsLoaded);
 
   const value = {
-    isLoading,
-    setIsLoading,
+    isRunDataLoaded,
+    setIsRunDataLoaded,
     runData,
     setRunData,
     act,
     setAct,
     level,
     setLevel,
-    isLoaded,
-    setIsLoaded
+    isStationsLoaded,
+    setIsStationsLoaded
   };
 
   return (

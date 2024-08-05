@@ -1,6 +1,6 @@
 import { checkForce } from 'utils/checkForce';
 import MapNodes from 'utils/MapNodes';
-import { TActObj, TNodeY } from 'utils/types';
+import { TActObj, TNodeY } from 'utils/types/runData';
 
 function Svg({ ActObj }: { ActObj: TActObj }) {
   const { Act, Nodes } = ActObj;
