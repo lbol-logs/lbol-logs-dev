@@ -1,4 +1,6 @@
-const languages: Record<string, any> = {
+import { TObjString } from 'utils/types/common';
+
+const languages: TObjString = {
   en: 'EN',
   ja: '日本語'
 };

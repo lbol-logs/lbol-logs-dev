@@ -3,6 +3,7 @@ import { ChangeEvent, useContext } from 'react';
 import { TAct, TLevel } from 'utils/types/runData';
 import { useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/ActLevel';
+import { TObjString } from 'utils/types/common';
 
 function Control() {
   const { runData, act, setAct, level, setLevel } = useContext(LogContext);
@@ -45,7 +46,7 @@ function Control() {
   }
 
   function updateQs(a: TAct, l?: TLevel) {
-    const o: Record<string, string> = {};
+    const o: TObjString = {};
     if (a) o['a'] = a.toString();
     else searchParams.delete('a');
     if (l) o['l'] = l.toString();
