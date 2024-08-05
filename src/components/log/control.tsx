@@ -6,12 +6,11 @@ import ActLevel from 'utils/ActLevel';
 import { TObjString } from 'utils/types/common';
 
 function Control() {
-  const { runData, act, setAct, level, setLevel } = useContext(LogContext);
+  const { isRunDataLoaded, runData, act, setAct, level, setLevel } = useContext(LogContext);
   //   TODO: query string
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const isLoaded = Object.keys(runData).length; 
-  if (!isLoaded) return null;
+  if (!isRunDataLoaded) return null;
 
   const al = new ActLevel(runData, act);
   const maxAct: TAct = al.maxAct();

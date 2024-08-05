@@ -8,11 +8,11 @@ import { useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/ActLevel';
 
 function RunDataLoaded() {
-  const { runData, act, setAct, setLevel, isStationsLoaded: isLoaded } = useContext(LogContext);
+  const { isRunDataLoaded, runData, act, setAct, setLevel } = useContext(LogContext);
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    if (!Object.keys(runData).length) return;
+    if (!isRunDataLoaded) return;
     let a = parseInt(searchParams.get('a') || '0') as TAct;
     let l = parseInt(searchParams.get('l') || '0') as TLevel;
     const al = new ActLevel(runData, act);
@@ -29,7 +29,7 @@ function RunDataLoaded() {
     if (height >= map.offsetTop) {
       map.classList.add(className);
     }
-  }, [runData, act, searchParams, setAct, setLevel, isLoaded]);
+  }, [isRunDataLoaded, runData, act, searchParams, setAct, setLevel]);
   
   return (
     <>

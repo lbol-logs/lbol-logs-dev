@@ -1,9 +1,10 @@
 import { latestVersion } from 'configs/globals';
 import { createContext, useState } from 'react';
+import { TDispatch } from 'utils/types/common';
 
 type TCommonContext = {
   version: string
-  setVersion: React.Dispatch<React.SetStateAction<string>>
+  setVersion: TDispatch<string>
 };
 
 export const CommonContext = createContext<TCommonContext>({
