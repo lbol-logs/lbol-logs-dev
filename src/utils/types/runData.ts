@@ -109,7 +109,7 @@ type TCardChange = TCard & TChange;
 type TCardChanges = Array<TCardChange>;
 
 type TExhibitObj = {
-  Id: string,
+  Id: TExhibit,
   Counter?: TRange3
 }
 type TExhibitChange = TChange & TExhibitObj;
