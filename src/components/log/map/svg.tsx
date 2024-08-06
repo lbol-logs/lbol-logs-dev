@@ -2,10 +2,10 @@ import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { checkForce } from 'utils/checkForce';
 import MapNodes from 'utils/MapNodes';
-import { TActObj, TLevel, TNodeObj, TNodeY, TStation } from 'utils/types/runData';
+import { ExhibitWithCounter, TActObj, TLevel, TNodeObj, TNodeY, TStation } from 'utils/types/runData';
 
 function Svg({ ActObj }: { ActObj: TActObj }) {
-  const { runData, level } = useContext(LogContext);
+  const { runData, level, holdings } = useContext(LogContext);
   // TODO: stations
   const { Act, Nodes } = ActObj;
 
@@ -17,11 +17,14 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
   const currentActStations = runData.Stations.map(({ Node }) => Node).filter(({ Act: _act }) => _act === Act);
   function getStationY(level: TLevel) {
     const station = currentActStations.find(({ Level }) => Level === level) as TNodeObj;
-    return station.Y;
+    const Y = station && station.Y;
+    return Y;
   }
 
   const lines = Nodes.map(node => {
     const { X, Y, Followers } = node;
+    const currentStationY = getStationY(X);
+    const nextStationY = getStationY(X + 1 as TLevel);
 
     return Followers.map(Follower => {
       const X2 = X + 1;
@@ -31,15 +34,13 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
 
       let flag = 'normal';
 
-      const currentStationY = getStationY(X);
       // TODO: 羽根
       if (level === X && currentStationY === Y) {
         flag = 'active';
       }
 
       if (level > X && currentStationY === Y) {
-        const nextStationY = getStationY(X + 1 as TLevel);
-        if (nextStationY === Follower) {
+        if (nextStationY && nextStationY === Follower) {
           flag = 'taken';
         }
       }
@@ -54,13 +55,31 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
     });
   });
 
+  const currentActHoldings = holdings.filter(({ Act: _act }) => _act === Act);
+  const ignores = [];
+  for (const holding of currentActHoldings) {
+    const { Level, Exhibits } = holding;
+    const exhibit = Exhibits.find(({ Id }) => Id === ExhibitWithCounter.ChuRenou.toString());
+    if (exhibit) {
+      const { Counter } = exhibit;
+      const ignore = { [Level]: Counter };
+      ignores.push(ignore);
+  }
+  const additionalLines = Object.entries(ignores).map(([Level, Counter]) => {
+    return (
+      // TODO: dotted line
+      // taken & active
+      null
+    );
+  });
+
   const width = (length + gap) * Nodes[Nodes.length - 1].X + gap;
   const height = gap * (Math.max(1, h));
 
   return (
     <svg className="p-map__svg" width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
       {lines}
-      {/* TODO: additionalLines */}
+      {additionalLines}
     </svg>
   );
 }

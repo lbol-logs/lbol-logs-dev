@@ -1,4 +1,4 @@
-import { TObjAny, TRange16, TRange3, TRange4 } from './common';
+import { TObjAny, TObjNumber, TRange16, TRange3, TRange4 } from './common';
 
 type TRunData = {
   Versions: string,
@@ -108,10 +108,11 @@ type TChange = {
 type TCardChange = TCard & TChange;
 type TCardChanges = Array<TCardChange>;
 
-type TExhibitChange = TChange & {
+type TExhibitObj = {
   Id: string,
   Counter?: TRange3
-};
+}
+type TExhibitChange = TChange & TExhibitObj;
 type TExhibitChanges = Array<TExhibitChange>;
 
 type TChangeType = 'Add' | 'Remove' | 'Upgrade' | 'Use';
@@ -120,9 +121,19 @@ type THolding = {
   Act: TAct,
   Level: TLevel,
   Cards: TCards,
-  Exhibits: TExhibits
+  Exhibits: Array<TExhibitObj>
 };
 type THoldings = Array<THolding>;
+
+enum ExhibitWithCounter {
+  GanzhuYao,
+  ChuRenou
+};
+
+const ExhibitInitialCounter: TObjNumber = {
+  GanzhuYao: 0,
+  ChuRenou: 3
+};
 
 export type {
   TRunData,
@@ -144,4 +155,9 @@ export type {
   TCardChanges,
   TExhibitChanges,
   TNodeObj
+};
+
+export {
+  ExhibitWithCounter,
+  ExhibitInitialCounter
 };
