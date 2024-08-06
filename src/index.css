@@ -224,6 +224,14 @@ img {
   width: 5.5em;
 }
 
+.p-station__body {
+  display: flex;
+}
+
+.p-station__left {
+  flex-basis: 40%;
+}
+
 .c-status__change {
   font-size: 0.8em;
 }
@@ -307,6 +315,10 @@ img {
     display: none;
   }
   .p-about__roadmap, .p-about__done {
+    flex-basis: 100%;
+  }
+
+  .p-station__left {
     flex-basis: 100%;
   }
 }

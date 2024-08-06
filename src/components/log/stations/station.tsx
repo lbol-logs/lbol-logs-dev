@@ -6,6 +6,7 @@ import Statuses from './statuses';
 import { LogContext } from 'contexts/logContext';
 import CurrentChange from './currentChange';
 import CurrentHolding from './currentHolding';
+import StationType from './stationType';
 
 function Station({ station, innerRef }: { station: TStation, innerRef?: RefObject<HTMLDivElement>}) {
   useTranslation();
@@ -38,11 +39,15 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
         </h3>
         <Statuses status={Status} lastStatus={lastStatus as TStatus} />
       </div>
-
-      {Type}: {Id}
-
-      <CurrentChange level={Level} />
-      <CurrentHolding level={Level} />
+      <div className="p-station__body">
+        <div className="p-station__left">
+          <StationType station={station} />
+        </div>
+        <div className="p-station__right">
+          <CurrentChange level={Level} />
+          <CurrentHolding level={Level} />
+        </div>
+      </div>
     </div>
   );
 }
