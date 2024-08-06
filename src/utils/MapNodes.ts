@@ -34,8 +34,8 @@ class MapNodes {
     const diff = (_Y - _Y2);
     if (diff) {
       const offset = diff * padding;
-      y1 += offset;
-      y2 = this._y(_Y2) - offset;
+      y1 -= offset;
+      y2 = this._y(_Y2) + offset;
     }
     else {
       y2 = y1;
@@ -59,7 +59,7 @@ class MapNodes {
 
   private static _y(Y: TNodeY | 2.5) {
     const { gap } = this.mapOptions;
-    const y: number = ((5 - Y) - 0.5) * gap;
+    const y: number = (Y - 0.5) * gap;
     return y;
   }
 

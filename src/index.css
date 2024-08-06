@@ -192,6 +192,11 @@ img {
   transform: rotate(0);
 }
 
+.p-map__svg {
+  transform-origin: 50% 50%;
+  transform: scale(1, -1);
+}
+
 .c-map-icon__img {
   position: fixed;
   width: 40px;

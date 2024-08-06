@@ -58,7 +58,7 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
   const height = gap * (Math.max(1, h));
 
   return (
-    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
+    <svg className="p-map__svg" width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
       {lines}
       {/* TODO: additionalLines */}
     </svg>
