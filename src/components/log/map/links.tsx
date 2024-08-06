@@ -7,21 +7,6 @@ function Links({ Stations }: { Stations: TStations }) {
 //     const { Type } = Station;
 //     // const [x, y] = MapNodes.node(X, Y);
 
-// /*  Types
-// 		None,
-// 		Enemy,
-// 		EliteEnemy,
-// 		Supply,
-// 		Gap,
-// 		Shop,
-// 		Adventure,
-// 		Entry,
-// 		Select,
-// 		Trade,
-// 		Boss,
-// 		BattleAdvTest
-//     */
-
 //     return (
 //       // <a className="c-map-stations__station" key={`Act${Act}_x${X}y${Y}`} style={{ left: x, top: y}}>
 //         Type

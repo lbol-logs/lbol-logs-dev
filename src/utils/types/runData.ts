@@ -5,10 +5,9 @@ type TRunData = {
   Settings: TSettings,
   Stations: TStations,
   Acts: Array<TActObj>,
-  Result: string,
-  Timestamp: string,
   Cards?: Array<TCardChange>,
-  Exhibits?: Array<TExhibitChange>
+  Exhibits?: Array<TExhibitChange>,
+  Result: TResult
 };
 
 type TSettings = {
@@ -86,23 +85,25 @@ type TNode = {
 
 type TNodeX = TLevel;
 type TNodeY = TRange4;
-type TNodeType = string; // TODO
+type TNodeType = 'None' | 'Enemy' | 'EliteEnemy' | 'Supply' | 'Gap' | 'Shop' | 'Adventure' | 'Entry' | 'Select' | 'Trade' | 'Boss' | 'BattleAdvTest';
 
 type TFollowers = [TFollower?, TFollower?, TFollower?, TFollower?];
 type TFollower = TNodeY;
 
-type TCardChange = {
-  Id: string,
-  Type: TChangeType,
-  Node: TNodeObj,
-  IsUpgraded: boolean,
-  UpgradeCounter?: number
+type TResult = {
+  Type: string,
+  Timestamp: string,
 };
 
-type TExhibitChange = {
-  Id: string,
+type TChange = {
   Type: TChangeType,
-  Node: TNodeObj,
+  Node: TNodeObj
+};
+
+type TCardChange = TCard & TChange;
+
+type TExhibitChange = TChange & {
+  Id: string,
   Counter?: TRange3
 };
 
