@@ -7,26 +7,33 @@ import ExhibitsR from '../exhibitsR/exhibitsR';
 function CurrentChange({ level }: { level: TLevel }) {
   const { runData, act } = useContext(LogContext);
 
-  const { Cards, Exhibits } = runData;
+  const { Stations, Cards, Exhibits } = runData;
 
-  const currentCards = Cards.filter(({ Node: { Act, Level } }) => Act === act && Level === level);
+  const isCurrentLevel = (({ Station }: { Station: number }) => {
+    const station = Stations[Station];
+    const { Act, Level } = station.Node;
+    const _isCurrentLevel = Act === act && Level === level;
+    return _isCurrentLevel;
+  });
+
+  const currentCards = Cards.filter(isCurrentLevel);
   
   const currentCardsAdded = currentCards.filter(({ Type }) => Type === 'Add');
-  const hasCurrentCardsAdded = currentCardsAdded.length;
+  const hasCurrentCardsAdded = currentCardsAdded.length > 0;
 
   const currentCardsRemoved = currentCards.filter(({ Type }) => Type === 'Remove');
-  const hasCurrentCardsRemoved = currentCardsRemoved.length;
+  const hasCurrentCardsRemoved = currentCardsRemoved.length > 0;
 
   const currentCardsUpgraded = currentCards.filter(({ Type }) => Type === 'Upgrade');
-  const hasCurrentCardsUpgraded = currentCardsUpgraded.length;
+  const hasCurrentCardsUpgraded = currentCardsUpgraded.length > 0;
 
-  const currentExhibits = Exhibits.filter(({ Node: { Act, Level } }) => Act === act && Level === level);
+  const currentExhibits = Exhibits.filter(isCurrentLevel);
 
   const currentExhibitsAdded = currentExhibits.filter(({ Type }) => Type === 'Add').map(e => e.Id);
-  const hasCurrentExhibitsAdded = currentExhibitsAdded.length;
+  const hasCurrentExhibitsAdded = currentExhibitsAdded.length > 0;
 
   const currentExhibitsRemoved = currentExhibits.filter(({ Type }) => Type === 'Remove').map(e => e.Id);
-  const hasCurrentExhibitsRemoved = currentExhibitsRemoved.length;
+  const hasCurrentExhibitsRemoved = currentExhibitsRemoved.length > 0;
 
   return (
     <>

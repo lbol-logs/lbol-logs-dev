@@ -46,7 +46,8 @@ type TStation = {
 
 type TNodeObj = {
   Act: TAct,
-  Level: TLevel
+  Level: TLevel,
+  Y: TNodeY
 };
 
 type TAct = TRange4;
@@ -101,7 +102,7 @@ type TResult = {
 
 type TChange = {
   Type: TChangeType,
-  Node: TNodeObj
+  Station: number
 };
 
 type TCardChange = TCard & TChange;
@@ -141,5 +142,6 @@ export type {
   THolding,
   THoldings,
   TCardChanges,
-  TExhibitChanges
+  TExhibitChanges,
+  TNodeObj
 };
