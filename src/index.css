@@ -269,6 +269,22 @@ img {
   width: 100%;
 }
 
+.c-entity {
+  display: flex;
+  column-gap: 0.5em;
+}
+
+.c-entity__label {
+  word-break: break-word;
+  width: 5em;
+}
+
+.c-cards, .c-exhibits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 1em;
+}
+
 :root {
   --panel-height: 30px;
 }

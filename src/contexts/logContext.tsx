@@ -1,12 +1,13 @@
 import { createContext, useState } from 'react';
 import { TDispatch } from 'utils/types/common';
-import { TAct, TLevel, TRunData } from 'utils/types/runData';
+import { TAct, THoldings, TLevel, TRunData } from 'utils/types/runData';
 
 const defaultIsRunDataLoaded = false;
 const defaultRunData = {} as TRunData;
 const defaultAct: TAct = 0;
 const defaultLevel: TLevel = 0;
 const defaultIsStationsLoaded = false;
+const defaultHoldings = [] as THoldings;
 
 type TLogContext = {
   isRunDataLoaded: boolean,
@@ -18,7 +19,9 @@ type TLogContext = {
   level: TLevel,
   setLevel: TDispatch<TLevel>,
   isStationsLoaded: boolean,
-  setIsStationsLoaded: TDispatch<boolean>
+  setIsStationsLoaded: TDispatch<boolean>,
+  holdings:THoldings,
+  setHoldings: TDispatch<THoldings>,
 };
 
 export const LogContext = createContext<TLogContext>({
@@ -31,7 +34,9 @@ export const LogContext = createContext<TLogContext>({
   level: defaultLevel,
   setLevel: () => {},
   isStationsLoaded: defaultIsStationsLoaded,
-  setIsStationsLoaded: () => {}
+  setIsStationsLoaded: () => {},
+  holdings: defaultHoldings,
+  setHoldings: () => {}
 });
 
 function LogProvider({ children }: { children: React.ReactNode }) {
@@ -40,6 +45,7 @@ function LogProvider({ children }: { children: React.ReactNode }) {
   const [act, setAct] = useState(defaultAct);
   const [level, setLevel] = useState(defaultLevel);
   const [isStationsLoaded, setIsStationsLoaded] = useState(defaultIsStationsLoaded);
+  const [holdings, setHoldings] = useState(defaultHoldings);
 
   const value = {
     isRunDataLoaded,
@@ -51,7 +57,9 @@ function LogProvider({ children }: { children: React.ReactNode }) {
     level,
     setLevel,
     isStationsLoaded,
-    setIsStationsLoaded
+    setIsStationsLoaded,
+    holdings,
+    setHoldings
   };
 
   return (

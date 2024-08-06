@@ -4,13 +4,14 @@ import { TAct, TLevel } from 'utils/types/runData';
 import { useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/ActLevel';
 import { TObjString } from 'utils/types/common';
+import Loading from 'components/common/loading';
+import MapNodes from 'utils/MapNodes';
 
 function Control() {
   const { isRunDataLoaded, runData, act, setAct, level, setLevel } = useContext(LogContext);
-  //   TODO: query string
   const [searchParams, setSearchParams] = useSearchParams();
 
-  if (!isRunDataLoaded) return null;
+  if (!isRunDataLoaded) return <Loading />;
 
   const al = new ActLevel(runData, act);
   const maxAct: TAct = al.maxAct();
@@ -37,11 +38,22 @@ function Control() {
   }
 
   function scrollToLevel(nextLevel: TLevel) {
-    const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
     const map = document.querySelector('.js-map') as HTMLDivElement;
-    if (!station || !map) return;
-    const height = station.offsetTop - map.offsetHeight;
-    window.scrollTo(0, height);
+    if (!map) return;
+
+    const inner = map.querySelector('.p-map__inner') as HTMLDivElement;
+    if (inner) {
+      const { gap, length } = MapNodes.mapOptions;
+      const offset = (inner.offsetWidth - gap - length)/ 2;
+      const x = MapNodes.x1x2(nextLevel)[0] - gap - offset;
+      inner.scrollTo(x, 0);
+    }
+
+    const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
+    if (station) {
+      const y = station.offsetTop - map.offsetHeight;
+      window.scrollTo(0, y);
+    }
   }
 
   function updateQs(a: TAct, l?: TLevel) {

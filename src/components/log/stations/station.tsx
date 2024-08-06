@@ -1,9 +1,11 @@
 import { RefObject, useContext, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { TStation, TStatus } from 'utils/types/runData';
+import { THolding, TStation, TStatus } from 'utils/types/runData';
 import Act from './act';
 import Statuses from './statuses';
 import { LogContext } from 'contexts/logContext';
+import CurrentChange from './currentChange';
+import CurrentHolding from './currentHolding';
 
 function Station({ station, innerRef }: { station: TStation, innerRef?: RefObject<HTMLDivElement>}) {
   useTranslation();
@@ -13,7 +15,7 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
 
   const { Stations } = runData;
   const i = Stations.indexOf(station);
-  const lastStatus = i && Stations[i - 1].Status;
+  const lastStatus = i ? Stations[i - 1].Status : runData.Settings.Status;
 
   useEffect(() => {
     if (innerRef) {
@@ -38,6 +40,9 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
       </div>
 
       {Type}: {Id}
+
+      <CurrentChange level={Level} />
+      <CurrentHolding level={Level} />
     </div>
   );
 }

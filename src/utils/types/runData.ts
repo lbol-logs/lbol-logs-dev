@@ -5,8 +5,8 @@ type TRunData = {
   Settings: TSettings,
   Stations: TStations,
   Acts: Array<TActObj>,
-  Cards?: Array<TCardChange>,
-  Exhibits?: Array<TExhibitChange>,
+  Cards: TCardChanges,
+  Exhibits: TExhibitChanges,
   Result: TResult
 };
 
@@ -57,7 +57,7 @@ type TData = TObjAny;
 
 type TRewards = {
   Money: number,
-  Cards: Array<Array<TCard>>,
+  Cards: Array<TCards>,
   Exhibits?: Array<TExhibit>
 };
 
@@ -66,8 +66,10 @@ type TCard = {
   IsUpgraded: boolean,
   UpgradeCounter?: number
 };
+type TCards = Array<TCard>;
 
 type TExhibit = string;
+type TExhibits = Array<TExhibit>;
 
 type TActObj = {
   Act: TAct,
@@ -93,6 +95,8 @@ type TFollower = TNodeY;
 type TResult = {
   Type: string,
   Timestamp: string,
+  Cards: TCards,
+  Exhibits: TExhibits
 };
 
 type TChange = {
@@ -101,13 +105,23 @@ type TChange = {
 };
 
 type TCardChange = TCard & TChange;
+type TCardChanges = Array<TCardChange>;
 
 type TExhibitChange = TChange & {
   Id: string,
   Counter?: TRange3
 };
+type TExhibitChanges = Array<TExhibitChange>;
 
 type TChangeType = 'Add' | 'Remove' | 'Upgrade' | 'Use';
+
+type THolding = {
+  Act: TAct,
+  Level: TLevel,
+  Cards: TCards,
+  Exhibits: TExhibits
+};
+type THoldings = Array<THolding>;
 
 export type {
   TRunData,
@@ -119,5 +133,13 @@ export type {
   TStatus,
   TNodes,
   TNodeX,
-  TNodeY
+  TNodeY,
+  TCard,
+  TCards,
+  TExhibit,
+  TExhibits,
+  THolding,
+  THoldings,
+  TCardChanges,
+  TExhibitChanges
 };
