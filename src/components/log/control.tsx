@@ -85,7 +85,7 @@ function Control() {
           className={`p-control__component ${act === maxAct ? 'p-control__component--disabled': ''}`}
           onClick={() => handleClick(1)}
           >&gt;</span>
-        <span className="p-control__component" onClick={handleToggle}>
+        <span className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''}`} onClick={handleToggle}>
           <LazyLoadImage src={getImage(showMap ? 'map' : 'holding')} alt={showMap ? 'hideMap' : 'showMap'} />
         </span>
       </div>

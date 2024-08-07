@@ -3,12 +3,11 @@ import { TObjAny } from 'utils/types/common';
 
 function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings: THoldingsReducer) {
   // TODO: read config
-  // if (!runData || !playerConfigs) return;
 
-  // const { Stations } = runData;
-  // const { Character, PlayerType } = runData.Settings;	
-  // const playerConfig = playerConfigs[Character][PlayerType];
-  // const { Cards, Exhibit } = playerConfig;
+  const { Stations } = runData;
+  const { Character, PlayerType } = runData.Settings;	
+  const playerConfig = playerConfigs[Character][PlayerType];
+  const { Cards, Exhibit } = playerConfig;
   
   // TODO: Junko, Patchu
   // TODO: BaseMana Change
