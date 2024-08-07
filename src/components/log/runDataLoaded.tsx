@@ -24,11 +24,6 @@ function RunDataLoaded() {
     if (!station || !map) return;
     const height = station.offsetTop - map.offsetHeight;
     window.scrollTo(0, height);
-
-    const className = 'p-map--sticky';
-    if (height >= map.offsetTop) {
-      map.classList.add(className);
-    }
   }, [isRunDataLoaded, runData, act, searchParams, setAct, setLevel]);
   
   return (

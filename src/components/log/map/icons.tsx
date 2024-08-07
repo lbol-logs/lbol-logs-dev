@@ -34,7 +34,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
 
     return (
       <LazyLoadImage className="c-map-icon__img" src={getMapImage(Type)} width={size} height={size} key={`Act${Act}_x${X}y${Y}`} style={{ left: x, top: y}} alt={Type} />
-    )
+    );
   });
 
   return (

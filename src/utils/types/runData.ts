@@ -35,8 +35,6 @@ type TStatus = {
   MaxPower: number
 };
 
-type TStations = Array<TStation>;
-
 type TStation = {
   Type: string,
   Node: TNodeObj,
@@ -45,6 +43,7 @@ type TStation = {
   Id?: string | number,
   Rewards?: TRewards
 };
+type TStations = Array<TStation>;
 
 type TNodeObj = {
   Act: TAct,
@@ -79,14 +78,13 @@ type TActObj = {
   Nodes: TNodes
 };
 
-type TNodes = Array<TNode>;
-
 type TNode = {
   X: TNodeX,
   Y: TNodeY,
   Followers: TFollowers,
   Type: TNodeType
 };
+type TNodes = Array<TNode>;
 
 type TNodeX = TLevel;
 type TNodeY = TRange4;

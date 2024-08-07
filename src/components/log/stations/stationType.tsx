@@ -54,7 +54,7 @@ function StatationType({ station }: { station: TStation }) {
         {cards}
         {exhibits}
       </div>
-    )
+    );
   }
   data = (
     <>

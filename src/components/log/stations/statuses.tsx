@@ -17,11 +17,9 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
         const className = isPositive ? 'c-status__change--positive' : 'c-status__change--negative';
         change = (
           <span className="c-status__change">
-            (
-              <span className={className}>
-                {isPositive && '+'}{diff}
-              </span>
-            )
+            <span className={className}>
+              {isPositive && '+'}{diff}
+            </span>
           </span>
         );
       }

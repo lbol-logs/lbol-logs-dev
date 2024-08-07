@@ -1,7 +1,7 @@
 import { LogContext } from 'contexts/logContext';
 import { ChangeEvent, useContext } from 'react';
 import { TAct, TLevel } from 'utils/types/runData';
-import { useSearchParams } from 'react-router-dom';
+import { SetURLSearchParams, useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/ActLevel';
 import { TObjString } from 'utils/types/common';
 import Loading from 'components/common/loading';
@@ -35,40 +35,12 @@ function Control() {
     l = al.level(l);
     setAct(a);
     setLevel(l);
-    updateQs(a, l);
+    updateQs(searchParams, setSearchParams, a, l);
     scrollToLevel(l);
   }
 
   function handleToggle() {
     setShowMap(!showMap);
-  }
-
-  function scrollToLevel(nextLevel: TLevel) {
-    const map = document.querySelector('.js-map') as HTMLDivElement;
-    if (!map) return;
-
-    const inner = map.querySelector('.js-mapInner') as HTMLDivElement;
-    if (inner) {
-      const { gap, length } = MapNodes.mapOptions;
-      const offset = (inner.offsetWidth - gap - length)/ 2;
-      const x = MapNodes.x1x2(nextLevel)[0] - gap - offset;
-      inner.scrollTo(x, 0);
-    }
-
-    const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
-    if (station) {
-      const y = station.offsetTop - map.offsetHeight;
-      window.scrollTo(0, y);
-    }
-  }
-
-  function updateQs(a: TAct, l?: TLevel) {
-    const o: TObjString = {};
-    if (a) o['a'] = a.toString();
-    else searchParams.delete('a');
-    if (l) o['l'] = l.toString();
-    else searchParams.delete('l');
-    setSearchParams(o);
   }
 
   return (
@@ -93,4 +65,39 @@ function Control() {
   );
 }
 
+function updateQs(searchParams: URLSearchParams, setSearchParams: SetURLSearchParams, a: TAct, l?: TLevel) {
+  const o: TObjString = {};
+  if (a) o['a'] = a.toString();
+  else searchParams.delete('a');
+  if (l) o['l'] = l.toString();
+  else searchParams.delete('l');
+  setSearchParams(o);
+}
+
+function scrollToLevel(nextLevel: TLevel, scrollToX = true) {
+  const map = document.querySelector('.js-map') as HTMLDivElement;
+  if (!map) return;
+
+  if (scrollToX) {
+    const inner = map.querySelector('.js-mapInner') as HTMLDivElement;
+    if (inner) {
+      const { gap, length } = MapNodes.mapOptions;
+      const offset = (inner.offsetWidth - gap - length)/ 2;
+      const x = MapNodes.x1x2(nextLevel)[0] - gap - offset;
+      inner.scrollTo(x, 0);
+    }
+  }
+
+  const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
+  if (station) {
+    const y = station.offsetTop - map.offsetHeight;
+    window.scrollTo(0, y);
+  }
+}
+
 export default Control;
+
+export {
+  updateQs,
+  scrollToLevel
+};

@@ -1,30 +1,65 @@
 import { LogContext } from 'contexts/logContext';
-import { useContext, useEffect, useRef } from 'react';
+import { useCallback, useContext, useEffect, useRef } from 'react';
 import Station from './station';
+import { scrollToLevel, updateQs } from '../control';
+import { useSearchParams } from 'react-router-dom';
+import { TLevel } from 'utils/types/runData';
 
 function Stations() {
-  const { runData, act } = useContext(LogContext);
+  const { runData, act, setLevel } = useContext(LogContext);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const { Stations } = runData;
-  const stations = Stations.filter(station => station.Node.Act === act )
+  const stations = Stations.filter(station => station.Node.Act === act);
+  const length = stations.length;
 
   const stationsRef = useRef<HTMLDivElement>(null);
   const stationRef = useRef<HTMLDivElement>(null);
 
+  const _updateQs = useCallback(
+    (level: TLevel) => updateQs(searchParams, setSearchParams, act, level)
+  , []);
+
   useEffect(() => {
-    const stations = stationsRef.current;
-    const station = stationRef.current;
-    if (!stations || !station) return;
     const map = document.querySelector('.js-map') as HTMLDivElement;
-    const height = window.innerHeight - map.offsetHeight;
-    if (!station.style.height && station.offsetHeight < height) {
-      station.style.height = height + 'px';
+    const mapHeight = map.offsetHeight;
+    {
+      console.log('triggerA');
+      const stations = stationsRef.current;
+      const station = stationRef.current;
+      if (stations && station) {
+        const stationsHeight = window.innerHeight - mapHeight;
+        if (!station.style.height && station.offsetHeight < stationsHeight) {
+          station.style.height = stationsHeight + 'px';
+        }
+      }
     }
-  }, [act]);
+
+    /*
+    {
+      const onScroll = () => {
+        const levels = stations.map(({ Node: { Level }}) => Level);
+        for (const level of levels.reverse()) {
+          const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
+          if (!station) break;
+          if (window.scrollY >= station.offsetTop - mapHeight - 100) {
+            // setLevel(level);
+            console.log('triggerB');
+            // updateQs(searchParams, setSearchParams, act, level);
+            //  _updateQs(level);
+            // scrollToLevel(level, false);
+            break;
+          }
+        }
+      }
+      window.addEventListener('scroll', onScroll);
+    }
+      */
+  }, []);
 
   return (
     <section className="p-stations" ref={stationsRef}>
-      {stations.map((station, i, { length }) => {
+      {stations.map((station, i) => {
         const { Node } = station;
         const { Level } = Node;
         const key = `Station_Act${act}_Level${Level}`;
