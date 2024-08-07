@@ -3,32 +3,18 @@ import { useContext, useEffect, useRef } from 'react';
 import Svg from './svg';
 import Icons from './icons';
 import Links from './links';
+import CurrentHoldings from './currentHoldings';
 
 function Map() {
-  const { runData, act } = useContext(LogContext);
+  const { runData, act, showMap } = useContext(LogContext);
 
   const { Stations, Acts } = runData;
   const ActObj = Acts[act - 1];
 
-  const mapRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const onScroll = () => {
-      const map = mapRef.current;
-      const className = 'p-map--sticky';
-      if (!map) return;
-      if (window.scrollY >= map.offsetTop) {
-        map.classList.add(className);
-      }
-      else {
-        map.classList.remove(className);
-      }
-    }
-    window.addEventListener('scroll', onScroll);
-  }, []);
-
   return (
-    <section className="p-map js-map" ref={mapRef}>
-      <div className="p-map__inner js-mapInner">
+    <section className="p-map js-map">
+      {!showMap && <CurrentHoldings />}
+      <div className={`p-map__inner ${showMap ? '' : 'p-map__inner--hidden'} js-mapInner`}>
         <Links Stations={Stations} />
         <Icons ActObj={ActObj} />
         <Svg ActObj={ActObj} />

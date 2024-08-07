@@ -176,20 +176,29 @@ img {
 
 .p-map {
   background: #fffbf6;
-}
-.p-map--sticky {
   position: sticky;
   top: 0;
+  z-index: 999;
 }
 
 .p-map__inner {
   overflow-x: auto;
   position: relative;
-  -webkit-transform: rotate(0);
-  -moz-transform: rotate(0);
-  -ms-transform: rotate(0);
-  -o-transform: rotate(0);
   transform: rotate(0);
+}
+
+.p-map__inner--hidden {
+  visibility: hidden;
+}
+
+.p-map__holdings {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  padding: 0.5em;
 }
 
 .p-map__svg {
@@ -271,6 +280,7 @@ img {
   width: var(--panel-height);
   justify-content: center;
   user-select: none;
+  width: 1.75em;
 }
 .p-control__component:last-child {
   border-right: 1px solid #ccc;

@@ -5,7 +5,6 @@ import Act from './act';
 import Statuses from './statuses';
 import { LogContext } from 'contexts/logContext';
 import CurrentChange from './currentChange';
-import CurrentHolding from './currentHolding';
 import StationType from './stationType';
 
 function Station({ station, innerRef }: { station: TStation, innerRef?: RefObject<HTMLDivElement>}) {
@@ -45,7 +44,6 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
         </div>
         <div className="p-station__right">
           <CurrentChange level={Level} />
-          <CurrentHolding level={Level} />
         </div>
       </div>
     </div>

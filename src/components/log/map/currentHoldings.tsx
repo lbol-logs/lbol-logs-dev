@@ -4,8 +4,8 @@ import { TCards, TExhibit, TExhibitObjs, THolding, TLevel } from 'utils/types/ru
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 
-function CurrentHolding({ level }: { level: TLevel }) {
-  const { act, holdings } = useContext(LogContext);
+function CurrentHoldings() {
+  const { act, level, holdings } = useContext(LogContext);
 
   const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
   let Cards: TCards = [];
@@ -14,16 +14,16 @@ function CurrentHolding({ level }: { level: TLevel }) {
     ( { Cards, Exhibits } = currentHolding );
   }
   // console.log({holdings});
-  console.log({Cards});
+  // console.log({Cards});
   // console.log({Exhibits});
 
   return (
-    <>
+    <div className="p-map__holdings">
       currentHoldings
       <CardCards cards={Cards} />
       <ExhibitCards exhibits={Exhibits} />
-    </>
+    </div>
   );
 }
 
-export default CurrentHolding;
+export default CurrentHoldings;

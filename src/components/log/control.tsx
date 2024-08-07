@@ -6,9 +6,11 @@ import ActLevel from 'utils/ActLevel';
 import { TObjString } from 'utils/types/common';
 import Loading from 'components/common/loading';
 import MapNodes from 'utils/MapNodes';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { getImage } from 'utils/getImage';
 
 function Control() {
-  const { isRunDataLoaded, runData, act, setAct, level, setLevel } = useContext(LogContext);
+  const { isRunDataLoaded, runData, act, setAct, level, setLevel, showMap, setShowMap } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   if (!isRunDataLoaded) return <Loading />;
@@ -35,6 +37,10 @@ function Control() {
     setLevel(l);
     updateQs(a, l);
     scrollToLevel(l);
+  }
+
+  function handleToggle() {
+    setShowMap(!showMap);
   }
 
   function scrollToLevel(nextLevel: TLevel) {
@@ -79,6 +85,9 @@ function Control() {
           className={`p-control__component ${act === maxAct ? 'p-control__component--disabled': ''}`}
           onClick={() => handleClick(1)}
           >&gt;</span>
+        <span className="p-control__component" onClick={handleToggle}>
+          <LazyLoadImage src={getImage(showMap ? 'map' : 'holding')} alt={showMap ? 'hideMap' : 'showMap'} />
+        </span>
       </div>
     </section>
   );

@@ -9,6 +9,7 @@ const defaultAct: TAct = 0;
 const defaultLevel: TLevel = 0;
 const defaultIsStationsLoaded = false;
 const defaultHoldings = [] as THoldings;
+const defaultShowMap = true;
 
 type TLogContext = {
   isRunDataLoaded: boolean,
@@ -22,7 +23,9 @@ type TLogContext = {
   isStationsLoaded: boolean,
   setIsStationsLoaded: TDispatch<boolean>,
   holdings: THoldings,
-  dispatchHoldings: THoldingsReducer
+  dispatchHoldings: THoldingsReducer,
+  showMap: boolean,
+  setShowMap: TDispatch<boolean>
 };
 
 export const LogContext = createContext<TLogContext>({
@@ -37,7 +40,9 @@ export const LogContext = createContext<TLogContext>({
   isStationsLoaded: defaultIsStationsLoaded,
   setIsStationsLoaded: () => {},
   holdings: defaultHoldings,
-  dispatchHoldings: () => {}
+  dispatchHoldings: () => {},
+  showMap: defaultShowMap,
+  setShowMap: () => {}
 });
 
 function LogProvider({ children }: { children: React.ReactNode }) {
@@ -47,6 +52,7 @@ function LogProvider({ children }: { children: React.ReactNode }) {
   const [level, setLevel] = useState(defaultLevel);
   const [isStationsLoaded, setIsStationsLoaded] = useState(defaultIsStationsLoaded);
   const [holdings, dispatchHoldings] = useReducer(holdingsReducer, defaultHoldings);
+  const [showMap, setShowMap] = useState(defaultShowMap);
 
   const value = {
     isRunDataLoaded,
@@ -60,7 +66,9 @@ function LogProvider({ children }: { children: React.ReactNode }) {
     isStationsLoaded,
     setIsStationsLoaded,
     holdings,
-    dispatchHoldings
+    dispatchHoldings,
+    showMap,
+    setShowMap
   };
 
   return (
