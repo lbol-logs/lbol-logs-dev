@@ -6,6 +6,7 @@ import Control from './control';
 import { TAct, TLevel } from 'utils/types/runData';
 import { useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/ActLevel';
+import { scrollTolerance } from 'configs/globals';
 
 function RunDataLoaded() {
   const { isRunDataLoaded, runData, act, setAct, setLevel } = useContext(LogContext);
@@ -23,7 +24,7 @@ function RunDataLoaded() {
     const map = document.querySelector('.js-map') as HTMLDivElement;
     if (!station || !map) return;
     const height = station.offsetTop - map.offsetHeight;
-    window.scrollTo(0, height);
+    if (window.scrollY < height - scrollTolerance) window.scrollTo(0, height);
   }, [isRunDataLoaded, runData, act, searchParams, setAct, setLevel]);
   
   return (

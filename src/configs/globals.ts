@@ -25,6 +25,8 @@ const dataUrl: string = 'https://ed-ev.github.io/lbol-logs-data';
 
 const iconSize = 40;
 
+const scrollTolerance = 50;
+
 export {
   languages,
   namespaces,
@@ -33,5 +35,6 @@ export {
   baseUrl,
   imageUrl,
   dataUrl,
-  iconSize
+  iconSize,
+  scrollTolerance
 };

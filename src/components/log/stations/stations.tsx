@@ -4,6 +4,7 @@ import Station from './station';
 import { scrollToLevel, updateQs } from '../control';
 import { useSearchParams } from 'react-router-dom';
 import { TLevel } from 'utils/types/runData';
+import { scrollTolerance } from 'configs/globals';
 
 function Stations() {
   const { runData, act, setLevel } = useContext(LogContext);
@@ -24,7 +25,6 @@ function Stations() {
     const map = document.querySelector('.js-map') as HTMLDivElement;
     const mapHeight = map.offsetHeight;
     {
-      console.log('triggerA');
       const stations = stationsRef.current;
       const station = stationRef.current;
       if (stations && station) {
@@ -42,10 +42,8 @@ function Stations() {
         for (const level of levels.reverse()) {
           const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
           if (!station) break;
-          if (window.scrollY >= station.offsetTop - mapHeight - 100) {
-            // TODO: avoid loop
+          if (window.scrollY >= station.offsetTop - mapHeight - scrollTolerance) {
             setLevel(level);
-            console.log('triggerB');
              _updateQs(level);
             scrollToLevel(level, false);
             break;
