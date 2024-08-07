@@ -41,7 +41,7 @@ function Control() {
     const map = document.querySelector('.js-map') as HTMLDivElement;
     if (!map) return;
 
-    const inner = map.querySelector('.p-map__inner') as HTMLDivElement;
+    const inner = map.querySelector('.js-mapInner') as HTMLDivElement;
     if (inner) {
       const { gap, length } = MapNodes.mapOptions;
       const offset = (inner.offsetWidth - gap - length)/ 2;

@@ -44,7 +44,7 @@ class MapNodes {
     return [y1, y2];
   }
 
-  static node(X: TNodeX, Y:TNodeY, force = true) {
+  static node(X: TNodeX, Y: TNodeY, force = true) {
     const { gap, padding } = this.mapOptions;
     const _Y = this._force(Y, force);
     const x = this._x(X) - gap + padding;

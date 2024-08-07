@@ -1,3 +1,4 @@
+import { Dispatch, ReducerAction } from 'react';
 import { TObjAny, TObjNumber, TRange16, TRange3, TRange4 } from './common';
 
 type TRunData = {
@@ -11,7 +12,7 @@ type TRunData = {
 };
 
 type TSettings = {
-  Character: string,
+  Character: TCharacter,
   PlayerType: TPlayerType,
   HasClearBonus: boolean,
   ShowRandomResult: boolean,
@@ -21,6 +22,7 @@ type TSettings = {
   Status: TStatus
 };
 
+type TCharacter = string;
 type TPlayerType = 'A' | 'B';
 
 type TRequests = Array<string>;
@@ -127,6 +129,18 @@ type THolding = {
 };
 type THoldings = Array<THolding>;
 
+type THoldingActionType = 'Cards' | 'Exhibits';
+type THoldingActionChange = 
+(Omit<TCardChange, 'Station'> | Omit<TExhibitChange, 'Station'>)
+& {
+  Station: TNodeObj
+};
+type THoldingAction = {
+  type: THoldingActionType,
+  change: THoldingActionChange
+};
+type THoldingsReducer = Dispatch<ReducerAction<(holdings: THoldings, action: THoldingAction) => THoldings>>;
+
 enum ExhibitWithCounter {
   GanzhuYao,
   ChuRenou,
@@ -143,6 +157,8 @@ const ExhibitInitialCounter: TObjNumber = {
 
 export type {
   TRunData,
+  TCharacter,
+  TPlayerType,
   TAct,
   TLevel,
   TActObj,
@@ -158,6 +174,8 @@ export type {
   TExhibits,
   THolding,
   THoldings,
+  THoldingAction,
+  THoldingsReducer,
   TCardChanges,
   TExhibitChanges,
   TNodeObj,

@@ -28,7 +28,7 @@ function Map() {
 
   return (
     <section className="p-map js-map" ref={mapRef}>
-      <div className="p-map__inner">
+      <div className="p-map__inner js-mapInner">
         <Links Stations={Stations} />
         <Icons ActObj={ActObj} />
         <Svg ActObj={ActObj} />

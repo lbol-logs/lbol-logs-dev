@@ -6,10 +6,11 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import validateRunData from 'utils/validateRunData';
 import use from 'utils/use';
+import setHoldings from 'utils/setHoldings';
 
 function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
-  const { setIsRunDataLoaded, setRunData } = useContext(LogContext);
+  const { setIsRunDataLoaded, setRunData, dispatchHoldings } = useContext(LogContext);
   // TODO: setLog
 
   const navigate = useNavigate();
@@ -18,10 +19,16 @@ function useRunData(id: string)  {
   isValidRunData = validateRunData(runData);
 
   useEffect(() => {
-      setIsRunDataLoaded(true);
-      if (isValidRunData) setRunData(runData);
-      else navigate('/', { replace: true });
-  }, [navigate, isValidRunData, setIsRunDataLoaded, runData, setRunData]);
+      if (isValidRunData) {
+        setRunData(runData);
+        setHoldings(runData, dispatchHoldings);
+        setIsRunDataLoaded(true);
+      }
+      else {
+        setIsRunDataLoaded(true);
+        navigate('/', { replace: true });
+      }
+  }, [navigate, isValidRunData, setIsRunDataLoaded, runData, setRunData, dispatchHoldings]);
 }
 
 export default useRunData;
