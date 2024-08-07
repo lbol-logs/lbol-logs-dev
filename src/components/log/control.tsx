@@ -74,20 +74,19 @@ function updateQs(searchParams: URLSearchParams, setSearchParams: SetURLSearchPa
   setSearchParams(o);
 }
 
-function scrollToLevel(nextLevel: TLevel, scrollToX = true) {
+function scrollToLevel(nextLevel: TLevel, scrollToY = true) {
   const map = document.querySelector('.js-map') as HTMLDivElement;
   if (!map) return;
 
-  if (scrollToX) {
-    const inner = map.querySelector('.js-mapInner') as HTMLDivElement;
-    if (inner) {
-      const { gap, length } = MapNodes.mapOptions;
-      const offset = (inner.offsetWidth - gap - length)/ 2;
-      const x = MapNodes.x1x2(nextLevel)[0] - gap - offset;
-      inner.scrollTo(x, 0);
-    }
+  const inner = map.querySelector('.js-mapInner') as HTMLDivElement;
+  if (inner) {
+    const { gap, length } = MapNodes.mapOptions;
+    const offset = (inner.offsetWidth - gap - length)/ 2;
+    const x = MapNodes.x1x2(nextLevel)[0] - gap - offset;
+    inner.scrollTo(x, 0);
   }
 
+  if (!scrollToY) return;
   const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
   if (station) {
     const y = station.offsetTop - map.offsetHeight;
