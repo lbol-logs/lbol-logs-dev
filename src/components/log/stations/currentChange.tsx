@@ -1,8 +1,8 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { TLevel } from 'utils/types/runData';
-import CardsR from '../cardsR/cardsR';
-import ExhibitsR from '../exhibitsR/exhibitsR';
+import CardCards from '../entityCards/cardCards';
+import ExhibitCards from '../entityCards/exhibitCards';
 
 function CurrentChange({ level }: { level: TLevel }) {
   const { runData, act } = useContext(LogContext);
@@ -40,35 +40,35 @@ function CurrentChange({ level }: { level: TLevel }) {
       {hasCurrentCardsAdded && (
       <div className="c-entity">
         <div className="c-entity__label">currentCardsAdded</div>
-        <CardsR cards={currentCardsAdded} />
+        <CardCards cards={currentCardsAdded} />
       </div>
       )}
 
       {hasCurrentCardsRemoved && (
       <div className="c-entity">
         <div className="c-entity__label">currentCardsRemoved</div>
-        <CardsR cards={currentCardsRemoved} />
+        <CardCards cards={currentCardsRemoved} />
       </div>
       )}
 
       {hasCurrentCardsUpgraded && (
       <div className="c-entity">
         <div className="c-entity__label">currentCardsUpgraded</div>
-        <CardsR cards={currentCardsUpgraded} />
+        <CardCards cards={currentCardsUpgraded} />
       </div>
       )}
 
       {hasCurrentExhibitsAdded && (
       <div className="c-entity">
         <div className="c-entity__label">currentExhibitsAdded</div>
-        <ExhibitsR exhibits={currentExhibitsAdded} />
+        <ExhibitCards exhibits={currentExhibitsAdded} />
       </div>
       )}
 
       {hasCurrentExhibitsRemoved && (
       <div className="c-entity">
         <div className="c-entity__label">currentExhibitsRemoved</div>
-        <ExhibitsR exhibits={currentExhibitsRemoved} />
+        <ExhibitCards exhibits={currentExhibitsRemoved} />
       </div>
       )}
     </>

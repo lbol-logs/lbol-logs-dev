@@ -1,8 +1,8 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { THolding, TLevel } from 'utils/types/runData';
-import CardsR from '../cardsR/cardsR';
-import ExhibitsR from '../exhibitsR/exhibitsR';
+import CardCards from '../entityCards/cardCards';
+import ExhibitCards from '../entityCards/exhibitCards';
 
 function CurrentHolding({ level }: { level: TLevel }) {
   const { act, holdings } = useContext(LogContext);

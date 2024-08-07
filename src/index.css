@@ -232,6 +232,10 @@ img {
   flex-basis: 40%;
 }
 
+.p-station__right {
+  flex: 1;
+}
+
 .c-status__change {
   font-size: 0.8em;
 }

@@ -1,8 +1,8 @@
 import Loading from 'components/common/loading';
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
-import CardsR from 'components/log/cardsR/cardsR';
-import ExhibitsR from 'components/log/exhibitsR/exhibitsR';
+import CardCards from 'components/log/entityCards/cardCards';
+import ExhibitCards from 'components/log/entityCards/exhibitCards';
 
 function Summary() {
   const { runData, isRunDataLoaded } = useContext(LogContext);
@@ -20,8 +20,8 @@ function Summary() {
       <p>{Difficulty}</p>
       <p>{Type}</p>
       <p>{Timestamp}</p>
-      <CardsR cards={Cards} />
-      <ExhibitsR exhibits={Exhibits} />
+      <CardCards cards={Cards} />
+      <ExhibitCards exhibits={Exhibits} />
     </section>
   );
 }

@@ -64,6 +64,7 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
       const { Counter } = exhibit;
       const ignore = { [Level]: Counter };
       ignores.push(ignore);
+    }
   }
   const additionalLines = Object.entries(ignores).map(([Level, Counter]) => {
     return (

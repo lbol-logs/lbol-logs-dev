@@ -1,6 +1,6 @@
 import { TCard } from 'utils/types/runData';
 
-function CardR({ card }: { card: TCard }) {
+function CardCarad({ card }: { card: TCard }) {
   const { Id, IsUpgraded, UpgradeCounter } = card;
 
   return (
@@ -10,4 +10,4 @@ function CardR({ card }: { card: TCard }) {
   );
 }
 
-export default CardR;
+export default CardCarad;

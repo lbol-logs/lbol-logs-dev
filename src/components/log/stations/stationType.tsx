@@ -12,7 +12,7 @@ function StatationType({ station }: { station: TStation }) {
 
     if (Choices) {
       choices = (
-        <p>Choices: {Data.choices.join(', ')}</p>
+        <p>Choices: {Choices.join(', ')}</p>
       );
     }
 

@@ -112,6 +112,8 @@ type TExhibitObj = {
   Id: TExhibit,
   Counter?: TRange3
 }
+type TExhibitObjs = Array<TExhibitObj>;
+
 type TExhibitChange = TChange & TExhibitObj;
 type TExhibitChanges = Array<TExhibitChange>;
 
@@ -121,18 +123,22 @@ type THolding = {
   Act: TAct,
   Level: TLevel,
   Cards: TCards,
-  Exhibits: Array<TExhibitObj>
+  Exhibits: TExhibitObjs
 };
 type THoldings = Array<THolding>;
 
 enum ExhibitWithCounter {
   GanzhuYao,
-  ChuRenou
+  ChuRenou,
+  TiangouYuyi,
+  Moping
 };
 
 const ExhibitInitialCounter: TObjNumber = {
   GanzhuYao: 0,
-  ChuRenou: 3
+  ChuRenou: 3,
+  TiangouYuyi: 3,
+  Moping: 3
 };
 
 export type {
@@ -154,7 +160,8 @@ export type {
   THoldings,
   TCardChanges,
   TExhibitChanges,
-  TNodeObj
+  TNodeObj,
+  TExhibitObjs
 };
 
 export {

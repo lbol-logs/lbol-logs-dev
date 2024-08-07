@@ -1,6 +1,6 @@
 import { TExhibit } from 'utils/types/runData';
 
-function ExhibitR({ exhibit }: { exhibit: TExhibit }) {
+function ExhibitCard({ exhibit }: { exhibit: TExhibit }) {
   const Id = exhibit;
 
   return (
@@ -10,4 +10,4 @@ function ExhibitR({ exhibit }: { exhibit: TExhibit }) {
   );
 }
 
-export default ExhibitR;
+export default ExhibitCard;

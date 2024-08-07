@@ -1,16 +1,16 @@
 import { TCards } from 'utils/types/runData';
-import CardR from './cardR';
+import CardCarad from './cardCard';
 
-function CardsR({ cards }: { cards: TCards }) {
+function CardCards({ cards }: { cards: TCards }) {
   return (
     <div className="c-cards">
       {cards.map((card, i) => {
         return (
-          <CardR card={card} key={i} />
+          <CardCarad card={card} key={i} />
         );
       })}
     </div>
   );
 }
 
-export default CardsR;
+export default CardCards;
