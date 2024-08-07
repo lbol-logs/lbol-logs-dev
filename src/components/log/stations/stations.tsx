@@ -38,20 +38,16 @@ function Stations() {
 
     {
       const onScroll = () => {
-        let active = false;
         const levels = stations.map(({ Node: { Level }}) => Level);
         for (const level of levels.reverse()) {
           const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
           if (!station) break;
           if (window.scrollY >= station.offsetTop - mapHeight - 100) {
-            console.log(active);
-            if (active) break;
-            active = true;
+            // TODO: avoid loop
             setLevel(level);
             console.log('triggerB');
              _updateQs(level);
             scrollToLevel(level, false);
-            setTimeout(() => active = false, 5000);
             break;
           }
         }
