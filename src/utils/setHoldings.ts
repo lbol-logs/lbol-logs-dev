@@ -1,6 +1,7 @@
 import { THoldingAction, THoldingsReducer, TRunData } from 'utils/types/runData';
 
 function setHoldings(runData: TRunData, dispatchHoldings: THoldingsReducer) {
+  // TODO: read config
   const action: THoldingAction = {
     type: 'Cards',
     change: {
