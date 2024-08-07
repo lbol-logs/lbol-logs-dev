@@ -256,6 +256,10 @@ img {
   color: red;
 }
 
+.p-summary {
+  margin-bottom: 50vh;
+}
+
 .p-control {
   position: fixed;
   bottom: 0;

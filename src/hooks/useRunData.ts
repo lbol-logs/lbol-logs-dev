@@ -1,4 +1,4 @@
-import { getLog } from 'utils/fetchData';
+import { getConfig, getLog } from 'utils/fetchData';
 import { TRunData } from 'utils/types/runData';
 import { LogContext } from 'contexts/logContext';
 import { CommonContext } from 'contexts/commonContext';
@@ -17,18 +17,19 @@ function useRunData(id: string)  {
   let isValidRunData = false;
   const runData = use(getLog(version, id)) as TRunData;
   isValidRunData = validateRunData(runData);
+  const playerConfigs = use(getConfig(version, 'players'));
 
   useEffect(() => {
       if (isValidRunData) {
         setRunData(runData);
-        setHoldings(runData, dispatchHoldings);
+        setHoldings(runData, playerConfigs, dispatchHoldings);
         setIsRunDataLoaded(true);
       }
       else {
         setIsRunDataLoaded(true);
         navigate('/', { replace: true });
       }
-  }, [navigate, isValidRunData, setIsRunDataLoaded, runData, setRunData, dispatchHoldings]);
+  }, [navigate, isValidRunData, setIsRunDataLoaded, runData, setRunData, playerConfigs, dispatchHoldings]);
 }
 
 export default useRunData;

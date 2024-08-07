@@ -99,7 +99,8 @@ type TResult = {
   Type: string,
   Timestamp: string,
   Cards: TCards,
-  Exhibits: TExhibits
+  Exhibits: TExhibits,
+  BaseMana: TBaseManas
 };
 
 type TChange = {
@@ -120,6 +121,9 @@ type TExhibitChange = TChange & TExhibitObj;
 type TExhibitChanges = Array<TExhibitChange>;
 
 type TChangeType = 'Add' | 'Remove' | 'Upgrade' | 'Use';
+
+type TBaseMana = 'W' | 'U' | 'B' | 'R' | 'G' | 'C' | 'P' | '?';
+type TBaseManas = [TBaseMana, TBaseMana, TBaseMana, TBaseMana, TBaseMana, TBaseMana?, TBaseMana?, TBaseMana?, TBaseMana?];
 
 type THolding = {
   Act: TAct,
