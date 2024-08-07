@@ -12,6 +12,10 @@ function getMapImage(name: string): string {
   return _getImage('map', name);
 }
 
+function getCardImage(name: string): string {
+  return _getImage('cards', name);
+}
+
 function getExhibitImage(name: string): string {
   return _getImage('exhibits', name);
 }
@@ -19,5 +23,6 @@ function getExhibitImage(name: string): string {
 export {
   getImage,
   getMapImage,
+  getCardImage,
   getExhibitImage
 };

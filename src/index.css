@@ -302,12 +302,36 @@ img {
   border: 1px solid #000;
   width: calc((100% + var(--entity-gap)) / 3 - var(--entity-gap));
   max-width: 12.5em;
+  height: calc(2.5em + 2px);
   box-sizing: border-box;
 }
 
 .c-entity__label {
   word-break: break-word;
   width: 5em;
+}
+
+.c-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.c-card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.2;
+}
+
+.c-card__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }
 
 :root {
