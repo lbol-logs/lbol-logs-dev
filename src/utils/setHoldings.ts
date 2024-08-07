@@ -10,6 +10,8 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   // const playerConfig = playerConfigs[Character][PlayerType];
   // const { Cards, Exhibit } = playerConfig;
   
+  // TODO: Junko, Patchu
+  // TODO: BaseMana Change
 
   const action: THoldingAction = {
     type: 'Cards',
