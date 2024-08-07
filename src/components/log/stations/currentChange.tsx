@@ -38,36 +38,36 @@ function CurrentChange({ level }: { level: TLevel }) {
   return (
     <>
       {hasCurrentCardsAdded && (
-      <div className="c-entity">
-        <div className="c-entity__label">currentCardsAdded</div>
+      <div className="p-entity">
+        <h3 className="p-entity__label">currentCardsAdded</h3>
         <CardCards cards={currentCardsAdded} />
       </div>
       )}
 
       {hasCurrentCardsRemoved && (
-      <div className="c-entity">
-        <div className="c-entity__label">currentCardsRemoved</div>
+      <div className="p-entity">
+        <h3 className="p-entity__label">currentCardsRemoved</h3>
         <CardCards cards={currentCardsRemoved} />
       </div>
       )}
 
       {hasCurrentCardsUpgraded && (
-      <div className="c-entity">
-        <div className="c-entity__label">currentCardsUpgraded</div>
+      <div className="p-entity">
+        <h3 className="p-entity__label">currentCardsUpgraded</h3>
         <CardCards cards={currentCardsUpgraded} />
       </div>
       )}
 
       {hasCurrentExhibitsAdded && (
-      <div className="c-entity">
-        <div className="c-entity__label">currentExhibitsAdded</div>
+      <div className="p-entity">
+        <h3 className="p-entity__label">currentExhibitsAdded</h3>
         <ExhibitCards exhibits={currentExhibitsAdded} />
       </div>
       )}
 
       {hasCurrentExhibitsRemoved && (
-      <div className="c-entity">
-        <div className="c-entity__label">currentExhibitsRemoved</div>
+      <div className="p-entity">
+        <h3 className="p-entity__label">currentExhibitsRemoved</h3>
         <ExhibitCards exhibits={currentExhibitsRemoved} />
       </div>
       )}

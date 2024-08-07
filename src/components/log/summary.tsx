@@ -20,7 +20,9 @@ function Summary() {
       <p>{Difficulty}</p>
       <p>{Type}</p>
       <p>{Timestamp}</p>
+      <h3>Cards</h3>
       <CardCards cards={Cards} />
+      <h3>Exhibits</h3>
       <ExhibitCards exhibits={Exhibits} />
     </section>
   );

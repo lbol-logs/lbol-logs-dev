@@ -19,7 +19,11 @@ const latestVersion: string = versions[0];
 
 const baseUrl: string = process.env.PUBLIC_URL;
 
+const imageUrl: string = `${baseUrl}/images`;
+
 const dataUrl: string = 'https://ed-ev.github.io/lbol-logs-data';
+
+const iconSize = 40;
 
 export {
   languages,
@@ -27,5 +31,7 @@ export {
   versions,
   latestVersion,
   baseUrl,
-  dataUrl
+  imageUrl,
+  dataUrl,
+  iconSize
 };

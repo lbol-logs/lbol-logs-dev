@@ -1,15 +1,17 @@
-import { dataUrl } from 'configs/globals';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { checkForce } from 'utils/checkForce';
 import MapNodes from 'utils/MapNodes';
 import { TActObj } from 'utils/types/runData';
+import { getMapImage } from 'utils/getImage';
 
 function Icons({ ActObj }: { ActObj: TActObj }) {
   const { Act, Nodes } = ActObj;
 
   const { force } = checkForce(Nodes);
 
-  const anchors = Nodes.map(node => {
+  const { size } = MapNodes.mapOptions;
+
+  const icons = Nodes.map(node => {
     const { X, Y, Type } = node;
     const [x, y] = MapNodes.node(X, Y, force);
 
@@ -29,13 +31,13 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     */
 
     return (
-      <LazyLoadImage className="c-map-icon__img" src={`${dataUrl}/map/${Type}.webp`} key={`Act${Act}_x${X}y${Y}`} style={{ left: x, top: y}} alt={Type} />
+      <LazyLoadImage className="c-map-icon__img" src={getMapImage(Type)} width={size} height={size} key={`Act${Act}_x${X}y${Y}`} style={{ left: x, top: y}} alt={Type} />
     )
   });
 
   return (
     <div className="c-map-icon">
-      {anchors}
+      {icons}
     </div>
   );
 }

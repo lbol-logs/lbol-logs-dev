@@ -2,7 +2,7 @@ import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { checkForce } from 'utils/checkForce';
 import MapNodes from 'utils/MapNodes';
-import { ExhibitWithCounter, TActObj, TLevel, TNodeObj, TNodeY, TStation } from 'utils/types/runData';
+import { ExhibitWithCounter, TActObj, TLevel, TNodeObj, TNodeY } from 'utils/types/runData';
 
 function Svg({ ActObj }: { ActObj: TActObj }) {
   const { runData, level, holdings } = useContext(LogContext);

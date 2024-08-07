@@ -1,12 +1,12 @@
 import { TCards } from 'utils/types/runData';
-import CardCarad from './cardCard';
+import CardCard from './cardCard';
 
 function CardCards({ cards }: { cards: TCards }) {
   return (
-    <div className="c-cards">
+    <div className="c-entities c-cards">
       {cards.map((card, i) => {
         return (
-          <CardCarad card={card} key={i} />
+          <CardCard card={card} key={i} />
         );
       })}
     </div>

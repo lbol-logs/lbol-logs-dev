@@ -1,10 +1,11 @@
+import { iconSize } from 'configs/globals';
 import { TNodeX, TNodeY } from 'utils/types/runData';
 
 class MapNodes {
   static mapOptions = {
     length: 24,
     padding: 8,
-    size: 40,
+    size: iconSize,
     gap: 56,
     widths: {
       normal: 1,

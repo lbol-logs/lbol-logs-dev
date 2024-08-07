@@ -1,6 +1,6 @@
 import { RefObject, useContext, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { THolding, TStation, TStatus } from 'utils/types/runData';
+import { TStation, TStatus } from 'utils/types/runData';
 import Act from './act';
 import Statuses from './statuses';
 import { LogContext } from 'contexts/logContext';
@@ -11,7 +11,7 @@ import StationType from './stationType';
 function Station({ station, innerRef }: { station: TStation, innerRef?: RefObject<HTMLDivElement>}) {
   useTranslation();
   const { runData, setIsStationsLoaded } = useContext(LogContext);
-  const { Type, Node, Status, Data, Id, Rewards } = station;
+  const { Node, Status } = station;
   const { Level } = Node;
 
   const { Stations } = runData;

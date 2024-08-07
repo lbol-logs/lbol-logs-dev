@@ -59,7 +59,7 @@ type TData = TObjAny;
 type TRewards = {
   Money: number,
   Cards: Array<TCards>,
-  Exhibits?: Array<TExhibit>
+  Exhibits?: TExhibits
 };
 
 type TCard = {
@@ -161,6 +161,7 @@ export type {
   TCardChanges,
   TExhibitChanges,
   TNodeObj,
+  TExhibitObj,
   TExhibitObjs
 };
 
