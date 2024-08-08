@@ -351,7 +351,7 @@ img {
 :root {
   --panel-height: 30px;
   --entity-gap: 0.5em;
-  --icon-size: 38px;
+  --icon-size: 36px;
 }
 
 @media screen and (min-width: 601px) {

@@ -4,9 +4,9 @@ import { TNodeX, TNodeY } from 'utils/types/runData';
 class MapNodes {
   static mapOptions = {
     length: 24,
-    padding: 7,
+    padding: 6,
     size: iconSize,
-    gap: 52,
+    gap: 48,
     widths: {
       normal: 1,
       taken: 2,
