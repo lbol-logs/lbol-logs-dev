@@ -6,10 +6,9 @@ import { ExhibitWithCounter, TActObj, TLevel, TNodeObj, TNodeY } from 'utils/typ
 
 function Svg({ ActObj }: { ActObj: TActObj }) {
   const { runData, level, holdings } = useContext(LogContext);
-  // TODO: stations
   const { Act, Nodes } = ActObj;
 
-  const { length, gap, colors, widths } = MapNodes.mapOptions;
+  const { length, gap, colors, widths, size } = MapNodes.mapOptions;
 
   const { nodesY, force } = checkForce(Nodes);
   const h = force ? nodesY.filter(Y => Y).length : 1;
@@ -75,8 +74,8 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
   });
 
   // TODO: boss width
-  const width = (length + gap) * Nodes[Nodes.length - 1].X + gap;
-  const height = gap * (Math.max(1, h));
+  const width = (length + gap) * Nodes[Nodes.length - 1].X + gap + size;
+  const height = gap * h + force ? size : 0;
 
   return (
     <svg className="p-map__svg" width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
