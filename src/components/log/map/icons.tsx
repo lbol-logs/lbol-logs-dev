@@ -40,6 +40,11 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       _y = y;
     }
 
+    let visited = null;
+    if (X < level) visited = (
+      <LazyLoadImage className="c-map-icon__img" src={getMapImage('Visited')} width="10" height="10" alt="Visited" />
+    );
+
 /*  Types
 		None,
 		Enemy,
@@ -58,12 +63,15 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     // TODO: Boss icon & change after choose
 
     return (
-      <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} key={`Act${Act}_x${X}y${Y}`} style={{ left: _x, top: _y}} alt={type} />
+      <div className="c-map-icon">
+        {visited}
+        <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} key={`Act${Act}_x${X}y${Y}`} style={{ left: _x, top: _y}} alt={type} />
+      </div>
     );
   });
 
   return (
-    <div className="c-map-icon">
+    <div className="c-map-icons">
       {icons}
     </div>
   );
