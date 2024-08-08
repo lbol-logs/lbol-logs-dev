@@ -17,7 +17,7 @@ function Stations() {
   const stationsRef = useRef<HTMLDivElement>(null);
   const stationRef = useRef<HTMLDivElement>(null);
   
-  const onScroll = useCallback((act: TAct) => {
+  const onScroll = useCallback((act: TAct, isScroll: boolean) => {
     const map = document.querySelector('.js-map') as HTMLDivElement;
     if (!map) return;
     const mapHeight = map.offsetHeight;
@@ -27,7 +27,7 @@ function Stations() {
       if (!station) break;
       if (!level || window.scrollY >= station.offsetTop - mapHeight - scrollTolerance) {
         setLevel(level);
-        updateQs(searchParams, setSearchParams, act, level)
+        if (!isScroll) updateQs(searchParams, setSearchParams, act, level)
         scrollToLevel(level, false);
         break;
       }
@@ -35,10 +35,10 @@ function Stations() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
-  function setEventListener(act: TAct): EventListener {
+  function setEventListener(act: TAct, isScroll: boolean): EventListener {
     const cache = scrollHandlerCache;
     if (!cache.has(act)) {
-      cache.set(act, onScroll.bind(undefined, act));
+      cache.set(act, onScroll.bind(undefined, act, isScroll));
     }
     return cache.get(act) as EventListener;
   }
@@ -64,11 +64,11 @@ function Stations() {
     }
 
     {
-      // const event = (window as any).onscrollend === undefined ? 'scroll' : 'scrollend';
-      const event = 'scrollend';
+      const isScroll = (window as any).onscrollend === undefined;
+      const event = isScroll ? 'scroll' : 'scrollend';
       const eventListeners = getEventListeners();
       eventListeners.forEach(eventListener => window.removeEventListener(event, eventListener));
-      window.addEventListener(event, setEventListener(act));
+      window.addEventListener(event, setEventListener(act, isScroll));
     }
 
     {

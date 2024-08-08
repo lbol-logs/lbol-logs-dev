@@ -34,9 +34,9 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
         type = Boss as string;
       }
       src = getBossImage(type);
-      _size = size + delta;
-      if (force) top = y - delta / 2;
-      else top = y + delta / 2;
+      _size = size + size;
+      if (force) top = y - delta;
+      else top = y;
     }
     else {
       src = getMapImage(type);
