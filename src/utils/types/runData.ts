@@ -115,23 +115,30 @@ type TExhibitObj = {
 }
 type TExhibitObjs = Array<TExhibitObj>;
 
-type TExhibitChange = TChange & TExhibitObj;
+type TExhibitChange = TExhibitObj & TChange;
 type TExhibitChanges = Array<TExhibitChange>;
 
 type TChangeType = 'Add' | 'Remove' | 'Upgrade' | 'Use';
+
+type TBaseMana = string;
+type TBaseManaObj = {
+  BaseMana: TBaseMana
+};
 
 type THolding = {
   Act: TAct,
   Level: TLevel,
   Cards: TCards,
-  Exhibits: TExhibitObjs
+  Exhibits: TExhibitObjs,
+  BaseMana: TBaseMana
 };
 type THoldings = Array<THolding>;
 
-type THoldingActionType = 'Cards' | 'Exhibits';
-type THoldingActionChange = 
-(Omit<TCardChange, 'Station'> | Omit<TExhibitChange, 'Station'>)
+type THoldingActionType = 'Cards' | 'Exhibits' | 'BaseMana';
+
+type THoldingActionChange = (TCard | TExhibitObj | TBaseManaObj)
 & {
+  Type: TChangeType,
   Station: TNodeObj
 };
 type THoldingAction = {
@@ -180,7 +187,7 @@ export type {
   TExhibitChanges,
   TNodeObj,
   TExhibitObj,
-  TExhibitObjs
+  TExhibitObjs,
 };
 
 export {

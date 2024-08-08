@@ -11,10 +11,15 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
     Act,
     Level,
     Cards: [],
-    Exhibits: []
+    Exhibits: [],
+    BaseMana: ''
   };
 
-  if (Type === 'Add') {
+  const isBaseMana = Object.keys(entity).includes('BaseMana');
+  if (isBaseMana) {
+
+  }
+  else if (Type === 'Add') {
     if (type === 'Cards') holding.Cards.push(entity as TCard);
     else holding.Exhibits.push(entity as TExhibitObj);
 
