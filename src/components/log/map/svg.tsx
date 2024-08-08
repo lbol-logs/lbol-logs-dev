@@ -74,6 +74,7 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
     );
   });
 
+  // TODO: boss width
   const width = (length + gap) * Nodes[Nodes.length - 1].X + gap;
   const height = gap * (Math.max(1, h));
 
