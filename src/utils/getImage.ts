@@ -1,7 +1,7 @@
 import { imageUrl } from 'configs/globals';
 
 function getImage(name: string): string {
-  return `${imageUrl}/${name}.webp`;
+  return `${imageUrl}/${name}.avif`;
 }
 
 function _getImage(path: string, name: string): string {
