@@ -208,8 +208,8 @@ img {
 
 .c-map-icon__img {
   position: fixed;
-  width: 40px;
-  height: 40px;
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 
 .p-station {
@@ -351,6 +351,7 @@ img {
 :root {
   --panel-height: 30px;
   --entity-gap: 0.5em;
+  --icon-size: 38px;
 }
 
 @media screen and (min-width: 601px) {
