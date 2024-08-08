@@ -49,14 +49,14 @@ function Control() {
         <span
           className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''}`}
           onClick={() => handleClick(-1)}
-          >&lt;</span>
+          >{'<'}</span>
         <span className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''} p-control__component--range`}>
           <input className="p-control__range" type="range" value={level} min={minLevel} max={maxLevel} onChange={handleChange} />
         </span>
         <span
           className={`p-control__component ${act === maxAct ? 'p-control__component--disabled': ''}`}
           onClick={() => handleClick(1)}
-          >&gt;</span>
+          >{'>'}</span>
         <span className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''}`} onClick={handleToggle}>
           <LazyLoadImage src={getImage(showMap ? 'map' : 'holding')} alt={showMap ? 'hideMap' : 'showMap'} />
         </span>

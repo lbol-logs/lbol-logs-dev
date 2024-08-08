@@ -35,6 +35,9 @@ function CurrentChange({ level }: { level: TLevel }) {
   const currentExhibitsRemoved = currentExhibits.filter(({ Type }) => Type === 'Remove').map(e => e.Id);
   const hasCurrentExhibitsRemoved = currentExhibitsRemoved.length > 0;
 
+  const currentExhibitsUsed = currentExhibits.filter(({ Type }) => Type === 'Use');
+  const hasCurrentExhibitsUsed = currentExhibitsUsed.length > 0;
+
   return (
     <>
       {hasCurrentCardsAdded && (
@@ -69,6 +72,13 @@ function CurrentChange({ level }: { level: TLevel }) {
       <div className="p-entity">
         <h3 className="p-entity__label">currentExhibitsRemoved</h3>
         <ExhibitCards exhibits={currentExhibitsRemoved} />
+      </div>
+      )}
+
+      {hasCurrentExhibitsUsed && (
+      <div className="p-entity">
+        <h3 className="p-entity__label">currentExhibitsUsed</h3>
+        <ExhibitCards exhibits={currentExhibitsUsed} />
       </div>
       )}
     </>
