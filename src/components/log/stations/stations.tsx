@@ -4,10 +4,10 @@ import Station from './station';
 import { scrollToLevel, updateQs } from '../control';
 import { useSearchParams } from 'react-router-dom';
 import { TAct, TLevel } from 'utils/types/runData';
-import { scrollTolerance } from 'configs/globals';
+import { scrollHandlerCache, scrollTolerance } from 'configs/globals';
 
 function Stations() {
-  const { runData, act, setLevel } = useContext(LogContext);
+  const { runData, act, setAct, setLevel } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { Stations } = runData;
@@ -16,14 +16,36 @@ function Stations() {
 
   const stationsRef = useRef<HTMLDivElement>(null);
   const stationRef = useRef<HTMLDivElement>(null);
-
-  const _updateQs = useCallback(
-    (/*act: TAct, */level: TLevel) => {
-      console.log({act});
-      console.log('cb');
-      updateQs(searchParams, setSearchParams, act, level)
+  
+  const onScrollEnd = useCallback((act: TAct) => {
+    const map = document.querySelector('.js-map') as HTMLDivElement;
+    const mapHeight = map.offsetHeight;
+    const levels = stations.map(({ Node: { Level }}) => Level);
+    for (const level of levels.reverse()) {
+      const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
+      if (!station) break;
+      if (window.scrollY >= station.offsetTop - mapHeight - scrollTolerance) {
+        setLevel(level);
+        updateQs(searchParams, setSearchParams, act, level)
+        scrollToLevel(level, false);
+        break;
+      }
     }
-  , [act]);
+  }, []);
+  
+  function setEventListener(act: TAct): EventListener {
+    const cache = scrollHandlerCache;
+    if (!cache.has(act)) {
+      cache.set(act, onScrollEnd.bind(undefined, act));
+    }
+    return cache.get(act) as EventListener;
+  }
+  function getEventListeners(): Array<EventListener> {
+    const cache = scrollHandlerCache;
+    const eventListeners: Array<EventListener> = [];
+    cache.forEach(value => eventListeners.push(value));
+    return eventListeners;
+  }
 
   useEffect(() => {
     const map = document.querySelector('.js-map') as HTMLDivElement;
@@ -39,25 +61,10 @@ function Stations() {
       }
     }
 
-
     {
-      const onScrollEnd = () => {
-        const levels = stations.map(({ Node: { Level }}) => Level);
-        for (const level of levels.reverse()) {
-          const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
-          if (!station) break;
-          if (window.scrollY >= station.offsetTop - mapHeight - scrollTolerance) {
-            setLevel(level);
-             _updateQs(level);
-            scrollToLevel(level, false);
-            break;
-          }
-        }
-      }
-      window.removeEventListener('scrollend', onScrollEnd);
-      window.removeEventListener('scrollend', onScrollEnd);
-      window.addEventListener('scrollend', onScrollEnd);
-      console.log('added scrollend');
+      const eventListeners = getEventListeners();
+      eventListeners.forEach(eventListener => window.removeEventListener('scrollend', eventListener));
+      window.addEventListener('scrollend', setEventListener(act));
     }
   }, [act]);
 

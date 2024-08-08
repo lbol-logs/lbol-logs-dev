@@ -25,7 +25,6 @@ function RunDataLoaded() {
     if (!station || !map) return;
     const height = station.offsetTop - map.offsetHeight;
     if (window.scrollY < height - scrollTolerance) window.scrollTo(0, height);
-    console.log('checked qs');
   }, [isRunDataLoaded, runData, act]);
   
   return (

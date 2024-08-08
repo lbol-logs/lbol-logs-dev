@@ -1,4 +1,5 @@
 import { TObjString } from 'utils/types/common';
+import { TAct } from 'utils/types/runData';
 
 const languages: TObjString = {
   en: 'EN',
@@ -27,6 +28,8 @@ const iconSize = 40;
 
 const scrollTolerance = 50;
 
+const scrollHandlerCache = new Map<TAct, EventListener>();
+
 export {
   languages,
   namespaces,
@@ -36,5 +39,6 @@ export {
   imageUrl,
   dataUrl,
   iconSize,
-  scrollTolerance
+  scrollTolerance,
+  scrollHandlerCache
 };
