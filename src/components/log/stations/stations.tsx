@@ -24,7 +24,7 @@ function Stations() {
     for (const level of levels.reverse()) {
       const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
       if (!station) break;
-      if (window.scrollY >= station.offsetTop - mapHeight - scrollTolerance) {
+      if (!level || window.scrollY >= station.offsetTop - mapHeight - scrollTolerance) {
         setLevel(level);
         updateQs(searchParams, setSearchParams, act, level)
         scrollToLevel(level, false);

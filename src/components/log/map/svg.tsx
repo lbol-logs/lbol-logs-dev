@@ -40,7 +40,7 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
       }
 
       if (level > X && currentStationY === Y) {
-        if (nextStationY && nextStationY === Follower) {
+        if (nextStationY === Follower) {
           flag = 'taken';
         }
       }
