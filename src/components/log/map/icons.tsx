@@ -18,6 +18,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     const { X, Y, Type } = node;
     const [x, y] = MapNodes.node(X, Y, force);
 
+    let src, _size, _x, _y;
     let type: string = Type;
     if (type === 'Boss') {
       if (Act === 1) {
@@ -27,6 +28,16 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       else {
         type = Boss as string;
       }
+      src = getBossImage(type);
+      _size = size * 2;
+      _x = x;
+      _y = y - (_size - size) / 2;
+    }
+    else {
+      src = getMapImage(type);
+      _size = size;
+      _x = x;
+      _y = y;
     }
 
 /*  Types
@@ -47,7 +58,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     // TODO: Boss icon & change after choose
 
     return (
-      <LazyLoadImage className="c-map-icon__img" src={getMapImage(type)} width={size} height={size} key={`Act${Act}_x${X}y${Y}`} style={{ left: x, top: y}} alt={type} />
+      <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} key={`Act${Act}_x${X}y${Y}`} style={{ left: _x, top: _y}} alt={type} />
     );
   });
 
@@ -59,3 +70,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
 }
 
 export default Icons;
+
+function getBossImage(type: string): any {
+  throw new Error('Function not implemented.');
+}

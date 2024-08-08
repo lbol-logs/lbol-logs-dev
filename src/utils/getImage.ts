@@ -12,6 +12,10 @@ function getMapImage(name: string): string {
   return _getImage('map', name);
 }
 
+function getBossImage(name: string): string {
+  return _getImage('boss', name);
+}
+
 function getCardImage(name: string): string {
   return _getImage('cards', name);
 }
