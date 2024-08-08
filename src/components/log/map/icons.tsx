@@ -18,9 +18,13 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     const { X, Y, Type } = node;
     const [x, y] = MapNodes.node(X, Y, force);
 
-    let src, _size, _x, _y;
+    let src, _size, top;
     let type: string = Type;
     const isBoss = type === 'Boss';
+
+    const left = x;
+    const delta = size / 2;
+
     if (isBoss) {
       if (Act === 1) {
         if (Boss && level >= 5) type = Boss;
@@ -30,15 +34,15 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
         type = Boss as string;
       }
       src = getBossImage(type);
-      _size = size * 2;
-      _x = x;
-      _y = y - (_size - size) / 2;
+      _size = size + delta;
+      if (force) top = y - delta / 2;
+      else top = y + delta / 2;
     }
     else {
       src = getMapImage(type);
       _size = size;
-      _x = x;
-      _y = y;
+      if (force) top = y;
+      else top = y + delta;
     }
 
     let visited = null;
@@ -62,7 +66,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     */
 
     return (
-      <div className={`c-map-icon ${isBoss ? 'c-map-icon--boss' : ''}`} key={`Act${Act}_x${X}y${Y}`} style={{ left: _x, top: _y}}>
+      <div className={`c-map-icon ${isBoss ? 'c-map-icon--boss' : ''}`} key={`Act${Act}_x${X}y${Y}`} style={{ left, top }}>
         {visited}
         <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} alt={type} />
       </div>

@@ -27,7 +27,7 @@ class MapNodes {
   }
 
   static y1y2(Y: TNodeY, Y2: TNodeY, force = true) {
-    const { padding } = this.mapOptions;
+    const { padding, size } = this.mapOptions;
     const _Y = this._force(Y, force);
     const _Y2 = this._force(Y2, force);
     let y1 = this._y(_Y);
@@ -39,6 +39,7 @@ class MapNodes {
       y2 = this._y(_Y2) + offset;
     }
     else {
+      if (!force) y1 += size / 2;
       y2 = y1;
     }
     return [y1, y2];

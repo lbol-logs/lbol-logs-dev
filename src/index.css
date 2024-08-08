@@ -203,6 +203,7 @@ img {
 }
 
 .p-map__svg {
+  display: block;
   transform-origin: 50% 50%;
   transform: scale(1, -1);
 }
