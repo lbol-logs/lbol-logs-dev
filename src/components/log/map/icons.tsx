@@ -20,7 +20,8 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
 
     let src, _size, _x, _y;
     let type: string = Type;
-    if (type === 'Boss') {
+    const isBoss = type === 'Boss';
+    if (isBoss) {
       if (Act === 1) {
         if (Boss && level >= 5) type = Boss;
         else type = 'Unknown';
@@ -42,7 +43,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
 
     let visited = null;
     if (X <= level) visited = (
-      <LazyLoadImage className="c-map-icon__img" src={getMapImage('Visited')} width="10" height="10" alt="Visited" />
+      <LazyLoadImage className="c-map-icon__visited" src={getMapImage('Visited')} width="10" height="10" alt="Visited" />
     );
 
 /*  Types
@@ -61,7 +62,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     */
 
     return (
-      <div className="c-map-icon" key={`Act${Act}_x${X}y${Y}`} style={{ left: _x, top: _y}}>
+      <div className={`c-map-icon ${isBoss ? 'c-map-icon--boss' : ''}`} key={`Act${Act}_x${X}y${Y}`} style={{ left: _x, top: _y}}>
         {visited}
         <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} alt={type} />
       </div>

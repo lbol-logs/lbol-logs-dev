@@ -1,7 +1,6 @@
 body {
   margin: 0;
   overflow-y: scroll;
-  overflow-x: hidden;
 }
 a {
   text-decoration: none;
@@ -12,9 +11,6 @@ a {
 img {
   max-width: 100%;
   height: auto;
-}
-* {
-  overflow-wrap: break-word;
 }
 
 .l-header {
@@ -215,6 +211,21 @@ img {
   position: fixed;
   width: var(--icon-size);
   height: var(--icon-size);
+}
+
+.c-map-icon--boss {
+  width: var(--icon-size) * 2;
+  height: var(--icon-size) * 2;
+}
+
+.c-map-icon__visited {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.c-map-icon__img {
+  display: block;
 }
 
 .p-station {
