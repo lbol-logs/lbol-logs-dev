@@ -3,11 +3,11 @@ import { useCallback, useContext, useEffect, useRef } from 'react';
 import Station from './station';
 import { scrollToLevel, updateQs } from '../control';
 import { useSearchParams } from 'react-router-dom';
-import { TAct, TLevel } from 'utils/types/runData';
+import { TAct } from 'utils/types/runData';
 import { scrollHandlerCache, scrollTolerance } from 'configs/globals';
 
 function Stations() {
-  const { runData, act, setAct, setLevel } = useContext(LogContext);
+  const { runData, act, setLevel } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { Stations } = runData;
@@ -31,6 +31,7 @@ function Stations() {
         break;
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   function setEventListener(act: TAct): EventListener {
@@ -66,6 +67,7 @@ function Stations() {
       eventListeners.forEach(eventListener => window.removeEventListener('scrollend', eventListener));
       window.addEventListener('scrollend', setEventListener(act));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [act]);
 
   return (

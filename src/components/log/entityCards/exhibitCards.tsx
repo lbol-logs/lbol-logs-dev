@@ -1,7 +1,7 @@
-import { TExhibitChanges, TExhibits } from 'utils/types/runData';
+import { TExhibitChanges, TExhibitObjs, TExhibits } from 'utils/types/runData';
 import ExhibitCard from './exhibitCard';
 
-function ExhibitCards({ exhibits }: { exhibits: TExhibits | TExhibitChanges }) {
+function ExhibitCards({ exhibits }: { exhibits: TExhibits | TExhibitObjs | TExhibitChanges }) {
   return (
     <div className="c-entities c-exhibits">
       {exhibits.map((exhibit, i) => {

@@ -1,6 +1,6 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
-import { TCards, TExhibit, TExhibitObjs, THolding, TLevel } from 'utils/types/runData';
+import { TCards, TExhibitObjs, THolding } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 import Processing from 'components/common/processing';

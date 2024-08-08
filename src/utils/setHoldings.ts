@@ -8,6 +8,8 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   const { Character, PlayerType } = runData.Settings;	
   const playerConfig = playerConfigs[Character][PlayerType];
   const { Cards, Exhibit } = playerConfig;
+
+  console.log(Stations, Cards, Exhibit);
   
   // TODO: Junko, Patchu
   // TODO: BaseMana Change

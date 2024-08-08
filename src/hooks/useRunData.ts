@@ -10,7 +10,7 @@ import setHoldings from 'utils/setHoldings';
 
 function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
-  const { isRunDataLoaded, setIsRunDataLoaded, setRunData, dispatchHoldings } = useContext(LogContext);
+  const { setIsRunDataLoaded, setRunData, dispatchHoldings } = useContext(LogContext);
   // TODO: setLog
 
   const navigate = useNavigate();
@@ -32,7 +32,8 @@ function useRunData(id: string)  {
       setIsRunDataLoaded(true);
       navigate('/', { replace: true });
     }
-  }, [navigate, isValidRunData, setIsRunDataLoaded, runData, setRunData, playerConfigs, isValidPlayConfigs, dispatchHoldings]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isValidRunData, runData, playerConfigs, isValidPlayConfigs]);
 }
 
 export default useRunData;

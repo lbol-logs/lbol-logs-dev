@@ -25,6 +25,7 @@ function RunDataLoaded() {
     if (!station || !map) return;
     const height = station.offsetTop - map.offsetHeight;
     if (window.scrollY < height - scrollTolerance) window.scrollTo(0, height);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRunDataLoaded, runData, act]);
   
   return (

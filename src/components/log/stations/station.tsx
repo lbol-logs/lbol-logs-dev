@@ -21,7 +21,8 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
     if (innerRef) {
       setIsStationsLoaded(true);
     }
-  }, [innerRef, setIsStationsLoaded]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [innerRef]);
 
   return (
     <div className={`p-station ${innerRef ? 'p-station--last' : ''} js-level-${Level}`} ref={innerRef}>

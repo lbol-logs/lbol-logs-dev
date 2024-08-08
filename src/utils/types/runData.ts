@@ -176,6 +176,7 @@ export type {
   THoldingAction,
   THoldingsReducer,
   TCardChanges,
+  TExhibitChange,
   TExhibitChanges,
   TNodeObj,
   TExhibitObj,

@@ -1,4 +1,4 @@
-import { TAct, TCard, TExhibit, TExhibitObj, THolding, THoldingAction, THoldings, TLevel } from 'utils/types/runData';
+import { TCard, TExhibitObj, THolding, THoldingAction, THoldings } from 'utils/types/runData';
 
 function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings {
   const { type, change } = action;
