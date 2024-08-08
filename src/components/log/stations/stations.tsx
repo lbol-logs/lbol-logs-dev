@@ -3,7 +3,7 @@ import { useCallback, useContext, useEffect, useRef } from 'react';
 import Station from './station';
 import { scrollToLevel, updateQs } from '../control';
 import { useSearchParams } from 'react-router-dom';
-import { TLevel } from 'utils/types/runData';
+import { TAct, TLevel } from 'utils/types/runData';
 import { scrollTolerance } from 'configs/globals';
 
 function Stations() {
@@ -18,8 +18,12 @@ function Stations() {
   const stationRef = useRef<HTMLDivElement>(null);
 
   const _updateQs = useCallback(
-    (level: TLevel) => updateQs(searchParams, setSearchParams, act, level)
-  , []);
+    (/*act: TAct, */level: TLevel) => {
+      console.log({act});
+      console.log('cb');
+      updateQs(searchParams, setSearchParams, act, level)
+    }
+  , [act]);
 
   useEffect(() => {
     const map = document.querySelector('.js-map') as HTMLDivElement;
@@ -37,7 +41,7 @@ function Stations() {
 
 
     {
-      const onScroll = () => {
+      const onScrollEnd = () => {
         const levels = stations.map(({ Node: { Level }}) => Level);
         for (const level of levels.reverse()) {
           const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
@@ -50,9 +54,12 @@ function Stations() {
           }
         }
       }
-      window.addEventListener('scroll', onScroll);
+      window.removeEventListener('scrollend', onScrollEnd);
+      window.removeEventListener('scrollend', onScrollEnd);
+      window.addEventListener('scrollend', onScrollEnd);
+      console.log('added scrollend');
     }
-  }, []);
+  }, [act]);
 
   return (
     <section className="p-stations" ref={stationsRef}>

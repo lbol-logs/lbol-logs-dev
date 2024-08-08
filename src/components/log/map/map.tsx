@@ -1,5 +1,5 @@
 import { LogContext } from 'contexts/logContext';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext } from 'react';
 import Svg from './svg';
 import Icons from './icons';
 import Links from './links';
