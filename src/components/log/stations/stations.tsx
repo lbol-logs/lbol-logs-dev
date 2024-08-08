@@ -64,6 +64,7 @@ function Stations() {
     }
 
     {
+      // TODO: scrollend for PC and scroll for ios safari
       const eventListeners = getEventListeners();
       eventListeners.forEach(eventListener => window.removeEventListener('scrollend', eventListener));
       window.addEventListener('scrollend', setEventListener(act));

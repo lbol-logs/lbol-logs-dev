@@ -1,6 +1,7 @@
 body {
   margin: 0;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 a {
   text-decoration: none;
@@ -11,6 +12,9 @@ a {
 img {
   max-width: 100%;
   height: auto;
+}
+* {
+  overflow-wrap: break-word;
 }
 
 .l-header {
@@ -43,9 +47,11 @@ img {
 }
 .l-header__version {
   margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 .c-version__text {
-  padding: 0.2em 0.5em;
+  padding: 0.1em 0.5em;
   background: #e4e4e4;
   border-radius: 0.8em;
 }
@@ -114,7 +120,6 @@ img {
 
 .p-run-list__table {
   overflow-x: auto;
-  overflow-wrap: break-word;
 }
 .p-run-list__row {
   display: flex;
@@ -235,7 +240,8 @@ img {
 
 .p-station__body {
   display: flex;
-  column-gap: 0.5em;
+  flex-wrap: wrap;
+  gap: 0.5em;
 }
 
 .p-station__left {
@@ -318,6 +324,7 @@ img {
   max-width: 12.5em;
   height: calc(2.5em + 2px);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .c-entity__label {

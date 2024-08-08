@@ -2,7 +2,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { checkForce } from 'utils/checkForce';
 import MapNodes from 'utils/MapNodes';
 import { TActObj } from 'utils/types/runData';
-import { getMapImage } from 'utils/getImage';
+import { getBossImage, getMapImage } from 'utils/getImage';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 
@@ -76,7 +76,3 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
 }
 
 export default Icons;
-
-function getBossImage(type: string): any {
-  throw new Error('Function not implemented.');
-}

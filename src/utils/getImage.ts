@@ -27,6 +27,7 @@ function getExhibitImage(name: string): string {
 export {
   getImage,
   getMapImage,
+  getBossImage,
   getCardImage,
   getExhibitImage
 };
