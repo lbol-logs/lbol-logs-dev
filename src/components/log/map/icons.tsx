@@ -41,7 +41,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     }
 
     let visited = null;
-    if (X < level) visited = (
+    if (X <= level) visited = (
       <LazyLoadImage className="c-map-icon__img" src={getMapImage('Visited')} width="10" height="10" alt="Visited" />
     );
 
@@ -59,8 +59,6 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
 		Boss,
 		BattleAdvTest
     */
-
-    // TODO: Boss icon & change after choose
 
     return (
       <div className="c-map-icon" key={`Act${Act}_x${X}y${Y}`} style={{ left: _x, top: _y}}>
