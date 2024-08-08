@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-
 import Top from 'components/top';
 import Log from 'components/log';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -8,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import CommonProvider from 'contexts/commonContext';
 import { baseUrl } from 'configs/globals';
 import RemoveTrailingSlash from 'components/common/removeTrailingSlash';
+import ScrollToTop from 'utils/ScrollToTop';
 
 function App() {
   const { t } = useTranslation();
@@ -23,6 +23,7 @@ function App() {
       
       <RemoveTrailingSlash />
       <CommonProvider>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Top />} />
           <Route path="/:ver/" element={<Top />} />

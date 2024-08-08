@@ -3,7 +3,7 @@ import { useCallback, useContext, useEffect, useRef } from 'react';
 import Station from './station';
 import { scrollToLevel, updateQs } from '../control';
 import { useSearchParams } from 'react-router-dom';
-import { TAct } from 'utils/types/runData';
+import { TAct, TLevel } from 'utils/types/runData';
 import { scrollHandlerCache, scrollTolerance } from 'configs/globals';
 
 function Stations() {
@@ -17,7 +17,7 @@ function Stations() {
   const stationsRef = useRef<HTMLDivElement>(null);
   const stationRef = useRef<HTMLDivElement>(null);
   
-  const onScrollEnd = useCallback((act: TAct) => {
+  const onScroll = useCallback((act: TAct) => {
     const map = document.querySelector('.js-map') as HTMLDivElement;
     if (!map) return;
     const mapHeight = map.offsetHeight;
@@ -38,7 +38,7 @@ function Stations() {
   function setEventListener(act: TAct): EventListener {
     const cache = scrollHandlerCache;
     if (!cache.has(act)) {
-      cache.set(act, onScrollEnd.bind(undefined, act));
+      cache.set(act, onScroll.bind(undefined, act));
     }
     return cache.get(act) as EventListener;
   }
@@ -64,10 +64,16 @@ function Stations() {
     }
 
     {
-      // TODO: scrollend for PC and scroll for ios safari
+      // const event = (window as any).onscrollend === undefined ? 'scroll' : 'scrollend';
+      const event = 'scrollend';
       const eventListeners = getEventListeners();
-      eventListeners.forEach(eventListener => window.removeEventListener('scrollend', eventListener));
-      window.addEventListener('scrollend', setEventListener(act));
+      eventListeners.forEach(eventListener => window.removeEventListener(event, eventListener));
+      window.addEventListener(event, setEventListener(act));
+    }
+
+    {
+      const l = parseInt(searchParams.get('l') || '0') as TLevel;
+      if (!l) scrollToLevel(0, true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [act]);

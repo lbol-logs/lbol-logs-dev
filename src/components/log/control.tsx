@@ -71,8 +71,15 @@ function updateQs(searchParams: URLSearchParams, setSearchParams: SetURLSearchPa
   else searchParams.delete('a');
   if (l) o['l'] = l.toString();
   else searchParams.delete('l');
-  setSearchParams(o);
+  setSearchParams(o, { state: false });
 }
+
+// function updateQs(searchParams: URLSearchParams, setSearchParams: SetURLSearchParams, a: TAct, l?: TLevel) {
+//   const url = new URL((window as any).location);
+//   if (a) url.searchParams.set('a', a.toString());
+//   if (l) url.searchParams.set('l', l.toString());
+//   if (a || l) window.history.pushState({}, '', url);
+// }
 
 function scrollToLevel(nextLevel: TLevel, scrollToY = true) {
   const map = document.querySelector('.js-map') as HTMLDivElement;
