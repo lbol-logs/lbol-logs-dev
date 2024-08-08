@@ -73,9 +73,12 @@ type TCards = Array<TCard>;
 type TExhibit = string;
 type TExhibits = Array<TExhibit>;
 
+type TBoss = string;
+
 type TActObj = {
   Act: TAct,
-  Nodes: TNodes
+  Nodes: TNodes,
+  Boss?: TBoss
 };
 
 type TNode = {

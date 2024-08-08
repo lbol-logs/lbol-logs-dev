@@ -24,7 +24,7 @@ const imageUrl: string = `${baseUrl}/images`;
 
 const dataUrl: string = 'https://ed-ev.github.io/lbol-logs-data';
 
-const iconSize = 40;
+const iconSize = 38;
 
 const scrollTolerance = 50;
 

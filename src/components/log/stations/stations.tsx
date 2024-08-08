@@ -19,6 +19,7 @@ function Stations() {
   
   const onScrollEnd = useCallback((act: TAct) => {
     const map = document.querySelector('.js-map') as HTMLDivElement;
+    if (!map) return;
     const mapHeight = map.offsetHeight;
     const levels = stations.map(({ Node: { Level }}) => Level);
     for (const level of levels.reverse()) {
