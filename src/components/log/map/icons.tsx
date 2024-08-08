@@ -63,9 +63,9 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     // TODO: Boss icon & change after choose
 
     return (
-      <div className="c-map-icon">
+      <div className="c-map-icon" key={`Act${Act}_x${X}y${Y}`} style={{ left: _x, top: _y}}>
         {visited}
-        <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} key={`Act${Act}_x${X}y${Y}`} style={{ left: _x, top: _y}} alt={type} />
+        <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} alt={type} />
       </div>
     );
   });
