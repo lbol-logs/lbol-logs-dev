@@ -38,7 +38,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       src = getBossImage(type);
       _size = size + size;
       if (force) top = y - delta;
-      else top = y;
+      else top = y + delta;
     }
     else {
       if (type === 'Enemy') {
@@ -49,7 +49,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       src = getMapImage(type);
       _size = size;
       if (force) top = y;
-      else top = y + delta;
+      else top = y + delta * 2;
     }
 
     let visited = null;

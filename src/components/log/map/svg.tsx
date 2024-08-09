@@ -33,7 +33,6 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
 
       let flag = 'normal';
 
-      // TODO: 羽根
       if (level === X && currentStationY === Y) {
         flag = 'active';
       }
@@ -60,13 +59,13 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
     const { Level, Exhibits } = holding;
     const exhibit = Exhibits.find(({ Id }) => Id === ExhibitWithCounter.ChuRenou.toString());
     if (exhibit) {
-      const { Counter } = exhibit;
-      const ignore = { [Level]: Counter };
+      const ignore = { [Level]: exhibit.Counter };
       ignores.push(ignore);
     }
   }
   const additionalLines = Object.entries(ignores).map(([Level, Counter]) => {
     return (
+      // TODO: 羽根
       // TODO: dotted line
       // taken & active
       null
@@ -75,7 +74,7 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
 
   // TODO: boss width
   const width = (length + gap.x) * Nodes[Nodes.length - 1].X + gap.x + size;
-  const height = gap.y * h + (force ? 0 : size);
+  const height = gap.y * h + (force ? 0 : size * 1.5);
 
   return (
     <svg className="p-map__svg" width={width} height={height} viewBox={`0 0 ${width} ${height}`}>

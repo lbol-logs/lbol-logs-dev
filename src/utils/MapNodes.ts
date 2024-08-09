@@ -45,7 +45,7 @@ class MapNodes {
       y2 = this._y(_Y2) - offset;
     }
     else {
-      if (!force) y1 += size / 2;
+      if (!force) y1 += size;
       y2 = y1;
     }
     return [y1, y2];

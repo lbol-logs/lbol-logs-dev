@@ -195,6 +195,14 @@ img {
   visibility: hidden;
 }
 
+.c-act__title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0.2em 0.5em;
+  font-size: 1.2em;
+}
+
 .p-map__holdings {
   position: absolute;
   top: 0;
@@ -253,13 +261,20 @@ img {
 
 .p-station__head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   column-gap: 0.3125em;;
 }
 
 .p-station__level {
   margin: 0;
   width: 5.5em;
+}
+
+.p-station__statuses {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+  align-items: center;
 }
 
 .p-station__status {

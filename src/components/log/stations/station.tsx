@@ -1,7 +1,6 @@
 import { RefObject, useContext, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { TStation, TStatus } from 'utils/types/runData';
-import Act from './act';
 import Statuses from './statuses';
 import { LogContext } from 'contexts/logContext';
 import CurrentChange from './currentChange';
@@ -26,7 +25,6 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
 
   return (
     <div className={`p-station ${innerRef ? 'p-station--last' : ''} js-level-${Level}`} ref={innerRef}>
-      {!Level && <Act /> }
       <div className="p-station__head">
         <h3 className="p-station__level">
           <Trans

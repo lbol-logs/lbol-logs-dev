@@ -45,7 +45,7 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
   else hpImage = 'Hp3';
   
   return (
-    <>
+    <div className="p-station__statuses">
       <div className="p-station__status p-station__status--hp">
         <LazyLoadImage src={getCommonImage(hpImage)} width={iconSize} height={iconSize} alt={t('Hp', { ns: 'common' })} />
         {getValuWithChange('Hp')}/{getValuWithChange('MaxHp')}
@@ -58,7 +58,7 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
         <LazyLoadImage src={getCommonImage('Money')} width={iconSize} height={iconSize} alt={t('Money', { ns: 'common' })} />
         {getValuWithChange('Money')}
       </div>
-    </>
+    </div>
   );
 }
 
