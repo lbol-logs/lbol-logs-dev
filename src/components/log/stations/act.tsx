@@ -11,7 +11,7 @@ function Act() {
       <Trans
           i18nKey="act"
           ns="log"
-          children={{
+          values={{
             act: act
           }}
         />

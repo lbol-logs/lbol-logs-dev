@@ -1,5 +1,7 @@
 {
   "map": "マップ",
   "act": "第{{act}}章",
-  "level": "レベル{{level}}"
+  "level": "レベル{{level}}",
+  "cardsCount": "カード枚数：{{count}}",
+  "exhibitsCount": "展示品数：{{count}}"
 }

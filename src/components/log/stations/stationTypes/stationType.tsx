@@ -1,6 +1,6 @@
 import { TStation } from 'utils/types/runData';
-import ExhibitCards from '../entityCards/exhibitCards';
-import CardCards from '../entityCards/cardCards';
+import ExhibitCards from '../../entityCards/exhibitCards';
+import CardCards from '../../entityCards/cardCards';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';

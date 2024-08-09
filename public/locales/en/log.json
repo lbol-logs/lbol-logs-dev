@@ -1,5 +1,7 @@
 {
   "map": "Map",
   "act": "Act {{act}}",
-  "level": "Level {{level}}"
+  "level": "Level {{level}}",
+  "cardsCount": "Cards: {{count}}",
+  "exhibitsCount": "Exhibits: {{count}}"
 }

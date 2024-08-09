@@ -4,7 +4,7 @@ import { TStation, TStatus } from 'utils/types/runData';
 import Statuses from './statuses';
 import { LogContext } from 'contexts/logContext';
 import CurrentChange from './currentChange';
-import StationType from './stationType';
+import StationType from './stationTypes/stationType';
 
 function Station({ station, innerRef }: { station: TStation, innerRef?: RefObject<HTMLDivElement>}) {
   useTranslation();
@@ -30,7 +30,7 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
           <Trans
             i18nKey="level"
             ns="log"
-            children={{
+            values={{
               level: Level
             }}
           />

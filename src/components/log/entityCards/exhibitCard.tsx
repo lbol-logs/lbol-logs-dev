@@ -42,8 +42,8 @@ function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitCh
 
   return (
     <span className={`c-entity c-exhibit`}>
-      <LazyLoadImage className="c-exhibit__img" src={getExhibitImage(Id)} width={iconSize} height={iconSize}   alt={t(Id, { ns: 'exhibits' })} />
-      {Id}
+      <LazyLoadImage className="c-exhibit__img" src={getExhibitImage(Id)} width={iconSize} height={iconSize}   alt="" />
+      {t(Id, { ns: 'exhibits' })}
       {counter}
     </span>
   );

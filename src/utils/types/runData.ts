@@ -191,6 +191,7 @@ export type {
   TNodeObj,
   TExhibitObj,
   TExhibitObjs,
+  TBaseMana
 };
 
 export {

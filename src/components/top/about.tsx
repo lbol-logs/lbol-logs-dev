@@ -6,8 +6,9 @@ import Done from './done';
 
 function About() {
   const { t } = useTranslation();
-  const modUrl = `https://github.com/ed-ev/lbol-runLogger/blob/master/README${i18next.language === Object.keys(languages)[0] ? '' : '-' + i18next.language}.md`;
-  const discordUrl = i18next.language === Object.keys(languages)[0]
+  const language = i18next.language;
+  const modUrl = `https://github.com/ed-ev/lbol-runLogger/blob/master/README${language === Object.keys(languages)[0] ? '' : '-' + language}.md`;
+  const discordUrl = language === Object.keys(languages)[0]
     ? 'https://discord.com/channels/1040229874176098344/1267772366054887506'
     : 'https://discord.com/channels/1040229874176098344/1267772986254163990';
 

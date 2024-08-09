@@ -1,6 +1,6 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
-import { TExhibit, TExhibitObjs, TExhibits, TLevel } from 'utils/types/runData';
+import { TExhibitObjs, TExhibits, TLevel } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
