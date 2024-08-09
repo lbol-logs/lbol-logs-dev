@@ -4,6 +4,7 @@ import { TDispatch } from 'utils/types/common';
 import { TAct, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
 
 const defaultIsRunDataLoaded = false;
+const defaultRunDataId = '';
 const defaultRunData = {} as TRunData;
 const defaultAct: TAct = 0;
 const defaultLevel: TLevel = 0;
@@ -14,6 +15,8 @@ const defaultShowMap = true;
 type TLogContext = {
   isRunDataLoaded: boolean,
   setIsRunDataLoaded: TDispatch<boolean>,
+  runDataId: string,
+  setRunDataId: TDispatch<string>,
   runData: TRunData,
   setRunData: TDispatch<TRunData>,
   act: TAct,
@@ -31,6 +34,8 @@ type TLogContext = {
 export const LogContext = createContext<TLogContext>({
   isRunDataLoaded: defaultIsRunDataLoaded,
   setIsRunDataLoaded: () => {},
+  runDataId: defaultRunDataId,
+  setRunDataId: () => {},
   runData: defaultRunData,
   setRunData: () => {},
   act: defaultAct,
@@ -47,6 +52,7 @@ export const LogContext = createContext<TLogContext>({
 
 function LogProvider({ children }: { children: React.ReactNode }) {
   const [isRunDataLoaded, setIsRunDataLoaded] = useState(defaultIsRunDataLoaded);
+  const [runDataId, setRunDataId] = useState(defaultRunDataId);
   const [runData, setRunData] = useState(defaultRunData);
   const [act, setAct] = useState(defaultAct);
   const [level, setLevel] = useState(defaultLevel);
@@ -57,6 +63,8 @@ function LogProvider({ children }: { children: React.ReactNode }) {
   const value = {
     isRunDataLoaded,
     setIsRunDataLoaded,
+    runDataId,
+    setRunDataId,
     runData,
     setRunData,
     act,

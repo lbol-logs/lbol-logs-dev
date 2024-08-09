@@ -2,12 +2,12 @@ import { LogContext } from 'contexts/logContext';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Station from './station';
 import { scrollToLevel, updateQs } from '../control';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { TAct, TLevel } from 'utils/types/runData';
 import { scrollHandlerCache, scrollTolerance } from 'configs/globals';
 
 function Stations() {
-  const { runData, act, setLevel } = useContext(LogContext);
+  const { runDataId, runData, act, setLevel } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { Stations } = runData;
@@ -18,7 +18,7 @@ function Stations() {
   const stationRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   
-  const onScroll = useCallback((act: TAct) => {
+  const onScroll = (act: TAct) => {
     const timer = timerRef.current as NodeJS.Timeout;
     if (timer) clearTimeout(timer);
     const _timer = setTimeout(() => {
@@ -32,29 +32,15 @@ function Stations() {
         const height = station.offsetTop - mapHeight - scrollTolerance;
         if (!level || window.scrollY >= height) {
           setLevel(level);
-          updateQs(searchParams, setSearchParams, act, level);
           scrollToLevel(level, false);
+          updateQs(searchParams, setSearchParams, act, level);
           break;
         }
       }
     }, 100);
     timerRef.current = _timer;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [act, stations]);
-  
-  function setEventListener(act: TAct): EventListener {
-    const cache = scrollHandlerCache;
-    if (!cache.has(act)) {
-      cache.set(act, onScroll.bind(undefined, act));
-    }
-    return cache.get(act) as EventListener;
-  }
-  function getEventListeners(): Array<EventListener> {
-    const cache = scrollHandlerCache;
-    const eventListeners: Array<EventListener> = [];
-    cache.forEach(value => eventListeners.push(value));
-    return eventListeners;
-  }
+  };
 
   useEffect(() => {
     const map = document.querySelector('.js-map') as HTMLDivElement;
@@ -72,9 +58,7 @@ function Stations() {
 
     {
       const event = 'scroll';
-      const eventListeners = getEventListeners();
-      eventListeners.forEach(eventListener => window.removeEventListener(event, eventListener));
-      window.addEventListener(event, setEventListener(act));
+      window.addEventListener(event, onScroll.bind(undefined, act));
     }
 
     {
@@ -82,7 +66,7 @@ function Stations() {
       if (!l) scrollToLevel(0, true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [act]);
+  }, [runData, act]);
 
   return (
     <section className="p-stations" ref={stationsRef}>

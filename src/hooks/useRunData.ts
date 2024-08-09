@@ -10,7 +10,7 @@ import setHoldings from 'utils/setHoldings';
 
 function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
-  const { setIsRunDataLoaded, setRunData, dispatchHoldings } = useContext(LogContext);
+  const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings } = useContext(LogContext);
   // TODO: setLog
 
   const navigate = useNavigate();
@@ -23,6 +23,7 @@ function useRunData(id: string)  {
   useEffect(() => {
     setIsRunDataLoaded(false);
     if (isValidRunData) {
+      setRunDataId(id);
       setRunData(runData);
       if (isValidPlayConfigs) {
         setHoldings(runData, playerConfigs, dispatchHoldings);
