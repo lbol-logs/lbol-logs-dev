@@ -1,13 +1,13 @@
 import { LogContext } from 'contexts/logContext';
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import Station from './station';
 import { scrollToLevel, updateQs } from '../control';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { TAct, TLevel } from 'utils/types/runData';
-import { scrollHandlerCache, scrollTolerance } from 'configs/globals';
+import { scrollTolerance } from 'configs/globals';
 
 function Stations() {
-  const { runDataId, runData, act, setLevel } = useContext(LogContext);
+  const { runData, act, setLevel } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { Stations } = runData;
