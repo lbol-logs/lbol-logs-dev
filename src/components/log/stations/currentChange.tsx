@@ -3,9 +3,14 @@ import { useContext } from 'react';
 import { TLevel } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { getCommonImage } from 'utils/getImage';
+import { iconSize } from 'configs/globals';
+import { useTranslation } from 'react-i18next';
 
 function CurrentChange({ level }: { level: TLevel }) {
   const { runData, act } = useContext(LogContext);
+  const { t } = useTranslation();
 
   const { Stations, Cards, Exhibits } = runData;
 
@@ -38,29 +43,44 @@ function CurrentChange({ level }: { level: TLevel }) {
   const currentExhibitsUsed = currentExhibits.filter(({ Type }) => Type === 'Use');
   const hasCurrentExhibitsUsed = currentExhibitsUsed.length > 0;
 
+  const card = t('card', { ns: 'common' });
+  const cardsAdd = hasCurrentCardsAdded && (
+    <div className="p-entity">
+      <h3 className="p-entity__label">
+        <LazyLoadImage src={getCommonImage('Card')} width={iconSize} height={iconSize} alt={card} />
+        <span className="p-entity__add">+</span>
+      </h3>
+      <CardCards cards={currentCardsAdded} />
+    </div>
+  );
+
+  const cardsRemove = hasCurrentCardsRemoved && (
+    <div className="p-entity">
+      <h3 className="p-entity__label">currentCardsRemoved</h3>
+      <CardCards cards={currentCardsRemoved} />
+    </div>
+  );
+
+  const cardsUpgrade = hasCurrentCardsUpgraded && (
+    <div className="p-entity">
+      <h3 className="p-entity__label">currentCardsUpgraded</h3>
+      <CardCards cards={currentCardsUpgraded} />
+    </div>
+  );
+
+  const cards = (
+    <>
+      {cardsAdd}
+      {cardsRemove}
+      {cardsUpgrade}
+    </>
+  );
+
+  let exhibits = null;
+
   return (
     <>
-      {hasCurrentCardsAdded && (
-      <div className="p-entity">
-        <h3 className="p-entity__label">currentCardsAdded</h3>
-        <CardCards cards={currentCardsAdded} />
-      </div>
-      )}
-
-      {hasCurrentCardsRemoved && (
-      <div className="p-entity">
-        <h3 className="p-entity__label">currentCardsRemoved</h3>
-        <CardCards cards={currentCardsRemoved} />
-      </div>
-      )}
-
-      {hasCurrentCardsUpgraded && (
-      <div className="p-entity">
-        <h3 className="p-entity__label">currentCardsUpgraded</h3>
-        <CardCards cards={currentCardsUpgraded} />
-      </div>
-      )}
-
+      {cards}
       {hasCurrentExhibitsAdded && (
       <div className="p-entity">
         <h3 className="p-entity__label">currentExhibitsAdded</h3>

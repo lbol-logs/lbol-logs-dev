@@ -251,13 +251,18 @@ img {
 
 .p-station__head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   column-gap: 0.3125em;;
 }
 
 .p-station__level {
   margin: 0;
   width: 5.5em;
+}
+
+.p-station__status {
+  display: flex;
+  align-items: center;
 }
 
 .p-station__body {

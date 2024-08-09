@@ -11,6 +11,11 @@ function _getImage(path: string, name: string): string {
   return getImage(`${path}/${name}`);
 }
 
+function getCommonImage(name: string): string {
+  return _getImage('common', name);
+}
+
+
 function getMapImage(name: string): string {
   return _getImage('map', name);
 }
@@ -29,6 +34,7 @@ function getExhibitImage(name: string): string {
 
 export {
   getImage,
+  getCommonImage,
   getMapImage,
   getBossImage,
   getCardImage,
