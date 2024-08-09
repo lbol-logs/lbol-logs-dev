@@ -177,7 +177,7 @@ img {
 }
 
 .p-map {
-  background: #fffbf6;
+  background: #dabfa2;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -216,8 +216,8 @@ img {
 }
 
 .c-map-icon--boss {
-  width: var(--icon-size) * 2;
-  height: var(--icon-size) * 2;
+  width: calc(var(--icon-size) * 2);
+  height: calc(var(--icon-size) * 2);
 }
 
 .c-map-icon__visited {
@@ -232,6 +232,11 @@ img {
   left: 0;
   position: absolute;
   z-index: -1;
+}
+
+.c-map-icon__bg--active {
+  background: #fff;
+  border-radius: 50%;
 }
 
 .p-station {

@@ -51,11 +51,15 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     }
 
     let visited = null;
+    let isActive = false;
     if (X <= level) {
       const station = currentActStations.find(({ Level, Y: _y }) => Level === X && _y === Y);
-      if (station) visited = (
-        <LazyLoadImage className="c-map-icon__visited" src={getMapImage('Visited')} width="18" height="18" alt="Visited" />
-      );
+      if (station) {
+        visited = (
+          <LazyLoadImage className="c-map-icon__visited" src={getMapImage('Visited')} width="18" height="18" alt="Visited" />
+        );
+        if (X === level) isActive = true;
+      }
     }
 
 /*  Types
@@ -77,7 +81,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       <div className={`c-map-icon ${isBoss ? 'c-map-icon--boss' : ''}`} key={`Act${Act}_x${X}y${Y}`} style={{ left, top }}>
         {visited}
         <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} alt={type} />
-        <LazyLoadImage className="c-map-icon__bg" src={getMapImage('bg')} width={_size} height={_size} alt="" />
+        <LazyLoadImage className={`c-map-icon__bg ${isActive ? 'c-map-icon__bg--active' : ''}`} src={getMapImage('bg')} width={_size} height={_size} alt="" />
       </div>
     );
   });
