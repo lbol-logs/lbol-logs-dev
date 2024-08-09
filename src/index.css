@@ -289,13 +289,10 @@ img {
 }
 
 .p-station__left {
-  flex-basis: 40%;
+  flex-basis: 60%;
 }
 
-.p-rewards {
-  display: flex;
-}
-.p-rewards > span {
+.c-rewards__rounds, .c-rewards__money {
   display: flex;
   align-items: center;
 }
@@ -398,7 +395,6 @@ img {
 
 .c-entity {
   display: flex;
-  column-gap: 0.5em;
   align-items: center;
   padding: 0.5em;
   border: 1px solid #000;
@@ -408,9 +404,10 @@ img {
   overflow: hidden;
 }
 
-.c-entity__label {
+.p-entity__label {
   word-break: break-word;
-  width: 5em;
+  width: 4em;
+  flex-shrink: 0;
 }
 
 .c-card {
@@ -434,6 +431,15 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: -1;
+}
+
+.c-exhibit {
+  column-gap: 0.5em;
+}
+
+.c-exhibit__img {
+  height: 100%;
+  width: auto;
 }
 
 :root {
