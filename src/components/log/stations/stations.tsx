@@ -32,7 +32,7 @@ function Stations() {
         const height = station.offsetTop - mapHeight - scrollTolerance;
         if (!level || window.scrollY >= height) {
           setLevel(level);
-          updateQs(searchParams, setSearchParams, act, level)
+          updateQs(searchParams, setSearchParams, act, level);
           scrollToLevel(level, false);
           break;
         }
@@ -40,7 +40,7 @@ function Stations() {
     }, 100);
     timerRef.current = _timer;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stations]);
+  }, [act, stations]);
   
   function setEventListener(act: TAct): EventListener {
     const cache = scrollHandlerCache;

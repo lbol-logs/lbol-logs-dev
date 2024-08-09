@@ -21,6 +21,7 @@ function useRunData(id: string)  {
   const isValidPlayConfigs = validateConfigs(playerConfigs);
 
   useEffect(() => {
+    setIsRunDataLoaded(false);
     if (isValidRunData) {
       setRunData(runData);
       if (isValidPlayConfigs) {

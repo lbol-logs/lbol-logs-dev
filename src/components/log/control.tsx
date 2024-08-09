@@ -14,7 +14,6 @@ function Control() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   if (!isRunDataLoaded) return <Loading />;
-
   const al = new ActLevel(runData, act);
   const maxAct: TAct = al.maxAct();
   const minLevel: TLevel = al.minLevel();
@@ -66,12 +65,13 @@ function Control() {
 }
 
 function updateQs(searchParams: URLSearchParams, setSearchParams: SetURLSearchParams, a: TAct, l?: TLevel) {
+  console.log(searchParams.toString());
   const o: TObjString = {};
   if (a) o['a'] = a.toString();
   else searchParams.delete('a');
   if (l) o['l'] = l.toString();
   else searchParams.delete('l');
-  setSearchParams(o, { state: false });
+  setSearchParams(o);
 }
 
 function scrollToLevel(nextLevel: TLevel, scrollToY = true) {
