@@ -81,8 +81,8 @@ function scrollToLevel(nextLevel: TLevel, scrollToY = true) {
   const inner = map.querySelector('.js-mapInner') as HTMLDivElement;
   if (inner) {
     const { gap, length } = MapNodes.mapOptions;
-    const offset = (inner.offsetWidth - gap - length)/ 2;
-    const x = MapNodes.x1x2(nextLevel)[0] - gap - offset;
+    const offset = (inner.offsetWidth - gap.x - length)/ 2;
+    const x = MapNodes.x1x2(nextLevel)[0] - gap.x - offset;
     inner.scrollTo(x, 0);
   }
 

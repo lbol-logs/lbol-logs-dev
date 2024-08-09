@@ -74,8 +74,8 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
   });
 
   // TODO: boss width
-  const width = (length + gap) * Nodes[Nodes.length - 1].X + gap + size;
-  const height = gap * h + (force ? 0 : size);
+  const width = (length + gap.x) * Nodes[Nodes.length - 1].X + gap.x + size;
+  const height = gap.y * h + (force ? 0 : size);
 
   return (
     <svg className="p-map__svg" width={width} height={height} viewBox={`0 0 ${width} ${height}`}>

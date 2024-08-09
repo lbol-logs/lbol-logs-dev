@@ -18,7 +18,7 @@ function Stations() {
   const stationRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   
-  const onScroll = useCallback((act: TAct, isScroll: boolean) => {
+  const onScroll = useCallback((act: TAct) => {
     const timer = timerRef.current as NodeJS.Timeout;
     if (timer) clearTimeout(timer);
     const _timer = setTimeout(() => {
@@ -29,7 +29,8 @@ function Stations() {
       for (const level of levels.reverse()) {
         const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
         if (!station) break;
-        if (!level || window.scrollY >= station.offsetTop - mapHeight - scrollTolerance) {
+        const height = station.offsetTop - mapHeight - scrollTolerance;
+        if (!level || window.scrollY >= height) {
           setLevel(level);
           updateQs(searchParams, setSearchParams, act, level)
           scrollToLevel(level, false);
@@ -39,12 +40,12 @@ function Stations() {
     }, 100);
     timerRef.current = _timer;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [stations]);
   
-  function setEventListener(act: TAct, isScroll: boolean): EventListener {
+  function setEventListener(act: TAct): EventListener {
     const cache = scrollHandlerCache;
     if (!cache.has(act)) {
-      cache.set(act, onScroll.bind(undefined, act, isScroll));
+      cache.set(act, onScroll.bind(undefined, act));
     }
     return cache.get(act) as EventListener;
   }
@@ -70,12 +71,10 @@ function Stations() {
     }
 
     {
-      const isScroll = (window as any).onscrollend === undefined;
-      // const event = isScroll ? 'scroll' : 'scrollend';
       const event = 'scroll';
       const eventListeners = getEventListeners();
       eventListeners.forEach(eventListener => window.removeEventListener(event, eventListener));
-      window.addEventListener(event, setEventListener(act, isScroll));
+      window.addEventListener(event, setEventListener(act));
     }
 
     {

@@ -4,9 +4,15 @@ import { TNodeX, TNodeY } from 'utils/types/runData';
 class MapNodes {
   static mapOptions = {
     length: 24,
-    padding: 6,
+    padding: {
+      x: 6,
+      y: 2
+    },
     size: iconSize,
-    gap: 48,
+    gap: {
+      x: 48,
+      y: 40
+    },
     widths: {
       normal: 1,
       taken: 2,
@@ -34,7 +40,7 @@ class MapNodes {
     let y2;
     const diff = (_Y - _Y2);
     if (diff) {
-      const offset = diff * padding;
+      const offset = diff * padding.y * 2;
       y1 += offset;
       y2 = this._y(_Y2) - offset;
     }
@@ -48,20 +54,20 @@ class MapNodes {
   static node(X: TNodeX, Y: TNodeY, force = true) {
     const { gap, padding } = this.mapOptions;
     const _Y = this._force(Y, force);
-    const x = this._x(X) - gap + padding;
-    const y = this._y(_Y) - gap * 0.5 + padding;
+    const x = this._x(X) - gap.x + padding.x;
+    const y = this._y(_Y) - gap.y * 0.5 + padding.y;
     return [x, y];
   }
 
   private static _x(X: TNodeX) {
     const { gap, length } = this.mapOptions;
-    const x: number = gap + X * (length + gap);
+    const x: number = gap.x + X * (length + gap.x);
     return x;
   }
 
   private static _y(Y: TNodeY | 2.5) {
     const { gap } = this.mapOptions;
-    const y: number = ((5 - Y) - 0.5) * gap;
+    const y: number = ((5 - Y) - 0.5) * gap.y;
     return y;
   }
 

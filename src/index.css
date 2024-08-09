@@ -227,7 +227,7 @@ img {
   z-index: 1;
 }
 
-.-cmap-icon__bg {
+.c-map-icon__bg {
   top: 0;
   left: 0;
   position: absolute;
