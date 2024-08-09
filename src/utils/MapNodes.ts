@@ -11,7 +11,7 @@ class MapNodes {
     size: iconSize,
     gap: {
       x: 48,
-      y: 40
+      y: 36
     },
     widths: {
       normal: 1,
@@ -52,10 +52,10 @@ class MapNodes {
   }
 
   static node(X: TNodeX, Y: TNodeY, force = true) {
-    const { gap, padding } = this.mapOptions;
+    const { gap, padding, size } = this.mapOptions;
     const _Y = this._force(Y, force);
     const x = this._x(X) - gap.x + padding.x;
-    const y = this._y(_Y) - gap.y * 0.5 + padding.y;
+    const y = this._y(_Y) - size / 2;
     return [x, y];
   }
 
