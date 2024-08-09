@@ -7,11 +7,11 @@ import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 
 function Icons({ ActObj }: { ActObj: TActObj }) {
-  const { level } = useContext(LogContext);
+  const { runData, level } = useContext(LogContext);
   const { Act, Nodes, Boss } = ActObj;
-
+  const stations = runData.Stations.map(({ Node }) => Node);
+  const currentActStations = stations.filter(({ Act: _act }) => Act === _act);
   const { force } = checkForce(Nodes);
-
   const { size } = MapNodes.mapOptions;
 
   const icons = Nodes.map(node => {
@@ -46,9 +46,12 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     }
 
     let visited = null;
-    if (X <= level) visited = (
-      <LazyLoadImage className="c-map-icon__visited" src={getMapImage('Visited')} width="10" height="10" alt="Visited" />
-    );
+    if (X <= level) {
+      const station = currentActStations.find(({ Level, Y: _y }) => Level === X && _y === Y);
+      if (station) visited = (
+        <LazyLoadImage className="c-map-icon__visited" src={getMapImage('Visited')} width="18" height="18" alt="Visited" />
+      );
+    }
 
 /*  Types
 		None,

@@ -205,8 +205,8 @@ img {
 
 .p-map__svg {
   display: block;
-  transform-origin: 50% 50%;
-  transform: scale(1, -1);
+  /* transform-origin: 50% 50%;
+  transform: scale(1, -1); */
 }
 
 .c-map-icon {
@@ -299,7 +299,6 @@ img {
   width: var(--panel-height);
   justify-content: center;
   user-select: none;
-  width: 1.75em;
 }
 .p-control__component:last-child {
   border-right: 1px solid #ccc;
@@ -365,7 +364,7 @@ img {
 }
 
 :root {
-  --panel-height: 30px;
+  --panel-height: 36px;
   --entity-gap: 0.5em;
   --icon-size: 36px;
 }
