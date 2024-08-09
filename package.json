@@ -34,7 +34,7 @@
     "build": "react-scripts build && rm -rf ./build/images-private",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && rm -rf ./build/images-private",
     "deploy": "gh-pages -d build -b public"
   },
   "eslintConfig": {
