@@ -65,7 +65,6 @@ function Control() {
 }
 
 function updateQs(searchParams: URLSearchParams, setSearchParams: SetURLSearchParams, a: TAct, l?: TLevel) {
-  console.log(searchParams.toString());
   const o: TObjString = {};
   if (a) o['a'] = a.toString();
   else searchParams.delete('a');
