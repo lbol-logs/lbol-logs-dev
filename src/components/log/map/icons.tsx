@@ -39,6 +39,11 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       else top = y;
     }
     else {
+      if (type === 'Enemy') {
+        if (X < 10) type += 'Strong';
+        type += 2 - X % 2;
+      }
+      if (type === 'Trade') type += Act;
       src = getMapImage(type);
       _size = size;
       if (force) top = y;
@@ -72,6 +77,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       <div className={`c-map-icon ${isBoss ? 'c-map-icon--boss' : ''}`} key={`Act${Act}_x${X}y${Y}`} style={{ left, top }}>
         {visited}
         <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} alt={type} />
+        <LazyLoadImage className="c-map-icon__bg" src={getMapImage('bg')} width={_size} height={_size} alt="" />
       </div>
     );
   });

@@ -224,6 +224,14 @@ img {
   position: absolute;
   bottom: 0;
   right: 0;
+  z-index: 1;
+}
+
+.-cmap-icon__bg {
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 .p-station {
