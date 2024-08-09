@@ -5,7 +5,7 @@ import { getCommonImage } from 'utils/getImage';
 import { TStatus } from 'utils/types/runData';
 
 function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus }) {
-  useTranslation();
+  const { t } = useTranslation();
 
   const { Hp, MaxHp } = status;
 
@@ -47,15 +47,15 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
   return (
     <>
       <div className="p-station__status p-station__status--hp">
-        <LazyLoadImage src={getCommonImage(hpImage)} width={iconSize} height={iconSize} />
+        <LazyLoadImage src={getCommonImage(hpImage)} width={iconSize} height={iconSize} alt={t('Hp', { ns: 'common' })} />
         {getValuWithChange('Hp')}/{getValuWithChange('MaxHp')}
       </div>
       <div className="p-station__status p-station__status--power">
-        <LazyLoadImage src={getCommonImage('Power')} width={iconSize} height={iconSize} />
+        <LazyLoadImage src={getCommonImage('Power')} width={iconSize} height={iconSize} alt={t('Power', { ns: 'common' })} />
         {getValuWithChange('Power')}/{getValuWithChange('MaxPower')}
       </div>
       <div className="p-station__status p-station__status--money">
-        <LazyLoadImage src={getCommonImage('Money')} width={iconSize} height={iconSize} />
+        <LazyLoadImage src={getCommonImage('Money')} width={iconSize} height={iconSize} alt={t('Money', { ns: 'common' })} />
         {getValuWithChange('Money')}
       </div>
     </>

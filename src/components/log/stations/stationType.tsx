@@ -1,14 +1,21 @@
 import { TStation } from 'utils/types/runData';
 import ExhibitCards from '../entityCards/exhibitCards';
 import CardCards from '../entityCards/cardCards';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { iconSize } from 'configs/globals';
+import { useTranslation } from 'react-i18next';
+import { getCommonImage } from 'utils/getImage';
 
 function StatationType({ station }: { station: TStation }) {
   const { Type, Data, Id, Rewards } = station;
+  const { t } = useTranslation();
 
   let data = null;
   let choices = null;
   let rounds = null;
-  let rewards = null;
+  let money = null;
+  let cards = null;
+  let exhibits = null;
 
   if (Data) {
     const { Choices, Rounds } = Data;
@@ -21,46 +28,59 @@ function StatationType({ station }: { station: TStation }) {
 
     if (Rounds) {
       rounds = (
-        <p>Rounds: {Rounds}</p>
+        <span>
+          <LazyLoadImage src={getCommonImage('Round')} width={iconSize} height={iconSize} alt={t('Rounds', { ns: 'common' })} />
+          {Rounds}
+        </span>
       );
     }
   }
   if (Rewards) {
     const { Money, Cards, Exhibits } = Rewards;
-    let exhibits = null;
 
-    const cards = (
-      <div className="c-rewards__cards">
-        <h4>Card rewards</h4>
+    money = (
+      <span>
+        <LazyLoadImage src={getCommonImage('Money')} width={iconSize} height={iconSize} alt={t('Money', { ns: 'common' })} />
+        {Money}
+      </span>
+    );
+
+    cards = (
+      <>
         {Cards.map((cards, i) => {
           return (
-            <CardCards cards={cards} key={i} />
+            <div className="c-rewards c-rewards--cards" key={i}>
+              <div className="c-rewards__icon">
+                <LazyLoadImage src={getCommonImage('Card')} width={iconSize} height={iconSize} alt={t('card', { ns: 'common' })} />
+              </div>
+              <CardCards cards={cards} />
+            </div>
           );
         })}
-      </div>
+      </>
     );
 
     if (Exhibits) {
       exhibits = (
-        <div className="c-rewards_exhibits">
-          <h4>Exhibit rewards</h4>
+        <div className="c-rewards c-rewards--exhibits">
+          <div className="c-rewards__icon">
+            <LazyLoadImage src={getCommonImage('Exhibit')} width={iconSize} height={iconSize} alt={t('exhibit', { ns: 'common' })} />
+          </div>
           <ExhibitCards exhibits={Exhibits} />
         </div>
       );
     }
-    rewards = (
-      <div className="c-rewards">
-        <p>Money: {Money}</p>
-        {cards}
-        {exhibits}
-      </div>
-    );
   }
+  
   data = (
     <>
       {choices}
-      {rounds}
-      {rewards}
+      <div className="p-rewards">
+        {rounds}
+        {money}
+        {exhibits}
+      </div>
+      {cards}
     </>
   );
 

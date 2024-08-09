@@ -88,8 +88,8 @@ img {
 .l-inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding-left: 0.625em;
-  padding-right: 0.625em;
+  padding-left: var(--padding-inner);
+  padding-right: var(--padding-inner);
 }
 
 .p-about {
@@ -181,6 +181,8 @@ img {
   position: sticky;
   top: 0;
   z-index: 999;
+  margin-left: calc(var(--padding-inner) * -1);
+  margin-right: calc(var(--padding-inner) * -1);
 }
 
 .p-map__inner {
@@ -275,18 +277,57 @@ img {
   flex-basis: 40%;
 }
 
+.p-rewards {
+  display: flex;
+}
+.p-rewards > span {
+  display: flex;
+  align-items: center;
+}
+.c-rewards__cards {
+  display: flex;
+}
+
+.c-rewards {
+  display: flex;
+  align-items: flex-start;
+}
+
 .p-station__right {
   flex: 1;
+}
+
+.p-entity {
+  display: flex;
+  align-items: flex-start;
+}
+
+.p-entity__label {
+  display: flex;
+  align-items: center;
+}
+
+.p-entity__symbol--Add {
+  color: var(--green);
+}
+.p-entity__symbol--Remove {
+  color: var(--red);
+}
+.p-entity__symbol--Upgrade {
+  color: var(--orange);
+}
+.p-entity__symbol--Use {
+  color: var(--purple);
 }
 
 .c-status__change {
   font-size: 0.8em;
 }
 .c-status__change--positive {
-  color: green;
+  color: var(--green);
 }
 .c-status__change--negative {
-  color: red;
+  color: var(--red);
 }
 
 .p-summary {
@@ -346,9 +387,8 @@ img {
   align-items: center;
   padding: 0.5em;
   border: 1px solid #000;
-  width: calc((100% + var(--entity-gap)) / 3 - var(--entity-gap));
-  max-width: 12.5em;
-  height: calc(2.5em + 2px);
+  width: 160px;
+  height: 42px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -382,9 +422,14 @@ img {
 }
 
 :root {
+  --padding-inner: 0.625em;
   --panel-height: 36px;
   --entity-gap: 0.5em;
   --icon-size: 36px;
+  --green: green;
+  --red: red;
+  --orange: orange;
+  --purple: purple;
 }
 
 @media screen and (min-width: 601px) {

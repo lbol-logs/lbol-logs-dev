@@ -1,6 +1,6 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
-import { TLevel } from 'utils/types/runData';
+import { TExhibit, TExhibitObjs, TExhibits, TLevel } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -21,86 +21,69 @@ function CurrentChange({ level }: { level: TLevel }) {
     return _isCurrentLevel;
   });
 
-  const currentCards = Cards.filter(isCurrentLevel);
-  
-  const currentCardsAdded = currentCards.filter(({ Type }) => Type === 'Add');
-  const hasCurrentCardsAdded = currentCardsAdded.length > 0;
+  let card;
+  {
+    const currentCards = Cards.filter(isCurrentLevel);
+    const cards = {
+      Add: '＋',
+      Remove: '－',
+      Upgrade: '▲'
+    };
+    const cardIcon = <LazyLoadImage src={getCommonImage('Card')} width={iconSize} height={iconSize} alt={t('card', { ns: 'common' })} />;
+    card = Object.entries(cards).map(([type, symbol]) => {
+      const cards = currentCards.filter(({ Type }) => Type === type);
+      const hasCards = cards.length > 0;
+      if (hasCards) {
+        return (
+          <div className="p-entity p-entity--cards" key={type}>
+            <div className="p-entity__label">
+              {cardIcon}
+              <span className={`p-entity__symbol p-entity__symbol--${type}`}>{symbol}</span>
+            </div>
+            <CardCards cards={cards} />
+          </div>
+        );
+      }
+      else {
+        return null;
+      }
+    });
+  }
 
-  const currentCardsRemoved = currentCards.filter(({ Type }) => Type === 'Remove');
-  const hasCurrentCardsRemoved = currentCardsRemoved.length > 0;
-
-  const currentCardsUpgraded = currentCards.filter(({ Type }) => Type === 'Upgrade');
-  const hasCurrentCardsUpgraded = currentCardsUpgraded.length > 0;
-
-  const currentExhibits = Exhibits.filter(isCurrentLevel);
-
-  const currentExhibitsAdded = currentExhibits.filter(({ Type }) => Type === 'Add').map(e => e.Id);
-  const hasCurrentExhibitsAdded = currentExhibitsAdded.length > 0;
-
-  const currentExhibitsRemoved = currentExhibits.filter(({ Type }) => Type === 'Remove').map(e => e.Id);
-  const hasCurrentExhibitsRemoved = currentExhibitsRemoved.length > 0;
-
-  const currentExhibitsUsed = currentExhibits.filter(({ Type }) => Type === 'Use');
-  const hasCurrentExhibitsUsed = currentExhibitsUsed.length > 0;
-
-  const card = t('card', { ns: 'common' });
-  const cardsAdd = hasCurrentCardsAdded && (
-    <div className="p-entity">
-      <h3 className="p-entity__label">
-        <LazyLoadImage src={getCommonImage('Card')} width={iconSize} height={iconSize} alt={card} />
-        <span className="p-entity__add">+</span>
-      </h3>
-      <CardCards cards={currentCardsAdded} />
-    </div>
-  );
-
-  const cardsRemove = hasCurrentCardsRemoved && (
-    <div className="p-entity">
-      <h3 className="p-entity__label">currentCardsRemoved</h3>
-      <CardCards cards={currentCardsRemoved} />
-    </div>
-  );
-
-  const cardsUpgrade = hasCurrentCardsUpgraded && (
-    <div className="p-entity">
-      <h3 className="p-entity__label">currentCardsUpgraded</h3>
-      <CardCards cards={currentCardsUpgraded} />
-    </div>
-  );
-
-  const cards = (
-    <>
-      {cardsAdd}
-      {cardsRemove}
-      {cardsUpgrade}
-    </>
-  );
-
-  let exhibits = null;
+  let exhibit;
+  {
+    const currentExhibits = Exhibits.filter(isCurrentLevel);
+    const exhibits = {
+      Add: '＋',
+      Remove: '－',
+      Use: '▼'
+    };
+    const exhibitIcon = <LazyLoadImage src={getCommonImage('Exhibit')} width={iconSize} height={iconSize} alt={t('exhibit', { ns: 'common' })} />;
+    exhibit = Object.entries(exhibits).map(([type, symbol]) => {
+      let exhibits: TExhibits | TExhibitObjs = currentExhibits.filter(({ Type }) => Type === type);
+      if (type !== 'Use') exhibits = exhibits.map(({ Id }) => Id);
+      const hasExhibits = exhibits.length > 0;
+      if (hasExhibits) {
+        return (
+          <div className="p-entity p-entity--exhibits" key={type}>
+            <div className="p-entity__label">
+              {exhibitIcon}
+              <span className={`p-entity__symbol p-entity__symbol--${type}`}>{symbol}</span>
+            </div>
+            <ExhibitCards exhibits={exhibits} />
+          </div>
+        );
+      }
+      else {
+        return null;
+      }
+    });
+  }
 
   return (
     <>
-      {cards}
-      {hasCurrentExhibitsAdded && (
-      <div className="p-entity">
-        <h3 className="p-entity__label">currentExhibitsAdded</h3>
-        <ExhibitCards exhibits={currentExhibitsAdded} />
-      </div>
-      )}
-
-      {hasCurrentExhibitsRemoved && (
-      <div className="p-entity">
-        <h3 className="p-entity__label">currentExhibitsRemoved</h3>
-        <ExhibitCards exhibits={currentExhibitsRemoved} />
-      </div>
-      )}
-
-      {hasCurrentExhibitsUsed && (
-      <div className="p-entity">
-        <h3 className="p-entity__label">currentExhibitsUsed</h3>
-        <ExhibitCards exhibits={currentExhibitsUsed} />
-      </div>
-      )}
+      {card}
+      {exhibit}
     </>
   );
 }

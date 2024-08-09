@@ -5,6 +5,7 @@ import { TActObj } from 'utils/types/runData';
 import { getBossImage, getMapImage } from 'utils/getImage';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
+import { useTranslation } from 'react-i18next';
 
 function Icons({ ActObj }: { ActObj: TActObj }) {
   const { runData, level } = useContext(LogContext);
@@ -13,6 +14,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
   const currentActStations = stations.filter(({ Act: _act }) => Act === _act);
   const { force } = checkForce(Nodes);
   const { size } = MapNodes.mapOptions;
+  const { t } = useTranslation();
 
   const icons = Nodes.map(node => {
     const { X, Y, Type } = node;
@@ -56,7 +58,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       const station = currentActStations.find(({ Level, Y: _y }) => Level === X && _y === Y);
       if (station) {
         visited = (
-          <LazyLoadImage className="c-map-icon__visited" src={getMapImage('Visited')} width="18" height="18" alt="Visited" />
+          <LazyLoadImage className="c-map-icon__visited" src={getMapImage('Visited')} width="18" height="18" alt={t('Visited', { ns: 'map' })} />
         );
         if (X === level) isActive = true;
       }
@@ -80,7 +82,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     return (
       <div className={`c-map-icon ${isBoss ? 'c-map-icon--boss' : ''}`} key={`Act${Act}_x${X}y${Y}`} style={{ left, top }}>
         {visited}
-        <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} alt={type} />
+        <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} alt={t(Type, { ns: 'map' })} />
         <LazyLoadImage className={`c-map-icon__bg ${isActive ? 'c-map-icon__bg--active' : ''}`} src={getMapImage('bg')} width={_size} height={_size} alt="" />
       </div>
     );

@@ -2,12 +2,14 @@ import Processing from 'components/common/processing';
 import { iconSize } from 'configs/globals';
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { getExhibitImage } from 'utils/getImage';
 import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
 
 function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitChange }) {
   const { runData, holdings } = useContext(LogContext);
+  const { t } = useTranslation();
 
   const isExhibit = typeof exhibit === 'string';
   const Id = isExhibit ? exhibit : exhibit.Id;
@@ -40,7 +42,7 @@ function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitCh
 
   return (
     <span className={`c-entity c-exhibit`}>
-      <LazyLoadImage className="c-exhibit__img" src={getExhibitImage(Id)} width={iconSize} height={iconSize}  alt={Id} />
+      <LazyLoadImage className="c-exhibit__img" src={getExhibitImage(Id)} width={iconSize} height={iconSize}   alt={t(Id, { ns: 'exhibits' })} />
       {Id}
       {counter}
     </span>
