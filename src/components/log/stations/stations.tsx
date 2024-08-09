@@ -1,5 +1,5 @@
 import { LogContext } from 'contexts/logContext';
-import { useCallback, useContext, useEffect, useRef } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Station from './station';
 import { scrollToLevel, updateQs } from '../control';
 import { useSearchParams } from 'react-router-dom';
@@ -16,22 +16,28 @@ function Stations() {
 
   const stationsRef = useRef<HTMLDivElement>(null);
   const stationRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   
   const onScroll = useCallback((act: TAct, isScroll: boolean) => {
-    const map = document.querySelector('.js-map') as HTMLDivElement;
-    if (!map) return;
-    const mapHeight = map.offsetHeight;
-    const levels = stations.map(({ Node: { Level }}) => Level);
-    for (const level of levels.reverse()) {
-      const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
-      if (!station) break;
-      if (!level || window.scrollY >= station.offsetTop - mapHeight - scrollTolerance) {
-        setLevel(level);
-        if (!isScroll) updateQs(searchParams, setSearchParams, act, level)
-        scrollToLevel(level, false);
-        break;
+    const timer = timerRef.current as NodeJS.Timeout;
+    if (timer) clearTimeout(timer);
+    const _timer = setTimeout(() => {
+      const map = document.querySelector('.js-map') as HTMLDivElement;
+      if (!map) return;
+      const mapHeight = map.offsetHeight;
+      const levels = stations.map(({ Node: { Level }}) => Level);
+      for (const level of levels.reverse()) {
+        const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
+        if (!station) break;
+        if (!level || window.scrollY >= station.offsetTop - mapHeight - scrollTolerance) {
+          setLevel(level);
+          updateQs(searchParams, setSearchParams, act, level)
+          scrollToLevel(level, false);
+          break;
+        }
       }
-    }
+    }, 100);
+    timerRef.current = _timer;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
@@ -65,7 +71,8 @@ function Stations() {
 
     {
       const isScroll = (window as any).onscrollend === undefined;
-      const event = isScroll ? 'scroll' : 'scrollend';
+      // const event = isScroll ? 'scroll' : 'scrollend';
+      const event = 'scroll';
       const eventListeners = getEventListeners();
       eventListeners.forEach(eventListener => window.removeEventListener(event, eventListener));
       window.addEventListener(event, setEventListener(act, isScroll));
