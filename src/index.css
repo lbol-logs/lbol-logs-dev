@@ -9,6 +9,7 @@ a {
   color: blue;
 }
 img {
+  display: block;
   max-width: 100%;
   height: auto;
 }
@@ -223,10 +224,6 @@ img {
   position: absolute;
   bottom: 0;
   right: 0;
-}
-
-.c-map-icon__img {
-  display: block;
 }
 
 .p-station {
