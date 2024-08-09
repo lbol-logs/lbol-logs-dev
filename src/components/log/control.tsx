@@ -70,7 +70,7 @@ function updateQs(searchParams: URLSearchParams, setSearchParams: SetURLSearchPa
   else searchParams.delete('a');
   if (l) o['l'] = l.toString();
   else searchParams.delete('l');
-  setSearchParams(o);
+  setSearchParams(o, { replace: true });
 }
 
 function scrollToLevel(nextLevel: TLevel, scrollToY = true) {
