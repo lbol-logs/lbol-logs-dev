@@ -15,9 +15,12 @@ function getCommonImage(name: string): string {
   return _getImage('common', name);
 }
 
-
 function getMapImage(name: string): string {
   return _getImage('map', name);
+}
+
+function getControlImage(name: string): string {
+  return _getImage('control', name);
 }
 
 function getBossImage(name: string): string {
@@ -36,6 +39,7 @@ export {
   getImage,
   getCommonImage,
   getMapImage,
+  getControlImage,
   getBossImage,
   getCardImage,
   getExhibitImage

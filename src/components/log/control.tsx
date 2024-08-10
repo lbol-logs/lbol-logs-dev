@@ -1,17 +1,21 @@
 import { LogContext } from 'contexts/logContext';
 import { ChangeEvent, useContext } from 'react';
 import { TAct, TLevel } from 'utils/types/runData';
-import { SetURLSearchParams, useSearchParams } from 'react-router-dom';
+import { SetURLSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/ActLevel';
 import { TObjString } from 'utils/types/common';
 import Loading from 'components/common/loading';
 import MapNodes from 'utils/MapNodes';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getImage } from 'utils/getImage';
+import { getControlImage, getImage } from 'utils/getImage';
+import { iconSize } from 'configs/globals';
+import { useTranslation } from 'react-i18next';
 
 function Control() {
   const { isRunDataLoaded, runData, act, setAct, level, setLevel, showMap, setShowMap } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   if (!isRunDataLoaded) return <Loading />;
   const al = new ActLevel(runData, act);
@@ -19,12 +23,16 @@ function Control() {
   const minLevel: TLevel = al.minLevel();
   const maxLevel: TLevel = al.maxLevel();
 
-  function handleClick(offset: number) {
+  function backToTop() {
+    navigate('../');
+  }
+
+  function changeAct(offset: number) {
     const nextAct = act + offset as TAct;
     triggerChange(nextAct, 0);
   }
   
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+  function changeLevel(e: ChangeEvent<HTMLInputElement>) {
     const nextLevel = Number(e.target.value) as TLevel;
     triggerChange(act, nextLevel);
   }
@@ -42,23 +50,54 @@ function Control() {
     setShowMap(!showMap);
   }
 
+  let buttonLeft = null;
+  let inputRange = null;
+  let buttonRight = null;
+  let buttonRight2 = null;
+  const isSummary = act === 0;
+
+  if (isSummary) {
+    buttonLeft = (
+      <span className="p-control__component" onClick={backToTop}>
+        <LazyLoadImage src={getControlImage('Back')} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'common' })} />
+      </span>
+    );
+  }
+  else {
+    buttonLeft = (
+      <span
+      className="p-control__component"
+      onClick={() => changeAct(-1)}
+      >{'<'}</span>
+    );
+  }
+
+  inputRange = (
+    <span className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''} p-control__component--range`}>
+          <input className="p-control__range" type="range" value={level} min={minLevel} max={maxLevel} onChange={changeLevel} />
+        </span>
+  );
+
+  buttonRight = (
+    <span
+          className={`p-control__component ${act === maxAct ? 'p-control__component--disabled': ''}`}
+          onClick={() => changeAct(1)}
+          >{'>'}</span>
+  );
+
+  buttonRight2 = (
+    <span className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''}`} onClick={handleToggle}>
+          <LazyLoadImage src={getImage(showMap ? 'map' : 'holding')} alt={showMap ? 'hideMap' : 'showMap'} />
+        </span>
+  );
+
   return (
     <section className="p-control">
       <div className="p-control__inner l-inner">
-        <span
-          className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''}`}
-          onClick={() => handleClick(-1)}
-          >{'<'}</span>
-        <span className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''} p-control__component--range`}>
-          <input className="p-control__range" type="range" value={level} min={minLevel} max={maxLevel} onChange={handleChange} />
-        </span>
-        <span
-          className={`p-control__component ${act === maxAct ? 'p-control__component--disabled': ''}`}
-          onClick={() => handleClick(1)}
-          >{'>'}</span>
-        <span className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''}`} onClick={handleToggle}>
-          <LazyLoadImage src={getImage(showMap ? 'map' : 'holding')} alt={showMap ? 'hideMap' : 'showMap'} />
-        </span>
+        {buttonLeft}
+        {inputRange}
+        {buttonRight}
+        {buttonRight2}
       </div>
     </section>
   );

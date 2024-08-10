@@ -25,9 +25,13 @@ function App() {
       <CommonProvider>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Top />} />
-          <Route path="/:ver/" element={<Top />} />
-          <Route path="/:ver/:id/" element={<Log />} />
+          <Route path="/">
+            <Route index element={<Top />} />
+              <Route path=":ver/">
+                <Route index element={<Top />} />
+                <Route path=":id/" element={<Log />} />
+            </Route>
+          </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </CommonProvider>
