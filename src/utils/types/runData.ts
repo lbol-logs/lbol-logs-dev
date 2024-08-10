@@ -151,14 +151,14 @@ type THoldingAction = {
 type THoldingsReducer = Dispatch<ReducerAction<(holdings: THoldings, action: THoldingAction) => THoldings>>;
 
 enum CardWithUpgradeCounter {
-  YuyukoSing
+  YuyukoSing = "YuyukoSing"
 };
 
 enum ExhibitWithCounter {
-  GanzhuYao,
-  ChuRenou,
-  TiangouYuyi,
-  Moping
+  GanzhuYao = "GanzhuYao",
+  ChuRenou = "ChuRenou",
+  TiangouYuyi = "TiangouYuyi",
+  Moping = "Moping"
 };
 
 const exhibitInitialCounter: TObjNumber = {

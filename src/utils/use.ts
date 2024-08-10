@@ -18,7 +18,7 @@ function use(promise: TPromise) {
       (reason: TObjAny) => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      }
     );
     throw promise;
   }

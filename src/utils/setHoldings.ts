@@ -1,12 +1,12 @@
-import { exhibitInitialCounter, ExhibitWithCounter, TActObj, THoldingAction, THoldingsReducer, TNode, TRunData } from 'utils/types/runData';
+import { ExhibitWithCounter, TActObj, THoldingAction, THoldingsReducer, TNode, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
 import copyObject from './copyObject';
 
 function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings: THoldingsReducer) {
   const { Stations } = runData;
-  const { Character, PlayerType } = runData.Settings;	
+  const { Character, PlayerType } = runData.Settings;
   const { [Character]: { BaseMana, [PlayerType]: { Cards, Exhibit } } } = playerConfigs;
-  
+
   // TODO: Junko, Patchu
   // TODO: read shining config -> baseMana
 
@@ -88,10 +88,10 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
       const exhibit: any = copyObject(Exhibit);
       const { Type, Station } = Exhibit;
       exhibit.Station = Stations[Station].Node;
-      if (Exhibit.Id === ExhibitWithCounter[ExhibitWithCounter.TiangouYuyi]) {
+      if (Exhibit.Id === ExhibitWithCounter.TiangouYuyi) {
         if (Type === 'Add') stationsTiangouYuyi.start = Station;
         else if (Type === 'Remove') stationsTiangouYuyi.end = Station;
-      }      
+      }
       const action: THoldingAction = {
         type: 'Exhibit',
         change: {
@@ -117,13 +117,13 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
         const action: THoldingAction = {
           type: 'Exhibit',
           change: {
-            Id: ExhibitWithCounter[ExhibitWithCounter.TiangouYuyi],
+            Id: ExhibitWithCounter.TiangouYuyi,
             Type: 'Use',
             Station: Node
           }
         };
         actions.push(action);
-      }      
+      }
     }
   }
 

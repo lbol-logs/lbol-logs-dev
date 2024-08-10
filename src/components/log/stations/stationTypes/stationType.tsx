@@ -71,7 +71,7 @@ function StatationType({ station }: { station: TStation }) {
       );
     }
   }
-  
+
   data = (
     <>
       {choices}

@@ -43,7 +43,7 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
   if (hpRatio >= 70) hpImage = 'Hp1';
   else if (hpRatio >= 30) hpImage = 'Hp2';
   else hpImage = 'Hp3';
-  
+
   return (
     <div className="p-station__statuses">
       <div className="p-station__status p-station__status--hp">

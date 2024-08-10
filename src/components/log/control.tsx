@@ -31,7 +31,7 @@ function Control() {
     const nextAct = act + offset as TAct;
     triggerChange(nextAct, 0);
   }
-  
+
   function changeLevel(e: ChangeEvent<HTMLInputElement>) {
     const nextLevel = Number(e.target.value) as TLevel;
     triggerChange(act, nextLevel);

@@ -13,7 +13,7 @@ function LanguageSwitcher() {
   function handleLanguage(code: string) {
     i18next.changeLanguage(code);
   }
-  
+
   function Lang(props: languageProps) {
     const { code, text } = props;
     const isCurrentLanguage = i18next.language === code;

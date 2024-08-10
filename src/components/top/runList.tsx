@@ -10,7 +10,7 @@ function RunList() {
   const { t } = useTranslation();
 
   const list: TRunList = useList(version);
-  
+
   const headers = ['character', 'type', 'shining', 'difficulty', 'requests', 'result', 'timestamp'];
 
   /*

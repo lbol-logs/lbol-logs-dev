@@ -15,12 +15,12 @@ function App() {
   return (
     <HelmetProvider>
       <Helmet>
-        <html lang={i18next.language} /> 
+        <html lang={i18next.language} />
         <title>{t('title', { ns: 'common' })} - {t('subtitle', { ns: 'common' })}</title>
         <meta name="description" content={t('description', { ns: 'common' })} />
         <link rel="manifest" href={`${baseUrl}/locales/${i18next.language}/manifest.json`} />
       </Helmet>
-      
+
       <RemoveTrailingSlash />
       <CommonProvider>
         <ScrollToTop />

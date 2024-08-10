@@ -31,7 +31,7 @@ function VersionSwitcher({ isLog }: { isLog: boolean }) {
   }
 
   return (
-    <div className="l-header__version"> 
+    <div className="l-header__version">
       {Ver}
     </div>
   );

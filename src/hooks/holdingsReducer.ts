@@ -80,7 +80,7 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
     const card = currentHolding.Cards[index];
     const { Id } = card;
     card.IsUpgraded = true;
-    if (Id === CardWithUpgradeCounter[CardWithUpgradeCounter.YuyukoSing]) {
+    if (Id === CardWithUpgradeCounter.YuyukoSing) {
       (card.UpgradeCounter as number)++;
     }
   }

@@ -17,7 +17,7 @@ function Stations() {
   const stationsRef = useRef<HTMLDivElement>(null);
   const stationRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   const onScroll = (act: TAct) => {
     const timer = timerRef.current as NodeJS.Timeout;
     if (timer) clearTimeout(timer);

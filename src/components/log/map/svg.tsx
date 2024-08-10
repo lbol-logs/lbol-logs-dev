@@ -1,5 +1,5 @@
 import { LogContext } from 'contexts/logContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { checkForce } from 'utils/checkForce';
 import MapNodes from 'utils/MapNodes';
 import { ExhibitWithCounter, TActObj, TLevel, TNodeObj, TNodeY } from 'utils/types/runData';
@@ -7,6 +7,7 @@ import { ExhibitWithCounter, TActObj, TLevel, TNodeObj, TNodeY } from 'utils/typ
 function Svg({ ActObj }: { ActObj: TActObj }) {
   const { runData, level, holdings } = useContext(LogContext);
   const { Act, Nodes } = ActObj;
+  const [additionalLines,  setAdditionalLines] = useState(null);
 
   const { length, gap, colors, widths, size } = MapNodes.mapOptions;
 
@@ -53,26 +54,28 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
     });
   });
 
-  const currentActHoldings = holdings.filter(({ Act: _act }) => _act === Act);
-  const ignores = [];
-  for (const holding of currentActHoldings) {
-    const { Level, Exhibits } = holding;
-    const exhibit = Exhibits.find(({ Id }) => Id === ExhibitWithCounter[ExhibitWithCounter.ChuRenou]);
-    if (exhibit) {
-      const ignore = { [Level]: exhibit.Counter };
-      ignores.push(ignore);
+  // TiangouYuyi
+  useEffect(() => {
+    const currentActHoldings = holdings.filter(({ Act: _act }) => _act === Act);
+    const ignores = [];
+    for (const holding of currentActHoldings) {
+      const { Level, Exhibits } = holding;
+      const exhibit = Exhibits.find(({ Id }) => Id === ExhibitWithCounter.TiangouYuyi);
+      if (exhibit) {
+        const ignore = { [Level]: exhibit.Counter };
+        ignores.push(ignore);
+      }
     }
-  }
-  const additionalLines = Object.entries(ignores).map(([Level, Counter]) => {
-    return (
-      // TODO: 羽根
-      // TODO: dotted line
-      // taken & active
-      null
-    );
-  });
+    additionalLines = Object.entries(ignores).map(([Level, Counter]) => {
+      return (
+        // TODO: 羽根
+        // TODO: dotted line
+        // taken & active
+        null
+      );
+    });
+  }, []);
 
-  // TODO: boss width
   const width = (length + gap.x) * Nodes[Nodes.length - 1].X + gap.x + size;
   const height = gap.y * h + (force ? 0 : size * 1.5);
 
