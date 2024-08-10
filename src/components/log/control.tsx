@@ -7,7 +7,7 @@ import { TObjString } from 'utils/types/common';
 import Loading from 'components/common/loading';
 import MapNodes from 'utils/MapNodes';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage, getControlImage, getImage } from 'utils/getImage';
+import { getCommonImage, getControlImage } from 'utils/getImage';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 
