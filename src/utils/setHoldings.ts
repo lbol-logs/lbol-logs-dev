@@ -9,6 +9,8 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   // TODO: Junko, Patchu
   // TODO: read shining config -> baseMana
 
+  const actions = [];
+
   // BaseMana
   {
     const action: THoldingAction = {
@@ -23,27 +25,25 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
         BaseMana: BaseMana
       }
     };
-    dispatchHoldings(action);
+    actions.push(action);
   }
 
   // BaseDeck
-  {
-    for (const card of Cards) {
-      const action: THoldingAction = {
-        type: 'Card',
-        change: {
-          Type: 'Add',
-          Station: {
-            Act: 1,
-            Level: 0,
-            Y: 0
-          },
-          Id: card,
-          IsUpgraded: false
-        }
-      };
-      dispatchHoldings(action);
-    }
+  for (const card of Cards) {
+    const action: THoldingAction = {
+      type: 'Card',
+      change: {
+        Type: 'Add',
+        Station: {
+          Act: 1,
+          Level: 0,
+          Y: 0
+        },
+        Id: card,
+        IsUpgraded: false
+      }
+    };
+    actions.push(action);
   }
 
   // BaseExhibit
@@ -60,7 +60,7 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
         Id: Exhibit
       }
     };
-    dispatchHoldings(action);
+    actions.push(action);
   }
 
   // Cards
@@ -75,7 +75,7 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
           ...card
         }
       };
-      dispatchHoldings(action);
+      actions.push(action);
     }
   }
 
@@ -91,8 +91,35 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
           ...exhibit
         }
       };
-      dispatchHoldings(action);
+      actions.push(action);
     }
+  }
+
+  const sortedActions: Array<THoldingAction> = [];
+  // Add missing stations
+  for (const { Node: { Act, Level, Y } } of Stations) {
+    const currentActions = actions.filter(({ change: { Station: { Act: _act, Level: _level } }}) => Act === _act && Level === _level);
+    if (currentActions.length) {
+      sortedActions.push(...currentActions);
+    }
+    else {
+      const currentAction: THoldingAction = {
+        type: '',
+        change: {
+          Type: 'Add',
+          Station: {
+            Act,
+            Level,
+            Y
+          }
+        }
+      };
+      sortedActions.push(currentAction);
+    }
+  }
+
+  for (const action of sortedActions) {
+    dispatchHoldings(action);
   }
 }
 

@@ -1,67 +1,77 @@
 import Mana from 'utils/Mana';
-import { TAct, TBaseManaObj, TCard, TExhibitObj, THolding, THoldingAction, THoldings, TLevel } from 'utils/types/runData';
+import { TAct, TBaseManaObj, TCard, TExhibitObj, THoldingAction, THoldings, TLevel } from 'utils/types/runData';
 
 function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings {
   const { type, change } = action;
   const { Type, Station, ...entity } = change;
   const { Act, Level } = Station;
+  let currentHolding;
+  let isCurrentHolding;
 
-  const isActLevel = (a: TAct, l: TLevel) => {
-    return ({ Act, Level }: { Act: TAct, Level: TLevel }) => {
-      return Act === a && Level === l;
+  const length = holdings.length;
+  if (length) {
+    const lastHolding = holdings[length - 1];
+    if (type === '') {
+      currentHolding = { ...lastHolding, Act, Level };
+      return [...holdings, currentHolding];
     }
-  };
+  }
 
-  const hasCurrentholdings = holdings.find(isActLevel(Act, Level));
-  console.log({Act, Level, hasCurrentholdings: Boolean(hasCurrentholdings)});
-  let currentHoldings: THolding = {} as THolding;
-  if (hasCurrentholdings) {
-    currentHoldings = hasCurrentholdings;
+  if (!length) {
+    currentHolding = newHolding();
   }
   else {
-    let act = Act;
-    let level = Level - 1;
-    if (level < 0) {
-      level = 16;
-      act--;
+    const lastHolding = holdings[length - 1];
+    const { Act: a, Level: l } = lastHolding;
+    isCurrentHolding = validateActLevel(a, l);
+    if (isCurrentHolding) {
+      currentHolding = JSON.parse(JSON.stringify(lastHolding));
     }
+    else {
+      currentHolding = { ...lastHolding, Act, Level };
+      // TODO: strict
+      const isPresent = holdings.find(({ Act: _act, Level: _level }) => _act === Act && _level === Level);
+      if (isPresent) return holdings;
+    }
+  }
 
-    outer: for (let a = act; a >= 1; a--) {
-      for (let l = level; level >= 0; level--) {
-        // push every
-        const hasPastHoldings = holdings.find(isActLevel(a as TAct, l as TLevel));
-        console.log({Act: a, Level: l, hasPastHoldings: Boolean(hasPastHoldings)});
-        if (hasPastHoldings) {
-          currentHoldings = hasPastHoldings;
-          break outer;
-        }
-      }
-    }
+  function newHolding() {
+    return {
+      Act,
+      Level,
+      Cards: [],
+      Exhibits: [],
+      BaseMana: ''
+    };
+  }
 
-    if (Object.keys(currentHoldings).length === 0) {
-      currentHoldings = {
-        Act,
-        Level,
-        Cards: [],
-        Exhibits: [],
-        BaseMana: ''
-      };
-    }
+  function validateActLevel(a: TAct, l: TLevel) {
+    // TODO: strict
+    // if (Act < a || (Act === a && Level < l)) throw new Error(`Invalid holding dispatch. Current: Act ${Act} Level ${Level}, Last: Act ${a} Level ${l}`);
+    const isCurrentHolding = Act === a && Level === l;
+    return isCurrentHolding;
   }
 
   if (type === 'BaseMana') {
     const { BaseMana } = entity as TBaseManaObj;
-    currentHoldings.BaseMana = Mana.add(currentHoldings.BaseMana, BaseMana);
+    currentHolding.BaseMana = Mana.add(currentHolding.BaseMana, BaseMana);
   }
   else if (Type === 'Add') {
-    if (type === 'Card') currentHoldings.Cards.push(entity as TCard);
-    else currentHoldings.Exhibits.push(entity as TExhibitObj);
+    if (type === 'Card') currentHolding.Cards.push(entity as TCard);
+    else currentHolding.Exhibits.push(entity as TExhibitObj);
   }
 
-  return [
-    ...holdings,
-    currentHoldings
-  ];
+  if (!length) {
+    return [...holdings, currentHolding];
+  }
+  else {
+    if (isCurrentHolding) {
+      return [...holdings.slice(0, -1), currentHolding];
+    }
+    else {
+      return [...holdings, currentHolding];
+    }
+  }
 }
 
 export default holdingsReducer;

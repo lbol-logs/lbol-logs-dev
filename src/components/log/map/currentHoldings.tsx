@@ -13,11 +13,6 @@ function CurrentHoldings() {
   const [holding, setHolding] = useState(defaultHolding);
   useTranslation();
 
-  console.log(holdings.length);
-  // holdings.forEach((holding, i) => {
-  //   console.log(i, holding);
-  // });
-
   const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
 
   useEffect(() => {

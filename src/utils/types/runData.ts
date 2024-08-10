@@ -137,9 +137,9 @@ type THolding = {
 };
 type THoldings = Array<THolding>;
 
-type THoldingActionType = 'Card' | 'Exhibit' | 'BaseMana';
+type THoldingActionType = 'Card' | 'Exhibit' | 'BaseMana' | '';
 
-type THoldingActionChange = (TCard | TExhibitObj | TBaseManaObj)
+type THoldingActionChange = (TCard | TExhibitObj | TBaseManaObj | {})
 & {
   Type: TChangeType,
   Station: TNodeObj
