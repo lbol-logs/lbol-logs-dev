@@ -71,5 +71,8 @@
   "version": "バージョン",
   "loading": "読み込み中…",
   "processing": "処理中…",
-  "notAvailableYet": "現在は利用できません"
+  "notAvailableYet": "現在は利用できません",
+  "control": {
+    "back": ""
+  }
 }

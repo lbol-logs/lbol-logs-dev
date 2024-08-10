@@ -71,5 +71,14 @@
   "version": "Version",
   "loading": "Loading...",
   "processing": "Processing...",
-  "notAvailableYet": "Not available yet"
+  "notAvailableYet": "Not available yet",
+  "control": {
+    "back": "",
+    "previous": "",
+    "next": "",
+    "skip": "",
+    "map": ""
+  },
+  "card": "",
+  "exhibit": ""
 }

@@ -255,7 +255,7 @@ img {
 
 .p-station--last {
   margin-bottom: 0;
-  padding-bottom: var(--panel-height);
+  padding-bottom: var(--control-height);
   box-sizing: border-box;
 }
 
@@ -351,7 +351,7 @@ img {
   bottom: 0;
   left: 0;
   background: #f1f1f1;
-  height: var(--panel-height);
+  height: var(--control-height);
   width: 100%;
 }
 .p-control__inner {
@@ -359,31 +359,55 @@ img {
   flex-wrap: nowrap;
   height: 100%;
   padding: 0;
+  column-gap: var(--control-gap);
 }
 .p-control__component {
-  border: 1px solid #ccc;
-  border-right: none;
   height: 100%;
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  width: var(--panel-height);
+  width: var(--control-height);
   justify-content: center;
   user-select: none;
+  padding: 3px;
+  position: relative;
 }
-.p-control__component:last-child {
+.p-control__component:not(:last-child)::after {
+  content: '';
+  height: 70%;
   border-right: 1px solid #ccc;
-}
-.p-control__component--disabled {
-  opacity: 0.5;
-  pointer-events: none;
+  display: inline-block;
+  right: calc(var(--control-gap) * -0.5);
+  position: absolute;
 }
 
-.p-control__component--range {
+.p-control__component img {
+  height: 100%;
+  width: auto;
+}
+
+.p-control__component--center {
   width: 100%;
+  flex: 1;
 }
 .p-control__range {
   width: 100%;
+}
+
+.p-control__component .p-control__card,
+.p-control__component .p-control__exhibit {
+  position: absolute;
+  width: 60%;
+  height: auto;
+  padding: inherit;
+}
+.p-control__card {
+  top: 0;
+  left: 0;
+}
+.p-control__exhibit {
+  bottom: 0;
+  right: 0;
 }
 
 .c-entities {
@@ -444,7 +468,8 @@ img {
 
 :root {
   --padding-inner: 0.625em;
-  --panel-height: 36px;
+  --control-height: 36px;
+  --control-gap: 1em;
   --entity-gap: 0.5em;
   --icon-size: 36px;
   --green: green;

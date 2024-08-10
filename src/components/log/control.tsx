@@ -7,7 +7,7 @@ import { TObjString } from 'utils/types/common';
 import Loading from 'components/common/loading';
 import MapNodes from 'utils/MapNodes';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getControlImage, getImage } from 'utils/getImage';
+import { getCommonImage, getControlImage, getImage } from 'utils/getImage';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 
@@ -51,10 +51,11 @@ function Control() {
   }
 
   let buttonLeft = null;
-  let inputRange = null;
+  let centerArea = null;
   let buttonRight = null;
   let buttonRight2 = null;
   const isSummary = act === 0;
+  const isLastAct = act === maxAct;
 
   if (isSummary) {
     buttonLeft = (
@@ -62,40 +63,70 @@ function Control() {
         <LazyLoadImage src={getControlImage('Back')} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'common' })} />
       </span>
     );
+    centerArea = (
+      <span className="p-control__component p-control__component--center">
+        {/* TODO: something */}
+      </span>
+    );
+    buttonRight2 = (
+      <span className="p-control__component" onClick={() => changeAct(maxAct)}>
+        <LazyLoadImage src={getControlImage('Skip')} width={iconSize} height={iconSize} alt={t('control.skip', { ns: 'common' })} />
+      </span>
+    );
   }
   else {
     buttonLeft = (
-      <span
-      className="p-control__component"
-      onClick={() => changeAct(-1)}
-      >{'<'}</span>
+      <span className="p-control__component" onClick={() => changeAct(-1)}>
+        <LazyLoadImage src={getControlImage('Previous')} width={27} height={iconSize} alt={t('control.previous', { ns: 'common' })} />
+      </span>
+    );
+    centerArea = (
+      <span className="p-control__component p-control__component--center">
+        <input className="p-control__range" type="range" value={level} min={minLevel} max={maxLevel} onChange={changeLevel} />
+      </span>
+    );
+
+    let img;
+    if (showMap) {
+      img = (
+        <>
+          <LazyLoadImage className="p-control__card" src={getCommonImage('Card')} width={iconSize} height={iconSize} alt={t('card', { ns: 'common' })} />
+          <LazyLoadImage className="p-control__exhibit" src={getCommonImage('Exhibit')} width={iconSize} height={iconSize} alt={t('card', { ns: 'exhibit' })} />
+        </>
+      );
+    }
+    else {
+      img = (
+        <LazyLoadImage src={getControlImage('Map')} width={iconSize} height={iconSize} alt={t('control.map', { ns: 'common' })} />
+      );
+    }
+    buttonRight2 = (
+      <span className="p-control__component" onClick={handleToggle}>
+        {img}
+      </span>
     );
   }
 
-  inputRange = (
-    <span className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''} p-control__component--range`}>
-          <input className="p-control__range" type="range" value={level} min={minLevel} max={maxLevel} onChange={changeLevel} />
-        </span>
-  );
-
-  buttonRight = (
-    <span
-          className={`p-control__component ${act === maxAct ? 'p-control__component--disabled': ''}`}
-          onClick={() => changeAct(1)}
-          >{'>'}</span>
-  );
-
-  buttonRight2 = (
-    <span className={`p-control__component ${act === 0 ? 'p-control__component--disabled' : ''}`} onClick={handleToggle}>
-          <LazyLoadImage src={getImage(showMap ? 'map' : 'holding')} alt={showMap ? 'hideMap' : 'showMap'} />
-        </span>
-  );
+  if (isLastAct) {
+    buttonRight = (
+      <span className="p-control__component" onClick={() => changeAct(-maxAct)}>
+        <LazyLoadImage src={getControlImage('Back')} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'common' })} />
+      </span>
+    );
+  }
+  else {
+    buttonRight = (
+      <span className="p-control__component" onClick={() => changeAct(1)}>
+        <LazyLoadImage src={getControlImage('Next')} width={27} height={iconSize} alt={t('control.next', { ns: 'common' })} />
+      </span>
+    );
+  };
 
   return (
     <section className="p-control">
       <div className="p-control__inner l-inner">
+        {centerArea}
         {buttonLeft}
-        {inputRange}
         {buttonRight}
         {buttonRight2}
       </div>
