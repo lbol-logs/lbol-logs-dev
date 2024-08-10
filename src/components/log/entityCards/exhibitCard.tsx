@@ -38,6 +38,16 @@ function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitCh
         </span>
       );
     }
+    else {
+      const { Counter } = exhibit;
+      if (Counter) {
+        counter = (
+          <span className="c-exhibit__counter">
+            {'('}{Counter}{')'}
+          </span>
+        );
+      }
+    }
   }
 
   return (

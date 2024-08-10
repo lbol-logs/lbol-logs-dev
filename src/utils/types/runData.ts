@@ -150,6 +150,10 @@ type THoldingAction = {
 };
 type THoldingsReducer = Dispatch<ReducerAction<(holdings: THoldings, action: THoldingAction) => THoldings>>;
 
+enum CardWithUpgradeCounter {
+  YuyukoSing
+};
+
 enum ExhibitWithCounter {
   GanzhuYao,
   ChuRenou,
@@ -157,7 +161,7 @@ enum ExhibitWithCounter {
   Moping
 };
 
-const ExhibitInitialCounter: TObjNumber = {
+const exhibitInitialCounter: TObjNumber = {
   GanzhuYao: 0,
   ChuRenou: 3,
   TiangouYuyi: 3,
@@ -175,6 +179,7 @@ export type {
   TStation,
   TStatus,
   TNodes,
+  TNode,
   TNodeX,
   TNodeY,
   TCard,
@@ -196,6 +201,7 @@ export type {
 };
 
 export {
+  CardWithUpgradeCounter,
   ExhibitWithCounter,
-  ExhibitInitialCounter
+  exhibitInitialCounter
 };

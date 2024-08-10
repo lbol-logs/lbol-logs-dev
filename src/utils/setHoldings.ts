@@ -1,5 +1,6 @@
-import { THoldingAction, THoldingsReducer, TRunData } from 'utils/types/runData';
+import { exhibitInitialCounter, ExhibitWithCounter, TActObj, THoldingAction, THoldingsReducer, TNode, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
+import copyObject from './copyObject';
 
 function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings: THoldingsReducer) {
   const { Stations } = runData;
@@ -67,7 +68,7 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   {
     const { Cards } = runData;
     for (const Card of Cards) {
-      const card: any = JSON.parse(JSON.stringify(Card));
+      const card: any = copyObject(Card);
       card.Station = Stations[Card.Station].Node;
       const action: THoldingAction = {
         type: 'Card',
@@ -80,11 +81,17 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   }
 
   // Exhibits
+  const stationsTiangouYuyi: TObjAny = {};
   {
     const { Exhibits } = runData;
     for (const Exhibit of Exhibits) {
-      const exhibit: any = JSON.parse(JSON.stringify(Exhibit));
-      exhibit.Station = Stations[Exhibit.Station].Node;
+      const exhibit: any = copyObject(Exhibit);
+      const { Type, Station } = Exhibit;
+      exhibit.Station = Stations[Station].Node;
+      if (Exhibit.Id === ExhibitWithCounter[ExhibitWithCounter.TiangouYuyi]) {
+        if (Type === 'Add') stationsTiangouYuyi.start = Station;
+        else if (Type === 'Remove') stationsTiangouYuyi.end = Station;
+      }      
       const action: THoldingAction = {
         type: 'Exhibit',
         change: {
@@ -92,6 +99,31 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
         }
       };
       actions.push(action);
+    }
+  }
+
+  // TiangouYuyi
+  {
+    const { start, end} = stationsTiangouYuyi;
+    for (let i = start; i <= end || Stations.length - 1; i++) {
+      const nextStation = Stations[i + 1];
+      if (!nextStation) break;
+      const { Node } = Stations[i];
+      const { Act, Level, Y } = Node;
+      if (Act !== nextStation.Node.Act) continue;
+      const { Nodes } = runData.Acts.find(({ Act: _act }) => Act === _act) as TActObj;
+      const { Followers } = Nodes.find(({ X, Y: _y }) => X === Level && Y === _y) as TNode;
+      if (!Followers.includes(nextStation.Node.Y)) {
+        const action: THoldingAction = {
+          type: 'Exhibit',
+          change: {
+            Id: ExhibitWithCounter[ExhibitWithCounter.TiangouYuyi],
+            Type: 'Use',
+            Station: Node
+          }
+        };
+        actions.push(action);
+      }      
     }
   }
 

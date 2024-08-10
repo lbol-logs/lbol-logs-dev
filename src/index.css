@@ -360,7 +360,7 @@ img {
   display: flex;
   flex-wrap: nowrap;
   height: 100%;
-  padding: 0;
+  padding: 0 var(--control-gap);
   column-gap: var(--control-gap);
 }
 .p-control__component {

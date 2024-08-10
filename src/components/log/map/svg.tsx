@@ -57,7 +57,7 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
   const ignores = [];
   for (const holding of currentActHoldings) {
     const { Level, Exhibits } = holding;
-    const exhibit = Exhibits.find(({ Id }) => Id === ExhibitWithCounter.ChuRenou.toString());
+    const exhibit = Exhibits.find(({ Id }) => Id === ExhibitWithCounter[ExhibitWithCounter.ChuRenou]);
     if (exhibit) {
       const ignore = { [Level]: exhibit.Counter };
       ignores.push(ignore);
