@@ -13,6 +13,11 @@ function CurrentHoldings() {
   const [holding, setHolding] = useState(defaultHolding);
   useTranslation();
 
+  console.log(holdings.length);
+  // holdings.forEach((holding, i) => {
+  //   console.log(i, holding);
+  // });
+
   const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
 
   useEffect(() => {
@@ -20,6 +25,20 @@ function CurrentHoldings() {
       const { Cards, Exhibits, BaseMana } = currentHolding;
       const holding = (
         <>
+          <Trans
+            i18nKey="act"
+            ns="log"
+            values={{
+              act: act
+            }}
+          />
+          <Trans
+            i18nKey="level"
+            ns="log"
+            values={{
+              level: level
+            }}
+          />
           {BaseMana}
           <Trans
             i18nKey="cardsCount"

@@ -73,6 +73,12 @@
   "processing": "処理中…",
   "notAvailableYet": "現在は利用できません",
   "control": {
-    "back": ""
-  }
+    "back": "",
+    "previous": "",
+    "next": "",
+    "skip": "",
+    "map": ""
+  },
+  "card": "",
+  "exhibit": ""
 }
