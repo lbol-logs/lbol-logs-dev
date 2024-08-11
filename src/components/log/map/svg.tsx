@@ -81,7 +81,6 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
 
   // TiangouYuyi
   useEffect(() => {
-    console.log(ignoredPaths);
     const length = ignoredPaths.length;
     if (!length) return;
 
@@ -91,6 +90,7 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
     if (remove && remove.Station.Act < Act) return;
 
     let linesActive = [];
+    let linesTaken = [];
 
     const startLevel = add.Station.Act === Act ? add.Station.Level + 1 : 0;
     const endLevel = (remove && remove.Station.Act === Act) ? remove.Station.Level : lastLevel;
@@ -122,20 +122,28 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
     }
 
     const uses = ignoredPaths.filter(({ Type }) => Type === 'Use');
-    console.log({uses});
+    for (const use of uses) {
+      const { Act, Level, Y } = use.Station;
+      if (Act !== act) continue;
+      if (Level >= level) continue;
 
-    const test = Object.entries({}).map(([Level, Counter]) => {
-      return (
-        // TODO: 羽根
-        // TODO: dotted line
-        // taken & active
-        null
-      );
-    }) as unknown as JSX.Element;
+      const X = Level;
+      const X2 = X + 1 as TNodeX;
+      const Y2 = getStationY(X2);
+      const [x1, x2] = MapNodes.x1x2(X);
+      const [y1, y2] = MapNodes.y1y2(Y, Y2, force);
+      const flag = 'taken';
+      const key = flag as keyof typeof widths;
+      const width = widths[key];
+      const color = colors[key];
+      const line = getLine({ X, Y, X2, Y2, x1, y1, x2, y2, color, width, dash });
+      linesTaken.push(line);
+    }
 
     const additionalLines = (
       <>
         {linesActive}
+        {linesTaken}
       </>
     );
     setAdditionalLines(additionalLines);

@@ -5,7 +5,7 @@ import copyObject from './copyObject';
 function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings: THoldingsReducer) {
   const { Stations } = runData;
   const { Character, PlayerType } = runData.Settings;
-  const { [Character]: { BaseMana, [PlayerType]: { Cards, Exhibit } } } = playerConfigs;
+  const { BaseMana, [PlayerType]: { Cards, Exhibit } } = playerConfigs[Character];
 
   // TODO: Junko, Patchu
   // TODO: read shining config -> baseMana
@@ -13,7 +13,7 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   const actions = [];
   const ignoredPaths: Array<THoldingChange> = [];
 
-  // BaseMana
+  // BaseBaseMana
   {
     const action: THoldingAction = {
       type: 'BaseMana',
@@ -107,6 +107,8 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
         }
       };
       actions.push(action);
+
+      // TODO: Shining Exhibit BaseMana
     }
   }
 

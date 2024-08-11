@@ -383,11 +383,6 @@ img {
   position: absolute;
 }
 
-.p-control__component img {
-  height: 100%;
-  width: auto;
-}
-
 .p-control__component--center {
   width: 100%;
   flex: 1;
@@ -463,11 +458,6 @@ img {
   column-gap: 0.5em;
 }
 
-.c-exhibit__img {
-  height: 100%;
-  width: auto;
-}
-
 :root {
   --padding-inner: 0.625em;
   --control-height: 36px;
@@ -478,6 +468,11 @@ img {
   --red: red;
   --orange: orange;
   --purple: purple;
+}
+
+.u-img-vertical {
+  height: 100%;
+  width: auto;
 }
 
 @media screen and (min-width: 601px) {

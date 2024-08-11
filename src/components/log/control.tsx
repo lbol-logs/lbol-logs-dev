@@ -77,7 +77,7 @@ function Control() {
   else {
     buttonLeft = (
       <span className="p-control__component" onClick={() => changeAct(-1)}>
-        <LazyLoadImage src={getControlImage('Previous')} width={27} height={iconSize} alt={t('control.previous', { ns: 'common' })} />
+        <LazyLoadImage className="u-img-vertical" src={getControlImage('Previous')} width={27} height={iconSize} alt={t('control.previous', { ns: 'common' })} />
       </span>
     );
     centerArea = (
@@ -117,7 +117,7 @@ function Control() {
   else {
     buttonRight = (
       <span className="p-control__component" onClick={() => changeAct(1)}>
-        <LazyLoadImage src={getControlImage('Next')} width={27} height={iconSize} alt={t('control.next', { ns: 'common' })} />
+        <LazyLoadImage className="u-img-vertical" src={getControlImage('Next')} width={27} height={iconSize} alt={t('control.next', { ns: 'common' })} />
       </span>
     );
   };
