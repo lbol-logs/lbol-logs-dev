@@ -257,7 +257,7 @@ img {
 
 .p-station--last {
   margin-bottom: 0;
-  padding-bottom: var(--control-height);
+  padding-bottom: 50vh;
   box-sizing: border-box;
 }
 

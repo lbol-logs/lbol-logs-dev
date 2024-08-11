@@ -31,10 +31,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf ./build/images-private",
+    "build": "react-scripts build && rd /s /q \"./build/images-private\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build && rm -rf ./build/images-private",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build -b public"
   },
   "eslintConfig": {
