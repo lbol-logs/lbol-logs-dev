@@ -435,6 +435,9 @@ img {
   position: relative;
   overflow: hidden;
 }
+.c-card--upgraded {
+  color: var(--green);
+}
 
 .c-card__overlay {
   position: absolute;

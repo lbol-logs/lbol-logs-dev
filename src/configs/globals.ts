@@ -8,7 +8,11 @@ const languages: TObjString = {
 const namespaces: Array<string> = [
   'common',
   'run',
-  'log'
+  'log',
+  'cards',
+  'exhibits',
+  'enemies',
+  'events'
 ];
 
 const versions: Array<string> = [
