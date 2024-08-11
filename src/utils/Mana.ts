@@ -3,9 +3,9 @@ import { TBaseMana } from 'utils/types/runData';
 class Mana {
   private static _colors = 'WUBRGCPA';
 
-  static add(before: TBaseMana, additional: TBaseMana) {
+  static add(before: TBaseMana, change: TBaseMana) {
     const after = before.split('');
-    for (const mana of additional) {
+    for (const mana of change) {
       const i = after.indexOf(mana);
       if (i !== -1) {
         after.splice(i, 0, mana);
@@ -25,6 +25,11 @@ class Mana {
       }
     }
     return after.join('');
+  }
+
+  static remove(before: TBaseMana, change: TBaseMana) {
+    const after = before.replace(change, '');
+    return after;
   }
 }
 

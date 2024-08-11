@@ -147,6 +147,7 @@ function Svg({ ActObj }: { ActObj: TActObj }) {
       </>
     );
     setAdditionalLines(additionalLines);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ignoredPaths, act, level]);
 
   const width = (length + gap.x) * Nodes[Nodes.length - 1].X + gap.x + size;

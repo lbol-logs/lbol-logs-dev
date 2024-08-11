@@ -35,7 +35,7 @@ function useRunData(id: string)  {
       setRunDataId(id);
       setRunData(runData);
       if (isValidPlayerConfigs) {
-        const ignoredPaths = setHoldings(runData, playerConfigs, dispatchHoldings);
+        const ignoredPaths = setHoldings(runData, playerConfigs, dispatchHoldings, currentConfigs.exhibits);
         setIgnoredPaths(ignoredPaths);
       }
       setConfigsData(currentConfigs);

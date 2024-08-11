@@ -23,6 +23,10 @@ function getControlImage(name: string): string {
   return _getImage('control', name);
 }
 
+function getManaImage(name: string): string {
+  return _getImage('mana', name);
+}
+
 function getBossImage(name: string): string {
   return _getImage('boss', name);
 }
@@ -40,6 +44,7 @@ export {
   getCommonImage,
   getMapImage,
   getControlImage,
+  getManaImage,
   getBossImage,
   getCardImage,
   getExhibitImage

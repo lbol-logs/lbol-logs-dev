@@ -1,6 +1,6 @@
 import holdingsReducer from 'hooks/holdingsReducer';
 import { createContext, useReducer, useState } from 'react';
-import { TDispatch, TObjAny } from 'utils/types/common';
+import { TConfigsData, TDispatch, TObjAny } from 'utils/types/common';
 import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
 
 const defaultIsRunDataLoaded = false;
@@ -33,8 +33,8 @@ type TLogContext = {
   setShowMap: TDispatch<boolean>,
   ignoredPaths: Array<THoldingChange>,
   setIgnoredPaths: TDispatch<Array<THoldingChange>>,
-  configsData: Record<string, TObjAny>;
-  setConfigsData: TDispatch<Record<string, TObjAny>>
+  configsData: TConfigsData;
+  setConfigsData: TDispatch<TConfigsData>
 };
 
 export const LogContext = createContext<TLogContext>({

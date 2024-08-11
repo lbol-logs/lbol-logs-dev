@@ -152,6 +152,11 @@ type THoldingAction = {
 };
 type THoldingsReducer = Dispatch<ReducerAction<(holdings: THoldings, action: THoldingAction) => THoldings>>;
 
+const eventConvertBaseMana = {
+  JunkoColorless: 'CC',
+  PatchouliPhilosophy: 'P'
+};
+
 enum CardWithUpgradeCounter {
   YuyukoSing = "YuyukoSing"
 };
@@ -204,6 +209,7 @@ export type {
 };
 
 export {
+  eventConvertBaseMana,
   CardWithUpgradeCounter,
   ExhibitWithCounter,
   exhibitInitialCounter

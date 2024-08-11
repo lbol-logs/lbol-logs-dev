@@ -1,8 +1,8 @@
-import { ExhibitWithCounter, TActObj, THoldingAction, THoldingChange, THoldingsReducer, TNode, TRunData } from 'utils/types/runData';
+import { eventConvertBaseMana, ExhibitWithCounter, TActObj, THoldingAction, THoldingChange, THoldingsReducer, TNode, TNodeObj, TRunData } from 'utils/types/runData';
 import { TDispatch, TObjAny } from 'utils/types/common';
 import copyObject from './copyObject';
 
-function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings: THoldingsReducer) {
+function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings: THoldingsReducer, exhibitConfigs: TObjAny) {
   const { Stations } = runData;
   const { Character, PlayerType } = runData.Settings;
   const { BaseMana, [PlayerType]: { Cards, Exhibit } } = playerConfigs[Character];
@@ -12,6 +12,11 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
 
   const actions = [];
   const ignoredPaths: Array<THoldingChange> = [];
+  const Station: TNodeObj = {
+    Act: 1,
+    Level: 0,
+    Y: 0
+  };
 
   // BaseBaseMana
   {
@@ -19,12 +24,8 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
       type: 'BaseMana',
       change: {
         Type: 'Add',
-        Station: {
-          Act: 1,
-          Level: 0,
-          Y: 0
-        },
-        BaseMana: BaseMana
+        Station,
+        BaseMana
       }
     };
     actions.push(action);
@@ -36,11 +37,7 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
       type: 'Card',
       change: {
         Type: 'Add',
-        Station: {
-          Act: 1,
-          Level: 0,
-          Y: 0
-        },
+        Station,
         Id: card,
         IsUpgraded: false
       }
@@ -50,19 +47,30 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
 
   // BaseExhibit
   {
-    const action: THoldingAction = {
-      type: 'Exhibit',
-      change: {
-        Type: 'Add',
-        Station: {
-          Act: 1,
-          Level: 0,
-          Y: 0
-        },
-        Id: Exhibit
-      }
-    };
-    actions.push(action);
+    {
+      const action: THoldingAction = {
+        type: 'Exhibit',
+        change: {
+          Type: 'Add',
+          Station,
+          Id: Exhibit
+        }
+      };
+      actions.push(action);
+    }
+
+    {
+      const { BaseMana } = exhibitConfigs[Exhibit];
+      const action: THoldingAction = {
+        type: 'BaseMana',
+        change: {
+          Type: 'Add',
+          Station,
+          BaseMana
+        }
+      };
+      actions.push(action);
+    }
   }
 
   // Cards
@@ -87,7 +95,7 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
     const { Exhibits } = runData;
     for (const Exhibit of Exhibits) {
       const exhibit: any = copyObject(Exhibit);
-      const { Type, Station } = Exhibit;
+      const { Id, Type, Station } = Exhibit;
       const { Node } = Stations[Station];
       exhibit.Station = Node;
       if (Exhibit.Id === ExhibitWithCounter.TiangouYuyi) {
@@ -109,6 +117,18 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
       actions.push(action);
 
       // TODO: Shining Exhibit BaseMana
+      const { Rarity, BaseMana } = exhibitConfigs[Id];
+      if (Rarity === 'Shining') {
+        const action: THoldingAction = {
+          type: 'BaseMana',
+          change: {
+            Type,
+            Station: Node,
+            BaseMana
+          }
+        };
+        actions.push(action);
+      }
     }
   }
 
@@ -135,6 +155,39 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
         };
         actions.push(action);
         ignoredPaths.push({ Type, Station: Node });
+      }
+    }
+  }
+
+  // JunkoColorless, PatchouliPhilosophy
+  {
+    const stations = Stations.filter(({ Data }) => Data && Data.BaseMana);
+    for (const station of stations) {
+      const { Id, Node, Data: { BaseMana } } = station;
+
+      {
+        const action: THoldingAction = {
+          type: 'BaseMana',
+          change: {
+            Type: 'Remove',
+            Station: Node,
+            BaseMana
+          }
+        };
+        actions.push(action);
+      }
+
+      {
+        const BaseMana = eventConvertBaseMana[Id as keyof typeof eventConvertBaseMana];
+        const action: THoldingAction = {
+          type: 'BaseMana',
+          change: {
+            Type: 'Add',
+            Station: Node,
+            BaseMana
+          }
+        };
+        actions.push(action);
       }
     }
   }

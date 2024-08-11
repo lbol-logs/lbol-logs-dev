@@ -84,7 +84,12 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
 
   if (type === 'BaseMana') {
     const { BaseMana } = entity as TBaseManaObj;
-    currentHolding.BaseMana = Mana.add(currentHolding.BaseMana, BaseMana);
+    if (Type === 'Add') {
+      currentHolding.BaseMana = Mana.add(currentHolding.BaseMana, BaseMana);
+    }
+    else if (Type === 'Remove') {
+      currentHolding.BaseMana = Mana.remove(currentHolding.BaseMana, BaseMana);
+    }
   }
   else if (Type === 'Add') {
     if (type === 'Card') {

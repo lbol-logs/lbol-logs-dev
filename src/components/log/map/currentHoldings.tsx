@@ -6,6 +6,7 @@ import ExhibitCards from '../entityCards/exhibitCards';
 import Processing from 'components/common/processing';
 import { Trans, useTranslation } from 'react-i18next';
 import i18next from 'i18next';
+import BaseManaWidget from 'components/common/baseManaWidget';
 
 function CurrentHoldings() {
   const { act, level, holdings } = useContext(LogContext);
@@ -34,7 +35,7 @@ function CurrentHoldings() {
               level: level
             }}
           />
-          {BaseMana}
+          <BaseManaWidget baseMana={BaseMana} />
           <Trans
             i18nKey="cardsCount"
             ns="log"
