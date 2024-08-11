@@ -27,7 +27,7 @@ function RunDataLoaded() {
     if (window.scrollY < height - scrollTolerance) window.scrollTo(0, height);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRunDataLoaded, runData, act]);
-  
+
   return (
     <>
       {act === 0

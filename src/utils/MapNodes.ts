@@ -22,7 +22,8 @@ class MapNodes {
       normal: 'black',
       taken: 'blue',
       active: 'red'
-    }
+    },
+    dash: 3
   };
 
   static x1x2(X: TNodeX) {

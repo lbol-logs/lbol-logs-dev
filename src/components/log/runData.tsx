@@ -7,7 +7,7 @@ import Loading from 'components/common/loading';
 function RunData({ ver, id }: { ver: string, id: string }) {
   useVersion(ver);
   useRunData(id);
-  
+
   return (
     <>
       <Suspense fallback={<Loading />}>

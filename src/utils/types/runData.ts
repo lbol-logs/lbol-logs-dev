@@ -139,11 +139,13 @@ type THoldings = Array<THolding>;
 
 type THoldingActionType = 'Card' | 'Exhibit' | 'BaseMana' | '';
 
-type THoldingActionChange = (TCard | TExhibitObj | TBaseManaObj | {})
-& {
+type THoldingChange = {
   Type: TChangeType,
   Station: TNodeObj
 };
+
+type THoldingActionChange = (TCard | TExhibitObj | TBaseManaObj | {})
+& THoldingChange;
 type THoldingAction = {
   type: THoldingActionType,
   change: THoldingActionChange
@@ -197,7 +199,8 @@ export type {
   TExhibitObj,
   TExhibitObjs,
   TBaseMana,
-  TBaseManaObj
+  TBaseManaObj,
+  THoldingChange
 };
 
 export {

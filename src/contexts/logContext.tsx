@@ -1,7 +1,7 @@
 import holdingsReducer from 'hooks/holdingsReducer';
 import { createContext, useReducer, useState } from 'react';
 import { TDispatch } from 'utils/types/common';
-import { TAct, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
+import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
 
 const defaultIsRunDataLoaded = false;
 const defaultRunDataId = '';
@@ -11,6 +11,7 @@ const defaultLevel: TLevel = 0;
 const defaultIsStationsLoaded = false;
 const defaultHoldings = [] as THoldings;
 const defaultShowMap = true;
+const defaultIgnoredPaths = [] as Array<THoldingChange>;
 
 type TLogContext = {
   isRunDataLoaded: boolean,
@@ -28,7 +29,9 @@ type TLogContext = {
   holdings: THoldings,
   dispatchHoldings: THoldingsReducer,
   showMap: boolean,
-  setShowMap: TDispatch<boolean>
+  setShowMap: TDispatch<boolean>,
+  ignoredPaths: Array<THoldingChange>,
+  setIgnoredPaths: TDispatch<Array<THoldingChange>>
 };
 
 export const LogContext = createContext<TLogContext>({
@@ -47,7 +50,9 @@ export const LogContext = createContext<TLogContext>({
   holdings: defaultHoldings,
   dispatchHoldings: () => {},
   showMap: defaultShowMap,
-  setShowMap: () => {}
+  setShowMap: () => {},
+  ignoredPaths: defaultIgnoredPaths,
+  setIgnoredPaths: () => {}
 });
 
 function LogProvider({ children }: { children: React.ReactNode }) {
@@ -59,6 +64,7 @@ function LogProvider({ children }: { children: React.ReactNode }) {
   const [isStationsLoaded, setIsStationsLoaded] = useState(defaultIsStationsLoaded);
   const [holdings, dispatchHoldings] = useReducer(holdingsReducer, defaultHoldings);
   const [showMap, setShowMap] = useState(defaultShowMap);
+  const [ignoredPaths, setIgnoredPaths] = useState(defaultIgnoredPaths);
 
   const value = {
     isRunDataLoaded,
@@ -76,7 +82,9 @@ function LogProvider({ children }: { children: React.ReactNode }) {
     holdings,
     dispatchHoldings,
     showMap,
-    setShowMap
+    setShowMap,
+    ignoredPaths,
+    setIgnoredPaths
   };
 
   return (

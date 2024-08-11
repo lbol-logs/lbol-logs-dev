@@ -1,5 +1,5 @@
-import { ExhibitWithCounter, TActObj, THoldingAction, THoldingsReducer, TNode, TRunData } from 'utils/types/runData';
-import { TObjAny } from 'utils/types/common';
+import { ExhibitWithCounter, TActObj, THoldingAction, THoldingChange, THoldingsReducer, TNode, TRunData } from 'utils/types/runData';
+import { TDispatch, TObjAny } from 'utils/types/common';
 import copyObject from './copyObject';
 
 function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings: THoldingsReducer) {
@@ -11,6 +11,7 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   // TODO: read shining config -> baseMana
 
   const actions = [];
+  const ignoredPaths: Array<THoldingChange> = [];
 
   // BaseMana
   {
@@ -87,10 +88,17 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
     for (const Exhibit of Exhibits) {
       const exhibit: any = copyObject(Exhibit);
       const { Type, Station } = Exhibit;
-      exhibit.Station = Stations[Station].Node;
+      const { Node } = Stations[Station];
+      exhibit.Station = Node;
       if (Exhibit.Id === ExhibitWithCounter.TiangouYuyi) {
-        if (Type === 'Add') stationsTiangouYuyi.start = Station;
-        else if (Type === 'Remove') stationsTiangouYuyi.end = Station;
+        if (Type === 'Add') {
+          stationsTiangouYuyi.start = Station;
+          ignoredPaths.push({ Type, Station: Node });
+        }
+        else if (Type === 'Remove') {
+          stationsTiangouYuyi.end = Station;
+          ignoredPaths.push({ Type, Station: Node });
+        }
       }
       const action: THoldingAction = {
         type: 'Exhibit',
@@ -114,15 +122,17 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
       const { Nodes } = runData.Acts.find(({ Act: _act }) => Act === _act) as TActObj;
       const { Followers } = Nodes.find(({ X, Y: _y }) => X === Level && Y === _y) as TNode;
       if (!Followers.includes(nextStation.Node.Y)) {
+        const Type = 'Use'
         const action: THoldingAction = {
           type: 'Exhibit',
           change: {
             Id: ExhibitWithCounter.TiangouYuyi,
-            Type: 'Use',
+            Type,
             Station: Node
           }
         };
         actions.push(action);
+        ignoredPaths.push({ Type, Station: Node });
       }
     }
   }
@@ -153,6 +163,8 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   for (const action of sortedActions) {
     dispatchHoldings(action);
   }
+
+  return ignoredPaths;
 }
 
 export default setHoldings;

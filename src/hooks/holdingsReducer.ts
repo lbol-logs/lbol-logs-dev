@@ -31,9 +31,6 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
     }
     else {
       currentHolding = { ...copyObject(lastHolding), Act, Level };
-      // TODO: strict
-      const isPresent = holdings.find(({ Act: _act, Level: _level }) => _act === Act && _level === Level);
-      if (isPresent) return holdings;
     }
   }
 

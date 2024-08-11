@@ -10,7 +10,7 @@ import setHoldings from 'utils/setHoldings';
 
 function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
-  const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings } = useContext(LogContext);
+  const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, ignoredPaths, setIgnoredPaths } = useContext(LogContext);
   // TODO: setLog
 
   const navigate = useNavigate();
@@ -26,7 +26,8 @@ function useRunData(id: string)  {
       setRunDataId(id);
       setRunData(runData);
       if (isValidPlayConfigs) {
-        setHoldings(runData, playerConfigs, dispatchHoldings);
+        const ignoredPaths = setHoldings(runData, playerConfigs, dispatchHoldings);
+        setIgnoredPaths(ignoredPaths);
       }
       setIsRunDataLoaded(true);
     }
