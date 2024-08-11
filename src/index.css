@@ -355,6 +355,7 @@ img {
   background: #f1f1f1;
   height: var(--control-height);
   width: 100%;
+  z-index: 999;
 }
 .p-control__inner {
   display: flex;
@@ -438,15 +439,17 @@ img {
 .c-card--upgraded {
   color: var(--green);
 }
-
+.c-card__text {
+  z-index: 1;
+}
 .c-card__overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #000;
-  opacity: 0.1;
+  background: #fff;
+  opacity: 0.3;
 }
 
 .c-card__img {

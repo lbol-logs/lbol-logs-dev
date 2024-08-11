@@ -11,7 +11,7 @@ function CardCard({ card }: { card: TCard }) {
 
   return (
     <span className={`c-entity c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`}>
-      {t(Id, { ns: 'cards' })}{IsUpgraded && '+'}{UpgradeCounter}
+      <span className="c-card__text">{t(Id, { ns: 'cards' })}{IsUpgraded && '+'}{UpgradeCounter}</span>
       <div className="c-card__overlay"></div>
       <LazyLoadImage className="c-card__img" src={getCardImage(Id)} width={width} height={height} alt="" />
     </span>
