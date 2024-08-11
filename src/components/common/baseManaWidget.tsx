@@ -15,11 +15,11 @@ function BaseManaWidget({ baseMana }: { baseMana: TBaseMana}) {
       const _mana = isA ? 'P' : mana;
 
       imgs[0] = (
-        <LazyLoadImage src={getManaImage(_mana)} width={iconSize} height={iconSize} alt={t(`mana.${_mana}`, { ns: 'common' })} />
+        <LazyLoadImage key={i} src={getManaImage(_mana)} width={iconSize} height={iconSize} alt={t(`mana.${_mana}`, { ns: 'common' })} />
       );
       if (isA) {
         const img = (
-          <LazyLoadImage className="c-base-mana__unknown" src={getManaImage('Unknown')} width={iconSize} height={iconSize} alt={t(`mana.Unknown`, { ns: 'common' })} />
+          <LazyLoadImage key={`${i}_unknown`} className="c-base-mana__unknown" src={getManaImage('Unknown')} width={iconSize} height={iconSize} alt={t(`mana.Unknown`, { ns: 'common' })} />
         );
         imgs.unshift(img);
       }
