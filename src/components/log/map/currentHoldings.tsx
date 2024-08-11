@@ -27,6 +27,7 @@ function CurrentHoldings() {
             values={{
               act: act
             }}
+            context='4'
           />
           <Trans
             i18nKey="level"
