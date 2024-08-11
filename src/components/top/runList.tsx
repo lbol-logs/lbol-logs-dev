@@ -21,6 +21,7 @@ function RunList() {
 
   return (
     <div className="p-run-list__table">
+      {/* {t('test', { ns: 'test/a' })} */}
       <div className="p-run-list__row p-run-list__row--header">
         {headers.map(header => {
           return <div className={`p-run-list__cell p-run-list__cell--${header}`} key={header}>{t(header, { ns: 'run' })}</div>;

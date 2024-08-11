@@ -451,10 +451,12 @@ img {
 
 .c-card__img {
   position: absolute;
-  top: 50%;
+  top: 0;
+  left: 0;
+  /* top: 50%;
   left: 50%;
   transform: translate(-50%, -35%);
-  aspect-ratio: 1024 / 700;
+  aspect-ratio: 1024 / 700; */
   z-index: -1;
 }
 

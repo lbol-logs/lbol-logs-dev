@@ -12,7 +12,8 @@ const namespaces: Array<string> = [
   'cards',
   'exhibits',
   'enemies',
-  'events'
+  'events',
+  // 'test/a'
 ];
 
 const versions: Array<string> = [

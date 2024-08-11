@@ -8,13 +8,16 @@
     "keys": {
       "done": "Done",
       "site": "Website",
-      "mod": "Mod features (not published yet)"
+      "mod": "Mod exported log contents  (not published yet)"
     },
     "categories": {
       "site": [
         "Site basic display",
         "Language switch (sorry for my poor English)",
-        "Version switch (since v1.5.1)"
+        "Version switch (since v1.5.1)",
+        "Prepare Demo",
+        "Basic display of run history",
+        "Images except cards"
       ],
       "mod": [
         "Character info",
@@ -39,17 +42,18 @@
     },
     "categories": {
       "now": [
-        "Prepare DEMO",
-        "Basic display of run history"
+        "Locale file of general terms",
+        "Overall review and adjustment"
       ],
       "next": [
-        "Images",
+        "Redesign Deck & Exhibit view (GIMME IDEAS!!)",
         "Details of Seija Battle (Mod & site)",
         "Stations other than battle (events, shop, etc.) (Mod & site)",
         "Mod release",
         "Log upload (share with url)"
       ],
       "later": [
+        "Cards image",
         "List of logs (filter & sort)",
         "UI、UX"
       ],
@@ -73,12 +77,21 @@
   "processing": "Processing...",
   "notAvailableYet": "Not available yet",
   "control": {
-    "back": "",
-    "previous": "",
-    "next": "",
-    "skip": "",
-    "map": ""
+    "back": "Back",
+    "previous": "Previous Act",
+    "next": "Next Act",
+    "skip": "Go to the last Act",
+    "map": "Map"
   },
-  "card": "",
-  "exhibit": ""
+  "card": "Card",
+  "exhibit": "Exhibit",
+  "mana": {
+    "W": "W",
+    "U": "U",
+    "B": "B",
+    "R": "G",
+    "C": "C",
+    "P": "P",
+    "A": "?"
+  }
 }
