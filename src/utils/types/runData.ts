@@ -152,20 +152,28 @@ type THoldingAction = {
 };
 type THoldingsReducer = Dispatch<ReducerAction<(holdings: THoldings, action: THoldingAction) => THoldings>>;
 
+enum RequestWithStartCard {
+  StartMisfortune = 'StartMisfortune'
+};
+
+const requestWithStartCard = {
+  StartMisfortune: 'Zhukeling'
+};
+
 const eventConvertBaseMana = {
   JunkoColorless: 'CC',
   PatchouliPhilosophy: 'P'
 };
 
 enum CardWithUpgradeCounter {
-  YuyukoSing = "YuyukoSing"
+  YuyukoSing = 'YuyukoSing'
 };
 
 enum ExhibitWithCounter {
-  GanzhuYao = "GanzhuYao",
-  ChuRenou = "ChuRenou",
-  TiangouYuyi = "TiangouYuyi",
-  Moping = "Moping"
+  GanzhuYao = 'GanzhuYao',
+  ChuRenou = 'ChuRenou',
+  TiangouYuyi = 'TiangouYuyi',
+  Moping = 'Moping'
 };
 
 const exhibitInitialCounter: TObjNumber = {
@@ -209,6 +217,8 @@ export type {
 };
 
 export {
+  RequestWithStartCard,
+  requestWithStartCard,
   eventConvertBaseMana,
   CardWithUpgradeCounter,
   ExhibitWithCounter,

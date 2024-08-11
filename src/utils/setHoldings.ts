@@ -1,4 +1,4 @@
-import { eventConvertBaseMana, ExhibitWithCounter, TActObj, THoldingAction, THoldingChange, THoldingsReducer, TNode, TNodeObj, TRunData } from 'utils/types/runData';
+import { eventConvertBaseMana, ExhibitWithCounter, requestWithStartCard, RequestWithStartCard, TActObj, THoldingAction, THoldingChange, THoldingsReducer, TNode, TNodeObj, TRunData } from 'utils/types/runData';
 import { TDispatch, TObjAny } from 'utils/types/common';
 import copyObject from './copyObject';
 
@@ -32,17 +32,33 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   }
 
   // BaseDeck
-  for (const card of Cards) {
-    const action: THoldingAction = {
-      type: 'Card',
-      change: {
-        Type: 'Add',
-        Station,
-        Id: card,
-        IsUpgraded: false
-      }
-    };
-    actions.push(action);
+  {
+    for (const card of Cards) {
+      const action: THoldingAction = {
+        type: 'Card',
+        change: {
+          Type: 'Add',
+          Station,
+          Id: card,
+          IsUpgraded: false
+        }
+      };
+      actions.push(action);
+    }
+
+    if (runData.Settings.Requests.includes(RequestWithStartCard.StartMisfortune.toString())) {
+      const Id = requestWithStartCard.StartMisfortune;
+      const action: THoldingAction = {
+        type: 'Card',
+        change: {
+          Type: 'Add',
+          Station,
+          Id,
+          IsUpgraded: false
+        }
+      };
+      actions.push(action);
+    }
   }
 
   // BaseExhibit
