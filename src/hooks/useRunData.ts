@@ -1,4 +1,4 @@
-import { getConfig, getLog } from 'utils/fetchData';
+import { getConfigs, getLog } from 'utils/fetchData';
 import { TRunData } from 'utils/types/runData';
 import { LogContext } from 'contexts/logContext';
 import { CommonContext } from 'contexts/commonContext';
@@ -7,28 +7,38 @@ import { useNavigate } from 'react-router-dom';
 import { validateConfigs, validateRunData } from 'utils/validate';
 import use from 'utils/use';
 import setHoldings from 'utils/setHoldings';
+import { configs } from 'configs/globals';
+import { TConfigsData } from 'utils/types/common';
 
 function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
-  const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, ignoredPaths, setIgnoredPaths } = useContext(LogContext);
+  const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, configsData, setConfigsData } = useContext(LogContext);
   // TODO: setLog
 
   const navigate = useNavigate();
   let isValidRunData = false;
   const runData = use(getLog(version, id)) as TRunData;
   isValidRunData = validateRunData(runData);
-  const playerConfigs = use(getConfig(version, 'players'));
-  const isValidPlayConfigs = validateConfigs(playerConfigs);
+  const playerConfigs = use(getConfigs(version, 'players'));
+  const isValidPlayerConfigs = validateConfigs(playerConfigs);
+  const isValidConfigs: Record<string, boolean> = {};
+  const currentConfigs: TConfigsData = {};
+  for (const config of configs) {
+    const configs = use(getConfigs(version, config));
+    currentConfigs[config] = configs;
+    isValidConfigs[config] = validateConfigs(configs);
+  }
 
   useEffect(() => {
     setIsRunDataLoaded(false);
     if (isValidRunData) {
       setRunDataId(id);
       setRunData(runData);
-      if (isValidPlayConfigs) {
+      if (isValidPlayerConfigs) {
         const ignoredPaths = setHoldings(runData, playerConfigs, dispatchHoldings);
         setIgnoredPaths(ignoredPaths);
       }
+      setConfigsData(currentConfigs);
       setIsRunDataLoaded(true);
     }
     else {
@@ -36,7 +46,7 @@ function useRunData(id: string)  {
       navigate('/', { replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isValidRunData, runData, playerConfigs, isValidPlayConfigs]);
+  }, [isValidRunData, runData, playerConfigs, isValidPlayerConfigs]);
 }
 
 export default useRunData;

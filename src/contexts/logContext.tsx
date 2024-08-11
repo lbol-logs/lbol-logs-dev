@@ -1,6 +1,6 @@
 import holdingsReducer from 'hooks/holdingsReducer';
 import { createContext, useReducer, useState } from 'react';
-import { TDispatch } from 'utils/types/common';
+import { TDispatch, TObjAny } from 'utils/types/common';
 import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
 
 const defaultIsRunDataLoaded = false;
@@ -12,6 +12,7 @@ const defaultIsStationsLoaded = false;
 const defaultHoldings = [] as THoldings;
 const defaultShowMap = true;
 const defaultIgnoredPaths = [] as Array<THoldingChange>;
+const defaultConfigsData = {};
 
 type TLogContext = {
   isRunDataLoaded: boolean,
@@ -31,7 +32,9 @@ type TLogContext = {
   showMap: boolean,
   setShowMap: TDispatch<boolean>,
   ignoredPaths: Array<THoldingChange>,
-  setIgnoredPaths: TDispatch<Array<THoldingChange>>
+  setIgnoredPaths: TDispatch<Array<THoldingChange>>,
+  configsData: Record<string, TObjAny>;
+  setConfigsData: TDispatch<Record<string, TObjAny>>
 };
 
 export const LogContext = createContext<TLogContext>({
@@ -52,7 +55,9 @@ export const LogContext = createContext<TLogContext>({
   showMap: defaultShowMap,
   setShowMap: () => {},
   ignoredPaths: defaultIgnoredPaths,
-  setIgnoredPaths: () => {}
+  setIgnoredPaths: () => {},
+  configsData: defaultConfigsData,
+  setConfigsData: () => {}
 });
 
 function LogProvider({ children }: { children: React.ReactNode }) {
@@ -65,6 +70,7 @@ function LogProvider({ children }: { children: React.ReactNode }) {
   const [holdings, dispatchHoldings] = useReducer(holdingsReducer, defaultHoldings);
   const [showMap, setShowMap] = useState(defaultShowMap);
   const [ignoredPaths, setIgnoredPaths] = useState(defaultIgnoredPaths);
+  const [configsData, setConfigsData] = useState(defaultConfigsData)
 
   const value = {
     isRunDataLoaded,
@@ -84,7 +90,9 @@ function LogProvider({ children }: { children: React.ReactNode }) {
     showMap,
     setShowMap,
     ignoredPaths,
-    setIgnoredPaths
+    setIgnoredPaths,
+    configsData,
+    setConfigsData
   };
 
   return (

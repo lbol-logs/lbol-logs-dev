@@ -458,6 +458,11 @@ img {
   column-gap: 0.5em;
 }
 
+.p-enemies {
+  display: flex;
+  gap: 0.5em;
+}
+
 :root {
   --padding-inner: 0.625em;
   --control-height: 36px;

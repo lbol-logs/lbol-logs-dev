@@ -30,12 +30,12 @@ function getLog(version: string, id: string) {
   return fetchData(version, `logs/${id}`);
 }
 
-function getConfig(version: string, name: string) {
+function getConfigs(version: string, name: string) {
   return fetchData(version, `configs/${name}`);
 }
 
 export {
   getList,
   getLog,
-  getConfig
+  getConfigs
 };

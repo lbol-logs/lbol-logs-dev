@@ -32,6 +32,12 @@ const cardSize = {
 
 const scrollTolerance = 50;
 
+const configs: Array<string> = [
+  'cards',
+  'exhibits',
+  'enemyGroups'
+];
+
 export {
   languages,
   namespaces,
@@ -43,4 +49,5 @@ export {
   iconSize,
   cardSize,
   scrollTolerance,
+  configs
 };

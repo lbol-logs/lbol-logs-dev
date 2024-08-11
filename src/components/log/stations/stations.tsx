@@ -7,7 +7,7 @@ import { TAct, TLevel } from 'utils/types/runData';
 import { scrollTolerance } from 'configs/globals';
 
 function Stations() {
-  const { runData, act, setLevel } = useContext(LogContext);
+  const { runData, act, setLevel, configsData } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { Stations } = runData;
