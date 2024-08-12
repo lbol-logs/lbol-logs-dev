@@ -15,8 +15,8 @@ function RunList() {
 
   /*
    * TODO: filter & sort
-   * trans, icons, requests split
-   * css width adjustment
+   * TODO: trans, icons, requests split
+   * TODO: css width adjustment
    */
 
   return (
