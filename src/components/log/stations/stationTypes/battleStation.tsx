@@ -76,7 +76,7 @@ function BattleStation({ station }: { station: TStation }) {
 
   return (
     <>
-      <p>{Type}</p>
+      <p>{t(Type, { ns: 'stations' })}</p>
       {enemies}
       <div className="c-rewards">
         {rounds}

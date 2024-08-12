@@ -5,27 +5,29 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
+import ChoicesWidget from './choicesWidget';
 
 function EventStation({ station }: { station: TStation }) {
   const { Type, Data, Id, Rewards } = station;
   const { t } = useTranslation();
 
   let data = null;
-  let choices = null;
   let rounds = null;
   let money = null;
   let cards = null;
   let exhibits = null;
 
+  const { Choices, Rounds } = Data;
+
+  const choices = (
+    <p>
+      {t('choices', { ns: 'stations' })}
+      <ChoicesWidget id={Id as string} choices={Choices} />
+    </p>
+  );
+
+
   if (Data) {
-    const { Choices, Rounds } = Data;
-
-    if (Choices) {
-      choices = (
-        <p>Choices: {Choices.join(', ')}</p>
-      );
-    }
-
     if (Rounds) {
       rounds = (
         <span className="c-rewards__rounds">
@@ -35,6 +37,7 @@ function EventStation({ station }: { station: TStation }) {
       );
     }
   }
+
   if (Rewards) {
     const { Money, Cards, Exhibits } = Rewards;
 
@@ -86,7 +89,7 @@ function EventStation({ station }: { station: TStation }) {
 
   return (
     <>
-      <p>{Type}</p>
+      <p>{t(Type, { ns: 'stations' })}</p>
       <p>{t(Id as string, { ns: 'events' })}</p>
       {data}
     </>

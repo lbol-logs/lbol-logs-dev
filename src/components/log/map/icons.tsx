@@ -64,21 +64,6 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       }
     }
 
-/*  Types
-		None,
-		Enemy,
-		EliteEnemy,
-		Supply,
-		Gap,
-		Shop,
-		Adventure,
-		Entry,
-		Select,
-		Trade,
-		Boss,
-		BattleAdvTest
-    */
-
     return (
       <div className={`c-map-icon ${isBoss ? 'c-map-icon--boss' : ''}`} key={`Act${Act}_x${X}y${Y}`} style={{ left, top }}>
         {visited}

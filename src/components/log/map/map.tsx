@@ -17,7 +17,6 @@ function Map() {
       {!showMap && <CurrentHoldings />}
       <div className={`p-map__inner ${showMap ? '' : 'p-map__inner--hidden'} js-mapInner`}>
         <Act />
-        <Links Stations={Stations} />
         <Icons ActObj={ActObj} />
         <Svg ActObj={ActObj} />
       </div>

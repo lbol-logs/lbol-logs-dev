@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import DifficultyWidget from 'components/common/parts/difficultyWidget';
 import DateTime from 'components/common/parts/dateTime';
+import PlayerTypeWidget from 'components/common/parts/playerTypeWidget';
 
 function Summary() {
   const { runData, isRunDataLoaded } = useContext(LogContext);
@@ -19,12 +20,11 @@ function Summary() {
   const { Type, Timestamp, Cards, Exhibits, BaseMana } = Result;
 
   // TODO: locales
-  // chacaters
 
   return (
     <section className="p-summary">
-      <p>{t(Character, { ns: 'characters' })}</p>
-      <p>{t(PlayerType, { ns: 'characters' })}</p>
+      <p>{t(Character, { ns: 'common' })}</p>
+      <PlayerTypeWidget character={Character} playerType={PlayerType} />
       <div>
         <span>{t('request', { ns: 'common', count: Requests.length })}</span>
         {Requests.map(Request => {

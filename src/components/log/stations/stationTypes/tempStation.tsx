@@ -22,7 +22,10 @@ function TempStation({ station }: { station: TStation }) {
 
     if (Choices) {
       choices = (
-        <p>Choices: {Choices.join(', ')}</p>
+        <p>
+          {t('choices', { ns: 'stations' })}
+          {Choices.join(', ')}
+        </p>
       );
     }
 
@@ -86,9 +89,9 @@ function TempStation({ station }: { station: TStation }) {
 
   return (
     <>
-      <p>{Type}</p>
+      <p>{t(Type, { ns: 'stations' })}</p>
       {Id && (
-        <p>Id: {Id}</p>
+        <p>{Id}</p>
       )}
       {data}
     </>
