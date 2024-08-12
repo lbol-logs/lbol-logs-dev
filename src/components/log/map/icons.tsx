@@ -1,8 +1,8 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { checkForce } from 'utils/helpers';
-import MapNodes from 'utils/MapNodes';
+import { checkForce } from 'utils/functions/helpers';
+import MapNodes from 'utils/classes/MapNodes';
 import { TActObj } from 'utils/types/runData';
-import { getBossImage, getMapImage } from 'utils/getImage';
+import { getBossImage, getMapImage } from 'utils/functions/getImage';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import { useTranslation } from 'react-i18next';

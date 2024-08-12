@@ -4,7 +4,7 @@ import CardCards from '../../entityCards/cardCards';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
-import { getCommonImage } from 'utils/getImage';
+import { getCommonImage } from 'utils/functions/getImage';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import EnemyCards from './enemyCards';

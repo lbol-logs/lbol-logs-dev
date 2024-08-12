@@ -1,7 +1,7 @@
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getManaImage } from 'utils/getImage';
+import { getManaImage } from 'utils/functions/getImage';
 import { TBaseMana } from 'utils/types/runData';
 
 function BaseManaWidget({ baseMana }: { baseMana: TBaseMana}) {

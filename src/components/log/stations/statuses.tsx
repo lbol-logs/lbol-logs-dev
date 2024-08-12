@@ -1,7 +1,7 @@
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage } from 'utils/getImage';
+import { getCommonImage } from 'utils/functions/getImage';
 import { TStatus } from 'utils/types/runData';
 
 function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus }) {

@@ -4,7 +4,7 @@ import CardCards from '../../entityCards/cardCards';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
-import { getCommonImage } from 'utils/getImage';
+import { getCommonImage } from 'utils/functions/getImage';
 
 function TempStation({ station }: { station: TStation }) {
   const { Type, Data, Id, Rewards } = station;

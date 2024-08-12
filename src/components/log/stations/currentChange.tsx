@@ -4,7 +4,7 @@ import { TExhibitObjs, TExhibits, TLevel } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage } from 'utils/getImage';
+import { getCommonImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 

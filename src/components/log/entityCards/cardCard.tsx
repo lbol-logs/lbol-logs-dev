@@ -1,7 +1,7 @@
 import { cardSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCardImage } from 'utils/getImage';
+import { getCardImage } from 'utils/functions/getImage';
 import { TCard } from 'utils/types/runData';
 
 function CardCard({ card }: { card: TCard }) {

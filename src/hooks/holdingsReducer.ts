@@ -1,5 +1,5 @@
-import copyObject from 'utils/helpers';
-import Mana from 'utils/Mana';
+import copyObject from 'utils/functions/helpers';
+import Mana from 'utils/classes/Mana';
 import { TRange3 } from 'utils/types/common';
 import { CardWithUpgradeCounter, exhibitInitialCounter, TAct, TBaseManaObj, TCard, TExhibitObj, THolding, THoldingAction, THoldings, TLevel } from 'utils/types/runData';
 

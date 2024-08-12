@@ -1,4 +1,4 @@
-import { TAct, TLevel, TRunData } from './types/runData';
+import { TAct, TLevel, TRunData } from '../types/runData';
 
 class ActLevel {
   constructor(runData: TRunData, act: TAct) {

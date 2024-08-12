@@ -6,7 +6,7 @@ import Summary from './summary';
 import Control from './control';
 import { TAct, TLevel } from 'utils/types/runData';
 import { useSearchParams } from 'react-router-dom';
-import ActLevel from 'utils/ActLevel';
+import ActLevel from 'utils/classes/ActLevel';
 import { scrollTolerance } from 'configs/globals';
 
 function RunDataTemplate() {

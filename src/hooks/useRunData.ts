@@ -1,12 +1,12 @@
-import { getConfigs, getLog } from 'utils/fetchData';
+import { getConfigs, getLog } from 'utils/functions/fetchData';
 import { TRunData } from 'utils/types/runData';
 import { LogContext } from 'contexts/logContext';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { validateConfigs, validateRunData } from 'utils/helpers';
-import use from 'utils/use';
-import setHoldings from 'utils/setHoldings';
+import { validateConfigs, validateRunData } from 'utils/functions/helpers';
+import use from 'utils/functions/use';
+import setHoldings from 'utils/functions/setHoldings';
 import { configs } from 'configs/globals';
 import { TConfigsData } from 'utils/types/common';
 
