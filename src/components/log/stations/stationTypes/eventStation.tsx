@@ -20,10 +20,10 @@ function EventStation({ station }: { station: TStation }) {
   const { Choices, Rounds } = Data;
 
   const choices = (
-    <p>
+    <div>
       {t('choices', { ns: 'stations' })}
       <ChoicesWidget id={Id as string} choices={Choices} />
-    </p>
+    </div>
   );
 
 

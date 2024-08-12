@@ -11,11 +11,12 @@ function ChoicesWidget({ id, choices }: { id: string, choices: Array<TChoice> })
     <div className="p-choices">
       {choices.map((choice, i) => {
         // TODO
-        const { line, next } = current[choice];
-        current = next;
+        // const { line, next } = current[choice];
+        // current = next;
+        const line = ''
 
         return (
-          <div className="p-choice">
+          <div className="p-choice" key={i}>
             {t(`${id}.${line}`, { ns: 'eventDialogures' })}
           </div>
         );
