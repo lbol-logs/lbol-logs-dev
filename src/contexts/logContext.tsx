@@ -1,6 +1,6 @@
 import holdingsReducer from 'hooks/holdingsReducer';
 import { createContext, useReducer, useState } from 'react';
-import { TConfigsData, TDispatch, TObjAny } from 'utils/types/common';
+import { TConfigsData, TDispatch } from 'utils/types/common';
 import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
 
 const defaultIsRunDataLoaded = false;

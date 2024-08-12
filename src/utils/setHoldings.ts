@@ -1,5 +1,5 @@
 import { eventConvertBaseMana, ExhibitWithCounter, requestWithStartCard, RequestWithStartCard, TActObj, THoldingAction, THoldingChange, THoldingsReducer, TNode, TNodeObj, TRunData } from 'utils/types/runData';
-import { TDispatch, TObjAny } from 'utils/types/common';
+import { TObjAny } from 'utils/types/common';
 import copyObject from './copyObject';
 
 function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings: THoldingsReducer, exhibitConfigs: TObjAny) {
@@ -32,6 +32,7 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   }
 
   // BaseDeck
+  // eslint-disable-next-line no-lone-blocks
   {
     for (const card of Cards) {
       const action: THoldingAction = {
@@ -62,6 +63,7 @@ function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings
   }
 
   // BaseExhibit
+  // eslint-disable-next-line no-lone-blocks
   {
     {
       const action: THoldingAction = {

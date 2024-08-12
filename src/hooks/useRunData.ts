@@ -12,7 +12,7 @@ import { TConfigsData } from 'utils/types/common';
 
 function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
-  const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, configsData, setConfigsData } = useContext(LogContext);
+  const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData } = useContext(LogContext);
   // TODO: setLog
 
   const navigate = useNavigate();

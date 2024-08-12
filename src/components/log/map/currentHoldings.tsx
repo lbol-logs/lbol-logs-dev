@@ -27,7 +27,7 @@ function CurrentHoldings() {
             values={{
               act: act
             }}
-            context='4'
+            context={act.toString()}
           />
           <Trans
             i18nKey="level"

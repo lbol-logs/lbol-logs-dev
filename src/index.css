@@ -414,18 +414,16 @@ img {
   margin: 0.1em 0;
   gap: var(--entity-gap);
 }
-
 .c-entity {
   display: flex;
   align-items: center;
   padding: 0.5em;
   border: 1px solid #000;
-  width: 162px;
+  width: 302px;
   height: 42px;
   box-sizing: border-box;
   overflow: hidden;
 }
-
 .p-entity__label {
   word-break: break-word;
   width: 4em;
@@ -442,7 +440,8 @@ img {
 .c-card__text {
   z-index: 1;
 }
-.c-card__overlay {
+.c-card__text::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -450,6 +449,7 @@ img {
   height: 100%;
   background: #fff;
   opacity: 0.3;
+  z-index: -1;
 }
 
 .c-card__img {
