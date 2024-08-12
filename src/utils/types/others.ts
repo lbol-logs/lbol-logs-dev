@@ -8,7 +8,7 @@ type TAboutComponent = {
   array: Array<string>
 };
 
-type TOption = TRange3;
+type TChoice = TRange3;
 
 type TPromise = {
   status: string,
@@ -20,6 +20,6 @@ type TPromise = {
 export type {
   TRunList,
   TAboutComponent,
-  TOption,
+  TChoice,
   TPromise
 };
