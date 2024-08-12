@@ -24,7 +24,7 @@
         "Difficulty, Requests, Result",
         "Map",
         "Route",
-        "Exhibits revealed (except events and shops), acquired, lost",
+        "Exhibits revealed (except events and shops), acquired, lost, consumed",
         "Cards revealed (except events and shops), acquired, lost, upgraded",
         "Change of HP/Max HP, P/Max P, Gold",
         "Enemy encounts (name and # of turns only)",
