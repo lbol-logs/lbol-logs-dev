@@ -24,7 +24,7 @@ function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitCh
       const { Act, Level } = runData.Stations[_exhibit.Station].Node;
       const i = holdings.findIndex(({ Act: _act, Level: _level }) => Act === _act && Level === _level);
       if (i) {
-        const exhibit: TExhibitObj = holdings[i - 1].Exhibits.find(({ Id }) => Id === exhibit.Id) as TExhibitObj;
+        const exhibit: TExhibitObj = holdings[i - 1].Exhibits.find(({ Id: _id }) => _id === Id) as TExhibitObj;
         const { Counter } = exhibit;
         lastCounter = (
           <>
