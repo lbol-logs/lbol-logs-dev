@@ -294,17 +294,21 @@ img {
   flex-basis: 60%;
 }
 
+.c-rewards {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 0.5em;
+  margin: 0.5em 0;
+}
 .c-rewards__rounds, .c-rewards__money {
   display: flex;
   align-items: center;
 }
+.c-rewards__icon {
+  flex-shrink: 0;
+}
 .c-rewards__cards {
   display: flex;
-}
-
-.c-rewards {
-  display: flex;
-  align-items: flex-start;
 }
 
 .p-station__right {
@@ -412,15 +416,12 @@ img {
 .c-entities {
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
-}
-.p-station__right .c-entities {
-  row-gap: 0.5em;
+  gap: 0.5em 1em;
 }
 .c-entity {
   display: flex;
   align-items: center;
-  padding: 0.5em;
+  padding: 8px;
   border-width: 1px;
   border-style: solid;
   width: 302px;
@@ -485,6 +486,10 @@ img {
 
 .c-exhibit {
   column-gap: 0.5em;
+}
+.c-exhibit__img.u-img-vertical {
+  height: var(--icon-size);
+  width: auto;
 }
 
 .p-enemies {

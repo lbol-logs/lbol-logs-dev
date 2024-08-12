@@ -53,7 +53,7 @@ function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitCh
 
   return (
     <span className={`c-entity c-entity--${Rarity} c-exhibit`}>
-      <LazyLoadImage className="c-exhibit__img u-img-vertical" src={getExhibitImage(Id)} width={iconSize} height={iconSize}   alt="" />
+      <LazyLoadImage className="c-exhibit__img" src={getExhibitImage(Id)} width={iconSize} height={iconSize}   alt="" />
       <span className="c-entity__text c-exhibit__text">{t(Id, { ns: 'exhibits' })}</span>
       {counter}
     </span>
