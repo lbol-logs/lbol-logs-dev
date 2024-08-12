@@ -95,5 +95,16 @@
     "C": "C",
     "P": "P",
     "A": "?"
+  },
+  "request_one": "Request",
+  "request_other": "Requests",
+  "requests": {
+
+  },
+  "difficulties": {
+    "Normal": "Normal"
+  },
+  "result": {
+
   }
 }

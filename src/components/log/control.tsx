@@ -65,7 +65,9 @@ function Control() {
     );
     centerArea = (
       <span className="p-control__component p-control__component--center">
-        {/* TODO: something */}
+        {
+          // TODO: character (icon, type, shiningexhibit), difficulty, requests, result
+        }
       </span>
     );
     buttonRight2 = (

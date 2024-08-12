@@ -4,7 +4,7 @@ import Svg from './svg';
 import Icons from './icons';
 import Links from './links';
 import CurrentHoldings from './currentHoldings';
-import Act from '../stations/act';
+import Act from './act';
 
 function Map() {
   const { runData, act, showMap } = useContext(LogContext);

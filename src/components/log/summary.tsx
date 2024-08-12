@@ -5,6 +5,8 @@ import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import { useTranslation } from 'react-i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
+import DifficultyWidget from 'components/common/parts/difficultyWidget';
+import DateTime from 'components/common/parts/dateTime';
 
 function Summary() {
   const { runData, isRunDataLoaded } = useContext(LogContext);
@@ -18,25 +20,24 @@ function Summary() {
 
   // TODO: locales
   // chacaters
-  // requets
 
   return (
     <section className="p-summary">
       <p>{t(Character, { ns: 'characters' })}</p>
       <p>{t(PlayerType, { ns: 'characters' })}</p>
       <div>
-        <span>{t('Requests', { ns: 'common' })}</span>
+        <span>{t('request', { ns: 'common', count: Requests.length })}</span>
         {Requests.map(Request => {
           return (
-            <span key={Request}>{t(Request, { ns: 'requests' })}</span>
+            <span key={Request}>{t(`requests.${Request}`, { ns: 'common' })}</span>
           )
         })}
       </div>
-      <p>{Difficulty}</p>
-      <p>{Type}</p>
-      <p>{t('HasClearBonus', { ns: 'log' })}: {HasClearBonus}</p>
-      <p>{t('ShowRandomResult', { ns: 'log' })}: {ShowRandomResult}</p>
-      <p>{Timestamp}</p>
+      <DifficultyWidget difficulty={Difficulty} />
+      <p>{t(`result.${Type}`, { ns: 'common' })}</p>
+      <p>{t('HasClearBonus', { ns: 'log' })}: {HasClearBonus.toString()}</p>
+      <p>{t('ShowRandomResult', { ns: 'log' })}: {ShowRandomResult.toString()}</p>
+      <DateTime timestamp={Timestamp} />
       <BaseManaWidget baseMana={BaseMana} />
       <h3>{t('card', { ns: 'common', count: Cards.length })}</h3>
       <CardCards cards={Cards} />

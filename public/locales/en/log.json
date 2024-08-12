@@ -6,5 +6,7 @@
   "cardsCount_one": "Card: {{count}}",
   "cardsCount_other": "Cards: {{count}}",
   "exhibitsCount_one": "Exhibit: {{count}}",
-  "exhibitsCount_other": "Exhibits: {{count}}"
+  "exhibitsCount_other": "Exhibits: {{count}}",
+  "HasClearBonus": "",
+  "ShowRandomResult": ""
 }
