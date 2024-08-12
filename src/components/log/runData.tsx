@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import useVersion from 'hooks/useVersion';
 import useRunData from 'hooks/useRunData';
-import RunDataLoaded from './runDataLoaded';
+import RunDataTemplate from './runDataTemplate';
 import Loading from 'components/common/loading';
 
 function RunData({ ver, id }: { ver: string, id: string }) {
@@ -11,7 +11,7 @@ function RunData({ ver, id }: { ver: string, id: string }) {
   return (
     <>
       <Suspense fallback={<Loading />}>
-        <RunDataLoaded />
+        <RunDataTemplate />
       </Suspense>
     </>
   );

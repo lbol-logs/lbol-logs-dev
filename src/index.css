@@ -314,6 +314,7 @@ img {
 .p-entity {
   display: flex;
   align-items: flex-start;
+  margin: 0.5em 0;
 }
 
 .p-entity__label {
@@ -411,8 +412,10 @@ img {
 .c-entities {
   display: flex;
   flex-wrap: wrap;
-  margin: 0.1em 0;
-  gap: var(--entity-gap);
+  gap: 1em;
+}
+.p-station__right .c-entities {
+  row-gap: 0.5em;
 }
 .c-entity {
   display: flex;
@@ -489,7 +492,6 @@ img {
   --padding-inner: 0.625em;
   --control-height: 36px;
   --control-gap: 1em;
-  --entity-gap: 0.5em;
   --icon-size: 36px;
   --green: green;
   --red: red;

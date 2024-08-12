@@ -83,8 +83,10 @@
     "skip": "Go to the last Act",
     "map": "Map"
   },
-  "card": "Card",
-  "exhibit": "Exhibit",
+  "card_one": "Card",
+  "card_other": "Cards",
+  "exhibit_one": "Exhibit",
+  "exhibit_other": "Exhibits",
   "mana": {
     "W": "W",
     "U": "U",

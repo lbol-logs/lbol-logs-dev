@@ -7,7 +7,7 @@ src = r'\_original'
 dst = r'\_avif'
 
 def card():
-  w = 160
+  w = 300
   h = 40
   ratio = 700 / 1024
   top = 16

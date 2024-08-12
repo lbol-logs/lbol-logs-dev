@@ -27,9 +27,9 @@ function Summary() {
       <p>ShowRandomResult: {ShowRandomResult}</p>
       <p>{Timestamp}</p>
       <BaseManaWidget baseMana={BaseMana} />
-      <h3>Cards</h3>
+      <h3>{t('card', { ns: 'common', count: Cards.length })}</h3>
       <CardCards cards={Cards} />
-      <h3>Exhibits</h3>
+      <h3>{t('exhibit', { ns: 'common', count: Exhibits.length })}</h3>
       <ExhibitCards exhibits={Exhibits} />
     </section>
   );
