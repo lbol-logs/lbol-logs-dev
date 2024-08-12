@@ -1,5 +1,5 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { checkForce } from 'utils/checkForce';
+import { checkForce } from 'utils/helpers';
 import MapNodes from 'utils/MapNodes';
 import { TActObj } from 'utils/types/runData';
 import { getBossImage, getMapImage } from 'utils/getImage';

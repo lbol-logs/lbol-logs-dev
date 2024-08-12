@@ -1,6 +1,6 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext, useEffect, useState } from 'react';
-import { checkForce } from 'utils/checkForce';
+import { checkForce } from 'utils/helpers';
 import MapNodes from 'utils/MapNodes';
 import { TActObj, TNodeObj, TNodeX, TNodeY } from 'utils/types/runData';
 

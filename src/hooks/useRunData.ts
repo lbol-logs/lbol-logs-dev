@@ -4,7 +4,7 @@ import { LogContext } from 'contexts/logContext';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { validateConfigs, validateRunData } from 'utils/validate';
+import { validateConfigs, validateRunData } from 'utils/helpers';
 import use from 'utils/use';
 import setHoldings from 'utils/setHoldings';
 import { configs } from 'configs/globals';

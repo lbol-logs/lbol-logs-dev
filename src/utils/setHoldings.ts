@@ -1,6 +1,6 @@
 import { eventConvertBaseMana, ExhibitWithCounter, requestWithStartCard, RequestWithStartCard, TActObj, THoldingAction, THoldingChange, THoldingsReducer, TNode, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
-import copyObject from './copyObject';
+import copyObject from 'utils/helpers';
 
 function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings: THoldingsReducer, exhibitConfigs: TObjAny) {
   const { Stations } = runData;
