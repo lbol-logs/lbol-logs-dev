@@ -8,11 +8,12 @@ import { getExhibitImage } from 'utils/functions/getImage';
 import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
 
 function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitChange }) {
-  const { runData, holdings } = useContext(LogContext);
+  const { runData, holdings, configsData } = useContext(LogContext);
   const { t } = useTranslation();
 
   const isExhibit = typeof exhibit === 'string';
   const Id = isExhibit ? exhibit : exhibit.Id;
+  const { Rarity } = configsData.exhibits[Id];
   let counter = null;
 
   if (!isExhibit) {
@@ -51,7 +52,7 @@ function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitCh
   }
 
   return (
-    <span className={`c-entity c-exhibit`}>
+    <span className={`c-entity c-entity--${Rarity} c-exhibit`}>
       <LazyLoadImage className="c-exhibit__img u-img-vertical" src={getExhibitImage(Id)} width={iconSize} height={iconSize}   alt="" />
       <span className="c-entity__text c-exhibit__text">{t(Id, { ns: 'exhibits' })}</span>
       {counter}

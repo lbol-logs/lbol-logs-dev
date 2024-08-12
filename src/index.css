@@ -421,11 +421,28 @@ img {
   display: flex;
   align-items: center;
   padding: 0.5em;
-  border: 1px solid #000;
+  border-width: 1px;
+  border-style: solid;
   width: 302px;
   height: 42px;
   box-sizing: border-box;
   overflow: hidden;
+}
+.c-entity--Common {
+  border-color: #000;
+}
+.c-entity--Uncommon {
+  border-color: skyblue;
+}
+.c-entity--Rare {
+  border-color: gold;
+}
+.c-entity--Shining {
+  border-color: orangered;
+}
+.c-entity--Mythic {
+  border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+  border-image-slice: 1;
 }
 .p-entity__label {
   word-break: break-word;
