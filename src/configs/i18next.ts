@@ -18,10 +18,10 @@ i18next
       })
   }))
   .init({
+    // debug: true,
     supportedLngs: lngs,
     fallbackLng: false,
-    ns: namespaces,
-    // debug: true
+    ns: namespaces
   });
 
 export default i18next;
