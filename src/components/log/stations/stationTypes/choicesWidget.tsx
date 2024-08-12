@@ -1,16 +1,22 @@
 import choiceDialogues from 'configs/choiceDialogues';
+import { useTranslation } from 'react-i18next';
 import { TChoice } from 'utils/types/others';
 
 function ChoicesWidget({ id, choices }: { id: string, choices: Array<TChoice> }) {
-  // TODO
+  const { t } = useTranslation();
+
+  let current = choiceDialogues[id];
 
   return (
     <div className="p-choices">
       {choices.map((choice, i) => {
-        const dialogue = choiceDialogues[id][i][choice];
+        // TODO
+        const { line, next } = current[choice];
+        current = next;
+
         return (
           <div className="p-choice">
-            {dialogue}
+            {t(`${id}.${line}`, { ns: 'eventDialogures' })}
           </div>
         );
       })}
