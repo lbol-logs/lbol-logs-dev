@@ -8,6 +8,7 @@ import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import DifficultyWidget from 'components/common/parts/difficultyWidget';
 import DateTime from 'components/common/parts/dateTime';
 import PlayerTypeWidget from 'components/common/parts/playerTypeWidget';
+import RequestsWidget from 'components/common/parts/requestsWidget';
 
 function Summary() {
   const { runData, isRunDataLoaded } = useContext(LogContext);
@@ -25,14 +26,7 @@ function Summary() {
     <section className="p-summary">
       <p>{t(Character, { ns: 'common' })}</p>
       <PlayerTypeWidget character={Character} playerType={PlayerType} />
-      <div>
-        <span>{t('request', { ns: 'common', count: Requests.length })}</span>
-        {Requests.map(Request => {
-          return (
-            <span key={Request}>{t(`requests.${Request}`, { ns: 'common' })}</span>
-          )
-        })}
-      </div>
+      <RequestsWidget requests={Requests} />
       <DifficultyWidget difficulty={Difficulty} />
       <p>{t(`result.${Type}`, { ns: 'common' })}</p>
       <p>{t('HasClearBonus', { ns: 'log' })}: {HasClearBonus.toString()}</p>

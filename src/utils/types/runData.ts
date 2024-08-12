@@ -213,7 +213,8 @@ export type {
   TExhibitObjs,
   TBaseMana,
   TBaseManaObj,
-  THoldingChange
+  THoldingChange,
+  TRequests
 };
 
 export {
