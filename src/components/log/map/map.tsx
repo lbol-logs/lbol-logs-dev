@@ -2,7 +2,6 @@ import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import Svg from './svg';
 import Icons from './icons';
-import Links from './links';
 import CurrentHoldings from './currentHoldings';
 import Act from './act';
 
