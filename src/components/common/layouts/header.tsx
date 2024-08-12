@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import LanguageSwitcher from 'components/common/languageSwitcher';
-import VersionSwitcher from 'components/common/versionSwitcher';
-import Logo from './logo';
+import LanguageSwitcher from 'components/common/parts/languageSwitcher';
+import VersionSwitcher from 'components/common/parts/versionSwitcher';
+import Logo from '../parts/logo';
 
 function Header({ isTop, isLog }: { isTop?: boolean, isLog?: boolean }) {
   const { t } = useTranslation();

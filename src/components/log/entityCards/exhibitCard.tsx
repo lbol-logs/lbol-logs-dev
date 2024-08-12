@@ -1,4 +1,4 @@
-import Processing from 'components/common/processing';
+import Processing from 'components/common/layouts/processing';
 import { iconSize } from 'configs/globals';
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';

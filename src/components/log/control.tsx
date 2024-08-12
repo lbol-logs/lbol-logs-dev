@@ -4,7 +4,7 @@ import { TAct, TLevel } from 'utils/types/runData';
 import { SetURLSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/ActLevel';
 import { TObjString } from 'utils/types/common';
-import Loading from 'components/common/loading';
+import Loading from 'components/common/layouts/loading';
 import MapNodes from 'utils/MapNodes';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { getCommonImage, getControlImage } from 'utils/getImage';

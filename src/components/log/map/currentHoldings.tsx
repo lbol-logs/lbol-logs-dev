@@ -3,10 +3,10 @@ import { useContext, useEffect, useState } from 'react';
 import { THolding } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
-import Processing from 'components/common/processing';
+import Processing from 'components/common/layouts/processing';
 import { Trans, useTranslation } from 'react-i18next';
 import i18next from 'i18next';
-import BaseManaWidget from 'components/common/baseManaWidget';
+import BaseManaWidget from 'components/common/parts/baseManaWidget';
 
 function CurrentHoldings() {
   const { act, level, holdings } = useContext(LogContext);

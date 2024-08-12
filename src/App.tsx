@@ -6,8 +6,8 @@ import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import CommonProvider from 'contexts/commonContext';
 import { baseUrl } from 'configs/globals';
-import RemoveTrailingSlash from 'components/common/removeTrailingSlash';
-import ScrollToTop from 'components/common/scrollToTop';
+import RemoveTrailingSlash from 'components/common/utils/removeTrailingSlash';
+import ScrollToTop from 'components/common/utils/scrollToTop';
 
 function App() {
   const { t } = useTranslation();

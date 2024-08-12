@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import Logo from './logo';
+import Logo from '../parts/logo';
 
 function Footer() {
   const { t } = useTranslation();

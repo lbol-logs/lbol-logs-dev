@@ -1,10 +1,10 @@
-import Header from 'components/common/header';
+import Header from 'components/common/layouts/header';
 import { latestVersion } from 'configs/globals';
 import LogProvider from 'contexts/logContext';
 import { useParams } from 'react-router-dom';
 import RunData from './runData';
 import { Suspense } from 'react';
-import Loading from 'components/common/loading';
+import Loading from 'components/common/layouts/loading';
 
 function Log() {
   const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();
