@@ -26,6 +26,7 @@ function Summary() {
     <section className="p-summary">
       <p>{t(Character, { ns: 'common' })}</p>
       <PlayerTypeWidget character={Character} playerType={PlayerType} />
+      {/* TODO: shinning exhibit */}
       <RequestsWidget requests={Requests} />
       <DifficultyWidget difficulty={Difficulty} />
       <p>{t(`result.${Type}`, { ns: 'common' })}</p>
