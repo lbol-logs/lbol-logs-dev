@@ -10,7 +10,7 @@ def card():
   w = 300
   h = 40
   ratio = 700 / 1024
-  top = 16
+  top = 40
 
   dir = os.path.dirname(__file__)
   files = os.listdir(rf'{dir}{src}')

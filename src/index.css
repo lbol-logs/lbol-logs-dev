@@ -140,6 +140,9 @@ img {
 .p-run-list__cell {
   padding: 0.3125em;
 }
+.p-run-list__cell--id {
+  width: 2em;
+}
 .p-run-list__cell--character {
   width: 5.5em;
 }
