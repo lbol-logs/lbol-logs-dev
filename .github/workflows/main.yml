@@ -18,5 +18,7 @@ jobs:
           token: ${{ secrets.PAT }}
           ref: public
       - run: |
+          git clone --bare https://github.com/ed-ev/lbol-logs-dev.git --single-branch --branch public lbol-logs
+          cd lbol-logs
           git remote add public https://github.com/ed-ev/lbol-logs.git
-          git push -f origin public:public
+          git push public public
