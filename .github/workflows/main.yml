@@ -10,15 +10,12 @@ jobs:
   trigger-mirror:
     if: github.repository == 'ed-ev/lbol-logs-dev'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT }}
+          repositories: lbol-logs-dev
           ref: public
       - run: |
-          git clone --bare https://ed-ev:${{ secrets.PAT }}@github.com/ed-ev/lbol-logs-dev.git --single-branch --branch public lbol-logs
-          cd lbol-logs
           git remote add public https://github.com/ed-ev/lbol-logs.git
-          git push public public
+          git push public -f
