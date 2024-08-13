@@ -38,8 +38,10 @@ function RunDataTemplate() {
       )}
       {!isSummary && (
         <>
-          {!showMap && <CurrentHoldings />}
-          <Map />
+          {showMap
+            ? <Map />
+            : <CurrentHoldings />
+          }
           <Stations />
         </>
       )}

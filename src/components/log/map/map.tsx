@@ -5,14 +5,14 @@ import Icons from './icons';
 import Act from './act';
 
 function Map() {
-  const { runData, act, showMap } = useContext(LogContext);
+  const { runData, act } = useContext(LogContext);
 
   const { Acts } = runData;
   const ActObj = Acts[act - 1];
 
   return (
     <section className="p-map js-map">
-      <div className={`p-map__inner js-mapInner`} hidden={!showMap}>
+      <div className={`p-map__inner js-mapInner`}>
         <Act />
         <Icons ActObj={ActObj} />
         <Svg ActObj={ActObj} />
