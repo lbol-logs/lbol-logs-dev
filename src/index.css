@@ -1,6 +1,10 @@
 body {
   margin: 0;
+  height: 100vh;
   overflow-y: scroll;
+}
+#root {
+  /* overflow-y: scroll; */
 }
 a {
   text-decoration: none;
@@ -311,6 +315,11 @@ img {
   border-radius: 50%;
 }
 
+.p-summary, .p-stations {
+  padding-left: var(--padding-inner);
+  padding-right: var(--padding-inner);
+}
+
 .p-stations {
   margin-bottom: var(--control-height);
   flex: 1;
@@ -615,8 +624,8 @@ img {
   }
 }
 
-/* @supports (height: 100dvh) {
-  .l-log__inner  {
+@supports (height: 100dvh) {
+  body {
     height: 100dvh;
   }
-} */
+}

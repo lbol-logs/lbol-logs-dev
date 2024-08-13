@@ -19,6 +19,7 @@ function App() {
         <title>{t('title', { ns: 'common' })} - {t('subtitle', { ns: 'common' })}</title>
         <meta name="description" content={t('description', { ns: 'common' })} />
         <link rel="manifest" href={`${baseUrl}/locales/${i18next.language}/manifest.json`} />
+        <meta name="apple-mobile-web-app-title" content={t('title', { ns: 'common' })} />
       </Helmet>
 
       <RemoveTrailingSlash />
