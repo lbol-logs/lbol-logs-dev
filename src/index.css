@@ -495,7 +495,7 @@ img {
 }
 
 .c-exhibit__img {
-  height: var(--entity-height);
+  height: calc(var(--entity-height) * 0.7);
   width: auto;
   margin: 0 var(--entity-margin);
 }
