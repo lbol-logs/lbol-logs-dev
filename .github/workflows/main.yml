@@ -17,4 +17,4 @@ jobs:
           ref: public
       - run: |
           git remote add public https://github.com/ed-ev/lbol-logs.git
-          git push -f origin public
+          git push -f public public
