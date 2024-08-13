@@ -3,7 +3,7 @@
   "subtitle" : "東方光耀夜プレイ履歴共有",
   "description": "LBoL Logsは東方光耀夜 〜 Lost Branch of Legend (LBoL)のプレイ履歴を共有するサービスです。",
   "underConstruction": "このサイトは準備中です。デモ目的に公開しています。",
-  "about": "LBoL Logsは<steam>東方光耀夜 〜 Lost Branch of Legend</steam> (LBoL)のプレイ履歴を共有するサービスです。<br />ゲーム内の履歴データは情報が少なく過去50回分しなかい保存されないため、自作Mod<mod>LBoL Run Logger</mod> (開発中)が生成したデータだけのサポートとなります。<br />意見などはお手数ですが、<discord>Discordの日本語専用スレッド</discord>からお願いします。",
+  "about": "LBoL Logsは<steam>東方光耀夜 〜 Lost Branch of Legend</steam> (LBoL)のプレイ履歴を共有するサービスです。<br />ゲーム内の履歴データは情報が少なく過去50回分しなかい保存されないため、自作Mod <mod>LBoL Run Logger</mod> (開発中)が生成したデータだけのサポートとなります。<br />意見などはお手数ですが、<discord>Discordの日本語専用スレッド</discord>からお願いします。",
   "done": {
     "keys": {
       "done": "完了",
