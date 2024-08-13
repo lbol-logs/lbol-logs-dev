@@ -11,16 +11,9 @@ jobs:
     if: github.repository == 'ed-ev/lbol-logs-dev'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.PRIVATE_KEY }}
-          owner: 'ed-ev'
-          repositories: 'lbol-logs'
       - uses: actions/checkout@v4
         with:
-          token: ${{ steps.app-token.outputs.token }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - run: |
           git remote add mirror https://github.com/ed-ev/lbol-logs.git
           git push mirror -f
