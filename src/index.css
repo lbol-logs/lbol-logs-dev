@@ -216,6 +216,12 @@ img {
   padding: 0.5em;
   overflow-y: auto;
   box-sizing: border-box;
+  --x: 1.5;
+  --n: calc(2 * 1.5);
+  --n-1: calc(var(--n) - 1);
+  --entity-width: min(calc(300px / var(--x)), calc((100vw - var(--padding-inner) * 2 - var(--entity-column-gap) * var(--n-1) - var(--entity-border) * 2 * var(--n)) / var(--n)));
+  --entity-height: calc(var(--entity-width) / 7.5);
+  --entity-margin: calc(var(--entity-height) * 0.2);
 }
 
 .p-map__svg {
@@ -419,17 +425,15 @@ img {
 .c-entities {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5em 1em;
+  gap: 0.5em var(--entity-column-gap);
 }
 .c-entity {
   display: flex;
   align-items: center;
-  padding: 8px;
-  border-width: 1px;
+  border-width: var(--entity-border);
   border-style: solid;
-  width: 302px;
-  height: 42px;
-  box-sizing: border-box;
+  width: var(--entity-width);
+  height: var(--entity-height);
   overflow: hidden;
 }
 .c-entity--Common {
@@ -448,6 +452,9 @@ img {
   border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
   border-image-slice: 1;
 }
+.c-entity__text {
+  font-size: calc(var(--entity-width) / 18.75);
+}
 .p-entity__label {
   word-break: break-word;
   width: 4em;
@@ -456,13 +463,13 @@ img {
 
 .c-card {
   position: relative;
-  overflow: hidden;
 }
 .c-card--upgraded {
   color: var(--green);
 }
 .c-card__text {
   z-index: 1;
+  padding: 0 var(--entity-margin);
 }
 .c-card__text::after {
   content: '';
@@ -487,12 +494,10 @@ img {
   z-index: -1;
 }
 
-.c-exhibit {
-  column-gap: 0.5em;
-}
-.c-exhibit__img.u-img-vertical {
-  height: var(--icon-size);
+.c-exhibit__img {
+  height: var(--entity-height);
   width: auto;
+  margin: 0 var(--entity-margin);
 }
 
 .p-enemies {
@@ -518,6 +523,11 @@ img {
   --control-height: 36px;
   --control-gap: 1em;
   --icon-size: 36px;
+  --entity-column-gap: 1em;
+  --entity-border: 1px;
+  --entity-width: min(300px, calc((100vw - var(--padding-inner) * 2 - var(--entity-column-gap) - var(--entity-border) * 4) / 2));
+  --entity-height: calc(var(--entity-width) / 7.5);
+  --entity-margin: calc(var(--entity-height) * 0.2);
   --green: green;
   --red: red;
   --orange: orange;

@@ -32,7 +32,7 @@ const iconSize = 36;
 
 const cardSize = {
   width: 300,
-  height: 42
+  height: 40
 };
 
 const scrollTolerance = 50;
