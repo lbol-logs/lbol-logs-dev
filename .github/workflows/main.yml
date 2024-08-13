@@ -1,0 +1,25 @@
+name: copy public to prod
+
+on:
+  push:
+    branches:
+      - public
+  workflow_dispatch:
+
+jobs:
+  trigger-mirror:
+    if: github.repository == 'ed-ev/lbol-logs-dev'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+          repositories: lbol-logs
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+      - run: |
+          git remote add mirror https://github.com/ed-ev/lbol-logs.git
+          git push mirror -f
