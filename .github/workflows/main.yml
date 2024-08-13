@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.PAT }}
       - run: |
           git remote add mirror https://github.com/ed-ev/lbol-logs.git
           git push mirror -f
