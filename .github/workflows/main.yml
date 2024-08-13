@@ -16,4 +16,4 @@ jobs:
           token: ${{ secrets.PAT }}
       - run: |
           git remote add mirror https://github.com/ed-ev/lbol-logs.git
-          git push mirror -f
+          git push -f origin public
