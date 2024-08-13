@@ -8,7 +8,7 @@ import { TAct, TLevel } from 'utils/types/runData';
 import { useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/classes/ActLevel';
 import { scrollTolerance } from 'configs/globals';
-import CurrentHoldings from './map/currentHoldings';
+import CurrentHoldings from './currentHoldings';
 
 function RunDataTemplate() {
   const { isRunDataLoaded, runData, act, setAct, setLevel, showMap } = useContext(LogContext);

@@ -7,16 +7,14 @@ function Act() {
   useTranslation();
 
   return (
-    <h2 className="c-act__title">
-      <Trans
-          i18nKey="act"
-          ns="log"
-          values={{
-            act: act
-          }}
-          context={act.toString()}
-        />
-    </h2>
+    <Trans
+        i18nKey="act"
+        ns="log"
+        values={{
+          act: act
+        }}
+        context={act.toString()}
+      />
   );
 }
 

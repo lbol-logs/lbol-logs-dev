@@ -1,13 +1,14 @@
 import { LogContext } from 'contexts/logContext';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { THolding } from 'utils/types/runData';
-import CardCards from '../entityCards/cardCards';
-import ExhibitCards from '../entityCards/exhibitCards';
+import CardCards from './entityCards/cardCards';
+import ExhibitCards from './entityCards/exhibitCards';
 import Processing from 'components/common/layouts/processing';
 import { Trans, useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import { defaultHoldingsHeight } from 'configs/globals';
+import Act from './act';
 
 function CurrentHoldings() {
   const { act, level, holdings } = useContext(LogContext);
@@ -42,7 +43,7 @@ function CurrentHoldings() {
       else {
         clientY = event.clientY;
       }
-      if (clientY == undefined) return;
+      if (clientY === undefined) return;
       const height = clientY - (holdingsRef.current as HTMLDivElement).getBoundingClientRect().top;
       setHoldingsHeight(height);
     }
@@ -70,14 +71,7 @@ function CurrentHoldings() {
       const { Cards, Exhibits, BaseMana } = currentHolding;
       const holding = (
         <>
-          <Trans
-            i18nKey="act"
-            ns="log"
-            values={{
-              act: act
-            }}
-            context={act.toString()}
-          />
+          <Act />
           <Trans
             i18nKey="level"
             ns="log"
