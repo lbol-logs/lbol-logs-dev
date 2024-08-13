@@ -22,20 +22,16 @@ function CurrentHoldings() {
   const [holdingsHeight, setHoldingsHeight] = useState(defaultHoldingsHeight);
 
   const startResizing = useCallback(() => {
-    console.log('startResizing');
     setIsResizing(true);
   }, []);
 
   const stopResizing = useCallback(() => {
-    console.log('stopResizing');
     setIsResizing(false);
   }, []);
 
   const resize = useCallback((mouseMoveEvent: MouseEvent/*|TouchEvent*/) => {
     if (isResizing) {
-      console.log('isResizing');
       const height = mouseMoveEvent.clientY - (holdingsRef.current as HTMLDivElement).getBoundingClientRect().top;
-      console.log(height);
       setHoldingsHeight(height);
     }
   }, [isResizing]);
@@ -98,7 +94,7 @@ function CurrentHoldings() {
 
   return (
     <div
-      className="p-holdings"
+      className="p-holdings js-holdings"
       ref={holdingsRef}
       onMouseDown={(e) => e.preventDefault()}
       style={{ height: holdingsHeight }}

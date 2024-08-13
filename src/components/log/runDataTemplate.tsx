@@ -8,9 +8,10 @@ import { TAct, TLevel } from 'utils/types/runData';
 import { useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/classes/ActLevel';
 import { scrollTolerance } from 'configs/globals';
+import CurrentHoldings from './map/currentHoldings';
 
 function RunDataTemplate() {
-  const { isRunDataLoaded, runData, act, setAct, setLevel } = useContext(LogContext);
+  const { isRunDataLoaded, runData, act, setAct, setLevel, showMap } = useContext(LogContext);
   const [searchParams] = useSearchParams();
   const isSummary = act === 0;
 
@@ -22,13 +23,13 @@ function RunDataTemplate() {
     ( { a, l } = al.actLevel(a, l) );
     setAct(a);
     setLevel(l);
+    const statons = document.querySelector('.js-stations') as HTMLDivElement;
     const station = document.querySelector(`.js-level-${l}`) as HTMLDivElement;
-    const map = document.querySelector('.js-map') as HTMLDivElement;
-    if (!station || !map) return;
-    const height = station.offsetTop - map.offsetHeight;
-    if (window.scrollY < height - scrollTolerance) window.scrollTo(0, height);
+    if (!station || !showMap) return;
+    const height = station.offsetTop;
+    if (window.scrollY < height - scrollTolerance) statons.scrollTo(0, height);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isRunDataLoaded, runData, act]);
+  }, [isRunDataLoaded, runData, act, showMap]);
 
   return (
     <>
@@ -37,6 +38,7 @@ function RunDataTemplate() {
       )}
       {!isSummary && (
         <>
+          {!showMap && <CurrentHoldings />}
           <Map />
           <Stations />
         </>

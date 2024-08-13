@@ -7,7 +7,7 @@ import { TAct, TLevel } from 'utils/types/runData';
 import { scrollTolerance } from 'configs/globals';
 
 function Stations() {
-  const { runData, act, setLevel } = useContext(LogContext);
+  const { runData, act, setLevel, showMap } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { Stations } = runData;
@@ -32,7 +32,7 @@ function Stations() {
         const height = station.offsetTop - mapHeight - scrollTolerance;
         if (!level || window.scrollY >= height) {
           setLevel(level);
-          scrollToLevel(level, false);
+          scrollToLevel(level, showMap, false);
           updateQs(searchParams, setSearchParams, act, level);
           break;
         }
@@ -63,13 +63,13 @@ function Stations() {
 
     {
       const l = parseInt(searchParams.get('l') || '0') as TLevel;
-      if (!l) scrollToLevel(0, true);
+      if (!l) scrollToLevel(0, showMap, true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [runData, act]);
+  }, [runData, act, showMap]);
 
   return (
-    <section className="p-stations" ref={stationsRef}>
+    <section className="p-stations js-stations" ref={stationsRef}>
       {stations.map((station, i) => {
         const { Node } = station;
         const { Level } = Node;

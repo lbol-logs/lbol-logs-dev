@@ -13,7 +13,7 @@ function Log() {
     <Suspense fallback={<Loading />}>
       <Header isLog={true} />
       <main className="l-log">
-        <div className="l-inner">
+        <div className="l-log__inner l-inner">
           <LogProvider>
             <RunData ver={ver} id={id} />
           </LogProvider>

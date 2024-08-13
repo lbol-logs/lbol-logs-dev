@@ -43,7 +43,7 @@ function Control() {
     setAct(a);
     setLevel(l);
     updateQs(searchParams, setSearchParams, a, l);
-    scrollToLevel(l);
+    scrollToLevel(l, showMap);
   }
 
   function handleToggle() {
@@ -145,23 +145,24 @@ function updateQs(searchParams: URLSearchParams, setSearchParams: SetURLSearchPa
   setSearchParams(o, { replace: true });
 }
 
-function scrollToLevel(nextLevel: TLevel, scrollToY = true) {
-  const map = document.querySelector('.js-map') as HTMLDivElement;
-  if (!map) return;
-
-  const inner = map.querySelector('.js-mapInner') as HTMLDivElement;
-  if (inner) {
-    const { gap, length } = MapNodes.mapOptions;
-    const offset = (inner.offsetWidth - gap.x - length) * 0.3;
-    const x = MapNodes.x1x2(nextLevel)[0] - gap.x - offset;
-    inner.scrollTo(x, 0);
+function scrollToLevel(nextLevel: TLevel, showMap: boolean, scrollToY = true) {
+  if (showMap) {
+    const inner = document.querySelector('.js-mapInner') as HTMLDivElement;
+    if (inner) {
+      const { gap, length } = MapNodes.mapOptions;
+      const offset = (inner.offsetWidth - gap.x - length) * 0.3;
+      const x = MapNodes.x1x2(nextLevel)[0] - gap.x - offset;
+      inner.scrollTo(x, 0);
+    }
   }
 
-  if (!scrollToY) return;
-  const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
-  if (station) {
-    const y = station.offsetTop - map.offsetHeight;
-    window.scrollTo(0, y);
+  if (scrollToY) {
+    const stations = document.querySelector('.js-stations') as HTMLDivElement;
+    const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
+    if (station) {
+      const y = station.offsetTop;
+      stations.scrollTo(0, y);
+    }
   }
 }
 
