@@ -14,6 +14,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT }}
+          ref: public
       - run: |
           git remote add public https://github.com/ed-ev/lbol-logs.git
           git push -f origin public
