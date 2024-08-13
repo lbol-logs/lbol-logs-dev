@@ -28,21 +28,9 @@ function About() {
           ns="common"
         />
       </p>
+      
       <div className="p-about__break"></div>
-      <div className="p-about__roadmap c-roadmap">
-        <h2 className="c-roadmap__title">{t('roadmap.keys.roadmap', { ns: 'common' })}</h2>
-        {Object.entries(roadmapCategories).map(([category, array]) => {
-          const key = `c-roadmap-${category}`;
-          return <RoadMap className={key} category={category} array={array} key={key} />;
-        })}
-      </div>
-      <div className="p-about__done c-done">
-      <h2 className="c-done__title">{t('done.keys.done', { ns: 'common' })}</h2>
-        {Object.entries(doneCategories).map(([category, array]) => {
-          const key = `c-done-${category}`;
-          return <Done className={key} category={category} array={array} key={key} />;
-        })}
-      </div>
+
       <div className="p-about__about">
         <Trans
           i18nKey="about"
@@ -54,6 +42,23 @@ function About() {
           }}
         />
       </div>
+
+      <div className="p-about__roadmap c-roadmap">
+        <h2 className="c-roadmap__title">{t('roadmap.keys.roadmap', { ns: 'common' })}</h2>
+        {Object.entries(roadmapCategories).map(([category, array]) => {
+          const key = `c-roadmap-${category}`;
+          return <RoadMap className={key} category={category} array={array} key={key} />;
+        })}
+      </div>
+
+      <div className="p-about__done c-done">
+      <h2 className="c-done__title">{t('done.keys.done', { ns: 'common' })}</h2>
+        {Object.entries(doneCategories).map(([category, array]) => {
+          const key = `c-done-${category}`;
+          return <Done className={key} category={category} array={array} key={key} />;
+        })}
+      </div>
+
       <div className="p-about__attention">
         <h2 className="c-attention__title">{t('attention.key', { ns: 'common' })}</h2>
         <ul className="c-attention__list">
