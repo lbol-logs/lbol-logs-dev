@@ -10,6 +10,8 @@ jobs:
   trigger-mirror:
     if: github.repository == 'ed-ev/lbol-logs-dev'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
