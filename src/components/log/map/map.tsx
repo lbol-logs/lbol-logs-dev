@@ -14,7 +14,7 @@ function Map() {
   return (
     <section className="p-map js-map">
       {!showMap && <CurrentHoldings />}
-      <div className={`p-map__inner ${showMap ? '' : 'p-map__inner--hidden'} js-mapInner`}>
+      <div className={`p-map__inner js-mapInner`} hidden={!showMap}>
         <Act />
         <Icons ActObj={ActObj} />
         <Svg ActObj={ActObj} />

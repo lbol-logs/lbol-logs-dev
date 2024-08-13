@@ -37,6 +37,8 @@ const cardSize = {
 
 const scrollTolerance = 50;
 
+const defaultHoldingsHeight = 144;
+
 const configs: Array<string> = [
   'cards',
   'exhibits',
@@ -54,5 +56,6 @@ export {
   iconSize,
   cardSize,
   scrollTolerance,
+  defaultHoldingsHeight,
   configs
 };

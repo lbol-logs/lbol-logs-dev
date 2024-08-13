@@ -1,5 +1,5 @@
 import { LogContext } from 'contexts/logContext';
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { THolding } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
@@ -7,6 +7,7 @@ import Processing from 'components/common/layouts/processing';
 import { Trans, useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
+import { defaultHoldingsHeight } from 'configs/globals';
 
 function CurrentHoldings() {
   const { act, level, holdings } = useContext(LogContext);
@@ -15,6 +16,38 @@ function CurrentHoldings() {
   useTranslation();
 
   const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
+
+  const holdingsRef = useRef<HTMLDivElement>(null);
+  const [isResizing, setIsResizing] = useState(false);
+  const [holdingsHeight, setHoldingsHeight] = useState(defaultHoldingsHeight);
+
+  const startResizing = useCallback(() => {
+    console.log('startResizing');
+    setIsResizing(true);
+  }, []);
+
+  const stopResizing = useCallback(() => {
+    console.log('stopResizing');
+    setIsResizing(false);
+  }, []);
+
+  const resize = useCallback((mouseMoveEvent: MouseEvent/*|TouchEvent*/) => {
+    if (isResizing) {
+      console.log('isResizing');
+      const height = mouseMoveEvent.clientY - (holdingsRef.current as HTMLDivElement).getBoundingClientRect().top;
+      console.log(height);
+      setHoldingsHeight(height);
+    }
+  }, [isResizing]);
+
+  useEffect(() => {
+    window.addEventListener('mousemove', resize);
+    window.addEventListener('mouseup', stopResizing);
+    return () => {
+      window.removeEventListener('mousemove', resize);
+      window.removeEventListener('mouseup', stopResizing);
+    };
+  }, [holding, resize, stopResizing]);
 
   useEffect(() => {
     if (currentHolding) {
@@ -64,8 +97,16 @@ function CurrentHoldings() {
   }, [currentHolding, i18next.language]);
 
   return (
-    <div className="p-map__holdings">
-      {holding}
+    <div
+      className="p-holdings"
+      ref={holdingsRef}
+      onMouseDown={(e) => e.preventDefault()}
+      style={{ height: holdingsHeight }}
+    >
+      <div className="p-holdings__inner">
+        {holding}
+      </div>
+      <div className="p-holdings__resizer" onMouseDown={startResizing} />
     </div>
   );
 }
