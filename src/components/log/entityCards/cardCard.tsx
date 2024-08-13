@@ -11,10 +11,11 @@ function CardCard({ card }: { card: TCard }) {
   const { Id, IsUpgraded, UpgradeCounter } = card;
   const { t } = useTranslation();
   const { width, height } = cardSize;
-  const { Rarity } = configsData.cards[Id];
+  const { Rarity, IsMisfortune } = configsData.cards[Id];
+  const type = IsMisfortune ? 'Misfortune' : Rarity;
 
   return (
-    <span className={`c-entity c-entity--${Rarity} c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`}>
+    <span className={`c-entity c-entity--${type} c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`}>
       <span className="c-entity__text c-card__text">{t(Id, { ns: 'cards' })}{IsUpgraded && '+'}{UpgradeCounter}</span>
       <LazyLoadImage className="c-card__img" src={getCardImage(Id)} width={width} height={height} alt="" />
     </span>

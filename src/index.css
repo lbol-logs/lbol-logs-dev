@@ -537,6 +537,9 @@ img {
   border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
   border-image-slice: 1;
 }
+.c-entity--Misfortune {
+  border-color: purple;
+}
 .c-entity__text {
   margin: 0 var(--entity-margin);
   line-height: 1.2em;
@@ -553,11 +556,13 @@ html:lang(en) .c-entity__text {
 .c-card {
   position: relative;
 }
-.c-card--upgraded {
-  color: var(--green);
-}
 .c-card__text {
   z-index: 1;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+.c-card--upgraded .c-card__text {
+  color: palegreen;
 }
 .c-card__text::after {
   content: '';
