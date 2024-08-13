@@ -22,14 +22,16 @@ function Stations() {
     const timer = timerRef.current as NodeJS.Timeout;
     if (timer) clearTimeout(timer);
     const _timer = setTimeout(() => {
-      const map = document.querySelector('.js-map') as HTMLDivElement;
-      if (!map) return;
-      const mapHeight = map.offsetHeight;
+      const selector = showMap ? '.js-map' : '.js-holdings';
+      console.log({selector});
+      const element = document.querySelector(selector) as HTMLDivElement;
+      if (!element) return;
+      console.log({element});
       const levels = stations.map(({ Node: { Level }}) => Level);
       for (const level of levels.reverse()) {
         const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
-        if (!station) break;
-        const height = station.offsetTop - mapHeight - scrollTolerance;
+        if (!station || !element) break;
+        const height = station.offsetTop - element.offsetHeight - scrollTolerance;
         if (!level || window.scrollY >= height) {
           setLevel(level);
           scrollToLevel(level, showMap, false);

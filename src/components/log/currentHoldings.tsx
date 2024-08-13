@@ -71,31 +71,45 @@ function CurrentHoldings() {
       const { Cards, Exhibits, BaseMana } = currentHolding;
       const holding = (
         <>
-          <Act />
-          <Trans
-            i18nKey="level"
-            ns="log"
-            values={{
-              level: level
-            }}
-          />
-          <BaseManaWidget baseMana={BaseMana} />
-          <Trans
-            i18nKey="cardsCount"
-            ns="log"
-            values={{
-              count: Cards.length
-            }}
-          />
-          <CardCards cards={Cards} />
-          <Trans
-            i18nKey="exhibitsCount"
-            ns="log"
-            values={{
-              count: Exhibits.length
-            }}
-          />
-          <ExhibitCards exhibits={Exhibits} />
+          <div className="p-holdings__line">
+            <h2 className="p-holdings__act">
+              <Act />
+            </h2>
+            <h3 className="p-holdings__level">
+              <Trans
+                i18nKey="level"
+                ns="log"
+                values={{
+                  level: level
+                }}
+              />
+            </h3>
+            <BaseManaWidget baseMana={BaseMana} />
+          </div>
+          
+          <div className="p-holdings__entities">
+            <div className="p-holdings__cards">
+              <Trans
+                i18nKey="cardsCount"
+                ns="log"
+                values={{
+                  count: Cards.length
+                }}
+              />
+              <CardCards cards={Cards} />
+            </div>
+
+            <div className="p-holdings__exhibits">
+              <Trans
+                i18nKey="exhibitsCount"
+                ns="log"
+                values={{
+                  count: Exhibits.length
+                }}
+              />
+              <ExhibitCards exhibits={Exhibits} />
+            </div>
+          </div>
         </>
       );
       setHolding(holding);

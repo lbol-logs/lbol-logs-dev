@@ -31,7 +31,7 @@ const dataUrl: string = 'https://ed-ev.github.io/lbol-logs-data';
 const iconSize = 36;
 
 const cardSize = {
-  width: 300,
+  width: 144,
   height: 40
 };
 
