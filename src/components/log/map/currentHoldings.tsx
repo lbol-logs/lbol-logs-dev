@@ -29,19 +29,39 @@ function CurrentHoldings() {
     setIsResizing(false);
   }, []);
 
-  const resize = useCallback((mouseMoveEvent: MouseEvent/*|TouchEvent*/) => {
+  function isTouchEvent(e: MouseEvent | TouchEvent): e is TouchEvent {
+    return e && 'touches' in e;
+  }
+
+  const resize = useCallback((event: MouseEvent | TouchEvent) => {
     if (isResizing) {
-      const height = mouseMoveEvent.clientY - (holdingsRef.current as HTMLDivElement).getBoundingClientRect().top;
+      let clientY;
+      if (isTouchEvent(event)) {
+        clientY = event.touches[0].clientY;
+      }
+      else {
+        clientY = event.clientY;
+      }
+      if (clientY == undefined) return;
+      const height = clientY - (holdingsRef.current as HTMLDivElement).getBoundingClientRect().top;
       setHoldingsHeight(height);
     }
   }, [isResizing]);
 
   useEffect(() => {
-    window.addEventListener('mousemove', resize);
-    window.addEventListener('mouseup', stopResizing);
+    const resizer = (document.querySelector('.p-holdings__resizer') as HTMLDivElement);
+    const o: Record<string, [Window & typeof globalThis | HTMLDivElement, EventListenerOrEventListenerObject]> = {
+      'mousemove': [window, resize as EventListenerOrEventListenerObject],
+      'mouseup': [window, stopResizing],
+      'touchmove': [resizer, resize as EventListenerOrEventListenerObject],
+      'touchend': [resizer, stopResizing],
+      'touchcancel': [resizer, stopResizing]
+    };
+    
+    Object.entries(o).forEach(([event, [e, handler]]) => e.addEventListener(event, handler));
+
     return () => {
-      window.removeEventListener('mousemove', resize);
-      window.removeEventListener('mouseup', stopResizing);
+      Object.entries(o).forEach(([event, [e, handler]]) => e.removeEventListener(event, handler));
     };
   }, [holding, resize, stopResizing]);
 
@@ -97,12 +117,21 @@ function CurrentHoldings() {
       className="p-holdings js-holdings"
       ref={holdingsRef}
       onMouseDown={(e) => e.preventDefault()}
+      onTouchStart={(e) => e.preventDefault()}
+      onTouchEnd={(e) => e.preventDefault()}
+      onTouchCancel={(e) => e.preventDefault()}
       style={{ height: holdingsHeight }}
     >
       <div className="p-holdings__inner">
         {holding}
       </div>
-      <div className="p-holdings__resizer" onMouseDown={startResizing} />
+      <div
+        className="p-holdings__resizer js-resizer"
+        onMouseDown={startResizing}
+        onTouchStart={startResizing}
+        onTouchEnd={stopResizing}
+        onTouchCancel={stopResizing}
+      />
     </div>
   );
 }

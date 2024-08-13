@@ -23,11 +23,12 @@ function RunDataTemplate() {
     ( { a, l } = al.actLevel(a, l) );
     setAct(a);
     setLevel(l);
-    const statons = document.querySelector('.js-stations') as HTMLDivElement;
     const station = document.querySelector(`.js-level-${l}`) as HTMLDivElement;
     if (!station || !showMap) return;
-    const height = station.offsetTop;
-    if (window.scrollY < height - scrollTolerance) statons.scrollTo(0, height);
+    const selector = showMap ? '.js-map' : '.js-holdings';
+    const element = document.querySelector(selector) as HTMLDivElement;
+    const height = station.offsetTop - element.offsetHeight;
+    if (window.scrollY < height - scrollTolerance) window.scrollTo(0, height);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRunDataLoaded, runData, act, showMap]);
 

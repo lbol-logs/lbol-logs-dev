@@ -157,11 +157,12 @@ function scrollToLevel(nextLevel: TLevel, showMap: boolean, scrollToY = true) {
   }
 
   if (scrollToY) {
-    const stations = document.querySelector('.js-stations') as HTMLDivElement;
     const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
     if (station) {
-      const y = station.offsetTop;
-      stations.scrollTo(0, y);
+      const selector = showMap ? '.js-map' : '.js-holdings';
+      const element = document.querySelector(selector) as HTMLDivElement;
+      const y = station.offsetTop - element.offsetHeight;
+      window.scrollTo(0, y);
     }
   }
 }

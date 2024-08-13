@@ -43,15 +43,17 @@ function Stations() {
   };
 
   useEffect(() => {
-    const map = document.querySelector('.js-map') as HTMLDivElement;
-    const mapHeight = map.offsetHeight;
     {
-      const stations = stationsRef.current;
-      const station = stationRef.current;
-      if (stations && station) {
-        const stationsHeight = window.innerHeight - mapHeight;
-        if (!station.style.height && station.offsetHeight < stationsHeight) {
-          station.style.height = stationsHeight + 'px';
+      const map = document.querySelector('.js-map') as HTMLDivElement;
+      if (map) {
+        const mapHeight = map.offsetHeight;
+        const stations = stationsRef.current;
+        const station = stationRef.current;
+        if (stations && station) {
+          const stationsHeight = window.innerHeight - mapHeight;
+          if (!station.style.height && station.offsetHeight < stationsHeight) {
+            station.style.height = stationsHeight + 'px';
+          }
         }
       }
     }
@@ -69,7 +71,7 @@ function Stations() {
   }, [runData, act, showMap]);
 
   return (
-    <section className="p-stations js-stations" ref={stationsRef}>
+    <section className="p-stations" ref={stationsRef}>
       {stations.map((station, i) => {
         const { Node } = station;
         const { Level } = Node;
