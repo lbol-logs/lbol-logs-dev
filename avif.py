@@ -7,10 +7,10 @@ src = r'\_original'
 dst = r'\_avif'
 
 def card():
-  w = 300
+  w = 144
   h = 40
   ratio = 700 / 1024
-  top = 40
+  top = 16
 
   dir = os.path.dirname(__file__)
   files = os.listdir(rf'{dir}{src}')
