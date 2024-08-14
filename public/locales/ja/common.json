@@ -111,6 +111,8 @@
     "Lunatic": "Lunatic"
   },
   "result": {
-
+    "Failure": "満身創痍",
+    "Normal": "異変解決",
+    "TrueEnd": "事件は完全に解決した"
   }
 }

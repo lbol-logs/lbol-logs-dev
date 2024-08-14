@@ -114,6 +114,8 @@
     "Lunatic": "Lunatic"
   },
   "result": {
-
+    "Failure": "Failure",
+    "Normal": "Incident Resolved",
+    "TrueEnd": "Perfect Incident Resolution"
   }
 }
