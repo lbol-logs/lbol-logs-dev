@@ -17,7 +17,7 @@ function ChoicesWidget({ id, choices }: { id: string, choices: Array<TChoice> })
 
         return (
           <div className="p-choice" key={i}>
-            {t(`${id}.${line}`, { ns: 'eventDialogures' })}
+            {t(`${id}.${line}`, { ns: 'dialogues' })}
           </div>
         );
       })}

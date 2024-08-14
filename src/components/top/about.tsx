@@ -25,7 +25,7 @@ function About() {
       <p className="p-about__under-construction">
         <Trans
           i18nKey="underConstruction"
-          ns="common"
+          ns="site"
         />
       </p>
       
@@ -34,7 +34,7 @@ function About() {
       <div className="p-about__about">
         <Trans
           i18nKey="about"
-          ns="common"
+          ns="site"
           components={{
             steam: <a href="https://store.steampowered.com/app/1140150/" target="_blank" rel="noreferrer">{}</a>,
             mod: <a href={modUrl} target="_blank" rel="noreferrer">{}</a>,
@@ -44,7 +44,7 @@ function About() {
       </div>
 
       <div className="p-about__roadmap c-roadmap">
-        <h2 className="c-roadmap__title">{t('roadmap.keys.roadmap', { ns: 'common' })}</h2>
+        <h2 className="c-roadmap__title">{t('roadmap.keys.roadmap', { ns: 'site' })}</h2>
         {Object.entries(roadmapCategories).map(([category, array]) => {
           const key = `c-roadmap-${category}`;
           return <RoadMap className={key} category={category} array={array} key={key} />;
@@ -52,7 +52,7 @@ function About() {
       </div>
 
       <div className="p-about__done c-done">
-      <h2 className="c-done__title">{t('done.keys.done', { ns: 'common' })}</h2>
+      <h2 className="c-done__title">{t('done.keys.done', { ns: 'site' })}</h2>
         {Object.entries(doneCategories).map(([category, array]) => {
           const key = `c-done-${category}`;
           return <Done className={key} category={category} array={array} key={key} />;
@@ -60,7 +60,7 @@ function About() {
       </div>
 
       <div className="p-about__attention">
-        <h2 className="c-attention__title">{t('attention.key', { ns: 'common' })}</h2>
+        <h2 className="c-attention__title">{t('attention.key', { ns: 'site' })}</h2>
         <ul className="c-attention__list">
           {attention.map((item, i) => {
             return <li className="c-attention__list-item" key={`attention${i}`}>{item}</li>;

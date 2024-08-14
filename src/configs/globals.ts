@@ -17,12 +17,14 @@ const languages: TObj<TObjString> = {
 
 const namespaces: Array<string> = [
   'common',
-  'run',
+  'site',
+  'runList',
   'log',
   'cards',
   'exhibits',
   'enemies',
   'events',
+  // 'dialogues'
   // 'test/a'
 ];
 

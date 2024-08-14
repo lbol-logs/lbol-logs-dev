@@ -331,6 +331,10 @@ img {
   padding-right: var(--padding-inner);
 }
 
+.p-summary {
+  margin-bottom: 50vh;
+}
+
 .p-summary__settings {
   display: flex;
   align-items: center;
@@ -438,10 +442,6 @@ img {
 }
 .c-status__change--negative {
   color: var(--red);
-}
-
-.p-summary {
-  margin-bottom: 50vh;
 }
 
 .p-control {

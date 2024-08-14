@@ -58,7 +58,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       const station = currentActStations.find(({ Level, Y: _y }) => Level === X && _y === Y);
       if (station) {
         visited = (
-          <LazyLoadImage className="c-map-icon__visited" src={getMapImage('Visited')} width="18" height="18" alt={t('Visited', { ns: 'map' })} />
+          <LazyLoadImage className="c-map-icon__visited" src={getMapImage('Visited')} width="18" height="18" alt={t('stations.Visited', { ns: 'log' })} />
         );
         if (X === level) isActive = true;
       }
@@ -67,7 +67,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     return (
       <div className={`c-map-icon ${isBoss ? 'c-map-icon--boss' : ''}`} key={`Act${Act}_x${X}y${Y}`} style={{ left, top }}>
         {visited}
-        <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} alt={t(Type, { ns: 'map' })} />
+        <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} alt={t(`stations.${Type}`, { ns: 'log' })} />
         <LazyLoadImage className={`c-map-icon__bg ${isActive ? 'c-map-icon__bg--active' : ''}`} src={getMapImage('bg')} width={_size} height={_size} alt="" />
       </div>
     );

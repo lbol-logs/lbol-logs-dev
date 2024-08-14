@@ -35,10 +35,10 @@ function RunList() {
       <div className="p-run-list__row p-run-list__row--header">
       <div className="p-run-list__cell p-run-list__cell--id">Id</div>
         {headers.map(header => {
-          return <div className={`p-run-list__cell p-run-list__cell--${header}`} key={header}>{t(header, { ns: 'run' })}</div>;
+          return <div className={`p-run-list__cell p-run-list__cell--${header}`} key={header}>{t(header, { ns: 'runList' })}</div>;
         })}
       </div>
-      {!Object.keys(list).length && t('notAvailableYet', { ns: 'common' })}
+      {!Object.keys(list).length && t('notAvailableYet', { ns: 'runList' })}
       {Object.entries(list).reverse().map(([id, o]) => {
         return (
           <Link className="p-run-list__row" key={id} to={`/${version}/${id}/`}>

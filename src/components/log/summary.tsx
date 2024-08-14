@@ -29,7 +29,6 @@ function Summary() {
         <CharacterWidget character={Character} playerType={PlayerType} />
         {/* TODO: shinning exhibit */}
         <div>
-          {/* <span>{t('request', { ns: 'common', count: Requests.length })}</span> */}
           <RequestsWidget requests={Requests} />
         </div>
         {/* <p>{t('HasClearBonus', { ns: 'log' })}: {HasClearBonus.toString()}</p> */}

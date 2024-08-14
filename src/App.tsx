@@ -17,10 +17,10 @@ function App() {
     <HelmetProvider>
       <Helmet>
         <html lang={lang} />
-        <title>{t('title', { ns: 'common' })} - {t('subtitle', { ns: 'common' })}</title>
-        <meta name="description" content={t('description', { ns: 'common' })} />
+        <title>{t('title', { ns: 'site' })} - {t('subtitle', { ns: 'site' })}</title>
+        <meta name="description" content={t('description', { ns: 'site' })} />
         <link rel="manifest" href={`${baseUrl}/locales/${i18next.language}/manifest.json`} />
-        <meta name="apple-mobile-web-app-title" content={t('title', { ns: 'common' })} />
+        <meta name="apple-mobile-web-app-title" content={t('title', { ns: 'site' })} />
       </Helmet>
 
       <RemoveTrailingSlash />

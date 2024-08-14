@@ -1,4 +1,3 @@
-import chacaterTypes from 'configs/chacaterTypes';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -13,7 +12,7 @@ function CharacterWidget({ character, playerType }: { character: string, playerT
     <div className="c-character">
       <LazyLoadImage className="c-character__avatar" src={getAvatarImage(character)} width={iconSize} height={iconSize} alt={t(character, { ns: 'enemies' })} />
       <span className="c-character__type">
-        <span>{t(playerType, { ns: 'common' })}</span>
+        <span>{playerType}</span>
         {'('}
         <LazyLoadImage className="c-character__mana u-img-vertical" src={getManaImage(mana)} width={iconSize} height={iconSize} alt={t(mana, { ns: 'common' })} />
         {')'}

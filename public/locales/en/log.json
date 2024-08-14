@@ -1,5 +1,11 @@
 {
-  "map": "Map",
+  "control": {
+    "back": "Back",
+    "previous": "Previous Act",
+    "next": "Next Act",
+    "skip": "Go to the last Act",
+    "map": "Map"
+  },
   "act": "Act {{act}}",
   "act_4": "Final Act",
   "level": "Level {{level}}",
@@ -7,7 +13,24 @@
   "cardsCount_other": "Cards: {{count}}",
   "exhibitsCount_one": "Exhibit: {{count}}",
   "exhibitsCount_other": "Exhibits: {{count}}",
-  "HasClearBonus": "",
   "ShowRandomResult_true": "Reveal Fate",
-  "ShowRandomResult_false": "Unknown Fate"
+  "ShowRandomResult_false": "Unknown Fate",
+  "stations": {
+    "Visited": "Visited",
+		"Enemy": "Enemy",
+		"EliteEnemy": "Elite",
+		"Supply": "Reisen's Supply",
+		"Gap": "Gap",
+		"Shop": "Takane's Shop",
+		"Adventure": "Event",
+		"Entry": "Start",
+		"Select": "Boss Select",
+		"Trade": "Trade",
+		"Boss": "Boss"
+  },
+  "hp": "Life",
+  "power": "Power",
+  "money": "Money",
+  "round_one": "Round",
+  "round_other": "Rounds"
 }

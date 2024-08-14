@@ -47,15 +47,15 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
   return (
     <div className="p-station__statuses">
       <div className="p-station__status p-station__status--hp">
-        <LazyLoadImage src={getCommonImage(hpImage)} width={iconSize} height={iconSize} alt={t('Hp', { ns: 'common' })} />
+        <LazyLoadImage src={getCommonImage(hpImage)} width={iconSize} height={iconSize} alt={t('hp', { ns: 'log' })} />
         {getValuWithChange('Hp')}/{getValuWithChange('MaxHp')}
       </div>
       <div className="p-station__status p-station__status--power">
-        <LazyLoadImage src={getCommonImage('Power')} width={iconSize} height={iconSize} alt={t('Power', { ns: 'common' })} />
+        <LazyLoadImage src={getCommonImage('Power')} width={iconSize} height={iconSize} alt={t('power', { ns: 'log' })} />
         {getValuWithChange('Power')}/{getValuWithChange('MaxPower')}
       </div>
       <div className="p-station__status p-station__status--money">
-        <LazyLoadImage src={getCommonImage('Money')} width={iconSize} height={iconSize} alt={t('Money', { ns: 'common' })} />
+        <LazyLoadImage src={getCommonImage('Money')} width={iconSize} height={iconSize} alt={t('money', { ns: 'log' })} />
         {getValuWithChange('Money')}
       </div>
     </div>

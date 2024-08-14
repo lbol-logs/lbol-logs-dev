@@ -13,8 +13,8 @@ function Header({ isTop, isLog }: { isTop?: boolean, isLog?: boolean }) {
         <Link className="l-header__link" to="/">
           <Logo className="l-header__logo" />
           <h1 className="l-header__title">
-            <span className="c-header__title">{t('title', { ns: 'common' })}</span>
-            <span className="c-header__subtitle u-pc"> - {t('subtitle', { ns: 'common' })}</span>
+            <span className="c-header__title">{t('title', { ns: 'site' })}</span>
+            <span className="c-header__subtitle u-pc"> - {t('subtitle', { ns: 'site' })}</span>
           </h1>
         </Link>
         <VersionSwitcher isLog={!!isLog} />

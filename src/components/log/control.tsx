@@ -60,7 +60,7 @@ function Control() {
   if (isSummary) {
     buttonLeft = (
       <span className="p-control__component" onClick={backToTop}>
-        <LazyLoadImage src={getControlImage('Back')} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'common' })} />
+        <LazyLoadImage src={getControlImage('Back')} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'log' })} />
       </span>
     );
     centerArea = (
@@ -72,14 +72,14 @@ function Control() {
     );
     buttonRight2 = (
       <span className="p-control__component" onClick={() => changeAct(maxAct)}>
-        <LazyLoadImage src={getControlImage('Skip')} width={iconSize} height={iconSize} alt={t('control.skip', { ns: 'common' })} />
+        <LazyLoadImage src={getControlImage('Skip')} width={iconSize} height={iconSize} alt={t('control.skip', { ns: 'log' })} />
       </span>
     );
   }
   else {
     buttonLeft = (
       <span className="p-control__component" onClick={() => changeAct(-1)}>
-        <LazyLoadImage className="u-img-vertical" src={getControlImage('Previous')} width={27} height={iconSize} alt={t('control.previous', { ns: 'common' })} />
+        <LazyLoadImage className="u-img-vertical" src={getControlImage('Previous')} width={27} height={iconSize} alt={t('control.previous', { ns: 'log' })} />
       </span>
     );
     centerArea = (
@@ -93,13 +93,13 @@ function Control() {
       img = (
         <>
           <LazyLoadImage className="p-control__card" src={getCommonImage('Card')} width={iconSize} height={iconSize} alt={t('card', { ns: 'common' })} />
-          <LazyLoadImage className="p-control__exhibit" src={getCommonImage('Exhibit')} width={iconSize} height={iconSize} alt={t('card', { ns: 'exhibit' })} />
+          <LazyLoadImage className="p-control__exhibit" src={getCommonImage('Exhibit')} width={iconSize} height={iconSize} alt={t('exhibit', { ns: 'common' })} />
         </>
       );
     }
     else {
       img = (
-        <LazyLoadImage src={getControlImage('Map')} width={iconSize} height={iconSize} alt={t('control.map', { ns: 'common' })} />
+        <LazyLoadImage src={getControlImage('Map')} width={iconSize} height={iconSize} alt={t('control.map', { ns: 'log' })} />
       );
     }
     buttonRight2 = (
@@ -112,14 +112,14 @@ function Control() {
   if (isLastAct) {
     buttonRight = (
       <span className="p-control__component" onClick={() => changeAct(-maxAct)}>
-        <LazyLoadImage src={getControlImage('Back')} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'common' })} />
+        <LazyLoadImage src={getControlImage('Back')} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'log' })} />
       </span>
     );
   }
   else {
     buttonRight = (
       <span className="p-control__component" onClick={() => changeAct(1)}>
-        <LazyLoadImage className="u-img-vertical" src={getControlImage('Next')} width={27} height={iconSize} alt={t('control.next', { ns: 'common' })} />
+        <LazyLoadImage className="u-img-vertical" src={getControlImage('Next')} width={27} height={iconSize} alt={t('control.next', { ns: 'log' })} />
       </span>
     );
   };

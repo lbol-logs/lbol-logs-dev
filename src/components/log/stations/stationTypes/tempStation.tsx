@@ -5,6 +5,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
+import RoundsWidget from '../parts/roundsWidget';
 
 function TempStation({ station }: { station: TStation }) {
   const { Type, Data, Id, Rewards } = station;
@@ -23,19 +24,13 @@ function TempStation({ station }: { station: TStation }) {
     if (Choices) {
       choices = (
         <p>
-          {t('choices', { ns: 'stations' })}
           {Choices.join(', ')}
         </p>
       );
     }
 
     if (Rounds) {
-      rounds = (
-        <span className="c-rewards__rounds">
-          <LazyLoadImage src={getCommonImage('Round')} width={iconSize} height={iconSize} alt={t('Rounds', { ns: 'common' })} />
-          {Rounds}
-        </span>
-      );
+      rounds = <RoundsWidget rounds={Rounds} />;
     }
   }
   if (Rewards) {
@@ -43,7 +38,7 @@ function TempStation({ station }: { station: TStation }) {
 
     money = (
       <span className="c-rewards__money">
-        <LazyLoadImage src={getCommonImage('Money')} width={iconSize} height={iconSize} alt={t('Money', { ns: 'common' })} />
+        <LazyLoadImage src={getCommonImage('Money')} width={iconSize} height={iconSize} alt={t('money', { ns: 'log' })} />
         {Money}
       </span>
     );
