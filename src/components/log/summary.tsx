@@ -5,30 +5,29 @@ import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import { Trans, useTranslation } from 'react-i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
-import DifficultyWidget from 'components/common/parts/difficultyWidget';
-import CharacterWidget from 'components/common/parts/characterWidget';
-import RequestsWidget from 'components/common/parts/requestsWidget';
-import ResultTypeWidget from 'components/common/parts/resultWidget';
+import CharacterWidget from 'components/common/settings/characterWidget';
+import RequestsWidget from 'components/common/settings/requestsWidget';
+import ResultWidget from 'components/common/result/resultWidget';
 
 function Summary() {
-  const { runData, isRunDataLoaded } = useContext(LogContext);
+  const { runData, isRunDataLoaded, holdings } = useContext(LogContext);
   const { t } = useTranslation();
-
   if (!isRunDataLoaded) return <Loading />;
 
   const { Settings, Result } = runData;
   const { Character, PlayerType, Requests, Difficulty, HasClearBonus, ShowRandomResult } = Settings;
   const { Type, Timestamp, Cards, Exhibits, BaseMana } = Result;
+  const exhibit = Exhibits[0];
+  const resultData = { Character, Type, Timestamp, Difficulty, exhibit };
 
   // TODO: locales
 
   return (
     <section className="p-summary">
-      <ResultTypeWidget result={Result} />
+      <ResultWidget resultData={resultData} />
       <div className="p-summary__settings">
         <CharacterWidget character={Character} playerType={PlayerType} />
         {/* TODO: shinning exhibit */}
-        <DifficultyWidget difficulty={Difficulty} />
         <div>
           {/* <span>{t('request', { ns: 'common', count: Requests.length })}</span> */}
           <RequestsWidget requests={Requests} />

@@ -697,6 +697,16 @@ html:lang(en) .c-entity__text {
   background: var(--dot-color);
 }
 
+.p-result {
+  position: relative;
+}
+.p-result > * {
+  position: absolute;
+}
+.p-result__background {
+  position: initial;
+}
+
 .c-result__text {
 
 }
