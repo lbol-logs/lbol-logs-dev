@@ -55,16 +55,6 @@ const scrollTolerance = 50;
 
 const defaultHoldingsHeight = 144;
 
-const requestsList = [
-  "HalfDrug",
-  "LowMaxHp",
-  "StartMisfortune",
-  "LowStageRegen",
-  "LowUpgradeRate",
-  "PayForUpgrade",
-  "NightMana"
-];
-
 const configs: Array<string> = [
   'cards',
   'exhibits',
