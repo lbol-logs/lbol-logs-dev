@@ -30,7 +30,7 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
   }
   else {
     if (type === 'Enemy') {
-      if (Level < 10) type += 'Strong';
+      if (Level > 10) type += 'Strong';
       type += 2 - Level % 2;
     }
     if (type === 'Trade') type += Act;

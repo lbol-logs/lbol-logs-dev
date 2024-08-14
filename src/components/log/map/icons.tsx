@@ -42,7 +42,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     }
     else {
       if (type === 'Enemy') {
-        if (X < 10) type += 'Strong';
+        if (X > 10) type += 'Strong';
         type += 2 - X % 2;
       }
       if (type === 'Trade') type += Act;
