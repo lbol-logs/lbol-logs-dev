@@ -108,7 +108,10 @@
     "NightMana": "Nighttime Fatigue"
   },
   "difficulties": {
-    "Normal": "Normal"
+    "Easy": "Easy",
+    "Normal": "Normal",
+    "Hard": "Hard",
+    "Lunatic": "Lunatic"
   },
   "result": {
 

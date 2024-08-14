@@ -39,6 +39,18 @@ function getExhibitImage(name: string): string {
   return _getImage('exhibits', name);
 }
 
+function getAvatarImage(name: string): string {
+  return _getImage('common/avatars', name);
+}
+
+function getDifficultyImage(name: string): string {
+  return _getImage('common/difficulties', name);
+}
+
+function getResultImage(name: string): string {
+  return _getImage('common/result', name);
+}
+
 export {
   getImage,
   getCommonImage,
@@ -47,5 +59,8 @@ export {
   getManaImage,
   getBossImage,
   getCardImage,
-  getExhibitImage
+  getExhibitImage,
+  getAvatarImage,
+  getDifficultyImage,
+  getResultImage
 };

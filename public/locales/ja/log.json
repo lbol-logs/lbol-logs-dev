@@ -4,5 +4,8 @@
   "act_4": "最終章",
   "level": "レベル{{level}}",
   "cardsCount": "カード枚数：{{count}}",
-  "exhibitsCount": "展示品数：{{count}}"
+  "exhibitsCount": "展示品数：{{count}}",
+  "HasClearBonus": "",
+  "ShowRandomResult_true": "運命を知る",
+  "ShowRandomResult_false": "運命に従う"
 }

@@ -45,6 +45,12 @@ const cardSize = {
   height: 40
 };
 
+const resultSizes = {
+  bg: 292,
+  avatar: 146,
+  height: 100
+};
+
 const scrollTolerance = 50;
 
 const defaultHoldingsHeight = 144;
@@ -75,6 +81,7 @@ export {
   dataUrl,
   iconSize,
   cardSize,
+  resultSizes,
   scrollTolerance,
   defaultHoldingsHeight,
   requestsList,

@@ -8,5 +8,6 @@
   "exhibitsCount_one": "Exhibit: {{count}}",
   "exhibitsCount_other": "Exhibits: {{count}}",
   "HasClearBonus": "",
-  "ShowRandomResult": ""
+  "ShowRandomResult_true": "Reveal Fate",
+  "ShowRandomResult_false": "Unknown Fate"
 }

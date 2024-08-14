@@ -105,7 +105,10 @@
     "NightMana": "永き夜の疲れ"
   },
   "difficulties": {
-    "Normal": "Normal"
+    "Easy": "Easy",
+    "Normal": "Normal",
+    "Hard": "Hard",
+    "Lunatic": "Lunatic"
   },
   "result": {
 

@@ -3,12 +3,12 @@ import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import DifficultyWidget from 'components/common/parts/difficultyWidget';
-import DateTime from 'components/common/parts/dateTime';
-import PlayerTypeWidget from 'components/common/parts/playerTypeWidget';
+import CharacterWidget from 'components/common/parts/characterWidget';
 import RequestsWidget from 'components/common/parts/requestsWidget';
+import ResultTypeWidget from 'components/common/parts/resultWidget';
 
 function Summary() {
   const { runData, isRunDataLoaded } = useContext(LogContext);
@@ -24,18 +24,26 @@ function Summary() {
 
   return (
     <section className="p-summary">
-      <p>{t(Character, { ns: 'common' })}</p>
-      <PlayerTypeWidget character={Character} playerType={PlayerType} />
-      {/* TODO: shinning exhibit */}
-      <div>
-        <span>{t('request', { ns: 'common', count: Requests.length })}</span>
-        <RequestsWidget requests={Requests} />
+      <ResultTypeWidget result={Result} />
+      <div className="p-summary__settings">
+        <CharacterWidget character={Character} playerType={PlayerType} />
+        {/* TODO: shinning exhibit */}
+        <DifficultyWidget difficulty={Difficulty} />
+        <div>
+          {/* <span>{t('request', { ns: 'common', count: Requests.length })}</span> */}
+          <RequestsWidget requests={Requests} />
+        </div>
+        {/* <p>{t('HasClearBonus', { ns: 'log' })}: {HasClearBonus.toString()}</p> */}
+        <span>
+          <Trans
+            i18nKey="ShowRandomResult"
+            ns="log"
+            context={ShowRandomResult.toString()}
+          />
+        </span>
       </div>
-      <DifficultyWidget difficulty={Difficulty} />
-      <p>{t(`result.${Type}`, { ns: 'common' })}</p>
-      <p>{t('HasClearBonus', { ns: 'log' })}: {HasClearBonus.toString()}</p>
-      <p>{t('ShowRandomResult', { ns: 'log' })}: {ShowRandomResult.toString()}</p>
-      <DateTime timestamp={Timestamp} />
+      
+      
       <BaseManaWidget baseMana={BaseMana} />
       <h3>{t('card', { ns: 'common', count: Cards.length })}</h3>
       <CardCards cards={Cards} />

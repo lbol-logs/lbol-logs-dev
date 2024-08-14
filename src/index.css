@@ -331,6 +331,13 @@ img {
   padding-right: var(--padding-inner);
 }
 
+.p-summary__settings {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
 .p-stations {
   margin-bottom: var(--control-height);
   flex: 1;
@@ -553,7 +560,7 @@ html:lang(en) .c-entity__text {
 .c-card__text {
   z-index: 1;
   color: #fff;
-  text-shadow: 1px 1px 2px #000, -1px 1px 2px #000, -1px -1px 2px #000, 1px -1px 2px #000;
+  text-shadow: var(--text-shadow);
 }
 .c-card--upgraded .c-card__text {
   color: palegreen;
@@ -673,8 +680,34 @@ html:lang(en) .c-entity__text {
   transform: none;
 }
 
+.c-character {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
+}
+.c-character__type {
+  display: flex;
+  align-items: center;
+}
+.c-character .c-character__mana {
+  height: 1.5em;
+}
+
 .c-request__dot--active {
   background: var(--dot-color);
+}
+
+.c-result__text {
+
+}
+.c-result__text--Failure {
+  color: red;
+}
+.c-result__text--Normal {
+  color: thistle;
+}
+.c-result__text--TrueEnd {
+  color: lightyellow;
 }
 
 :root {
@@ -695,6 +728,10 @@ html:lang(en) .c-entity__text {
 .u-img-vertical {
   height: 100%;
   width: auto;
+}
+
+.u-text-shadow {
+  text-shadow: 1px 1px 2px #000, -1px 1px 2px #000, -1px -1px 2px #000, 1px -1px 2px #000;
 }
 
 @media screen and (min-width: 601px) {

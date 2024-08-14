@@ -1,9 +1,22 @@
-import { TObjAny } from 'utils/types/common';
+import { TObj, TObjString } from 'utils/types/common';
 
 // TODO
-const chacaterTypes: TObjAny = {
+const chacaterTypes: TObj<TObjString> = {
   Reimu: {
-    A: 'R'
+    A: 'R',
+    B: 'W'
+  },
+  Marisa: {
+    A: 'B',
+    B: 'R'
+  },
+  Sakuya: {
+    A: 'W',
+    B: 'U'
+  },
+  Cirno: {
+    A: 'U',
+    B: 'G'
   }
 };
 
