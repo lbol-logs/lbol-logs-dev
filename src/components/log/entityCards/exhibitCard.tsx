@@ -1,5 +1,6 @@
 import Processing from 'components/common/layouts/processing';
 import { iconSize } from 'configs/globals';
+import { CommonContext } from 'contexts/commonContext';
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +9,8 @@ import { getExhibitImage } from 'utils/functions/getImage';
 import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
 
 function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitChange }) {
-  const { runData, holdings, configsData } = useContext(LogContext);
+  const { configsData } = useContext(CommonContext);
+  const { runData, holdings } = useContext(LogContext);
   const { t } = useTranslation();
 
   const isExhibit = typeof exhibit === 'string';

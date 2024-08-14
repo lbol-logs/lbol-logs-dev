@@ -1,11 +1,13 @@
-import choiceDialogues from 'configs/choiceDialogues';
+// import { LogContext } from 'contexts/logContext';
+// import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TChoice } from 'utils/types/others';
 
 function ChoicesWidget({ id, choices }: { id: string, choices: Array<TChoice> }) {
   const { t } = useTranslation();
-
-  let current = choiceDialogues[id];
+  // const { configsData } = useContext(LogContext);
+  // const dialogueConfigs = configsData.dialogues;
+  // let current = dialogueConfigs[id];
 
   return (
     <div className="p-choices">

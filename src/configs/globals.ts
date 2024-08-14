@@ -9,10 +9,11 @@ const languages: TObj<TObjString> = {
     label: '日本語',
     lang: 'ja'
   },
-  zh: {
-    label: '繁中',
-    lang: 'zh-cmn-Hant'
-  }
+  // TODO
+  // zh: {
+  //   label: '繁中',
+  //   lang: 'zh-cmn-Hant'
+  // }
 };
 
 const namespaces: Array<string> = [
@@ -57,10 +58,17 @@ const scrollTolerance = 50;
 
 const defaultHoldingsHeight = 144;
 
-const configs: Array<string> = [
+const commonConfigs: Array<string> = [
+  'characters',
+  'requests',
+  'exhibits'
+];
+
+const logConfigs: Array<string> = [
   'cards',
-  'exhibits',
-  'enemyGroups'
+  'enemyGroups',
+  // TODO
+  // 'dialogues'
 ];
 
 export {
@@ -76,6 +84,6 @@ export {
   resultSizes,
   scrollTolerance,
   defaultHoldingsHeight,
-  requestsList,
-  configs
+  commonConfigs,
+  logConfigs
 };

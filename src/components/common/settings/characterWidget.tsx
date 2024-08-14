@@ -1,12 +1,16 @@
 import { iconSize } from 'configs/globals';
+import { CommonContext } from 'contexts/commonContext';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { getAvatarImage, getManaImage } from 'utils/functions/getImage';
+import { getTypeBaseMana } from 'utils/functions/helpers';
 
 // TODO
 function CharacterWidget({ character, playerType }: { character: string, playerType: string }) {
   const { t } = useTranslation();
-  const mana = chacaterTypes[character][playerType];
+  const { characters } = useContext(CommonContext).configsData;
+  const mana = getTypeBaseMana(characters, character, playerType);
 
   return (
     <div className="c-character">

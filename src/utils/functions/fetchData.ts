@@ -22,7 +22,7 @@ async function getData(url: string) {
   }
 }
 
-function getList(version: string) {
+function getRunList(version: string) {
   return fetchData(version, 'list');
 }
 
@@ -35,7 +35,7 @@ function getConfigs(version: string, name: string) {
 }
 
 export {
-  getList,
+  getRunList,
   getLog,
   getConfigs
 };

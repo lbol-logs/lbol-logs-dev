@@ -71,7 +71,6 @@ function BattleStation({ station }: { station: TStation }) {
 
   return (
     <>
-      <p>{t(`stations.${Type}`, { ns: 'log' })}</p>
       {enemies}
       <div className="c-rewards">
         <RoundsWidget rounds={Rounds} />

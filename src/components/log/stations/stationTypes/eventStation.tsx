@@ -9,7 +9,7 @@ import ChoicesWidget from './choicesWidget';
 import RoundsWidget from '../parts/roundsWidget';
 
 function EventStation({ station }: { station: TStation }) {
-  const { Type, Data, Id, Rewards } = station;
+  const { Data, Id, Rewards } = station;
   const { t } = useTranslation();
 
   let data = null;

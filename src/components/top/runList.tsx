@@ -2,7 +2,7 @@ import { CommonContext } from 'contexts/commonContext';
 import { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import useList from 'hooks/useList';
+import useRunList from 'hooks/useRunList';
 import { TRunList } from 'utils/types/others';
 import { TObjNumber } from 'utils/types/common';
 
@@ -10,7 +10,7 @@ function RunList() {
   const { version } = useContext(CommonContext);
   const { t } = useTranslation();
 
-  const list: TRunList = useList(version);
+  const list: TRunList = useRunList(version);
 
   const headers = ['character', 'type', 'shining', 'difficulty', 'requests', 'result', 'timestamp'];
 

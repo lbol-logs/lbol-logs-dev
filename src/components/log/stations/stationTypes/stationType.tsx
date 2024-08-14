@@ -3,7 +3,7 @@ import BattleStation from './battleStation';
 import TempStation from './tempStation';
 import EventStation from './eventStation';
 
-function StatationType({ station }: { station: TStation }) {
+function StationType({ station }: { station: TStation }) {
   const { Type } = station;
 
   // TODO
@@ -28,4 +28,4 @@ function StatationType({ station }: { station: TStation }) {
   else return <TempStation station={station} />;
 }
 
-export default StatationType;
+export default StationType;

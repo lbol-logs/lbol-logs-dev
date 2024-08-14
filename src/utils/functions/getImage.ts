@@ -1,4 +1,4 @@
-import { baseUrl, imageUrl } from 'configs/globals';
+import { imageUrl } from 'configs/globals';
 
 function getImage(name: string): string {
   // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {

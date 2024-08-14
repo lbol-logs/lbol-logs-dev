@@ -4,28 +4,27 @@ import { LogContext } from 'contexts/logContext';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { validateConfigs, validateRunData } from 'utils/functions/helpers';
+import { validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
-import { configs } from 'configs/globals';
-import { TConfigsData, TObj } from 'utils/types/common';
+import { logConfigs } from 'configs/globals';
+import { TConfigsData } from 'utils/types/common';
 
 function useRunData(id: string)  {
-  const { version } = useContext(CommonContext);
+  const { version, configsData } = useContext(CommonContext);
   const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData } = useContext(LogContext);
+
+  const characterConfigs = configsData.characters;
+  const exhibitConfigs = configsData.exhibits;
 
   const navigate = useNavigate();
   let isValidRunData = false;
   const runData = use(getLog(version, id)) as TRunData;
   isValidRunData = validateRunData(runData);
-  const playerConfigs = use(getConfigs(version, 'players'));
-  const isValidPlayerConfigs = validateConfigs(playerConfigs);
-  const isValidConfigs: TObj<boolean> = {};
   const currentConfigs: TConfigsData = {};
-  for (const config of configs) {
+  for (const config of logConfigs) {
     const configs = use(getConfigs(version, config));
     currentConfigs[config] = configs;
-    isValidConfigs[config] = validateConfigs(configs);
   }
 
   useEffect(() => {
@@ -33,8 +32,8 @@ function useRunData(id: string)  {
     if (isValidRunData) {
       setRunDataId(id);
       setRunData(runData);
-      if (isValidPlayerConfigs) {
-        const ignoredPaths = setHoldings(runData, playerConfigs, dispatchHoldings, currentConfigs.exhibits);
+      if (exhibitConfigs !== undefined && characterConfigs !== undefined) {
+        const ignoredPaths = setHoldings(runData, characterConfigs, dispatchHoldings, exhibitConfigs);
         setIgnoredPaths(ignoredPaths);
       }
       setConfigsData(currentConfigs);
@@ -45,7 +44,7 @@ function useRunData(id: string)  {
       navigate('/', { replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isValidRunData, runData, playerConfigs, isValidPlayerConfigs]);
+  }, [isValidRunData, runData, exhibitConfigs, characterConfigs]);
 }
 
 export default useRunData;

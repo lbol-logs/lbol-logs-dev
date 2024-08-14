@@ -2,10 +2,10 @@ import { eventConvertBaseMana, ExhibitWithCounter, requestWithStartCard, Request
 import { TObjAny } from 'utils/types/common';
 import copyObject from 'utils/functions/helpers';
 
-function setHoldings(runData: TRunData, playerConfigs: TObjAny, dispatchHoldings: THoldingsReducer, exhibitConfigs: TObjAny) {
+function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldings: THoldingsReducer, exhibitConfigs: TObjAny) {
   const { Stations } = runData;
   const { Character, PlayerType } = runData.Settings;
-  const { BaseMana, [PlayerType]: { Cards, Exhibit } } = playerConfigs[Character];
+  const { BaseMana, [PlayerType]: { Cards, Exhibit } } = characterConfigs[Character];
 
   // TODO: Junko, Patchu
   // TODO: read shining config -> baseMana

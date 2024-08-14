@@ -10,12 +10,12 @@ import RequestsWidget from 'components/common/settings/requestsWidget';
 import ResultWidget from 'components/common/result/resultWidget';
 
 function Summary() {
-  const { runData, isRunDataLoaded, holdings } = useContext(LogContext);
+  const { runData, isRunDataLoaded } = useContext(LogContext);
   const { t } = useTranslation();
   if (!isRunDataLoaded) return <Loading />;
 
   const { Settings, Result } = runData;
-  const { Character, PlayerType, Requests, Difficulty, HasClearBonus, ShowRandomResult } = Settings;
+  const { Character, PlayerType, Requests, Difficulty, ShowRandomResult } = Settings;
   const { Type, Timestamp, Cards, Exhibits, BaseMana } = Result;
   const exhibit = Exhibits[0];
   const resultData = { Character, Type, Timestamp, Difficulty, exhibit };

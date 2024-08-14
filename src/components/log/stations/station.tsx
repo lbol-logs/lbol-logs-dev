@@ -1,15 +1,18 @@
 import { RefObject, useContext, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { TStation, TStatus } from 'utils/types/runData';
-import Statuses from './statuses';
+import Statuses from './parts/statuses';
 import { LogContext } from 'contexts/logContext';
 import CurrentChange from './currentChange';
 import StationType from './stationTypes/stationType';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { getMapImage } from 'utils/functions/getImage';
+import { iconSize } from 'configs/globals';
 
 function Station({ station, innerRef }: { station: TStation, innerRef?: RefObject<HTMLDivElement>}) {
-  useTranslation();
+  const { t } = useTranslation();
   const { runData, setIsStationsLoaded } = useContext(LogContext);
-  const { Node, Status } = station;
+  const { Node, Status, Type } = station;
   const { Level } = Node;
 
   const { Stations } = runData;
@@ -35,6 +38,7 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
             }}
           />
         </h3>
+        <LazyLoadImage className="p-station__icon" src={getMapImage(Type)} width={iconSize} height={iconSize} alt={t(`stations.${Type}`, { ns: 'log' })} />
         <Statuses status={Status} lastStatus={lastStatus as TStatus} />
       </div>
       <div className="p-station__body">

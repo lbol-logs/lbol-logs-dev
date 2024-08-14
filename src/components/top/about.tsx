@@ -16,9 +16,9 @@ function About() {
     [key: string]: Array<string>
   };
 
-  const roadmapCategories: Categories = t('roadmap.categories', { returnObjects: true });
-  const doneCategories: Categories = t('done.categories', { returnObjects: true });
-  const attention: Array<string> = t('attention.value', { returnObjects: true });
+  const roadmapCategories: Categories = t('roadmap.categories', { ns: 'site', returnObjects: true });
+  const doneCategories: Categories = t('done.categories', { ns: 'site', returnObjects: true });
+  const attention: Array<string> = t('attention.value', { ns: 'site', returnObjects: true });
 
   return (
     <section className="p-about">

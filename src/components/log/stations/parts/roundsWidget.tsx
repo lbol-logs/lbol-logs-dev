@@ -5,13 +5,13 @@ import { getCommonImage } from 'utils/functions/getImage';
 
 function RoundsWidget({ rounds }: { rounds: number }) {
   useTranslation();
-  const alt = (
+  const alt: string = (
     <Trans
       i18nKey="round"
       ns="log"
       count={rounds}
     />
-  );
+  ) as unknown as string;
 
   return (
     <span className="c-rewards__rounds">

@@ -1,17 +1,17 @@
-import { LogContext } from 'contexts/logContext';
+import { CommonContext } from 'contexts/commonContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TRequests } from 'utils/types/runData';
 
 function RequestsWidget({ requests }: { requests: TRequests }) {
   const { t } = useTranslation();
-  const { configsData } = useContext(LogContext);
+  const { configsData } = useContext(CommonContext);
   // TODO
-  const { requestData } = configsData;
+  const r: TRequests = configsData.requests as TRequests;
 
   return (
     <div className="c-requests">
-      {requestData.map((request, i) => {
+      {r.map((request) => {
         const active = requests.includes(request);
 
         return (
