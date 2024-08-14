@@ -95,7 +95,7 @@ img {
 .l-log__inner {
   display: flex;
   flex-direction: column;
-  padding: 0; 
+  padding: 0;
 }
 
 .p-about {
@@ -515,20 +515,24 @@ img {
 .c-entity {
   display: flex;
   align-items: center;
-  border-width: 1px;
+  border-width: 2px;
   border-style: solid;
+  border-radius: 4px;
+  box-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+  outline: 1px solid gray;
+  outline-offset: -3px;
   width: var(--entity-width);
   height: var(--entity-height);
   overflow: hidden;
 }
 .c-entity--Common {
-  border-color: #000;
+  border-color: lightgray;
 }
 .c-entity--Uncommon {
-  border-color: skyblue;
+  border-color: dodgerblue;
 }
 .c-entity--Rare {
-  border-color: gold;
+  border-color: #eebe42;
 }
 .c-entity--Shining {
   border-color: orangered;
@@ -559,7 +563,7 @@ html:lang(en) .c-entity__text {
 .c-card__text {
   z-index: 1;
   color: #fff;
-  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+  text-shadow: 1px 1px 4px #000, -1px 1px 4px #000, -1px -1px 4px #000, 1px -1px 4px #000;
 }
 .c-card--upgraded .c-card__text {
   color: palegreen;
@@ -572,7 +576,7 @@ html:lang(en) .c-entity__text {
   width: 100%;
   height: 100%;
   background: #fff;
-  opacity: 0.1;
+  opacity: 0.2;
   z-index: -1;
 }
 
@@ -580,10 +584,6 @@ html:lang(en) .c-entity__text {
   position: absolute;
   top: 0;
   left: 0;
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -35%);
-  aspect-ratio: 1024 / 700; */
   z-index: -1;
 }
 
@@ -616,7 +616,7 @@ html:lang(en) .c-entity__text {
   --control-height: 36px;
   --control-gap: 1em;
   --icon-size: 36px;
-  --entity-column-gap: 0.7em;
+  --entity-column-gap: 0.65em;
   --entity-width: 9em;
   --entity-height: 2.5em;
   --entity-margin: 0.5em;
