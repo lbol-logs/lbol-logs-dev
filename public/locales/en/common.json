@@ -99,7 +99,13 @@
   "request_one": "Request",
   "request_other": "Requests",
   "requests": {
-
+    "HalfDrug": "Bitter Medicine",
+    "LowMaxHp": "Last Stand",
+    "StartMisfortune": "Notoriety",
+    "LowStageRegen": "No Time To Rest",
+    "LowUpgradeRate": "Hyperinflation",
+    "PayForUpgrade": "Training At A Price",
+    "NightMana": "Nighttime Fatigue"
   },
   "difficulties": {
     "Normal": "Normal"

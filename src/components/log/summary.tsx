@@ -27,7 +27,10 @@ function Summary() {
       <p>{t(Character, { ns: 'common' })}</p>
       <PlayerTypeWidget character={Character} playerType={PlayerType} />
       {/* TODO: shinning exhibit */}
-      <RequestsWidget requests={Requests} />
+      <div>
+        <span>{t('request', { ns: 'common', count: Requests.length })}</span>
+        <RequestsWidget requests={Requests} />
+      </div>
       <DifficultyWidget difficulty={Difficulty} />
       <p>{t(`result.${Type}`, { ns: 'common' })}</p>
       <p>{t('HasClearBonus', { ns: 'log' })}: {HasClearBonus.toString()}</p>

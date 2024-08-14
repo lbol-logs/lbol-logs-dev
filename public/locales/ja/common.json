@@ -93,5 +93,21 @@
     "C": "無",
     "P": "虹",
     "A": "？"
+  },
+  "request": "難題",
+  "requests": {
+    "HalfDrug": "薬剤耐性",
+    "LowMaxHp": "死中に活",
+    "StartMisfortune": "歓迎されず",
+    "LowStageRegen": "補給不足",
+    "LowUpgradeRate": "物価高騰",
+    "PayForUpgrade": "フィットネス費用",
+    "NightMana": "永き夜の疲れ"
+  },
+  "difficulties": {
+    "Normal": "Normal"
+  },
+  "result": {
+
   }
 }
