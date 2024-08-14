@@ -1,42 +1,28 @@
 import { languages } from 'configs/globals';
 import i18next from 'i18next';
+import { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 function LanguageSwitcher() {
   useTranslation();
 
-  type languageProps = {
-    code: string
-    text: string
-  };
-
-  function handleLanguage(code: string) {
-    i18next.changeLanguage(code);
+  function handleLanguage(e: ChangeEvent<HTMLSelectElement>) {
+    const lng = e.target.value;
+    i18next.changeLanguage(lng);
   }
 
-  function Lang(props: languageProps) {
-    const { code, text } = props;
-    const isCurrentLanguage = i18next.language === code;
-    const lang = (
-      text
-    );
-
-    return (
-      <>
-        {isCurrentLanguage
-          ? <strong>{lang}</strong>
-          : <button onClick={() => handleLanguage(code)}>{lang}</button>
-        }
-      </>
-    );
-  }
+  const currentLanguage = i18next.language;
 
   return (
-    <>
-      {Object.entries(languages).map(([code, text]) => {
-        return <Lang key={code} code={code} text={text} />
-      })}
-    </>
+    <div className="l-header__language">
+      <select className="c-language__select" onChange={handleLanguage} value={currentLanguage}>
+        {Object.entries(languages).map(([code, { label }]) => {
+          return (
+            <option className="c-language__option" key={code} value={code}>{label}</option>
+          );
+        })}
+      </select>
+    </div>
   );
 };
 

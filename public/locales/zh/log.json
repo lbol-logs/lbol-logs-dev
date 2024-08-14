@@ -1,0 +1,12 @@
+{
+  "map": "Map",
+  "act": "Act {{act}}",
+  "act_4": "Final Act",
+  "level": "Level {{level}}",
+  "cardsCount_one": "Card: {{count}}",
+  "cardsCount_other": "Cards: {{count}}",
+  "exhibitsCount_one": "Exhibit: {{count}}",
+  "exhibitsCount_other": "Exhibits: {{count}}",
+  "HasClearBonus": "",
+  "ShowRandomResult": ""
+}

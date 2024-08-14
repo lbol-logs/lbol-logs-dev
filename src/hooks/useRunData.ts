@@ -8,7 +8,7 @@ import { validateConfigs, validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
 import { configs } from 'configs/globals';
-import { TConfigsData } from 'utils/types/common';
+import { TConfigsData, TObj } from 'utils/types/common';
 
 function useRunData(id: string)  {
   const { version } = useContext(CommonContext);
@@ -20,7 +20,7 @@ function useRunData(id: string)  {
   isValidRunData = validateRunData(runData);
   const playerConfigs = use(getConfigs(version, 'players'));
   const isValidPlayerConfigs = validateConfigs(playerConfigs);
-  const isValidConfigs: Record<string, boolean> = {};
+  const isValidConfigs: TObj<boolean> = {};
   const currentConfigs: TConfigsData = {};
   for (const config of configs) {
     const configs = use(getConfigs(version, config));

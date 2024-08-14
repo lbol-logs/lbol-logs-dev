@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import useList from 'hooks/useList';
 import { TRunList } from 'utils/types/others';
+import { TObjNumber } from 'utils/types/common';
 
 function RunList() {
   const { version } = useContext(CommonContext);
@@ -20,7 +21,7 @@ function RunList() {
    */
 
   const ids = useMemo(() => {
-    const o: Record<string, number> = {};
+    const o: TObjNumber = {};
     const keys = Object.keys(list);
     for (let i = 0; i < keys.length; i++) {
       o[keys[i]] = i + 1;

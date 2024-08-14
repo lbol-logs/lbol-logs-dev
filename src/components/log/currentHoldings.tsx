@@ -9,6 +9,7 @@ import i18next from 'i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import { defaultHoldingsHeight } from 'configs/globals';
 import Act from './act';
+import { TObj } from 'utils/types/common';
 
 function CurrentHoldings() {
   const { act, level, holdings } = useContext(LogContext);
@@ -51,7 +52,7 @@ function CurrentHoldings() {
 
   useEffect(() => {
     const resizer = (document.querySelector('.p-holdings__resizer') as HTMLDivElement);
-    const o: Record<string, [Window & typeof globalThis | HTMLDivElement, EventListenerOrEventListenerObject]> = {
+    const o: TObj<[Window & typeof globalThis | HTMLDivElement, EventListenerOrEventListenerObject]> = {
       'mousemove': [window, resize as EventListenerOrEventListenerObject],
       'mouseup': [window, stopResizing],
       'touchmove': [resizer, resize as EventListenerOrEventListenerObject],

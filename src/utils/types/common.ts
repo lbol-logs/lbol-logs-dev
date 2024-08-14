@@ -10,7 +10,7 @@ type TRange16 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 |
 
 type TDispatch<T> = React.Dispatch<React.SetStateAction<T>>;
 
-type TConfigsData = Record<string, TObjAny>;
+type TConfigsData = TObj<TObjAny>;
 
 export type {
   TObj,

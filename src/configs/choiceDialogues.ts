@@ -1,5 +1,7 @@
+import { TObjAny } from 'utils/types/common';
+
 // TODO
-const choiceDialogues: Record<string, any> = {
+const choiceDialogues: TObjAny = {
 
 };
 

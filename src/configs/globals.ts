@@ -1,8 +1,18 @@
-import { TObjString } from 'utils/types/common';
+import { TObj, TObjString } from 'utils/types/common';
 
-const languages: TObjString = {
-  en: 'EN',
-  ja: '日本語'
+const languages: TObj<TObjString> = {
+  en: {
+    label: 'EN',
+    lang: 'en'
+  },
+  ja: {
+    label: '日本語',
+    lang: 'ja'
+  },
+  zh: {
+    label: '繁中',
+    lang: 'zh-cmn-Hant'
+  }
 };
 
 const namespaces: Array<string> = [

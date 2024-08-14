@@ -1,5 +1,7 @@
+import { TObjAny } from 'utils/types/common';
+
 // TODO
-const chacaterTypes: Record<string, any> = {
+const chacaterTypes: TObjAny = {
   Reimu: {
     A: 'R'
   }

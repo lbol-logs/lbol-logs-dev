@@ -8,14 +8,14 @@ function VersionSwitcher({ isLog }: { isLog: boolean }) {
   const navigate = useNavigate();
   const isLatestVersion = version === latestVersion;
 
-  let Ver;
+  let ver;
   if (isLog) {
-    Ver = (
+    ver = (
       <span className={`c-version__text ${isLatestVersion ? 'c-version__text--latest' : ''}`}>{version}</span>
     );
   }
   else {
-    Ver = (
+    ver = (
       <select className="c-version__select" onChange={handleChange} value={version}>
         {versions.map(v => {
           return <option className="c-version__option" key={v} value={v}>{v}</option>;
@@ -32,7 +32,7 @@ function VersionSwitcher({ isLog }: { isLog: boolean }) {
 
   return (
     <div className="l-header__version">
-      {Ver}
+      {ver}
     </div>
   );
 }
