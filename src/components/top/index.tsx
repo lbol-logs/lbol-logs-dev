@@ -15,7 +15,7 @@ function Top() {
 
   return (
     <>
-      <Header isTop={true} />
+      <Header />
       <main className="l-top">
         <div className="l-inner">
           <About />

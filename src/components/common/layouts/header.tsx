@@ -4,11 +4,11 @@ import LanguageSwitcher from 'components/common/parts/languageSwitcher';
 import VersionSwitcher from 'components/common/parts/versionSwitcher';
 import Logo from '../parts/logo';
 
-function Header({ isTop, isLog }: { isTop?: boolean, isLog?: boolean }) {
+function Header({ isLog }: { isLog?: boolean }) {
   const { t } = useTranslation();
 
   return (
-    <header className={`l-header ${isTop ? 'l-header--sticky' : ''}`}>
+    <header className="l-header">
       <div className="l-header__inner l-inner">
         <Link className="l-header__link" to="/">
           <Logo className="l-header__logo" />

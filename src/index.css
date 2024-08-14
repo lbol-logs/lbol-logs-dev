@@ -25,10 +25,6 @@ img {
   height: 20px;
   padding: 0.625em;
 }
-.l-header--sticky {
-  position: sticky;
-  top: 0;
-}
 .l-header__link {
   display: flex;
   align-items: center;
@@ -718,6 +714,12 @@ html:lang(en) .c-entity__text {
   left: var(--left);
   top: 15%;
 }
+.c-result__type--Failure {
+  color: red;
+}
+.c-result__type--Normal {
+  color: thistle;
+}
 .p-result__type--TrueEnd {
   color: #fdfdc1;
 }
@@ -735,19 +737,6 @@ html:lang(en) .c-entity__text {
   right: 10%;
   top: 30%;
   z-index: 1;
-}
-
-.c-result__text {
-
-}
-.c-result__text--Failure {
-  color: red;
-}
-.c-result__text--Normal {
-  color: thistle;
-}
-.c-result__text--TrueEnd {
-  color: lightyellow;
 }
 
 :root {
