@@ -18,7 +18,7 @@ function Summary() {
   const { Character, PlayerType, Requests, Difficulty, ShowRandomResult } = Settings;
   const { Type, Timestamp, Cards, Exhibits, BaseMana } = Result;
   const exhibit = Exhibits[0];
-  const resultData = { Character, Type, Timestamp, Difficulty, exhibit };
+  const resultData = { Character, Type, Timestamp, Difficulty, exhibit, Requests };
 
   // TODO: locales
 
