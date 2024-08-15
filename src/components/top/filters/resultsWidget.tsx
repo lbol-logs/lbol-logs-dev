@@ -10,9 +10,9 @@ function ResultsWidget({ onClick, results }: { onClick: MouseEventHandler, resul
     <>
       {results.map((result: string) => {
         return (
-          <label className="p-filter__toggle u-button" key={result}>
-            <LazyLoadImage2 callback={getDifficultyImage} name={result} alt={t(`results.${result}`, { ns: 'common' })} />
-            <input className="p-filter__checkbox" type="checkbox" onClick={onClick} name="result" value={result} />
+          <label key={result}>
+            <input type="checkbox" name="result" value={result} />
+            {t(`results.${result}`, { ns: 'common' })}
           </label>
         );
       })}
