@@ -39,9 +39,9 @@ if __name__ == '__main__':
   arg = sys.argv[1]
   suffix = '@2x'
   if arg == 'c':
-    # card()
+    card()
     card(suffix)
   else:
     h = int(arg)
-    # icon(h)
+    icon(h)
     icon(h * 2, suffix)
