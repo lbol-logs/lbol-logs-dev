@@ -84,7 +84,6 @@ function TempStation({ station }: { station: TStation }) {
 
   return (
     <>
-      <p>{t(Type, { ns: 'stations' })}</p>
       {Id && (
         <p>{Id}</p>
       )}

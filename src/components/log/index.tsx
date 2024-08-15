@@ -11,7 +11,7 @@ function Log() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Header isLog={true} />
+      <Header versionSwitch={false} />
       <main className="l-log">
         <div className="l-log__inner l-inner">
           <LogProvider>

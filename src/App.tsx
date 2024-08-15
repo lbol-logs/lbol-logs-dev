@@ -12,15 +12,17 @@ import ScrollToTop from 'components/common/utils/scrollToTop';
 function App() {
   const { t } = useTranslation();
   const { lang } = languages[i18next.language];
+  const title = t('title', { ns: 'site' });
+  const substitle = t('subtitle', { ns: 'site' });
 
   return (
     <HelmetProvider>
       <Helmet>
         <html lang={lang} />
-        <title>{t('title', { ns: 'site' })} - {t('subtitle', { ns: 'site' })}</title>
+        <title>{title} - {substitle}</title>
         <meta name="description" content={t('description', { ns: 'site' })} />
         <link rel="manifest" href={`${baseUrl}/locales/${i18next.language}/manifest.json`} />
-        <meta name="apple-mobile-web-app-title" content={t('title', { ns: 'site' })} />
+        <meta name="apple-mobile-web-app-title" content={title} />
       </Helmet>
 
       <RemoveTrailingSlash />

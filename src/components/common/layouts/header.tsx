@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import LanguageSwitcher from 'components/common/parts/languageSwitcher';
-import VersionSwitcher from 'components/common/parts/versionSwitcher';
+import VersionWidget from 'components/common/parts/versionWidget';
 import Logo from '../parts/logo';
 
-function Header({ isTop, isLog }: { isTop?: boolean, isLog?: boolean }) {
+function Header({ versionSwitch }: { versionSwitch?: boolean }) {
   const { t } = useTranslation();
 
   return (
-    <header className={`l-header ${isTop ? 'l-header--sticky' : ''}`}>
+    <header className="l-header">
       <div className="l-header__inner l-inner">
         <Link className="l-header__link" to="/">
           <Logo className="l-header__logo" />
@@ -17,7 +17,7 @@ function Header({ isTop, isLog }: { isTop?: boolean, isLog?: boolean }) {
             <span className="c-header__subtitle u-pc"> - {t('subtitle', { ns: 'site' })}</span>
           </h1>
         </Link>
-        <VersionSwitcher isLog={!!isLog} />
+        <VersionWidget versionSwitch={!!versionSwitch} />
         <LanguageSwitcher />
       </div>
     </header>

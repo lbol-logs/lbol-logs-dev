@@ -25,10 +25,6 @@ img {
   height: 20px;
   padding: 0.625em;
 }
-.l-header--sticky {
-  position: sticky;
-  top: 0;
-}
 .l-header__link {
   display: flex;
   align-items: center;
@@ -704,7 +700,7 @@ html:lang(en) .c-entity__text {
   position: relative;
   width: fit-content;
   font-size: 0.8em;
-  z-index: 1
+  z-index: 1;
 }
 .p-result > * {
   position: absolute;
@@ -718,6 +714,15 @@ html:lang(en) .c-entity__text {
   left: var(--left);
   top: 15%;
 }
+html:lang(en) .p-result__type {
+  font-size: 0.9em;
+}
+.p-result__type--Failure {
+  color: red;
+}
+.p-result__type--Normal {
+  color: #d1cef3;
+}
 .p-result__type--TrueEnd {
   color: #fdfdc1;
 }
@@ -729,25 +734,12 @@ html:lang(en) .c-entity__text {
 .p-result__timestamp {
   color: #fff;
   left: var(--left);
-  top: 65%;
+  bottom: 15%;
 }
 .p-result__exhibit {
   right: 10%;
   top: 30%;
   z-index: 1;
-}
-
-.c-result__text {
-
-}
-.c-result__text--Failure {
-  color: red;
-}
-.c-result__text--Normal {
-  color: thistle;
-}
-.c-result__text--TrueEnd {
-  color: lightyellow;
 }
 
 :root {

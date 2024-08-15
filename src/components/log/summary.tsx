@@ -25,12 +25,11 @@ function Summary() {
   return (
     <section className="p-summary">
       <ResultWidget resultData={resultData} />
+      <div>
+        <RequestsWidget requests={Requests} />
+      </div>
       <div className="p-summary__settings">
         <CharacterWidget character={Character} playerType={PlayerType} />
-        {/* TODO: shinning exhibit */}
-        <div>
-          <RequestsWidget requests={Requests} />
-        </div>
         {/* <p>{t('HasClearBonus', { ns: 'log' })}: {HasClearBonus.toString()}</p> */}
         <span>
           <Trans
