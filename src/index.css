@@ -533,6 +533,7 @@ img {
 .c-entity__text {
   margin: 0 var(--entity-margin);
   line-height: 1.2em;
+  max-height: 100%;
 }
 html:lang(en) .c-entity__text {
   font-size: 0.8em;
