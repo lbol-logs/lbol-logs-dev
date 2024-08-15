@@ -2,9 +2,9 @@
   "version": "Version",
   "loading": "Loading...",
   "processing": "Processing...",
-  "card_one": "Card",
+  "card": "Card",
   "card_other": "Cards",
-  "exhibit_one": "Exhibit",
+  "exhibit": "Exhibit",
   "exhibit_other": "Exhibits",
   "mana": {
     "W": "W",
@@ -14,6 +14,16 @@
     "C": "C",
     "P": "P",
     "A": "?"
+  },
+  "spellcards": {
+    "ReimuA": "Spirit Sign \"Fantasy Seal\"",
+    "ReimuB": "Divine Art \"Oni-Binding Circle\"",
+    "MarisaA": "Black Magic \"Vacuum Collapse\"",
+    "MarisaB": "Love Sign \"Master Spark\"",
+    "SakuyaA": "Illusion Sign \"Killing Doll\"",
+    "SakuyaB": "Illusion World \"The World\"",
+    "CirnoA": "Freeze Sign \"Perfect Freeze\"",
+    "CirnoB": "Flower Sign \"Frigid Blossoms\""
   },
   "requests": {
     "HalfDrug": "Bitter Medicine",
@@ -30,7 +40,7 @@
     "Hard": "Hard",
     "Lunatic": "Lunatic"
   },
-  "result": {
+  "results": {
     "Failure": "Failure",
     "Normal": "Incident Resolved",
     "TrueEnd": "Perfect Incident Resolution"

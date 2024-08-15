@@ -24,18 +24,11 @@ function copyObject<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
 }
 
-function getTypeBaseMana(characters: TObjAny, character: string, playerType: string) {
-  const { Exhibit } = characters[character][playerType];
-  const mana = Exhibit.replace(character, '');
-  return mana;
-}
-
 export default copyObject;
 
 export {
   checkForce,
   validateRunData,
   validateConfigs,
-  copyObject,
-  getTypeBaseMana
+  copyObject
 };

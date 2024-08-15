@@ -9,9 +9,9 @@
   "act": "Act {{act}}",
   "act_4": "Final Act",
   "level": "Level {{level}}",
-  "cardsCount_one": "Card: {{count}}",
+  "cardsCount": "Card: {{count}}",
   "cardsCount_other": "Cards: {{count}}",
-  "exhibitsCount_one": "Exhibit: {{count}}",
+  "exhibitsCount": "Exhibit: {{count}}",
   "exhibitsCount_other": "Exhibits: {{count}}",
   "ShowRandomResult_true": "Reveal Fate",
   "ShowRandomResult_false": "Unknown Fate",
@@ -31,6 +31,5 @@
   "hp": "Life",
   "power": "Power",
   "money": "Money",
-  "round_one": "Round",
-  "round_other": "Rounds"
+  "round": "Round"
 }

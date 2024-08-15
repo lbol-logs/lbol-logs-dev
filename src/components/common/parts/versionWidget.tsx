@@ -3,13 +3,13 @@ import { latestVersion, versions } from 'configs/globals';
 import { ChangeEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function VersionSwitcher({ isLog }: { isLog: boolean }) {
+function VersionWidget({ versionSwitch }: { versionSwitch: boolean }) {
   const { version, setVersion } = useContext(CommonContext);
   const navigate = useNavigate();
   const isLatestVersion = version === latestVersion;
 
   let ver;
-  if (isLog) {
+  if (versionSwitch) {
     ver = (
       <span className={`c-version__text ${isLatestVersion ? 'c-version__text--latest' : ''}`}>{version}</span>
     );
@@ -37,4 +37,4 @@ function VersionSwitcher({ isLog }: { isLog: boolean }) {
   );
 }
 
-export default VersionSwitcher;
+export default VersionWidget;

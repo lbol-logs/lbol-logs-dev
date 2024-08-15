@@ -22,10 +22,23 @@ function StationType({ station }: { station: TStation }) {
 		BattleAdvTest
     */
 
-  const battleStations = ['Enemy', 'Elite', 'Boss'];
-  if (battleStations.includes(Type)) return <BattleStation station={station} />;
-  else if (Type === 'Adventure') return <EventStation station={station} />;
-  else return <TempStation station={station} />;
+	switch (Type) {
+		case 'Enemy':
+		case 'EliteEnemy':
+		case 'Boss':
+			return <BattleStation station={station} />;
+		case 'Adventure':
+			return <EventStation station={station} />;
+		// Supply,
+		// Gap,
+		// Shop,
+		// Adventure,
+		// Entry,
+		// Select,
+		// Trade,
+		default:
+			return <TempStation station={station} />;
+	}
 }
 
 export default StationType;

@@ -7,8 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
-import EnemyCards from './enemyCards';
-import EnemyCard from './enemyCard';
+import EnemyCards from '../parts/enemyCards';
 import RoundsWidget from '../parts/roundsWidget';
 
 function BattleStation({ station }: { station: TStation }) {
@@ -16,19 +15,14 @@ function BattleStation({ station }: { station: TStation }) {
   const { Type, Data, Id, Rewards } = station;
   const { t } = useTranslation();
 
-  let enemies;
+  let enemies, Enemies;
   let money = null;
   let cards = null;
   let exhibits = null;
 
-  if (Type === 'Enemy') {
-    const { Enemies } = configsData.enemyGroups[Id as string];
-    enemies = <EnemyCards enemies={Enemies} />;
-  }
-  else {
-    const enemy = Id as string;
-    enemies = <EnemyCard enemy={enemy} />;
-  }
+  if (Type === 'Enemy') ({ Enemies } = configsData.enemyGroups[Id as string]);
+  else Enemies = [Id as string];
+  enemies = <EnemyCards enemies={Enemies} />;
 
   const { Rounds } = Data;
 

@@ -85,6 +85,8 @@ function CurrentHoldings() {
                 }}
               />
             </h3>
+          </div>
+          <div className="p-holdings__line">
             <BaseManaWidget baseMana={BaseMana} />
           </div>
           

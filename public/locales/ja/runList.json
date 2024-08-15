@@ -1,10 +1,12 @@
 {
   "notAvailableYet": "現在は利用できません",
-  "character": "キャラ",
-  "type": "装備",
+  "character": "キャラクター",
   "shining": "光耀展示品",
   "difficulty": "難易度",
   "requests": "難題",
   "result": "結果",
-  "timestamp": "タイムスタンプ"
+  "timestamp": "タイムスタンプ",
+  "startingExhibit": "初期展示品",
+  "swappedExhibit": "展示品交換",
+  "sort": "並べ替え"
 }

@@ -5,7 +5,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
-import ChoicesWidget from './choicesWidget';
+import ChoicesWidget from '../parts/choicesWidget';
 import RoundsWidget from '../parts/roundsWidget';
 
 function EventStation({ station }: { station: TStation }) {
