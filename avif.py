@@ -6,11 +6,12 @@ from PIL import Image
 src = r'\_original'
 dst = r'\_avif'
 
-def card():
-  w = 144
-  h = 40
+def card(suffix = ''):
+  x = 1 if not suffix else 2
+  w = 144 * x
+  h = 40 * x
   ratio = 700 / 1024
-  top = 16
+  top = 16 * x
 
   dir = os.path.dirname(__file__)
   files = os.listdir(rf'{dir}{src}')
@@ -20,10 +21,10 @@ def card():
     height = round(w * ratio)
     resized = original.resize((w, height), Image.LANCZOS)
     cropped = resized.crop((0, top, w, top + h))
-    cropped.save(rf'{dir}{dst}\{name}.avif')
+    cropped.save(rf'{dir}{dst}\{name}{suffix}.avif')
 
 
-def icon(height):
+def icon(height, suffix=''):
   dir = os.path.dirname(__file__)
   files = os.listdir(rf'{dir}{src}')
   for file in files:
@@ -32,11 +33,15 @@ def icon(height):
     w, h = original.size
     width = round(w / h * height)
     resized = original.resize((width, height), Image.LANCZOS)
-    resized.save(rf'{dir}{dst}\{name}.avif')
+    resized.save(rf'{dir}{dst}\{name}{suffix}.avif')
 
 if __name__ == '__main__':
   arg = sys.argv[1]
+  suffix = '@2x'
   if arg == 'c':
-    card()
+    # card()
+    card(suffix)
   else:
-    icon(int(arg))
+    h = int(arg)
+    # icon(h)
+    icon(h * 2, suffix)
