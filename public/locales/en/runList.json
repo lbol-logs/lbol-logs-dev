@@ -8,5 +8,7 @@
   "timestamp": "Timestamp",
   "startingExhibit": "Starting Exhibit",
   "swappedExhibit": "Swapped Exhibit",
-  "sort": "Sort"
+  "sort": "Sort",
+  "apply": "Apply",
+  "reset": "Reset"
 }

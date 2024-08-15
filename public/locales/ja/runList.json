@@ -8,5 +8,7 @@
   "timestamp": "タイムスタンプ",
   "startingExhibit": "初期展示品",
   "swappedExhibit": "展示品交換",
-  "sort": "並べ替え"
+  "sort": "並べ替え",
+  "apply": "適用",
+  "reset": "リセット"
 }

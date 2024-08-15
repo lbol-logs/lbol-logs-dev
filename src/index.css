@@ -135,6 +135,9 @@ img {
 .p-run-list__row:nth-child(even) {
   background: var(--background-even);
 }
+a.p-run-list__row:hover {
+  opacity: 0.8;
+}
 .p-run-list__row--header {
   font-weight: bold;
   text-align: center;
@@ -758,12 +761,17 @@ html:lang(en) .p-result__type {
   border: none;
   padding: 0;
   opacity: 0.5;
+  position: relative;
+  cursor: pointer;
 }
-.p-filter__toggle:active {
+label.p-filter__toggle:active {
   opacity: 1;
 }
 .p-filter__toggle--checked {
   opacity: 1;
+  border-radius: 50%;
+  outline: 2px solid red;
+  outline-offset: -1px;
 }
 
 .p-filter__colors {
@@ -775,6 +783,27 @@ html:lang(en) .p-result__type {
 }
 .p-filter__exhibits {
   display: flex;
+}
+
+.p-filter__buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+.p-filter__button {
+  border-radius: 1em;
+  padding: 0.2em 1.5em;
+  background: #9dff9d;
+  /* border: 3px solid green; */
+  cursor: pointer;
+}
+.p-filter__button--reset {
+  background: #dbdbdb;
+}
+.p-filter__button:hover {
+  opacity: 0.8;
+}
+.p-filter__button:active {
+  opacity: 1;
 }
 
 :root {

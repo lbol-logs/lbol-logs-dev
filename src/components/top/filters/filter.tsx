@@ -150,6 +150,10 @@ function Filter() {
             {/* Newest / Oldest */}
           </div>
         </div>
+        <div className="p-filter__buttons">
+          <div className="p-filter__button p-filter__button--apply">{t('apply', { ns: 'runList' })}</div>
+          <div className="p-filter__button p-filter__button--reset">{t('reset', { ns: 'runList' })}</div>
+        </div>
     </div>
   );
 }
