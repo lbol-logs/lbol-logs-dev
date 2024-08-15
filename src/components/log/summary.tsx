@@ -7,7 +7,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import CharacterWidget from 'components/common/settings/characterWidget';
 import RequestsWidget from 'components/common/settings/requestsWidget';
-import ResultWidget from 'components/common/result/resultWidget';
+import ResultWidget from 'components/common/parts/resultWidget';
 
 function Summary() {
   const { runData, isRunDataLoaded } = useContext(LogContext);

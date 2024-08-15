@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { getExhibitImage, getResultImage } from 'utils/functions/getImage';
-import DateTime from './dateTime';
 import { iconSize, resultSizes } from 'configs/globals';
 import { TObjAny } from 'utils/types/common';
 
@@ -13,6 +12,7 @@ function ResultWidget({ resultData }: { resultData: TObjAny}) {
   const type = t(`result.${Type}`, { ns: 'common' });
   const count = Requests.length;
   const requests = count ? ` (${count})` : '';
+  const date = new Date(Timestamp).toLocaleString();
 
   return (
     <div className="p-result u-text-shadow">
@@ -21,9 +21,7 @@ function ResultWidget({ resultData }: { resultData: TObjAny}) {
       <span className="p-result__difficulty">
         {Difficulty}{requests}
       </span>
-      <span className="p-result__timestamp">
-        <DateTime timestamp={Timestamp} />
-      </span>
+      <time className="p-result__timestamp" dateTime={Timestamp}>{date}</time>
       <LazyLoadImage className="p-result__exhibit" src={getExhibitImage(exhibit)} width={iconSize} height={iconSize} alt={t(exhibit, { ns: 'exhibits' })} />
       <LazyLoadImage className="p-result__background" src={getResultImage('bg')} width={bg} height={height} alt="" />
     </div>
