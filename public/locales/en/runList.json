@@ -6,5 +6,7 @@
   "requests": "Requests",
   "result": "Result",
   "timestamp": "Timestamp",
+  "startingExhibit": "Starting Exhibit",
+  "swappedExhibit": "Swapped Exhibit",
   "sort": "Sort"
 }
