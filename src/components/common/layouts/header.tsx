@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import LanguageSwitcher from 'components/common/parts/languageSwitcher';
-import VersionSwitcher from 'components/common/parts/versionSwitcher';
+import VersionWidget from 'components/common/parts/versionWidget';
 import Logo from '../parts/logo';
 
-function Header({ isLog }: { isLog?: boolean }) {
+function Header({ versionSwitch }: { versionSwitch?: boolean }) {
   const { t } = useTranslation();
 
   return (
@@ -17,7 +17,7 @@ function Header({ isLog }: { isLog?: boolean }) {
             <span className="c-header__subtitle u-pc"> - {t('subtitle', { ns: 'site' })}</span>
           </h1>
         </Link>
-        <VersionSwitcher isLog={!!isLog} />
+        <VersionWidget versionSwitch={!!versionSwitch} />
         <LanguageSwitcher />
       </div>
     </header>

@@ -2,7 +2,7 @@ import { cardSize } from 'configs/globals';
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCardImage } from 'utils/functions/getImage';
 import { TCard } from 'utils/types/runData';
 
@@ -17,7 +17,7 @@ function CardCard({ card }: { card: TCard }) {
   return (
     <span className={`c-entity c-entity--${type} c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`}>
       <span className="c-entity__text c-card__text u-text-shadow">{t(Id, { ns: 'cards' })}{IsUpgraded && '+'}{UpgradeCounter}</span>
-      <LazyLoadImage className="c-card__img" src={getCardImage(Id)} width={width} height={height} alt="" />
+      <LazyLoadImage2 className="c-card__img" callback={getCardImage} name={Id} width={width} height={height} alt="" />
     </span>
   );
 }

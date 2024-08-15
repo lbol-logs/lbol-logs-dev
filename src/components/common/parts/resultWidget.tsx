@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getExhibitImage, getResultImage, getSpellcardImage } from 'utils/functions/getImage';
 import { iconSize, resultSizes } from 'configs/globals';
 import { TObjAny } from 'utils/types/common';
@@ -17,15 +17,15 @@ function ResultWidget({ resultData }: { resultData: TObjAny}) {
 
   return (
     <div className="p-result u-text-shadow">
-      <LazyLoadImage className="p-result__avatar" src={getResultImage(`${Character}${Type}`)} width={avatar} height={height} alt={`${character} ${type}`} />
-      <LazyLoadImage className="p-result__spellcard" src={getSpellcardImage(spellcard)} width={iconSize} height={iconSize} alt={t(`spellcards.${spellcard}`, { ns: 'common' })} />
+      <LazyLoadImage2 className="p-result__avatar" callback={getResultImage} name={`${Character}${Type}`} width={avatar} height={height} alt={`${character} ${type}`} />
+      <LazyLoadImage2 className="p-result__spellcard" callback={getSpellcardImage} name={spellcard} width={iconSize} height={iconSize} alt={t(`spellcards.${spellcard}`, { ns: 'common' })} />
       <span className={`p-result__type p-result__type--${Type}`}>{type}</span>
       <span className="p-result__difficulty">
         {Difficulty}{requests}
       </span>
       <time className="p-result__timestamp" dateTime={Timestamp}>{date}</time>
-      <LazyLoadImage className="p-result__exhibit" src={getExhibitImage(exhibit)} width={iconSize} height={iconSize} alt={t(exhibit, { ns: 'exhibits' })} />
-      <LazyLoadImage className="p-result__background" src={getResultImage('bg')} width={bg} height={height} alt="" />
+      <LazyLoadImage2 className="p-result__exhibit" callback={getExhibitImage} name={exhibit} width={iconSize} height={iconSize} alt={t(exhibit, { ns: 'exhibits' })} />
+      <LazyLoadImage2 className="p-result__background" callback={getResultImage} name={'bg'} width={bg} height={height} alt="" />
     </div>
   );
 }

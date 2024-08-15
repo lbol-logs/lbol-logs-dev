@@ -1,7 +1,7 @@
 import { TStation } from 'utils/types/runData';
 import ExhibitCards from '../../entityCards/exhibitCards';
 import CardCards from '../../entityCards/cardCards';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
@@ -31,7 +31,7 @@ function BattleStation({ station }: { station: TStation }) {
 
     money = (
       <span className="c-rewards__money">
-        <LazyLoadImage src={getCommonImage('Money')} width={iconSize} height={iconSize} alt={t('money', { ns: 'log' })} />
+        <LazyLoadImage2 callback={getCommonImage} name={'Money'} width={iconSize} height={iconSize} alt={t('money', { ns: 'log' })} />
         {Money}
       </span>
     );
@@ -42,7 +42,7 @@ function BattleStation({ station }: { station: TStation }) {
           return (
             <div className="c-rewards c-rewards--cards" key={i}>
               <div className="c-rewards__icon">
-                <LazyLoadImage src={getCommonImage('Card')} width={iconSize} height={iconSize} alt={t('card', { ns: 'common' })} />
+                <LazyLoadImage2 callback={getCommonImage} name={'Card'} width={iconSize} height={iconSize} alt={t('card', { ns: 'common' })} />
               </div>
               <CardCards cards={cards} />
             </div>
@@ -55,7 +55,7 @@ function BattleStation({ station }: { station: TStation }) {
       exhibits = (
         <div className="c-rewards c-rewards--exhibits">
           <div className="c-rewards__icon">
-            <LazyLoadImage src={getCommonImage('Exhibit')} width={iconSize} height={iconSize} alt={t('exhibit', { ns: 'common' })} />
+            <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} width={iconSize} height={iconSize} alt={t('exhibit', { ns: 'common' })} />
           </div>
           <ExhibitCards exhibits={Exhibits} />
         </div>
