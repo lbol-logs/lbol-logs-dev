@@ -13,6 +13,16 @@
     "P": "虹",
     "A": "？"
   },
+  "spellcards": {
+    "ReimuA": "霊符「夢想封印」",
+    "ReimuB": "神技「八方鬼縛陣」",
+    "MarisaA": "閉符「ビッグクランチ」",
+    "MarisaB": "恋符「マスタースパーク」",
+    "SakuyaA": "幻符「殺人ドール」",
+    "SakuyaB": "幻世「ザ・ワールド」",
+    "CirnoA": "凍符「パーフェクトフリーズ」",
+    "CirnoB": "花符「クリスタル・ブロサムズ」"
+  },
   "requests": {
     "HalfDrug": "薬剤耐性",
     "LowMaxHp": "死中に活",
@@ -28,7 +38,7 @@
     "Hard": "Hard",
     "Lunatic": "Lunatic"
   },
-  "result": {
+  "results": {
     "Failure": "満身創痍",
     "Normal": "異変解決",
     "TrueEnd": "事件は完全に解決した"

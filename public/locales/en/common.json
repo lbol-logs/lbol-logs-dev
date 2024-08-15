@@ -15,6 +15,16 @@
     "P": "P",
     "A": "?"
   },
+  "spellcards": {
+    "ReimuA": "Spirit Sign \"Fantasy Seal\"",
+    "ReimuB": "Divine Art \"Oni-Binding Circle\"",
+    "MarisaA": "Black Magic \"Vacuum Collapse\"",
+    "MarisaB": "Love Sign \"Master Spark\"",
+    "SakuyaA": "Illusion Sign \"Killing Doll\"",
+    "SakuyaB": "Illusion World \"The World\"",
+    "CirnoA": "Freeze Sign \"Perfect Freeze\"",
+    "CirnoB": "Flower Sign \"Frigid Blossoms\""
+  },
   "requests": {
     "HalfDrug": "Bitter Medicine",
     "LowMaxHp": "Last Stand",
@@ -30,7 +40,7 @@
     "Hard": "Hard",
     "Lunatic": "Lunatic"
   },
-  "result": {
+  "results": {
     "Failure": "Failure",
     "Normal": "Incident Resolved",
     "TrueEnd": "Perfect Incident Resolution"

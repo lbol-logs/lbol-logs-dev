@@ -5,8 +5,7 @@ import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import { Trans, useTranslation } from 'react-i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
-import CharacterWidget from 'components/common/settings/characterWidget';
-import RequestsWidget from 'components/common/settings/requestsWidget';
+import RequestsWidget from 'components/common/parts/requestsWidget';
 import ResultWidget from 'components/common/parts/resultWidget';
 
 function Summary() {
@@ -18,7 +17,7 @@ function Summary() {
   const { Character, PlayerType, Requests, Difficulty, ShowRandomResult } = Settings;
   const { Type, Timestamp, Cards, Exhibits, BaseMana } = Result;
   const exhibit = Exhibits[0];
-  const resultData = { Character, Type, Timestamp, Difficulty, exhibit, Requests };
+  const resultData = { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests };
 
   // TODO: locales
 
@@ -29,7 +28,6 @@ function Summary() {
         <RequestsWidget requests={Requests} />
       </div>
       <div className="p-summary__settings">
-        <CharacterWidget character={Character} playerType={PlayerType} />
         {/* <p>{t('HasClearBonus', { ns: 'log' })}: {HasClearBonus.toString()}</p> */}
         <span>
           <Trans

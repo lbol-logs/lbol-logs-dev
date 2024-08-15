@@ -48,7 +48,11 @@ function getDifficultyImage(name: string): string {
 }
 
 function getResultImage(name: string): string {
-  return _getImage('common/result', name);
+  return _getImage('common/results', name);
+}
+
+function getSpellcardImage(name: string): string {
+  return _getImage('common/spellcards', name);
 }
 
 export {
@@ -62,5 +66,6 @@ export {
   getExhibitImage,
   getAvatarImage,
   getDifficultyImage,
-  getResultImage
+  getResultImage,
+  getSpellcardImage
 };
