@@ -51,7 +51,6 @@ const cardSize = {
 const resultSizes = {
   bg: 292,
   avatar: 146,
-  spellcard: 50,
   height: 100
 };
 
