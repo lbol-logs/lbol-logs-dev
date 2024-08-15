@@ -6,7 +6,7 @@ import ActLevel from 'utils/classes/ActLevel';
 import { TObjString } from 'utils/types/common';
 import Loading from 'components/common/layouts/loading';
 import MapNodes from 'utils/classes/MapNodes';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage, getControlImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
@@ -60,7 +60,7 @@ function Control() {
   if (isSummary) {
     buttonLeft = (
       <span className="p-control__component" onClick={backToTop}>
-        <LazyLoadImage src={getControlImage('Back')} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'log' })} />
+        <LazyLoadImage2 callback={getControlImage} name={'Back'} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'log' })} />
       </span>
     );
     centerArea = (
@@ -72,14 +72,14 @@ function Control() {
     );
     buttonRight2 = (
       <span className="p-control__component" onClick={() => changeAct(maxAct)}>
-        <LazyLoadImage src={getControlImage('Skip')} width={iconSize} height={iconSize} alt={t('control.skip', { ns: 'log' })} />
+        <LazyLoadImage2 callback={getControlImage} name={'Skip'} width={iconSize} height={iconSize} alt={t('control.skip', { ns: 'log' })} />
       </span>
     );
   }
   else {
     buttonLeft = (
       <span className="p-control__component" onClick={() => changeAct(-1)}>
-        <LazyLoadImage className="u-img-vertical" src={getControlImage('Previous')} width={27} height={iconSize} alt={t('control.previous', { ns: 'log' })} />
+        <LazyLoadImage2 className="u-img-vertical" callback={getControlImage} name={'Previous'} width={27} height={iconSize} alt={t('control.previous', { ns: 'log' })} />
       </span>
     );
     centerArea = (
@@ -92,14 +92,14 @@ function Control() {
     if (showMap) {
       img = (
         <>
-          <LazyLoadImage className="p-control__card" src={getCommonImage('Card')} width={iconSize} height={iconSize} alt={t('card', { ns: 'common' })} />
-          <LazyLoadImage className="p-control__exhibit" src={getCommonImage('Exhibit')} width={iconSize} height={iconSize} alt={t('exhibit', { ns: 'common' })} />
+          <LazyLoadImage2 className="p-control__card" callback={getCommonImage} name={'Card'} width={iconSize} height={iconSize} alt={t('card', { ns: 'common' })} />
+          <LazyLoadImage2 className="p-control__exhibit" callback={getCommonImage} name={'Exhibit'} width={iconSize} height={iconSize} alt={t('exhibit', { ns: 'common' })} />
         </>
       );
     }
     else {
       img = (
-        <LazyLoadImage src={getControlImage('Map')} width={iconSize} height={iconSize} alt={t('control.map', { ns: 'log' })} />
+        <LazyLoadImage2 callback={getControlImage} name={'Map'} width={iconSize} height={iconSize} alt={t('control.map', { ns: 'log' })} />
       );
     }
     buttonRight2 = (
@@ -112,14 +112,14 @@ function Control() {
   if (isLastAct) {
     buttonRight = (
       <span className="p-control__component" onClick={() => changeAct(-maxAct)}>
-        <LazyLoadImage src={getControlImage('Back')} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'log' })} />
+        <LazyLoadImage2 callback={getControlImage} name={'Back'} width={iconSize} height={iconSize} alt={t('control.back', { ns: 'log' })} />
       </span>
     );
   }
   else {
     buttonRight = (
       <span className="p-control__component" onClick={() => changeAct(1)}>
-        <LazyLoadImage className="u-img-vertical" src={getControlImage('Next')} width={27} height={iconSize} alt={t('control.next', { ns: 'log' })} />
+        <LazyLoadImage2 className="u-img-vertical" callback={getControlImage} name={'Next'} width={27} height={iconSize} alt={t('control.next', { ns: 'log' })} />
       </span>
     );
   };

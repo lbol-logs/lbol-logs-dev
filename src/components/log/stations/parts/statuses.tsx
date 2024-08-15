@@ -1,6 +1,6 @@
 import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage } from 'utils/functions/getImage';
 import { TStatus } from 'utils/types/runData';
 
@@ -47,15 +47,15 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
   return (
     <div className="p-station__statuses">
       <div className="p-station__status p-station__status--hp">
-        <LazyLoadImage src={getCommonImage(hpImage)} width={iconSize} height={iconSize} alt={t('hp', { ns: 'log' })} />
+        <LazyLoadImage2 callback={getCommonImage} name={hpImage} width={iconSize} height={iconSize} alt={t('hp', { ns: 'log' })} />
         {getValuWithChange('Hp')}/{getValuWithChange('MaxHp')}
       </div>
       <div className="p-station__status p-station__status--power">
-        <LazyLoadImage src={getCommonImage('Power')} width={iconSize} height={iconSize} alt={t('power', { ns: 'log' })} />
+        <LazyLoadImage2 callback={getCommonImage} name={'Power'} width={iconSize} height={iconSize} alt={t('power', { ns: 'log' })} />
         {getValuWithChange('Power')}/{getValuWithChange('MaxPower')}
       </div>
       <div className="p-station__status p-station__status--money">
-        <LazyLoadImage src={getCommonImage('Money')} width={iconSize} height={iconSize} alt={t('money', { ns: 'log' })} />
+        <LazyLoadImage2 callback={getCommonImage} name={'Money'} width={iconSize} height={iconSize} alt={t('money', { ns: 'log' })} />
         {getValuWithChange('Money')}
       </div>
     </div>

@@ -5,7 +5,7 @@ import Statuses from './parts/statuses';
 import { LogContext } from 'contexts/logContext';
 import CurrentChange from './currentChange';
 import StationType from './stationTypes/stationType';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getBossImage, getMapImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 
@@ -19,14 +19,14 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
   const i = Stations.indexOf(station);
   const lastStatus = i ? Stations[i - 1].Status : runData.Settings.Status;
 
-  let src;
+  let callback;
   let type: string = Type;
   const isBoss = type === 'Boss';
 
   if (isBoss) {
     const { Boss } = Acts.find(({ Act: _act }) => _act === Act) as TActObj;
     type = Boss as string;
-    src = getBossImage(type);
+    callback = getBossImage;
   }
   else {
     if (type === 'Enemy') {
@@ -34,7 +34,7 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
       type += 2 - Level % 2;
     }
     if (type === 'Trade') type += Act;
-    src = getMapImage(type);
+    callback = getMapImage;
   }
 
   useEffect(() => {
@@ -56,7 +56,7 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
             }}
           />
         </h3>
-        <LazyLoadImage className="p-station__icon" src={src} width={iconSize} height={iconSize} alt={t(`stations.${Type}`, { ns: 'log' })} />
+        <LazyLoadImage2 className="p-station__icon" callback={callback} name={type} width={iconSize} height={iconSize} alt={t(`stations.${Type}`, { ns: 'log' })} />
         <Statuses status={Status} lastStatus={lastStatus as TStatus} />
       </div>
       <div className="p-station__body">

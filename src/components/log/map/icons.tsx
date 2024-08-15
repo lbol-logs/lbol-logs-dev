@@ -1,4 +1,4 @@
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { checkForce } from 'utils/functions/helpers';
 import MapNodes from 'utils/classes/MapNodes';
 import { TActObj } from 'utils/types/runData';
@@ -20,7 +20,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     const { X, Y, Type } = node;
     const [x, y] = MapNodes.node(X, Y, force);
 
-    let src, _size, top;
+    let callback, _size, top;
     let type: string = Type;
     const isBoss = type === 'Boss';
 
@@ -35,7 +35,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       else {
         type = Boss as string;
       }
-      src = getBossImage(type);
+      callback = getBossImage;
       _size = size + size;
       if (force) top = y - delta;
       else top = y + delta;
@@ -46,7 +46,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
         type += 2 - X % 2;
       }
       if (type === 'Trade') type += Act;
-      src = getMapImage(type);
+      callback = getMapImage;
       _size = size;
       if (force) top = y;
       else top = y + delta * 2;
@@ -58,7 +58,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       const station = currentActStations.find(({ Level, Y: _y }) => Level === X && _y === Y);
       if (station) {
         visited = (
-          <LazyLoadImage className="c-map-icon__visited" src={getMapImage('Visited')} width="18" height="18" alt={t('stations.Visited', { ns: 'log' })} />
+          <LazyLoadImage2 className="c-map-icon__visited" callback={getMapImage} name={'Visited'} width="18" height="18" alt={t('stations.Visited', { ns: 'log' })} />
         );
         if (X === level) isActive = true;
       }
@@ -67,8 +67,8 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     return (
       <div className={`c-map-icon ${isBoss ? 'c-map-icon--boss' : ''}`} key={`Act${Act}_x${X}y${Y}`} style={{ left, top }}>
         {visited}
-        <LazyLoadImage className="c-map-icon__img" src={src} width={_size} height={_size} alt={t(`stations.${Type}`, { ns: 'log' })} />
-        <LazyLoadImage className={`c-map-icon__bg ${isActive ? 'c-map-icon__bg--active' : ''}`} src={getMapImage('bg')} width={_size} height={_size} alt="" />
+        <LazyLoadImage2 className="c-map-icon__img" callback={callback} name={type} width={_size} height={_size} alt={t(`stations.${Type}`, { ns: 'log' })} />
+        <LazyLoadImage2 className={`c-map-icon__bg ${isActive ? 'c-map-icon__bg--active' : ''}`} callback={getMapImage} name="bg" width={_size} height={_size} alt="" />
       </div>
     );
   });
