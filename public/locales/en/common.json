@@ -2,9 +2,9 @@
   "version": "Version",
   "loading": "Loading...",
   "processing": "Processing...",
-  "card_one": "Card",
+  "card": "Card",
   "card_other": "Cards",
-  "exhibit_one": "Exhibit",
+  "exhibit": "Exhibit",
   "exhibit_other": "Exhibits",
   "mana": {
     "W": "W",

@@ -118,17 +118,16 @@ img {
 }
 
 .p-run-list__table {
-  overflow-x: auto;
+  --dot-size: 1.3em;
 }
 .p-run-list__row {
   display: flex;
+  align-items: stretch;
   width: fit-content;
   margin: 0.3125em 0;
   padding: 0.3125em;
-}
-.p-run-list__row {
-  color: inherit;
   border-radius: 0.625em;
+  color: inherit;
 }
 .p-run-list__row:nth-child(odd) {
   background: #e4fdff;
@@ -138,33 +137,27 @@ img {
 }
 .p-run-list__row--header {
   font-weight: bold;
+  text-align: center;
 }
 .p-run-list__cell {
   padding: 0.3125em;
 }
+.p-run-list__cell--result-requests {
+  display: flex;
+  align-items: center;
+  column-gap: 0.3125em;
+}
 .p-run-list__cell--id {
   width: 2em;
-}
-.p-run-list__cell--character {
-  width: 5.5em;
-}
-.p-run-list__cell--type {
-  width: 2.5em;
-}
-.p-run-list__cell--shining {
-  width: 10em;
-}
-.p-run-list__cell--difficulty {
-  width: 5em;
-}
-.p-run-list__cell--requests {
-  width: 15em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .p-run-list__cell--result {
-  width: 4em;
+  width: var(--result-width);
 }
-.p-run-list__cell--timestamp {
-  width: 12em;
+.p-run-list__cell--requests {
+  width: calc(var(--dot-size) * 13);
 }
 
 .c-log__processing {
@@ -605,7 +598,6 @@ html:lang(en) .c-entity__text {
 }
 
 .c-requests {
-  --dot-size: 1.5em;
   --dot-border: 1px;
   --dot-color: orange;
   display: flex;
@@ -655,6 +647,7 @@ html:lang(en) .c-entity__text {
 }
 .c-request__dot:hover:after {
   content: attr(data-name);
+  /* color: #000; */
   min-width: 6em;
   position: absolute;
   background: #fff0d4;
@@ -738,6 +731,8 @@ html:lang(en) .p-result__type {
   --control-height: 36px;
   --control-gap: 1em;
   --icon-size: 36px;
+  --result-width: 292px;
+  --dot-size: 1.5em;
   --entity-column-gap: 0.65em;
   --entity-width: 9em;
   --entity-height: 2.5em;
@@ -783,5 +778,9 @@ html:lang(en) .p-result__type {
 
   .c-entities {
     font-size: 0.65em;
+  }
+
+  .p-run-list__cell--result-requests {
+    flex-direction: column;
   }
 }

@@ -19,11 +19,9 @@ function Top() {
       <main className="l-top">
         <div className="l-inner">
           <About />
-          <section className="p-run-list">
-            <Suspense fallback={<Loading />}>
-              <RunList />
-            </Suspense>
-          </section>
+          <Suspense fallback={<Loading />}>
+            <RunList />
+          </Suspense>
         </div>
       </main>
       <Footer />

@@ -1,10 +1,10 @@
 {
   "notAvailableYet": "Not available yet",
   "character": "Character",
-  "type": "Type",
   "shining": "Shining Exhibit",
   "difficulty": "Difficulty",
   "requests": "Requests",
   "result": "Result",
-  "timestamp": "Timestamp"
+  "timestamp": "Timestamp",
+  "sort": "Sort"
 }
