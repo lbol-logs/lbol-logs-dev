@@ -13,7 +13,7 @@ function Filter() {
   const { configsData } = useContext(CommonContext);
   const [character, setCharacter] = useState('');
   const [showStartingExhibits, setShowStartingExhibits] = useState(false);
-  const [showSwappedExhibits, setSwappedExhibits] = useState(false);
+  const [showSwappedExhibits, setShowSwappedExhibits] = useState(false);
 
   const characterConfigs = configsData.characters;
   const exhibitConfigs = configsData.exhibits;
@@ -36,7 +36,6 @@ function Filter() {
   }
 
   const [startingExhibits, swappedExhibits] = getExhibits(exhibitConfigs);
-  console.log({startingExhibits, swappedExhibits});
 
   const startingExhibit = t('startingExhibit', { ns: 'runList' });
   const swappedExhibit = t('swappedExhibit', { ns: 'runList' });
@@ -47,7 +46,7 @@ function Filter() {
       <div className="p-filter__row">
         <div className="p-filter__label">{startingExhibit}</div>
         <div className="p-filter__values">
-          {startingExhibits[character].map(exhibit => {
+          {character && startingExhibits[character].map(exhibit => {
             return (
               <ExhibitWidget key={exhibit} onClick={onClick} exhibit={exhibit} />
             );
@@ -62,12 +61,12 @@ function Filter() {
     swappedExhibitsRow = (
       <div className="p-filter__row">
       <div className="p-filter__label">{swappedExhibit}</div>
-      <div className="p-filter__values">
+      <div className="p-filter__values p-filter__colors">
         {Object.entries(swappedExhibits).map(([color, exhibits]) => {
           return (
-            <div className={`p-filter__color--${color}`}>
+            <div className="p-filter__color">
               <ManaWidget mana={color} />
-              <div>
+              <div className="p-filter__exhibits">
                 {exhibits.map(exhibit => {
                   return (
                     <ExhibitWidget onClick={onClick} exhibit={exhibit} key={exhibit} />
@@ -84,11 +83,24 @@ function Filter() {
   
   function onClick(e: React.MouseEvent<HTMLInputElement>) {
     const className = 'p-filter__toggle--checked';
-    const checkbox = e.target as HTMLInputElement;
-    const label = checkbox.parentElement as HTMLElement;
-    const isChecked = checkbox.checked;
+    const input = e.target as HTMLInputElement;
+    const label = input.parentElement as HTMLElement;
+    const isChecked = input.checked;
     if (isChecked) label.classList.add(className);
     else label.classList.remove(className);
+  }
+
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const input = e.target as HTMLInputElement;
+    const value = input.value;
+    if (value === 'startingExhibit') {
+      setShowStartingExhibits(true);
+      setShowSwappedExhibits(false);
+    }
+    else if (value === 'swappedExhibit') {
+      setShowStartingExhibits(false);
+      setShowSwappedExhibits(true);
+    }
   }
 
   return (
@@ -109,11 +121,11 @@ function Filter() {
           <div className="p-filter__label">{t('exhibit', { ns: 'common' })}</div>
           <div className="p-filter__values"></div>
             <label>
-              <input type="radio" name="exhibit" value="startingExhibit" />
+              <input type="radio" name="exhibit" value="startingExhibit" onChange={onChange} />
               {startingExhibit}
             </label>
             <label>
-              <input type="radio" name="exhibit" value="swappedExhibit" />
+              <input type="radio" name="exhibit" value="swappedExhibit" onChange={onChange} />
               {swappedExhibit}
             </label>
         </div>
