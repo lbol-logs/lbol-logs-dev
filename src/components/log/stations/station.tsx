@@ -7,7 +7,6 @@ import CurrentChange from './currentChange';
 import StationType from './stationTypes/stationType';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getBossImage, getMapImage } from 'utils/functions/getImage';
-import { iconSize } from 'configs/globals';
 
 function Station({ station, innerRef }: { station: TStation, innerRef?: RefObject<HTMLDivElement>}) {
   const { t } = useTranslation();
@@ -56,7 +55,7 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
             }}
           />
         </h3>
-        <LazyLoadImage2 className="p-station__icon" callback={callback} name={type} width={iconSize} height={iconSize} alt={t(`stations.${Type}`, { ns: 'log' })} />
+        <LazyLoadImage2 className="p-station__icon" callback={callback} name={type} alt={t(`stations.${Type}`, { ns: 'log' })} />
         <Statuses status={Status} lastStatus={lastStatus as TStatus} />
       </div>
       <div className="p-station__body">

@@ -1,4 +1,3 @@
-import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage } from 'utils/functions/getImage';
@@ -8,7 +7,7 @@ function RoundsWidget({ rounds }: { rounds: number }) {
 
   return (
     <span className="c-rewards__rounds">
-      <LazyLoadImage2 callback={getCommonImage} name={'Round'} width={iconSize} height={iconSize} alt={t('round', { ns: 'log' })} />
+      <LazyLoadImage2 callback={getCommonImage} name={'Round'} alt={t('round', { ns: 'log' })} />
       {rounds}
     </span>
   );

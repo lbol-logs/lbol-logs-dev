@@ -5,7 +5,6 @@ import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage } from 'utils/functions/getImage';
-import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 
 function CurrentChange({ level }: { level: TLevel }) {
@@ -29,7 +28,7 @@ function CurrentChange({ level }: { level: TLevel }) {
       Remove: '－',
       Upgrade: '▲'
     };
-    const cardIcon = <LazyLoadImage2 callback={getCommonImage} name={'Card'} width={iconSize} height={iconSize} alt={t('card', { ns: 'common' })} />;
+    const cardIcon = <LazyLoadImage2 callback={getCommonImage} name={'Card'} alt={t('card', { ns: 'common' })} />;
     card = Object.entries(cards).map(([type, symbol]) => {
       const cards = currentCards.filter(({ Type }) => Type === type);
       const hasCards = cards.length > 0;
@@ -58,7 +57,7 @@ function CurrentChange({ level }: { level: TLevel }) {
       Remove: '－',
       Use: '▼'
     };
-    const exhibitIcon = <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} width={iconSize} height={iconSize} alt={t('exhibit', { ns: 'common' })} />;
+    const exhibitIcon = <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} alt={t('exhibit', { ns: 'common' })} />;
     exhibit = Object.entries(exhibits).map(([type, symbol]) => {
       let exhibits: TExhibits | TExhibitObjs = currentExhibits.filter(({ Type }) => Type === type);
       if (type !== 'Use') exhibits = exhibits.map(({ Id }) => Id);

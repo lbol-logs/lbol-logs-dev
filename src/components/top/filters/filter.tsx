@@ -119,7 +119,7 @@ function Filter() {
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('exhibit', { ns: 'common' })}</div>
-          <div className="p-filter__values"></div>
+          <div className="p-filter__values">
             <label>
               <input type="radio" name="exhibit" value="startingExhibit" onChange={onChange} />
               {startingExhibit}
@@ -128,6 +128,7 @@ function Filter() {
               <input type="radio" name="exhibit" value="swappedExhibit" onChange={onChange} />
               {swappedExhibit}
             </label>
+          </div>
         </div>
         {startingExhibitsRow}
         {swappedExhibitsRow}

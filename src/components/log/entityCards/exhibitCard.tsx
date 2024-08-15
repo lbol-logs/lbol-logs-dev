@@ -1,5 +1,4 @@
 import Processing from 'components/common/layouts/processing';
-import { iconSize } from 'configs/globals';
 import { CommonContext } from 'contexts/commonContext';
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
@@ -55,7 +54,7 @@ function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitCh
 
   return (
     <span className={`c-entity c-entity--${Rarity} c-exhibit`}>
-      <LazyLoadImage2 className="c-exhibit__img" callback={getExhibitImage} name={Id} width={iconSize} height={iconSize}   alt="" />
+      <LazyLoadImage2 className="c-exhibit__img" callback={getExhibitImage} name={Id}   alt="" />
       <span className="c-entity__text c-exhibit__text">{t(Id, { ns: 'exhibits' })}</span>
       {counter}
     </span>
