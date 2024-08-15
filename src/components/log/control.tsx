@@ -8,7 +8,7 @@ import Loading from 'components/common/layouts/loading';
 import MapNodes from 'utils/classes/MapNodes';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage, getControlImage } from 'utils/functions/getImage';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { iconSize } from 'configs/globals';
 
 function Control() {
@@ -65,9 +65,11 @@ function Control() {
     );
     centerArea = (
       <span className="p-control__component p-control__component--center">
-        {
-          // TODO: character (icon, type, shiningexhibit), difficulty, requests, result
-        }
+        <Trans
+          i18nKey="ShowRandomResult"
+          ns="log"
+          context={runData.Settings.ShowRandomResult.toString()}
+        />
       </span>
     );
     buttonRight2 = (

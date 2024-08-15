@@ -61,7 +61,9 @@ const defaultHoldingsHeight = 144;
 const commonConfigs: Array<string> = [
   'characters',
   'requests',
-  'exhibits'
+  'exhibits',
+  'difficulties',
+  'results'
 ];
 
 const logConfigs: Array<string> = [

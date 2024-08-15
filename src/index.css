@@ -135,9 +135,6 @@ img {
 .p-run-list__row:nth-child(even) {
   background: var(--background-even);
 }
-a.p-run-list__row:hover {
-  opacity: 0.8;
-}
 .p-run-list__row--header {
   font-weight: bold;
   text-align: center;
@@ -325,13 +322,6 @@ a.p-run-list__row:hover {
 
 .p-summary {
   margin-bottom: 50vh;
-}
-
-.p-summary__settings {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5em;
 }
 
 .p-stations {
@@ -762,10 +752,6 @@ html:lang(en) .p-result__type {
   padding: 0;
   opacity: 0.5;
   position: relative;
-  cursor: pointer;
-}
-label.p-filter__toggle:active {
-  opacity: 1;
 }
 .p-filter__toggle--checked {
   opacity: 1;
@@ -785,19 +771,30 @@ label.p-filter__toggle:active {
   display: flex;
 }
 
+.p-filter__character-exhibits {
+  display: flex;
+  flex-direction: column;
+}
+
 .p-filter__buttons {
   display: flex;
   justify-content: space-evenly;
 }
 .p-filter__button {
-  border-radius: 1em;
+  --color: green;
+  font-weight: bold;
+  border-radius: 2em;
   padding: 0.2em 1.5em;
-  background: #9dff9d;
-  /* border: 3px solid green; */
   cursor: pointer;
+  box-sizing: border-box;
+}
+.p-filter__button--apply {
+  background: var(--color);
+  color: #fff;
 }
 .p-filter__button--reset {
-  background: #dbdbdb;
+  outline: 2px solid var(--color);
+  color: var(--color);
 }
 .p-filter__button:hover {
   opacity: 0.8;
@@ -840,7 +837,7 @@ label.p-filter__toggle:active {
     display: none;
   }
 
-  .p-filter__toggle:hover {
+  .u-button:hover {
     opacity: 0.8;
   }
 }
@@ -874,4 +871,12 @@ label.p-filter__toggle:active {
   .p-filter__row {
     flex-direction: column;
   }
+}
+
+.u-button {
+  user-select: none;
+  cursor: pointer;
+}
+.u-button:active {
+  opacity: 1;
 }

@@ -40,19 +40,19 @@ function getExhibitImage(name: string): string {
 }
 
 function getAvatarImage(name: string): string {
-  return _getImage('common/avatars', name);
+  return _getImage('avatars', name);
 }
 
 function getDifficultyImage(name: string): string {
-  return _getImage('common/difficulties', name);
+  return _getImage('difficulties', name);
 }
 
 function getResultImage(name: string): string {
-  return _getImage('common/results', name);
+  return _getImage('results', name);
 }
 
 function getSpellcardImage(name: string): string {
-  return _getImage('common/spellcards', name);
+  return _getImage('spellcards', name);
 }
 
 export {

@@ -1,7 +1,7 @@
 import { TBaseMana } from 'utils/types/runData';
 import ManaWidget from './manaWidget';
 
-function BaseManaWidget({ baseMana }: { baseMana: TBaseMana}) {
+function BaseManaWidget({ baseMana }: { baseMana: TBaseMana }) {
   return (
     <div className="p-base-mana">
     {baseMana.split('').map((mana, i) => {

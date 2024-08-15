@@ -3,7 +3,7 @@ import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import RequestsWidget from 'components/common/parts/requestsWidget';
 import ResultWidget from 'components/common/parts/resultWidget';
@@ -14,7 +14,7 @@ function Summary() {
   if (!isRunDataLoaded) return <Loading />;
 
   const { Settings, Result } = runData;
-  const { Character, PlayerType, Requests, Difficulty, ShowRandomResult } = Settings;
+  const { Character, PlayerType, Requests, Difficulty } = Settings;
   const { Type, Timestamp, Cards, Exhibits, BaseMana } = Result;
   const exhibit = Exhibits[0];
   const resultData = { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests };
@@ -24,19 +24,7 @@ function Summary() {
   return (
     <section className="p-summary">
       <ResultWidget resultData={resultData} />
-      <div>
-        <RequestsWidget requests={Requests} />
-      </div>
-      <div className="p-summary__settings">
-        {/* <p>{t('HasClearBonus', { ns: 'log' })}: {HasClearBonus.toString()}</p> */}
-        <span>
-          <Trans
-            i18nKey="ShowRandomResult"
-            ns="log"
-            context={ShowRandomResult.toString()}
-          />
-        </span>
-      </div>
+      <RequestsWidget requests={Requests} />
       
       
       <BaseManaWidget baseMana={BaseMana} />

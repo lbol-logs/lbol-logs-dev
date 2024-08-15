@@ -4,7 +4,7 @@ import { getExhibitImage, getResultImage, getSpellcardImage } from 'utils/functi
 import { resultSizes } from 'configs/globals';
 import { TObjAny } from 'utils/types/common';
 
-function ResultWidget({ resultData }: { resultData: TObjAny}) {
+function ResultWidget({ resultData }: { resultData: TObjAny }) {
   const { t } = useTranslation();
   const { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests } = resultData;
   const { bg, avatar, height } = resultSizes;

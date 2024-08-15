@@ -5,18 +5,29 @@ import CharacterWidget from './characterWidget';
 import { TObj, TObjAny } from 'utils/types/common';
 import ExhibitWidget from './exhibitWidget';
 import { TExhibits } from 'utils/types/runData';
-import ManaWidget from 'components/common/parts/manaWidget';
+import DifficultiesWidget from './difficultiesWidget';
+import ColorExhibitsWidget from './colorExhibitsWidget';
+import RequestsWidget from './requestsWidget';
+import StartingExhibitsWidget from './startingExhibitsWidget';
+import ResultsWidget from './resultsWidget';
 
 function Filter() {
   const { t } = useTranslation();
 
   const { configsData } = useContext(CommonContext);
-  const [character, setCharacter] = useState('');
+
+  const defaultCharacters = ['Reimu', 'Marisa', 'Sakuya', 'Cirno'];
+
+  const [characters, setCharacters] = useState(defaultCharacters);
   const [showStartingExhibits, setShowStartingExhibits] = useState(false);
   const [showSwappedExhibits, setShowSwappedExhibits] = useState(false);
 
-  const characterConfigs = configsData.characters;
-  const exhibitConfigs = configsData.exhibits;
+  const {
+    characters: characterConfigs,
+    exhibits: exhibitConfigs,
+    difficulties: difficultyConfigs,
+    results: resultConfigs
+  } = configsData;
 
   function getExhibits(configs: TObjAny) {
     const startingExhibits: TObj<TExhibits> = {};
@@ -46,11 +57,7 @@ function Filter() {
       <div className="p-filter__row">
         <div className="p-filter__label">{startingExhibit}</div>
         <div className="p-filter__values">
-          {character && startingExhibits[character].map(exhibit => {
-            return (
-              <ExhibitWidget key={exhibit} onClick={onClick} exhibit={exhibit} />
-            );
-          })}
+          <StartingExhibitsWidget onClick={onClick} characters={characters} startingExhibits={startingExhibits} />
         </div>
       </div>
     );
@@ -64,16 +71,7 @@ function Filter() {
       <div className="p-filter__values p-filter__colors">
         {Object.entries(swappedExhibits).map(([color, exhibits]) => {
           return (
-            <div className="p-filter__color">
-              <ManaWidget mana={color} />
-              <div className="p-filter__exhibits">
-                {exhibits.map(exhibit => {
-                  return (
-                    <ExhibitWidget onClick={onClick} exhibit={exhibit} key={exhibit} />
-                  );
-                })}
-              </div>
-            </div>
+            <ColorExhibitsWidget key={color} onClick={onClick} color={color} exhibits={exhibits} />
           )
         })}
       </div>
@@ -134,15 +132,21 @@ function Filter() {
         {swappedExhibitsRow}
         <div className="p-filter__row">
           <div className="p-filter__label">{t('difficulty', { ns: 'runList' })}</div>
-          <div className="p-filter__values"></div>
+          <div className="p-filter__values">
+            <DifficultiesWidget onClick={onClick} difficulties={difficultyConfigs as Array<string>} />
+          </div>
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('requests', { ns: 'runList' })}</div>
-          <div className="p-filter__values"></div>
+          <div className="p-filter__values">
+            {/* <RequestsWidget onClick={onClick} requests={requestConfigs} /> */}
+          </div>
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('result', { ns: 'runList' })}</div>
-          <div className="p-filter__values"></div>
+          <div className="p-filter__values">
+            <ResultsWidget onClick={onClick} results={resultConfigs as Array<string>} />
+          </div>
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('sort', { ns: 'runList' })}</div>

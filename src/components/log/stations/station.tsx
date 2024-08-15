@@ -8,7 +8,7 @@ import StationType from './stationTypes/stationType';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getBossImage, getMapImage } from 'utils/functions/getImage';
 
-function Station({ station, innerRef }: { station: TStation, innerRef?: RefObject<HTMLDivElement>}) {
+function Station({ station, innerRef }: { station: TStation, innerRef?: RefObject<HTMLDivElement> }) {
   const { t } = useTranslation();
   const { runData, setIsStationsLoaded } = useContext(LogContext);
   const { Node, Status, Type } = station;
