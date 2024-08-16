@@ -353,6 +353,7 @@ img {
 
 .p-station__head {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   column-gap: 0.3125em;
 }
@@ -360,6 +361,7 @@ img {
 .p-station__level {
   margin: 0;
   width: 5.5em;
+  
 }
 
 .p-station__statuses {

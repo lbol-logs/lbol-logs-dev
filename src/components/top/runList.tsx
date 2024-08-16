@@ -27,6 +27,8 @@ function RunList() {
     return o;
   }, [list]);
 
+  // useFilter();
+
   return (
     <section className="p-run-list">
       <Filter />
