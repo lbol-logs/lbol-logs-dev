@@ -1,15 +1,12 @@
 import { LogContext } from 'contexts/logContext';
-import { ChangeEvent, useContext } from 'react';
-import { TAct, TLevel } from 'utils/types/runData';
-import { SetURLSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
-import ActLevel from 'utils/classes/ActLevel';
-import { TObjString } from 'utils/types/common';
+import { useContext } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Loading from 'components/common/layouts/loading';
-import MapNodes from 'utils/classes/MapNodes';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage, getControlImage } from 'utils/functions/getImage';
 import { Trans, useTranslation } from 'react-i18next';
 import { iconSize } from 'configs/globals';
+import useControl from 'hooks/useControl';
 
 function Control() {
   const { isRunDataLoaded, runData, act, setAct, level, setLevel, showMap, setShowMap } = useContext(LogContext);
@@ -17,38 +14,19 @@ function Control() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  if (!isRunDataLoaded) return <Loading />;
-  const al = new ActLevel(runData, act);
-  const maxAct: TAct = al.maxAct();
-  const minLevel: TLevel = al.minLevel();
-  const maxLevel: TLevel = al.maxLevel();
+  const o = useControl({ isRunDataLoaded, runData, act, setAct, setLevel, showMap, setShowMap, navigate, searchParams, setSearchParams });
 
-  function backToTop() {
-    navigate('../');
-  }
+  if (!o) return <Loading />;
 
-  function changeAct(offset: number) {
-    const nextAct = act + offset as TAct;
-    triggerChange(nextAct, 0);
-  }
-
-  function changeLevel(e: ChangeEvent<HTMLInputElement>) {
-    const nextLevel = Number(e.target.value) as TLevel;
-    triggerChange(act, nextLevel);
-  }
-
-  function triggerChange(a: TAct, l: TLevel) {
-    a = al.act(a);
-    l = al.level(l);
-    setAct(a);
-    setLevel(l);
-    updateQs(searchParams, setSearchParams, a, l);
-    scrollToLevel(l, showMap);
-  }
-
-  function handleToggle() {
-    setShowMap(!showMap);
-  }
+  const {
+    maxAct,
+    minLevel,
+    maxLevel,
+    backToTop,
+    changeAct,
+    changeLevel,
+    handleToggle
+  } = o;
 
   let buttonLeft = null;
   let centerArea = null;
@@ -138,40 +116,4 @@ function Control() {
   );
 }
 
-function updateQs(searchParams: URLSearchParams, setSearchParams: SetURLSearchParams, a: TAct, l?: TLevel) {
-  const o: TObjString = {};
-  if (a) o['a'] = a.toString();
-  else searchParams.delete('a');
-  if (l) o['l'] = l.toString();
-  else searchParams.delete('l');
-  setSearchParams(o, { replace: true });
-}
-
-function scrollToLevel(nextLevel: TLevel, showMap: boolean, scrollToY = true) {
-  if (showMap) {
-    const inner = document.querySelector('.js-mapInner') as HTMLDivElement;
-    if (inner) {
-      const { gap, length } = MapNodes.mapOptions;
-      const offset = (inner.offsetWidth - gap.x - length) * 0.3;
-      const x = MapNodes.x1x2(nextLevel)[0] - gap.x - offset;
-      inner.scrollTo(x, 0);
-    }
-  }
-
-  if (scrollToY) {
-    const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
-    if (station) {
-      const selector = showMap ? '.js-map' : '.js-holdings';
-      const element = document.querySelector(selector) as HTMLDivElement;
-      const y = station.offsetTop - element.offsetHeight;
-      window.scrollTo(0, y);
-    }
-  }
-}
-
 export default Control;
-
-export {
-  updateQs,
-  scrollToLevel
-};
