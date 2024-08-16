@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import CharactersWidget from './charactersWidget';
 import DifficultiesWidget from './difficultiesWidget';
 import ColorsWidget from './colorsWidget';
+import RequestsWidget from './requestsWidget';
 import StartingExhibitsWidget from './startingExhibitsWidget';
 import ResultsWidget from './resultsWidget';
 
