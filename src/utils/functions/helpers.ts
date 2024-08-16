@@ -1,5 +1,4 @@
 import { TRunData } from 'utils/types/runData';
-import { TObjAny } from 'utils/types/common';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {

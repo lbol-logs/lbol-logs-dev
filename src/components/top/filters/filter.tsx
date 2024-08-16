@@ -9,24 +9,21 @@ import ColorExhibitsWidget from './colorExhibitsWidget';
 import RequestsWidget from './requestsWidget';
 import StartingExhibitsWidget from './startingExhibitsWidget';
 import ResultsWidget from './resultsWidget';
+import { getConfigs } from 'utils/functions/fetchData';
+import use from 'utils/functions/use';
 
 function Filter() {
   const { t } = useTranslation();
 
-  const { configsData } = useContext(CommonContext);
+  const { version, configsData } = useContext(CommonContext);
 
-  const defaultCharacters = ['Reimu', 'Marisa', 'Sakuya', 'Cirno'];
-
-  const [characters, setCharacters] = useState(defaultCharacters);
   const [showStartingExhibits, setShowStartingExhibits] = useState(false);
   const [showSwappedExhibits, setShowSwappedExhibits] = useState(false);
 
-  const {
-    characters: characterConfigs,
-    exhibits: exhibitConfigs,
-    difficulties: difficultyConfigs,
-    results: resultConfigs
-  } = configsData;
+  const characterConfigs = configsData.characters;
+  const exhibitConfigs = configsData.exhibits;
+  const difficultyConfigs = use(getConfigs(version, 'difficulties'));
+  const resultConfigs = use(getConfigs(version, 'results'));
 
   function getExhibits(configs: TObjAny) {
     const startingExhibits: TObj<TExhibits> = {};
@@ -56,7 +53,7 @@ function Filter() {
       <div className="p-filter__row">
         <div className="p-filter__label">{startingExhibit}</div>
         <div className="p-filter__values">
-          <StartingExhibitsWidget onClick={onClick} characters={characters} startingExhibits={startingExhibits} />
+          <StartingExhibitsWidget onClick={onClick} startingExhibits={startingExhibits} />
         </div>
       </div>
     );
