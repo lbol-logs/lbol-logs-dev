@@ -25,8 +25,8 @@ const namespaces: Array<string> = [
   'exhibits',
   'enemies',
   'events',
+  'dialogues'
   // TODO
-  // 'dialogues'
   // 'test/a'
 ];
 
@@ -68,8 +68,7 @@ const commonConfigs: Array<string> = [
 const logConfigs: Array<string> = [
   'cards',
   'enemyGroups',
-  // TODO
-  // 'dialogues'
+  'dialogues'
 ];
 
 export {
