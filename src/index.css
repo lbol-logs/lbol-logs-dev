@@ -20,10 +20,10 @@ img {
 }
 .l-header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   column-gap: 0.625em;
-  height: 20px;
-  padding: 0.625em;
+  height: 40px;
 }
 .l-header__link {
   display: flex;
@@ -31,6 +31,7 @@ img {
   height: 100%;
   column-gap: 0.3125em;
   color: #000;
+  padding: 0 0.625em;
 }
 .l-header__title {
   font-size: inherit;
@@ -38,18 +39,30 @@ img {
 .l-header__logo {
   height: 100%;
 }
-.l-header__version {
+.l-header__widgets {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.2em 1em;
+  flex-wrap: wrap;
   margin-left: auto;
+}
+.l-header__version, .l-header__language {
   display: flex;
   align-items: center;
+  z-index: 999;
 }
 .c-version__text {
-  padding: 0.1em 0.5em;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5em;
   background: #e4e4e4;
   border-radius: 0.8em;
 }
 .c-version__text--latest {
   background: #d6ffd6;
+}
+.c-version__select, .c-language__select, .c-version__text {
+  height: 2em;
 }
 
 .l-footer {
@@ -720,6 +733,9 @@ html:lang(en) .p-result__type {
   z-index: 1;
 }
 
+.p-filter {
+  margin-bottom: 2em;
+}
 .p-filter__row {
   display: flex;
   align-items: center;
@@ -741,7 +757,9 @@ html:lang(en) .p-result__type {
 }
 .p-filter__values {
   display: flex;
+  flex-wrap: wrap;
   padding: 0.2em 0.5em;
+  gap: 0.5em;
 }
 .p-filter__checkbox {
   display: none;
@@ -768,7 +786,10 @@ html:lang(en) .p-result__type {
   column-gap: 0.5em;
 }
 .p-filter__exhibits {
+  flex: 1;
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
 }
 
 .p-filter__character-exhibits {
@@ -778,22 +799,28 @@ html:lang(en) .p-result__type {
 
 .p-filter__buttons {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  column-gap: 2em;
+  margin: 1em 0;
 }
 .p-filter__button {
   --color: green;
   font-weight: bold;
   border-radius: 2em;
-  padding: 0.2em 1.5em;
   cursor: pointer;
   box-sizing: border-box;
+  width: 7em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .p-filter__button--apply {
   background: var(--color);
   color: #fff;
 }
 .p-filter__button--reset {
-  outline: 2px solid var(--color);
+  border: 2px solid var(--color);
   color: var(--color);
 }
 .p-filter__button:hover {
@@ -869,6 +896,12 @@ html:lang(en) .p-result__type {
   }
 
   .p-filter__row {
+    flex-direction: column;
+  }
+  .p-filter__label {
+    width: auto;
+  }
+  .p-filter__values--results {
     flex-direction: column;
   }
 }

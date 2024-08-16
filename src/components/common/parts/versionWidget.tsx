@@ -11,16 +11,16 @@ function VersionWidget({ versionSwitch }: { versionSwitch: boolean }) {
   let ver;
   if (versionSwitch) {
     ver = (
-      <span className={`c-version__text ${isLatestVersion ? 'c-version__text--latest' : ''}`}>{version}</span>
-    );
-  }
-  else {
-    ver = (
       <select className="c-version__select" onChange={handleChange} value={version}>
         {versions.map(v => {
           return <option className="c-version__option" key={v} value={v}>{v}</option>;
         })}
       </select>
+    );
+  }
+  else {
+    ver = (
+      <span className={`c-version__text ${isLatestVersion ? 'c-version__text--latest' : ''}`}>{version}</span>
     );
   }
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {

@@ -6,6 +6,7 @@ import Logo from '../parts/logo';
 
 function Header({ versionSwitch }: { versionSwitch?: boolean }) {
   const { t } = useTranslation();
+  versionSwitch = versionSwitch === undefined ? true : versionSwitch;
 
   return (
     <header className="l-header">
@@ -17,8 +18,10 @@ function Header({ versionSwitch }: { versionSwitch?: boolean }) {
             <span className="c-header__subtitle u-pc"> - {t('subtitle', { ns: 'site' })}</span>
           </h1>
         </Link>
-        <VersionWidget versionSwitch={!!versionSwitch} />
-        <LanguageSwitcher />
+        <div className="l-header__widgets">
+          <VersionWidget versionSwitch={!!versionSwitch} />
+          <LanguageSwitcher />
+        </div>
       </div>
     </header>
   );

@@ -3,7 +3,6 @@ import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CharacterWidget from './characterWidget';
 import { TObj, TObjAny } from 'utils/types/common';
-import ExhibitWidget from './exhibitWidget';
 import { TExhibits } from 'utils/types/runData';
 import DifficultiesWidget from './difficultiesWidget';
 import ColorExhibitsWidget from './colorExhibitsWidget';
@@ -144,8 +143,8 @@ function Filter() {
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('result', { ns: 'runList' })}</div>
-          <div className="p-filter__values">
-            <ResultsWidget onClick={onClick} results={resultConfigs as Array<string>} />
+          <div className="p-filter__values p-filter__values--results">
+            <ResultsWidget results={resultConfigs as Array<string>} />
           </div>
         </div>
         <div className="p-filter__row">
