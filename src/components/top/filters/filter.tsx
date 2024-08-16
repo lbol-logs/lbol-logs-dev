@@ -34,6 +34,7 @@ function Filter() {
     startingExhibit,
     swappedExhibit,
     onCheckboxChange,
+    onRadioChange,
     onExhibitChange
   } = useFilter({ filter, setFilter, version, configsData, searchParams });
 
@@ -76,11 +77,11 @@ function Filter() {
           <div className="p-filter__label">{t('exhibit', { ns: 'common' })}</div>
           <div className="p-filter__values">
             <label>
-              <input type="radio" name="exhibit" value="startingExhibit" onChange={onExhibitChange} />
+              <input type="radio" name="e" value="startingExhibit" onChange={onExhibitChange} />
               {startingExhibit}
             </label>
             <label>
-              <input type="radio" name="exhibit" value="swappedExhibit" onChange={onExhibitChange} />
+              <input type="radio" name="e" value="swappedExhibit" onChange={onExhibitChange} />
               {swappedExhibit}
             </label>
           </div>
@@ -109,6 +110,7 @@ function Filter() {
           <div className="p-filter__label">{t('sort', { ns: 'runList' })}</div>
           <div className="p-filter__values">
             {/* Newest / Oldest */}
+            {/* <SortWidget onChange={onRadioChange} /> */}
           </div>
         </div>
         <div className="p-filter__buttons">

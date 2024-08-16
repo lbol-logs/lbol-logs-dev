@@ -8,18 +8,17 @@ import { toggleIsChecked } from 'utils/functions/helpers';
 function CharactersWidget({ onChange, characters }: { onChange: ChangeEventHandler, characters: Array<string> }) {
   const { t } = useTranslation();
   const { filter } = useContext(RunListContext);
-  const { c } = filter;
-  console.log({filter,c})
+  const { ch } = filter;
 
   return (
     <>
       {characters.map(character => {
-        const isChecked = c ? c.includes(character) : false;
+        const isChecked = ch ? ch.includes(character) : true;
 
         return (
           <label className={`p-filter__toggle ${toggleIsChecked(isChecked)} u-button`} key={character}>
             <LazyLoadImage2 callback={getAvatarImage} name={character} alt={t(character, { ns: 'enemies' })} />
-            <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="c" value={character} checked={isChecked} />
+            <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="ch" value={character} checked={isChecked} />
           </label>
         );
       })}

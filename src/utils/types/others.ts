@@ -17,12 +17,16 @@ type TPromise = {
   then: (result: TObjAny, error: TObjAny) => {}
 };
 
-type TFilter = TObj<Array<string>>;
+type TFilterCheckbox = TObj<Array<string>>
+type TFilterRadio = TObj<string>;
+type TFilter = TFilterCheckbox | TFilterRadio;
 
 export type {
   TRunList,
   TAboutComponent,
   TChoice,
   TPromise,
+  TFilterCheckbox,
+  TFilterRadio,
   TFilter
 };

@@ -14,7 +14,7 @@ function ColorsWidget({ onChange, swappedExhibits }: { onChange: ChangeEventHand
             <div className="p-filter__exhibits">
               {exhibits.map(exhibit => {
                 return (
-                  <ExhibitWidget onChange={onChange} exhibit={exhibit} key={exhibit} />
+                  <ExhibitWidget onChange={onChange} exhibit={exhibit} key={exhibit} name="sw" checked={false} />
                 );
               })}
             </div>

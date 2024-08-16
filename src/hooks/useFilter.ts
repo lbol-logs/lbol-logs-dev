@@ -5,7 +5,7 @@ import { getConfigs } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
 import copyObject from 'utils/functions/helpers';
 import { useTranslation } from 'react-i18next';
-import { TFilter } from 'utils/types/others';
+import { TFilter, TFilterCheckbox, TFilterRadio } from 'utils/types/others';
 
 function useFilter({ filter, setFilter, version, configsData, searchParams }: { filter: TFilter, setFilter: TDispatch<TFilter>, version: string, configsData: TConfigsData, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
@@ -41,21 +41,44 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     return [startingExhibits, swappedExhibits];;
   }
 
+  function getDefaultValue(name: string) {
+    switch (name) {
+      case 'ch':
+        return characters;
+      case 'e':
+        return 'startingExhibit';
+      case 'st':
+        return Object.values(startingExhibits).flat();
+      default:
+        return [];
+    }
+  }
+
   function onCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target as HTMLInputElement;
     const name = input.name;
     const value = input.value;
     const isChecked = input.checked;
-    const currentFilter = copyObject(filter);
+    const currentFilter = copyObject(filter) as TFilterCheckbox;
+    if (!(name in currentFilter)) currentFilter[name] = getDefaultValue(name) as Array<string>;
     if (isChecked) {
-      if (!(name in currentFilter)) currentFilter[name] = [];
       currentFilter[name].push(value);
     }
     else {
       const i = currentFilter[name].indexOf(value);
       if (i !== -1) currentFilter[name].splice(i, 1);
     }
-    console.log({name,value,isChecked,currentFilter});
+    console.log({name, value, isChecked, currentFilter})
+    setFilter(currentFilter);
+  }
+
+  function onRadioChange(e: ChangeEvent<HTMLInputElement>) {
+    const input = e.target as HTMLInputElement;
+    const name = input.name;
+    const value = input.value;
+    const currentFilter = copyObject(filter) as TFilterRadio;
+    if (!(name in currentFilter)) currentFilter[name] = getDefaultValue(name) as string;
+    currentFilter[name] = value;
     setFilter(currentFilter);
   }
 
@@ -70,6 +93,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
       setShowStartingExhibits(false);
       setShowSwappedExhibits(true);
     }
+    onRadioChange(e);
   }
 
   useEffect(() => {
@@ -92,6 +116,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     startingExhibit,
     swappedExhibit,
     onCheckboxChange,
+    onRadioChange,
     onExhibitChange
   };
 }
