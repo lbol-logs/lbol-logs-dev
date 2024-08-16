@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useState } from 'react';
-import {  TDispatch, TObj } from 'utils/types/common';
-
-type TFilter = TObj<Array<string>>;
+import {  TDispatch } from 'utils/types/common';
+import { TFilter } from 'utils/types/others';
 
 const defaultFilter: TFilter = {};
 

@@ -17,9 +17,12 @@ type TPromise = {
   then: (result: TObjAny, error: TObjAny) => {}
 };
 
+type TFilter = TObj<Array<string>>;
+
 export type {
   TRunList,
   TAboutComponent,
   TChoice,
-  TPromise
+  TPromise,
+  TFilter
 };
