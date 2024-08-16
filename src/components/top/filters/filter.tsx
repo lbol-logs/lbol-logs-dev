@@ -11,12 +11,19 @@ import StartingExhibitsWidget from './startingExhibitsWidget';
 import ResultsWidget from './resultsWidget';
 import { getConfigs } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
+import { useSearchParams } from 'react-router-dom';
+import { RunListContext } from 'contexts/runListContext';
+import copyObject from 'utils/functions/helpers';
+
+const toggleCheckedClassName = 'p-filter__toggle--checked';
+
+export { toggleCheckedClassName };
 
 function Filter() {
   const { t } = useTranslation();
-
+  const { filter, setFilter } = useContext(RunListContext);
   const { version, configsData } = useContext(CommonContext);
-
+  const [searchParams] = useSearchParams();
   const [showStartingExhibits, setShowStartingExhibits] = useState(false);
   const [showSwappedExhibits, setShowSwappedExhibits] = useState(false);
 
@@ -32,8 +39,6 @@ function Filter() {
   const swappedExhibit = t('swappedExhibit', { ns: 'runList' });
   let startingExhibitsRow = null;
   let swappedExhibitsRow = null;
-
-  const className = 'p-filter__toggle--checked';
 
   function getExhibits(configs: TObjAny) {
     const startingExhibits: TObj<TExhibits> = {};
@@ -76,10 +81,26 @@ function Filter() {
   
   function onCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target as HTMLInputElement;
-    const label = input.closest('.p-filter__toggle') as HTMLLabelElement;
+    const name = input.name;
+    const value = input.value;
     const isChecked = input.checked;
-    if (isChecked) label.classList.add(className);
-    else label.classList.remove(className);
+    const currentFilter = copyObject(filter);
+    if (isChecked) {
+      if (!(name in currentFilter)) currentFilter[name] = [];
+      currentFilter[name].push(value);
+    }
+    else {
+      const i = currentFilter[name].indexOf(value);
+      if (i !== -1) currentFilter[name].splice(i, 1);
+    }
+    console.log({name,value,isChecked,currentFilter});
+    setFilter(currentFilter);
+
+    // const input = e.target as HTMLInputElement;
+    // const label = input.closest('.p-filter__toggle') as HTMLLabelElement;
+    // const isChecked = input.checked;
+    // if (isChecked) label.classList.add(toggleCheckedClassName);
+    // else label.classList.remove(toggleCheckedClassName);
   }
 
   function onExhibitChange(e: ChangeEvent<HTMLInputElement>) {
@@ -95,17 +116,22 @@ function Filter() {
     }
   }
 
-  function onLoad() {
-    const inputs = Array.from(document.querySelectorAll('.p-filter__checkbox:checked'));
-    for (const input of inputs) {
-      const label = input.closest('.p-filter__toggle') as HTMLLabelElement;
-      label.classList.add(className);
-    }
-  }
+  // function onLoad() {
+    // const inputs = Array.from(document.querySelectorAll('.p-filter__checkbox:checked'));
+    // for (const input of inputs) {
+    //   const label = input.closest('.p-filter__toggle') as HTMLLabelElement;
+    //   label.classList.add(toggleCheckedClassName);
+    // }
+  // }
 
   useEffect(() => {
-    onLoad();
-  }, []);
+    const currentFilter = copyObject(filter);
+    for (const [key, value] of Array.from(searchParams.entries())) {
+      currentFilter[key] = value.split(',');
+    }
+    setFilter(currentFilter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   return (
     <div className="p-filter js-filter">

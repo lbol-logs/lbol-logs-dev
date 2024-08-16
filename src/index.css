@@ -797,6 +797,10 @@ html:lang(en) .p-result__type {
   display: flex;
   flex-direction: column;
   row-gap: var(--gap);
+  visibility: hidden;
+}
+.p-filter__character-exhibits--visible {
+  visibility: visible;
 }
 
 .p-filter__buttons {

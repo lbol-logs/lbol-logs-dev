@@ -1,26 +1,26 @@
 import { createContext, ReactNode, useState } from 'react';
-import {  TDispatch } from 'utils/types/common';
+import {  TDispatch, TObj } from 'utils/types/common';
 
-const defaultArray: TArray = [];
+type TFilter = TObj<Array<string>>;
 
-type TArray = Array<string>;
+const defaultFilter: TFilter = {};
 
 type TRunListContext = {
-  c: TArray
-  setC: TDispatch<TArray>
+  filter: TFilter
+  setFilter: TDispatch<TFilter>
 };
 
 export const RunListContext = createContext<TRunListContext>({
-  c: defaultArray,
-  setC: () => {}
+  filter: defaultFilter,
+  setFilter: () => {}
 });
 
 function RunListProvider({ children }: { children: ReactNode }) {
-  const [c, setC] = useState(defaultArray);
+  const [filter, setFilter] = useState(defaultFilter);
 
   const value = {
-    c,
-    setC
+    filter,
+    setFilter
   };
 
   return (
