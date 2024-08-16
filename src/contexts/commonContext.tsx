@@ -1,5 +1,5 @@
 import { latestVersion } from 'configs/globals';
-import { createContext, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 import { TConfigsData, TDispatch } from 'utils/types/common';
 
 const defaultConfigsData = {};
@@ -18,9 +18,9 @@ export const CommonContext = createContext<TCommonContext>({
   setConfigsData: () => {}
 });
 
-function CommonProvider({ children }: { children: React.ReactNode }) {
+function CommonProvider({ children }: { children: ReactNode }) {
   const [version, setVersion] = useState(latestVersion);
-  const [configsData, setConfigsData] = useState(defaultConfigsData)
+  const [configsData, setConfigsData] = useState(defaultConfigsData);
 
   const value = {
     version,

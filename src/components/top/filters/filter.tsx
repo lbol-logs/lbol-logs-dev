@@ -1,5 +1,5 @@
 import { CommonContext } from 'contexts/commonContext';
-import { useContext, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CharactersWidget from './charactersWidget';
 import { TObj, TObjAny } from 'utils/types/common';
@@ -33,6 +33,7 @@ function Filter() {
   let startingExhibitsRow = null;
   let swappedExhibitsRow = null;
 
+  const className = 'p-filter__toggle--checked';
 
   function getExhibits(configs: TObjAny) {
     const startingExhibits: TObj<TExhibits> = {};
@@ -56,7 +57,7 @@ function Filter() {
       <div className="p-filter__row">
         <div className="p-filter__label">{startingExhibit}</div>
         <div className="p-filter__values">
-          <StartingExhibitsWidget onClick={onClick} startingExhibits={startingExhibits} characters={characters} />
+          <StartingExhibitsWidget onChange={onCheckboxChange} startingExhibits={startingExhibits} characters={characters} />
         </div>
       </div>
     );
@@ -67,22 +68,21 @@ function Filter() {
       <div className="p-filter__row">
       <div className="p-filter__label">{swappedExhibit}</div>
       <div className="p-filter__values p-filter__colors">
-        <ColorsWidget onClick={onClick} swappedExhibits={swappedExhibits} />
+        <ColorsWidget onChange={onCheckboxChange} swappedExhibits={swappedExhibits} />
       </div>
     </div>
     );
   }
   
-  function onClick(e: React.MouseEvent<HTMLInputElement>) {
-    const className = 'p-filter__toggle--checked';
+  function onCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target as HTMLInputElement;
-    const label = input.parentElement as HTMLElement;
+    const label = input.closest('.p-filter__toggle') as HTMLLabelElement;
     const isChecked = input.checked;
     if (isChecked) label.classList.add(className);
     else label.classList.remove(className);
   }
 
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function onExhibitChange(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target as HTMLInputElement;
     const value = input.value;
     if (value === 'startingExhibit') {
@@ -95,6 +95,18 @@ function Filter() {
     }
   }
 
+  function onLoad() {
+    const inputs = Array.from(document.querySelectorAll('.p-filter__checkbox:checked'));
+    for (const input of inputs) {
+      const label = input.closest('.p-filter__toggle') as HTMLLabelElement;
+      label.classList.add(className);
+    }
+  }
+
+  useEffect(() => {
+    onLoad();
+  }, []);
+
   return (
     <div className="p-filter js-filter">
       {/* TODO */}
@@ -102,18 +114,18 @@ function Filter() {
         <div className="p-filter__row">
           <div className="p-filter__label">{t('character', { ns: 'runList' })}</div>
           <div className="p-filter__values">
-            <CharactersWidget onClick={onClick} characters={characters} />
+            <CharactersWidget onChange={onCheckboxChange} characters={characters} />
           </div>
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('exhibit', { ns: 'common' })}</div>
           <div className="p-filter__values">
             <label>
-              <input type="radio" name="exhibit" value="startingExhibit" onChange={onChange} />
+              <input type="radio" name="exhibit" value="startingExhibit" onChange={onExhibitChange} />
               {startingExhibit}
             </label>
             <label>
-              <input type="radio" name="exhibit" value="swappedExhibit" onChange={onChange} />
+              <input type="radio" name="exhibit" value="swappedExhibit" onChange={onExhibitChange} />
               {swappedExhibit}
             </label>
           </div>
@@ -123,13 +135,13 @@ function Filter() {
         <div className="p-filter__row">
           <div className="p-filter__label">{t('difficulty', { ns: 'runList' })}</div>
           <div className="p-filter__values">
-            <DifficultiesWidget onClick={onClick} difficulties={difficultyConfigs as Array<string>} />
+            <DifficultiesWidget onChange={onCheckboxChange} difficulties={difficultyConfigs as Array<string>} />
           </div>
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('requests', { ns: 'runList' })}</div>
           <div className="p-filter__values">
-            {/* <RequestsWidget onClick={onClick} requests={requestConfigs} /> */}
+            {/* <RequestsWidget onChange={onCheckboxChange} requests={requestConfigs} /> */}
           </div>
         </div>
         <div className="p-filter__row">

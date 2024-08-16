@@ -1,15 +1,13 @@
-import { MouseEventHandler, useContext } from 'react';
+import { ChangeEventHandler } from 'react';
 import { TObj } from 'utils/types/common';
 import ExhibitWidget from './exhibitWidget';
 import { TExhibits } from 'utils/types/runData';
 import useSearchParamArray from 'hooks/useSearchParamArray';
 
-function StartingExhibitsWidget({ onClick, startingExhibits, characters }: { onClick: MouseEventHandler, startingExhibits: TObj<TExhibits>, characters: Array<string> }) {
+function StartingExhibitsWidget({ onChange, startingExhibits, characters }: { onChange: ChangeEventHandler, startingExhibits: TObj<TExhibits>, characters: Array<string> }) {
   const array = useSearchParamArray('c');
-  // const currentCharacters = ['Reimu', 'Marisa', 'Sakuya', 'Cirno'];
   const currentCharacters = array.length ? array : characters;
-console.log(array)
-console.log(currentCharacters)
+
   return (
     <>
       {currentCharacters && currentCharacters.map(character => {
@@ -17,7 +15,7 @@ console.log(currentCharacters)
           <div className="p-filter__character-exhibits" key={character}>
             {startingExhibits[character].map(exhibit => {
               return (
-                <ExhibitWidget key={exhibit} onClick={onClick} exhibit={exhibit} />
+                <ExhibitWidget key={exhibit} onChange={onChange} exhibit={exhibit} />
               );
             })}
           </div>

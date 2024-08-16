@@ -1,5 +1,5 @@
 import holdingsReducer from 'hooks/holdingsReducer';
-import { createContext, useReducer, useState } from 'react';
+import { createContext, ReactNode, useReducer, useState } from 'react';
 import { TConfigsData, TDispatch } from 'utils/types/common';
 import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
 
@@ -60,7 +60,7 @@ export const LogContext = createContext<TLogContext>({
   setConfigsData: () => {}
 });
 
-function LogProvider({ children }: { children: React.ReactNode }) {
+function LogProvider({ children }: { children: ReactNode }) {
   const [isRunDataLoaded, setIsRunDataLoaded] = useState(defaultIsRunDataLoaded);
   const [runDataId, setRunDataId] = useState(defaultRunDataId);
   const [runData, setRunData] = useState(defaultRunData);
@@ -70,7 +70,7 @@ function LogProvider({ children }: { children: React.ReactNode }) {
   const [holdings, dispatchHoldings] = useReducer(holdingsReducer, defaultHoldings);
   const [showMap, setShowMap] = useState(defaultShowMap);
   const [ignoredPaths, setIgnoredPaths] = useState(defaultIgnoredPaths);
-  const [configsData, setConfigsData] = useState(defaultConfigsData)
+  const [configsData, setConfigsData] = useState(defaultConfigsData);
 
   const value = {
     isRunDataLoaded,

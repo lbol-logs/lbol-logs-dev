@@ -8,6 +8,7 @@ import RunList from './runList';
 import Footer from 'components/common/layouts/footer';
 import { Suspense } from 'react';
 import Loading from 'components/common/layouts/loading';
+import RunListProvider from 'contexts/runListContext';
 
 function Top() {
   const { ver = latestVersion } = useParams<{ ver: string }>();
@@ -20,7 +21,9 @@ function Top() {
         <div className="l-inner">
           <About />
           <Suspense fallback={<Loading />}>
-            <RunList />
+            <RunListProvider>
+              <RunList />
+            </RunListProvider>
           </Suspense>
         </div>
       </main>

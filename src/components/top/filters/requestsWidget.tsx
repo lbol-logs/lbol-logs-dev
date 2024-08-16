@@ -1,8 +1,8 @@
-import { MouseEventHandler } from 'react';
+import { ChangeEventHandler } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TRequests } from 'utils/types/runData';
 
-function RequestsWidget({ onClick, requests }: { onClick: MouseEventHandler, requests: TRequests }) {
+function RequestsWidget({ onChange, requests }: { onChange: ChangeEventHandler, requests: TRequests }) {
   const { t } = useTranslation();
 
   return null;
@@ -10,7 +10,7 @@ function RequestsWidget({ onClick, requests }: { onClick: MouseEventHandler, req
   return (
     <label className="p-filter__toggle u-button">
       <LazyLoadImage2 callback={getExhibitImage} name={exhibit} alt={t(exhibit, { ns: 'exhibits' })} />
-      <input className="p-filter__checkbox" type="checkbox" onClick={onClick} name="exhibit" value={exhibit} />
+      <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="exhibit" value={exhibit} />
     </label>
   )
 

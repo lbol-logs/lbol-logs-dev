@@ -1,10 +1,10 @@
 import ManaWidget from 'components/common/parts/manaWidget';
 import { TExhibits } from 'utils/types/runData';
 import ExhibitWidget from './exhibitWidget';
-import { MouseEventHandler } from 'react';
+import { ChangeEventHandler } from 'react';
 import { TObj } from 'utils/types/common';
 
-function ColorsWidget({ onClick, swappedExhibits }: { onClick: MouseEventHandler, swappedExhibits: TObj<TExhibits> }) {
+function ColorsWidget({ onChange, swappedExhibits }: { onChange: ChangeEventHandler, swappedExhibits: TObj<TExhibits> }) {
   return (
     <>
       {Object.entries(swappedExhibits).map(([color, exhibits]) => {
@@ -14,7 +14,7 @@ function ColorsWidget({ onClick, swappedExhibits }: { onClick: MouseEventHandler
             <div className="p-filter__exhibits">
               {exhibits.map(exhibit => {
                 return (
-                  <ExhibitWidget onClick={onClick} exhibit={exhibit} key={exhibit} />
+                  <ExhibitWidget onChange={onChange} exhibit={exhibit} key={exhibit} />
                 );
               })}
             </div>
