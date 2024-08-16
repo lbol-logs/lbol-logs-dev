@@ -7,20 +7,6 @@ function StationType({ station }: { station: TStation }) {
   const { Type } = station;
 
   // TODO
-/*  Types
-		None,
-		Enemy,
-		EliteEnemy,
-		Supply,
-		Gap,
-		Shop,
-		Adventure,
-		Entry,
-		Select,
-		Trade,
-		Boss,
-		BattleAdvTest
-    */
 
 	switch (Type) {
 		case 'Enemy':

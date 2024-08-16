@@ -14,12 +14,6 @@ function validateRunData(runData: TRunData) {
   else return true;
 }
 
-// TODO: remove
-function validateConfigs(configs: TObjAny) {
-  if (!Object.keys(configs)) return false;
-  else return true;
-}
-
 function copyObject<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
 }
@@ -29,6 +23,5 @@ export default copyObject;
 export {
   checkForce,
   validateRunData,
-  validateConfigs,
   copyObject
 };

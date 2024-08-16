@@ -8,7 +8,6 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
   const { BaseMana, [PlayerType]: { Cards, Exhibit } } = characterConfigs[Character];
 
   // TODO: Junko, Patchu
-  // TODO: read shining config -> baseMana
 
   const actions = [];
   const ignoredPaths: Array<THoldingChange> = [];
@@ -134,7 +133,6 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
       };
       actions.push(action);
 
-      // TODO: Shining Exhibit BaseMana
       const { Rarity, BaseMana } = exhibitConfigs[Id];
       if (Rarity === 'Shining') {
         const action: THoldingAction = {

@@ -25,6 +25,7 @@ const namespaces: Array<string> = [
   'exhibits',
   'enemies',
   'events',
+  // TODO
   // 'dialogues'
   // 'test/a'
 ];

@@ -734,12 +734,13 @@ html:lang(en) .p-result__type {
 }
 
 .p-filter {
+  --gap: 0.5em;
   margin-bottom: 2em;
 }
 .p-filter__row {
   display: flex;
   align-items: center;
-  column-gap: 0.5em;
+  column-gap: var(--gap);
   border-radius: 0.5em;
   margin: 0.2em 0;
 }
@@ -759,7 +760,7 @@ html:lang(en) .p-result__type {
   display: flex;
   flex-wrap: wrap;
   padding: 0.2em 0.5em;
-  gap: 0.5em;
+  gap: var(--gap);
 }
 .p-filter__checkbox {
   display: none;
@@ -783,24 +784,25 @@ html:lang(en) .p-result__type {
 }
 .p-filter__color {
   display: flex;
-  column-gap: 0.5em;
+  column-gap: var(--gap);
 }
 .p-filter__exhibits {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: var(--gap);
 }
 
 .p-filter__character-exhibits {
   display: flex;
   flex-direction: column;
+  row-gap: var(--gap);
 }
 
 .p-filter__buttons {
   display: flex;
   justify-content: center;
-  column-gap: 2em;
+  column-gap: calc(var(--gap) * 4);
   margin: 1em 0;
 }
 .p-filter__button {

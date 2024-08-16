@@ -19,8 +19,6 @@ function Summary() {
   const exhibit = Exhibits[0];
   const resultData = { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests };
 
-  // TODO: locales
-
   return (
     <section className="p-summary">
       <ResultWidget resultData={resultData} />

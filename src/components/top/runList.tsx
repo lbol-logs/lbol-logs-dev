@@ -16,11 +16,7 @@ function RunList() {
 
   const list: TRunList = useRunList(version);
 
-  /*
-   * TODO: filter & sort
-   * TODO: trans, icons, requests split
-   * TODO: css width adjustment
-   */
+  // TODO: filter & sort
 
   const ids = useMemo(() => {
     const o: TObjNumber = {};
