@@ -26,8 +26,6 @@ const namespaces: Array<string> = [
   'enemies',
   'events',
   'dialogues'
-  // TODO
-  // 'test/a'
 ];
 
 const versions: Array<string> = [
