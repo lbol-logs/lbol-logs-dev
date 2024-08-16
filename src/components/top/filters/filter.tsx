@@ -1,11 +1,11 @@
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import CharacterWidget from './characterWidget';
+import CharactersWidget from './charactersWidget';
 import { TObj, TObjAny } from 'utils/types/common';
 import { TExhibits } from 'utils/types/runData';
 import DifficultiesWidget from './difficultiesWidget';
-import ColorExhibitsWidget from './colorExhibitsWidget';
+import ColorsWidget from './colorsWidget';
 import RequestsWidget from './requestsWidget';
 import StartingExhibitsWidget from './startingExhibitsWidget';
 import ResultsWidget from './resultsWidget';
@@ -25,6 +25,15 @@ function Filter() {
   const difficultyConfigs = use(getConfigs(version, 'difficulties'));
   const resultConfigs = use(getConfigs(version, 'results'));
 
+  const characters = Object.keys(characterConfigs);
+
+  const [startingExhibits, swappedExhibits] = getExhibits(exhibitConfigs);
+  const startingExhibit = t('startingExhibit', { ns: 'runList' });
+  const swappedExhibit = t('swappedExhibit', { ns: 'runList' });
+  let startingExhibitsRow = null;
+  let swappedExhibitsRow = null;
+
+
   function getExhibits(configs: TObjAny) {
     const startingExhibits: TObj<TExhibits> = {};
     const swappedExhibits: TObj<TExhibits> = {};
@@ -42,34 +51,23 @@ function Filter() {
     return [startingExhibits, swappedExhibits];;
   }
 
-  const [startingExhibits, swappedExhibits] = getExhibits(exhibitConfigs);
-
-  const startingExhibit = t('startingExhibit', { ns: 'runList' });
-  const swappedExhibit = t('swappedExhibit', { ns: 'runList' });
-
-  let startingExhibitsRow = null;
   if (showStartingExhibits) {
     startingExhibitsRow = (
       <div className="p-filter__row">
         <div className="p-filter__label">{startingExhibit}</div>
         <div className="p-filter__values">
-          <StartingExhibitsWidget onClick={onClick} startingExhibits={startingExhibits} />
+          <StartingExhibitsWidget onClick={onClick} startingExhibits={startingExhibits} characters={characters} />
         </div>
       </div>
     );
   }
 
-  let swappedExhibitsRow = null;
   if (showSwappedExhibits) {
     swappedExhibitsRow = (
       <div className="p-filter__row">
       <div className="p-filter__label">{swappedExhibit}</div>
       <div className="p-filter__values p-filter__colors">
-        {Object.entries(swappedExhibits).map(([color, exhibits]) => {
-          return (
-            <ColorExhibitsWidget key={color} onClick={onClick} color={color} exhibits={exhibits} />
-          )
-        })}
+        <ColorsWidget onClick={onClick} swappedExhibits={swappedExhibits} />
       </div>
     </div>
     );
@@ -104,11 +102,7 @@ function Filter() {
         <div className="p-filter__row">
           <div className="p-filter__label">{t('character', { ns: 'runList' })}</div>
           <div className="p-filter__values">
-            {Object.keys(characterConfigs).map(character => {
-              return (
-                <CharacterWidget onClick={onClick} character={character} key={character} />
-              );
-            })}
+            <CharactersWidget onClick={onClick} characters={characters} />
           </div>
         </div>
         <div className="p-filter__row">

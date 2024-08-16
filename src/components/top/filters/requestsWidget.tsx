@@ -23,7 +23,7 @@ function RequestsWidget({ onClick, requests }: { onClick: MouseEventHandler, req
           <span className="c-request" key={request}>
               <span className={`c-request__dot ${active ? 'c-request__dot--active' : ''}`} data-name={t(`requests.${request}`, { ns: 'common' })}></span>
           </span>
-        )
+        );
       })}
     </div>
   );

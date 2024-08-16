@@ -10,7 +10,7 @@ function BaseManaWidget({ baseMana }: { baseMana: TBaseMana }) {
       );
     })}
     </div>
-  )
+  );
 }
 
 export default BaseManaWidget;

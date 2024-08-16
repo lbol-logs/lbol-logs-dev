@@ -11,7 +11,7 @@ function ExhibitWidget({ onClick, exhibit }: { onClick: MouseEventHandler, exhib
       <LazyLoadImage2 callback={getExhibitImage} name={exhibit} alt={t(exhibit, { ns: 'exhibits' })} />
       <input className="p-filter__checkbox" type="checkbox" onClick={onClick} name="exhibit" value={exhibit} />
     </label>
-  )
+  );
 }
 
 export default ExhibitWidget;

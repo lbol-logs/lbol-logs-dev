@@ -1,22 +1,18 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useContext } from 'react';
 import { TObj } from 'utils/types/common';
 import ExhibitWidget from './exhibitWidget';
 import { TExhibits } from 'utils/types/runData';
 import useSearchParamArray from 'hooks/useSearchParamArray';
 
-function StartingExhibitsWidget({ onClick, startingExhibits }: { onClick: MouseEventHandler, startingExhibits: TObj<TExhibits> }) {
-  // const [searchParams] = useSearchParams();
-  // const c = searchParams.get('c') || '';
-  // console.log(c);
-  // console.log(c.split(','));
-  const c = useSearchParamArray('c');
-  console.log(c);
-
-    const characters = ['Reimu', 'Marisa', 'Sakuya', 'Cirno'];
-
+function StartingExhibitsWidget({ onClick, startingExhibits, characters }: { onClick: MouseEventHandler, startingExhibits: TObj<TExhibits>, characters: Array<string> }) {
+  const array = useSearchParamArray('c');
+  // const currentCharacters = ['Reimu', 'Marisa', 'Sakuya', 'Cirno'];
+  const currentCharacters = array.length ? array : characters;
+console.log(array)
+console.log(currentCharacters)
   return (
     <>
-      {characters && characters.map(character => {
+      {currentCharacters && currentCharacters.map(character => {
         return (
           <div className="p-filter__character-exhibits" key={character}>
             {startingExhibits[character].map(exhibit => {
@@ -28,7 +24,7 @@ function StartingExhibitsWidget({ onClick, startingExhibits }: { onClick: MouseE
         );
       })}
     </>
-  )
+  );
 }
 
 export default StartingExhibitsWidget;
