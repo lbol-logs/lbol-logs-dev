@@ -11,11 +11,11 @@ function ManaWidget({ mana }: { mana: TBaseMana }) {
   const _mana = isA ? 'P' : mana;
 
   imgs[0] = (
-    <LazyLoadImage2 callback={getManaImage} name={_mana} alt={isA ? '' : t(`mana.${_mana}`, { ns: 'common' })} />
+    <LazyLoadImage2 callback={getManaImage} name={_mana} alt={isA ? '' : t(`mana.${_mana}`, { ns: 'common' })} key={_mana} />
   );
   if (isA) {
     const img = (
-      <LazyLoadImage2 className="c-base-mana__unknown" callback={getManaImage} name="Unknown" alt={t(`mana.A`, { ns: 'common' })} />
+      <LazyLoadImage2 className="c-base-mana__unknown" callback={getManaImage} name="Unknown" alt={t(`mana.A`, { ns: 'common' })} key="A" />
     );
     imgs.unshift(img);
   }

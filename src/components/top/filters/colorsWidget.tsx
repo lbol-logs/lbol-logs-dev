@@ -8,25 +8,30 @@ import { RunListContext } from 'contexts/runListContext';
 
 function ColorsWidget({ onChange, swappedExhibits }: { onChange: ChangeEventHandler, swappedExhibits: TObj<TExhibits> }) {
   const { filter } = useContext(RunListContext);
-  const { co } = filter;
+  const { co, sw } = filter;
 
   return (
     <>
       {Object.entries(swappedExhibits).map(([color, exhibits]) => {
-        const isChecked = co ? co.includes(color) : false;
+        let isAllExhibitsChecked = true;
+        const exhibitWidgets = exhibits.map(exhibit => {
+          const isExhibitChecked = sw ? sw.includes(exhibit) : false;
+          if (!isExhibitChecked) isAllExhibitsChecked = false;
+
+          return (
+            <ExhibitWidget onChange={onChange} exhibit={exhibit} key={exhibit} name="sw" checked={isExhibitChecked} />
+          );
+        });
+        const isColorChecked = isAllExhibitsChecked || (co ? co.includes(color): false);
 
         return (
           <div className="p-filter__color" key={color}>
-            <label className={`p-filter__toggle ${toggleIsChecked(isChecked)}`}>
+            <label className={`p-filter__toggle ${toggleIsChecked(isColorChecked)} u-button`}>
               <ManaWidget mana={color} />
-              <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="co" value={color} checked={isChecked} />
+              <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="co" value={color} checked={isColorChecked} />
             </label>
             <div className="p-filter__exhibits">
-              {exhibits.map(exhibit => {
-                return (
-                  <ExhibitWidget onChange={onChange} exhibit={exhibit} key={exhibit} name="sw" checked={false} />
-                );
-              })}
+              {exhibitWidgets}
             </div>
           </div>
         );

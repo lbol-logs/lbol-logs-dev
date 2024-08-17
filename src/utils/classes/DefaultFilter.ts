@@ -1,6 +1,8 @@
 class DefaultFilter {
   static et = 'et';
   static all = 'all';
+  static co = 'co';
+  static sw = 'sw';
 
   static get(name: string) {
     switch (name) {

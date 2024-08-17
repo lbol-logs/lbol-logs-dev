@@ -43,7 +43,31 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
         swappedExhibits[BaseMana].push(id);
       }
     }
-    return [startingExhibits, swappedExhibits];;
+    return [startingExhibits, swappedExhibits];
+  }
+
+  function updateCheckbox(filter: TFilterCheckbox, name: string, value: string, isChecked: boolean) {
+    const currentFilter = copyObject(filter) as TFilterCheckbox;
+    if (!(name in currentFilter)) currentFilter[name] = DefaultFilter.get(name) as Array<string>;
+    if (isChecked) {
+      if (!currentFilter[name].includes(value)) currentFilter[name].push(value);
+    }
+    else {
+      const i = currentFilter[name].indexOf(value);
+      if (i !== -1) currentFilter[name].splice(i, 1);
+    }
+    return currentFilter;
+  }
+
+  function handleColor(filter: TFilterCheckbox, input: HTMLInputElement, isChecked: boolean) {
+    const parent = input.closest('.p-filter__color') as HTMLDivElement;
+    const sws: Array<HTMLInputElement> = Array.from(parent.querySelectorAll(`[name="${DefaultFilter.sw}"]`));
+    let currentFilter = filter;
+    for (const sw of sws) {
+      sw.checked = isChecked;
+      currentFilter = updateCheckbox(currentFilter, sw.name, sw.value, isChecked);
+    }
+    return currentFilter;
   }
 
   function onCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
@@ -51,16 +75,8 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     const name = input.name;
     const value = input.value;
     const isChecked = input.checked;
-    const currentFilter = copyObject(filter) as TFilterCheckbox;
-    if (!(name in currentFilter)) currentFilter[name] = DefaultFilter.get(name) as Array<string>;
-    if (isChecked) {
-      currentFilter[name].push(value);
-    }
-    else {
-      const i = currentFilter[name].indexOf(value);
-      if (i !== -1) currentFilter[name].splice(i, 1);
-    }
-    console.log({name, value, isChecked, currentFilter})
+    let currentFilter = updateCheckbox(filter, name, value, isChecked);
+    if (name === DefaultFilter.co) currentFilter = handleColor(currentFilter, input, isChecked);
     setFilter(currentFilter);
   }
 
@@ -82,7 +98,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   }
 
   function reflectExhibitsTypes(value: string) {
-    if (value === DefaultFilter.all) {
+    if (!value || value === DefaultFilter.all) {
       setShowStartingExhibits(false);
       setShowSwappedExhibits(false);
     }
@@ -97,37 +113,43 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   }
 
   function apply(e: MouseEvent<HTMLButtonElement>) {
-    const data = deleteEtAll();
+    const data = deleteValues();
     submit(data);
     e.preventDefault();
   }
 
   function reset(e: MouseEvent<HTMLButtonElement>) {
     setFilter({});
+    reflectExhibitsTypes(DefaultFilter.get(DefaultFilter.et) as string);
     submit(null);
     e.preventDefault();
   }
 
-  function deleteEtAll() {
+  function deleteValues() {
     const data = new FormData(formRef.current as HTMLFormElement);
     const et = data.get(DefaultFilter.et);
-    if (et=== DefaultFilter.all) data.delete(DefaultFilter.et);
+    if (et === DefaultFilter.all) data.delete(DefaultFilter.et);
+    data.delete(DefaultFilter.co);
     return data;
   }
 
   useEffect(() => {
     const currentFilter: TFilter = {};
+    const etKey = DefaultFilter.et;
+
     for (const [key, value] of Array.from(searchParams.entries())) {
-      console.log({key, value});
-      if (key === DefaultFilter.et) {
-        currentFilter[key as keyof TFilterRadio] = value;
-        reflectExhibitsTypes(value);
+      if (key === etKey) {
       }
       else {
         if (!(key in currentFilter)) currentFilter[key] = [];
         (currentFilter[key] as Array<string>).push(value);
       }
     }
+
+    const etValue = searchParams.get(etKey) || DefaultFilter.get(etKey) as string;
+    currentFilter[etKey as keyof TFilterRadio] = etValue;
+    reflectExhibitsTypes(etValue);
+
     setFilter(currentFilter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
