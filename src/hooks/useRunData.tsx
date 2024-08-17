@@ -36,8 +36,8 @@ function useRunData(id: string)  {
         setIgnoredPaths(ignoredPaths);
       }
       setConfigsData(currentConfigs);
+      setIsRunDataLoaded(true);
     }
-    setIsRunDataLoaded(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isValidRunData, runData, exhibitConfigs, characterConfigs]);
 

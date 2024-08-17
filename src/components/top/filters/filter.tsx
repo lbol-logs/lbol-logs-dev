@@ -93,6 +93,7 @@ function Filter() {
         <div className="p-filter__row">
           <div className="p-filter__label">{t('requests', { ns: 'runList' })}</div>
           <div className="p-filter__values">
+            {/* Both inactive active */}
             {/* <RequestsWidget onChange={onCheckboxChange} requests={requestConfigs} /> */}
           </div>
         </div>
