@@ -1,19 +1,20 @@
+import { CommonContext } from 'contexts/commonContext';
 import { LogContext } from 'contexts/logContext';
 import useHoldings from 'hooks/useHoldings';
 import { useContext } from 'react';
 import { THolding } from 'utils/types/runData';
 
 function CurrentHoldings() {
+  const { holdingsHeight, setHoldingsHeight } = useContext(CommonContext);
   const { act, level, holdings } = useContext(LogContext);
   const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
 
   const {
     holdingsRef,
-    holdingsHeight,
     holding,
     startResizing,
     stopResizing
-  } = useHoldings({ level, currentHolding });
+  } = useHoldings({ level, currentHolding, setHoldingsHeight });
 
   return (
     <div

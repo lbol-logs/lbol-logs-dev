@@ -1,21 +1,19 @@
-import { defaultHoldingsHeight } from 'configs/globals';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import Processing from 'components/common/layouts/processing';
 import { THolding, TLevel } from 'utils/types/runData';
-import { TObj } from 'utils/types/common';
+import { TDispatch, TObj } from 'utils/types/common';
 import Act from 'components/log/act';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import CardCards from 'components/log/entityCards/cardCards';
 import i18next from 'i18next';
 
-function useHoldings({ level, currentHolding }: { level: TLevel, currentHolding: THolding }) {
+function useHoldings({ level, currentHolding, setHoldingsHeight }: { level: TLevel, currentHolding: THolding, setHoldingsHeight: TDispatch<number> }) {
   const defaultHolding = <Processing />;
   const [holding, setHolding] = useState(defaultHolding);
   const holdingsRef = useRef<HTMLDivElement>(null);
   const [isResizing, setIsResizing] = useState(false);
-  const [holdingsHeight, setHoldingsHeight] = useState(defaultHoldingsHeight);
 
   useTranslation();
 
@@ -121,7 +119,6 @@ function useHoldings({ level, currentHolding }: { level: TLevel, currentHolding:
 
   return {
     holdingsRef,
-    holdingsHeight,
     holding,
     startResizing,
     stopResizing
