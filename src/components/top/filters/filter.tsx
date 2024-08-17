@@ -8,7 +8,7 @@ import RequestsWidget from './requestsWidget';
 import StartingExhibitsWidget from './startingExhibitsWidget';
 import ResultsWidget from './resultsWidget';
 
-import { useSearchParams } from 'react-router-dom';
+import { Form, useSearchParams } from 'react-router-dom';
 import { RunListContext } from 'contexts/runListContext';
 
 import useFilter from 'hooks/useFilter';
@@ -64,7 +64,7 @@ function Filter() {
   }
 
   return (
-    <div className="p-filter js-filter">
+    <Form action="./" className="p-filter js-filter">
       {/* TODO */}
         FILTER (WIP)
         <div className="p-filter__row">
@@ -114,10 +114,10 @@ function Filter() {
           </div>
         </div>
         <div className="p-filter__buttons">
-          <div className="p-filter__button p-filter__button--apply">{t('apply', { ns: 'runList' })}</div>
-          <div className="p-filter__button p-filter__button--reset">{t('reset', { ns: 'runList' })}</div>
+          <button className="p-filter__button p-filter__button--apply" type="submit">{t('apply', { ns: 'runList' })}</button>
+          <button className="p-filter__button p-filter__button--reset">{t('reset', { ns: 'runList' })}</button>
         </div>
-    </div>
+    </Form>
   );
 }
 

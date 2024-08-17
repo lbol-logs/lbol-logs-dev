@@ -1,6 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Top from 'components/top';
-import Log from 'components/log';
+import { Outlet } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
@@ -28,16 +26,7 @@ function App() {
       <RemoveTrailingSlash />
       <CommonProvider>
         <ScrollToTop />
-        <Routes>
-          <Route path="/">
-            <Route index element={<Top />} />
-              <Route path=":ver/">
-                <Route index element={<Top />} />
-                <Route path=":id/" element={<Log />} />
-            </Route>
-          </Route>
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <Outlet />
       </CommonProvider>
     </HelmetProvider>
   );

@@ -4,16 +4,46 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'configs/i18next';
-import { BrowserRouter } from 'react-router-dom';
+import Top from 'components/top';
+import Log from 'components/log';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const routes = [
+  {
+    element: <App />,
+    children: [
+      {
+        path: '/',
+        element: <Top />,
+        children: [
+          {
+            path: ':ver/',
+            element: <Top />,
+            children: [
+              {
+                path: ':id/',
+                element: <Log />,
+              }
+            ]
+          },
+        ]
+      },
+      {
+        path: '*',
+        element: <Navigate to="/" replace />
+      }
+    ]
+  }
+];
+const router = createBrowserRouter(routes, { basename: '/lbol-logs' });
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/lbol-logs">
-      <App />
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
