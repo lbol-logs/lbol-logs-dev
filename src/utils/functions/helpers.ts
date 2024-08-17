@@ -10,7 +10,7 @@ function checkForce(Nodes: TNodes) {
 }
 
 function validateRunData(runData: TRunData) {
-  if (!Object.keys(runData)) return false;
+  if (!Object.keys(runData).length) return false;
   else return true;
 }
 

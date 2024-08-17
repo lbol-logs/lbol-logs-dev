@@ -12,7 +12,9 @@ import RunListProvider from 'contexts/runListContext';
 
 function Top() {
   const { ver = latestVersion } = useParams<{ ver: string }>();
-  useVersion(ver);
+  const [isValidVersion, redirect] = useVersion(ver);
+
+  if (!isValidVersion) return redirect as unknown as JSX.Element;
 
   return (
     <>

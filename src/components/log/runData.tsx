@@ -6,7 +6,8 @@ import Loading from 'components/common/layouts/loading';
 
 function RunData({ ver, id }: { ver: string, id: string }) {
   useVersion(ver);
-  useRunData(id);
+  const [isValidRunData, redirect] = useRunData(id);
+  if (!isValidRunData) return redirect as unknown as JSX.Element;
 
   return (
     <>

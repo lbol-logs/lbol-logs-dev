@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import RunData from './runData';
 import { Suspense } from 'react';
 import Loading from 'components/common/layouts/loading';
+import ScrollToTop from 'components/common/utils/scrollToTop';
 
 function Log() {
   const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();
@@ -15,6 +16,7 @@ function Log() {
       <main className="l-log">
         <div className="l-log__inner l-inner">
           <LogProvider>
+            <ScrollToTop />
             <RunData ver={ver} id={id} />
           </LogProvider>
         </div>

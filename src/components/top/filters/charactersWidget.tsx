@@ -13,7 +13,7 @@ function CharactersWidget({ onChange, characters }: { onChange: ChangeEventHandl
   return (
     <>
       {characters.map(character => {
-        const isChecked = ch ? ch.includes(character) : true;
+        const isChecked = ch ? ch.includes(character) : false;
 
         return (
           <label className={`p-filter__toggle ${toggleIsChecked(isChecked)} u-button`} key={character}>

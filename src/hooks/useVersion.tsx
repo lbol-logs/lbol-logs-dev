@@ -1,10 +1,10 @@
 import { commonConfigs, versions } from 'configs/globals';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { getConfigs } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
 import { TConfigsData } from 'utils/types/common';
+import { Navigate } from 'react-router-dom';
 
 function useVersion(ver: string)  {
   const { version, setVersion, setConfigsData } = useContext(CommonContext);
@@ -21,14 +21,15 @@ function useVersion(ver: string)  {
     setVersion(ver);
   }
 
-  const navigate = useNavigate();
   useEffect(() => {
     setConfigsData(currentConfigs);
-    if (!isValidVersion) {
-      navigate('/', { replace: true });
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate, isValidVersion]);
+  }, [ver]);
+
+  let redirect = null;
+  if (!isValidVersion) redirect = <Navigate to="/" replace />;
+
+  return [isValidVersion, redirect];
 }
 
 export default useVersion;

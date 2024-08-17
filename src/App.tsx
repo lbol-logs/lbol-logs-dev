@@ -1,13 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import CommonProvider from 'contexts/commonContext';
 import { baseUrl, languages } from 'configs/globals';
 import RemoveTrailingSlash from 'components/common/utils/removeTrailingSlash';
-import ScrollToTop from 'components/common/utils/scrollToTop';
+import Top from 'components/top';
+import Log from 'components/log';
 
-function App() {
+function Layout() {
   const { t } = useTranslation();
   const { lang } = languages[i18next.language];
   const title = t('title', { ns: 'site' });
@@ -25,10 +26,50 @@ function App() {
 
       <RemoveTrailingSlash />
       <CommonProvider>
-        <ScrollToTop />
         <Outlet />
       </CommonProvider>
     </HelmetProvider>
+  );
+}
+
+function App() {
+  const routes = [
+    {
+      element: <Layout />,
+      children: [
+        {
+          path: '/',
+          children: [
+            {
+              index: true,
+              element: <Top />
+            },
+            {
+              path: ':ver/',
+              children: [
+                {
+                  index: true,
+                  element: <Top />,
+                },
+                {
+                  path: ':id/',
+                  element: <Log />,
+                }
+              ]
+            },
+          ]
+        },
+        {
+          path: '*',
+          element: <Navigate to="/" replace />
+        }
+      ]
+    }
+  ];
+  const router = createBrowserRouter(routes, { basename: '/lbol-logs' });
+
+  return (
+    <RouterProvider router={router} />
   );
 }
 

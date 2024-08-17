@@ -3,7 +3,7 @@ import { TRunData } from 'utils/types/runData';
 import { LogContext } from 'contexts/logContext';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
@@ -17,7 +17,6 @@ function useRunData(id: string)  {
   const characterConfigs = configsData.characters;
   const exhibitConfigs = configsData.exhibits;
 
-  const navigate = useNavigate();
   let isValidRunData = false;
   const runData = use(getLog(version, id)) as TRunData;
   isValidRunData = validateRunData(runData);
@@ -37,14 +36,15 @@ function useRunData(id: string)  {
         setIgnoredPaths(ignoredPaths);
       }
       setConfigsData(currentConfigs);
-      setIsRunDataLoaded(true);
     }
-    else {
-      setIsRunDataLoaded(true);
-      navigate('/', { replace: true });
-    }
+    setIsRunDataLoaded(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isValidRunData, runData, exhibitConfigs, characterConfigs]);
+
+  let redirect = null;
+  if (!isValidRunData) redirect = <Navigate to="/" replace />;
+
+  return [isValidRunData, redirect];
 }
 
 export default useRunData;

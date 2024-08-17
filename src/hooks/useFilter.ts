@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { TConfigsData, TDispatch, TObj, TObjAny } from 'utils/types/common';
 import { TExhibits } from 'utils/types/runData';
 import { getConfigs } from 'utils/functions/fetchData';
@@ -6,6 +6,7 @@ import use from 'utils/functions/use';
 import copyObject from 'utils/functions/helpers';
 import { useTranslation } from 'react-i18next';
 import { TFilter, TFilterCheckbox, TFilterRadio } from 'utils/types/others';
+import { useSubmit } from 'react-router-dom';
 
 function useFilter({ filter, setFilter, version, configsData, searchParams }: { filter: TFilter, setFilter: TDispatch<TFilter>, version: string, configsData: TConfigsData, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
@@ -23,6 +24,8 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   const [startingExhibits, swappedExhibits] = getExhibits(exhibitConfigs);
   const startingExhibit = t('startingExhibit', { ns: 'runList' });
   const swappedExhibit = t('swappedExhibit', { ns: 'runList' });
+
+  const formRef = useRef<HTMLFormElement>(null);
 
   function getExhibits(configs: TObjAny) {
     const startingExhibits: TObj<TExhibits> = {};
@@ -44,7 +47,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   function getDefaultValue(name: string) {
     switch (name) {
       case 'ch':
-        return characters;
+        return [];
       case 'e':
         return 'startingExhibit';
       case 'st':
@@ -95,6 +98,14 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     }
     onRadioChange(e);
   }
+  
+  // const submit = useSubmit();
+  function reset() {
+    // const form = formRef.current as HTMLFormElement;
+    setFilter({});
+    // form.reset();
+    // submit(null);
+  }
 
   useEffect(() => {
     const currentFilter = copyObject(filter);
@@ -115,9 +126,11 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     swappedExhibits,
     startingExhibit,
     swappedExhibit,
+    formRef,
     onCheckboxChange,
     onRadioChange,
-    onExhibitChange
+    onExhibitChange,
+    reset
   };
 }
 
