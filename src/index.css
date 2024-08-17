@@ -780,9 +780,6 @@ html:lang(en) .p-result__type {
   outline-offset: -1px;
 }
 
-.p-filter__colors {
-  flex-direction: column;
-}
 .p-filter__color {
   display: flex;
   column-gap: var(--gap);
@@ -899,6 +896,10 @@ html:lang(en) .p-result__type {
   text-shadow: 1px 1px 2px #000, -1px 1px 2px #000, -1px -1px 2px #000, 1px -1px 2px #000;
 }
 
+.u-flex-col {
+  flex-direction: column;
+}
+
 @media screen and (min-width: 601px) {
   .u-sp {
     display: none;
@@ -912,9 +913,7 @@ html:lang(en) .p-result__type {
   .l-footer__link {
     max-width: 12.5em;
   }
-  .u-pc {
-    display: none;
-  }
+
   .p-about__roadmap, .p-about__done {
     flex-basis: 100%;
   }
@@ -931,17 +930,18 @@ html:lang(en) .p-result__type {
     font-size: 0.65em;
   }
 
-  .p-run-list__cell--result-requests {
-    flex-direction: column;
-  }
-
   .p-filter__row {
     flex-direction: column;
   }
   .p-filter__label {
     width: auto;
   }
-  .p-filter__values--results {
+
+  .u-pc {
+    display: none;
+  }
+
+  .u-flex-col-sp {
     flex-direction: column;
   }
 }

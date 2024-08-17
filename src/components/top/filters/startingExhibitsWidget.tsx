@@ -16,7 +16,7 @@ function StartingExhibitsWidget({ onChange, startingExhibits, characters }: { on
         return (
           <div className={`p-filter__character-exhibits ${isCharacterChecked ? 'p-filter__character-exhibits--visible' : ''}`} key={character}>
             {startingExhibits[character].map(exhibit => {
-              const isExhibitChecked = st ? st.includes(exhibit) : true;
+              const isExhibitChecked = st ? st.includes(exhibit) : false;
 
               return (
                 <ExhibitWidget key={exhibit} onChange={onChange} exhibit={exhibit} name="st" checked={isExhibitChecked} />

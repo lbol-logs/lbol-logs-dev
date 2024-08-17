@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { TConfigsData, TDispatch, TObj, TObjAny } from 'utils/types/common';
 import { TExhibits } from 'utils/types/runData';
 import { getConfigs } from 'utils/functions/fetchData';
@@ -6,7 +6,7 @@ import use from 'utils/functions/use';
 import copyObject from 'utils/functions/helpers';
 import { useTranslation } from 'react-i18next';
 import { TFilter, TFilterCheckbox, TFilterRadio } from 'utils/types/others';
-import { useSubmit } from 'react-router-dom';
+import DefaultFilter from 'utils/classes/DefaultFilter';
 
 function useFilter({ filter, setFilter, version, configsData, searchParams }: { filter: TFilter, setFilter: TDispatch<TFilter>, version: string, configsData: TConfigsData, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
@@ -25,8 +25,6 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   const startingExhibit = t('startingExhibit', { ns: 'runList' });
   const swappedExhibit = t('swappedExhibit', { ns: 'runList' });
 
-  const formRef = useRef<HTMLFormElement>(null);
-
   function getExhibits(configs: TObjAny) {
     const startingExhibits: TObj<TExhibits> = {};
     const swappedExhibits: TObj<TExhibits> = {};
@@ -44,26 +42,13 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     return [startingExhibits, swappedExhibits];;
   }
 
-  function getDefaultValue(name: string) {
-    switch (name) {
-      case 'ch':
-        return [];
-      case 'e':
-        return 'startingExhibit';
-      case 'st':
-        return Object.values(startingExhibits).flat();
-      default:
-        return [];
-    }
-  }
-
   function onCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target as HTMLInputElement;
     const name = input.name;
     const value = input.value;
     const isChecked = input.checked;
     const currentFilter = copyObject(filter) as TFilterCheckbox;
-    if (!(name in currentFilter)) currentFilter[name] = getDefaultValue(name) as Array<string>;
+    if (!(name in currentFilter)) currentFilter[name] = DefaultFilter.get(name) as Array<string>;
     if (isChecked) {
       currentFilter[name].push(value);
     }
@@ -77,17 +62,21 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
 
   function onRadioChange(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target as HTMLInputElement;
-    const name = input.name;
+    const name = input.name as keyof TFilterRadio;
     const value = input.value;
     const currentFilter = copyObject(filter) as TFilterRadio;
-    if (!(name in currentFilter)) currentFilter[name] = getDefaultValue(name) as string;
+    if (!(name in currentFilter)) currentFilter[name] = DefaultFilter.get(name) as string;
     currentFilter[name] = value;
-    setFilter(currentFilter);
+    setFilter(currentFilter as TFilter);
   }
 
-  function onExhibitChange(e: ChangeEvent<HTMLInputElement>) {
+  function onExhibitsTypesChange(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target as HTMLInputElement;
     const value = input.value;
+    if (value === 'any') {
+      setShowStartingExhibits(false);
+      setShowSwappedExhibits(false);
+    }
     if (value === 'startingExhibit') {
       setShowStartingExhibits(true);
       setShowSwappedExhibits(false);
@@ -98,19 +87,23 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     }
     onRadioChange(e);
   }
-  
+
   // const submit = useSubmit();
   function reset() {
-    // const form = formRef.current as HTMLFormElement;
     setFilter({});
-    // form.reset();
-    // submit(null);
   }
 
   useEffect(() => {
-    const currentFilter = copyObject(filter);
+    const currentFilter: TFilter = {};
     for (const [key, value] of Array.from(searchParams.entries())) {
-      currentFilter[key] = value.split(',');
+      console.log({key, value});
+      if (key === 'et') {
+        (currentFilter[key] as string) = value;
+      }
+      else {
+        if (!(key in currentFilter)) currentFilter[key] = [];
+        (currentFilter[key] as Array<string>).push(value);
+      }
     }
     setFilter(currentFilter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -126,10 +119,8 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     swappedExhibits,
     startingExhibit,
     swappedExhibit,
-    formRef,
     onCheckboxChange,
-    onRadioChange,
-    onExhibitChange,
+    onExhibitsTypesChange,
     reset
   };
 }

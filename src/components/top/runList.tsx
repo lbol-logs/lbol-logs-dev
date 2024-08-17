@@ -37,7 +37,7 @@ function RunList() {
         {/* {t('test', { ns: 'test/a' })} */}
         <div className="p-run-list__row p-run-list__row--header">
           <div className="p-run-list__cell p-run-list__cell--id">Id</div>
-          <div className="p-run-list__cell p-run-list__cell--result-requests">
+          <div className="p-run-list__cell p-run-list__cell--result-requests u-flex-col-sp">
             <div className="p-run-list__cell--result">{t('result', { ns: 'runList' })}</div>
             <div className="p-run-list__cell--requests">{t('requests', { ns: 'runList' })}</div>
           </div>
@@ -58,7 +58,7 @@ function RunList() {
           return (
             <Link className="p-run-list__row u-button" key={id} to={`/${version}/${id}/`}>
               <div className="p-run-list__cell p-run-list__cell--id">{ids[id]}</div>
-              <div className="p-run-list__cell p-run-list__cell--result-requests">
+              <div className="p-run-list__cell p-run-list__cell--result-requests u-flex-col-sp">
                 <div className=" p-run-list__cell--result">
                   <ResultWidget resultData={resultData} />
                 </div>

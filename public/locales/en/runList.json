@@ -6,9 +6,9 @@
   "requests": "Requests",
   "result": "Result",
   "timestamp": "Timestamp",
+  "any": "Any",
   "startingExhibit": "Starting Exhibit",
   "swappedExhibit": "Swapped Exhibit",
-  "sort": "Sort",
   "apply": "Apply",
   "reset": "Reset"
 }

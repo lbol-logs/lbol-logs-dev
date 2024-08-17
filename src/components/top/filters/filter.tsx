@@ -12,6 +12,7 @@ import { Form, useSearchParams } from 'react-router-dom';
 import { RunListContext } from 'contexts/runListContext';
 
 import useFilter from 'hooks/useFilter';
+import ExhibitsTypes from './exhibitsTypes';
 
 const toggleCheckedClassName = 'p-filter__toggle--checked';
 
@@ -33,10 +34,8 @@ function Filter() {
     swappedExhibits,
     startingExhibit,
     swappedExhibit,
-    formRef,
     onCheckboxChange,
-    onRadioChange,
-    onExhibitChange,
+    onExhibitsTypesChange,
     reset
   } = useFilter({ filter, setFilter, version, configsData, searchParams });
 
@@ -58,7 +57,7 @@ function Filter() {
     swappedExhibitsRow = (
       <div className="p-filter__row">
       <div className="p-filter__label">{swappedExhibit}</div>
-      <div className="p-filter__values p-filter__colors">
+      <div className="p-filter__values u-flex-col">
         <ColorsWidget onChange={onCheckboxChange} swappedExhibits={swappedExhibits} />
       </div>
     </div>
@@ -66,7 +65,7 @@ function Filter() {
   }
 
   return (
-    <Form action="./" className="p-filter js-filter" ref={formRef}>
+    <Form action="./" className="p-filter">
       {/* TODO */}
         FILTER (WIP)
         <div className="p-filter__row">
@@ -76,16 +75,9 @@ function Filter() {
           </div>
         </div>
         <div className="p-filter__row">
-          <div className="p-filter__label">{t('exhibit', { ns: 'common' })}</div>
-          <div className="p-filter__values">
-            <label>
-              <input type="radio" name="e" value="startingExhibit" onChange={onExhibitChange} />
-              {startingExhibit}
-            </label>
-            <label>
-              <input type="radio" name="e" value="swappedExhibit" onChange={onExhibitChange} />
-              {swappedExhibit}
-            </label>
+          <div className="p-filter__label">{t('exhibit', { ns: 'common', count: 2 })}</div>
+          <div className="p-filter__values u-flex-col-sp">
+            <ExhibitsTypes onChange={onExhibitsTypesChange} startingExhibit={startingExhibit} swappedExhibit={swappedExhibit} />
           </div>
         </div>
         {startingExhibitsRow}
@@ -104,15 +96,8 @@ function Filter() {
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('result', { ns: 'runList' })}</div>
-          <div className="p-filter__values p-filter__values--results">
+          <div className="p-filter__values u-flex-col-sp">
             <ResultsWidget results={resultConfigs as Array<string>} />
-          </div>
-        </div>
-        <div className="p-filter__row">
-          <div className="p-filter__label">{t('sort', { ns: 'runList' })}</div>
-          <div className="p-filter__values">
-            {/* Newest / Oldest */}
-            {/* <SortWidget onChange={onRadioChange} /> */}
           </div>
         </div>
         <div className="p-filter__buttons">

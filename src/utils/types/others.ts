@@ -18,8 +18,10 @@ type TPromise = {
 };
 
 type TFilterCheckbox = TObj<Array<string>>
-type TFilterRadio = TObj<string>;
-type TFilter = TFilterCheckbox | TFilterRadio;
+type TFilterRadio = {
+  et?: string
+};
+type TFilter = TFilterRadio & TFilterCheckbox;
 
 export type {
   TRunList,
