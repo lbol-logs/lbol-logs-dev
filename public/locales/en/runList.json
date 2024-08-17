@@ -6,7 +6,7 @@
   "requests": "Requests",
   "result": "Result",
   "timestamp": "Timestamp",
-  "any": "Any",
+  "all": "All",
   "startingExhibit": "Starting Exhibit",
   "swappedExhibit": "Swapped Exhibit",
   "apply": "Apply",

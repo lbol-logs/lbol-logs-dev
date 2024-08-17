@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import { TConfigsData, TDispatch, TObj, TObjAny } from 'utils/types/common';
 import { TExhibits } from 'utils/types/runData';
 import { getConfigs } from 'utils/functions/fetchData';
@@ -7,6 +7,7 @@ import copyObject from 'utils/functions/helpers';
 import { useTranslation } from 'react-i18next';
 import { TFilter, TFilterCheckbox, TFilterRadio } from 'utils/types/others';
 import DefaultFilter from 'utils/classes/DefaultFilter';
+import { useSubmit } from 'react-router-dom';
 
 function useFilter({ filter, setFilter, version, configsData, searchParams }: { filter: TFilter, setFilter: TDispatch<TFilter>, version: string, configsData: TConfigsData, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
@@ -24,6 +25,9 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   const [startingExhibits, swappedExhibits] = getExhibits(exhibitConfigs);
   const startingExhibit = t('startingExhibit', { ns: 'runList' });
   const swappedExhibit = t('swappedExhibit', { ns: 'runList' });
+
+  const formRef = useRef<HTMLFormElement>(null);
+  const submit = useSubmit();
 
   function getExhibits(configs: TObjAny) {
     const startingExhibits: TObj<TExhibits> = {};
@@ -73,7 +77,12 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   function onExhibitsTypesChange(e: ChangeEvent<HTMLInputElement>) {
     const input = e.target as HTMLInputElement;
     const value = input.value;
-    if (value === 'any') {
+    reflectExhibitsTypes(value);
+    onRadioChange(e);
+  }
+
+  function reflectExhibitsTypes(value: string) {
+    if (value === DefaultFilter.all) {
       setShowStartingExhibits(false);
       setShowSwappedExhibits(false);
     }
@@ -85,20 +94,34 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
       setShowStartingExhibits(false);
       setShowSwappedExhibits(true);
     }
-    onRadioChange(e);
   }
 
-  // const submit = useSubmit();
-  function reset() {
+  function apply(e: MouseEvent<HTMLButtonElement>) {
+    const data = deleteEtAll();
+    submit(data);
+    e.preventDefault();
+  }
+
+  function reset(e: MouseEvent<HTMLButtonElement>) {
     setFilter({});
+    submit(null);
+    e.preventDefault();
+  }
+
+  function deleteEtAll() {
+    const data = new FormData(formRef.current as HTMLFormElement);
+    const et = data.get(DefaultFilter.et);
+    if (et=== DefaultFilter.all) data.delete(DefaultFilter.et);
+    return data;
   }
 
   useEffect(() => {
     const currentFilter: TFilter = {};
     for (const [key, value] of Array.from(searchParams.entries())) {
       console.log({key, value});
-      if (key === 'et') {
-        (currentFilter[key] as string) = value;
+      if (key === DefaultFilter.et) {
+        currentFilter[key as keyof TFilterRadio] = value;
+        reflectExhibitsTypes(value);
       }
       else {
         if (!(key in currentFilter)) currentFilter[key] = [];
@@ -119,8 +142,10 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     swappedExhibits,
     startingExhibit,
     swappedExhibit,
+    formRef,
     onCheckboxChange,
     onExhibitsTypesChange,
+    apply,
     reset
   };
 }

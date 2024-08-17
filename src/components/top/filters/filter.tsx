@@ -34,8 +34,10 @@ function Filter() {
     swappedExhibits,
     startingExhibit,
     swappedExhibit,
+    formRef,
     onCheckboxChange,
     onExhibitsTypesChange,
+    apply,
     reset
   } = useFilter({ filter, setFilter, version, configsData, searchParams });
 
@@ -65,7 +67,7 @@ function Filter() {
   }
 
   return (
-    <Form action="./" className="p-filter">
+    <Form action="./" className="p-filter" ref={formRef}>
       {/* TODO */}
         FILTER (WIP)
         <div className="p-filter__row">
@@ -101,7 +103,7 @@ function Filter() {
           </div>
         </div>
         <div className="p-filter__buttons">
-          <button className="p-filter__button p-filter__button--apply">{t('apply', { ns: 'runList' })}</button>
+          <button className="p-filter__button p-filter__button--apply" onClick={apply}>{t('apply', { ns: 'runList' })}</button>
           <button className="p-filter__button p-filter__button--reset" onClick={reset}>{t('reset', { ns: 'runList' })}</button>
         </div>
     </Form>

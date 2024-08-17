@@ -1,17 +1,20 @@
 class DefaultFilter {
+  static et = 'et';
+  static all = 'all';
+
   static get(name: string) {
     switch (name) {
-      case 'et':
+      case this.et:
         return '';
       default:
         return [];
     }
   }
 
-  static getActual(name: string) {
+  static check(name: string) {
     switch (name) {
-      case 'et':
-        return 'any';
+      case this.et:
+        return this.all;
       default:
         return [];
     }

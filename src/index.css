@@ -782,7 +782,7 @@ html:lang(en) .p-result__type {
 
 .p-filter__color {
   display: flex;
-  column-gap: var(--gap);
+  column-gap: calc(var(--gap) * 2);
 }
 .p-filter__exhibits {
   flex: 1;
