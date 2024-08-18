@@ -98,8 +98,8 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
     else if (type === 'Exhibit') {
       const exhibit = entity as TExhibitObj;
       const { Id } = exhibit;
-      const { initial } = exhibitCounters[Id];
-      if (initial) {
+      if (Id in exhibitCounters) {
+        const { initial } = exhibitCounters[Id];
         exhibit.Counter = initial as TRange3;
       }
       currentHolding.Exhibits.push(exhibit);
@@ -128,7 +128,7 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
   else if (Type === 'Use') {
     if (type === 'Exhibit') {
       const index = findExhibit(entity);
-      (currentHolding.Exhibits[index].Counter as number)--;
+      if (index !== -1) (currentHolding.Exhibits[index].Counter as number)--;
     }
   }
 

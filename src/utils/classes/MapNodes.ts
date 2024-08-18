@@ -22,7 +22,7 @@ class MapNodes {
       normal: 'black',
       taken: 'blue',
       active: 'red',
-      taken2: 'purple'
+      taken2: 'magenta'
     },
     dash: 3
   };
