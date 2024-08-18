@@ -1,6 +1,4 @@
-import Processing from 'components/common/layouts/processing';
 import { CommonContext } from 'contexts/commonContext';
-import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
@@ -9,7 +7,6 @@ import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
 
 function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitChange }) {
   const { configsData } = useContext(CommonContext);
-  const { runData, holdings } = useContext(LogContext);
   const { t } = useTranslation();
 
   const isExhibit = typeof exhibit === 'string';

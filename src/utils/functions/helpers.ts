@@ -22,7 +22,10 @@ function copyObject<T>(obj: T): T {
 function filterObject<T extends TObjAny>(o: T, callback: Function): T {
   return Object.keys(o)
     .filter(key => callback(o[key]))
-    .reduce((_o: TObjAny, key: string) => (_o[key] = o[key], _o), {} as T) as T;
+    .reduce((_o: TObjAny, key: string) => {
+      _o[key] = o[key];
+      return _o
+    }, {} as T) as T;
 }
 
 function compareArrays(array1: Array<string>, array2: Array<string>) {
@@ -37,10 +40,6 @@ function toggleIsChecked(isChecked: boolean) {
   return isChecked ? toggleCheckedClassName : '';
 }
 
-function isBattle(stationType: string) {
-  return ['Enemy', 'EliteEnemy', 'Boss'].includes(stationType);
-}
-
 export {
   checkForce,
   validateRunData,
@@ -48,6 +47,5 @@ export {
   filterObject,
   compareArrays,
   getLength,
-  toggleIsChecked,
-  isBattle
+  toggleIsChecked
 };
