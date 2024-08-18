@@ -11,6 +11,7 @@ import { Form, useSearchParams } from 'react-router-dom';
 import { RunListContext } from 'contexts/runListContext';
 import useFilter from 'hooks/useFilter';
 import ExhibitsTypes from './exhibitsTypes';
+import SpellcardsWidget from './spellcardsWidget';
 
 const toggleCheckedClassName = 'p-filter__toggle--checked';
 
@@ -72,6 +73,12 @@ function Filter() {
         <div className="p-filter__label">{t('character', { ns: 'runList' })}</div>
         <div className="p-filter__values">
           <CharactersWidget onChange={onCheckboxChange} characters={characters} />
+        </div>
+      </div>
+      <div className="p-filter__row">
+        <div className="p-filter__label">{t('spellcard', { ns: 'runList' })}</div>
+        <div className="p-filter__values">
+          <SpellcardsWidget onChange={onCheckboxChange} characters={characters} />
         </div>
       </div>
       <div className="p-filter__row">

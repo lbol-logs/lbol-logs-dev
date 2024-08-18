@@ -5,6 +5,7 @@
     "total": "<strong>{{count}}</strong> 件"
   },
   "character": "キャラクター",
+  "spellcard": "スペルカード",
   "shining": "光耀展示品",
   "difficulty": "難易度",
   "requests": "難題",

@@ -7,6 +7,7 @@
     "total_other": "<strong>{{count}}</strong> records"
   },
   "character": "Character",
+  "spellcard": "Spell Card",
   "shining": "Shining Exhibit",
   "difficulty": "Difficulty",
   "requests": "Requests",

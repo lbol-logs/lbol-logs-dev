@@ -11,12 +11,12 @@ function StartingExhibitsWidget({ onChange, startingExhibits, characters }: { on
   return (
     <>
       {characters.map(character => {
-        const isCharacterChecked = ch ? ch.includes(character) : true;
+        const isCharacterChecked = ch ? (!ch.length || ch.includes(character)) : true;
 
         return (
           <div className={`p-filter__character-exhibits ${isCharacterChecked ? 'p-filter__character-exhibits--visible' : ''}`} key={character}>
             {startingExhibits[character].map(exhibit => {
-              const isExhibitChecked = st ? st.includes(exhibit) : false;
+              const isExhibitChecked = st ? st.includes(exhibit) && isCharacterChecked : false;
 
               return (
                 <ExhibitWidget key={exhibit} onChange={onChange} exhibit={exhibit} name="st" checked={isExhibitChecked} />

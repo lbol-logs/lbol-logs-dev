@@ -64,8 +64,8 @@ function RunList() {
   return (
     <section className="p-run-list">
       <Filter />
+      <p className="p-run-list__results">{results}</p>
       <div className="p-run-list__table">
-        {/* {t('test', { ns: 'test/a' })} */}
         <div className="p-run-list__row p-run-list__row--header">
           <div className="p-run-list__cell p-run-list__cell--id">Id</div>
           <div className="p-run-list__cell p-run-list__cell--result-requests u-flex-col-sp">
@@ -73,7 +73,6 @@ function RunList() {
             <div className="p-run-list__cell--requests">{t('requests', { ns: 'runList' })}</div>
           </div>
         </div>
-        {results}
         {Object.entries(filteredList).reverse().map(([id, o]) => {
           const {
             character: Character,
