@@ -4,13 +4,11 @@ import { useTranslation } from 'react-i18next';
 import CharactersWidget from './charactersWidget';
 import DifficultiesWidget from './difficultiesWidget';
 import ColorsWidget from './colorsWidget';
-import RequestsWidget from './requestsWidget';
+import RequestsTypes from './requestsTypes';
 import StartingExhibitsWidget from './startingExhibitsWidget';
 import ResultsWidget from './resultsWidget';
-
 import { Form, useSearchParams } from 'react-router-dom';
 import { RunListContext } from 'contexts/runListContext';
-
 import useFilter from 'hooks/useFilter';
 import ExhibitsTypes from './exhibitsTypes';
 
@@ -27,6 +25,7 @@ function Filter() {
   const {
     showStartingExhibits,
     showSwappedExhibits,
+    showRequets,
     difficultyConfigs,
     resultConfigs,
     characters,
@@ -37,6 +36,7 @@ function Filter() {
     formRef,
     onCheckboxChange,
     onExhibitsTypesChange,
+    onRequestsTypesChange,
     apply,
     reset
   } = useFilter({ filter, setFilter, version, configsData, searchParams });
@@ -92,15 +92,14 @@ function Filter() {
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('requests', { ns: 'runList' })}</div>
-          <div className="p-filter__values">
-            {/* Both inactive active */}
-            {/* <RequestsWidget onChange={onCheckboxChange} requests={requestConfigs} /> */}
+          <div className="p-filter__values u-flex-col">
+            <RequestsTypes onRequestsTypesChange={onRequestsTypesChange} onRequestsChange={onCheckboxChange} showRequets={showRequets} />
           </div>
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('result', { ns: 'runList' })}</div>
           <div className="p-filter__values u-flex-col-sp">
-            <ResultsWidget results={resultConfigs as Array<string>} />
+            <ResultsWidget onChange={onCheckboxChange} results={resultConfigs as Array<string>} />
           </div>
         </div>
         <div className="p-filter__buttons">

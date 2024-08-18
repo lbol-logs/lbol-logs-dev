@@ -1,5 +1,6 @@
 {
-  "notAvailableYet": "Not available yet",
+  "results": "<strong>{{count}}</strong> result is found out of <strong>{{total}}</strong>",
+  "results_other": "<strong>{{count}}</strong> results are found out of <strong>{{total}}</strong>",
   "character": "Character",
   "shining": "Shining Exhibit",
   "difficulty": "Difficulty",
@@ -7,8 +8,11 @@
   "result": "Result",
   "timestamp": "Timestamp",
   "all": "All",
-  "startingExhibit": "Starting Exhibit",
-  "swappedExhibit": "Swapped Exhibit",
+  "startingExhibit": "Starting Exhibits",
+  "swappedExhibit": "Swapped Exhibits",
+  "both": "Both",
+  "inactive": "Inactive",
+  "active": "Active",
   "apply": "Apply",
   "reset": "Reset"
 }

@@ -1,5 +1,5 @@
 {
-  "notAvailableYet": "現在は利用できません",
+  "results": "<strong>{{total}}</strong> 件中、 <strong>{{count}}</strong> 件見つかりました",
   "character": "キャラクター",
   "shining": "光耀展示品",
   "difficulty": "難易度",
@@ -9,6 +9,9 @@
   "all": "全部",
   "startingExhibit": "初期展示品",
   "swappedExhibit": "展示品交換",
+  "both": "両方",
+  "inactive": "無効",
+  "active": "有効",
   "apply": "適用",
   "reset": "リセット"
 }

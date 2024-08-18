@@ -1,23 +1,41 @@
 import { CommonContext } from 'contexts/commonContext';
-import { useContext } from 'react';
+import { ChangeEventHandler, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toggleIsChecked } from 'utils/functions/helpers';
 import { TRequests } from 'utils/types/runData';
 
-function RequestsWidget({ requests }: { requests: TRequests }) {
+function RequestsWidget({ requests, onChange }: { requests: TRequests, onChange?: ChangeEventHandler }) {
   const { t } = useTranslation();
   const { configsData } = useContext(CommonContext);
 
-  const r: TRequests = configsData.requests as TRequests;
+  const requestConfigs: TRequests = configsData.requests as TRequests;
 
   return (
     <div className="c-requests">
-      {r.map((request) => {
+      {requestConfigs.map((request) => {
         const active = requests.includes(request);
 
+        let dot;
+        if (onChange) {
+          dot = (
+            <label className={`c-request p-filter__toggle ${toggleIsChecked(active)} u-button`} key={request}>
+                <span className={`c-request__dot ${active ? 'c-request__dot--active' : ''}`} data-name={t(`requests.${request}`, { ns: 'common' })}></span>
+                <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="re" value={request} checked={active} />
+            </label>
+          );
+        }
+        else {
+          dot = (
+            <span className="c-request" key={request}>
+                <span className={`c-request__dot ${active ? 'c-request__dot--active' : ''}`} data-name={t(`requests.${request}`, { ns: 'common' })}></span>
+            </span>
+          );
+        }
+
         return (
-          <span className="c-request" key={request}>
-              <span className={`c-request__dot ${active ? 'c-request__dot--active' : ''}`} data-name={t(`requests.${request}`, { ns: 'common' })}></span>
-          </span>
+          <>
+            {dot}
+          </>
         );
       })}
     </div>

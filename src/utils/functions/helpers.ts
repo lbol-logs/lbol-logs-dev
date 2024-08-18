@@ -1,4 +1,5 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
+import { TObjAny } from 'utils/types/common';
 import { TRunData } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
@@ -18,6 +19,10 @@ function copyObject<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
 }
 
+function getLength(obj: Object) {
+  return Object.keys(obj).length;
+}
+
 function toggleIsChecked(isChecked: boolean) {
   return isChecked ? toggleCheckedClassName : '';
 }
@@ -28,5 +33,6 @@ export {
   checkForce,
   validateRunData,
   copyObject,
+  getLength,
   toggleIsChecked
 };

@@ -7,8 +7,9 @@ import Done from './done';
 function About() {
   const { t } = useTranslation();
   const language = i18next.language;
-  const modUrl = `https://github.com/ed-ev/lbol-runLogger/blob/master/README${language === Object.keys(languages)[0] ? '' : '-' + language}.md`;
-  const discordUrl = language === Object.keys(languages)[0]
+  const isDefaultLanguage = language === Object.keys(languages)[0];
+  const modUrl = `https://github.com/ed-ev/lbol-runLogger/blob/master/README${isDefaultLanguage ? '' : '-' + language}.md`;
+  const discordUrl = isDefaultLanguage
     ? 'https://discord.com/channels/1040229874176098344/1267772366054887506'
     : 'https://discord.com/channels/1040229874176098344/1267772986254163990';
 

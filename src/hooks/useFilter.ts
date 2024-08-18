@@ -14,6 +14,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
 
   const [showStartingExhibits, setShowStartingExhibits] = useState(false);
   const [showSwappedExhibits, setShowSwappedExhibits] = useState(false);
+  const [showRequets, seteShowRequets] = useState(false);
 
   const characterConfigs = configsData.characters;
   const exhibitConfigs = configsData.exhibits;
@@ -85,7 +86,6 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     const name = input.name as keyof TFilterRadio;
     const value = input.value;
     const currentFilter = copyObject(filter) as TFilterRadio;
-    if (!(name in currentFilter)) currentFilter[name] = DefaultFilter.get(name) as string;
     currentFilter[name] = value;
     setFilter(currentFilter as TFilter);
   }
@@ -95,6 +95,17 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     const value = input.value;
     reflectExhibitsTypes(value);
     onRadioChange(e);
+  }
+  function onRequestsTypesChange(e: ChangeEvent<HTMLInputElement>) {
+    const input = e.target as HTMLInputElement;
+    const value = input.value;
+    reflectRequestsTypes(value);
+    onRadioChange(e);
+  }
+
+  function reflectTypes(key: string, value: string) {
+    if (key === DefaultFilter.et) reflectExhibitsTypes(value);
+    else if (key === DefaultFilter.rt) reflectRequestsTypes(value);
   }
 
   function reflectExhibitsTypes(value: string) {
@@ -112,6 +123,10 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     }
   }
 
+  function reflectRequestsTypes(value: string) {
+    seteShowRequets(value === DefaultFilter.active);
+  }
+
   function apply(e: MouseEvent<HTMLButtonElement>) {
     const data = deleteValues();
     submit(data);
@@ -127,28 +142,34 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
 
   function deleteValues() {
     const data = new FormData(formRef.current as HTMLFormElement);
-    const et = data.get(DefaultFilter.et);
-    if (et === DefaultFilter.all) data.delete(DefaultFilter.et);
+    for (const key of DefaultFilter.radios) {
+      const value = data.get(key);
+      if (value === DefaultFilter.check(key)) data.delete(key);
+    }
     data.delete(DefaultFilter.co);
     return data;
   }
 
+  function updateTypesFilter(currentFilter: TFilter, key: string) {
+    const value = searchParams.get(key) || DefaultFilter.get(key) as string;
+    currentFilter[key as keyof TFilterRadio] = value;
+    reflectTypes(key, value);
+    return currentFilter;
+  }
+
   useEffect(() => {
-    const currentFilter: TFilter = {};
-    const etKey = DefaultFilter.et;
+    let currentFilter: TFilter = {};
+    const radios = DefaultFilter.radios;
 
     for (const [key, value] of Array.from(searchParams.entries())) {
-      if (key === etKey) {
-      }
-      else {
-        if (!(key in currentFilter)) currentFilter[key] = [];
-        (currentFilter[key] as Array<string>).push(value);
-      }
+      if (radios.includes(key)) continue;
+      if (!(key in currentFilter)) currentFilter[key] = [];
+      (currentFilter[key] as Array<string>).push(value);
     }
 
-    const etValue = searchParams.get(etKey) || DefaultFilter.get(etKey) as string;
-    currentFilter[etKey as keyof TFilterRadio] = etValue;
-    reflectExhibitsTypes(etValue);
+    for (const key of radios) {
+      currentFilter = updateTypesFilter(currentFilter, key);
+    }
 
     setFilter(currentFilter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -157,6 +178,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   return {
     showStartingExhibits,
     showSwappedExhibits,
+    showRequets,
     difficultyConfigs,
     resultConfigs,
     characters,
@@ -167,6 +189,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     formRef,
     onCheckboxChange,
     onExhibitsTypesChange,
+    onRequestsTypesChange,
     apply,
     reset
   };

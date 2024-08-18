@@ -9,6 +9,7 @@ function ExhibitsTypes({ onChange, startingExhibit, swappedExhibit }: { onChange
   const { filter } = useContext(RunListContext);
   const { et } = filter as TFilterRadio;
 
+  const defaultType = DefaultFilter.check(DefaultFilter.et)
   const o = {
     all: t('all', { ns: 'runList' }),
     startingExhibit: startingExhibit,
@@ -18,7 +19,7 @@ function ExhibitsTypes({ onChange, startingExhibit, swappedExhibit }: { onChange
   return (
     <>
       {Object.entries(o).map(([value, text]) => {
-        const isChecked = (et ? et : DefaultFilter.check(DefaultFilter.et)) === value ;
+        const isChecked = (et || defaultType) === value;
 
         return (
           <label key={value}>

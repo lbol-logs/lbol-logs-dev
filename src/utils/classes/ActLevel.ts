@@ -1,3 +1,4 @@
+import { getLength } from 'utils/functions/helpers';
 import { TAct, TLevel, TRunData } from '../types/runData';
 
 class ActLevel {
@@ -16,7 +17,7 @@ class ActLevel {
   }
 
   public maxAct() {
-    const maxAct = Object.keys(this._runData.Acts).length as TAct;
+    const maxAct = getLength(this._runData.Acts) as TAct;
     this._maxAct = maxAct;
     return maxAct;
   }

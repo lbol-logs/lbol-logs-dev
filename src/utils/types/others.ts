@@ -20,6 +20,7 @@ type TPromise = {
 type TFilterCheckbox = TObj<Array<string>>
 type TFilterRadio = {
   et?: string
+  rt?: string
 };
 type TFilter = TFilterRadio & TFilterCheckbox;
 

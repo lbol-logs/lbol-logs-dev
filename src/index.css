@@ -935,6 +935,10 @@ html:lang(en) .p-result__type {
   .p-filter__label {
     width: auto;
   }
+  .p-filter__requests-types {
+    display: flex;
+    justify-content: center;
+  }
 
   .u-pc {
     display: none;

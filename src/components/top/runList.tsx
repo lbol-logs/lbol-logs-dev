@@ -1,6 +1,6 @@
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import useRunList from 'hooks/useRunList';
 import { TRunList } from 'utils/types/others';
@@ -9,26 +9,29 @@ import Filter from './filters/filter';
 import ResultWidget from 'components/common/parts/resultWidget';
 import RequestsWidget from 'components/common/parts/requestsWidget';
 import { TRequests } from 'utils/types/runData';
+import { getLength } from 'utils/functions/helpers';
+import useFilterOnList from 'hooks/useFilterOnList';
+import { RunListContext } from 'contexts/runListContext';
 
 function RunList() {
   const { version } = useContext(CommonContext);
+  const { filter } = useContext(RunListContext);
   const { t } = useTranslation();
 
   const list: TRunList = useRunList(version);
 
-  // TODO: filter & sort
+  const keys = Object.keys(list);
+  // TODO
+  // applyFilter();
+  const filteredList = useFilterOnList(list, filter);
 
   const ids = useMemo(() => {
     const o: TObjNumber = {};
-    const keys = Object.keys(list);
     for (let i = 0; i < keys.length; i++) {
       o[keys[i]] = i + 1;
     }
     return o;
   }, [list]);
-
-  // TODO
-  // useFilter();
 
   return (
     <section className="p-run-list">
@@ -42,8 +45,15 @@ function RunList() {
             <div className="p-run-list__cell--requests">{t('requests', { ns: 'runList' })}</div>
           </div>
         </div>
-        {!Object.keys(list).length && t('notAvailableYet', { ns: 'runList' })}
-        {Object.entries(list).reverse().map(([id, o]) => {
+        <Trans
+          i18nKey="results"
+          ns="runList"
+          count={getLength(filteredList)}
+          values={{
+            total: keys.length.toString()
+          }}
+        />
+        {Object.entries(filteredList).reverse().map(([id, o]) => {
           const {
             character: Character,
             type: PlayerType,
