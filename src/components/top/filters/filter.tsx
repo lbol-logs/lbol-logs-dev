@@ -45,7 +45,10 @@ function Filter() {
   let startingExhibitsRow = null;
   let swappedExhibitsRow = null;
 
-  if (showStartingExhibits) {
+  const { sc } = filter;
+  const hasSpellcard = sc ? sc.length : false;
+
+  if (!hasSpellcard && showStartingExhibits) {
     startingExhibitsRow = (
       <div className="p-filter__row">
         <div className="p-filter__label">{startingExhibit}</div>
