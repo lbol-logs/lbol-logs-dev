@@ -1,17 +1,17 @@
 import i18next from 'i18next';
 import { useTranslation, Trans } from 'react-i18next';
-import { languages } from 'configs/globals';
+import { gameUrl, languages, modUrl } from 'configs/globals';
 import RoadMap from './roadMap';
 import Done from './done';
+import { ReactNode } from 'react';
+
+function External({ href, children }: { href: string, children?: ReactNode }) {
+  return <a href={href} target="_blank" rel="noreferrer">{children}</a>;
+}
 
 function About() {
   const { t } = useTranslation();
-  const language = i18next.language;
-  const isDefaultLanguage = language === Object.keys(languages)[0];
-  const modUrl = `https://github.com/ed-ev/lbol-runLogger/blob/master/README${isDefaultLanguage ? '' : '-' + language}.md`;
-  const discordUrl = isDefaultLanguage
-    ? 'https://discord.com/channels/1040229874176098344/1267772366054887506'
-    : 'https://discord.com/channels/1040229874176098344/1267772986254163990';
+  const { discord } = languages[i18next.language];
 
   type Categories = {
     [key: string]: Array<string>
@@ -37,9 +37,9 @@ function About() {
           i18nKey="about"
           ns="site"
           components={{
-            steam: <a href="https://store.steampowered.com/app/1140150/" target="_blank" rel="noreferrer">{}</a>,
-            mod: <a href={modUrl} target="_blank" rel="noreferrer">{}</a>,
-            discord: <a href={discordUrl} target="_blank" rel="noreferrer">{}</a>
+            steam: <External href={gameUrl} />,
+            mod: <External href={modUrl} />,
+            discord: <External href={discord} />
           }}
         />
       </div>

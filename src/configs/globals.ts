@@ -3,16 +3,19 @@ import { TObj, TObjString } from 'utils/types/common';
 const languages: TObj<TObjString> = {
   en: {
     label: 'EN',
-    lang: 'en'
+    lang: 'en',
+    discord: 'https://discord.com/channels/1040229874176098344/1267772366054887506'
   },
   ja: {
     label: '日本語',
-    lang: 'ja'
+    lang: 'ja',
+    discord: 'https://discord.com/channels/1040229874176098344/1267772986254163990'
   },
   // TODO
   // zh: {
   //   label: '繁中',
-  //   lang: 'zh-cmn-Hant'
+  //   lang: 'zh-cmn-Hant',
+  //   discord: ''
   // }
 };
 
@@ -39,6 +42,10 @@ const baseUrl: string = process.env.PUBLIC_URL;
 const imageUrl: string = `${baseUrl}/images`;
 
 const dataUrl: string = 'https://ed-ev.github.io/lbol-logs-data';
+
+const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
+
+const modUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p/tami_ev/Run_Logger/';
 
 const iconSize = 36;
 
@@ -77,6 +84,8 @@ export {
   baseUrl,
   imageUrl,
   dataUrl,
+  gameUrl,
+  modUrl,
   iconSize,
   cardSize,
   resultSizes,
