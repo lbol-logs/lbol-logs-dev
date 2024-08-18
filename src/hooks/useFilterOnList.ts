@@ -15,10 +15,9 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter) {
   };
   const radios = DefaultFilter.radios;
   const keys = DefaultFilter.keys;
-console.log({currentFilter});
+
   for (const [key, f] of Object.entries(currentFilter)) {
     const isRadio = radios.includes(key);
-    console.log({key, isRadio})
     if (isRadio) {
       if (key === keys.rt) {
         const value = f as string;
@@ -36,7 +35,6 @@ console.log({currentFilter});
         filteredList = filterObject(filteredList, (o: TObjAny) => value.includes(o[map[key]]));
       }
     }
-    console.log(filteredList);
   }
 
   return filteredList;

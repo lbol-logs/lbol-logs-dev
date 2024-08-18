@@ -800,6 +800,12 @@ html:lang(en) .p-result__type {
   visibility: visible;
 }
 
+.p-filter__requests-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+
 .p-filter__buttons {
   display: flex;
   justify-content: center;
@@ -936,7 +942,6 @@ html:lang(en) .p-result__type {
     width: auto;
   }
   .p-filter__requests-types {
-    display: flex;
     justify-content: center;
   }
 
