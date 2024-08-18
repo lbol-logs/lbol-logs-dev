@@ -28,7 +28,8 @@ const namespaces: Array<string> = [
   'exhibits',
   'enemies',
   'events',
-  'dialogues'
+  'dialogues',
+  'gap'
 ];
 
 const versions: Array<string> = [

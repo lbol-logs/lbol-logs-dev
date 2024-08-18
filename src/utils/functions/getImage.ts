@@ -55,6 +55,10 @@ function getSpellcardImage(name: string): string {
   return _getImage('spellcards', name);
 }
 
+function getGapImage(name: string): string {
+  return _getImage('gap', name);
+}
+
 export {
   getImage,
   getCommonImage,
@@ -67,5 +71,6 @@ export {
   getAvatarImage,
   getDifficultyImage,
   getResultImage,
-  getSpellcardImage
+  getSpellcardImage,
+  getGapImage
 };
