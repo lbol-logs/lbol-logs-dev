@@ -12,12 +12,13 @@
     },
     "categories": {
       "site": [
-        "Site basic display",
+        "Top page (list, filter)",
+        "Run history page (summary, map, route, change, holdings)",
+        "Demo data of run history",
         "Language switch (sorry for my poor English)",
         "Version switch (since v1.5.1)",
-        "Demo data of run history",
-        "Basic display of run history",
-        "Images except cards"
+        "Images, configs, texts",
+        "Dark mode support"
       ],
       "mod": [
         "Character info",
@@ -42,20 +43,17 @@
     },
     "categories": {
       "now": [
-        "Locale file of general terms",
-        "Overall review and adjustment"
+        "Details of Seija Battle (Mod & site)",
+        "Stations other than battle (events, shop, etc.) (Mod & site)"
       ],
       "next": [
-        "Redesign Deck & Exhibit view (GIMME IDEAS!!)",
-        "Details of Seija Battle (Mod & site)",
-        "Stations other than battle (events, shop, etc.) (Mod & site)",
         "Mod release",
-        "Log upload (share with url)"
+        "Log upload (url share only)"
       ],
       "later": [
-        "Cards image",
-        "List of logs (filter & sort)",
-        "UI & UX"
+        "Auto reflect uploaded logs to top page list",
+        "Support Traditional & Simplified Chinese",
+        "Adjust UI of levels"
       ],
       "trash": [
         "Battle details",
