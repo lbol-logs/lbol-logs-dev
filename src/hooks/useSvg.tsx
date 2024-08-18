@@ -132,7 +132,7 @@ function useSvg({ runData, act, level, ignoredPaths, Act, Nodes }: { runData: TR
       const flag = 'taken';
       const key = flag as keyof typeof widths;
       const width = widths[key];
-      const color = colors[key];
+      const color = colors['taken2'];
       const line = getLine({ X, Y, X2, Y2, x1, y1, x2, y2, color, width, dash });
       linesTaken.push(line);
     }

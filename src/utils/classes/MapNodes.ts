@@ -21,7 +21,8 @@ class MapNodes {
     colors: {
       normal: 'black',
       taken: 'blue',
-      active: 'red'
+      active: 'red',
+      taken2: 'purple'
     },
     dash: 3
   };

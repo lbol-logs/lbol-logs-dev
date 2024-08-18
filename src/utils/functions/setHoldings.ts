@@ -1,6 +1,6 @@
-import { eventConvertBaseMana, ExhibitWithCounter, requestWithStartCard, RequestWithStartCard, TActObj, THoldingAction, THoldingChange, THoldingsReducer, TNode, TNodeObj, TRunData } from 'utils/types/runData';
-import { TObjAny } from 'utils/types/common';
-import { copyObject } from 'utils/functions/helpers';
+import { eventConvertBaseMana, exhibitCounters, ExhibitWithCounter, requestWithStartCard, RequestWithStartCard, TActObj, THoldingAction, THoldingChange, THoldingsReducer, TNode, TNodeObj, TRunData } from 'utils/types/runData';
+import { TObjAny, TObjNumber, TRange3 } from 'utils/types/common';
+import { copyObject, isBattle } from 'utils/functions/helpers';
 
 function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldings: THoldingsReducer, exhibitConfigs: TObjAny) {
   const { Stations } = runData;
@@ -107,7 +107,9 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
   }
 
   // Exhibits
-  const stationsTiangouYuyi: TObjAny = {};
+  const stationsTiangouYuyi: TObjNumber = {};
+  const stationsMoping: TObjNumber = {};
+  const stationsBaota: TObjNumber = {};
   {
     const { Exhibits } = runData;
     for (const Exhibit of Exhibits) {
@@ -115,6 +117,7 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
       const { Id, Type, Station } = Exhibit;
       const { Node } = Stations[Station];
       exhibit.Station = Node;
+
       if (Exhibit.Id === ExhibitWithCounter.TiangouYuyi) {
         if (Type === 'Add') {
           stationsTiangouYuyi.start = Station;
@@ -125,6 +128,15 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
           ignoredPaths.push({ Type, Station: Node });
         }
       }
+      else if (Exhibit.Id === ExhibitWithCounter.Moping) {
+        if (Type === 'Add') stationsMoping.start = Station;
+        else if (Type === 'Remove') stationsMoping.end = Station;
+      }
+      else if (Exhibit.Id === ExhibitWithCounter.Baota) {
+        if (Type === 'Add') stationsBaota.start = Station;
+        else if (Type === 'Remove') stationsBaota.end = Station;
+      }
+
       const action: THoldingAction = {
         type: 'Exhibit',
         change: {
@@ -150,8 +162,12 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
 
   // TiangouYuyi
   {
-    const { start, end} = stationsTiangouYuyi;
+    const Id = ExhibitWithCounter.TiangouYuyi;
+    const { initial } = exhibitCounters[Id];
+    let counter = initial;
+    const { start, end } = stationsTiangouYuyi;
     for (let i = start; i <= end || Stations.length - 1; i++) {
+      if (!counter) break;
       const nextStation = Stations[i + 1];
       if (!nextStation) break;
       const { Node } = Stations[i];
@@ -164,13 +180,81 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
         const action: THoldingAction = {
           type: 'Exhibit',
           change: {
-            Id: ExhibitWithCounter.TiangouYuyi,
+            Id,
             Type,
             Station: Node
           }
         };
         actions.push(action);
         ignoredPaths.push({ Type, Station: Node });
+        counter--;
+      }
+    }
+  }
+
+  // Moping
+  {
+    const Id = ExhibitWithCounter.Moping;
+    const { initial } = exhibitCounters[Id];
+    let counter = initial;
+    const { start, end } = stationsMoping;
+    console.log({start,end});
+    for (let i = start; i <= end || Stations.length - 1; i++) {
+      const { Type, Node } = Stations[i];
+      if (isBattle(Type)) {
+        if (!counter) continue;
+        const Type = 'Use'
+        const action: THoldingAction = {
+          type: 'Exhibit',
+          change: {
+            Id,
+            Type,
+            Station: Node
+          }
+        };
+        actions.push(action);
+        counter--;
+      }
+      else if (Type === 'Gap') {
+        counter = initial;
+        const Type = 'Upgrade'
+        const action: THoldingAction = {
+          type: 'Exhibit',
+          change: {
+            Id,
+            Type,
+            Station: Node,
+            Counter: counter as TRange3
+          }
+        };
+        actions.push(action);
+      }
+    }
+  }
+
+  // Baota
+  {
+    const Id = ExhibitWithCounter.Baota;
+    const { initial, final } = exhibitCounters[Id];
+    let counter = initial;
+    const { start, end } = stationsBaota;
+    for (let i = start; i <= end || Stations.length - 1; i++) {
+      if (counter === final) break;
+      const { Type, Node, Data: { Choice } } = Stations[i];
+      if (Type !== 'Gap') continue;
+      if (Choice === 'UpgradeBaota') {
+        counter++;
+        const Type = 'Upgrade'
+        const action: THoldingAction = {
+          type: 'Exhibit',
+          change: {
+            Id,
+            Type,
+            Station: Node,
+            Counter: counter as TRange3
+          }
+        };
+        actions.push(action);
       }
     }
   }

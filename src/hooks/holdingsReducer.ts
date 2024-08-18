@@ -1,7 +1,7 @@
 import { copyObject } from 'utils/functions/helpers';
 import Mana from 'utils/classes/Mana';
 import { TRange3 } from 'utils/types/common';
-import { CardWithUpgradeCounter, exhibitInitialCounter, TAct, TBaseManaObj, TCard, TExhibitObj, THolding, THoldingAction, THoldings, TLevel } from 'utils/types/runData';
+import { CardWithUpgradeCounter, exhibitCounters, TAct, TBaseManaObj, TCard, TExhibitObj, THolding, THoldingAction, THoldings, TLevel } from 'utils/types/runData';
 
 function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings {
   const { type, change } = action;
@@ -98,9 +98,9 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
     else if (type === 'Exhibit') {
       const exhibit = entity as TExhibitObj;
       const { Id } = exhibit;
-      const initialCounter = exhibitInitialCounter[Id];
-      if (initialCounter) {
-        exhibit.Counter = initialCounter as TRange3;
+      const { initial } = exhibitCounters[Id];
+      if (initial) {
+        exhibit.Counter = initial as TRange3;
       }
       currentHolding.Exhibits.push(exhibit);
     }
@@ -119,6 +119,10 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
     if (type === 'Card') {
       const index = findCard(entity, true);
       upgradeCard(index);
+    }
+    else if (type === 'Exhibit') {
+      const index = findExhibit(entity);
+      currentHolding.Exhibits[index].Counter = (entity as TExhibitObj).Counter;
     }
   }
   else if (Type === 'Use') {

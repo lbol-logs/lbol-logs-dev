@@ -1,5 +1,5 @@
 import { Dispatch, ReducerAction } from 'react';
-import { TObjAny, TObjNumber, TRange16, TRange3, TRange4 } from './common';
+import { TObj, TObjAny, TObjNumber, TRange16, TRange3, TRange4 } from './common';
 
 type TRunData = {
   Versions: string,
@@ -170,17 +170,19 @@ enum CardWithUpgradeCounter {
 };
 
 enum ExhibitWithCounter {
-  GanzhuYao = 'GanzhuYao',
-  ChuRenou = 'ChuRenou',
-  TiangouYuyi = 'TiangouYuyi',
-  Moping = 'Moping'
+  GanzhuYao = 'GanzhuYao',      // DONE: use
+  ChuRenou = 'ChuRenou',        // DONE: use
+  TiangouYuyi = 'TiangouYuyi',  // DONE: stations
+  Moping = 'Moping',            // battle, gap
+  Baota = 'Baota'               // gap
 };
 
-const exhibitInitialCounter: TObjNumber = {
-  GanzhuYao: 0,
-  ChuRenou: 3,
-  TiangouYuyi: 3,
-  Moping: 3
+const exhibitCounters: TObj<TObjNumber> = {
+  GanzhuYao: { initial: 0 },
+  ChuRenou: { initial: 3 },
+  TiangouYuyi: { initial: 3 },
+  Moping: { initial: 3 },
+  Baota: { initial: 0, final: 3 }
 };
 
 export type {
@@ -223,5 +225,5 @@ export {
   eventConvertBaseMana,
   CardWithUpgradeCounter,
   ExhibitWithCounter,
-  exhibitInitialCounter
+  exhibitCounters
 };

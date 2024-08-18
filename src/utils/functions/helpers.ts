@@ -37,6 +37,10 @@ function toggleIsChecked(isChecked: boolean) {
   return isChecked ? toggleCheckedClassName : '';
 }
 
+function isBattle(stationType: string) {
+  return ['Enemy', 'EliteEnemy', 'Boss'].includes(stationType);
+}
+
 export {
   checkForce,
   validateRunData,
@@ -44,5 +48,6 @@ export {
   filterObject,
   compareArrays,
   getLength,
-  toggleIsChecked
+  toggleIsChecked,
+  isBattle
 };
