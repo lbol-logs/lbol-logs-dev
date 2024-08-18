@@ -7,6 +7,7 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter) {
   let filteredList = copyObject(list);
   const map: TObjString = {
     ch: 'character',
+    sc: 'type',
     st: 'shining',
     sw: 'shining',
     di: 'difficulty',
@@ -28,7 +29,10 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter) {
     }
     else {
       const value = f as Array<string>;
-      if (key === keys.rq) {
+      if (key === keys.sc) {
+        filteredList = filterObject(filteredList, (o: TObjAny) => value.includes(o[map.ch] + o[map[key]]));
+      }
+      else if (key === keys.rq) {
         filteredList = filterObject(filteredList, (o: TObjAny) => compareArrays(value, o[map[key]]));
       }
       else {

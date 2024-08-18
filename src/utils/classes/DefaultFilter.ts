@@ -1,5 +1,6 @@
 class DefaultFilter {
   static keys = {
+    sc: 'sc',
     et: 'et',
     rt: 'rt',
     rq: 'rq'
