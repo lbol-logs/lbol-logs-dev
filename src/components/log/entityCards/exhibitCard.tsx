@@ -18,37 +18,13 @@ function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitCh
   let counter = null;
 
   if (!isExhibit) {
-    const _exhibit: TExhibitChange = exhibit as TExhibitChange;
-    const isExhibitChange = _exhibit.Type;
-    if (isExhibitChange) {
-      let lastCounter = <Processing />;
-      const { Act, Level } = runData.Stations[_exhibit.Station].Node;
-      const i = holdings.findIndex(({ Act: _act, Level: _level }) => Act === _act && Level === _level);
-      if (i) {
-        const exhibit: TExhibitObj = holdings[i - 1].Exhibits.find(({ Id: _id }) => _id === Id) as TExhibitObj;
-        const { Counter } = exhibit;
-        lastCounter = (
-          <>
-            {Counter}-{'>'}
-          </>
-        );
-      }
-
+    const { Counter } = exhibit;
+    if (Counter) {
       counter = (
         <span className="c-exhibit__counter">
-          {lastCounter}{exhibit.Counter}
+          {'('}{Counter}{')'}
         </span>
       );
-    }
-    else {
-      const { Counter } = exhibit;
-      if (Counter) {
-        counter = (
-          <span className="c-exhibit__counter">
-            {'('}{Counter}{')'}
-          </span>
-        );
-      }
     }
   }
 
