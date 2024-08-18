@@ -19,6 +19,12 @@ function copyObject<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
 }
 
+function filterObject<T extends TObjAny>(o: T, callback: Function): T {
+  return Object.keys(o)
+    .filter(key => callback(o[key]))
+    .reduce((_o: TObjAny, _key) => (_o[_key] = o[_key], _o), {} as T) as T;
+}
+
 function getLength(obj: Object) {
   return Object.keys(obj).length;
 }
@@ -27,12 +33,11 @@ function toggleIsChecked(isChecked: boolean) {
   return isChecked ? toggleCheckedClassName : '';
 }
 
-export default copyObject;
-
 export {
   checkForce,
   validateRunData,
   copyObject,
+  filterObject,
   getLength,
   toggleIsChecked
 };

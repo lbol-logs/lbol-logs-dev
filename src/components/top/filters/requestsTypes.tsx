@@ -12,7 +12,7 @@ function RequestsTypes({ onRequestsTypesChange, onRequestsChange, showRequets }:
   const { rt } = filter as TFilterRadio;
   const { re } = filter;
 
-  const defaultType = DefaultFilter.check(DefaultFilter.rt);
+  const defaultType = DefaultFilter.check(DefaultFilter.keys.rt);
   const values = ['both', 'inactive', 'active'];
   let requestsInput = null;
   if (showRequets) {

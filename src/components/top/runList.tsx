@@ -1,9 +1,9 @@
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import useRunList from 'hooks/useRunList';
-import { TRunList } from 'utils/types/others';
+import { TFilter, TFilterRadio, TRunList } from 'utils/types/others';
 import { TObjNumber } from 'utils/types/common';
 import Filter from './filters/filter';
 import ResultWidget from 'components/common/parts/resultWidget';
@@ -12,18 +12,34 @@ import { TRequests } from 'utils/types/runData';
 import { getLength } from 'utils/functions/helpers';
 import useFilterOnList from 'hooks/useFilterOnList';
 import { RunListContext } from 'contexts/runListContext';
+import DefaultFilter from 'utils/classes/DefaultFilter';
 
 function RunList() {
   const { version } = useContext(CommonContext);
-  const { filter } = useContext(RunListContext);
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
 
   const list: TRunList = useRunList(version);
 
   const keys = Object.keys(list);
   // TODO
   // applyFilter();
-  const filteredList = useFilterOnList(list, filter);
+  const currentFilter = useMemo(() => {
+    const currentFilter: TFilter = {};
+    for (const [key, value] of Array.from(searchParams.entries())) {
+      if (DefaultFilter.radios.includes(key)) {
+        currentFilter[key as keyof TFilterRadio] = value;
+      }
+      else {
+        if (!(key in currentFilter)) currentFilter[key] = [];
+        (currentFilter[key] as Array<string>).push(value);
+      }
+    }
+    return currentFilter;
+  }, [searchParams]);
+
+  console.log(currentFilter);
+  const filteredList = useFilterOnList(list, currentFilter);
 
   const ids = useMemo(() => {
     const o: TObjNumber = {};

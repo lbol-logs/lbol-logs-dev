@@ -3,7 +3,7 @@ import { TConfigsData, TDispatch, TObj, TObjAny } from 'utils/types/common';
 import { TExhibits } from 'utils/types/runData';
 import { getConfigs } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
-import copyObject from 'utils/functions/helpers';
+import { copyObject } from 'utils/functions/helpers';
 import { useTranslation } from 'react-i18next';
 import { TFilter, TFilterCheckbox, TFilterRadio } from 'utils/types/others';
 import DefaultFilter from 'utils/classes/DefaultFilter';
@@ -62,7 +62,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
 
   function handleColor(filter: TFilterCheckbox, input: HTMLInputElement, isChecked: boolean) {
     const parent = input.closest('.p-filter__color') as HTMLDivElement;
-    const sws: Array<HTMLInputElement> = Array.from(parent.querySelectorAll(`[name="${DefaultFilter.sw}"]`));
+    const sws: Array<HTMLInputElement> = Array.from(parent.querySelectorAll(`[name="${DefaultFilter.et.sw}"]`));
     let currentFilter = filter;
     for (const sw of sws) {
       sw.checked = isChecked;
@@ -77,7 +77,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     const value = input.value;
     const isChecked = input.checked;
     let currentFilter = updateCheckbox(filter, name, value, isChecked);
-    if (name === DefaultFilter.co) currentFilter = handleColor(currentFilter, input, isChecked);
+    if (name === DefaultFilter.et.co) currentFilter = handleColor(currentFilter, input, isChecked);
     setFilter(currentFilter);
   }
 
@@ -104,12 +104,12 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   }
 
   function reflectTypes(key: string, value: string) {
-    if (key === DefaultFilter.et) reflectExhibitsTypes(value);
-    else if (key === DefaultFilter.rt) reflectRequestsTypes(value);
+    if (key === DefaultFilter.keys.et) reflectExhibitsTypes(value);
+    else if (key === DefaultFilter.keys.rt) reflectRequestsTypes(value);
   }
 
   function reflectExhibitsTypes(value: string) {
-    if (!value || value === DefaultFilter.all) {
+    if (!value || value === DefaultFilter.et.all) {
       setShowStartingExhibits(false);
       setShowSwappedExhibits(false);
     }
@@ -124,7 +124,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   }
 
   function reflectRequestsTypes(value: string) {
-    seteShowRequets(value === DefaultFilter.active);
+    seteShowRequets(value === DefaultFilter.rt.active);
   }
 
   function apply(e: MouseEvent<HTMLButtonElement>) {
@@ -135,7 +135,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
 
   function reset(e: MouseEvent<HTMLButtonElement>) {
     setFilter({});
-    reflectExhibitsTypes(DefaultFilter.get(DefaultFilter.et) as string);
+    reflectExhibitsTypes(DefaultFilter.get(DefaultFilter.keys.et) as string);
     submit(null);
     e.preventDefault();
   }
@@ -146,7 +146,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
       const value = data.get(key);
       if (value === DefaultFilter.check(key)) data.delete(key);
     }
-    data.delete(DefaultFilter.co);
+    data.delete(DefaultFilter.et.co);
     return data;
   }
 

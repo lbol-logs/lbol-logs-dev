@@ -9,7 +9,7 @@ function ExhibitsTypes({ onChange, startingExhibit, swappedExhibit }: { onChange
   const { filter } = useContext(RunListContext);
   const { et } = filter as TFilterRadio;
 
-  const defaultType = DefaultFilter.check(DefaultFilter.et)
+  const defaultType = DefaultFilter.check(DefaultFilter.keys.et)
   const o = {
     all: t('all', { ns: 'runList' }),
     startingExhibit: startingExhibit,

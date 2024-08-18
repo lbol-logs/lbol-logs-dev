@@ -1,27 +1,33 @@
 class DefaultFilter {
   static keys = {
-    et: 'et'
+    ch: 'ch',
+    et: 'et',
+    st: 'st',
+    sw: 'sw',
+    rt: 'rt'
   };
 
-  static et = 'et';
-  static all = 'all';
-  static co = 'co';
-  static sw = 'sw';
+  static et = {
+    all: 'all',
+    co: 'co',
+    sw: 'sw'
+  };
 
-  static rt = 'rt';
-  static both = 'both';
-  static active = 'active';
+  static rt = {
+    both: 'both',
+    active: 'active'
+  };
 
   static radios = [
-    this.et,
-    this.rt
+    this.keys.et,
+    this.keys.rt
   ];
 
   static get(name: string) {
     switch (name) {
-      case this.et:
+      case this.keys.et:
         return '';
-      case this.rt:
+      case this.keys.rt:
         return '';
       default:
         return [];
@@ -30,10 +36,10 @@ class DefaultFilter {
 
   static check(name: string) {
     switch (name) {
-      case this.et:
-        return this.all;
-      case this.rt:
-        return this.both;
+      case this.keys.et:
+        return this.et.all;
+      case this.keys.rt:
+        return this.rt.both;
     }
   }
 }
