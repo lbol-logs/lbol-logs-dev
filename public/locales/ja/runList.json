@@ -1,5 +1,9 @@
 {
-  "results": "<strong>{{total}}</strong> 件中、 <strong>{{count}}</strong> 件見つかりました",
+  "results": {
+    "format": "<total />中、 <found />見つかりました",
+    "found": "<strong>{{count}}</strong> 件",
+    "total": "<strong>{{count}}</strong> 件"
+  },
   "character": "キャラクター",
   "shining": "光耀展示品",
   "difficulty": "難易度",
@@ -11,7 +15,7 @@
   "swappedExhibit": "展示品交換",
   "both": "両方",
   "inactive": "無効",
-  "active": "有効",
+  "active": "有効（完全一致）",
   "apply": "適用",
   "reset": "リセット"
 }

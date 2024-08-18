@@ -68,44 +68,42 @@ function Filter() {
 
   return (
     <Form action="./" className="p-filter" ref={formRef}>
-      {/* TODO */}
-        FILTER (WIP)
-        <div className="p-filter__row">
-          <div className="p-filter__label">{t('character', { ns: 'runList' })}</div>
-          <div className="p-filter__values">
-            <CharactersWidget onChange={onCheckboxChange} characters={characters} />
-          </div>
+      <div className="p-filter__row">
+        <div className="p-filter__label">{t('character', { ns: 'runList' })}</div>
+        <div className="p-filter__values">
+          <CharactersWidget onChange={onCheckboxChange} characters={characters} />
         </div>
-        <div className="p-filter__row">
-          <div className="p-filter__label">{t('exhibit', { ns: 'common', count: 2 })}</div>
-          <div className="p-filter__values u-flex-col-sp">
-            <ExhibitsTypes onChange={onExhibitsTypesChange} startingExhibit={startingExhibit} swappedExhibit={swappedExhibit} />
-          </div>
+      </div>
+      <div className="p-filter__row">
+        <div className="p-filter__label">{t('exhibit', { ns: 'common', count: 2 })}</div>
+        <div className="p-filter__values u-flex-col-sp">
+          <ExhibitsTypes onChange={onExhibitsTypesChange} startingExhibit={startingExhibit} swappedExhibit={swappedExhibit} />
         </div>
-        {startingExhibitsRow}
-        {swappedExhibitsRow}
-        <div className="p-filter__row">
-          <div className="p-filter__label">{t('difficulty', { ns: 'runList' })}</div>
-          <div className="p-filter__values">
-            <DifficultiesWidget onChange={onCheckboxChange} difficulties={difficultyConfigs as Array<string>} />
-          </div>
+      </div>
+      {startingExhibitsRow}
+      {swappedExhibitsRow}
+      <div className="p-filter__row">
+        <div className="p-filter__label">{t('difficulty', { ns: 'runList' })}</div>
+        <div className="p-filter__values">
+          <DifficultiesWidget onChange={onCheckboxChange} difficulties={difficultyConfigs as Array<string>} />
         </div>
-        <div className="p-filter__row">
-          <div className="p-filter__label">{t('requests', { ns: 'runList' })}</div>
-          <div className="p-filter__values u-flex-col">
-            <RequestsTypes onRequestsTypesChange={onRequestsTypesChange} onRequestsChange={onCheckboxChange} showRequets={showRequets} />
-          </div>
+      </div>
+      <div className="p-filter__row">
+        <div className="p-filter__label">{t('requests', { ns: 'runList' })}</div>
+        <div className="p-filter__values u-flex-col">
+          <RequestsTypes onRequestsTypesChange={onRequestsTypesChange} onRequestsChange={onCheckboxChange} showRequets={showRequets} />
         </div>
-        <div className="p-filter__row">
-          <div className="p-filter__label">{t('result', { ns: 'runList' })}</div>
-          <div className="p-filter__values u-flex-col-sp">
-            <ResultsWidget onChange={onCheckboxChange} results={resultConfigs as Array<string>} />
-          </div>
+      </div>
+      <div className="p-filter__row">
+        <div className="p-filter__label">{t('result', { ns: 'runList' })}</div>
+        <div className="p-filter__values u-flex-col-sp">
+          <ResultsWidget onChange={onCheckboxChange} results={resultConfigs as Array<string>} />
         </div>
-        <div className="p-filter__buttons">
-          <button className="p-filter__button p-filter__button--apply" onClick={apply}>{t('apply', { ns: 'runList' })}</button>
-          <button className="p-filter__button p-filter__button--reset" onClick={reset}>{t('reset', { ns: 'runList' })}</button>
-        </div>
+      </div>
+      <div className="p-filter__buttons">
+        <button className="p-filter__button p-filter__button--apply" onClick={apply}>{t('apply', { ns: 'runList' })}</button>
+        <button className="p-filter__button p-filter__button--reset" onClick={reset}>{t('reset', { ns: 'runList' })}</button>
+      </div>
     </Form>
   );
 }

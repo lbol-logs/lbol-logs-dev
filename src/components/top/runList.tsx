@@ -11,7 +11,6 @@ import RequestsWidget from 'components/common/parts/requestsWidget';
 import { TRequests } from 'utils/types/runData';
 import { getLength } from 'utils/functions/helpers';
 import useFilterOnList from 'hooks/useFilterOnList';
-import { RunListContext } from 'contexts/runListContext';
 import DefaultFilter from 'utils/classes/DefaultFilter';
 
 function RunList() {
@@ -22,8 +21,6 @@ function RunList() {
   const list: TRunList = useRunList(version);
 
   const keys = Object.keys(list);
-  // TODO
-  // applyFilter();
   const currentFilter = useMemo(() => {
     const currentFilter: TFilter = {};
     for (const [key, value] of Array.from(searchParams.entries())) {
@@ -38,8 +35,22 @@ function RunList() {
     return currentFilter;
   }, [searchParams]);
 
-  console.log(currentFilter);
   const filteredList = useFilterOnList(list, currentFilter);
+  const found = <Trans
+    i18nKey="results.found"
+    ns="runList"
+    count={getLength(filteredList)}
+  />;
+  const total = <Trans
+    i18nKey="results.total"
+    ns="runList"
+    count={getLength(list)}
+  />;
+  const results = <Trans
+    i18nKey="results.format"
+    ns="runList"
+    components={{ found: found, total: total }}
+  />;
 
   const ids = useMemo(() => {
     const o: TObjNumber = {};
@@ -47,6 +58,7 @@ function RunList() {
       o[keys[i]] = i + 1;
     }
     return o;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list]);
 
   return (
@@ -61,14 +73,7 @@ function RunList() {
             <div className="p-run-list__cell--requests">{t('requests', { ns: 'runList' })}</div>
           </div>
         </div>
-        <Trans
-          i18nKey="results"
-          ns="runList"
-          count={getLength(filteredList)}
-          values={{
-            total: keys.length.toString()
-          }}
-        />
+        {results}
         {Object.entries(filteredList).reverse().map(([id, o]) => {
           const {
             character: Character,

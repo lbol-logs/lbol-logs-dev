@@ -22,7 +22,16 @@ function copyObject<T>(obj: T): T {
 function filterObject<T extends TObjAny>(o: T, callback: Function): T {
   return Object.keys(o)
     .filter(key => callback(o[key]))
-    .reduce((_o: TObjAny, _key) => (_o[_key] = o[_key], _o), {} as T) as T;
+    .reduce((_o: TObjAny, key: string) => {
+      // (_o[_key] = o[_key], _o)
+      _o[key] = o[key]
+      console.log({_o,key})
+      return _o;
+    }, {} as T) as T;
+}
+
+function compareArrays(array1: Array<string>, array2: Array<string>) {
+  return array1.length === array2.length && array1.every((value, index) => value === array2[index]);
 }
 
 function getLength(obj: Object) {
@@ -38,6 +47,7 @@ export {
   validateRunData,
   copyObject,
   filterObject,
+  compareArrays,
   getLength,
   toggleIsChecked
 };

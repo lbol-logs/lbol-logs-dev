@@ -1,7 +1,6 @@
 import { RunListContext } from 'contexts/runListContext';
 import { ChangeEventHandler, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { toggleIsChecked } from 'utils/functions/helpers';
 
 function ResultsWidget({ onChange, results }: { onChange: ChangeEventHandler, results: Array<string> }) {
   const { t } = useTranslation();

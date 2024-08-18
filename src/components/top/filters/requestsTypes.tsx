@@ -4,20 +4,20 @@ import { ChangeEventHandler, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import DefaultFilter from 'utils/classes/DefaultFilter';
 import { TFilterRadio } from 'utils/types/others';
-import { TRequests } from 'utils/types/runData';
 
 function RequestsTypes({ onRequestsTypesChange, onRequestsChange, showRequets }: { onRequestsTypesChange: ChangeEventHandler, onRequestsChange: ChangeEventHandler, showRequets: boolean }) {
   const { t } = useTranslation();
   const { filter } = useContext(RunListContext);
   const { rt } = filter as TFilterRadio;
-  const { re } = filter;
+  const { rq } = filter;
 
-  const defaultType = DefaultFilter.check(DefaultFilter.keys.rt);
+  const keys = DefaultFilter.keys;
+  const defaultType = DefaultFilter.check(keys.rt);
   const values = ['both', 'inactive', 'active'];
   let requestsInput = null;
   if (showRequets) {
     requestsInput = (
-      <RequestsWidget requests={re || DefaultFilter.get('re')} onChange={onRequestsChange} />
+      <RequestsWidget requests={rq || DefaultFilter.get(keys.rq)} onChange={onRequestsChange} />
     )
   }
 

@@ -1,6 +1,11 @@
 {
-  "results": "<strong>{{count}}</strong> result is found out of <strong>{{total}}</strong>",
-  "results_other": "<strong>{{count}}</strong> results are found out of <strong>{{total}}</strong>",
+  "results": {
+    "format": "<found /> found out of <total />",
+    "found": "<strong>{{count}}</strong> result is",
+    "found_other": "<strong>{{count}}</strong> results are",
+    "total": "<strong>{{count}}</strong> record",
+    "total_other": "<strong>{{count}}</strong> records"
+  },
   "character": "Character",
   "shining": "Shining Exhibit",
   "difficulty": "Difficulty",
@@ -12,7 +17,7 @@
   "swappedExhibit": "Swapped Exhibits",
   "both": "Both",
   "inactive": "Inactive",
-  "active": "Active",
+  "active": "Active (exact match)",
   "apply": "Apply",
   "reset": "Reset"
 }

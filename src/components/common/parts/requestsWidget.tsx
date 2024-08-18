@@ -20,7 +20,7 @@ function RequestsWidget({ requests, onChange }: { requests: TRequests, onChange?
           dot = (
             <label className={`c-request p-filter__toggle ${toggleIsChecked(active)} u-button`} key={request}>
                 <span className={`c-request__dot ${active ? 'c-request__dot--active' : ''}`} data-name={t(`requests.${request}`, { ns: 'common' })}></span>
-                <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="re" value={request} checked={active} />
+                <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="rq" value={request} checked={active} />
             </label>
           );
         }
@@ -32,11 +32,7 @@ function RequestsWidget({ requests, onChange }: { requests: TRequests, onChange?
           );
         }
 
-        return (
-          <>
-            {dot}
-          </>
-        );
+        return dot;
       })}
     </div>
   );

@@ -1,10 +1,8 @@
 class DefaultFilter {
   static keys = {
-    ch: 'ch',
     et: 'et',
-    st: 'st',
-    sw: 'sw',
-    rt: 'rt'
+    rt: 'rt',
+    rq: 'rq'
   };
 
   static et = {
@@ -15,6 +13,7 @@ class DefaultFilter {
 
   static rt = {
     both: 'both',
+    inactive: 'inactive',
     active: 'active'
   };
 
