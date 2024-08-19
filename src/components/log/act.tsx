@@ -10,9 +10,7 @@ function Act() {
     <Trans
         i18nKey="act"
         ns="log"
-        values={{
-          act: act
-        }}
+        values={{ act }}
         context={act.toString()}
       />
   );

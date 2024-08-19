@@ -50,15 +50,32 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
         {getValuWithChange('Hp')}/{getValuWithChange('MaxHp')}
       </div>
       <div className="p-station__status p-station__status--power">
-        <LazyLoadImage2 callback={getCommonImage} name={'Power'} alt={t('power', { ns: 'log' })} />
+        <Power />
         {getValuWithChange('Power')}/{getValuWithChange('MaxPower')}
       </div>
       <div className="p-station__status p-station__status--money">
-        <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} />
+        <Money />
         {getValuWithChange('Money')}
       </div>
     </div>
   );
 }
 
+function Power() {
+  const { t } = useTranslation();
+
+  return <LazyLoadImage2 callback={getCommonImage} name={'Power'} alt={t('power', { ns: 'log' })} />;
+}
+
+function Money() {
+  const { t } = useTranslation();
+
+  return <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} />;
+}
+
 export default Statuses;
+
+export {
+  Power,
+  Money
+};

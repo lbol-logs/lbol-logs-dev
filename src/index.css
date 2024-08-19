@@ -860,14 +860,22 @@ html:lang(en) .p-result__type {
   column-gap: 0.5em;
   border-radius: 0.5em;
   padding: 0 0.5em;
+  outline: 1px solid var(--black);
 }
 .p-gap-choice--chosen {
-  outline: 1px solid var(--red);
+  outline-width: 2px;
+  outline-color: var(--red);
+}
+.p-gap-choice__descs {
+  width: 100%;
 }
 .p-gap-choice__desc {
   margin: 0;
   display: flex;
   align-items: center;
+}
+.p-gap-choice__desc + .p-gap-choice__desc {
+  border-top: 1px solid var(--black);
 }
 
 .p-event__head {
@@ -938,6 +946,10 @@ html:lang(en) .p-result__type {
 
 .u-flex-col {
   flex-direction: column;
+}
+
+.u-orange {
+  color: var(--orange);
 }
 
 @media screen and (min-width: 601px) {

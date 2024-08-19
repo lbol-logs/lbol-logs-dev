@@ -10,15 +10,15 @@
   },
   "Descriptions": {
     "DrinkTea": "Heal {{Rate}}% of maximum life. ({{Value}})",
-    "DrinkTea_JingzhiChaju": "This healing is increased by {AdditionalHeal}.",
-    "DrinkTea_DiannaoPeijian": "Gain {AdditionalPower} <Power>.",
-    "DrinkTea_HuangyouJiqiren": "Choose 1 of {CardCount} cards to add to the library.",
+    "DrinkTea_JingzhiChaju": "This healing is increased by {{AdditionalHeal}}.",
+    "DrinkTea_DiannaoPeijian": "Gain {{AdditionalPower}} <Power>.",
+    "DrinkTea_HuangyouJiqiren": "Choose 1 of {{CardCount}} cards to add to the library.",
     "UpgradeCard": "Upgrade a card in the library.",
-    "UpgradeCard_PayForUpgrade": "Upgrading a non-Basic card costs {Price} <Money>.",
+    "UpgradeCard_PayForUpgrade": "Upgrading a non-Basic card costs {{Price}} <Money>.",
     "FindExhibit": "Find a random Exhibit.",
-    "GetMoney": "Gain {Value} <Money>.",
+    "GetMoney": "Gain {{Value}} <Money>.",
     "RemoveCard": "Remove a card from the library.",
     "GetRareCard": "Choose 1 of {Value} Rare cards to add to the library.",
-    "UpgradeBaota": "Upgrade the <orange>Jeweled Pagoda of Bishamonten</orange>."
+    "UpgradeBaota": "Upgrade the <h>Jeweled Pagoda of Bishamonten</h>."
   }
 }

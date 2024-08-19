@@ -1,15 +1,69 @@
-import { ReactNode } from 'react';
+import { LogContext } from 'contexts/logContext';
+import { ReactNode, useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { TObjAny } from 'utils/types/common';
+import { Money, Power } from './statuses';
 
-function GapDescription({ desc, children }: { desc: string, children?: ReactNode }) {
+function GapDescription({ option, maxhp, children }: { option: string, maxhp?: number, children?: ReactNode }) {
+  const { runData, configsData } = useContext(LogContext);
   useTranslation();
+
+  const props: TObjAny = {};
+  const config = configsData.gap[option];
+
+  switch(option) {
+    case 'DrinkTea':
+      const { Rate } = config;
+      const Value = Math.round((maxhp as number) * Rate / 100);
+      props.values = { Rate, Value };
+      console.log({...props});
+      break;
+    case 'DrinkTea_JingzhiChaju':
+      const AdditionalHeal = 20;
+      props.values = { AdditionalHeal };
+      break;
+    case 'DrinkTea_DiannaoPeijian':
+      const AdditionalPower = 50;
+      props.values = { AdditionalPower };
+      props.components = { Power: <Power /> };
+      break;
+    case 'DrinkTea_HuangyouJiqiren':
+      const CardCount = 5;
+      props.values = { CardCount };
+      break;
+    case 'UpgradeCard':
+      const PayForUpgrade = 'PayForUpgrade';
+      const hasPayForUpgrade = runData.Settings.Requests.includes(PayForUpgrade);
+      if (hasPayForUpgrade) option += `_${PayForUpgrade}`;
+      break;
+    case 'UpgradeCard_PayForUpgrade':
+      const Price = 25;
+      props.values = { Price };
+      props.components = { Money: <Money /> };
+      break;
+    case 'GetMoney':
+      {
+        const { Value } = config;
+        props.values = { Value };
+        props.components = { Money: <Money /> };
+        break;
+      }
+    case 'UpgradeBaota':
+      props.components = { h: <span className="u-orange">{}</span> };
+      break;
+  }
+
+  const desc = `Descriptions.${option}`;
 
   return (
     <p className="p-gap-choice__desc" key={desc}>
-      <Trans
-        i18nKey={desc}
-        ns="gap"
-      />
+      <span className="p-gap-choice__text">
+        <Trans
+          i18nKey={desc}
+          ns="gap"
+          {...props}
+        />
+      </span>
       {children}
     </p>
   )

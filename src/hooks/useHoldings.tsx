@@ -75,9 +75,7 @@ function useHoldings({ level, currentHolding, setHoldingsHeight }: { level: TLev
               <Trans
                 i18nKey="level"
                 ns="log"
-                values={{
-                  level: level
-                }}
+                values={{ level }}
               />
             </h3>
           </div>

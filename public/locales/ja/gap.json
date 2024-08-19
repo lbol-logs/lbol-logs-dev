@@ -1,24 +1,24 @@
 {
   "Names": {
-    "DrinkTea": "Drink Tea",
-    "UpgradeCard": "Upgrade",
-    "FindExhibit": "Dowse",
-    "GetMoney": "Fundraise",
-    "RemoveCard": "Purify",
-    "GetRareCard": "Think",
-    "UpgradeBaota": "Collect"
+    "DrinkTea": "一服",
+    "UpgradeCard": "修行",
+    "FindExhibit": "ダウジング",
+    "GetMoney": "勧進",
+    "RemoveCard": "お祓い",
+    "GetRareCard": "閃き",
+    "UpgradeBaota": "蒐集"
   },
   "Descriptions": {
-    "DrinkTea": "Heal {{Rate}}% of maximum life. ({{Value}})",
-    "DrinkTea_JingzhiChaju": "This healing is increased by {AdditionalHeal}.",
-    "DrinkTea_DiannaoPeijian": "Gain {AdditionalPower} <Power>.",
-    "DrinkTea_HuangyouJiqiren": "Choose 1 of {CardCount} cards to add to the library.",
-    "UpgradeCard": "Upgrade a card in the library.",
-    "UpgradeCard_PayForUpgrade": "Upgrading a non-Basic card costs {Price} <Money>.",
-    "FindExhibit": "Find a random Exhibit.",
-    "GetMoney": "Gain {Value} <Money>.",
-    "RemoveCard": "Remove a card from the library.",
-    "GetRareCard": "Choose 1 of {Value} Rare cards to add to the library.",
-    "UpgradeBaota": "Upgrade the <orange>Jeweled Pagoda of Bishamonten</orange>."
+    "DrinkTea": "ライフを最大値の{{Rate}}%({{Value}}) 回復する。",
+    "DrinkTea_JingzhiChaju": "更にライフを({{AdditionalHeal}})回復する。",
+    "DrinkTea_DiannaoPeijian": "更に<Power>({{AdditionalPower}})を得る。",
+    "DrinkTea_HuangyouJiqiren": "{{CardCount}}枚のカード報酬から1枚選びデッキに加える。",
+    "UpgradeCard": "カードを1枚アップグレードする。",
+    "UpgradeCard_PayForUpgrade": "基本でないカードをアップグレードするには<Gold>{{Price}}が必要。",
+    "FindExhibit": "展示物を1個入手する。",
+    "GetMoney": "<Gold>{{Value}}を得る。",
+    "RemoveCard": "デッキからカードを1枚削除する。",
+    "GetRareCard": "{{Value1}}枚のランダムなレアカードから1枚選んでデッキに加える",
+    "UpgradeBaota": "宝塔を強化する。"
   }
 }

@@ -49,7 +49,7 @@ function RunList() {
   const results = <Trans
     i18nKey="results.format"
     ns="runList"
-    components={{ found: found, total: total }}
+    components={{ found, total }}
   />;
 
   const ids = useMemo(() => {
