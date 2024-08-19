@@ -849,6 +849,21 @@ html:lang(en) .p-result__type {
   opacity: 1;
 }
 
+.p-gap-choices {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+}
+.p-gap-choice {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
+  border-radius: 0.5em;
+}
+.p-gap-choice--chosen {
+  outline: 1px solid var(--red);
+}
+
 :root {
   color-scheme: light dark;
   --padding-inner: 0.625em;

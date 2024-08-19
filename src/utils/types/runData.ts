@@ -152,29 +152,29 @@ type THoldingAction = {
 };
 type THoldingsReducer = Dispatch<ReducerAction<(holdings: THoldings, action: THoldingAction) => THoldings>>;
 
-enum RequestWithStartCard {
+enum RequestsWithStartCard {
   StartMisfortune = 'StartMisfortune'
 };
 
-const requestWithStartCard = {
+const requestsWithStartCard = {
   StartMisfortune: 'Zhukeling'
 };
 
-const eventConvertBaseMana = {
+const eventsConvertBaseMana = {
   JunkoColorless: 'CC',
   PatchouliPhilosophy: 'P'
 };
 
-enum CardWithUpgradeCounter {
+enum CardsWithUpgradeCounter {
   YuyukoSing = 'YuyukoSing'
 };
 
-enum ExhibitWithCounter {
-  GanzhuYao = 'GanzhuYao',      // DONE: use
-  ChuRenou = 'ChuRenou',        // DONE: use
-  TiangouYuyi = 'TiangouYuyi',  // DONE: stations
-  Moping = 'Moping',            // battle, gap
-  Baota = 'Baota'               // gap
+enum ExhibitsWithCounter {
+  GanzhuYao = 'GanzhuYao',
+  ChuRenou = 'ChuRenou',
+  TiangouYuyi = 'TiangouYuyi',
+  Moping = 'Moping',
+  Baota = 'Baota'
 };
 
 const exhibitCounters: TObj<TObjNumber> = {
@@ -183,6 +183,12 @@ const exhibitCounters: TObj<TObjNumber> = {
   TiangouYuyi: { initial: 3 },
   Moping: { initial: 3 },
   Baota: { initial: 0, final: 3 }
+};
+
+enum ExhibitsEnhanceGap {
+  JingzhiChaju = 'JingzhiChaju',
+  DiannaoPeijian = 'DiannaoPeijian',
+  HuangyouJiqiren = 'HuangyouJiqiren'
 };
 
 export type {
@@ -221,10 +227,11 @@ export type {
 };
 
 export {
-  RequestWithStartCard,
-  requestWithStartCard,
-  eventConvertBaseMana,
-  CardWithUpgradeCounter,
-  ExhibitWithCounter,
-  exhibitCounters
+  RequestsWithStartCard,
+  requestsWithStartCard,
+  eventsConvertBaseMana,
+  CardsWithUpgradeCounter,
+  ExhibitsWithCounter,
+  exhibitCounters,
+  ExhibitsEnhanceGap
 };

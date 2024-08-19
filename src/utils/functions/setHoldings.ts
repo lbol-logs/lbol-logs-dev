@@ -1,4 +1,4 @@
-import { eventConvertBaseMana, ExhibitWithCounter, requestWithStartCard, RequestWithStartCard, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
+import { eventsConvertBaseMana, ExhibitsWithCounter, requestsWithStartCard, RequestsWithStartCard, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
 import { copyObject } from 'utils/functions/helpers';
 
@@ -46,8 +46,8 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
       actions.push(action);
     }
 
-    if (runData.Settings.Requests.includes(RequestWithStartCard.StartMisfortune.toString())) {
-      const Id = requestWithStartCard.StartMisfortune;
+    if (runData.Settings.Requests.includes(RequestsWithStartCard.StartMisfortune.toString())) {
+      const Id = requestsWithStartCard.StartMisfortune;
       const action: THoldingAction = {
         type: 'Card',
         change: {
@@ -115,7 +115,7 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
       const { Node } = Stations[Station];
       exhibit.Station = Node;
 
-      if (Exhibit.Id === ExhibitWithCounter.TiangouYuyi) {
+      if (Exhibit.Id === ExhibitsWithCounter.TiangouYuyi) {
         ignoredPaths.push({ Type, Station: Node });
       }
 
@@ -161,7 +161,7 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
       }
 
       {
-        const BaseMana = eventConvertBaseMana[Id as keyof typeof eventConvertBaseMana];
+        const BaseMana = eventsConvertBaseMana[Id as keyof typeof eventsConvertBaseMana];
         const action: THoldingAction = {
           type: 'BaseMana',
           change: {

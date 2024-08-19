@@ -1,7 +1,7 @@
 import { copyObject } from 'utils/functions/helpers';
 import Mana from 'utils/classes/Mana';
 import { TRange3 } from 'utils/types/common';
-import { CardWithUpgradeCounter, exhibitCounters, TAct, TBaseManaObj, TCard, TExhibitObj, THolding, THoldingAction, THoldings, TLevel } from 'utils/types/runData';
+import { CardsWithUpgradeCounter, exhibitCounters, TAct, TBaseManaObj, TCard, TExhibitObj, THolding, THoldingAction, THoldings, TLevel } from 'utils/types/runData';
 
 function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings {
   const { type, change } = action;
@@ -77,7 +77,7 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
     const card = currentHolding.Cards[index];
     const { Id } = card;
     card.IsUpgraded = true;
-    if (Id === CardWithUpgradeCounter.YuyukoSing) {
+    if (Id === CardsWithUpgradeCounter.YuyukoSing) {
       (card.UpgradeCounter as number)++;
     }
   }
