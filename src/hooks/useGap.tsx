@@ -19,7 +19,7 @@ function useGap({ option, runData, holdings, Node }: { option: string, runData: 
     const additionalDesc = [];
     console.log({option,hasPayForUpgrade});
     switch (option) {
-      case 'isDrinkTea':
+      case 'DrinkTea':
         if (!currentHolding) return;
 
         for (const exhibit of Object.keys(ExhibitsEnhanceDrinkTea)) {

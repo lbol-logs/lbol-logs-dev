@@ -64,13 +64,13 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
 function Power() {
   const { t } = useTranslation();
 
-  return <LazyLoadImage2 callback={getCommonImage} name={'Power'} alt={t('power', { ns: 'log' })} />;
+  return <LazyLoadImage2 className="u-img-vertical-align" callback={getCommonImage} name={'Power'} alt={t('power', { ns: 'log' })} />;
 }
 
 function Money() {
   const { t } = useTranslation();
 
-  return <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} />;
+  return <LazyLoadImage2 className="u-img-vertical-align" callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} />;
 }
 
 export default Statuses;

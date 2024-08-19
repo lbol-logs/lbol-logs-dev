@@ -53,13 +53,11 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
 
   return (
     <p className="p-gap-choice__desc" key={desc}>
-      <span className="p-gap-choice__text">
-        <Trans
-          i18nKey={desc}
-          ns="gap"
-          {...props}
-        />
-      </span>
+      <Trans
+        i18nKey={desc}
+        ns="gap"
+        {...props}
+      />
       {children}
     </p>
   )

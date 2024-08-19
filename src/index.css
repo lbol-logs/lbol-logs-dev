@@ -872,16 +872,9 @@ html:lang(en) .p-result__type {
 }
 .p-gap-choice__desc {
   margin: 0;
-  display: flex;
-  align-items: center;
 }
 .p-gap-choice__desc + .p-gap-choice__desc {
   border-top: 1px solid var(--black);
-}
-.p-gap-choice__text {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
 }
 
 .p-gap-little-chat__title {
@@ -975,6 +968,10 @@ html:lang(en) .p-result__type {
 .u-img-vertical {
   height: 100%;
   width: auto;
+}
+.u-img-vertical-align {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .u-text-shadow {
