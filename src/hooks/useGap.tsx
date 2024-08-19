@@ -29,6 +29,7 @@ function useGap(option: string, holdings: THoldings, Node: TNodeObj) {
       }
     }
     additionalDescRef.current = additionalDesc;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentHolding]);
 
   return additionalDescRef;
