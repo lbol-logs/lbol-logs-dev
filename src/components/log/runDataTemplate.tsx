@@ -29,7 +29,6 @@ function RunDataTemplate() {
     const element = document.querySelector(selector) as HTMLDivElement;
     const height = station.offsetTop - element.offsetHeight;
     if (window.scrollY < height - scrollTolerance) window.scrollTo(0, height);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRunDataLoaded, runData, act, showMap]);
 
   return (

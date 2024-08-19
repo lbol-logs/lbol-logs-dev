@@ -46,7 +46,6 @@ function useGap({ option, runData, holdings, Node }: { option: string, runData: 
         break;
     }
     additionalDescRef.current = additionalDesc;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentHolding]);
 
   return additionalDescRef;

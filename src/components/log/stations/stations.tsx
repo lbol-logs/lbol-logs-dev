@@ -40,7 +40,6 @@ function Stations() {
       }
     }, 100);
     timerRef.current = _timer;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   };
 
   useEffect(() => {
@@ -68,7 +67,6 @@ function Stations() {
       const l = parseInt(searchParams.get('l') || '0') as TLevel;
       if (!l) scrollToLevel(0, showMap, true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [runData, act, showMap]);
 
   return (

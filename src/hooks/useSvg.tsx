@@ -144,7 +144,6 @@ function useSvg({ runData, act, level, ignoredPaths, Act, Nodes }: { runData: TR
       </>
     );
     setAdditionalLines(additionalLines);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ignoredPaths, act, level]);
 
   const width = (length + gap.x) * Nodes[Nodes.length - 1].X + gap.x + size;

@@ -38,7 +38,6 @@ function useRunData(id: string)  {
       setConfigsData(currentConfigs);
       setIsRunDataLoaded(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isValidRunData, runData, exhibitConfigs, characterConfigs]);
 
   let redirect = null;

@@ -23,7 +23,6 @@ function useVersion(ver: string)  {
 
   useEffect(() => {
     setConfigsData(currentConfigs);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ver]);
 
   let redirect = null;

@@ -58,7 +58,6 @@ function RunList() {
       o[keys[i]] = i + 1;
     }
     return o;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list]);
 
   return (

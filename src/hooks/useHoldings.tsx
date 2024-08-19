@@ -42,7 +42,6 @@ function useHoldings({ level, currentHolding, setHoldingsHeight }: { level: TLev
       const height = clientY - (holdingsRef.current as HTMLDivElement).getBoundingClientRect().top;
       setHoldingsHeight(height);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isResizing]);
 
   useEffect(() => {
@@ -113,7 +112,6 @@ function useHoldings({ level, currentHolding, setHoldingsHeight }: { level: TLev
     else {
       setHolding(defaultHolding);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentHolding, i18next.language]);
 
   return {

@@ -172,7 +172,6 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     }
 
     setFilter(currentFilter);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   return {

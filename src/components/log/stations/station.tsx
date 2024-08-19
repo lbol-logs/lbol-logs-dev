@@ -40,7 +40,6 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
     if (innerRef) {
       setIsStationsLoaded(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [innerRef]);
 
   return (
