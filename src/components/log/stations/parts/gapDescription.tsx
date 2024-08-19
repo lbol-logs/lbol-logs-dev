@@ -16,7 +16,6 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
       const { Rate } = config;
       const Value = Math.round((maxhp as number) * Rate / 100);
       props.values = { Rate, Value };
-      console.log({...props});
       break;
     case 'DrinkTea_JingzhiChaju':
       const AdditionalHeal = 20;
