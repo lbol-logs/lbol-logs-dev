@@ -1,11 +1,6 @@
 import { TStation } from 'utils/types/runData';
-import ExhibitCards from '../../entityCards/exhibitCards';
-import CardCards from '../../entityCards/cardCards';
-import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { useTranslation } from 'react-i18next';
-import { getCommonImage } from 'utils/functions/getImage';
 import ChoicesWidget from '../parts/choicesWidget';
-import RoundsWidget from '../parts/roundsWidget';
 import BattleStation from './battleStation';
 
 function EventStation({ station }: { station: TStation }) {
