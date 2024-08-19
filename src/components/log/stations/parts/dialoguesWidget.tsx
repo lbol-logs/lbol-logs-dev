@@ -11,10 +11,12 @@ function DialoguesWidget({ id, choices }: { id: string, choices: Array<TRange3> 
   const dialogues: Array<ReactNode> = [];
   let current = dialogueConfigs[id];
   const components = { h: <span className="u-orange">{}</span> };
+  const props = { components };
 
   choices.forEach((choice, i) => {
     const { line, ...options } = current as TObj<TObjAny>;
-    current = current[choice];
+    const c = String(choice);
+    current = current[c];
 
     const dialogue = (
       <div className="p-dialogue" key={i}>
@@ -22,19 +24,20 @@ function DialoguesWidget({ id, choices }: { id: string, choices: Array<TRange3> 
           <Trans
             i18nKey={`${id}.${line}`}
             ns="dialogues"
-            components={components}
+            {...props}
           />
         </div>
         <div className="p-dialogue__options">
-            {Object.values(options).map((option, i) => {
+            {Object.entries(options).map(([key, option], i) => {
               const { line } = option;
+              const isChosen = c === key;
 
               return (
-                <div className="p-dialogue__option" key={i}>
+                <div className={`p-dialogue__option ${isChosen ? 'p-dialogue__option--chosen' : ''}`} key={i}>
                   <Trans
                     i18nKey={`${id}.${line}`}
                     ns="dialogues"
-                    components={components}
+                    {...props}
                   />
                   </div>
               );

@@ -21,6 +21,7 @@ i18next
     // debug: true,
     supportedLngs: lngs,
     fallbackLng: false,
+    nsSeparator: false,
     ns: namespaces
   });
 
