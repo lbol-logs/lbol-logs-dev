@@ -5,7 +5,7 @@ import { TObjAny } from 'utils/types/common';
 import { Money, Power } from './statuses';
 
 function GapDescription({ option, maxhp, children }: { option: string, maxhp?: number, children?: ReactNode }) {
-  const { runData, configsData } = useContext(LogContext);
+  const { configsData } = useContext(LogContext);
   useTranslation();
 
   const props: TObjAny = {};
