@@ -11,12 +11,12 @@
   "Descriptions": {
     "DrinkTea": "ライフを最大値の{{Rate}}%({{Value}}) 回復する。",
     "DrinkTea_JingzhiChaju": "更にライフを({{AdditionalHeal}})回復する。",
-    "DrinkTea_DiannaoPeijian": "更に<Power>({{AdditionalPower}})を得る。",
+    "DrinkTea_DiannaoPeijian": "更に<Power />({{AdditionalPower}})を得る。",
     "DrinkTea_HuangyouJiqiren": "{{CardCount}}枚のカード報酬から1枚選びデッキに加える。",
     "UpgradeCard": "カードを1枚アップグレードする。",
-    "UpgradeCard_PayForUpgrade": "基本でないカードをアップグレードするには<Gold>{{Price}}が必要。",
+    "UpgradeCard_PayForUpgrade": "基本でないカードをアップグレードするには<Money />{{Price}}が必要。",
     "FindExhibit": "展示物を1個入手する。",
-    "GetMoney": "<Gold>{{Value}}を得る。",
+    "GetMoney": "<Money />{{Value}}を得る。",
     "RemoveCard": "デッキからカードを1枚削除する。",
     "GetRareCard": "{{Value1}}枚のランダムなレアカードから1枚選んでデッキに加える",
     "UpgradeBaota": "宝塔を強化する。"

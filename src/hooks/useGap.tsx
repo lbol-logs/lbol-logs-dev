@@ -3,30 +3,47 @@ import GapDescription from 'components/log/stations/parts/gapDescription';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getExhibitImage } from 'utils/functions/getImage';
-import { ExhibitsEnhanceDrinkTea, THolding, THoldings, TNodeObj } from 'utils/types/runData';
+import { ExhibitsEnhanceDrinkTea, THolding, THoldings, TNodeObj, TRunData } from 'utils/types/runData';
 
-function useGap(option: string, holdings: THoldings, Node: TNodeObj) {
+function useGap({ option, runData, holdings, Node }: { option: string, runData: TRunData, holdings: THoldings, Node: TNodeObj }) {
   const { t } = useTranslation();
+
   const additionalDescRef = useRef<Array<JSX.Element>>([]);
-  const isDrinkTea = option === 'DrinkTea';
+
   const currentHolding = holdings.find(({ Act, Level }) => Act === Node.Act && Level === Node.Level) as THolding;
 
+  const PayForUpgrade = 'PayForUpgrade';
+  const hasPayForUpgrade = runData.Settings.Requests.includes(PayForUpgrade);
+
   useEffect(() => {
-    if (!isDrinkTea) return;
-    if (!currentHolding) return;
-
     const additionalDesc = [];
-    for (const exhibit of Object.keys(ExhibitsEnhanceDrinkTea)) {
-      const hasExhibit = currentHolding.Exhibits.find(({ Id }) => Id === exhibit);
-      if (hasExhibit) {
-        const additionalOption = `${option}_${exhibit}`;
+    console.log({option,hasPayForUpgrade});
+    switch (option) {
+      case 'isDrinkTea':
+        if (!currentHolding) return;
 
-        additionalDesc.push(
-          <GapDescription option={additionalOption} key={additionalOption}>
-            <LazyLoadImage2 className="c-exhibit__img" callback={getExhibitImage} name={exhibit} alt={t(exhibit, { ns: 'exhibits' })} />
-          </GapDescription>
-        );
-      }
+        for (const exhibit of Object.keys(ExhibitsEnhanceDrinkTea)) {
+          const hasExhibit = currentHolding.Exhibits.find(({ Id }) => Id === exhibit);
+          if (hasExhibit) {
+            const additionalOption = `${option}_${exhibit}`;
+
+            additionalDesc.push(
+              <GapDescription option={additionalOption} key={additionalOption}>
+                <LazyLoadImage2 className="c-exhibit__img" callback={getExhibitImage} name={exhibit} alt={t(exhibit, { ns: 'exhibits' })} />
+              </GapDescription>
+            );
+          }
+        }
+        break;
+      case 'UpgradeCard':
+        if (hasPayForUpgrade) {
+          const additionalOption = `${option}_${PayForUpgrade}`;
+
+          additionalDesc.push(
+            <GapDescription option={additionalOption} key={additionalOption} />
+          );
+        }
+        break;
     }
     additionalDescRef.current = additionalDesc;
     // eslint-disable-next-line react-hooks/exhaustive-deps

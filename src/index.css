@@ -856,7 +856,7 @@ html:lang(en) .p-result__type {
 }
 .p-gap-choice, .p-dialogue__option {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   column-gap: 0.5em;
   border-radius: 0.5em;
   padding: 0 0.5em;
@@ -868,6 +868,7 @@ html:lang(en) .p-result__type {
 }
 .p-gap-choice__descs {
   width: 100%;
+  align-self: center;
 }
 .p-gap-choice__desc {
   margin: 0;
@@ -877,6 +878,12 @@ html:lang(en) .p-result__type {
 .p-gap-choice__desc + .p-gap-choice__desc {
   border-top: 1px solid var(--black);
 }
+.p-gap-choice__text {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .p-gap-little-chat__title {
   --size: calc(var(--icon-size) * 1.5);
   position: relative;
@@ -903,6 +910,9 @@ html:lang(en) .p-result__type {
   font-weight: bold;
   margin-bottom: 1em;
   background: var(--skyblue);
+}
+.p-dialogue__option {
+  flex-wrap: wrap;
 }
 
 .p-event__head {

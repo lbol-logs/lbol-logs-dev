@@ -31,9 +31,6 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
       props.values = { CardCount };
       break;
     case 'UpgradeCard':
-      const PayForUpgrade = 'PayForUpgrade';
-      const hasPayForUpgrade = runData.Settings.Requests.includes(PayForUpgrade);
-      if (hasPayForUpgrade) option += `_${PayForUpgrade}`;
       break;
     case 'UpgradeCard_PayForUpgrade':
       const Price = 25;
