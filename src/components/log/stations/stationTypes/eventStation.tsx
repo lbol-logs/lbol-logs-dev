@@ -12,7 +12,7 @@ function EventStation({ station }: { station: TStation }) {
   const { Data, Id, Rewards } = station;
   const { t } = useTranslation();
 
-  const { Choices } = Data;
+  const { Choices, Battle } = Data;
 
   const choices = (
     <div>
@@ -20,24 +20,19 @@ function EventStation({ station }: { station: TStation }) {
     </div>
   );
 
-  let data = null;
+  const additionalElements: Array<JSX.Element> = [];
 
-  switch (Id) {
-    case 'MiyoiBartender':
-      data = <BattleStation station={station} />;
-      break;
-    case 'YachieOppression':
-      data = <BattleStation station={station} />;
-      break;
-    default:
-      break;
+  if (Battle) {
+    additionalElements.push(
+      <BattleStation station={station} />
+    );
   }
 
   return (
     <>
       <p>{t(Id as string, { ns: 'events' })}</p>
       {choices}
-      {data}
+      {additionalElements}
     </>
   );
 }

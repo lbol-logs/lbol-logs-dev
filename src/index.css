@@ -859,9 +859,15 @@ html:lang(en) .p-result__type {
   align-items: center;
   column-gap: 0.5em;
   border-radius: 0.5em;
+  padding: 0 0.5em;
 }
 .p-gap-choice--chosen {
   outline: 1px solid var(--red);
+}
+.p-gap-choice__desc {
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 :root {

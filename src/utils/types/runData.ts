@@ -185,7 +185,7 @@ const exhibitCounters: TObj<TObjNumber> = {
   Baota: { initial: 0, final: 3 }
 };
 
-enum ExhibitsEnhanceGap {
+enum ExhibitsEnhanceDrinkTea {
   JingzhiChaju = 'JingzhiChaju',
   DiannaoPeijian = 'DiannaoPeijian',
   HuangyouJiqiren = 'HuangyouJiqiren'
@@ -233,5 +233,5 @@ export {
   CardsWithUpgradeCounter,
   ExhibitsWithCounter,
   exhibitCounters,
-  ExhibitsEnhanceGap
+  ExhibitsEnhanceDrinkTea
 };

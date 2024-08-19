@@ -27,7 +27,7 @@ function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitCh
 
   return (
     <span className={`c-entity c-entity--${Rarity} c-exhibit`}>
-      <LazyLoadImage2 className="c-exhibit__img" callback={getExhibitImage} name={Id}   alt="" />
+      <LazyLoadImage2 className="c-exhibit__img" callback={getExhibitImage} name={Id} alt="" />
       <span className="c-entity__text c-exhibit__text">{t(Id, { ns: 'exhibits' })}</span>
       {counter}
     </span>
