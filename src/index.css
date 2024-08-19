@@ -222,6 +222,7 @@ img {
   padding: 0.5em;
   overflow-y: scroll;
   height: 100%;
+  scrollbar-width: thin;
 }
 .p-holdings__resizer {
   flex-grow: 0;
@@ -285,11 +286,11 @@ img {
 }
 .p-holdings__cards {
   --n: 6;
-  flex-basis: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + 2px) - var(--entity-column-gap));
+  flex-basis: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
 }
 .p-holdings__exhibits {
   --n: 2;
-  flex-basis: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + 2px) - var(--entity-column-gap));
+  flex-basis: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
 }
 
 .p-map__svg {
@@ -506,7 +507,7 @@ img {
 .c-entity {
   display: flex;
   align-items: center;
-  border-width: 2px;
+  border-width: var(--entity-border);
   border-style: solid;
   border-radius: 4px;
   box-shadow: 1px 1px 0 var(--f-black), -1px 1px 0 var(--f-black), -1px -1px 0 var(--f-black), 1px -1px 0 var(--f-black);
@@ -539,6 +540,9 @@ img {
   margin: 0 var(--entity-margin);
   line-height: 1.2em;
   max-height: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 html:lang(en) .c-entity__text {
   font-size: 0.8em;
@@ -858,6 +862,7 @@ html:lang(en) .p-result__type {
   --entity-width: 9em;
   --entity-height: 2.5em;
   --entity-margin: 0.5em;
+  --entity-border: 2px;
 
   --white: light-dark(#fff, #121212);
   --black: light-dark(#000, #fff);
