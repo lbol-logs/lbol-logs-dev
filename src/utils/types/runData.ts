@@ -199,6 +199,7 @@ export type {
   TNode,
   TNodeX,
   TNodeY,
+  TRewards,
   TCard,
   TCards,
   TExhibit,
