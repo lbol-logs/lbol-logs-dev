@@ -870,6 +870,15 @@ html:lang(en) .p-result__type {
   align-items: center;
 }
 
+.p-event__head {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
+}
+.p-event__title, .p-event__host {
+  margin: 0;
+}
+
 :root {
   color-scheme: light dark;
   --padding-inner: 0.625em;

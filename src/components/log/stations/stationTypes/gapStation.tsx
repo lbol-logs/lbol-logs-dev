@@ -10,18 +10,22 @@ function GapStation({ station }: { station: TStation }) {
   const { t } = useTranslation();
 
   return (
-    <div className="p-gap-choices">
-      WIP
-      {Options.map((option, i) => {
-        const isChosen = option === Choice;
+    <div className="p-gap">
+      <div className="p-gap-choices">
+        WIP
+        {Options.map((option, i) => {
+          const isChosen = option === Choice;
 
-        return (
-          <div className={`p-gap-choice ${isChosen ? 'p-gap-choice--chosen' : ''}`} key={i}>
-            <LazyLoadImage2 className="p-gap-choice__icon" callback={getGapImage} name={option} alt={t(`Names.${option}`, { ns: 'gap' })} />
-            <GapDescriptions station={station} option={option} />
-          </div>
-        );
-      })}
+          return (
+            <div className={`p-gap-choice ${isChosen ? 'p-gap-choice--chosen' : ''}`} key={i}>
+              <LazyLoadImage2 className="p-gap-choice__icon" callback={getGapImage} name={option} alt={t(`Names.${option}`, { ns: 'gap' })} />
+              <GapDescriptions station={station} option={option} />
+            </div>
+          );
+        })}
+      </div>
+
+      {/* TODO: Little Chat */}
     </div>
   );
 }

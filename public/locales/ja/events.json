@@ -1,40 +1,154 @@
 {
-  "DoremyPortal": "夢のトンネル",
-  "HinaCollect": "厄災収集",
-  "JunkoColorless": "純化光玉",
-  "HatateInterview": "今時のメディア",
-  "AssistKagerou": "毛深い悩み",
-  "BackgroundDancers": "秘神の面接大会",
-  "KeineSales": "外来人の三大原則",
-  "EternityAscension": "鱗粉の接近",
-  "Debut": "出発",
-  "SumirekoGathering": "カード収集",
-  "MedicinePoison": "不思議な花園",
-  "KaguyaVersusMokou": "迷いの竹林での決戦",
-  "WatatsukiPurify": "悠閑なる月の使者",
-  "Supply": "永遠亭の援助",
-  "RinnosukeTrade": "アイテムトレード",
-  "YukariProvide": "閑談",
-  "PatchouliPhilosophy": "光玉精製",
-  "RemiliaMeet": "運命の再会",
-  "RumiaDriving": "夜間疾走",
-  "TewiThreat": "幸運の代償",
-  "NarumiOfferCard": "奇想天外な祭拜",
-  "MikeInvest": "金融商品",
-  "KogasaSpook": "スケアリー・アンブレラ",
-  "NazrinDetect": "失われた宝物",
-  "MystiaBbq": "深夜バーベキュー",
-  "RingoEmp": "地月間の特許事情",
-  "YachieOppression": "断る勇気",
-  "YorigamiSisters": "夜のジュエリー特売",
-  "MiyoiBartender": "孤独なソムリエ",
-  "SatoriCounseling": "さとり先生のカウンセリング",
-  "YoumuDelivery": "半人半霊の宅配便",
-  "ParseeJealousy": "緑眼の追跡",
-  "ShinmyoumaruForge": "レアカードに反逆を起こす",
-  "FakeAdventure": "遭遇完了",
-  "HecatiaTshirt": "アイドル応援",
-  "BuduSuanming": "未来予知",
-  "MikoDonation": "再びスペルカードを偉大に",
-  "KosuzuBookstore": "貸本屋鈴奈庵"
+  "Debut": {
+    "Title": "出発",
+    "Host": "八意永琳"
+  },
+  "Supply": {
+    "Title": "永遠亭の援助",
+    "Host": "鈴仙"
+  },
+  "SumirekoGathering": {
+    "Title": "カード収集",
+    "Host": "宇佐見菫子"
+  },
+  "YukariProvide": {
+    "Title": "閑談",
+    "Host": "八雲紫"
+  },
+  "PatchouliPhilosophy": {
+    "Title": "光玉精製",
+    "Host": "パチュリー"
+  },
+  "JunkoColorless": {
+    "Title": "純化光玉",
+    "Host": "純狐"
+  },
+  "RemiliaMeet": {
+    "Title": "運命の再会",
+    "Host": "レミリア"
+  },
+  "RumiaDriving": {
+    "Title": "夜間疾走",
+    "Host": "ルーミア"
+  },
+  "TewiThreat": {
+    "Title": "幸運の代償",
+    "Host": "因幡てゐ"
+  },
+  "DoremyPortal": {
+    "Title": "夢のトンネル",
+    "Host": "ドレミー"
+  },
+  "MikeInvest": {
+    "Title": "金融商品",
+    "Host": "豪徳寺ミケ"
+  },
+  "RinnosukeTrade": {
+    "Title": "アイテムトレード",
+    "Host": "森近霖之助"
+  },
+  "HinaCollect": {
+    "Title": "厄災収集",
+    "Host": "鍵山雛"
+  },
+  "NarumiOfferCard": {
+    "Title": "奇想天外な祭拜",
+    "Host": "矢田寺成美"
+  },
+  "KogasaSpook": {
+    "Title": "スケアリー・アンブレラ",
+    "Host": "多々良小傘"
+  },
+  "MedicinePoison": {
+    "Title": "不思議な花園",
+    "Host": "メディスン"
+  },
+  "NazrinDetect": {
+    "Title": "失われた宝物",
+    "Host": "ナズーリン"
+  },
+  "MystiaBbq": {
+    "Title": "深夜バーベキュー",
+    "Host": "ミスティア"
+  },
+  "AssistKagerou": {
+    "Title": "毛深い悩み",
+    "Host": "今泉影狼"
+  },
+  "RingoEmp": {
+    "Title": "地月間の特許事情",
+    "Host": "鈴瑚"
+  },
+  "KeineSales": {
+    "Title": "外来人の三大原則",
+    "Host": "上白沢慧音"
+  },
+  "MiyoiBartender": {
+    "Title": "孤独なソムリエ",
+    "Host": "奥野田美宵"
+  },
+  "EternityAscension": {
+    "Title": "鱗粉の接近",
+    "Host": "エタニティラルバ"
+  },
+  "SatoriCounseling": {
+    "Title": "さとり先生のカウンセリング",
+    "Host": "古明地さとり"
+  },
+  "YoumuDelivery": {
+    "Title": "半人半霊の宅配便",
+    "Host": "魂魄妖夢"
+  },
+  "ParseeJealousy": {
+    "Title": "緑眼の追跡",
+    "Host": "水橋パルスィ"
+  },
+  "WatatsukiPurify": {
+    "Title": "悠閑なる月の使者",
+    "Host": "綿月豊姫"
+  },
+  "ShinmyoumaruForge": {
+    "Title": "レアカードに反逆を起こす",
+    "Host": "少名針妙丸"
+  },
+  "YachieOppression": {
+    "Title": "断る勇気",
+    "Host": "吉弔八千慧"
+  },
+  "HecatiaTshirt": {
+    "Title": "アイドル応援",
+    "Host": "ヘカーティア"
+  },
+  "BuduSuanming": {
+    "Title": "未来予知",
+    "Host": "物部布都"
+  },
+  "FakeAdventure": {
+    "Title": "遭遇完了",
+    "Host": "博麗霊夢"
+  },
+  "HatateInterview": {
+    "Title": "今時のメディア",
+    "Host": "姫海棠はたて"
+  },
+  "YorigamiSisters": {
+    "Title": "夜のジュエリー特売",
+    "Host": "依神姉妹"
+  },
+  "KaguyaVersusMokou": {
+    "Title": "迷いの竹林での決戦",
+    "Host": "不死の怨敵"
+  },
+  "BackgroundDancers": {
+    "Title": "秘神の面接大会",
+    "Host": "秘神の両腕"
+  },
+  "MikoDonation": {
+    "Title": "再びスペルカードを偉大に",
+    "Host": "豊聡耳神子"
+  },
+  "KosuzuBookstore": {
+    "Title": "貸本屋鈴奈庵",
+    "Host": "本居小鈴"
+  }
 }

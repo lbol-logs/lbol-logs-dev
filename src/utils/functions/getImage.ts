@@ -59,6 +59,10 @@ function getGapImage(name: string): string {
   return _getImage('gap', name);
 }
 
+function getEventImage(name: string): string {
+  return _getImage('events', name);
+}
+
 export {
   getImage,
   getCommonImage,
@@ -72,5 +76,6 @@ export {
   getDifficultyImage,
   getResultImage,
   getSpellcardImage,
-  getGapImage
+  getGapImage,
+  getEventImage
 };

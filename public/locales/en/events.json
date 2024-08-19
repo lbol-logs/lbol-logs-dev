@@ -1,40 +1,154 @@
 {
-  "DoremyPortal": "Tunnel of Dream",
-  "HinaCollect": "Collect Misfortune",
-  "JunkoColorless": "Purify the Light Jade",
-  "HatateInterview": "Contemporary Communication",
-  "AssistKagerou": "Troubles of Being Furry",
-  "BackgroundDancers": "Secret God's Group Interview",
-  "KeineSales": "Three Household Treasures of the Outer World",
-  "EternityAscension": "Scale Powder is Approaching",
-  "Debut": "Debut",
-  "SumirekoGathering": "Card Gathering",
-  "MedicinePoison": "Strange Garden",
-  "KaguyaVersusMokou": "Lost Bamboo Forest: Last Wars",
-  "WatatsukiPurify": "Easygoing Lunarian Messenger",
-  "Supply": "Assistance from Eientei",
-  "RinnosukeTrade": "Item Trade",
-  "YukariProvide": "Little Chat",
-  "PatchouliPhilosophy": "Refine the Light Jade",
-  "RemiliaMeet": "A Destined Reunion",
-  "RumiaDriving": "Night Speeding",
-  "TewiThreat": "Price of Luck",
-  "NarumiOfferCard": "Whimsical Worship",
-  "MikeInvest": "Financial Products",
-  "KogasaSpook": "Horrible Umbrella",
-  "NazrinDetect": "Lost Treasure",
-  "MystiaBbq": "Late Night Barbecue",
-  "RingoEmp": "Copyright Disputes Between Earth and Moon",
-  "YachieOppression": "Learn to Say No",
-  "YorigamiSisters": "Jewelry Night Sale",
-  "MiyoiBartender": "The Solitary Sommelier",
-  "SatoriCounseling": "Psychological Consultation with Satori",
-  "YoumuDelivery": "Half-Human Half-Phantom House Delivery",
-  "ParseeJealousy": "Green-Eyed Stalker",
-  "ShinmyoumaruForge": "Rebellion Against Rare Cards",
-  "FakeAdventure": "Things Happen",
-  "HecatiaTshirt": "Support Idol",
-  "BuduSuanming": "Predict the Future",
-  "MikoDonation": "Make Spell Cards Great Again",
-  "KosuzuBookstore": "Rental Bookstore Suzunaan"
+  "DoremyPortal": {
+    "Title": "Doremy",
+    "Host": "Tunnel of Dream"
+  },
+  "HinaCollect": {
+    "Title": "Hina",
+    "Host": "Collect Misfortune"
+  },
+  "JunkoColorless": {
+    "Title": "Junko",
+    "Host": "Purify the Light Jade"
+  },
+  "HatateInterview": {
+    "Title": "Hatate",
+    "Host": "Contemporary Communication"
+  },
+  "AssistKagerou": {
+    "Title": "Kagerou",
+    "Host": "Troubles of Being Furry"
+  },
+  "BackgroundDancers": {
+    "Title": "Background Dancers",
+    "Host": "Secret God's Group Interview"
+  },
+  "KeineSales": {
+    "Title": "Keine",
+    "Host": "Three Household Treasures of the Outer World"
+  },
+  "EternityAscension": {
+    "Title": "Eternity",
+    "Host": "Scale Powder is Approaching"
+  },
+  "Debut": {
+    "Title": "Eirin",
+    "Host": "Debut"
+  },
+  "SumirekoGathering": {
+    "Title": "Sumireko",
+    "Host": "Card Gathering"
+  },
+  "MedicinePoison": {
+    "Title": "Medicine",
+    "Host": "Strange Garden"
+  },
+  "KaguyaVersusMokou": {
+    "Title": "Kaguya Mokou",
+    "Host": "'Lost Bamboo Forest: Last Wars'"
+  },
+  "WatatsukiPurify": {
+    "Title": "Toyohime",
+    "Host": "Easygoing Lunarian Messenger"
+  },
+  "Supply": {
+    "Title": "Reisen",
+    "Host": "Assistance from Eientei"
+  },
+  "RinnosukeTrade": {
+    "Title": "Rinnosuke",
+    "Host": "Item Trade"
+  },
+  "YukariProvide": {
+    "Title": "Yukari",
+    "Host": "Little Chat"
+  },
+  "PatchouliPhilosophy": {
+    "Title": "Patchouli",
+    "Host": "Refine the Light Jade"
+  },
+  "RemiliaMeet": {
+    "Title": "Remilia",
+    "Host": "A Destined Reunion"
+  },
+  "RumiaDriving": {
+    "Title": "Rumia",
+    "Host": "Night Speeding"
+  },
+  "TewiThreat": {
+    "Title": "Tewi",
+    "Host": "Price of Luck"
+  },
+  "NarumiOfferCard": {
+    "Title": "Narumi",
+    "Host": "Whimsical Worship"
+  },
+  "MikeInvest": {
+    "Title": "Mike",
+    "Host": "Financial Products"
+  },
+  "KogasaSpook": {
+    "Title": "Kogasa",
+    "Host": "Horrible Umbrella"
+  },
+  "NazrinDetect": {
+    "Title": "Nazrin",
+    "Host": "Lost Treasure"
+  },
+  "MystiaBbq": {
+    "Title": "Mystia",
+    "Host": "Late Night Barbecue"
+  },
+  "RingoEmp": {
+    "Title": "Ringo",
+    "Host": "Copyright Disputes Between Earth and Moon"
+  },
+  "YachieOppression": {
+    "Title": "Yachie",
+    "Host": "Learn to Say No"
+  },
+  "YorigamiSisters": {
+    "Title": "Yorigami",
+    "Host": "Jewelry Night Sale"
+  },
+  "MiyoiBartender": {
+    "Title": "Miyoi",
+    "Host": "The Solitary Sommelier"
+  },
+  "SatoriCounseling": {
+    "Title": "Satori",
+    "Host": "Psychological Consultation with Satori"
+  },
+  "YoumuDelivery": {
+    "Title": "Youmu",
+    "Host": "Half-Human Half-Phantom House Delivery"
+  },
+  "ParseeJealousy": {
+    "Title": "Parsee",
+    "Host": "Green-Eyed Stalker"
+  },
+  "ShinmyoumaruForge": {
+    "Title": "Shinmyoumaru",
+    "Host": "Rebellion Against Rare Cards"
+  },
+  "FakeAdventure": {
+    "Title": "Reimu",
+    "Host": "Things Happen"
+  },
+  "HecatiaTshirt": {
+    "Title": "Hecatia",
+    "Host": "Support Idol"
+  },
+  "BuduSuanming": {
+    "Title": "Mononobe no Futo",
+    "Host": "Predict the Future"
+  },
+  "MikoDonation": {
+    "Title": "Toyosatomimi no Miko",
+    "Host": "Make Spell Cards Great Again"
+  },
+  "KosuzuBookstore": {
+    "Title": "Kosuzu Motoori",
+    "Host": "Rental Bookstore Suzunaan"
+  }
 }
