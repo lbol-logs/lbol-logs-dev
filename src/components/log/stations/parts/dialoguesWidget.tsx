@@ -13,10 +13,11 @@ function DialoguesWidget({ id, choices }: { id: string, choices: Array<TRange3> 
   const components = { h: <span className="u-orange">{}</span> };
   const props = { components };
 
-  choices.forEach((choice, i) => {
+  for (let i = 0; i < choices.length; i++) {
     const { line, ...options } = current as TObj<TObjAny>;
-    const c = String(choice);
-    current = current[c];
+    const choice = String(choices[i]);
+    if (!(choice in current)) break;
+    current = current[choice];
 
     const dialogue = (
       <div className="p-dialogue" key={i}>
@@ -30,7 +31,7 @@ function DialoguesWidget({ id, choices }: { id: string, choices: Array<TRange3> 
         <div className="p-dialogue__options">
             {Object.entries(options).map(([key, option], i) => {
               const { line } = option;
-              const isChosen = c === key;
+              const isChosen = choice === key;
 
               return (
                 <div className={`p-dialogue__option ${isChosen ? 'p-dialogue__option--chosen' : ''}`} key={i}>
@@ -46,7 +47,7 @@ function DialoguesWidget({ id, choices }: { id: string, choices: Array<TRange3> 
       </div>
     );
     dialogues.push(dialogue);
-  });
+  }
 
   return (
     <div className="p-dialogues">
