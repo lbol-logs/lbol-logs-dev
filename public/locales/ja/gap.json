@@ -18,7 +18,7 @@
     "FindExhibit": "展示物を1個入手する。",
     "GetMoney": "<Money />{{Value}}を得る。",
     "RemoveCard": "デッキからカードを1枚削除する。",
-    "GetRareCard": "{{Value1}}枚のランダムなレアカードから1枚選んでデッキに加える",
+    "GetRareCard": "{{Value}}枚のランダムなレアカードから1枚選んでデッキに加える",
     "UpgradeBaota": "宝塔を強化する。"
   }
 }
