@@ -50,24 +50,24 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
         {getValuWithChange('Hp')}/{getValuWithChange('MaxHp')}
       </div>
       <div className="p-station__status p-station__status--power">
-        <Power />
+        <PowerWidget />
         {getValuWithChange('Power')}/{getValuWithChange('MaxPower')}
       </div>
       <div className="p-station__status p-station__status--money">
-        <Money />
+        <MoneyWidget />
         {getValuWithChange('Money')}
       </div>
     </div>
   );
 }
 
-function Power() {
+function PowerWidget() {
   const { t } = useTranslation();
 
   return <LazyLoadImage2 className="u-img-vertical-align" callback={getCommonImage} name={'Power'} alt={t('power', { ns: 'log' })} />;
 }
 
-function Money() {
+function MoneyWidget() {
   const { t } = useTranslation();
 
   return <LazyLoadImage2 className="u-img-vertical-align" callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} />;
@@ -76,6 +76,6 @@ function Money() {
 export default Statuses;
 
 export {
-  Power,
-  Money
+  PowerWidget,
+  MoneyWidget
 };

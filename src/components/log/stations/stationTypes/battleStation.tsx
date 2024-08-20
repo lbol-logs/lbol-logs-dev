@@ -1,77 +1,46 @@
 import { TRewards, TStation } from 'utils/types/runData';
-import ExhibitCards from '../../entityCards/exhibitCards';
-import CardCards from '../../entityCards/cardCards';
-import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { useTranslation } from 'react-i18next';
-import { getCommonImage } from 'utils/functions/getImage';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import EnemyCards from '../parts/enemyCards';
 import RoundsWidget from '../parts/roundsWidget';
-import CurrentChange from '../currentChange';
+import RewardsWidget from '../parts/rewardsWidget';
+import { MoneyWidget } from '../parts/statuses';
 
 function BattleStation({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
-  const { Data, Id, Rewards, Node: { Level } } = station;
-  const { Money, Cards, Exhibits } = Rewards as TRewards || {};
-  const { t } = useTranslation();
+  const { Data, Id } = station;
+
+  const { Rewards } = station;
+  const { Money } = Rewards as TRewards || {};
 
   let money = null;
-  let cards = null;
-  let exhibits = null;
+
+  if (Rewards) {
+    money = (
+      <span className="p-entities__rewards__money">
+        {/* <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} /> */}
+        <MoneyWidget />
+        {Money}
+      </span>
+    );
+  }
 
   const enemies = configsData.enemyGroups[Id as string];
 
   const { Rounds } = Data;
 
-  if (Rewards) {
-    money = (
-      <span className="c-rewards__money">
-        <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} />
-        {Money}
-      </span>
-    );
-
-    cards = (
-      <>
-        {Cards.map((cards, i) => {
-          return (
-            <div className="c-rewards c-rewards--cards" key={i}>
-              <div className="c-rewards__icon">
-                <LazyLoadImage2 callback={getCommonImage} name={'Card'} alt={t('card', { ns: 'common' })} />
-              </div>
-              <CardCards cards={cards} />
-            </div>
-          );
-        })}
-      </>
-    );
-
-    if (Exhibits) {
-      exhibits = (
-        <div className="c-rewards c-rewards--exhibits">
-          <div className="c-rewards__icon">
-            <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} alt={t('exhibit', { ns: 'common' })} />
-          </div>
-          <ExhibitCards exhibits={Exhibits} />
-        </div>
-      );
-    }
-  }
-
   return (
     <div className="p-station__body">
       <div className="p-station__main">
         <EnemyCards enemies={enemies} />
-        <div className="c-rewards">
+        <div className="p-entities__rewards">
           <RoundsWidget rounds={Rounds} />
           {money}
         </div>
-        {cards}
-        {exhibits}
       </div>
-      <div className="p-station__rewards">
-        <CurrentChange level={Level} />
+      <div className="p-entities">
+        <RewardsWidget station={station} />
       </div>
     </div>
   );

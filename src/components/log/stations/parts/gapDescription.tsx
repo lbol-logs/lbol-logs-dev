@@ -2,7 +2,7 @@ import { LogContext } from 'contexts/logContext';
 import { ReactNode, useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { TObjAny } from 'utils/types/common';
-import { Money, Power } from './statuses';
+import { MoneyWidget, PowerWidget } from './statuses';
 
 function GapDescription({ option, maxhp, children }: { option: string, maxhp?: number, children?: ReactNode }) {
   const { configsData } = useContext(LogContext);
@@ -24,7 +24,7 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
     case 'DrinkTea_DiannaoPeijian':
       const AdditionalPower = 50;
       props.values = { AdditionalPower };
-      props.components = { Power: <Power /> };
+      props.components = { Power: <PowerWidget /> };
       break;
     case 'DrinkTea_HuangyouJiqiren':
       const CardCount = 5;
@@ -35,13 +35,13 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
     case 'UpgradeCard_PayForUpgrade':
       const Price = 25;
       props.values = { Price };
-      props.components = { Money: <Money /> };
+      props.components = { Money: <MoneyWidget /> };
       break;
     case 'GetMoney':
       {
         const { Value } = config;
         props.values = { Value };
-        props.components = { Money: <Money /> };
+        props.components = { Money: <MoneyWidget /> };
         break;
       }
     case 'UpgradeBaota':

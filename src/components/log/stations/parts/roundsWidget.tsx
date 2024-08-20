@@ -6,7 +6,7 @@ function RoundsWidget({ rounds }: { rounds: number }) {
   const { t } = useTranslation();
 
   return (
-    <span className="c-rewards__rounds">
+    <span className="p-entities__rewards__rounds">
       <LazyLoadImage2 callback={getCommonImage} name={'Round'} alt={t('round', { ns: 'log' })} />
       {rounds}
     </span>

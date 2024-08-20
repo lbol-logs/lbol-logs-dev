@@ -51,7 +51,7 @@ function GapStation({ station }: { station: TStation }) {
           {littleChat}
         </div>
       </div>
-      <div className="p-station__rewards">
+      <div className="p-entities">
         <CurrentChange level={Level} />
       </div>
     </div>
