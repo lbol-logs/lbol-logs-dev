@@ -1,36 +1,44 @@
 import { LogContext } from 'contexts/logContext';
-import { useContext } from 'react';
-import { TExhibitObjs, TExhibits, TLevel } from 'utils/types/runData';
+import { useContext, useMemo } from 'react';
+import { TCardChanges, TCards, TExhibitObjs, TExhibits, TLevel } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
+import { copyObject, getCurrentLevel, getSameCardIndex } from 'utils/functions/helpers';
 
-function CurrentChange({ level }: { level: TLevel }) {
+function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards: TCardChanges, Exhibits: TExhibitObjs } }) {
   const { runData, act } = useContext(LogContext);
   const { t } = useTranslation();
 
   const { Stations, Cards, Exhibits } = runData;
 
-  const isCurrentLevel = (({ Station }: { Station: number }) => {
-    const station = Stations[Station];
-    const { Act, Level } = station.Node;
-    const _isCurrentLevel = Act === act && Level === level;
-    return _isCurrentLevel;
-  });
+  const card = useMemo(() => {
+    const currentCards = getCurrentLevel(Cards, Stations, act, level);
+    const excludeCards = excludes ? copyObject(excludes.Cards) : [];
 
-  let card;
-  {
-    const currentCards = Cards.filter(isCurrentLevel);
     const cards = {
       Add: '＋',
       Remove: '－',
       Upgrade: '▲'
     };
     const cardIcon = <LazyLoadImage2 callback={getCommonImage} name={'Card'} alt={t('card', { ns: 'common' })} />;
-    card = Object.entries(cards).map(([type, symbol]) => {
+
+    return Object.entries(cards).map(([type, symbol]) => {
       const cards = currentCards.filter(({ Type }) => Type === type);
+      if (type === 'Add') {
+        for (let i = 0; i < excludeCards.length; i++) {
+          console.log(excludeCards[i]);
+          const index = getSameCardIndex(cards, excludeCards[i]);
+          if (index !== -1) {
+            console.log({level, cards, excludeCards, excludeCard: excludeCards[i]})
+            cards.splice(index, 1);
+            excludeCards.splice(i, 1);
+            console.log({cards, excludeCards})
+          }
+        }
+      }
       const hasCards = cards.length > 0;
       if (hasCards) {
         return (
@@ -47,18 +55,20 @@ function CurrentChange({ level }: { level: TLevel }) {
         return null;
       }
     });
-  }
+  }, []);
 
-  let exhibit;
-  {
-    const currentExhibits = Exhibits.filter(isCurrentLevel);
+  const exhibit = useMemo(() => {
+    const currentExhibits = getCurrentLevel(Exhibits, Stations, act, level);
+    const excludeExhibits = excludes ? excludes.Exhibits : [];
+
     const exhibits = {
       Add: '＋',
       Remove: '－',
       Use: '▼'
     };
     const exhibitIcon = <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} alt={t('exhibit', { ns: 'common' })} />;
-    exhibit = Object.entries(exhibits).map(([type, symbol]) => {
+
+    return Object.entries(exhibits).map(([type, symbol]) => {
       let exhibits: TExhibits | TExhibitObjs = currentExhibits.filter(({ Type }) => Type === type);
       if (type !== 'Use') exhibits = exhibits.map(({ Id }) => Id);
       const hasExhibits = exhibits.length > 0;
@@ -77,7 +87,7 @@ function CurrentChange({ level }: { level: TLevel }) {
         return null;
       }
     });
-  }
+  }, []);
 
   return (
     <>

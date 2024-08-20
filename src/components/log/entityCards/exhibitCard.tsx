@@ -5,7 +5,7 @@ import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getExhibitImage } from 'utils/functions/getImage';
 import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
 
-function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitChange }) {
+function ExhibitCard({ exhibit, isAdded }: { exhibit: TExhibit | TExhibitObj | TExhibitChange, isAdded: boolean }) {
   const { configsData } = useContext(CommonContext);
   const { t } = useTranslation();
 
@@ -26,7 +26,7 @@ function ExhibitCard({ exhibit }: { exhibit: TExhibit | TExhibitObj | TExhibitCh
   }
 
   return (
-    <span className={`c-entity c-entity--${Rarity} c-exhibit`}>
+    <span className={`c-entity c-entity--${Rarity} ${isAdded ? 'c-entity--added' : ''} c-exhibit`}>
       <LazyLoadImage2 className="c-exhibit__img" callback={getExhibitImage} name={Id} alt="" />
       <span className="c-entity__text c-exhibit__text">{t(Id, { ns: 'exhibits' })}</span>
       {counter}

@@ -17,7 +17,7 @@ function useGap({ option, runData, holdings, Node }: { option: string, runData: 
 
   useEffect(() => {
     const additionalDesc = [];
-    console.log({option,hasPayForUpgrade});
+  
     switch (option) {
       case 'DrinkTea':
         if (!currentHolding) return;

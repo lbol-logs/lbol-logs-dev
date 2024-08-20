@@ -380,13 +380,13 @@ img {
   gap: 0.5em 1em;
 }
 
-.p-entity {
+.c-station__stats {
   display: flex;
   align-items: flex-start;
   column-gap: 0.5em;
   margin: 0.5em 0;
 }
-.p-entity__rounds, .p-entity__money {
+.c-station__rounds, .c-station__money {
   display: flex;
   align-items: center;
 }
@@ -508,6 +508,10 @@ img {
   width: var(--entity-width);
   height: var(--entity-height);
   overflow: hidden;
+}
+.c-entity--added {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
 }
 .c-entity--Common {
   border-color: var(--f-light-gray);

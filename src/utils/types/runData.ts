@@ -115,7 +115,7 @@ type TCardChanges = Array<TCardChange>;
 type TExhibitObj = {
   Id: TExhibit,
   Counter?: TRange3
-}
+};
 type TExhibitObjs = Array<TExhibitObj>;
 
 type TExhibitChange = TExhibitObj & TChange;

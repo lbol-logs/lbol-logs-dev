@@ -10,7 +10,7 @@ function GapDescriptions({ station, option }: { station: TStation, option: strin
 
   const additionalDescRef = useGap({ option, runData, holdings, Node });
   const additionalDesc = additionalDescRef.current as Array<JSX.Element>;
-console.log({option, additionalDesc});
+
   return (
     <div className="p-gap-choice__descs">
       <GapDescription option={option} maxhp={MaxHp} key={option} />

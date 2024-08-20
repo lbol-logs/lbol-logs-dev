@@ -1,6 +1,6 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { TObjAny } from 'utils/types/common';
-import { TRunData } from 'utils/types/runData';
+import { TAct, TCard, TCardChanges, TCards, TExhibit, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
@@ -40,6 +40,25 @@ function toggleIsChecked(isChecked: boolean) {
   return isChecked ? toggleCheckedClassName : '';
 }
 
+function getCurrentLevel<T extends TCardChanges | TExhibitChanges>(changes: T, Stations: TStations, act: TAct, level: TLevel): T {
+  return (changes as any[]).filter(({ Station }: { Station: number }) => {
+    const station = Stations[Station];
+    const { Act, Level } = station.Node;
+    const isCurrentLevel = Act === act && Level === level;
+    return isCurrentLevel;
+  }) as T;
+}
+
+function getSameCardIndex(cards: TCards, card: TCard): number {
+  return cards.findIndex(({ Id, IsUpgraded, UpgradeCounter }) => Id === card.Id && IsUpgraded === card.IsUpgraded && UpgradeCounter === card.UpgradeCounter);
+}
+
+function getSameExhibitIndex(exhibits: Array<TExhibitObj | TExhibit>, exhibit: TExhibitObj | TExhibit): number {
+  const id = typeof exhibit === 'string' ? exhibit : exhibit.Id;
+  if (typeof exhibits[0] === 'string') return exhibits.findIndex(Id => Id === id);
+  else return (exhibits as TExhibitObjs).findIndex(({ Id }) => Id === id);
+}
+
 export {
   checkForce,
   validateRunData,
@@ -47,5 +66,8 @@ export {
   filterObject,
   compareArrays,
   getLength,
-  toggleIsChecked
+  toggleIsChecked,
+  getCurrentLevel,
+  getSameCardIndex,
+  getSameExhibitIndex
 };

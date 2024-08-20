@@ -37,7 +37,7 @@ function TempStation({ station }: { station: TStation }) {
     const { Money, Cards, Exhibits } = Rewards;
 
     money = (
-      <span className="p-entity__money">
+      <span className="c-station__money">
         <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} />
         {Money}
       </span>

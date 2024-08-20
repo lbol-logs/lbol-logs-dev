@@ -1,5 +1,4 @@
 import { TRewards, TStation } from 'utils/types/runData';
-import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import EnemyCards from '../parts/enemyCards';
@@ -18,7 +17,7 @@ function BattleStation({ station }: { station: TStation }) {
 
   if (Rewards) {
     money = (
-      <span className="p-entity__money">
+      <span className="c-station__money">
         {/* <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} /> */}
         <MoneyWidget />
         {Money}
@@ -34,14 +33,12 @@ function BattleStation({ station }: { station: TStation }) {
     <div className="p-station__body">
       <div className="p-station__main">
         <EnemyCards enemies={enemies} />
-        <div className="p-entity">
+        <div className="c-station__stats">
           <RoundsWidget rounds={Rounds} />
           {money}
         </div>
       </div>
-      <div className="p-entities">
-        <RewardsWidget station={station} />
-      </div>
+      <RewardsWidget station={station} />
     </div>
   );
 }
