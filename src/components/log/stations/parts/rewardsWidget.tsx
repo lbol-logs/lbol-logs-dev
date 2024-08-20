@@ -53,7 +53,7 @@ function RewardsWidget({ station }: { station: TStation }) {
               return i;
             }
             else {
-              return;
+              return undefined;
             }
           }).filter(i => i !== undefined) as Array<number>;
 
@@ -77,7 +77,7 @@ function RewardsWidget({ station }: { station: TStation }) {
           return i;
         }
         else {
-          return;
+          return undefined;
         }
       }).filter(i => i !== undefined) as Array<number>;
 
