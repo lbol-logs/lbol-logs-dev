@@ -353,22 +353,19 @@ img {
 .p-station__head {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   column-gap: 0.3125em;
 }
-
 .p-station__level {
   margin: 0;
   width: 5.5em;
 }
-
-.p-station__statuses {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: right;
-  align-items: center;
+.p-station__icon {
+  margin-right: 1em;
 }
-
+.p-station__statuses {
+  display: contents;
+}
 .p-station__status {
   display: flex;
   align-items: center;
@@ -587,6 +584,7 @@ html:lang(en) .c-entity__text {
 .p-enemies {
   display: flex;
   gap: 0.5em;
+  flex-wrap: wrap;
 }
 
 .p-base-mana {
