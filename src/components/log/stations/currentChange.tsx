@@ -6,7 +6,7 @@ import ExhibitCards from '../entityCards/exhibitCards';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
-import { copyObject, getCurrentLevel, getSameCardIndex } from 'utils/functions/helpers';
+import { copyObject, getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from 'utils/functions/helpers';
 
 function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards: TCardChanges, Exhibits: TExhibitObjs } }) {
   const { runData, act } = useContext(LogContext);
@@ -29,16 +29,14 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
       const cards = currentCards.filter(({ Type }) => Type === type);
       if (type === 'Add') {
         for (let i = 0; i < excludeCards.length; i++) {
-          console.log(excludeCards[i]);
           const index = getSameCardIndex(cards, excludeCards[i]);
           if (index !== -1) {
-            console.log({level, cards, excludeCards, excludeCard: excludeCards[i]})
             cards.splice(index, 1);
             excludeCards.splice(i, 1);
-            console.log({cards, excludeCards})
           }
         }
       }
+      
       const hasCards = cards.length > 0;
       if (hasCards) {
         return (
@@ -59,7 +57,7 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
 
   const exhibit = useMemo(() => {
     const currentExhibits = getCurrentLevel(Exhibits, Stations, act, level);
-    const excludeExhibits = excludes ? excludes.Exhibits : [];
+    const excludeExhibits = excludes ? copyObject(excludes.Exhibits) : [];
 
     const exhibits = {
       Add: '＋',
@@ -71,6 +69,16 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
     return Object.entries(exhibits).map(([type, symbol]) => {
       let exhibits: TExhibits | TExhibitObjs = currentExhibits.filter(({ Type }) => Type === type);
       if (type !== 'Use') exhibits = exhibits.map(({ Id }) => Id);
+      if (type === 'Add') {
+        for (let i = 0; i < excludeExhibits.length; i++) {
+          const index = getSameExhibitIndex(exhibits, excludeExhibits[i]);
+          if (index !== -1) {
+            exhibits.splice(index, 1);
+            excludeExhibits.splice(i, 1);
+          }
+        }
+      }
+
       const hasExhibits = exhibits.length > 0;
       if (hasExhibits) {
         return (
