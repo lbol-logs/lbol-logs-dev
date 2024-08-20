@@ -3,7 +3,6 @@ import { Trans, useTranslation } from 'react-i18next';
 import { TActObj, TStation, TStatus } from 'utils/types/runData';
 import Statuses from './parts/statuses';
 import { LogContext } from 'contexts/logContext';
-import CurrentChange from './currentChange';
 import StationType from './stationTypes/stationType';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getBossImage, getMapImage } from 'utils/functions/getImage';
@@ -57,14 +56,8 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
         <LazyLoadImage2 className="p-station__icon" callback={callback} name={type} alt={t(`stations.${Type}`, { ns: 'log' })} />
         <Statuses status={Status} lastStatus={lastStatus as TStatus} />
       </div>
-      <div className="p-station__body">
-        <div className="p-station__left">
-          <StationType station={station} />
-        </div>
-        <div className="p-station__right">
-          <CurrentChange level={Level} />
-        </div>
-      </div>
+
+      <StationType station={station} />
     </div>
   );
 }

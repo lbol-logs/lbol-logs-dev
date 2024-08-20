@@ -377,11 +377,7 @@ img {
 .p-station__body {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5em;
-}
-
-.p-station__left {
-  flex-basis: 60%;
+  gap: 0.5em 1em;
 }
 
 .c-rewards {
@@ -399,10 +395,6 @@ img {
 }
 .c-rewards__cards {
   display: flex;
-}
-
-.p-station__right {
-  flex: 1;
 }
 
 .p-entity {
@@ -853,6 +845,7 @@ html:lang(en) .p-result__type {
   display: flex;
   flex-direction: column;
   row-gap: 0.5em;
+  width: fit-content;
 }
 .p-gap-choice, .p-dialogue__option {
   display: flex;
@@ -1004,7 +997,7 @@ html:lang(en) .p-result__type {
     flex-basis: 100%;
   }
 
-  .p-station__left {
+  .p-station__main {
     flex-basis: 100%;
   }
 

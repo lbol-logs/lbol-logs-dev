@@ -5,9 +5,10 @@ import { TStation } from 'utils/types/runData';
 import GapDescriptions from '../parts/gapDescriptions';
 import { TRange3 } from 'utils/types/common';
 import DialoguesWidget from '../parts/dialoguesWidget';
+import CurrentChange from '../currentChange';
 
 function GapStation({ station }: { station: TStation }) {
-  const { Data } = station;
+  const { Data, Node: { Level } } = station;
   const { Choice, Options, Choices } = Data as { Choice: string, Options: Array<string>, Choices: Array<TRange3> };
   const { t } = useTranslation();
 
@@ -32,20 +33,27 @@ function GapStation({ station }: { station: TStation }) {
   }
 
   return (
-    <div className="p-gap">
-      <div className="p-gap-choices">
-        {Options.map((option, i) => {
-          const isChosen = option === Choice;
+    <div className="p-station__body">
+      <div className="p-station__main">
+        <div className="p-gap">
+          <div className="p-gap-choices">
+            {Options.map((option, i) => {
+              const isChosen = option === Choice;
 
-          return (
-            <div className={`p-gap-choice ${isChosen ? 'p-gap-choice--chosen' : ''}`} key={i}>
-              <LazyLoadImage2 className="p-gap-choice__icon" callback={getGapImage} name={option} alt={t(`Names.${option}`, { ns: 'gap' })} />
-              <GapDescriptions station={station} option={option} />
-            </div>
-          );
-        })}
+              return (
+                <div className={`p-gap-choice ${isChosen ? 'p-gap-choice--chosen' : ''}`} key={i}>
+                  <LazyLoadImage2 className="p-gap-choice__icon" callback={getGapImage} name={option} alt={t(`Names.${option}`, { ns: 'gap' })} />
+                  <GapDescriptions station={station} option={option} />
+                </div>
+              );
+            })}
+          </div>
+          {littleChat}
+        </div>
       </div>
-      {littleChat}
+      <div className="p-station__rewards">
+        <CurrentChange level={Level} />
+      </div>
     </div>
   );
 }

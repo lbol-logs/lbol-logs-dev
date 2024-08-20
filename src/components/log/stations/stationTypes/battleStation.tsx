@@ -8,10 +8,11 @@ import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import EnemyCards from '../parts/enemyCards';
 import RoundsWidget from '../parts/roundsWidget';
+import CurrentChange from '../currentChange';
 
 function BattleStation({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
-  const { Data, Id, Rewards } = station;
+  const { Data, Id, Rewards, Node: { Level } } = station;
   const { Money, Cards, Exhibits } = Rewards as TRewards || {};
   const { t } = useTranslation();
 
@@ -59,15 +60,20 @@ function BattleStation({ station }: { station: TStation }) {
   }
 
   return (
-    <>
-      <EnemyCards enemies={enemies} />
-      <div className="c-rewards">
-        <RoundsWidget rounds={Rounds} />
-        {money}
+    <div className="p-station__body">
+      <div className="p-station__main">
+        <EnemyCards enemies={enemies} />
+        <div className="c-rewards">
+          <RoundsWidget rounds={Rounds} />
+          {money}
+        </div>
+        {cards}
+        {exhibits}
       </div>
-      {cards}
-      {exhibits}
-    </>
+      <div className="p-station__rewards">
+        <CurrentChange level={Level} />
+      </div>
+    </div>
   );
 }
 

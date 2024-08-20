@@ -5,9 +5,10 @@ import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
 import RoundsWidget from '../parts/roundsWidget';
+import CurrentChange from '../currentChange';
 
 function TempStation({ station }: { station: TStation }) {
-  const { Data, Id, Rewards } = station;
+  const { Data, Id, Rewards, Node: { Level } } = station;
   const { t } = useTranslation();
 
   let data = null;
@@ -70,15 +71,20 @@ function TempStation({ station }: { station: TStation }) {
   }
 
   data = (
-    <>
-      {choices}
-      <div className="c-rewards">
-        {rounds}
-        {money}
+    <div className="p-station__body">
+      <div className="p-station__main">
+        {choices}
+        <div className="c-rewards">
+          {rounds}
+          {money}
+        </div>
+        {cards}
+        {exhibits}
       </div>
-      {cards}
-      {exhibits}
-    </>
+      <div className="p-station__rewards">
+        <CurrentChange level={Level} />
+      </div>
+    </div>
   );
 
   return (
