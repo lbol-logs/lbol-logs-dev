@@ -5,7 +5,7 @@ import { getCommonImage } from "utils/functions/getImage";
 import CurrentChange from "../currentChange";
 import { TCardChanges, TExhibitChanges, TRewards, TStation } from "utils/types/runData";
 import { useTranslation } from "react-i18next";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { LogContext } from "contexts/logContext";
 import { getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from "utils/functions/helpers";
 
@@ -16,14 +16,18 @@ function RewardsWidget({ station }: { station: TStation }) {
   const { Rewards, Node: { Level } } = station;
   const { Cards, Exhibits } = Rewards as TRewards || {};
 
-  let cards = null;
-  let exhibits = null;
-  const excludes = {
-    Cards: [] as TCardChanges,
-    Exhibits: [] as TExhibitChanges
-  };
+  const { cards, exhibits, excludes } = useMemo(() => {
+    if (!Rewards) {
+      return {
+        cards: null,
+        exhibits: null,
+        excludes: undefined
+      };
+    }
 
-  if (Rewards) {
+    let cards;
+    let exhibits = null;
+
     let addedCards: TCardChanges;
     let addedExhibits: TExhibitChanges;
     let excludeCards: TCardChanges = [];
@@ -87,9 +91,15 @@ function RewardsWidget({ station }: { station: TStation }) {
       );
     }
 
-    excludes.Cards = excludeCards;
-    excludes.Exhibits = excludeExhibits;
-  }
+    const excludes = {
+      Cards: excludeCards,
+      Exhibits: excludeExhibits
+    };
+
+    return { cards, exhibits, excludes };
+
+  }, []);
+  
   
   return (
     <div className="p-entities">
