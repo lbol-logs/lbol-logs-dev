@@ -37,7 +37,7 @@ function TempStation({ station }: { station: TStation }) {
     const { Money, Cards, Exhibits } = Rewards;
 
     money = (
-      <span className="p-entities__rewards__money">
+      <span className="p-entity__money">
         <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} />
         {Money}
       </span>
@@ -47,8 +47,8 @@ function TempStation({ station }: { station: TStation }) {
       <>
         {Cards.map((cards, i) => {
           return (
-            <div className="p-entities__rewards p-entities__rewards--cards" key={i}>
-              <div className="p-entities__label">
+            <div className="p-entity p-entity--cards" key={i}>
+              <div className="p-entity__label">
                 <LazyLoadImage2 callback={getCommonImage} name={'Card'} alt={t('card', { ns: 'common' })} />
               </div>
               <CardCards cards={cards} />
@@ -60,8 +60,8 @@ function TempStation({ station }: { station: TStation }) {
 
     if (Exhibits) {
       exhibits = (
-        <div className="p-entities__rewards p-entities__rewards--exhibits">
-          <div className="p-entities__label">
+        <div className="p-entity p-entity--exhibits">
+          <div className="p-entity__label">
             <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} alt={t('exhibit', { ns: 'common' })} />
           </div>
           <ExhibitCards exhibits={Exhibits} />
@@ -74,7 +74,7 @@ function TempStation({ station }: { station: TStation }) {
     <div className="p-station__body">
       <div className="p-station__main">
         {choices}
-        <div className="p-entities__rewards">
+        <div className="p-entity">
           {rounds}
           {money}
         </div>

@@ -20,8 +20,8 @@ function RewardsWidget({ station }: { station: TStation }) {
       <>
         {Cards.map((cards, i) => {
           return (
-            <div className="p-entities__rewards p-entities__rewards--cards" key={i}>
-              <div className="p-entities__label">
+            <div className="p-entity p-entity--cards" key={i}>
+              <div className="p-entity__label">
                 <LazyLoadImage2 callback={getCommonImage} name={'Card'} alt={t('card', { ns: 'common' })} />
               </div>
               <CardCards cards={cards} />
@@ -33,8 +33,8 @@ function RewardsWidget({ station }: { station: TStation }) {
 
     if (Exhibits) {
       exhibits = (
-        <div className="p-entities__rewards p-entities__rewards--exhibits">
-          <div className="p-entities__label">
+        <div className="p-entity p-entity--exhibits">
+          <div className="p-entity__label">
             <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} alt={t('exhibit', { ns: 'common' })} />
           </div>
           <ExhibitCards exhibits={Exhibits} />

@@ -380,20 +380,20 @@ img {
   gap: 0.5em 1em;
 }
 
-.p-entities__rewards {
+.p-entity {
   display: flex;
   align-items: flex-start;
   column-gap: 0.5em;
   margin: 0.5em 0;
 }
-.p-entities__rewards__rounds, .p-entities__rewards__money {
+.p-entity__rounds, .p-entity__money {
   display: flex;
   align-items: center;
 }
-.p-entities__label {
+.p-entity__label {
   flex-shrink: 0;
 }
-.p-entities__rewards__cards {
+.p-entity__cards {
   display: flex;
 }
 

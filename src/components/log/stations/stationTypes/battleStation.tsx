@@ -18,7 +18,7 @@ function BattleStation({ station }: { station: TStation }) {
 
   if (Rewards) {
     money = (
-      <span className="p-entities__rewards__money">
+      <span className="p-entity__money">
         {/* <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} /> */}
         <MoneyWidget />
         {Money}
@@ -34,7 +34,7 @@ function BattleStation({ station }: { station: TStation }) {
     <div className="p-station__body">
       <div className="p-station__main">
         <EnemyCards enemies={enemies} />
-        <div className="p-entities__rewards">
+        <div className="p-entity">
           <RoundsWidget rounds={Rounds} />
           {money}
         </div>
