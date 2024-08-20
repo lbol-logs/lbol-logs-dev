@@ -211,7 +211,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 999;
-  min-height: 144px;
+  min-height: var(--map-height);
   max-height: calc(100vh - var(--control-height));
   box-shadow: 0 0.5em 0.5em -0.5em var(--shadow);
   background: var(--white);
@@ -341,12 +341,12 @@ img {
   flex: 1;
 }
 .p-station {
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 
 .p-station--last {
   margin-bottom: 0;
-  padding-bottom: 100vh;
+  padding-bottom: calc(100vh - var(--map-height));
   box-sizing: border-box;
 }
 
@@ -927,6 +927,7 @@ html:lang(en) .p-result__type {
   --entity-height: 2.5em;
   --entity-margin: 0.5em;
   --entity-border: 2px;
+  --map-height: 144px;
 
   --white: light-dark(#fff, #121212);
   --black: light-dark(#000, #fff);
