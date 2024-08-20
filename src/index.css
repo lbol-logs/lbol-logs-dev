@@ -509,9 +509,8 @@ img {
   height: var(--entity-height);
   overflow: hidden;
 }
-.c-entity--added {
-  outline: 2px solid var(--red);
-  outline-offset: 2px;
+.c-entity--not-added {
+  opacity: 0.7;
 }
 .c-entity--Common {
   border-color: var(--f-light-gray);

@@ -46,11 +46,11 @@ function RewardsWidget({ station }: { station: TStation }) {
     cards = (
       <>
         {Cards.map((cards, i) => {
-          const added = addedCards.map((addedCard, i) => {
+          const added = addedCards.map(addedCard => {
             const index = getSameCardIndex(cards, addedCard);
             if (index !== -1) {
               excludeCards.push(addedCard);
-              return i;
+              return index;
             }
             else {
               return undefined;
@@ -70,11 +70,11 @@ function RewardsWidget({ station }: { station: TStation }) {
     );
 
     if (Exhibits) {
-      const added = addedExhibits.map((addedExhibit, i) => {
+      const added = addedExhibits.map(addedExhibit => {
         const index = getSameExhibitIndex(Exhibits, addedExhibit);
         if (index !== -1) {
           excludeExhibits.push(addedExhibit);
-          return i;
+          return index;
         }
         else {
           return undefined;
