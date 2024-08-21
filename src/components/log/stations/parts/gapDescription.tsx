@@ -13,10 +13,12 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
 
   switch(option) {
     case 'DrinkTea':
-      const { Rate } = config;
-      const Value = Math.round((maxhp as number) * Rate / 100);
-      props.values = { Rate, Value };
-      break;
+      {
+        const { Rate } = config;
+        const Value = Math.round((maxhp as number) * Rate / 100);
+        props.values = { Rate, Value };
+        break;
+      }
     case 'DrinkTea_JingzhiChaju':
       const AdditionalHeal = 20;
       props.values = { AdditionalHeal };
@@ -42,6 +44,12 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
         const { Value } = config;
         props.values = { Value };
         props.components = { Money: <MoneyWidget /> };
+        break;
+      }
+    case 'GetRareCard':
+      {
+        const { Value } = config;
+        props.values = { Value };
         break;
       }
     case 'UpgradeBaota':

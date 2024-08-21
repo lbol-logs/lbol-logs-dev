@@ -18,7 +18,7 @@
     "FindExhibit": "Find a random Exhibit.",
     "GetMoney": "Gain {{Value}} <Money />.",
     "RemoveCard": "Remove a card from the library.",
-    "GetRareCard": "Choose 1 of {Value} Rare cards to add to the library.",
+    "GetRareCard": "Choose 1 of {{Value}} Rare cards to add to the library.",
     "UpgradeBaota": "Upgrade the <h>Jeweled Pagoda of Bishamonten</h>."
   }
 }
