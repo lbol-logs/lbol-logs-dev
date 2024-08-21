@@ -494,39 +494,44 @@ img {
   gap: 0.5em var(--entity-column-gap);
 }
 .c-entity {
+  --opacity-border: 100%;
+  --opacity-overlay: 0.1;
+  --shadow: color-mix(in srgb, var(--f-black) var(--opacity-border), transparent);
+
   display: flex;
   align-items: center;
   border-width: var(--entity-border);
   border-style: solid;
   border-radius: 4px;
-  box-shadow: 1px 1px 0 var(--f-black), -1px 1px 0 var(--f-black), -1px -1px 0 var(--f-black), 1px -1px 0 var(--f-black);
-  outline: 1px solid var(--f-gray);
+  box-shadow: 1px 1px 0 var(--shadow), -1px 1px 0 var(--shadow), -1px -1px 0 var(--shadow), 1px -1px 0 var(--shadow);
+  outline: 1px solid color-mix(in srgb, var(--f-gray) var(--opacity-border), transparent);
   outline-offset: -3px;
   width: var(--entity-width);
   height: var(--entity-height);
   overflow: hidden;
 }
 .c-entity--not-added {
-  opacity: 0.7;
+  --opacity-border: 50%;
+  --opacity-overlay: 0.5;
 }
 .c-entity--Common {
-  border-color: var(--f-light-gray);
+  border-color: color-mix(in srgb, var(--f-light-gray) var(--opacity-border), transparent);
 }
 .c-entity--Uncommon {
-  border-color: var(--f-blue);
+  border-color: color-mix(in srgb, var(--f-blue) var(--opacity-border), transparent);
 }
 .c-entity--Rare {
-  border-color: var(--f-gold);
+  border-color: color-mix(in srgb, var(--f-gold) var(--opacity-border), transparent);
 }
 .c-entity--Shining {
-  border-color: var(--f-red);
+  border-color: color-mix(in srgb, var(--f-red) var(--opacity-border), transparent);
 }
 .c-entity--Mythic {
-  border-image: var(--f-rainbox);
+  border-image: color-mix(in srgb, var(--f-rainbox) var(--opacity-border), transparent);
   border-image-slice: 1;
 }
 .c-entity--Misfortune {
-  border-color: var(--f-purple);
+  border-color: color-mix(in srgb, var(--f-purple) var(--opacity-border), transparent);
 }
 .c-entity__text {
   margin: 0 var(--entity-margin);
@@ -534,6 +539,7 @@ img {
   max-height: 100%;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 html:lang(en) .c-entity__text {
@@ -564,7 +570,7 @@ html:lang(en) .c-entity__text {
   width: 100%;
   height: 100%;
   background: var(--f-white);
-  opacity: 0.2;
+  opacity: var(--opacity-overlay);
   z-index: -1;
 }
 
