@@ -62,6 +62,7 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
     const exhibits = {
       Add: '＋',
       Remove: '－',
+      Upgrade: '▲',
       Use: '▼'
     };
     const exhibitIcon = <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} alt={t('exhibit', { ns: 'common' })} />;

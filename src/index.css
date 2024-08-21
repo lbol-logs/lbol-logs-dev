@@ -377,6 +377,10 @@ img {
   gap: 0.5em 1em;
 }
 
+.p-entities {
+  flex: 1;
+}
+
 .c-station__stats {
   display: flex;
   align-items: flex-start;
@@ -527,7 +531,14 @@ img {
   border-color: color-mix(in srgb, var(--f-red) var(--opacity-border), transparent);
 }
 .c-entity--Mythic {
-  border-image: color-mix(in srgb, var(--f-rainbox) var(--opacity-border), transparent);
+  border-image: linear-gradient(
+    to bottom right,
+    color-mix(in srgb, #b827fc var(--opacity-border), transparent) 0%,
+    color-mix(in srgb, #2c90fc var(--opacity-border), transparent) 25%,
+    color-mix(in srgb, #b8fd33 var(--opacity-border), transparent) 50%,
+    color-mix(in srgb, #fec837 var(--opacity-border), transparent) 75%,
+    color-mix(in srgb, #fd1892 var(--opacity-border), transparent) 100%
+  );
   border-image-slice: 1;
 }
 .c-entity--Misfortune {
@@ -963,7 +974,6 @@ html:lang(en) .p-result__type {
   --f-red: orangered;
   --f-purple: purple;
   --f-brown: #dabfa2;
-  --f-rainbox: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
 }
 
 .u-img-vertical {

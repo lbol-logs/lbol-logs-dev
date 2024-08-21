@@ -29,7 +29,7 @@ function useGap({ option, runData, holdings, Node }: { option: string, runData: 
 
             additionalDesc.push(
               <GapDescription option={additionalOption} key={additionalOption}>
-                <LazyLoadImage2 className="c-exhibit__img" callback={getExhibitImage} name={exhibit} alt={t(exhibit, { ns: 'exhibits' })} />
+                <LazyLoadImage2 className="c-exhibit__img u-img-vertical-align" callback={getExhibitImage} name={exhibit} alt={t(exhibit, { ns: 'exhibits' })} />
               </GapDescription>
             );
           }

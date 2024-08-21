@@ -5,10 +5,10 @@ import { TStation } from 'utils/types/runData';
 import GapDescriptions from '../parts/gapDescriptions';
 import { TRange3 } from 'utils/types/common';
 import DialoguesWidget from '../parts/dialoguesWidget';
-import CurrentChange from '../currentChange';
+import RewardsWidget from '../parts/rewardsWidget';
 
 function GapStation({ station }: { station: TStation }) {
-  const { Data, Node: { Level } } = station;
+  const { Type, Data } = station;
   const { Choice, Options, Choices } = Data as { Choice: string, Options: Array<string>, Choices: Array<TRange3> };
   const { t } = useTranslation();
 
@@ -19,6 +19,8 @@ function GapStation({ station }: { station: TStation }) {
     const title = t(`${id}.Title`, { ns: 'events' });
     const exhibit1 = 'JingjieGanzhiyi';
     const exhibit2 = 'WaijieYanshuang';
+
+    if (Choices[0] === 2) Choices[0] = 1;
 
     littleChat = (
       <div className="p-gap-little-chat">
@@ -31,6 +33,9 @@ function GapStation({ station }: { station: TStation }) {
       </div>
     )
   }
+
+  const isGetRareCard = Choice === 'GetRareCard';
+  const additionalCards = isGetRareCard ? Data.ShanliangDengpao : null;
 
   return (
     <div className="p-station__body">
@@ -51,9 +56,7 @@ function GapStation({ station }: { station: TStation }) {
           {littleChat}
         </div>
       </div>
-      <div className="p-entities">
-        <CurrentChange level={Level} />
-      </div>
+      <RewardsWidget station={station} additionalCards={additionalCards} />
     </div>
   );
 }

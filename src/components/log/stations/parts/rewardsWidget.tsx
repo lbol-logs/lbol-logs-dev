@@ -3,26 +3,31 @@ import CardCards from "components/log/entityCards/cardCards";
 import ExhibitCards from "components/log/entityCards/exhibitCards";
 import { getCommonImage } from "utils/functions/getImage";
 import CurrentChange from "../currentChange";
-import { TCardChanges, TExhibitChanges, TRewards, TStation } from "utils/types/runData";
+import { TCardChanges, TCards, TExhibitChanges, TExhibits, TRewards, TStation } from "utils/types/runData";
 import { useTranslation } from "react-i18next";
 import { useContext, useMemo } from "react";
 import { LogContext } from "contexts/logContext";
 import { getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from "utils/functions/helpers";
 
-function RewardsWidget({ station }: { station: TStation }) {
+function RewardsWidget({ station, additionalCards }: { station: TStation, additionalCards?: TCards }) {
   const { runData, act } = useContext(LogContext);
   const { t } = useTranslation();
 
   const { Rewards, Node: { Level } } = station;
-  const { Cards, Exhibits } = Rewards as TRewards || {};
+  let { Cards, Exhibits } = Rewards as TRewards || {};
 
   const { cards, exhibits, excludes } = useMemo(() => {
     if (!Rewards) {
-      return {
-        cards: null,
-        exhibits: null,
-        excludes: undefined
-      };
+      if (additionalCards) {
+        Cards = [additionalCards];
+      }
+      else {
+        return {
+          cards: null,
+          exhibits: null,
+          excludes: undefined
+        };
+      }
     }
 
     let cards;
@@ -71,7 +76,7 @@ function RewardsWidget({ station }: { station: TStation }) {
 
     if (Exhibits) {
       const added = addedExhibits.map(addedExhibit => {
-        const index = getSameExhibitIndex(Exhibits, addedExhibit);
+        const index = getSameExhibitIndex(Exhibits as TExhibits, addedExhibit);
         if (index !== -1) {
           excludeExhibits.push(addedExhibit);
           return index;
@@ -99,7 +104,6 @@ function RewardsWidget({ station }: { station: TStation }) {
     return { cards, exhibits, excludes };
 
   }, []);
-  
   
   return (
     <div className="p-entities">
