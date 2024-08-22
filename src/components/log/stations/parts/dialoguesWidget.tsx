@@ -1,7 +1,5 @@
-import { LogContext } from 'contexts/logContext';
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { TObj, TObjAny } from 'utils/types/common';
 import { TDialoguesConfigs } from 'utils/types/runData';
 
 function DialoguesWidget({ id, dialoguesConfigs }: { id: string, dialoguesConfigs: TDialoguesConfigs }) {
@@ -32,6 +30,10 @@ function DialoguesWidget({ id, dialoguesConfigs }: { id: string, dialoguesConfig
         <div className="p-dialogue__options">
             {next.map((option, i) => {
               const isChosen = chosen === i;
+              let random = null;
+              if (randoms && randoms[i]) {
+                random = randoms[i];
+              }
 
               return (
                 <div className={`p-dialogue__option ${isChosen ? 'p-dialogue__option--chosen' : ''}`} key={i}>
@@ -40,6 +42,7 @@ function DialoguesWidget({ id, dialoguesConfigs }: { id: string, dialoguesConfig
                     ns="dialogues"
                     {..._props}
                   />
+                  {random}
                   </div>
               );
             })}
