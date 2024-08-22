@@ -604,6 +604,16 @@ html:lang(en) .c-entity__text {
   gap: 0.5em;
   flex-wrap: wrap;
 }
+.p-enemy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(var(--icon-size) * 2);
+}
+.p-enemy__text {
+  word-break: break-all;
+  font-size: 0.8em;
+}
 
 .p-base-mana {
   display: flex;

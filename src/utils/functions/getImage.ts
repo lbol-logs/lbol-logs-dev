@@ -63,6 +63,10 @@ function getEventImage(name: string): string {
   return _getImage('events', name);
 }
 
+function getEnemyImage(name: string): string {
+  return _getImage('enemies', name);
+}
+
 export {
   getImage,
   getCommonImage,
@@ -77,5 +81,6 @@ export {
   getResultImage,
   getSpellcardImage,
   getGapImage,
-  getEventImage
+  getEventImage,
+  getEnemyImage
 };
