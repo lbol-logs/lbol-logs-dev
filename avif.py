@@ -34,10 +34,10 @@ def icon(height, suffix=''):
     width = round(w / h * height)
     resized = original.resize((width, height), Image.LANCZOS)
 
-    resized2 = Image.new(resized.mode, (height, height), (0, 0, 0, 0))
-    left = round((height - width) / 2)
-    resized2.paste(resized, (left, 0))
-    resized = resized2
+    # resized2 = Image.new(resized.mode, (height, height), (0, 0, 0, 0))
+    # left = round((height - width) / 2)
+    # resized2.paste(resized, (left, 0))
+    # resized = resized2
 
     resized.save(rf'{dir}{dst}\{name}{suffix}.avif')
 

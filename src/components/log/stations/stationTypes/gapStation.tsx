@@ -8,7 +8,7 @@ import DialoguesWidget from '../parts/dialoguesWidget';
 import RewardsWidget from '../parts/rewardsWidget';
 
 function GapStation({ station }: { station: TStation }) {
-  const { Type, Data } = station;
+  const { Data } = station;
   const { Choice, Options, Choices } = Data as { Choice: string, Options: Array<string>, Choices: Array<TRange3> };
   const { t } = useTranslation();
 
