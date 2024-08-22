@@ -382,6 +382,11 @@ img {
   gap: 0.5em 1em;
 }
 
+.p-station__main--battle {
+  display: flex;
+  flex-direction: column;
+}
+
 .p-entities {
   flex: 1;
 }
@@ -605,6 +610,7 @@ html:lang(en) .c-entity__text {
 }
 
 .p-enemies {
+  align-self: center;
   display: flex;
   gap: 0.5em;
   flex-wrap: wrap;

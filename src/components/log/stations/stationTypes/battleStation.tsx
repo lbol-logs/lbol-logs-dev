@@ -31,7 +31,7 @@ function BattleStation({ station }: { station: TStation }) {
 
   return (
     <div className="p-station__body">
-      <div className="p-station__main">
+      <div className="p-station__main p-station__main--battle">
         <EnemyCards enemies={enemies} />
         <div className="c-station__stats">
           <RoundsWidget rounds={Rounds} />
