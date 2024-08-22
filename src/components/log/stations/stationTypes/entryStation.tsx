@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import { TObj, TObjAny } from 'utils/types/common';
 import { getNext, showRandom } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
+import EventHead from '../parts/eventHead';
 
 function EntryStation({ station }: { station: TStation }) {
   const { runData, configsData } = useContext(LogContext);
@@ -68,13 +69,7 @@ function EntryStation({ station }: { station: TStation }) {
     <div className="p-station__body">
       <div className="p-station__main">
         <div className="p-event">
-          <div className="p-event__head">
-            <LazyLoadImage2 className="p-event__img" callback={getEnemyImage} name="Eirin" width={size} height={size} alt={''} />
-            <div className="p-event__text">
-              <p className="p-event__title">{t(`${id}.Title`, { ns: 'events' })}</p>
-              <p className="p-event__host">{t(`${id}.Host`, { ns: 'events' })}</p>
-            </div>
-          </div>
+          <EventHead id={id} callback={getEnemyImage} name="Eirin" />
           <div className="p-event__body">
             {choices}
             {additionalElements}
