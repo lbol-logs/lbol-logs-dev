@@ -1,7 +1,7 @@
 {
   "YukariProvide": {
-    "line:04e7520": "「最近はよく徹夜していて、目の下にクマが出てしまったわ…」",
-    "line:049c1f2": "【渡す】<h>外の世界のアイクリーム</h>を渡し、<h>境界感知機</h>を手に入れる",
-    "line:06cd2f3": "【渡さない】何も起らない"
+    "line:04e7520": "\"I've been burning the midnight oil recently, there are dark circles under my eyes.\"",
+    "line:049c1f2": "[Gift] Give <h>Eye Cream From the Outside World</h>, gain <h>Border Sensor</h>.",
+    "line:06cd2f3": "[Refuse] Nothing happens."
   }
 }
