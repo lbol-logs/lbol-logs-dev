@@ -75,7 +75,8 @@ const logConfigs: Array<string> = [
   'cards',
   'enemyGroups',
   'dialogues',
-  'gap'
+  'gap',
+  'events'
 ];
 
 export {
