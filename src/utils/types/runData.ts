@@ -196,7 +196,7 @@ type TDialoguesConfig = {
   current: string,
   next: Array<string>,
   chosen: TRange3,
-  props?: TObjAny,
+  props?: Array<TObjAny>,
   randoms?: Array<JSX.Element>
 };
 type TDialoguesConfigs = Array<TDialoguesConfig>;
