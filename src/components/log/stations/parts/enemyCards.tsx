@@ -6,6 +6,8 @@ import { getEnemyImage } from 'utils/functions/getImage';
 function EnemyCards({ enemies }: { enemies: Array<string> }) {
   const { t } = useTranslation();
 
+  const size = iconSize * 2;
+
   return (
     <div className="p-enemies">
       {enemies.map((enemy, i) => {
@@ -24,7 +26,7 @@ function EnemyCards({ enemies }: { enemies: Array<string> }) {
 
         return (
           <div className="p-enemy" key={i}>
-            <LazyLoadImage2 className="p-enemy__img" callback={getEnemyImage} name={name} width={iconSize * 2} height={iconSize * 2} alt="" />
+            <LazyLoadImage2 className="p-enemy__img" callback={getEnemyImage} name={name} width={size} height={size} alt="" />
             <span className="p-enemy__text">{t(name, { ns: 'enemies' })}</span>
           </div>
         );
