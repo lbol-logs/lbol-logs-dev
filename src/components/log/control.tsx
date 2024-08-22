@@ -7,6 +7,7 @@ import { getCommonImage, getControlImage } from 'utils/functions/getImage';
 import { Trans, useTranslation } from 'react-i18next';
 import { iconSize } from 'configs/globals';
 import useControl from 'hooks/useControl';
+import { showRandom } from 'utils/functions/helpers';
 
 function Control() {
   const { isRunDataLoaded, runData, act, setAct, level, setLevel, showMap, setShowMap } = useContext(LogContext);
@@ -46,7 +47,7 @@ function Control() {
         <Trans
           i18nKey="ShowRandomResult"
           ns="log"
-          context={runData.Settings.ShowRandomResult.toString()}
+          context={showRandom(runData).toString()}
         />
       </span>
     );

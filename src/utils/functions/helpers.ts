@@ -59,6 +59,14 @@ function getSameExhibitIndex(exhibits: Array<TExhibitObj | TExhibit>, exhibit: T
   else return (exhibits as TExhibitObjs).findIndex(({ Id }) => Id === id);
 }
 
+function showRandom(runData: TRunData): boolean {
+  return runData.Settings.ShowRandomResult;
+}
+
+function getNext(next: TObjAny): Array<string> {
+  return Object.values(next).map(({ current }) => current);
+}
+
 export {
   checkForce,
   validateRunData,
@@ -69,5 +77,7 @@ export {
   toggleIsChecked,
   getCurrentLevel,
   getSameCardIndex,
-  getSameExhibitIndex
+  getSameExhibitIndex,
+  showRandom,
+  getNext
 };
