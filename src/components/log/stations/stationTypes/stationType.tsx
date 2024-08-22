@@ -3,6 +3,7 @@ import BattleStation from './battleStation';
 import TempStation from './tempStation';
 import EventStation from './eventStation';
 import GapStation from './gapStation';
+import EntryStation from './entryStation';
 
 function StationType({ station }: { station: TStation }) {
   const { Type } = station;
@@ -19,9 +20,10 @@ function StationType({ station }: { station: TStation }) {
 		// Supply,
 		case 'Gap':
 			return <GapStation station={station} />;
+		case 'Entry':
+			return <EntryStation station={station} />;
 		// Shop,
 		// Adventure,
-		// Entry,
 		// Select,
 		// Trade,
 		default:
