@@ -84,24 +84,28 @@ function useHoldings({ level, currentHolding, setHoldingsHeight }: { level: TLev
           
           <div className="p-holdings__entities">
             <div className="p-holdings__cards">
-              <Trans
-                i18nKey="cardsCount"
-                ns="log"
-                values={{
-                  count: Cards.length
-                }}
-              />
+              <span className="p-holdings__count--cards">
+                <Trans
+                  i18nKey="cardsCount"
+                  ns="log"
+                  values={{
+                    count: Cards.length
+                  }}
+                />
+              </span>
               <CardCards cards={Cards} />
             </div>
 
             <div className="p-holdings__exhibits">
-              <Trans
-                i18nKey="exhibitsCount"
-                ns="log"
-                values={{
-                  count: Exhibits.length
-                }}
-              />
+              <span className="p-holdings__count--exhibits">
+                <Trans
+                  i18nKey="exhibitsCount"
+                  ns="log"
+                  values={{
+                    count: Exhibits.length
+                  }}
+                />
+              </span>
               <ExhibitCards exhibits={Exhibits} />
             </div>
           </div>
