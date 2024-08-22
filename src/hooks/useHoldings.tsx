@@ -82,30 +82,33 @@ function useHoldings({ level, currentHolding, setHoldingsHeight }: { level: TLev
             <BaseManaWidget baseMana={BaseMana} />
           </div>
           
+          <div className="p-holdings__counts">
+            <span className="p-holdings__count--cards">
+              <Trans
+                i18nKey="cardsCount"
+                ns="log"
+                values={{
+                  count: Cards.length
+                }}
+              />
+            </span>
+            <span className="p-holdings__count--exhibits">
+              <Trans
+                i18nKey="exhibitsCount"
+                ns="log"
+                values={{
+                  count: Exhibits.length
+                }}
+              />
+            </span>
+          </div>
+
           <div className="p-holdings__entities">
             <div className="p-holdings__cards">
-              <span className="p-holdings__count--cards">
-                <Trans
-                  i18nKey="cardsCount"
-                  ns="log"
-                  values={{
-                    count: Cards.length
-                  }}
-                />
-              </span>
               <CardCards cards={Cards} />
             </div>
 
             <div className="p-holdings__exhibits">
-              <span className="p-holdings__count--exhibits">
-                <Trans
-                  i18nKey="exhibitsCount"
-                  ns="log"
-                  values={{
-                    count: Exhibits.length
-                  }}
-                />
-              </span>
               <ExhibitCards exhibits={Exhibits} />
             </div>
           </div>
