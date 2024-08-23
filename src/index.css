@@ -382,11 +382,6 @@ img {
   gap: 0.5em 1em;
 }
 
-.p-station__main--battle {
-  display: flex;
-  flex-direction: column;
-}
-
 .p-entities {
   flex: 1;
 }
@@ -623,6 +618,7 @@ html:lang(en) .c-entity__text {
 }
 .p-enemy__text {
   font-size: 0.8em;
+  text-align: center;
 }
 
 .p-base-mana {
