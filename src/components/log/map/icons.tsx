@@ -6,6 +6,7 @@ import { getBossImage, getMapImage } from 'utils/functions/getImage';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import { useTranslation } from 'react-i18next';
+import { iconSize } from 'configs/globals';
 
 function Icons({ ActObj }: { ActObj: TActObj }) {
   const { runData, level } = useContext(LogContext);
@@ -57,8 +58,9 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
     if (X <= level) {
       const station = currentActStations.find(({ Level, Y: _y }) => Level === X && _y === Y);
       if (station) {
+        const size = iconSize / 2;
         visited = (
-          <LazyLoadImage2 className="c-map-icon__visited" callback={getMapImage} name={'Visited'} width="18" height="18" alt={t('stations.Visited', { ns: 'log' })} />
+          <LazyLoadImage2 className="c-map-icon__visited" callback={getMapImage} name={'Visited'} width={size} height={size} alt={t('stations.Visited', { ns: 'log' })} />
         );
         if (X === level) isActive = true;
       }
