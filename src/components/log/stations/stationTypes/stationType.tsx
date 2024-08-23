@@ -24,10 +24,12 @@ function StationType({ station }: { station: TStation }) {
 			return <EntryStation station={station} />;
 		case 'Select':
 			return <SelectStation station={station} />;
-// Supply,
+
+		// Supply,
 		// Shop,
 		// Adventure,
 		// Trade,
+		
 		default:
 			return <TempStation station={station} />;
 	}
