@@ -55,7 +55,7 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
         break;
       }
     case 'UpgradeBaota':
-      props.components = { h: <span className="u-orange">{}</span> };
+      props.components = { h: <span className="u-highlight">{}</span> };
       break;
   }
 

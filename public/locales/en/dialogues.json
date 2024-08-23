@@ -23,5 +23,12 @@
     "line:0d59ab2": "Gain <h>Robe of Fire Rat</h>.",
     "line:02f1bc3": "Gain <h>Swallow's Cowrie Shell</h>.",
     "line:04fa547": "Gain <h>Jeweled Branch of Hourai</h>"
+  },
+  "Select": {
+    "line:005887b": "Who do you think might have a clue to the culprit? <br /> <br />Choose your <h>opponent</h>, she will become the boss of the first act.",
+    "line:07e66de": "[{{0}}]",
+    "line:01fb81d": "[{{0}}]",
+    "line:02a4885": "[{{0}}]",
+    "line:0f2a3b5": "[Random Opponent] Gain an additional {{0}} <Power />."
   }
 }

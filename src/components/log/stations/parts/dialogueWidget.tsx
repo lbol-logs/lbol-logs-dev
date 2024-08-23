@@ -8,7 +8,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
   useTranslation();
 
   const components = {
-    h: <span className="u-orange">{}</span>,
+    h: <span className="u-highlight">{}</span>,
     l: <span className="c-dialogue__height">{}</span>
   };
   const commonProps = { components };

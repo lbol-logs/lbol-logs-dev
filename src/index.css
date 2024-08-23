@@ -1028,7 +1028,7 @@ html:lang(en) .p-result__type {
   flex-direction: column;
 }
 
-.u-orange {
+.u-highlight {
   color: var(--orange);
 }
 
