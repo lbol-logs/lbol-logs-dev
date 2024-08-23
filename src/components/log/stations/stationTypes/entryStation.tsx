@@ -6,7 +6,7 @@ import { getEnemyImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TObj, TObjAny } from 'utils/types/common';
+import { TObj, TObjAny, TObjNumber, TRange3 } from 'utils/types/common';
 import { getNext, showRandom } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import EventHead from '../parts/eventHead';
@@ -31,13 +31,21 @@ function EntryStation({ station }: { station: TStation }) {
 
   {
     const { current, next: _next } = configs[0];
-    const choices = ["0"];
-    if (hasBonus) choices.push("1", Options[0], Options[1]);
-    const next = getNext(_next);
-    let chosen = Choices[0];
-    if (chosen > 1) {
-      chosen = Options[chosen - 2] + 2;
+
+    let options = {
+      0: 0
+    };
+    if (hasBonus) {
+      options = Object.assign(options, {
+        1: 1,
+        2: Options[0] + 2,
+        3: Options[1] + 2
+      });
     }
+    const choices = Object.values(options);
+    const next = getNext(_next, choices);
+    const chosen = Choices[0];
+
     const props: Array<TObjAny> = [];
     const randoms: Array<JSX.Element> = [];
 
@@ -52,6 +60,8 @@ function EntryStation({ station }: { station: TStation }) {
       props,
       randoms
     };
+
+    advantages = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
   }
 
   const choices = (

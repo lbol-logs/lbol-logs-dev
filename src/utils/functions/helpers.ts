@@ -63,8 +63,17 @@ function showRandom(runData: TRunData): boolean {
   return runData.Settings.ShowRandomResult;
 }
 
-function getNext(next: TObjAny): Array<string> {
-  return Object.values(next).map(({ current }) => current);
+function getNext(next: TObjAny, choices?: Array<number>): Array<string> {
+  const array: Array<string> = [];
+  for (const [key, { current }] of Object.entries(next)) {
+    if (choices) {
+      if (choices.includes(Number(key))) array.push(current);
+    }
+    else {
+      array.push(current);
+    }
+  }
+  return array;
 }
 
 export {
