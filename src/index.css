@@ -888,12 +888,14 @@ html:lang(en) .p-result__type {
   width: fit-content;
 }
 .p-gap-choice, .p-dialogue__option {
-  display: flex;
-  align-items: flex-start;
-  column-gap: 0.5em;
   border-radius: 0.5em;
   padding: 0 0.5em;
   outline: 1px solid var(--black);
+}
+.p-gap-choice {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 0.5em;
 }
 .p-gap-choice--chosen, .p-dialogue__option--chosen {
   outline-width: 2px;
@@ -939,6 +941,10 @@ html:lang(en) .p-result__type {
 }
 .p-dialogue__option {
   flex-wrap: wrap;
+}
+.c-dialogue__height {
+  display: inline-block;
+  margin-bottom: 1em;
 }
 
 .p-event__head {

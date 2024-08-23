@@ -6,10 +6,11 @@ import { getEnemyImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TObj, TObjAny, TObjNumber, TRange3 } from 'utils/types/common';
+import { TObjAny } from 'utils/types/common';
 import { getNext, showRandom } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import EventHead from '../parts/eventHead';
+import { MoneyWidget } from '../parts/statuses';
 
 function EntryStation({ station }: { station: TStation }) {
   const { runData, configsData } = useContext(LogContext);
@@ -25,17 +26,20 @@ function EntryStation({ station }: { station: TStation }) {
   const eventConfigs = configsData.events[id];
   const configs = configsData.dialogues[id];
   const hasBonus = runData.Settings.HasClearBonus;
-  const rand = showRandom(runData);
 
   let advantages = null;
 
   {
+// Debug
+Options[0] = 0;
+Options[1] = 1;
+
     const { current, next: _next } = configs[0];
 
     let options = {
       0: 0
     };
-    if (hasBonus) {
+    if (hasBonus && Options) {
       options = Object.assign(options, {
         1: 1,
         2: Options[0] + 2,
@@ -49,8 +53,17 @@ function EntryStation({ station }: { station: TStation }) {
     const props: Array<TObjAny> = [];
     const randoms: Array<JSX.Element> = [];
 
-    if (rand) {
-    
+    if (hasBonus && showRandom(runData)) {
+      Object.entries(options).forEach(([key, option]) => {
+        const i = Number(key);
+        switch (option) {
+          case 0:
+            const values = { 0: eventConfigs.money };
+            const components = { Money: <MoneyWidget /> };
+            props[i] = { values, components };
+            break;
+        }
+      });
     }
 
     const dialogueConfigs: TDialogueConfigs = {

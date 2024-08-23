@@ -10,12 +10,11 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
   const components = {
     h: <span className="u-orange">{}</span>,
-    // TODO: line-height
+    l: <span className="c-dialogue__height">{}</span>
   };
   const commonProps = { components };
 
   const { current, next, chosen, props, randoms } = dialogueConfigs;
-  const _props = Object.assign(props || {}, commonProps);
 
   return (
     <div className="p-dialogue">
@@ -23,12 +22,16 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
         <Trans
           i18nKey={`${id}.${current}`}
           ns="dialogues"
-          {..._props}
+          {...commonProps}
         />
       </div>
       <div className="p-dialogue__options">
           {next.map((option, i) => {
             const isChosen = chosen === i;
+            let _props = commonProps;
+            if (props) {
+              _props = Object.assign(_props, props[i] || {});
+            }
             let random = null;
             if (randoms && randoms[i]) {
               random = randoms[i];
