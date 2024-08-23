@@ -693,7 +693,7 @@ html:lang(en) .c-entity__text {
   position: absolute;
   background: var(--light-orange);
   padding: 0.5em;
-  bottom: calc(100% + 1.2em);
+  bottom: calc(100% + 1.1em);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
