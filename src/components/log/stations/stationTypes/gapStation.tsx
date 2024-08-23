@@ -1,10 +1,10 @@
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { useTranslation } from 'react-i18next';
 import { getExhibitImage, getGapImage } from 'utils/functions/getImage';
-import { TDialoguesConfigs, TStation } from 'utils/types/runData';
+import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import GapDescriptions from '../parts/gapDescriptions';
 import { TObjString, TRange3 } from 'utils/types/common';
-import DialoguesWidget from '../parts/dialoguesWidget';
+import DialogueWidget from '../parts/dialogueWidget';
 import RewardsWidget from '../parts/rewardsWidget';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
@@ -29,14 +29,11 @@ function GapStation({ station }: { station: TStation }) {
     const next = getNext(_next);
     const chosen = Choices[0] === 2 ? 1 : Choices[0];
 
-    const dialoguesConfigs: TDialoguesConfigs = [
-      {
-        id,
-        current,
-        next,
-        chosen
-      }
-    ];
+    const dialogueConfigs: TDialogueConfigs = {
+      current,
+      next,
+      chosen
+    };
 
     littleChat = (
       <div className="p-gap-little-chat">
@@ -45,7 +42,9 @@ function GapStation({ station }: { station: TStation }) {
           <LazyLoadImage2 className="p-gap-little-chat__exhibit-2" callback={getExhibitImage} name={exhibit2} alt={t(exhibit2, { ns: 'exhibits' })} />
           <span className="p-gap-little-chat__text">{title}</span>
         </p>
-        <DialoguesWidget id={id} dialoguesConfigs={dialoguesConfigs} />
+        <div className="p-dialogues">
+          <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />
+        </div>
       </div>
     )
   }

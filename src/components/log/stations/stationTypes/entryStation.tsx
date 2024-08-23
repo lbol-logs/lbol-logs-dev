@@ -1,10 +1,10 @@
-import { TDialoguesConfigs, TStation } from 'utils/types/runData';
+import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import CurrentChange from '../currentChange';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { useTranslation } from 'react-i18next';
 import { getEnemyImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
-import DialoguesWidget from '../parts/dialoguesWidget';
+import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObj, TObjAny } from 'utils/types/common';
 import { getNext, showRandom } from 'utils/functions/helpers';
@@ -20,47 +20,45 @@ function EntryStation({ station }: { station: TStation }) {
   if (!Data) return null;
 
   const { Choices, Options } = Data;
+
   const id = 'Debut';
   const eventConfigs = configsData.events[id];
   const configs = configsData.dialogues[id];
-  
-  const randoms: Array<TObj<JSX.Element>> = [];
+  const hasBonus = runData.Settings.HasClearBonus;
+  const rand = showRandom(runData);
 
-  const dialoguesConfigs: TDialoguesConfigs = [];
+  let advantages = null;
+
   {
     const { current, next: _next } = configs[0];
+    const choices = ["0"];
+    if (hasBonus) choices.push("1", Options[0], Options[1]);
     const next = getNext(_next);
-    const chosen = Choices[0];
+    let chosen = Choices[0];
+    if (chosen > 1) {
+      chosen = Options[chosen - 2] + 2;
+    }
     const props: Array<TObjAny> = [];
     const randoms: Array<JSX.Element> = [];
 
-    if (showRandom(runData)) {
+    if (rand) {
     
     }
 
-    dialoguesConfigs.push({
-      id,
+    const dialogueConfigs: TDialogueConfigs = {
       current,
       next,
       chosen,
       props,
       randoms
-    });
-  }
-
-  let c1 = Choices[1];
-  if (c1 > 1) {
-    c1 = Options[c1 - 1] + 2;
+    };
   }
 
   const choices = (
-    <div>
+    <div className="p-dialogues">
+      {advantages}
       {/* <DialoguesWidget id={id} choices={choicesOverride} randoms={randoms} /> */}
     </div>
-  );
-
-  const additionalElements = (
-    null
   );
 
   const size = iconSize * 2;
@@ -72,7 +70,6 @@ function EntryStation({ station }: { station: TStation }) {
           <EventHead id={id} callback={getEnemyImage} name="Eirin" />
           <div className="p-event__body">
             {choices}
-            {additionalElements}
           </div>
         </div>
       </div>

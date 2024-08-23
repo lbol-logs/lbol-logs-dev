@@ -191,15 +191,13 @@ enum ExhibitsEnhanceDrinkTea {
   HuangyouJiqiren = 'HuangyouJiqiren'
 };
 
-type TDialoguesConfig = {
-  id: string,
+type TDialogueConfigs = {
   current: string,
   next: Array<string>,
   chosen: TRange3,
   props?: Array<TObjAny>,
   randoms?: Array<JSX.Element>
 };
-type TDialoguesConfigs = Array<TDialoguesConfig>;
 
 export type {
   TRunData,
@@ -234,7 +232,7 @@ export type {
   TBaseManaObj,
   THoldingChange,
   TRequests,
-  TDialoguesConfigs
+  TDialogueConfigs
 };
 
 export {
