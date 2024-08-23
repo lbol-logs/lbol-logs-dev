@@ -26,7 +26,7 @@ function Filter() {
   const {
     showStartingExhibits,
     showSwappedExhibits,
-    showRequets,
+    showRequests,
     difficultyConfigs,
     resultConfigs,
     characters,
@@ -101,7 +101,7 @@ function Filter() {
       <div className="p-filter__row">
         <div className="p-filter__label">{t('requests', { ns: 'runList' })}</div>
         <div className="p-filter__values u-flex-col">
-          <RequestsTypes onRequestsTypesChange={onRequestsTypesChange} onRequestsChange={onCheckboxChange} showRequets={showRequets} />
+          <RequestsTypes onRequestsTypesChange={onRequestsTypesChange} onRequestsChange={onCheckboxChange} showRequests={showRequests} />
         </div>
       </div>
       <div className="p-filter__row">

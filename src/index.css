@@ -934,6 +934,9 @@ html:lang(en) .p-result__type {
   margin-left: var(--size);
 }
 
+.p-dialogue {
+  margin-bottom: 1em;
+}
 .p-dialogue__question {
   font-weight: bold;
   margin-bottom: 1em;
@@ -945,6 +948,11 @@ html:lang(en) .p-result__type {
 .c-dialogue__height {
   display: inline-block;
   margin-bottom: 1em;
+}
+.c-dialogue__random {
+  display: flex;
+  column-gap: 0.5em;
+  align-items: flex-start;
 }
 
 .p-event__head {

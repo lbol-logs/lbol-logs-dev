@@ -8,7 +8,7 @@ function RequestsWidget({ requests, onChange }: { requests: TRequests, onChange?
   const { t } = useTranslation();
   const { configsData } = useContext(CommonContext);
 
-  const requestConfigs: TRequests = configsData.requests as TRequests;
+  const requestConfigs: TRequests = Object.keys(configsData.requests) as TRequests;
 
   return (
     <div className="c-requests">

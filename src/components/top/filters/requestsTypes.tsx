@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import DefaultFilter from 'utils/classes/DefaultFilter';
 import { TFilterRadio } from 'utils/types/others';
 
-function RequestsTypes({ onRequestsTypesChange, onRequestsChange, showRequets }: { onRequestsTypesChange: ChangeEventHandler, onRequestsChange: ChangeEventHandler, showRequets: boolean }) {
+function RequestsTypes({ onRequestsTypesChange, onRequestsChange, showRequests }: { onRequestsTypesChange: ChangeEventHandler, onRequestsChange: ChangeEventHandler, showRequests: boolean }) {
   const { t } = useTranslation();
   const { filter } = useContext(RunListContext);
   const { rt } = filter as TFilterRadio;
@@ -15,7 +15,7 @@ function RequestsTypes({ onRequestsTypesChange, onRequestsChange, showRequets }:
   const defaultType = DefaultFilter.check(keys.rt);
   const values = ['both', 'inactive', 'active'];
   let requestsInput = null;
-  if (showRequets) {
+  if (showRequests) {
     requestsInput = (
       <RequestsWidget requests={rq || DefaultFilter.get(keys.rq)} onChange={onRequestsChange} />
     )

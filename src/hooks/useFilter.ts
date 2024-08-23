@@ -14,7 +14,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
 
   const [showStartingExhibits, setShowStartingExhibits] = useState(false);
   const [showSwappedExhibits, setShowSwappedExhibits] = useState(false);
-  const [showRequets, seteShowRequets] = useState(false);
+  const [showRequests, seteShowRequests] = useState(false);
 
   const characterConfigs = configsData.characters;
   const exhibitConfigs = configsData.exhibits;
@@ -124,7 +124,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   }
 
   function reflectRequestsTypes(value: string) {
-    seteShowRequets(value === DefaultFilter.rt.active);
+    seteShowRequests(value === DefaultFilter.rt.active);
   }
 
   function apply(e: MouseEvent<HTMLButtonElement>) {
@@ -177,7 +177,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   return {
     showStartingExhibits,
     showSwappedExhibits,
-    showRequets,
+    showRequests,
     difficultyConfigs,
     resultConfigs,
     characters,

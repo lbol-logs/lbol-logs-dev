@@ -10,7 +10,7 @@ function EventHead({ id, callback, name }: { id: string, callback?: Function, na
 
   return (
     <div className="p-event__head">
-      <LazyLoadImage2 className="p-event__img" callback={callback || getEventImage} name={name || id} width={size} height={size} alt={''} />
+      <LazyLoadImage2 className="p-event__img" callback={callback || getEventImage} name={name || id} width={size} height={size} alt="" />
       <div className="p-event__text">
         <p className="p-event__title">{t(`${id}.Title`, { ns: 'events' })}</p>
         <p className="p-event__host">{t(`${id}.Host`, { ns: 'events' })}</p>

@@ -3,6 +3,7 @@ import { ReactNode, useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { TObjAny } from 'utils/types/common';
 import { MoneyWidget, PowerWidget } from './statuses';
+import { applyRate } from 'utils/functions/helpers';
 
 function GapDescription({ option, maxhp, children }: { option: string, maxhp?: number, children?: ReactNode }) {
   const { configsData } = useContext(LogContext);
@@ -14,8 +15,9 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
   switch(option) {
     case 'DrinkTea':
       {
-        const { Rate } = config;
-        const Value = Math.round((maxhp as number) * Rate / 100);
+        const { Rate: rate } = config;
+        const Rate = rate * 100;
+        const Value = applyRate(maxhp as number, rate);
         props.values = { Rate, Value };
         break;
       }

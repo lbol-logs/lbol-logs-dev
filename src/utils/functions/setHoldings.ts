@@ -1,8 +1,8 @@
-import { eventsConvertBaseMana, ExhibitsWithCounter, requestsWithStartCard, RequestsWithStartCard, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
+import { eventsConvertBaseMana, ExhibitsWithCounter, RequestTypes, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
 import { copyObject } from 'utils/functions/helpers';
 
-function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldings: THoldingsReducer, exhibitConfigs: TObjAny) {
+function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfigs, requestConfigs }: { runData: TRunData, dispatchHoldings: THoldingsReducer, characterConfigs: TObjAny, exhibitConfigs: TObjAny, requestConfigs: TObjAny }) {
   const { Stations } = runData;
   const { Character, PlayerType } = runData.Settings;
   const { BaseMana, [PlayerType]: { Cards, Exhibit } } = characterConfigs[Character];
@@ -46,8 +46,9 @@ function setHoldings(runData: TRunData, characterConfigs: TObjAny, dispatchHoldi
       actions.push(action);
     }
 
-    if (runData.Settings.Requests.includes(RequestsWithStartCard.StartMisfortune.toString())) {
-      const Id = requestsWithStartCard.StartMisfortune;
+    const StartMisfortune = RequestTypes.StartMisfortune.toString();
+    if (runData.Settings.Requests.includes(StartMisfortune)) {
+      const Id = requestConfigs[StartMisfortune];
       const action: THoldingAction = {
         type: 'Card',
         change: {

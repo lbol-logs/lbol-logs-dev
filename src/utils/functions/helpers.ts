@@ -76,6 +76,18 @@ function getNext(next: TObjAny, choices?: Array<number>): Array<string> {
   return array;
 }
 
+function convertCard(Id: string, IsUpgraded: boolean = false): TCard {
+  return { Id, IsUpgraded };
+}
+
+function convertCards(Ids: Array<string>, IsUpgraded: boolean = false): TCards {
+  return Ids.map(Id => convertCard(Id, IsUpgraded));
+}
+
+function applyRate(n: number, rate: number) {
+  return Math.round((n as number) * rate);
+}
+
 export {
   checkForce,
   validateRunData,
@@ -88,5 +100,8 @@ export {
   getSameCardIndex,
   getSameExhibitIndex,
   showRandom,
-  getNext
+  getNext,
+  convertCard,
+  convertCards,
+  applyRate
 };

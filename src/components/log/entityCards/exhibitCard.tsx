@@ -5,7 +5,7 @@ import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getExhibitImage } from 'utils/functions/getImage';
 import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
 
-function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj | TExhibitChange, isNotAdded: boolean }) {
+function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj | TExhibitChange, isNotAdded?: boolean }) {
   const { configsData } = useContext(CommonContext);
   const { t } = useTranslation();
 

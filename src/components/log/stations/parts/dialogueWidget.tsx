@@ -1,5 +1,7 @@
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { ReactNode } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { getCommonImage } from 'utils/functions/getImage';
 import { TDialogueConfigs } from 'utils/types/runData';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
@@ -34,7 +36,12 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             }
             let random = null;
             if (randoms && randoms[i]) {
-              random = randoms[i];
+              random = (
+                <span className="c-dialogue__random">
+                  <LazyLoadImage2 callback={getCommonImage} name="Reveal" alt="" />
+                  {randoms[i]}
+                </span>
+              );
             }
 
             return (

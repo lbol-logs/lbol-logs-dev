@@ -14,8 +14,11 @@ function useRunData(id: string)  {
   const { version, configsData } = useContext(CommonContext);
   const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData } = useContext(LogContext);
 
-  const characterConfigs = configsData.characters;
-  const exhibitConfigs = configsData.exhibits;
+  const {
+    characters: characterConfigs,
+    exhibits: exhibitConfigs,
+    requests: requestConfigs
+  } = configsData;
 
   let isValidRunData = false;
   const runData = use(getLog(version, id)) as TRunData;
@@ -31,14 +34,14 @@ function useRunData(id: string)  {
     if (isValidRunData) {
       setRunDataId(id);
       setRunData(runData);
-      if (exhibitConfigs !== undefined && characterConfigs !== undefined) {
-        const ignoredPaths = setHoldings(runData, characterConfigs, dispatchHoldings, exhibitConfigs);
+      if (exhibitConfigs !== undefined && characterConfigs !== undefined && requestConfigs !== undefined) {
+        const ignoredPaths = setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfigs, requestConfigs });
         setIgnoredPaths(ignoredPaths);
       }
       setConfigsData(currentConfigs);
       setIsRunDataLoaded(true);
     }
-  }, [isValidRunData, runData, exhibitConfigs, characterConfigs]);
+  }, [isValidRunData, runData, exhibitConfigs, characterConfigs, requestConfigs]);
 
   let redirect = null;
   if (!isValidRunData) redirect = <Navigate to="/" replace />;

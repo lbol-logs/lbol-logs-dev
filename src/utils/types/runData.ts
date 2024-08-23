@@ -152,12 +152,9 @@ type THoldingAction = {
 };
 type THoldingsReducer = Dispatch<ReducerAction<(holdings: THoldings, action: THoldingAction) => THoldings>>;
 
-enum RequestsWithStartCard {
+enum RequestTypes {
+  HalfDrug = 'HalfDrug',
   StartMisfortune = 'StartMisfortune'
-};
-
-const requestsWithStartCard = {
-  StartMisfortune: 'Zhukeling'
 };
 
 const eventsConvertBaseMana = {
@@ -236,8 +233,7 @@ export type {
 };
 
 export {
-  RequestsWithStartCard,
-  requestsWithStartCard,
+  RequestTypes,
   eventsConvertBaseMana,
   CardsWithUpgradeCounter,
   ExhibitsWithCounter,
