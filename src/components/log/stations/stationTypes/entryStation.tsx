@@ -20,7 +20,7 @@ function EntryStation({ station }: { station: TStation }) {
   const { runData, configsData } = useContext(LogContext);
   const { HasClearBonus, Requests } = runData.Settings;
 
-  const { Data, Node: { Level }} = station;
+  const { Data } = station;
 
   if (!Data) return null;
 
@@ -122,7 +122,7 @@ function EntryStation({ station }: { station: TStation }) {
   }
 
   {
-    const { red, blue, rate } = eventConfigs;
+    const { red, blue } = eventConfigs;
     const { current, next: options } = configs[1];
 
     const next = getNext(options);
@@ -190,8 +190,6 @@ function EntryStation({ station }: { station: TStation }) {
       {secretTreasures}
     </div>
   );
-
-  const size = iconSize * 2;
 
   return (
     <div className="p-station__body">

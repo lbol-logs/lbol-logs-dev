@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { getExhibitImage, getGapImage } from 'utils/functions/getImage';
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import GapDescriptions from '../parts/gapDescriptions';
-import { TObjString, TRange3 } from 'utils/types/common';
+import { TRange3 } from 'utils/types/common';
 import DialogueWidget from '../parts/dialogueWidget';
 import RewardsWidget from '../parts/rewardsWidget';
 import { useContext } from 'react';

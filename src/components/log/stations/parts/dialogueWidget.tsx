@@ -1,5 +1,4 @@
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { ReactNode } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
 import { TDialogueConfigs } from 'utils/types/runData';
@@ -7,8 +6,6 @@ import { TDialogueConfigs } from 'utils/types/runData';
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
 
   useTranslation();
-
-  const dialogues: Array<ReactNode> = [];
 
   const components = {
     h: <span className="u-orange">{}</span>,

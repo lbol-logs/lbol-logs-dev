@@ -622,7 +622,6 @@ html:lang(en) .c-entity__text {
   width: calc(var(--icon-size) * 2);
 }
 .p-enemy__text {
-  word-break: break-all;
   font-size: 0.8em;
 }
 

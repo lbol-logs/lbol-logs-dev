@@ -26,7 +26,7 @@ function Stations() {
       const selector = showMap ? '.js-map' : '.js-holdings';
       const element = document.querySelector(selector) as HTMLDivElement;
       if (!element) return;
-      const levels = stations.map(({ Node: { Level }}) => Level);
+      const levels = stations.map(({ Node: { Level } }) => Level);
       for (const level of levels.reverse()) {
         const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
         if (!station || !element) break;

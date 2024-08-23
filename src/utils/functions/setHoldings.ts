@@ -179,7 +179,7 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
   const sortedActions: Array<THoldingAction> = [];
   // Add missing stations
   for (const { Node: { Act, Level, Y } } of Stations) {
-    const currentActions = actions.filter(({ change: { Station: { Act: _act, Level: _level } }}) => Act === _act && Level === _level);
+    const currentActions = actions.filter(({ change: { Station: { Act: _act, Level: _level } } }) => Act === _act && Level === _level);
     if (currentActions.length) {
       sortedActions.push(...currentActions);
     }
