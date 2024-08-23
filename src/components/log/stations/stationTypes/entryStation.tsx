@@ -1,5 +1,4 @@
 import { RequestTypes, TDialogueConfigs, TStation } from 'utils/types/runData';
-import CurrentChange from '../currentChange';
 import { getEnemyImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 import DialogueWidget from '../parts/dialogueWidget';
@@ -14,6 +13,7 @@ import CardCards from 'components/log/entityCards/cardCards';
 import CardCard from 'components/log/entityCards/cardCard';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { CommonContext } from 'contexts/commonContext';
+import RewardsWidget from '../parts/rewardsWidget';
 
 function EntryStation({ station }: { station: TStation }) {
   const { configsData: { requests: requestConfigs } } = useContext(CommonContext);
@@ -131,7 +131,6 @@ function EntryStation({ station }: { station: TStation }) {
     const props: Array<TObjAny> = [];
 
     const HalfDrug = RequestTypes.HalfDrug.toString();
-    console.log(requestConfigs);
     const x = Requests.includes(HalfDrug) ? requestConfigs[HalfDrug] : 1;
 
     Object.keys(options).forEach(key => {
@@ -164,12 +163,21 @@ function EntryStation({ station }: { station: TStation }) {
   {
     const chosen = Choices[2];
     if (chosen !== undefined) {
-    const size = iconSize * 2;
+      const { current, next: options } = configs[2];
+      const next = getNext(options);
+
+      const dialogueConfigs: TDialogueConfigs = {
+        current,
+        next,
+        chosen,
+      };
+
+      const size = iconSize * 2;
 
       secretTreasures = (
         <>
           <LazyLoadImage2 className="p-event__img" callback={getEnemyImage} name="Kaguya" width={size} height={size} alt="" />
-          {/* <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} /> */}
+          <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />
         </>
       );
     }
@@ -195,9 +203,7 @@ function EntryStation({ station }: { station: TStation }) {
           </div>
         </div>
       </div>
-      <div className="p-entities">
-        <CurrentChange level={Level} />
-      </div>
+      <RewardsWidget station={station} />
     </div>
   );
 }
