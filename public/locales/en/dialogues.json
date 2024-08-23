@@ -3,5 +3,25 @@
     "line:04e7520": "\"I've been burning the midnight oil recently, there are dark circles under my eyes.\"",
     "line:049c1f2": "[Gift] Give <h>Eye Cream From the Outside World</h>, gain <h>Border Sensor</h>.",
     "line:06cd2f3": "[Refuse] Nothing happens."
+  },
+  "Debut": {
+    "line:06f5f1b": "<l>\"Feel free to take anything you need.\"</l><br />Choose one <h>Advantage</h> (Passing the Bamboo Forest will bring additional options).",
+    "line:01d41f9": "[Sponsor] Gain {{0}} <Money />.",
+    "line:0f87a81": "[Swap] Lose starting Exhibit and gain a random Shining Exhibit.",
+    "line:05100b8": "[Recall] From 3 random Uncommon cards, choose one to add to the library.",
+    "line:097011d": "[Enlighten] Add a random Rare card to the library.",
+    "line:02cfa2c": "[Trade] Lose all money, gain a random Rare Exhibit.",
+    "line:00b97f5": "[Training] Choose 1 card to Upgrade.",
+    "line:0b72af3": "[Relieve] Choose a card from the library to remove.",
+    "line:067ea40": "[Alter] Choose a card from the library to transform.",
+    "line:0e0ea19": "<l> \"Here's some medicine I've carefully prepared.\"</l><br />Take a <h>Pill</h>.",
+    "line:045177b": "[Red Pill] Gain {{0}} <Power />.",
+    "line:0a8b17e": "[Blue Pill] Gain {{0}} maximum life.",
+    "line:0e2540a": "<l>\"For the success of the mission, take an item to your liking.\"</l><br />Choose one <h>Secret Treasure</h> (Easy Difficulty extra bonus).",
+    "line:0a20386": "Gain <h>Jewel from the Dragon's Neck</h>.",
+    "line:0d20cc9": "Gain <h>Buddha's Stone Bowl</h>.",
+    "line:0d59ab2": "Gain <h>Robe of Fire Rat</h>.",
+    "line:02f1bc3": "Gain <h>Swallow's Cowrie Shell</h>.",
+    "line:04fa547": "Gain <h>Jeweled Branch of Hourai</h>"
   }
 }
