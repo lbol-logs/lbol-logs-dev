@@ -22,6 +22,9 @@ function BattleDetails({ details }: { details: Array<TObjAny> }) {
         return (
           <div className="p-battle-details__row" key={i}>
             <span className="p-battle-details__round">{Round}</span>
+            <div className="p-battle-details__body">
+              {unit}
+            </div>
           </div>
         );
       })}

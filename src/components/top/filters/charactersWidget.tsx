@@ -1,11 +1,9 @@
 import { ChangeEventHandler, useContext } from 'react';
-import { useTranslation } from 'react-i18next';
 import { RunListContext } from 'contexts/runListContext';
 import { toggleIsChecked } from 'utils/functions/helpers';
 import CharacterImage from 'components/common/parts/CharacterImage';
 
 function CharactersWidget({ onChange, characters }: { onChange: ChangeEventHandler, characters: Array<string> }) {
-  const { t } = useTranslation();
   const { filter } = useContext(RunListContext);
   const { ch } = filter;
 
