@@ -366,7 +366,7 @@ img {
   width: 4.5em;
 }
 .p-station__statuses {
-  display: contents;
+  display: flex;
 }
 .p-station__status {
   display: flex;
