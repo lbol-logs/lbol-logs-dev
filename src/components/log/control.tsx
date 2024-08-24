@@ -5,7 +5,6 @@ import Loading from 'components/common/layouts/loading';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage, getControlImage } from 'utils/functions/getImage';
 import { Trans, useTranslation } from 'react-i18next';
-import { iconSize } from 'configs/globals';
 import useControl from 'hooks/useControl';
 import { showRandom } from 'utils/functions/helpers';
 

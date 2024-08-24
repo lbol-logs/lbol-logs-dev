@@ -1,12 +1,9 @@
 import ExhibitImage from 'components/common/parts/exhibitImage';
 import GapDescription from 'components/log/stations/parts/gapDescription';
 import { useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import { ExhibitsEnhanceDrinkTea, THolding, THoldings, TNodeObj, TRunData } from 'utils/types/runData';
 
 function useGap({ option, runData, holdings, Node }: { option: string, runData: TRunData, holdings: THoldings, Node: TNodeObj }) {
-  const { t } = useTranslation();
-
   const additionalDescRef = useRef<Array<JSX.Element>>([]);
 
   const currentHolding = holdings.find(({ Act, Level }) => Act === Node.Act && Level === Node.Level) as THolding;

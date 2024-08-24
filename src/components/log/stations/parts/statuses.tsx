@@ -1,10 +1,7 @@
-import { useTranslation } from 'react-i18next';
 import { TStatus } from 'utils/types/runData';
 import { HpImage, MoneyImage, PowerImage } from './stationImages';
 
 function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus }) {
-  const { t } = useTranslation();
-
   const { Hp, MaxHp } = status;
 
   function getValuWithChange(key: keyof TStatus) {
