@@ -1,6 +1,7 @@
 body {
   margin: 0;
   overflow-y: scroll;
+  background: var(--white);
 }
 a {
   text-decoration: none;
