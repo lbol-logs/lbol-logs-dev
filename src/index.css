@@ -346,7 +346,7 @@ img {
   flex: 1;
 }
 .p-station {
-  margin-bottom: 2em;
+  padding: 1em 0;
 }
 
 .p-station--last {
@@ -426,10 +426,13 @@ img {
 
 .c-status {
   position: relative;
+  line-height: 1em;
 }
 .c-status__change {
   position: absolute;
   font-size: 0.8em;
+  right: 0;
+  bottom: 100%;
 }
 .c-status__change--positive {
   color: var(--green);
