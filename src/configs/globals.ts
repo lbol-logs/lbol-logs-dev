@@ -79,6 +79,10 @@ const logConfigs: Array<string> = [
   'events'
 ];
 
+const enemiesShowDetails: Array<string> = [
+  'Seija'
+];
+
 export {
   languages,
   namespaces,
@@ -95,5 +99,6 @@ export {
   scrollTolerance,
   defaultHoldingsHeight,
   commonConfigs,
-  logConfigs
+  logConfigs,
+  enemiesShowDetails
 };

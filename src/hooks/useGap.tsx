@@ -1,8 +1,7 @@
-import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
+import ExhibitImage from 'components/common/parts/exhibitImage';
 import GapDescription from 'components/log/stations/parts/gapDescription';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getExhibitImage } from 'utils/functions/getImage';
 import { ExhibitsEnhanceDrinkTea, THolding, THoldings, TNodeObj, TRunData } from 'utils/types/runData';
 
 function useGap({ option, runData, holdings, Node }: { option: string, runData: TRunData, holdings: THoldings, Node: TNodeObj }) {
@@ -29,7 +28,7 @@ function useGap({ option, runData, holdings, Node }: { option: string, runData: 
 
             additionalDesc.push(
               <GapDescription option={additionalOption} key={additionalOption}>
-                <LazyLoadImage2 className="c-exhibit__img u-img-vertical-align" callback={getExhibitImage} name={exhibit} alt={t(exhibit, { ns: 'exhibits' })} />
+                <ExhibitImage className="c-exhibit__img u-img-vertical-align" exhibit={exhibit} />
               </GapDescription>
             );
           }

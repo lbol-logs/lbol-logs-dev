@@ -1,9 +1,8 @@
 import { CommonContext } from 'contexts/commonContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { getExhibitImage } from 'utils/functions/getImage';
 import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
+import ExhibitImage from 'components/common/parts/exhibitImage';
 
 function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj | TExhibitChange, isNotAdded?: boolean }) {
   const { configsData } = useContext(CommonContext);
@@ -27,7 +26,7 @@ function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj 
 
   return (
     <span className={`c-entity c-entity--${Rarity} ${isNotAdded === true ? 'c-entity--not-added' : ''} c-exhibit`}>
-      <LazyLoadImage2 className="c-exhibit__img" callback={getExhibitImage} name={Id} alt="" />
+      <ExhibitImage className="c-exhibit__img" exhibit={Id} alt="" />
       <span className="c-entity__text c-exhibit__text">{t(Id, { ns: 'exhibits' })}</span>
       {counter}
     </span>

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { TStatus } from 'utils/types/runData';
-import { HpWidget, MoneyWidget, PowerWidget } from './stationWidgets';
+import { HpImage, MoneyImage, PowerImage } from './stationImages';
 
 function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus }) {
   const { t } = useTranslation();
@@ -43,15 +43,15 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
   return (
     <div className="p-station__statuses">
       <div className="p-station__status p-station__status--hp">
-        <HpWidget hpImage={hpImage} />
+        <HpImage hpImage={hpImage} />
         {getValuWithChange('Hp')}/{getValuWithChange('MaxHp')}
       </div>
       <div className="p-station__status p-station__status--power">
-        <PowerWidget />
+        <PowerImage />
         {getValuWithChange('Power')}/{getValuWithChange('MaxPower')}
       </div>
       <div className="p-station__status p-station__status--money">
-        <MoneyWidget />
+        <MoneyImage />
         {getValuWithChange('Money')}
       </div>
     </div>

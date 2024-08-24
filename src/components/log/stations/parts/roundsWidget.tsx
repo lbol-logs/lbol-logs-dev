@@ -1,10 +1,10 @@
-import { RoundWidget } from './stationWidgets';
+import { RoundImage } from './stationImages';
 
 function RoundsWidget({ rounds }: { rounds: number }) {
 
   return (
     <span className="c-station__rounds">
-      <RoundWidget />
+      <RoundImage />
       {rounds}
     </span>
   );

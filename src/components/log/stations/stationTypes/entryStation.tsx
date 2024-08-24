@@ -7,7 +7,7 @@ import { TObjAny } from 'utils/types/common';
 import { applyRate, convertCard, convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import EventHead from '../parts/eventHead';
-import { MoneyWidget, PowerWidget } from '../parts/stationWidgets';
+import { MoneyImage, PowerImage } from '../parts/stationImages';
 import ExhibitCard from 'components/log/entityCards/exhibitCard';
 import CardCards from 'components/log/entityCards/cardCards';
 import CardCard from 'components/log/entityCards/cardCard';
@@ -59,7 +59,7 @@ function EntryStation({ station }: { station: TStation }) {
       switch (option) {
         case 0: {
             const values = { 0: eventConfigs.money };
-            const components = { Money: <MoneyWidget /> };
+            const components = { Money: <MoneyImage /> };
             props[i] = { values, components };
             break;
         }
@@ -138,7 +138,7 @@ function EntryStation({ station }: { station: TStation }) {
       switch (i) {
         case 0: {
             const values = { 0: applyRate(red, x) };
-            const components = { Power: <PowerWidget /> };
+            const components = { Power: <PowerImage /> };
             props[i] = { values, components };
             break;
         }

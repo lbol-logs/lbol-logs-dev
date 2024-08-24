@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
-import {  PowerWidget } from '../parts/stationWidgets';
+import {  PowerImage } from '../parts/stationImages';
 import { useTranslation } from 'react-i18next';
 
 function SelectStation({ station }: { station: TStation }) {
@@ -34,7 +34,7 @@ function SelectStation({ station }: { station: TStation }) {
   });
   {
     const values = { 0: eventConfigs.power };
-    const components = { Power: <PowerWidget /> };
+    const components = { Power: <PowerImage /> };
     props[3] = { values, components };
   }
 

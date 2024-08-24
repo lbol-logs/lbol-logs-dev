@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
 import RoundsWidget from '../parts/roundsWidget';
 import CurrentChange from '../currentChange';
-import { MoneyWidget } from '../parts/stationWidgets';
+import { MoneyImage } from '../parts/stationImages';
 
 function TempStation({ station }: { station: TStation }) {
   const { Data, Id, Rewards, Node: { Level } } = station;
@@ -39,7 +39,7 @@ function TempStation({ station }: { station: TStation }) {
 
     money = (
       <span className="c-station__money">
-        <MoneyWidget />
+        <MoneyImage />
         {Money}
       </span>
     );

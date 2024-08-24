@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { TDialogueConfigs } from 'utils/types/runData';
-import { RevealWidget } from './stationWidgets';
+import { RevealImage } from './stationImages';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
 
@@ -34,7 +34,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             if (randoms && randoms[i]) {
               random = (
                 <span className="c-dialogue__random">
-                  <RevealWidget />
+                  <RevealImage />
                   {randoms[i]}
                 </span>
               );

@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { getExhibitImage, getResultImage, getSpellcardImage } from 'utils/functions/getImage';
+import { getResultImage, getSpellcardImage } from 'utils/functions/getImage';
 import { resultSizes } from 'configs/globals';
 import { TObjAny } from 'utils/types/common';
+import ExhibitImage from './exhibitImage';
 
 function ResultWidget({ resultData }: { resultData: TObjAny }) {
   const { t } = useTranslation();
@@ -24,7 +25,7 @@ function ResultWidget({ resultData }: { resultData: TObjAny }) {
         {Difficulty}{requests}
       </span>
       <time className="p-result__timestamp" dateTime={Timestamp}>{date}</time>
-      <LazyLoadImage2 className="p-result__exhibit" callback={getExhibitImage} name={exhibit} alt={t(exhibit, { ns: 'exhibits' })} />
+      <ExhibitImage className="p-result__exhibit" exhibit={exhibit} />
       <LazyLoadImage2 className="p-result__background" callback={getResultImage} name="bg" width={bg} height={height} alt="" />
     </div>
   );
