@@ -61,10 +61,10 @@ def fit_width(width, suffix, append):
     resized.save(rf'{dir}{dst}\{name}{suffix}.avif')
 
 def icon(size, suffix=''):
-  # append = False
-  append = True
-  # fit_height(size, suffix, append)
-  fit_width(size, suffix, append)
+  append = False
+  # append = True
+  fit_height(size, suffix, append)
+  # fit_width(size, suffix, append)
 
 if __name__ == '__main__':
   arg = sys.argv[1]
