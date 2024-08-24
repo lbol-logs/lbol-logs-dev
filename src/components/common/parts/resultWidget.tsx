@@ -25,7 +25,7 @@ function ResultWidget({ resultData }: { resultData: TObjAny }) {
       </span>
       <time className="p-result__timestamp" dateTime={Timestamp}>{date}</time>
       <LazyLoadImage2 className="p-result__exhibit" callback={getExhibitImage} name={exhibit} alt={t(exhibit, { ns: 'exhibits' })} />
-      <LazyLoadImage2 className="p-result__background" callback={getResultImage} name={'bg'} width={bg} height={height} alt="" />
+      <LazyLoadImage2 className="p-result__background" callback={getResultImage} name="bg" width={bg} height={height} alt="" />
     </div>
   );
 }

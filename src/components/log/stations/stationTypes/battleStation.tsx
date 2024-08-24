@@ -4,7 +4,7 @@ import { LogContext } from 'contexts/logContext';
 import EnemyCards from '../parts/enemyCards';
 import RoundsWidget from '../parts/roundsWidget';
 import RewardsWidget from '../parts/rewardsWidget';
-import { MoneyWidget } from '../parts/statuses';
+import { MoneyWidget } from '../parts/stationWidgets';
 
 function BattleStation({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -18,7 +18,6 @@ function BattleStation({ station }: { station: TStation }) {
   if (Rewards) {
     money = (
       <span className="c-station__money">
-        {/* <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} /> */}
         <MoneyWidget />
         {Money}
       </span>

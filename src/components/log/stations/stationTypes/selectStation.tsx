@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
-import {  PowerWidget } from '../parts/statuses';
+import {  PowerWidget } from '../parts/stationWidgets';
 import { useTranslation } from 'react-i18next';
 
 function SelectStation({ station }: { station: TStation }) {

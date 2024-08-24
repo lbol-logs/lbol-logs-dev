@@ -65,7 +65,7 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
           return (
             <div className="p-entity p-entity--cards" key={i}>
               <div className="p-entity__label">
-                <LazyLoadImage2 callback={getCommonImage} name={'Card'} alt={t('card', { ns: 'common' })} />
+                <LazyLoadImage2 callback={getCommonImage} name="Card" alt={t('card', { ns: 'common' })} />
               </div>
               <CardCards cards={cards} added={added} />
             </div>
@@ -89,7 +89,7 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
       exhibits = (
         <div className="p-entity p-entity--exhibits">
           <div className="p-entity__label">
-            <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} alt={t('exhibit', { ns: 'common' })} />
+            <LazyLoadImage2 callback={getCommonImage} name="Exhibit" alt={t('exhibit', { ns: 'common' })} />
           </div>
           <ExhibitCards exhibits={Exhibits} added={added} />
         </div>

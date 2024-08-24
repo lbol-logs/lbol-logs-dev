@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { getCommonImage } from 'utils/functions/getImage';
 import { TStatus } from 'utils/types/runData';
+import { HpWidget, MoneyWidget, PowerWidget } from './stationWidgets';
 
 function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus }) {
   const { t } = useTranslation();
@@ -30,10 +29,10 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
     }
 
     return (
-      <>
-        <span className="c-status">{value}</span>
+      <span className="c-status">
+        {value}
         {change}
-      </>
+      </span>
     );
   }
 
@@ -46,7 +45,7 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
   return (
     <div className="p-station__statuses">
       <div className="p-station__status p-station__status--hp">
-        <LazyLoadImage2 callback={getCommonImage} name={hpImage} alt={t('hp', { ns: 'log' })} />
+        <HpWidget hpImage={hpImage} />
         {getValuWithChange('Hp')}/{getValuWithChange('MaxHp')}
       </div>
       <div className="p-station__status p-station__status--power">
@@ -61,21 +60,4 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
   );
 }
 
-function PowerWidget() {
-  const { t } = useTranslation();
-
-  return <LazyLoadImage2 className="u-img-vertical-align" callback={getCommonImage} name={'Power'} alt={t('power', { ns: 'log' })} />;
-}
-
-function MoneyWidget() {
-  const { t } = useTranslation();
-
-  return <LazyLoadImage2 className="u-img-vertical-align" callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} />;
-}
-
 export default Statuses;
-
-export {
-  PowerWidget,
-  MoneyWidget
-};

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
 import RoundsWidget from '../parts/roundsWidget';
 import CurrentChange from '../currentChange';
+import { MoneyWidget } from '../parts/stationWidgets';
 
 function TempStation({ station }: { station: TStation }) {
   const { Data, Id, Rewards, Node: { Level } } = station;
@@ -38,7 +39,7 @@ function TempStation({ station }: { station: TStation }) {
 
     money = (
       <span className="c-station__money">
-        <LazyLoadImage2 callback={getCommonImage} name={'Money'} alt={t('money', { ns: 'log' })} />
+        <MoneyWidget />
         {Money}
       </span>
     );
@@ -49,7 +50,7 @@ function TempStation({ station }: { station: TStation }) {
           return (
             <div className="p-entity p-entity--cards" key={i}>
               <div className="p-entity__label">
-                <LazyLoadImage2 callback={getCommonImage} name={'Card'} alt={t('card', { ns: 'common' })} />
+                <LazyLoadImage2 callback={getCommonImage} name="Card" alt={t('card', { ns: 'common' })} />
               </div>
               <CardCards cards={cards} />
             </div>
@@ -62,7 +63,7 @@ function TempStation({ station }: { station: TStation }) {
       exhibits = (
         <div className="p-entity p-entity--exhibits">
           <div className="p-entity__label">
-            <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} alt={t('exhibit', { ns: 'common' })} />
+            <LazyLoadImage2 callback={getCommonImage} name="Exhibit" alt={t('exhibit', { ns: 'common' })} />
           </div>
           <ExhibitCards exhibits={Exhibits} />
         </div>

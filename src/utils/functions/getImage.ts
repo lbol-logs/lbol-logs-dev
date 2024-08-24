@@ -67,6 +67,10 @@ function getEnemyImage(name: string): string {
   return _getImage('enemies', name);
 }
 
+function getStationImage(name: string): string {
+  return _getImage('station', name);
+}
+
 export {
   getImage,
   getCommonImage,
@@ -82,5 +86,6 @@ export {
   getSpellcardImage,
   getGapImage,
   getEventImage,
-  getEnemyImage
+  getEnemyImage,
+  getStationImage
 };

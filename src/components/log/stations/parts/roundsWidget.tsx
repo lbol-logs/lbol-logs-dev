@@ -1,13 +1,10 @@
-import { useTranslation } from 'react-i18next';
-import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { getCommonImage } from 'utils/functions/getImage';
+import { RoundWidget } from './stationWidgets';
 
 function RoundsWidget({ rounds }: { rounds: number }) {
-  const { t } = useTranslation();
 
   return (
     <span className="c-station__rounds">
-      <LazyLoadImage2 callback={getCommonImage} name={'Round'} alt={t('round', { ns: 'log' })} />
+      <RoundWidget />
       {rounds}
     </span>
   );

@@ -24,7 +24,7 @@ def card(suffix = ''):
     cropped.save(rf'{dir}{dst}\{name}{suffix}.avif')
 
 
-def icon(height, suffix=''):
+def fit_height(height, suffix, append):
   dir = os.path.dirname(__file__)
   files = os.listdir(rf'{dir}{src}')
   for file in files:
@@ -34,12 +34,37 @@ def icon(height, suffix=''):
     width = round(w / h * height)
     resized = original.resize((width, height), Image.LANCZOS)
 
-    # resized2 = Image.new(resized.mode, (height, height), (0, 0, 0, 0))
-    # left = round((height - width) / 2)
-    # resized2.paste(resized, (left, 0))
-    # resized = resized2
+    if append:
+      resized2 = Image.new(resized.mode, (height, height), (0, 0, 0, 0))
+      left = round((height - width) / 2)
+      resized2.paste(resized, (left, 0))
+      resized = resized2
 
     resized.save(rf'{dir}{dst}\{name}{suffix}.avif')
+
+def fit_width(width, suffix, append):
+  dir = os.path.dirname(__file__)
+  files = os.listdir(rf'{dir}{src}')
+  for file in files:
+    name = os.path.splitext(file)[0]
+    original = Image.open(rf'{dir}{src}\{file}')
+    w, h = original.size
+    height = round(h / w * width)
+    resized = original.resize((width, height), Image.LANCZOS)
+
+    if append:
+      resized2 = Image.new(resized.mode, (width, width), (0, 0, 0, 0))
+      top = round((width - height) / 2)
+      resized2.paste(resized, (0, top))
+      resized = resized2
+
+    resized.save(rf'{dir}{dst}\{name}{suffix}.avif')
+
+def icon(size, suffix=''):
+  # append = False
+  append = True
+  # fit_height(size, suffix, append)
+  fit_width(size, suffix, append)
 
 if __name__ == '__main__':
   arg = sys.argv[1]

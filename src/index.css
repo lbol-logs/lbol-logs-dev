@@ -363,10 +363,7 @@ img {
 }
 .p-station__level {
   margin: 0;
-  width: 5.5em;
-}
-.p-station__icon {
-  margin-right: 1em;
+  width: 4.5em;
 }
 .p-station__statuses {
   display: contents;
@@ -427,7 +424,11 @@ img {
   color: var(--purple);
 }
 
+.c-status {
+  position: relative;
+}
 .c-status__change {
+  position: absolute;
   font-size: 0.8em;
 }
 .c-status__change--positive {

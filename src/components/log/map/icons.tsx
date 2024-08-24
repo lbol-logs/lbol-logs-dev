@@ -60,7 +60,7 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
       if (station) {
         const size = iconSize / 2;
         visited = (
-          <LazyLoadImage2 className="c-map-icon__visited" callback={getMapImage} name={'Visited'} width={size} height={size} alt={t('stations.Visited', { ns: 'log' })} />
+          <LazyLoadImage2 className="c-map-icon__visited" callback={getMapImage} name="Visited" width={size} height={size} alt={t('stations.Visited', { ns: 'log' })} />
         );
         if (X === level) isActive = true;
       }

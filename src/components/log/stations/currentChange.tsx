@@ -23,7 +23,7 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
       Remove: '－',
       Upgrade: '▲'
     };
-    const cardIcon = <LazyLoadImage2 callback={getCommonImage} name={'Card'} alt={t('card', { ns: 'common' })} />;
+    const cardIcon = <LazyLoadImage2 callback={getCommonImage} name="Card" alt={t('card', { ns: 'common' })} />;
 
     return Object.entries(cards).map(([type, symbol]) => {
       const cards = currentCards.filter(({ Type }) => Type === type);
@@ -65,7 +65,7 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
       Upgrade: '▲',
       Use: '▼'
     };
-    const exhibitIcon = <LazyLoadImage2 callback={getCommonImage} name={'Exhibit'} alt={t('exhibit', { ns: 'common' })} />;
+    const exhibitIcon = <LazyLoadImage2 callback={getCommonImage} name="Exhibit" alt={t('exhibit', { ns: 'common' })} />;
 
     return Object.entries(exhibits).map(([type, symbol]) => {
       let exhibits: TExhibits | TExhibitObjs = currentExhibits.filter(({ Type }) => Type === type);
