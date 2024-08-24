@@ -1002,6 +1002,7 @@ html:lang(en) .p-result__type {
 .c-status-effect {
   border: none;
   box-shadow: none;
+  outline-offset: -1px;
 }
 .c-status-effect__img {
   height: calc(var(--entity-height) * 0.7);
