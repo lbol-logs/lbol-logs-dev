@@ -1,9 +1,6 @@
 import { imageUrl } from 'configs/globals';
 
 function getImage(name: string): string {
-  // if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  //   return`${baseUrl}/images-private/${name}.png`;
-  // }
   return `${imageUrl}/${name}.avif`;
 }
 
