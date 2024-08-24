@@ -68,6 +68,10 @@ function getStationImage(name: string): string {
   return _getImage('station', name);
 }
 
+function getStatusEffectImage(name: string): string {
+  return _getImage('statusEffects', name);
+}
+
 export {
   getImage,
   getCommonImage,
@@ -84,5 +88,6 @@ export {
   getGapImage,
   getEventImage,
   getEnemyImage,
-  getStationImage
+  getStationImage,
+  getStatusEffectImage
 };

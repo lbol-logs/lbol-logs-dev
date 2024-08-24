@@ -31,5 +31,6 @@
   "hp": "Life",
   "power": "Power",
   "money": "Money",
-  "round": "Round"
+  "round": "Round",
+  "roundCounter": "Round {{0}}"
 }

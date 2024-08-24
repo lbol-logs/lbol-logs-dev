@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
-import {  PowerImage } from '../parts/stationImages';
+import {  PowerImage } from '../parts/stationWidgets';
 import { useTranslation } from 'react-i18next';
 
 function SelectStation({ station }: { station: TStation }) {

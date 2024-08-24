@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
 import RoundsWidget from '../parts/roundsWidget';
 import CurrentChange from '../currentChange';
-import { MoneyImage } from '../parts/stationImages';
+import { MoneyImage } from '../parts/stationWidgets';
 
 function TempStation({ station }: { station: TStation }) {
   const { Data, Id, Rewards, Node: { Level } } = station;

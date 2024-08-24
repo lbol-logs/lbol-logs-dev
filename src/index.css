@@ -368,6 +368,7 @@ img {
 }
 .p-station__statuses {
   display: flex;
+  flex-wrap: wrap;
 }
 .p-station__status {
   display: flex;
@@ -962,6 +963,50 @@ html:lang(en) .p-result__type {
 }
 .p-event__title, .p-event__host {
   margin: 0;
+}
+
+.p-battle-details__row {
+  margin: 0.5em 0;
+}
+.p-battle-details__round {
+  width: 5em;
+}
+.p-battle-details__body {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  gap: 0.5em;
+  z-index: -1;
+  position: relative;
+  border-radius: 0.5em;
+}
+.p-battle-details__row--player .p-battle-details__round,
+.p-battle-details__row--player .p-battle-details__body {
+  background: var(--light-green);
+}
+.p-battle-details__line {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.p-battle-details__body .c-status {
+  width: 2em;
+}
+
+.c-status-effects {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+.c-status-effect {
+  border: none;
+  box-shadow: none;
+}
+.c-status-effect__img {
+  height: calc(var(--entity-height) * 0.7);
+  width: auto;
+  margin-left: var(--entity-margin);
 }
 
 :root {

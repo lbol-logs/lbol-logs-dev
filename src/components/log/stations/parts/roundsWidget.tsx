@@ -1,4 +1,4 @@
-import { RoundImage } from './stationImages';
+import { RoundImage } from './stationWidgets';
 
 function RoundsWidget({ rounds }: { rounds: number }) {
 

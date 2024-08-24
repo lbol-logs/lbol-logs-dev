@@ -7,7 +7,7 @@ import { TObjAny } from 'utils/types/common';
 import { applyRate, convertCard, convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import EventHead from '../parts/eventHead';
-import { MoneyImage, PowerImage } from '../parts/stationImages';
+import { MoneyImage, PowerImage } from '../parts/stationWidgets';
 import ExhibitCard from 'components/log/entityCards/exhibitCard';
 import CardCards from 'components/log/entityCards/cardCards';
 import CardCard from 'components/log/entityCards/cardCard';

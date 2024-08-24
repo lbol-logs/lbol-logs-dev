@@ -4,7 +4,7 @@ import { LogContext } from 'contexts/logContext';
 import EnemyCards from '../parts/enemyCards';
 import RoundsWidget from '../parts/roundsWidget';
 import RewardsWidget from '../parts/rewardsWidget';
-import { MoneyImage } from '../parts/stationImages';
+import { MoneyImage } from '../parts/stationWidgets';
 import { enemiesShowDetails } from 'configs/globals';
 import BattleDetails from '../parts/battleDetails';
 
@@ -29,7 +29,7 @@ function BattleStation({ station }: { station: TStation }) {
 
   if (enemiesShowDetails.includes(Id as string)) {
     const { Details } = Data;
-    details = <BattleDetails details={Details} />;
+    if (Details) details = <BattleDetails details={Details} />;
   }
 
   const enemies = configsData.enemyGroups[Id as string];

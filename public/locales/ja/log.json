@@ -29,5 +29,6 @@
   "hp": "ライフ",
   "power": "パワー",
   "money": "資金力",
-  "round": "ターン"
+  "round": "ターン",
+  "roundCounter": "ターン {{0}}"
 }

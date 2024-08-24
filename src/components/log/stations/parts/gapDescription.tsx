@@ -2,7 +2,7 @@ import { LogContext } from 'contexts/logContext';
 import { ReactNode, useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { TObjAny } from 'utils/types/common';
-import { MoneyImage, PowerImage } from './stationImages';
+import { MoneyImage, PowerImage } from './stationWidgets';
 import { applyRate } from 'utils/functions/helpers';
 
 function GapDescription({ option, maxhp, children }: { option: string, maxhp?: number, children?: ReactNode }) {

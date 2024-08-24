@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { TDialogueConfigs } from 'utils/types/runData';
-import { RevealImage } from './stationImages';
+import { RevealImage } from './stationWidgets';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
 
