@@ -1,22 +1,15 @@
-import { TDialogueConfigs, TStation } from 'utils/types/runData';
-import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
-import { TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
-import {  PowerImage } from '../parts/stationWidgets';
-import { useTranslation } from 'react-i18next';
+import { TStation } from 'utils/types/runData';
+// import { useContext } from 'react';
+// import { LogContext } from 'contexts/logContext';
+// import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
 
 function ShopStation({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
-  const { t } = useTranslation();
-
-  const { Type, Data } = station;
+  const { Data } = station;
 
   if (!Data) return null;
 
-  const { Prices, Cards, Exhibits, Choice } = Data;
+  // const { Prices, Cards, Exhibits, Choice } = Data;
 
   return (
     <div className="p-station__body">
