@@ -30,5 +30,12 @@
     "line:01fb81d": "[{{0}}]",
     "line:02a4885": "[{{0}}]",
     "line:0f2a3b5": "[Random Opponent] Gain an additional {{0}} <Power />."
+  },
+  "Supply": {
+    "line:032ca60": "\"Thank you for your hard work. Master told me to provide you some supplies.\"",
+    "line:0ddbdec": "[This] Gain Exhibit: <h>{{0}}</h>.",
+    "line:0a82591": "[That] Gain Exhibit: <h>{{0}}</h>.",
+    "line:0671234": "[Gimme Both] Gain Exhibits: <h>{{0}}</h> and <h>{{1}}</h>.",
+    "line:0e1d069": "[Leave] Nothing happens."
   }
 }
