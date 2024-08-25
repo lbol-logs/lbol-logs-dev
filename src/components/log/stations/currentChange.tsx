@@ -16,7 +16,7 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
 
   const card = useMemo(() => {
     const currentCards = getCurrentLevel(Cards, Stations, act, level);
-    const excludeCards = excludes ? copyObject(excludes.Cards) : [];
+    let excludeCards = excludes ? copyObject(excludes.Cards) : [];
 
     const cards = {
       Add: '＋',
@@ -28,13 +28,15 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
     return Object.entries(cards).map(([type, symbol]) => {
       const cards = currentCards.filter(({ Type }) => Type === type);
       if (type === 'Add') {
+        const currentExcludes = copyObject(excludeCards);
         for (let i = 0; i < excludeCards.length; i++) {
           const index = getSameCardIndex(cards, excludeCards[i]);
           if (index !== -1) {
             cards.splice(index, 1);
-            excludeCards.splice(i, 1);
+            currentExcludes.splice(i, 1);
           }
         }
+        excludeCards = currentExcludes;
       }
       
       const hasCards = cards.length > 0;
@@ -57,7 +59,7 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
 
   const exhibit = useMemo(() => {
     const currentExhibits = getCurrentLevel(Exhibits, Stations, act, level);
-    const excludeExhibits = excludes ? copyObject(excludes.Exhibits) : [];
+    let excludeExhibits = excludes ? copyObject(excludes.Exhibits) : [];
 
     const exhibits = {
       Add: '＋',
@@ -71,13 +73,15 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
       let exhibits: TExhibits | TExhibitObjs = currentExhibits.filter(({ Type }) => Type === type);
       if (type !== 'Use') exhibits = exhibits.map(({ Id }) => Id);
       if (type === 'Add') {
+        const currentExcludes = copyObject(excludeExhibits);
         for (let i = 0; i < excludeExhibits.length; i++) {
           const index = getSameExhibitIndex(exhibits, excludeExhibits[i]);
           if (index !== -1) {
             exhibits.splice(index, 1);
-            excludeExhibits.splice(i, 1);
+            currentExcludes.splice(i, 1);
           }
         }
+        excludeExhibits = currentExcludes;
       }
 
       const hasExhibits = exhibits.length > 0;

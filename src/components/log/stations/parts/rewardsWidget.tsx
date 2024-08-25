@@ -1,13 +1,14 @@
-import LazyLoadImage2 from "components/common/utils/lazyLoadImage2";
-import CardCards from "components/log/entityCards/cardCards";
-import ExhibitCards from "components/log/entityCards/exhibitCards";
-import { getCommonImage } from "utils/functions/getImage";
-import CurrentChange from "../currentChange";
-import { TCardChanges, TCards, TExhibitChanges, TExhibits, TRewards, TStation } from "utils/types/runData";
-import { useTranslation } from "react-i18next";
-import { useContext, useMemo } from "react";
-import { LogContext } from "contexts/logContext";
-import { getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from "utils/functions/helpers";
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
+import CardCards from 'components/log/entityCards/cardCards';
+import ExhibitCards from 'components/log/entityCards/exhibitCards';
+import { getCommonImage } from 'utils/functions/getImage';
+import CurrentChange from '../currentChange';
+import { TCard, TCardChanges, TCards, TExhibitChanges, TExhibits, TRewards, TStation } from 'utils/types/runData';
+import { useTranslation } from 'react-i18next';
+import { useContext, useMemo } from 'react';
+import { LogContext } from 'contexts/logContext';
+import { getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from 'utils/functions/helpers';
+import getAddedCards from 'utils/functions/getAddedCards';
 
 function RewardsWidget({ station, additionalCards }: { station: TStation, additionalCards?: TCards }) {
   const { runData, act } = useContext(LogContext);
@@ -33,17 +34,14 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
     let cards;
     let exhibits = null;
 
-    let addedCards: TCardChanges;
-    let addedExhibits: TExhibitChanges;
+    let addedCards: Array<Array<number>>;
     let excludeCards: TCardChanges = [];
-    let excludeExhibits: TExhibitChanges = [];
+    let addedExhibits: TExhibitChanges;
+    const excludeExhibits: TExhibitChanges = [];
 
     {
-      const { Stations, Cards, Exhibits } = runData;
-
-      const currentCards = getCurrentLevel(Cards, Stations, act, Level);
-      addedCards = currentCards.filter(({ Type }) => Type === 'Add');
-
+      const { Stations, Cards: CardChanges, Exhibits } = runData;
+      ({ addedCards, excludeCards } = getAddedCards({ CardRewards: Cards, CardChanges, Stations, act, Level }));
       const currentExhibits = getCurrentLevel(Exhibits, Stations, act, Level);
       addedExhibits = currentExhibits.filter(({ Type }) => Type === 'Add');
     }
@@ -51,16 +49,7 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
     cards = (
       <>
         {Cards.map((cards, i) => {
-          const added = addedCards.map(addedCard => {
-            const index = getSameCardIndex(cards, addedCard);
-            if (index !== -1) {
-              excludeCards.push(addedCard);
-              return index;
-            }
-            else {
-              return undefined;
-            }
-          }).filter(i => i !== undefined) as Array<number>;
+          const added = addedCards[i];
 
           return (
             <div className="p-entity p-entity--cards" key={i}>
