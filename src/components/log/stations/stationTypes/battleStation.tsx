@@ -18,7 +18,7 @@ function BattleStation({ station }: { station: TStation }) {
   let money = null;
   let details = null;
 
-  if (Rewards) {
+  if (Rewards && Money) {
     money = (
       <span className="c-station__money">
         <MoneyImage />
