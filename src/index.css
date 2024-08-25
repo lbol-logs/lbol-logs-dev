@@ -529,6 +529,9 @@ img {
   --opacity-border: 50%;
   --opacity-overlay: 0.5;
 }
+.c-entity--not-added.c-exhibit {
+  background: var(--light-gray);
+}
 .c-entity--Common {
   border-color: color-mix(in srgb, var(--f-light-gray) var(--opacity-border), transparent);
 }

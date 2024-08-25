@@ -6,6 +6,7 @@ import GapStation from './gapStation';
 import EntryStation from './entryStation';
 import SelectStation from './selectStation';
 import SupplyStation from './supplyStation';
+import ShopStation from './shopStation';
 
 function StationType({ station }: { station: TStation }) {
   const { Type } = station;
@@ -27,9 +28,8 @@ function StationType({ station }: { station: TStation }) {
 			return <SelectStation station={station} />;
 		case 'Supply':
 			return <SupplyStation station={station} />;
-
-		// Shop,
-		// Adventure,
+		case 'Shop':
+			return <ShopStation station={station} />
 		// Trade,
 		
 		default:
