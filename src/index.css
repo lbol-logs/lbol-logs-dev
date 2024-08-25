@@ -1013,6 +1013,10 @@ html:lang(en) .p-result__type {
   margin-left: var(--entity-margin);
 }
 
+.c-price {
+  align-self: center;
+}
+
 :root {
   color-scheme: light dark;
   --padding-inner: 0.625em;

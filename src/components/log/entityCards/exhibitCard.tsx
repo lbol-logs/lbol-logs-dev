@@ -3,13 +3,14 @@ import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
 import ExhibitImage from 'components/common/parts/exhibitImage';
+import { getExhibitId } from 'utils/functions/helpers';
 
 function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj | TExhibitChange, isNotAdded?: boolean }) {
   const { configsData } = useContext(CommonContext);
   const { t } = useTranslation();
 
   const isExhibit = typeof exhibit === 'string';
-  const Id = isExhibit ? exhibit : exhibit.Id;
+  const Id = getExhibitId(exhibit);
   const { Rarity } = configsData.exhibits[Id];
   let counter = null;
 

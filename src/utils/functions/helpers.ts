@@ -1,6 +1,6 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { TObjAny } from 'utils/types/common';
-import { TAct, TCard, TCardChanges, TCards, TExhibit, TExhibitChanges, TExhibitObj, TExhibitObjs, TLevel, TRunData, TStations } from 'utils/types/runData';
+import { TAct, TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TLevel, TRunData, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
@@ -88,6 +88,12 @@ function applyRate(n: number, rate: number) {
   return Math.round((n as number) * rate);
 }
 
+function getExhibitId(exhibit: TExhibit | TExhibitObj | TExhibitChange): string {
+  const isExhibit = typeof exhibit === 'string';
+  const Id = isExhibit ? exhibit : exhibit.Id;
+  return Id;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -103,5 +109,6 @@ export {
   getNext,
   convertCard,
   convertCards,
-  applyRate
+  applyRate,
+  getExhibitId
 };

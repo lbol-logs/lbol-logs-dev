@@ -3,18 +3,19 @@ import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import { getCommonImage } from 'utils/functions/getImage';
 import CurrentChange from '../currentChange';
-import { TCard, TCardChanges, TCards, TExhibitChanges, TExhibits, TRewards, TStation } from 'utils/types/runData';
+import { TCardChanges, TCards, TExhibitChanges, TExhibits, TRewards, TStation } from 'utils/types/runData';
 import { useTranslation } from 'react-i18next';
 import { useContext, useMemo } from 'react';
 import { LogContext } from 'contexts/logContext';
-import { getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from 'utils/functions/helpers';
+import { getCurrentLevel, getSameExhibitIndex } from 'utils/functions/helpers';
 import getAddedCards from 'utils/functions/getAddedCards';
+import { TObjNumber } from 'utils/types/common';
 
 function RewardsWidget({ station, additionalCards }: { station: TStation, additionalCards?: TCards }) {
   const { runData, act } = useContext(LogContext);
   const { t } = useTranslation();
 
-  const { Rewards, Node: { Level } } = station;
+  const { Rewards, Node: { Level }, Data } = station;
   let { Cards, Exhibits } = Rewards as TRewards || {};
 
   const { cards, exhibits, excludes } = useMemo(() => {
@@ -38,6 +39,15 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
     let excludeCards: TCardChanges = [];
     let addedExhibits: TExhibitChanges;
     const excludeExhibits: TExhibitChanges = [];
+
+    let exhibitPrices: TObjNumber = {};
+    if (Data) {
+      const { Prices } = Data;
+      if (Prices) {
+        let _r, _u;
+        ({ Remove: _r, Upgrade: _u, ...exhibitPrices } = Prices);
+      }
+    }
 
     {
       const { Stations, Cards: CardChanges, Exhibits } = runData;
@@ -80,7 +90,7 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
           <div className="p-entity__label">
             <LazyLoadImage2 callback={getCommonImage} name="Exhibit" alt={t('exhibit', { ns: 'common' })} />
           </div>
-          <ExhibitCards exhibits={Exhibits} added={added} />
+          <ExhibitCards exhibits={Exhibits} added={added} prices={exhibitPrices} />
         </div>
       );
     }

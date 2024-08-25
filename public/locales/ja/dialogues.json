@@ -37,5 +37,11 @@
     "line:0a82591": "【それ】<h>{{0}}</h>を得る",
     "line:0671234": "【全部ほしい】<h>{{0}}</h>と<h>{{1}}</h>を得る",
     "line:0e1d069": "【立ち去る】何も起こらない"
+  },
+  "Shop": {
+    "RemoveService": "カード除去：",
+    "ShopRemovePrice": "{{0}}<Money />",
+    "UpgradeService": "カード強化：",
+    "ShopUpgradePrice": "{{0}}<Money />"
   }
 }

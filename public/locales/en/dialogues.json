@@ -37,5 +37,11 @@
     "line:0a82591": "[That] Gain Exhibit: <h>{{0}}</h>.",
     "line:0671234": "[Gimme Both] Gain Exhibits: <h>{{0}}</h> and <h>{{1}}</h>.",
     "line:0e1d069": "[Leave] Nothing happens."
+  },
+  "Shop": {
+    "RemoveService": "Remove:",
+    "ShopRemovePrice": "{{0}} <Money />",
+    "UpgradeService": "Upgrade:",
+    "ShopUpgradePrice": "{{0}} <Money />"
   }
 }
