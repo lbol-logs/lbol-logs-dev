@@ -48,7 +48,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
                   {..._props}
                 />
                 {random}
-                </div>
+              </div>
             );
           })}
       </div>
