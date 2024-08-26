@@ -46,14 +46,14 @@
     "ShopUpgradePrice": "{{0}} <Money />"
   },
   "RinnosukeTrade": {
-    "line:03aa37a": "",
-    "line:01e38f2": "",
-    "line:0de0aae": "",
-    "line:06c2fe7": "",
-    "line:0cc8782": "",
-    "line:053c5be": "",
-    "line:0bb144b": "",
-    "line:00db216": "",
-    "line:0431aa2": ""
+    "line:03aa37a": "\"I can take possession of items which you no longer need.\"",
+    "line:01e38f2": "[Trade] Sell <h>{{0}}</h>, receive {{1}} <Money />.",
+    "line:0de0aae": "[Invalid] You have no items to sell.",
+    "line:06c2fe7": "[Trade] Sell <h>{{0}}</h>, receive {{1}} <Money />.",
+    "line:0cc8782": "[Invalid] You have no items to sell.",
+    "line:053c5be": "[Leave] Nothing happens.",
+    "line:0bb144b": "\"I''ll give you a very helpful item in exchange for it.\"",
+    "line:00db216": "[Agree] Deliver <h>{{0}}</h>, gain <h>{{1}}</h>.",
+    "line:0431aa2": "[Leave] Nothing happens."
   }
 }
