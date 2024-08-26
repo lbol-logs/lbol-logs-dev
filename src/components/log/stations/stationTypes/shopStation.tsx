@@ -1,6 +1,4 @@
 import { TStation } from 'utils/types/runData';
-import { useContext } from 'react';
-import { LogContext } from 'contexts/logContext';
 import { Trans, useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';

@@ -4,7 +4,6 @@ import { useContext } from 'react';
 import { TObj, TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
-import {  PowerImage } from '../parts/stationWidgets';
 import { useTranslation } from 'react-i18next';
 import ExhibitCard from 'components/log/entityCards/exhibitCard';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
