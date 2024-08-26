@@ -24,6 +24,8 @@ function RinnosukeTrade({ station }: { station: TStation }) {
   
   if (!Both) delete options[2];
 
+// TODO: IF !Prices choices _invalid
+
   const next = getNext(options);
   const chosen = Choices[0];
 

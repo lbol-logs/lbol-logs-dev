@@ -40,8 +40,10 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
               );
             }
 
+            const isInvalid = option.endsWith('_invalid');
+
             return (
-              <div className={`p-dialogue__option ${isChosen ? 'p-dialogue__option--chosen' : ''}`} key={i}>
+              <div className={`p-dialogue__option ${isInvalid ? 'p-dialogue__option--invalid' : ''} ${isChosen ? 'p-dialogue__option--chosen' : ''}`} key={i}>
                 <Trans
                   i18nKey={`${id}.${option}`}
                   ns="dialogues"

@@ -67,11 +67,12 @@ function showRandom(runData: TRunData): boolean {
   return runData.Settings.ShowRandomResult;
 }
 
-function getNext(next: TObjAny, choices?: Array<number>): Array<string> {
+function getNext(next: TObjAny, choices?: Array<number | string>): Array<string> {
   const array: Array<string> = [];
   for (const [key, { current }] of Object.entries(next)) {
+    const k = Number.isNaN(key) ? key : Number(key);
     if (choices) {
-      if (choices.includes(Number(key))) array.push(current);
+      if (choices.includes(k)) array.push(current);
     }
     else {
       array.push(current);

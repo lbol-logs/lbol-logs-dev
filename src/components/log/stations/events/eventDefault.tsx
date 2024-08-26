@@ -10,6 +10,7 @@ function EventDefault({ station }: { station: TStation }) {
   const { Choices, Battle } = Data;
   const id = Id as string;
 
+  // TODO remove
   const choices = (
     <div>
       <ChoicesWidget id={id} choices={Choices} />
