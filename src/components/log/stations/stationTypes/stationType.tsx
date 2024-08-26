@@ -7,12 +7,11 @@ import EntryStation from './entryStation';
 import SelectStation from './selectStation';
 import SupplyStation from './supplyStation';
 import ShopStation from './shopStation';
+import TradeStation from './tradeStation';
 
 function StationType({ station }: { station: TStation }) {
   const { Type } = station;
-
-  // TODO
-
+	
 	switch (Type) {
 		case 'Enemy':
 		case 'EliteEnemy':
@@ -29,9 +28,9 @@ function StationType({ station }: { station: TStation }) {
 		case 'Supply':
 			return <SupplyStation station={station} />;
 		case 'Shop':
-			return <ShopStation station={station} />
-		// Trade,
-		
+			return <ShopStation station={station} />;
+		case 'Trade':
+			return <TradeStation station={station} />;
 		default:
 			return <TempStation station={station} />;
 	}
