@@ -51,7 +51,7 @@ function ShopStation({ station }: { station: TStation }) {
         <div className="p-event">
           <div className="p-event__body">
             <div className="p-dialogues">
-              <LazyLoadImage2 className="p-event__img" callback={getStationImage} name="TakaneCardService" width={size} height={size} alt="" />
+              <LazyLoadImage2 className="p-event__img" callback={getStationImage} name="ShopCardService" width={size} height={size} alt="" />
               {dialogue}
             </div>
           </div>
