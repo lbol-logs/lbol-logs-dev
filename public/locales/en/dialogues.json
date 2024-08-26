@@ -39,6 +39,7 @@
     "line:0e1d069": "[Leave] Nothing happens."
   },
   "Shop": {
+    "CardService": "Card Service",
     "RemoveService": "Remove:",
     "ShopRemovePrice": "{{0}} <Money />",
     "UpgradeService": "Upgrade:",

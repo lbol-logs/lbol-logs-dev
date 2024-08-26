@@ -19,6 +19,9 @@ function ShopStation({ station }: { station: TStation }) {
 
     dialogue = (
       <div className="p-dialogue">
+        <div className="p-dialogue__question">
+          {t('Shop.CardService', { ns: 'dialogues' })}
+        </div>
         <div className="p-dialogue__options">
           <div className={`p-dialogue__option ${Choice === 0 ? 'p-dialogue__option--chosen' : ''}`}>
             {t('Shop.RemoveService', { ns: 'dialogues' })}

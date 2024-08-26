@@ -39,6 +39,7 @@
     "line:0e1d069": "【立ち去る】何も起こらない"
   },
   "Shop": {
+    "CardService": "カードサービス",
     "RemoveService": "カード除去：",
     "ShopRemovePrice": "{{0}}<Money />",
     "UpgradeService": "カード強化：",
