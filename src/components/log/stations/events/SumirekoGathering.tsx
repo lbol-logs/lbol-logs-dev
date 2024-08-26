@@ -51,7 +51,7 @@ function SumirekoGathering({ station }: { station: TStation }) {
     next,
     chosen,
     props,
-    randoms
+    tips: randoms
   };
 
   return (

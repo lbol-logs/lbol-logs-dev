@@ -51,7 +51,7 @@ function Supply({ station }: { station: TStation }) {
     next,
     chosen,
     props,
-    randoms
+    tips: randoms
   };
 
   return (

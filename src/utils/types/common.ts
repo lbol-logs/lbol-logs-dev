@@ -5,6 +5,7 @@ type TObjAny = TObj<any>;
 type TObjNumber = TObj<number>;
 type TObjString = TObj<string>;
 type TObjStringOrArray = TObj<string | Array<string>>;
+type TObjElement = TObj<JSX.Element>;
 
 type TRange3 = 0 | 1 | 2 | 3;
 type TRange4 = 0 | 1 | 2 | 3 | 4;
@@ -20,6 +21,7 @@ export type {
   TObjNumber,
   TObjString,
   TObjStringOrArray,
+  TObjElement,
   TDispatch,
   TRange3,
   TRange4,

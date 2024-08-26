@@ -1,5 +1,5 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
-import { TObjAny } from 'utils/types/common';
+import { TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
 import { TAct, TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TLevel, TRunData, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
@@ -100,6 +100,13 @@ function getExhibitId(exhibit: TExhibit | TExhibitObj | TExhibitChange): string 
   return Id;
 }
 
+function concatObjects(props: TObjAny, obj: TObj<TObjElement | TObjString>): TObjAny {
+  const [key, value] = Object.entries(obj)[0];
+  Object.assign(value, props[key]);
+  Object.assign(props, { [key]: value });
+  return props;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -116,5 +123,6 @@ export {
   convertCard,
   convertCards,
   applyRate,
-  getExhibitId
+  getExhibitId,
+  concatObjects
 };

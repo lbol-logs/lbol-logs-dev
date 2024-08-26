@@ -1,10 +1,12 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { TDialogueConfigs } from 'utils/types/runData';
+import { TDialogueConfigs, TExhibit, TExhibits } from 'utils/types/runData';
 import { RevealImage } from './stationWidgets';
+import ExhibitImage from 'components/common/parts/exhibitImage';
+import { concatObjects } from 'utils/functions/helpers';
+import { TObjString } from 'utils/types/common';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
-
-  useTranslation();
+  const { t } = useTranslation();
 
   const components = {
     h: <span className="u-highlight">{}</span>,
@@ -12,7 +14,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
   };
   const commonProps = { components };
 
-  const { current, next, chosen, props, randoms, invalids } = dialogueConfigs;
+  const { current, next, chosen, props, tips, invalids, exhibits } = dialogueConfigs;
 
   return (
     <div className="p-dialogue">
@@ -26,20 +28,41 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
       <div className="p-dialogue__options">
           {next.map((option, i) => {
             const isChosen = chosen === i;
-            let _props = {};
+            const hasExhibit = exhibits && exhibits[i];
+            let _exhibits: TExhibits = [];
+
+            let _props;
             if (props && props[i]) {
-              const _components = Object.assign({}, props[i].components, components);
-              Object.assign(_props, props[i], { components: _components });
+              _props = concatObjects(props[i], { components });
             }
             else {
               _props = commonProps;
             }
-            let random = null;
-            if (randoms && randoms[i]) {
-              random = (
+            if (hasExhibit) {
+              if (typeof exhibits[i] === 'string') _exhibits = [exhibits[i] as TExhibit];
+              else _exhibits = exhibits[i] as TExhibits;
+
+              const values = _exhibits.reduce((a: TObjString, b, i) => {
+                a[i] = t(b, { ns: 'exhibits' });
+                return a;
+              }, {});
+              _props = concatObjects(_props, { values });
+            }
+
+            let tip = null;
+            const hasTip = tips && tips[i];
+            if (hasTip || hasExhibit) {
+              const _tip = hasTip ? tips[i] : null;
+              const _exhibit = hasExhibit
+                ? _exhibits.map(exhibit =>
+                    <ExhibitImage className="c-exhibit__img" exhibit={exhibit} alt="" key={exhibit} />
+                  )
+                : null;
+              tip = (
                 <span className="c-dialogue__random">
                   <RevealImage />
-                  {randoms[i]}
+                  {_tip}
+                  {_exhibit}
                 </span>
               );
             }
@@ -53,7 +76,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
                   ns="dialogues"
                   {..._props}
                 />
-                {random}
+                {tip}
               </div>
             );
           })}

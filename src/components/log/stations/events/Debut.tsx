@@ -113,7 +113,7 @@ function Debut({ station }: { station: TStation }) {
       next,
       chosen,
       props,
-      randoms
+      tips: randoms
     };
 
     advantages = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
