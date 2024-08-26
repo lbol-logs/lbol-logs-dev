@@ -1,10 +1,10 @@
-import ExhibitImage from 'components/common/parts/exhibitImage';
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { getNext } from 'utils/functions/helpers';
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useTranslation } from 'react-i18next';
+import ExhibitImages from 'components/common/parts/exhibitImages';
 
 function YukariProvide({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -14,8 +14,7 @@ function YukariProvide({ station }: { station: TStation }) {
 
   const id = 'YukariProvide';
   const title = t(`${id}.Title`, { ns: 'events' });
-  const exhibit1 = 'JingjieGanzhiyi';
-  const exhibit2 = 'WaijieYanshuang';
+  const exhibits = [['JingjieGanzhiyi', 'WaijieYanshuang']];
 
   const configs = configsData.dialogues[id];
   const { current, next: _next } = configs;
@@ -25,14 +24,13 @@ function YukariProvide({ station }: { station: TStation }) {
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
-    chosen
+    chosen,
+    exhibits
   };
 
   return (
     <div className="p-gap-little-chat">
       <p className="p-gap-little-chat__title">
-        <ExhibitImage className="p-gap-little-chat__exhibit-1" exhibit={exhibit1} />
-        <ExhibitImage className="p-gap-little-chat__exhibit-2" exhibit={exhibit2} />
         <span className="p-gap-little-chat__text">{title}</span>
       </p>
       <div className="p-dialogues">

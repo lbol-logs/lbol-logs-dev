@@ -919,24 +919,6 @@ html:lang(en) .p-result__type {
   border-top: 1px solid var(--black);
 }
 
-.p-gap-little-chat__title {
-  --size: calc(var(--icon-size) * 1.5);
-  position: relative;
-  /* width: var(--size); */
-  height: var(--size);
-  display: flex;
-  align-items: center;
-}
-.p-gap-little-chat__exhibit-1 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-.p-gap-little-chat__exhibit-2 {
-  position: absolute;
-  top: 0;
-  left: calc(var(--size) / 3);
-}
 .p-gap-little-chat__text {
   margin-left: var(--size);
 }
