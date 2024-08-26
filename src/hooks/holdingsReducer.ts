@@ -1,4 +1,4 @@
-import { copyObject } from 'utils/functions/helpers';
+import { copyObject, getSameCardIndex } from 'utils/functions/helpers';
 import Mana from 'utils/classes/Mana';
 import { TRange3 } from 'utils/types/common';
 import { CardsWithUpgradeCounter, exhibitCounters, TAct, TBaseManaObj, TCard, TExhibitObj, THolding, THoldingAction, THoldings, TLevel } from 'utils/types/runData';
@@ -52,7 +52,8 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
   }
 
   function findCard(entity: any, afterUpgrade = false) {
-    let { Id, IsUpgraded, UpgradeCounter } = entity as TCard;
+    const card = copyObject(entity as TCard);
+    let { IsUpgraded, UpgradeCounter } = card;
     if (afterUpgrade) {
       if (UpgradeCounter) {
         if (UpgradeCounter === 1) IsUpgraded = false;
@@ -61,9 +62,8 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
         IsUpgraded = false;
       }
     }
-    const index = currentHolding.Cards.findIndex((card: TCard) => {
-      return card.Id === Id && card.IsUpgraded === IsUpgraded && card.UpgradeCounter === UpgradeCounter
-    });
+    card.IsUpgraded = IsUpgraded;
+    const index = getSameCardIndex(currentHolding.Cards, card);
     return index;
   }
 
