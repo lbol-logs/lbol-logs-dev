@@ -9,6 +9,7 @@ function ChoicesWidget({ id, choices }: { id: string, choices: Array<TChoice> })
   const dialogueConfigs = configsData.dialogues;
   let current = dialogueConfigs[id];
 
+  // TODO REMOVE
   return (
     <div className="p-choices">
       {choices.map((choice, i) => {

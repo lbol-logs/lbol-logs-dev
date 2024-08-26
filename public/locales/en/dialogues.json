@@ -44,5 +44,16 @@
     "ShopRemovePrice": "{{0}} <Money />",
     "UpgradeService": "Upgrade:",
     "ShopUpgradePrice": "{{0}} <Money />"
+  },
+  "RinnosukeTrade": {
+    "line:03aa37a": "",
+    "line:01e38f2": "",
+    "line:0de0aae": "",
+    "line:06c2fe7": "",
+    "line:0cc8782": "",
+    "line:053c5be": "",
+    "line:0bb144b": "",
+    "line:00db216": "",
+    "line:0431aa2": ""
   }
 }

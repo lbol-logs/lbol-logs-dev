@@ -67,17 +67,19 @@ function showRandom(runData: TRunData): boolean {
   return runData.Settings.ShowRandomResult;
 }
 
-function getNext(next: TObjAny, choices?: Array<number>): Array<string> {
-  const array: Array<string> = [];
-  for (const [key, { current }] of Object.entries(next)) {
-    if (choices) {
-      if (choices.includes(Number(key))) array.push(current);
-    }
-    else {
-      array.push(current);
-    }
+function getNext(next: TObjAny, choices?: Array<number | string>): [Array<string>, Array<number>] {
+  let array: Array<string>;
+  const invalids: Array<number> = [];
+  if (choices) {
+    array = choices.map((choice, i) => {
+      if (typeof choice === 'string' && choice.endsWith('_invalid')) invalids.push(i);
+      return next[choice].current
+    });
   }
-  return array;
+  else {
+    array = Object.values(next).map(({ current }) => current);
+  }
+  return [array, invalids];
 }
 
 function convertCard(Id: string, IsUpgraded: boolean = false): TCard {

@@ -39,14 +39,14 @@ function Debut({ station }: { station: TStation }) {
       0: 0
     };
     if (HasClearBonus && Options) {
-      options = Object.assign(options, {
+      Object.assign(options, {
         1: 1,
         2: Options[0] + 2,
         3: Options[1] + 2
       });
     }
     const choices = Object.values(options);
-    const next = getNext(_next, choices);
+    const [next] = getNext(_next, choices);
     const chosen = Choices[0];
 
     const props: Array<TObjAny> = [];
@@ -64,7 +64,7 @@ function Debut({ station }: { station: TStation }) {
         case 1: {
           const { Shining } = Data;
           if (!Shining) break;
-          const random = <ExhibitCard exhibit={Shining} />
+          const random = <ExhibitCard exhibit={Shining} />;
           randoms[i] = random;
           break;
         }
@@ -72,7 +72,7 @@ function Debut({ station }: { station: TStation }) {
           const { UncommonCards } = Data
           if (!UncommonCards) break;
           const cards = convertCards(UncommonCards);
-          const random = <CardCards cards={cards} />
+          const random = <CardCards cards={cards} />;
           randoms[i] = random;
           break;
         }
@@ -80,14 +80,14 @@ function Debut({ station }: { station: TStation }) {
           const { RareCard } = Data;
           if (!RareCard) break;
           const card = convertCard(RareCard);
-          const random = <CardCard card={card} />
+          const random = <CardCard card={card} />;
           randoms[i] = random;
           break;
         }
         case 4: {
           const { RareExhibit } = Data;
           if (!RareExhibit) break;
-          const random = <ExhibitCard exhibit={RareExhibit} />
+          const random = <ExhibitCard exhibit={RareExhibit} />;
           randoms[i] = random;
           break;
         }
@@ -101,7 +101,7 @@ function Debut({ station }: { station: TStation }) {
           const { TransformCard } = Data;
           if (!TransformCard) break;
           const card = convertCard(TransformCard);
-          const random = <CardCard card={card} />
+          const random = <CardCard card={card} />;
           randoms[i] = random;
           break;
         }
@@ -123,7 +123,7 @@ function Debut({ station }: { station: TStation }) {
     const { red, blue } = eventConfigs;
     const { current, next: options } = configs[1];
 
-    const next = getNext(options);
+    const [next] = getNext(options);
     const chosen = Choices[1];
 
     const props: Array<TObjAny> = [];
@@ -162,7 +162,7 @@ function Debut({ station }: { station: TStation }) {
     const chosen = Choices[2];
     if (chosen !== undefined) {
       const { current, next: options } = configs[2];
-      const next = getNext(options);
+      const [next] = getNext(options);
 
       const dialogueConfigs: TDialogueConfigs = {
         current,

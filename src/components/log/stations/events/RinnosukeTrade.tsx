@@ -8,51 +8,65 @@ import { useTranslation } from 'react-i18next';
 import ExhibitCard from 'components/log/entityCards/exhibitCard';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import RewardsWidget from '../parts/rewardsWidget';
+import { MoneyImage } from '../parts/stationWidgets';
 
 function RinnosukeTrade({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
   const { t } = useTranslation();
 
-  const { Type, Data } = station;
+  const { Data } = station;
 
-  const { Choices, Exhibits, Both } = Data;
+  const { Choices, Prices } = Data;
 
-  const id = Type;
+  const id = 'RinnosukeTrade';
   const configs = configsData.dialogues[id];
 
-  const { current, next: options } = configs;
+  const { current, next: options } = configs[0];
   
-  if (!Both) delete options[2];
+  const choices: Array<number | string> = [];
+  let exhibits: Array<string> = [];
 
-  const next = getNext(options);
+  if (!Prices) {
+    choices.push('0_invalid');
+  }
+  else {
+    choices.push(0);
+    exhibits = Object.keys(Prices);
+    if (exhibits.length < 2) choices.push('1_invalid');
+    else choices.push(1);
+  }
+  choices.push(2);
+
+  const [next, invalids] = getNext(options, choices);
   const chosen = Choices[0];
-
+console.log({next})
   const props: Array<TObjAny> = [];
   const randoms: Array<JSX.Element> = [];
 
-  Exhibits.forEach((exhibit: string, i: number) => {
-    const values = { 0: t(exhibit, { ns: 'exhibits' }) };
-    props[i] = { values };
-    const random = <ExhibitCard exhibit={exhibit} />
-    randoms[i] = random;
+  choices.forEach((_, i: number) => {
+    const exhibit = exhibits[i];
+    if (exhibit) {
+      const values = {
+        0: t(exhibit, { ns: 'exhibits' }),
+        1: Prices[exhibit]
+      };
+      const components = { Money: <MoneyImage /> };
+      props[i] = { values, components };
+      const random = <ExhibitCard exhibit={exhibit} />;
+      randoms[i] = random;
+    }
   });
-  if (Both) {
-    const values: TObj<string> = {};
-    Exhibits.forEach((exhibit: string, i: number) => {
-      values[i] = t(exhibit, { ns: 'exhibits' });
-    });
-    props[2] = { values };
-    const random = <ExhibitCards exhibits={Exhibits} />
-    randoms[2] = random;
-  }
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
     props,
-    randoms
+    randoms,
+    invalids
   };
+
+  // TODO exchange
 
   return (
     <div className="p-station__body">

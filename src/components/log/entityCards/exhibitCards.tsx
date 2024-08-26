@@ -2,6 +2,7 @@ import { TExhibitChanges, TExhibitObjs, TExhibits } from 'utils/types/runData';
 import ExhibitCard from './exhibitCard';
 import { TObjNumber } from 'utils/types/common';
 import { getExhibitId } from 'utils/functions/helpers';
+import { Fragment } from 'react/jsx-runtime';
 
 function ExhibitCards({ exhibits, added, prices }: { exhibits: TExhibits | TExhibitObjs | TExhibitChanges, added?: Array<number>, prices?: TObjNumber }) {
   return (
@@ -21,10 +22,10 @@ function ExhibitCards({ exhibits, added, prices }: { exhibits: TExhibits | TExhi
         }
 
         return (
-          <>
-            <ExhibitCard exhibit={exhibit} isNotAdded={isNotAdded} key={i} />
+          <Fragment key={i}>
+            <ExhibitCard exhibit={exhibit} isNotAdded={isNotAdded} />
             {price}
-          </>
+          </Fragment>
         );
       })}
     </div>

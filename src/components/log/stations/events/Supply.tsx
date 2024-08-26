@@ -24,7 +24,7 @@ function Supply({ station }: { station: TStation }) {
   
   if (!Both) delete options[2];
 
-  const next = getNext(options);
+  const [next] = getNext(options);
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
@@ -33,7 +33,7 @@ function Supply({ station }: { station: TStation }) {
   Exhibits.forEach((exhibit: string, i: number) => {
     const values = { 0: t(exhibit, { ns: 'exhibits' }) };
     props[i] = { values };
-    const random = <ExhibitCard exhibit={exhibit} />
+    const random = <ExhibitCard exhibit={exhibit} />;
     randoms[i] = random;
   });
   if (Both) {
@@ -42,7 +42,7 @@ function Supply({ station }: { station: TStation }) {
       values[i] = t(exhibit, { ns: 'exhibits' });
     });
     props[2] = { values };
-    const random = <ExhibitCards exhibits={Exhibits} />
+    const random = <ExhibitCards exhibits={Exhibits} />;
     randoms[2] = random;
   }
 

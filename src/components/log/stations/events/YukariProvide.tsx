@@ -19,7 +19,7 @@ function YukariProvide({ station }: { station: TStation }) {
 
   const configs = configsData.dialogues[id];
   const { current, next: _next } = configs;
-  const next = getNext(_next);
+  const [next] = getNext(_next);
   const chosen = Choices[0] === 2 ? 1 : Choices[0];
 
   const dialogueConfigs: TDialogueConfigs = {

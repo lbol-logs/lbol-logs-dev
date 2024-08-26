@@ -193,7 +193,8 @@ type TDialogueConfigs = {
   next: Array<string>,
   chosen: TRange3,
   props?: Array<TObjAny>,
-  randoms?: Array<JSX.Element>
+  randoms?: Array<JSX.Element>,
+  invalids?: Array<number>
 };
 
 export type {

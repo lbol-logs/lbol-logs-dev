@@ -3,6 +3,7 @@ import CardCard from './cardCard';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getStationImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
+import { Fragment } from 'react/jsx-runtime';
 
 function CardCards({ cards, added }: { cards: TCards, added?: Array<number> }) {
   return (
@@ -22,10 +23,10 @@ function CardCards({ cards, added }: { cards: TCards, added?: Array<number> }) {
         }
 
         return (
-          <>
-            <CardCard card={card} isNotAdded={isNotAdded} key={i} />
+          <Fragment key={i}>
+            <CardCard card={card} isNotAdded={isNotAdded} />
             {price}
-          </>
+          </Fragment>
         );
       })}
     </div>

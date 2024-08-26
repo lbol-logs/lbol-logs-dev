@@ -20,7 +20,7 @@ function Select({ station }: { station: TStation }) {
 
   const { current, next: options } = configs;
 
-  const next = getNext(options);
+  const [next] = getNext(options);
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];

@@ -12,7 +12,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
   };
   const commonProps = { components };
 
-  const { current, next, chosen, props, randoms } = dialogueConfigs;
+  const { current, next, chosen, props, randoms, invalids } = dialogueConfigs;
 
   return (
     <div className="p-dialogue">
@@ -26,9 +26,13 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
       <div className="p-dialogue__options">
           {next.map((option, i) => {
             const isChosen = chosen === i;
-            let _props = commonProps;
-            if (props) {
-              _props = Object.assign(_props, props[i] || {});
+            let _props = {};
+            if (props && props[i]) {
+              const _components = Object.assign({}, props[i].components, components);
+              Object.assign(_props, props[i], { components: _components });
+            }
+            else {
+              _props = commonProps;
             }
             let random = null;
             if (randoms && randoms[i]) {
@@ -40,8 +44,10 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
               );
             }
 
+            const isInvalid = invalids ? invalids.includes(i) : false;
+
             return (
-              <div className={`p-dialogue__option ${isChosen ? 'p-dialogue__option--chosen' : ''}`} key={i}>
+              <div className={`p-dialogue__option ${isInvalid ? 'p-dialogue__option--invalid' : ''} ${isChosen ? 'p-dialogue__option--chosen' : ''}`} key={i}>
                 <Trans
                   i18nKey={`${id}.${option}`}
                   ns="dialogues"

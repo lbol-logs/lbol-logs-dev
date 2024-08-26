@@ -901,6 +901,9 @@ html:lang(en) .p-result__type {
   align-items: flex-start;
   column-gap: 0.5em;
 }
+.p-dialogue__option--invalid {
+  background: var(--gray);
+}
 .p-gap-choice--chosen, .p-dialogue__option--chosen {
   outline-width: 2px;
   outline-color: var(--red);

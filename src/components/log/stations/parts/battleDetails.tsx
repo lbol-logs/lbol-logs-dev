@@ -34,7 +34,7 @@ function BattleDetails({ details }: { details: Array<TObjAny> }) {
         if ((i - 2) in details) {
           ({ Hp: lastHp } = details[i - 2]);
         }
-        const hp = <HpWidget hp={Hp} lastHp={lastHp} />
+        const hp = <HpWidget hp={Hp} lastHp={lastHp} />;
 
         return (
           <div className={`p-battle-details__row ${isPlayer ? 'p-battle-details__row--player' : 'p-battle-details__row--enemy'}`} key={i}>
