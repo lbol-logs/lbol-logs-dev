@@ -73,11 +73,11 @@ function getNext(next: TObjAny, choices?: Array<number | string>): [Array<string
   if (choices) {
     array = choices.map((choice, i) => {
       if (typeof choice === 'string' && choice.endsWith('_invalid')) invalids.push(i);
-      return next[choice].current
+      return next[choice];
     });
   }
   else {
-    array = Object.values(next).map(({ current }) => current);
+    array = Object.values(next);
   }
   return [array, invalids];
 }
