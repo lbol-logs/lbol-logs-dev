@@ -1,7 +1,7 @@
 import { CommonContext } from 'contexts/commonContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import CharactersWidget from './charactersWidget';
+import CharactersWidget from './_charactersWidget';
 import DifficultiesWidget from './difficultiesWidget';
 import ColorsWidget from './colorsWidget';
 import RequestsTypes from './requestsTypes';

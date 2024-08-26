@@ -4,6 +4,9 @@ import { LogContext } from 'contexts/logContext';
 import { Trans, useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
+import { getStationImage } from 'utils/functions/getImage';
+import { iconSize } from 'configs/globals';
 
 function ShopStation({ station }: { station: TStation }) {
   const { t } = useTranslation();
@@ -42,12 +45,15 @@ function ShopStation({ station }: { station: TStation }) {
     );
   }
 
+  const size = iconSize * 2;
+
   return (
     <div className="p-station__body">
       <div className="p-station__main">
         <div className="p-event">
           <div className="p-event__body">
             <div className="p-dialogues">
+              <LazyLoadImage2 className="p-event__img" callback={getStationImage} name="TakaneCardService" width={size} height={size} alt="" />
               {dialogue}
             </div>
           </div>
