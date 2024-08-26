@@ -3,8 +3,9 @@ import { ChangeEventHandler, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import DefaultFilter from 'utils/classes/DefaultFilter';
 import { TFilterRadio } from 'utils/types/others';
+import { TExhibit } from 'utils/types/runData';
 
-function ExhibitsTypes({ onChange, startingExhibit, swappedExhibit }: { onChange: ChangeEventHandler, startingExhibit: string, swappedExhibit: string }) {
+function ExhibitsTypes({ onChange, startingExhibit, swappedExhibit }: { onChange: ChangeEventHandler, startingExhibit: TExhibit, swappedExhibit: TExhibit }) {
   const { t } = useTranslation();
   const { filter } = useContext(RunListContext);
   const { sc } = filter;

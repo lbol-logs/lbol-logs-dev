@@ -956,7 +956,7 @@ html:lang(en) .p-result__type {
   display: inline-block;
   margin-bottom: 1em;
 }
-.c-dialogue__random {
+.c-dialogue__tip {
   display: flex;
   column-gap: 0.5em;
   align-items: flex-start;

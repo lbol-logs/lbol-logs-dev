@@ -50,7 +50,7 @@ function Debut({ station }: { station: TStation }) {
     const chosen = Choices[0];
 
     const props: Array<TObjAny> = [];
-    const randoms: Array<JSX.Element> = [];
+    const tips: Array<JSX.Element> = [];
 
     Object.entries(options).forEach(([key, option]) => {
       const i = Number(key);
@@ -64,31 +64,31 @@ function Debut({ station }: { station: TStation }) {
         case 1: {
           const { Shining } = Data;
           if (!Shining) break;
-          const random = <ExhibitCard exhibit={Shining} />;
-          randoms[i] = random;
+          const tip = <ExhibitCard exhibit={Shining} />;
+          tips[i] = tip;
           break;
         }
         case 2: {
           const { UncommonCards } = Data
           if (!UncommonCards) break;
           const cards = convertCards(UncommonCards);
-          const random = <CardCards cards={cards} />;
-          randoms[i] = random;
+          const tip = <CardCards cards={cards} />;
+          tips[i] = tip;
           break;
         }
         case 3: {
           const { RareCard } = Data;
           if (!RareCard) break;
           const card = convertCard(RareCard);
-          const random = <CardCard card={card} />;
-          randoms[i] = random;
+          const tip = <CardCard card={card} />;
+          tips[i] = tip;
           break;
         }
         case 4: {
           const { RareExhibit } = Data;
           if (!RareExhibit) break;
-          const random = <ExhibitCard exhibit={RareExhibit} />;
-          randoms[i] = random;
+          const tip = <ExhibitCard exhibit={RareExhibit} />;
+          tips[i] = tip;
           break;
         }
         case 5: {
@@ -101,8 +101,8 @@ function Debut({ station }: { station: TStation }) {
           const { TransformCard } = Data;
           if (!TransformCard) break;
           const card = convertCard(TransformCard);
-          const random = <CardCard card={card} />;
-          randoms[i] = random;
+          const tip = <CardCard card={card} />;
+          tips[i] = tip;
           break;
         }
       }
@@ -113,7 +113,7 @@ function Debut({ station }: { station: TStation }) {
       next,
       chosen,
       props,
-      tips: randoms
+      tips
     };
 
     advantages = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;

@@ -1,9 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { TDialogueConfigs, TExhibit, TExhibits } from 'utils/types/runData';
 import { RevealImage } from './stationWidgets';
-import ExhibitImage from 'components/common/parts/exhibitImage';
 import { concatObjects } from 'utils/functions/helpers';
 import { TObjString } from 'utils/types/common';
+import ExhibitImages from 'components/common/parts/exhibitImages';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
   const { t } = useTranslation();
@@ -54,12 +54,10 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             if (hasTip || hasExhibit) {
               const _tip = hasTip ? tips[i] : null;
               const _exhibit = hasExhibit
-                ? _exhibits.map(exhibit =>
-                    <ExhibitImage className="c-exhibit__img" exhibit={exhibit} alt="" key={exhibit} />
-                  )
+                ? <ExhibitImages className="c-exhibit__img" exhibits={_exhibits} alt="" />
                 : null;
               tip = (
-                <span className="c-dialogue__random">
+                <span className="c-dialogue__tip">
                   <RevealImage />
                   {_tip}
                   {_exhibit}

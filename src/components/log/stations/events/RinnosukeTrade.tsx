@@ -1,18 +1,16 @@
-import { TDialogueConfigs, TStation } from 'utils/types/runData';
+import { TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TObjAny, TObjString } from 'utils/types/common';
+import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import { useTranslation } from 'react-i18next';
-import ExhibitCard from 'components/log/entityCards/exhibitCard';
 import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
-import ExhibitCards from 'components/log/entityCards/exhibitCards';
 
 function RinnosukeTrade({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
-  const { t } = useTranslation();
+  useTranslation();
 
   const { Data } = station;
 
@@ -28,7 +26,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
     const { current, next: options } = configs[0];
     
     const choices: Array<number | string> = [];
-    let exhibits: Array<string> = [];
+    let exhibits: TExhibits = [];
 
     if (!Prices) {
       choices.push('0_invalid');
@@ -50,10 +48,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
     choices.forEach((_, i: number) => {
       const exhibit = exhibits[i];
       if (exhibit) {
-        const values = {
-          // 0: t(exhibit, { ns: 'exhibits' }),
-          1: Prices[exhibit]
-        };
+        const values = { 1: Prices[exhibit] };
         const components = { Money: <MoneyImage /> };
         props[i] = { values, components };
         // const tip = <ExhibitCard exhibit={exhibit} />;

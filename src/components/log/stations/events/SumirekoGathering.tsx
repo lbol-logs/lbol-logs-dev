@@ -28,30 +28,14 @@ function SumirekoGathering({ station }: { station: TStation }) {
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
-  const randoms: Array<JSX.Element> = [];
-
-  Exhibits.forEach((exhibit: string, i: number) => {
-    const values = { 0: t(exhibit, { ns: 'exhibits' }) };
-    props[i] = { values };
-    const random = <ExhibitCard exhibit={exhibit} />;
-    randoms[i] = random;
-  });
-  if (Both) {
-    const values: TObj<string> = {};
-    Exhibits.forEach((exhibit: string, i: number) => {
-      values[i] = t(exhibit, { ns: 'exhibits' });
-    });
-    props[2] = { values };
-    const random = <ExhibitCards exhibits={Exhibits} />;
-    randoms[2] = random;
-  }
+  const tips: Array<JSX.Element> = [];
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
     props,
-    tips: randoms
+    tips
   };
 
   return (

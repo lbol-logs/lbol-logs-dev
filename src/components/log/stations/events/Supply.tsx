@@ -1,13 +1,12 @@
-import { TDialogueConfigs, TStation } from 'utils/types/runData';
+import { TDialogueConfigs, TExhibit, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObj, TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import { useTranslation } from 'react-i18next';
-import ExhibitCard from 'components/log/entityCards/exhibitCard';
-import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import RewardsWidget from '../parts/rewardsWidget';
+import ExhibitImages from 'components/common/parts/exhibitImages';
 
 function Supply({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -28,22 +27,22 @@ function Supply({ station }: { station: TStation }) {
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
-  const randoms: Array<JSX.Element> = [];
+  const tips: Array<JSX.Element> = [];
 
-  Exhibits.forEach((exhibit: string, i: number) => {
-    const values = { 0: t(exhibit, { ns: 'exhibits' }) };
-    props[i] = { values };
-    const random = <ExhibitCard exhibit={exhibit} />;
-    randoms[i] = random;
-  });
+  // Exhibits.forEach((exhibit: string, i: number) => {
+  //   const values = { 0: t(exhibit, { ns: 'exhibits' }) };
+  //   props[i] = { values };
+  //   const tip = <ExhibitCard exhibit={exhibit} />;
+  //   tips[i] = tip;
+  // });
   if (Both) {
     const values: TObj<string> = {};
-    Exhibits.forEach((exhibit: string, i: number) => {
+    Exhibits.forEach((exhibit: TExhibit, i: number) => {
       values[i] = t(exhibit, { ns: 'exhibits' });
     });
     props[2] = { values };
-    const random = <ExhibitCards exhibits={Exhibits} />;
-    randoms[2] = random;
+    const tip = <ExhibitImages exhibits={Exhibits} />;
+    tips[2] = tip;
   }
 
   const dialogueConfigs: TDialogueConfigs = {
@@ -51,7 +50,8 @@ function Supply({ station }: { station: TStation }) {
     next,
     chosen,
     props,
-    tips: randoms
+    tips,
+    exhibits: Exhibits
   };
 
   return (

@@ -1,6 +1,6 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
-import { TAct, TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TLevel, TRunData, TStations } from 'utils/types/runData';
+import { TAct, TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
@@ -57,7 +57,7 @@ function getSameCardIndex(cards: TCards, card: TCard): number {
   );
 }
 
-function getSameExhibitIndex(exhibits: Array<TExhibitObj | TExhibit>, exhibit: TExhibitObj | TExhibit): number {
+function getSameExhibitIndex(exhibits: TExhibitObjs | TExhibits, exhibit: TExhibitObj | TExhibit): number {
   const id = typeof exhibit === 'string' ? exhibit : exhibit.Id;
   if (typeof exhibits[0] === 'string') return exhibits.findIndex(Id => Id === id);
   else return (exhibits as TExhibitObjs).findIndex(({ Id }) => Id === id);
