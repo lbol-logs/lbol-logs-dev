@@ -13,10 +13,11 @@ function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
   const { width, height } = cardSize;
   const { Rarity, IsMisfortune } = configsData.cards[Id];
   const type = IsMisfortune ? 'Misfortune' : Rarity;
+  const upgradeCounter = UpgradeCounter ? UpgradeCounter : '';
 
   return (
     <span className={`c-entity c-entity--${type} ${isNotAdded === true ? 'c-entity--not-added': ''} c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`}>
-      <span className="c-entity__text c-card__text u-text-shadow">{t(Id, { ns: 'cards' })}{IsUpgraded && '+'}{UpgradeCounter}</span>
+      <span className="c-entity__text c-card__text u-text-shadow">{t(Id, { ns: 'cards' })}{IsUpgraded && '+'}{upgradeCounter}</span>
       <LazyLoadImage2 className="c-card__img" callback={getCardImage} name={Id} width={width} height={height} alt="" />
     </span>
   );
