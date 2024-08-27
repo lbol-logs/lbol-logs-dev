@@ -16,6 +16,7 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
   const { t } = useTranslation();
 
   const { Rewards, Node: { Level }, Data } = station;
+
   let { Cards, Exhibits } = Rewards as TRewards || {};
 
   const { cards, exhibits, excludes } = useMemo(() => {
@@ -51,27 +52,29 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
 
     {
       const { Stations, Cards: CardChanges, Exhibits } = runData;
-      ({ addedCards, excludeCards } = getAddedCards({ CardRewards: Cards, CardChanges, Stations, act, Level }));
+      if (Cards) ({ addedCards, excludeCards } = getAddedCards({ CardRewards: Cards, CardChanges, Stations, act, Level }));
       const currentExhibits = getCurrentLevel(Exhibits, Stations, act, Level);
       addedExhibits = currentExhibits.filter(({ Type }) => Type === 'Add');
     }
 
-    cards = (
-      <>
-        {Cards.map((cards, i) => {
-          const added = addedCards[i];
+    if (Cards) {
+      cards = (
+        <>
+          {Cards.map((cards, i) => {
+            const added = addedCards[i];
 
-          return (
-            <div className="p-entity p-entity--cards" key={i}>
-              <div className="p-entity__label">
-                <LazyLoadImage2 callback={getCommonImage} name="Card" alt={t('card', { ns: 'common' })} />
+            return (
+              <div className="p-entity p-entity--cards" key={i}>
+                <div className="p-entity__label">
+                  <LazyLoadImage2 callback={getCommonImage} name="Card" alt={t('card', { ns: 'common' })} />
+                </div>
+                <CardCards cards={cards} added={added} />
               </div>
-              <CardCards cards={cards} added={added} />
-            </div>
-          );
-        })}
-      </>
-    );
+            );
+          })}
+        </>
+      );
+    }
 
     if (Exhibits) {
       const added = addedExhibits.map(addedExhibit => {
