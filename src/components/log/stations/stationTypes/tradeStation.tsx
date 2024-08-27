@@ -7,6 +7,7 @@ function TradeStation({ station }: { station: TStation }) {
   const { Act } = station.Node;
   if (Act === 2) return <RinnosukeTrade station={station} />;
   else return <TempStation station={station} />;
+  // else return <SumirekoGathering station={station} />;
 }
 
 export default TradeStation;

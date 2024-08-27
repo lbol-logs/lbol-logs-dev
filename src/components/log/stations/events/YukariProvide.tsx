@@ -4,7 +4,6 @@ import { getNext } from 'utils/functions/helpers';
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useTranslation } from 'react-i18next';
-import ExhibitImages from 'components/common/parts/exhibitImages';
 
 function YukariProvide({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
