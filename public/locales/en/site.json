@@ -29,7 +29,9 @@
         "Cards revealed (except events and shops), acquired, lost, upgraded",
         "Change of HP/Max HP, P/Max P, Gold",
         "Enemy encounts (name and # of turns only)",
-        "Name and choices of events"
+        "Name and choices of events",
+        "Details of Seija Battle",
+        "Stations other than events"
       ]
     }
   },
@@ -43,8 +45,7 @@
     },
     "categories": {
       "now": [
-        "Details of Seija Battle (Mod & site)",
-        "Stations other than battle (events, shop, etc.) (Mod & site)"
+        "Event stations (Mod & site)"
       ],
       "next": [
         "Mod release",
