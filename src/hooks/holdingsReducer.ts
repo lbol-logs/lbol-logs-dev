@@ -55,8 +55,9 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
     const card = copyObject(entity as TCard);
     let { IsUpgraded, UpgradeCounter } = card;
     if (afterUpgrade) {
-      if (UpgradeCounter) {
+      if (UpgradeCounter !== undefined) {
         if (UpgradeCounter === 1) IsUpgraded = false;
+        (card.UpgradeCounter as number)--;
       }
       else {
         IsUpgraded = false;
