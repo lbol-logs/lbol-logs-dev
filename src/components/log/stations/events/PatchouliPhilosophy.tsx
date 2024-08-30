@@ -8,7 +8,7 @@ import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
 import EventHead from '../parts/eventHead';
 
-function JunkoColorless({ station }: { station: TStation }) {
+function PatchouliPhilosophy({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
 
   const { Data, Id } = station;
@@ -62,4 +62,4 @@ function JunkoColorless({ station }: { station: TStation }) {
   );
 }
 
-export default JunkoColorless;
+export default PatchouliPhilosophy;

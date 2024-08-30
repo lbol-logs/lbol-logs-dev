@@ -19,7 +19,7 @@ function DoremyPortal({ station }: { station: TStation }) {
   const eventConfigs = configsData.events[id];
   const configs = configsData.dialogues[id];
 
-  const { money, exhibit, misfortune} = eventConfigs;
+  const { money, exhibit, misfortune } = eventConfigs;
   const { current, next: options } = configs;
 
 
