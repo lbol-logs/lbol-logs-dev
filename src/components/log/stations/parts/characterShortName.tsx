@@ -8,11 +8,11 @@ function CharacterShortName() {
   const { t } = useTranslation();
 
   const name = t(Character, { ns: 'enemies', context: 'short' });
-  // TODO
+
   return (
-    <>
+    <span className={`c-character-short-name c-character-short-name--${Character}`}>
       {name}
-    </>
+    </span>
   );
 }
 
