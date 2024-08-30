@@ -1,12 +1,15 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext, useMemo } from 'react';
-import { TCardChanges, TExhibitObjs, TExhibits, TStation } from 'utils/types/runData';
+import { eventsColors, EventsWithConvert, TCardChanges, TExhibitObjs, TExhibits, TStation } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
 import { copyObject, getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from 'utils/functions/helpers';
+import ManaWidget from 'components/common/parts/manaWidget';
+import { TObjString } from 'utils/types/common';
+import BaseManaWidget from 'components/common/parts/baseManaWidget';
 
 function CurrentChange({ station, excludes }: { station: TStation, excludes?: { Cards: TCardChanges, Exhibits: TExhibitObjs } }) {
   const { runData } = useContext(LogContext);
@@ -102,8 +105,35 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
     });
   }, []);
 
-  // TODO: WIP
-  const baseMana = null;
+  const baseMana = useMemo(() => {
+    const { Id, Data } = station;
+    if (!(Id as string in eventsColors) && !Data) return null;
+    const { Color } = Data;
+    if (!Color) return null;
+
+    const mana = {
+      Remove: '－',
+      Add: '＋'
+    };
+    const colorIcon = <ManaWidget mana="A" />;
+
+    const colors: TObjString = {
+      Remove: Color,
+      Add: eventsColors[Id as EventsWithConvert]
+    };
+
+    return Object.entries(mana).map(([type, symbol]) => {
+      return (
+        <div className="p-entity p-entity--colors" key={type}>
+          <div className="p-entity__label">
+            {colorIcon}
+            <span className={`p-entity__symbol p-entity__symbol--${type}`}>{symbol}</span>
+          </div>
+          <BaseManaWidget baseMana={colors[type]} />
+        </div>
+      );
+    });
+  }, []);
 
   return (
     <>

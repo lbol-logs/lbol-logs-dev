@@ -1,5 +1,5 @@
 import { Dispatch, ReducerAction } from 'react';
-import { TObj, TObjAny, TObjNumber, TRange16, TRange3, TRange4 } from './common';
+import { TObj, TObjAny, TObjNumber, TObjString, TRange16, TRange3, TRange4 } from './common';
 
 type TRunData = {
   Versions: string,
@@ -188,6 +188,16 @@ enum ExhibitsEnhanceDrinkTea {
   HuangyouJiqiren = 'HuangyouJiqiren'
 };
 
+enum EventsWithConvert {
+  JunkoColorless = 'JunkoColorless',
+  PatchouliPhilosophy = 'PatchouliPhilosophy'
+};
+
+const eventsColors: TObjString = {
+  JunkoColorless: 'CC',
+  PatchouliPhilosophy: 'P'
+};
+
 type TDialogueConfigs = {
   current: string,
   next: Array<string>,
@@ -241,5 +251,7 @@ export {
   CardsWithUpgradeCounter,
   ExhibitsWithCounter,
   exhibitCounters,
-  ExhibitsEnhanceDrinkTea
+  ExhibitsEnhanceDrinkTea,
+  EventsWithConvert,
+  eventsColors
 };

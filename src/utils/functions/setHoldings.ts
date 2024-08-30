@@ -1,4 +1,4 @@
-import { eventsConvertBaseMana, ExhibitsWithCounter, RequestTypes, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
+import { eventsConvertBaseMana, EventsWithConvert, ExhibitsWithCounter, RequestTypes, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
 import { copyObject } from 'utils/functions/helpers';
 
@@ -147,7 +147,8 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
   {
     const stations = Stations.filter(({ Data }) => Data && Data.BaseMana);
     for (const station of stations) {
-      const { Id, Node, Data: { BaseMana } } = station;
+      const { Id, Node, Data: { Color } } = station;
+      if (!Color) continue;
 
       {
         const action: THoldingAction = {
@@ -155,7 +156,7 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
           change: {
             Type: 'Remove',
             Station: Node,
-            BaseMana
+            BaseMana: Color
           }
         };
         actions.push(action);
@@ -168,7 +169,7 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
           change: {
             Type: 'Add',
             Station: Node,
-            BaseMana
+            BaseMana: eventsConvertBaseMana[Id as EventsWithConvert]
           }
         };
         actions.push(action);
