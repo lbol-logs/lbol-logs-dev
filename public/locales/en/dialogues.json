@@ -55,5 +55,11 @@
     "line:0bb144b": "\"I''ll give you a very helpful item in exchange for it.\"",
     "line:00db216": "[Agree] Deliver <h>{{0}}</h>, gain <h>{{1}}</h>.",
     "line:0431aa2": "[Leave] Nothing happens."
+  },
+  "DoremyPortal": {
+    "line:0af435d": "\"If you wish to find her quickly, I have a shortcut right here.\"",
+    "line:0891a52": "[Use Tunnel] Start boss fight immediately. Gain <h>Border Sensor</h>.",
+    "line:0f1da28": "[Search for Treasure] Gain a random Exhibit and {{0}} <Money />, gain Misfortune: <h>Psychedelic</h>.",
+    "line:0298994": "[Leave] Nothing happens."
   }
 }

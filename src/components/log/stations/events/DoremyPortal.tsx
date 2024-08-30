@@ -1,42 +1,39 @@
-import { TDialogueConfigs, TExhibit, TStation } from 'utils/types/runData';
+import { TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TObj, TObjAny } from 'utils/types/common';
+import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
-import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
-import ExhibitImages from 'components/common/parts/exhibitImages';
+import { MoneyImage } from '../parts/stationWidgets';
 
-function Supply({ station }: { station: TStation }) {
+function DoremyPortal({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
-  const { t } = useTranslation();
 
-  const { Type, Data } = station;
+  const { Data, Id } = station;
 
-  const { Choices, Exhibits, Both } = Data;
+  const { Choices, Exhibit } = Data;
 
-  const id = Type;
+  const id = Id as string;
+  const eventConfigs = configsData.events[id];
   const configs = configsData.dialogues[id];
 
+  const { money, exhibit, misfortune} = eventConfigs;
   const { current, next: options } = configs;
-  
-  if (!Both) delete options[2];
+
 
   const [next] = getNext(options);
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
-  const tips: Array<JSX.Element> = [];
+  const exhibits: TExhibits = [];
 
-  if (Both) {
-    const values: TObj<string> = {};
-    Exhibits.forEach((exhibit: TExhibit, i: number) => {
-      values[i] = t(exhibit, { ns: 'exhibits' });
-    });
-    props[2] = { values };
-    const tip = <ExhibitImages exhibits={Exhibits} />;
-    tips[2] = tip;
+  exhibits[0] = exhibit;
+  const values = { 0: money };
+  const components = { Money: <MoneyImage /> };
+  props[1] = { values, components };
+  if (Exhibit) {
+    exhibits[1] = Exhibit;
   }
 
   const dialogueConfigs: TDialogueConfigs = {
@@ -44,8 +41,7 @@ function Supply({ station }: { station: TStation }) {
     next,
     chosen,
     props,
-    tips,
-    exhibits: Exhibits
+    exhibits
   };
 
   return (
@@ -64,4 +60,4 @@ function Supply({ station }: { station: TStation }) {
   );
 }
 
-export default Supply;
+export default DoremyPortal;
