@@ -8,7 +8,7 @@ function BaseManaWidget({ baseMana }: { baseMana: TBaseMana }) {
   while ((m = regExp.exec(baseMana)) !== null) {
     extended = extended.replace(m[0], m[2].repeat(Number(m[1])));
   }
-console.log(extended);
+
   return (
     <div className="p-base-mana">
     {extended.split('').map((mana, i) => {

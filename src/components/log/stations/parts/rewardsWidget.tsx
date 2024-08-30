@@ -12,10 +12,10 @@ import getAddedCards from 'utils/functions/getAddedCards';
 import { TObjNumber } from 'utils/types/common';
 
 function RewardsWidget({ station, additionalCards }: { station: TStation, additionalCards?: TCards }) {
-  const { runData, act } = useContext(LogContext);
+  const { runData } = useContext(LogContext);
   const { t } = useTranslation();
 
-  const { Rewards, Node: { Level }, Data } = station;
+  const { Rewards, Data } = station;
 
   let { Cards, Exhibits } = Rewards as TRewards || {};
 
