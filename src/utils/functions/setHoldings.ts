@@ -116,7 +116,12 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
       const { Node } = Stations[Station];
       exhibit.Station = Node;
 
-      if (Exhibit.Id === ExhibitsWithCounter.TiangouYuyi) {
+      const { BaseMana, Counter } = exhibitConfigs[Id];
+      if (Counter && Type === 'Add') {
+        exhibit.Counter = Counter;
+      }
+
+      if (Id === ExhibitsWithCounter.TiangouYuyi) {
         ignoredPaths.push({ Type, Station: Node });
       }
 
@@ -128,8 +133,7 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
       };
       actions.push(action);
 
-      const { Rarity, BaseMana } = exhibitConfigs[Id];
-      if (Rarity === 'Shining') {
+      if (BaseMana) {
         const action: THoldingAction = {
           type: 'BaseMana',
           change: {

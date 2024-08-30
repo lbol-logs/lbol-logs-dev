@@ -1,5 +1,5 @@
 import { Dispatch, ReducerAction } from 'react';
-import { TObj, TObjAny, TObjNumber, TObjString, TRange16, TRange3, TRange4 } from './common';
+import { TObjAny, TObjString, TRange16, TRange3, TRange4 } from './common';
 
 type TRunData = {
   Versions: string,
@@ -169,14 +169,6 @@ enum ExhibitsWithCounter {
   Baota = 'Baota'
 };
 
-const exhibitCounters: TObj<TObjNumber> = {
-  GanzhuYao: { initial: 0 },
-  ChuRenou: { initial: 3 },
-  TiangouYuyi: { initial: 3 },
-  Moping: { initial: 3 },
-  Baota: { initial: 0, final: 3 }
-};
-
 enum ExhibitsEnhanceDrinkTea {
   JingzhiChaju = 'JingzhiChaju',
   DiannaoPeijian = 'DiannaoPeijian',
@@ -239,7 +231,6 @@ export {
   RequestTypes,
   CardsWithUpgradeCounter,
   ExhibitsWithCounter,
-  exhibitCounters,
   ExhibitsEnhanceDrinkTea,
   eventsConvertBaseMana
 };
