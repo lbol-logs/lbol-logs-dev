@@ -1,21 +1,22 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext, useMemo } from 'react';
-import { eventsConvertBaseMana, TCardChanges, TExhibitObjs, TExhibits, TStation } from 'utils/types/runData';
+import { TCardChanges, TExhibitObjs, TExhibits, TStation } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
-import { copyObject, getBaseMana, getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from 'utils/functions/helpers';
+import { copyObject, getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from 'utils/functions/helpers';
 import ManaWidget from 'components/common/parts/manaWidget';
 import { TObjString } from 'utils/types/common';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
 
 function CurrentChange({ station, excludes }: { station: TStation, excludes?: { Cards: TCardChanges, Exhibits: TExhibitObjs } }) {
-  const { runData } = useContext(LogContext);
+  const { runData, configsData } = useContext(LogContext);
   const { t } = useTranslation();
 
   const { Stations, Cards, Exhibits } = runData;
+  const eventConfigs = configsData.events;
 
   const card = useMemo(() => {
     const currentCards = getCurrentLevel(Cards, Stations, station);
@@ -107,11 +108,13 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
 
   const baseMana = useMemo(() => {
     const { Id, Data } = station;
-    if (!(Id as string in eventsConvertBaseMana) && !Data) return null;
-    const { Color } = Data;
-    if (!Color) return null;
+    if (!Data) return null;
 
-    const mana = {
+    const { mana } = eventConfigs[Id as string];
+    const { Color } = Data;
+    if (!mana || !Color) return null;
+
+    const manas = {
       Remove: '－',
       Add: '＋'
     };
@@ -119,10 +122,10 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
 
     const colors: TObjString = {
       Remove: Color,
-      Add: getBaseMana(Id)
+      Add: mana
     };
 
-    return Object.entries(mana).map(([type, symbol]) => {
+    return Object.entries(manas).map(([type, symbol]) => {
       return (
         <div className="p-entity p-entity--colors" key={type}>
           <div className="p-entity__label">

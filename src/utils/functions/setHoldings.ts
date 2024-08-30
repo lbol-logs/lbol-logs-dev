@@ -1,8 +1,8 @@
 import { ExhibitsWithCounter, RequestTypes, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
-import { copyObject, getBaseMana } from 'utils/functions/helpers';
+import { copyObject } from 'utils/functions/helpers';
 
-function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfigs, requestConfigs }: { runData: TRunData, dispatchHoldings: THoldingsReducer, characterConfigs: TObjAny, exhibitConfigs: TObjAny, requestConfigs: TObjAny }) {
+function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfigs, requestConfigs, eventsConfigs }: { runData: TRunData, dispatchHoldings: THoldingsReducer, characterConfigs: TObjAny, exhibitConfigs: TObjAny, requestConfigs: TObjAny, eventsConfigs: TObjAny }) {
   const { Stations } = runData;
   const { Character, PlayerType } = runData.Settings;
   const { BaseMana, [PlayerType]: { Cards, Exhibit } } = characterConfigs[Character];
@@ -167,7 +167,7 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
       }
 
       {
-        const BaseMana = getBaseMana(Id);
+        const BaseMana = eventsConfigs[Id as string].mana;
         const action: THoldingAction = {
           type: 'BaseMana',
           change: {

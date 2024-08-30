@@ -12,6 +12,7 @@ import { TConfigsData } from 'utils/types/common';
 
 function useRunData(id: string)  {
   const { version, configsData } = useContext(CommonContext);
+  const { configsData: { events: eventsConfigs } } = useContext(LogContext);
   const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData } = useContext(LogContext);
 
   const {
@@ -35,13 +36,13 @@ function useRunData(id: string)  {
       setRunDataId(id);
       setRunData(runData);
       if (exhibitConfigs !== undefined && characterConfigs !== undefined && requestConfigs !== undefined) {
-        const ignoredPaths = setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfigs, requestConfigs });
+        const ignoredPaths = setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfigs, requestConfigs, eventsConfigs });
         setIgnoredPaths(ignoredPaths);
       }
       setConfigsData(currentConfigs);
       setIsRunDataLoaded(true);
     }
-  }, [isValidRunData, runData, exhibitConfigs, characterConfigs, requestConfigs]);
+  }, [isValidRunData, runData, exhibitConfigs, characterConfigs, requestConfigs, eventsConfigs]);
 
   let redirect = null;
   if (!isValidRunData) redirect = <Navigate to="/" replace />;

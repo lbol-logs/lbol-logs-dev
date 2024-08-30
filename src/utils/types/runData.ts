@@ -175,11 +175,6 @@ enum ExhibitsEnhanceDrinkTea {
   HuangyouJiqiren = 'HuangyouJiqiren'
 };
 
-const eventsConvertBaseMana: TObjString = {
-  JunkoColorless: 'CC',
-  PatchouliPhilosophy: 'P'
-};
-
 type TDialogueConfigs = {
   current: string,
   next: Array<string>,
@@ -231,6 +226,5 @@ export {
   RequestTypes,
   CardsWithUpgradeCounter,
   ExhibitsWithCounter,
-  ExhibitsEnhanceDrinkTea,
-  eventsConvertBaseMana
+  ExhibitsEnhanceDrinkTea
 };
