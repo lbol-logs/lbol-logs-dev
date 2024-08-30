@@ -26,18 +26,18 @@ function PatchouliPhilosophy({ station }: { station: TStation }) {
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
-  const tips: Array<JSX.Element> = [];
+  const befores: Array<JSX.Element> = [];
 
   const values = { 0: t(`${Id}.${options['0_0']}`, { ns: 'dialogues' }) };
   props[0] = { values };
-  if (BaseMana) tips[0] = <BaseManaWidget baseMana={BaseMana} />;
+  if (BaseMana) befores[0] = <BaseManaWidget baseMana={BaseMana} />;
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
     props,
-    tips
+    befores
   };
 
   return (

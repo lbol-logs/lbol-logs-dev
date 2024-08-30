@@ -181,9 +181,9 @@ type TDialogueConfigs = {
   chosen: TRange3,
   props?: Array<TObjAny>,
   invalids?: Array<number>,
+  befores?: Array<JSX.Element>,
   cards?: Array<TCards>,
-  exhibits?: Array<TExhibits>,
-  tips?: Array<JSX.Element>
+  exhibits?: Array<TExhibits>
 };
 
 export type {

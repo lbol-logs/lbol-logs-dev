@@ -19,7 +19,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
   const questionComponents = { Player: <CharacterShortName /> };
   const questionProps = concatObjects({ components }, { components: questionComponents });
 
-  const { current, next, chosen, props, invalids, cards, exhibits, tips } = dialogueConfigs;
+  const { current, next, chosen, props, invalids, befores, cards, exhibits } = dialogueConfigs;
 
   return (
     <div className="p-dialogue">
@@ -52,24 +52,24 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             }
 
             let _tips = null;
-            const hasTips = tips && tips[i];
-            if (hasCards || hasExhibit || hasTips) {
+            const hasBefores = befores && befores[i];
+            if (hasCards || hasExhibit || hasBefores) {
               const _cards = hasCards
                 ? <CardCards cards={cards[i]} />
                 : null;
               const _exhibit = hasExhibit
                 ? <ExhibitCards exhibits={exhibits[i]} />
                 : null;
-              const __tips = hasTips
-                ? tips[i]
+              const _befores = hasBefores
+                ? befores[i]
                 : null;
               
               _tips = (
                 <span className="c-dialogue__tips">
                   <RevealImage />
+                  {_befores}
                   {_cards}
                   {_exhibit}
-                  {__tips}
                 </span>
               );
             }
