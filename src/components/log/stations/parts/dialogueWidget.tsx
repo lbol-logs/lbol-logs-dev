@@ -15,7 +15,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
   };
   const commonProps = { components };
 
-  const { current, next, chosen, props, invalids, cards, exhibits } = dialogueConfigs;
+  const { current, next, chosen, props, invalids, cards, exhibits, tips } = dialogueConfigs;
 
   return (
     <div className="p-dialogue">
@@ -47,19 +47,25 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
               _props = concatObjects(_props, { values });
             }
 
-            let tips = null;
-            if (hasCards || hasExhibit) {
+            let _tips = null;
+            const hasTips = tips && tips[i];
+            if (hasCards || hasExhibit || hasTips) {
               const _cards = hasCards
                 ? <CardCards cards={cards[i]} />
                 : null;
               const _exhibit = hasExhibit
                 ? <ExhibitCards exhibits={exhibits[i]} />
                 : null;
-              tips = (
+              const __tips = hasTips
+                ? tips[i]
+                : null;
+              
+              _tips = (
                 <span className="c-dialogue__tips">
                   <RevealImage />
                   {_cards}
                   {_exhibit}
+                  {__tips}
                 </span>
               );
             }
@@ -73,7 +79,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
                   ns="dialogues"
                   {..._props}
                 />
-                {tips}
+                {_tips}
               </div>
             );
           })}

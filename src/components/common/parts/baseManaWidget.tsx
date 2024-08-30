@@ -3,7 +3,7 @@ import ManaWidget from './manaWidget';
 
 function BaseManaWidget({ baseMana }: { baseMana: TBaseMana }) {
   let extended = baseMana;
-  const regExp = new RegExp(/\{(\d+)([WUBRGCP])\}/, 'g');
+  const regExp = /\{(\d+)([WUBRGCP])\}/g;
   let m;
   while ((m = regExp.exec(baseMana)) !== null) {
     extended = extended.replace(m[0], m[2].repeat(Number(m[1])));
