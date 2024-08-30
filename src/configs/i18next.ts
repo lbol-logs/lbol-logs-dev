@@ -22,6 +22,9 @@ i18next
     supportedLngs: lngs,
     fallbackLng: false,
     nsSeparator: false,
+    interpolation: {
+      escapeValue: false
+    },
     ns: namespaces
   });
 
