@@ -102,10 +102,14 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
     });
   }, []);
 
+  // TODO: WIP
+  const baseMana = null;
+
   return (
     <>
       {card}
       {exhibit}
+      {baseMana}
     </>
   );
 }
