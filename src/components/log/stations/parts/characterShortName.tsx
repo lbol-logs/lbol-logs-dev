@@ -5,7 +5,7 @@ function CharacterShortName({ character }: { character: string }) {
   const { t } = useTranslation();
 
   const name = t(character, { ns: 'enemies', context: 'short' });
-  
+  // TODO
   return (
     <>
       {name}

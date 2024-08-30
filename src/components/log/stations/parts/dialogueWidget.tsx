@@ -21,7 +21,6 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
   const questionComponents = { Player: <CharacterShortName character={Character} /> };
   const questionProps = concatObjects({ components }, { components: questionComponents });
-  // console.log(questionProps)
 
   const { current, next, chosen, props, invalids, cards, exhibits, tips } = dialogueConfigs;
 
@@ -32,7 +31,6 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
           i18nKey={`${id}.${current}`}
           ns="dialogues"
           {...questionProps}
-          // components={questionComponents}
         />
       </div>
       <div className="p-dialogue__options">
