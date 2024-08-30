@@ -1,48 +1,43 @@
-import { TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
+import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
-import { convertCards, getNext } from 'utils/functions/helpers';
+import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
-import { MoneyImage } from '../parts/stationWidgets';
 import EventHead from '../parts/eventHead';
+import { useTranslation } from 'react-i18next';
+import BaseManaWidget from 'components/common/parts/baseManaWidget';
 
 function PatchouliPhilosophy({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
+  const { t } = useTranslation();
 
   const { Data, Id } = station;
 
-  const { Choices, Exhibit } = Data;
+  const { Choices, BaseMana } = Data;
 
   const id = Id as string;
   const configs = configsData.dialogues[id];
 
   const { current, next: options } = configs;
 
-  const [next] = getNext(options);
+  const [next] = getNext(options, [0, 1]);
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
-  const cards: Array<TCards> = [];
-  const exhibits: Array<TExhibits> = [];
+  const tips: Array<JSX.Element> = [];
 
-  // exhibits[0] = [exhibit];
-  // const values = { 0: money };
-  // const components = { Money: <MoneyImage /> };
-  // props[1] = { values, components };
-  // cards[1] = convertCards([misfortune]);
-  // if (Exhibit) {
-  //   exhibits[1] = [Exhibit];
-  // }
+  const values = { 0: t(`${Id}.${options['0_0']}`, { ns: 'dialogues' }) };
+  props[0] = { values };
+  if (BaseMana) tips[0] = <BaseManaWidget baseMana={BaseMana} />;
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
     props,
-    cards,
-    exhibits
+    tips
   };
 
   return (

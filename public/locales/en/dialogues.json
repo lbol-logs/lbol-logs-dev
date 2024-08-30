@@ -69,7 +69,7 @@
     "line:04e31e3": "[Refuse] Nothing happens."
   },
   "PatchouliPhilosophy": {
-    "line:0b23fed": "\"What a coincidence, {{0}}. I can help tune your affinity with these jewels.\"<br />(A more than sufficient test subject.)",
+    "line:0b23fed": "\"What a coincidence, <Player />. I can help tune your affinity with these jewels.\"<br />(A more than sufficient test subject.)",
     "line:01cdad3": "[Accept] {{0}}",
     "line:07acb35": "Choose a colored base mana, and convert it into Philosopher''s Mana.",
     "line:04eeb1a": "[Refuse] Nothing happens."

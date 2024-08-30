@@ -5,15 +5,23 @@ import { concatObjects } from 'utils/functions/helpers';
 import { TObjString } from 'utils/types/common';
 import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
+import { Children, useContext } from 'react';
+import { LogContext } from 'contexts/logContext';
+import CharacterShortName from './characterShortName';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
   const { t } = useTranslation();
+  const { runData: { Settings: { Character } } } = useContext(LogContext);
 
   const components = {
     h: <span className="u-highlight">{}</span>,
     l: <span className="c-dialogue__height">{}</span>
   };
   const commonProps = { components };
+
+  const questionComponents = { Player: <CharacterShortName character={Character} /> };
+  const questionProps = concatObjects({ components }, { components: questionComponents });
+  // console.log(questionProps)
 
   const { current, next, chosen, props, invalids, cards, exhibits, tips } = dialogueConfigs;
 
@@ -23,7 +31,8 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
         <Trans
           i18nKey={`${id}.${current}`}
           ns="dialogues"
-          {...commonProps}
+          {...questionProps}
+          // components={questionComponents}
         />
       </div>
       <div className="p-dialogue__options">
