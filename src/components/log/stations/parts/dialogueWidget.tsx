@@ -40,7 +40,6 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
               _props = commonProps;
             }
             if (hasExhibit) {
-              console.log(exhibits[i], exhibits);
               const values = exhibits[i].reduce((a: TObjString, b, i) => {
                 a[i] = t(b, { ns: 'exhibits' });
                 return a;
