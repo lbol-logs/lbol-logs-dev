@@ -8,7 +8,7 @@ import { RunListContext } from 'contexts/runListContext';
 
 function ColorsWidget({ onChange, swappedExhibits }: { onChange: ChangeEventHandler, swappedExhibits: TObj<TExhibits> }) {
   const { filter } = useContext(RunListContext);
-  const { co, sw } = filter;
+  const { sw } = filter;
 
   return (
     <>
@@ -22,7 +22,8 @@ function ColorsWidget({ onChange, swappedExhibits }: { onChange: ChangeEventHand
             <ExhibitWidget onChange={onChange} exhibit={exhibit} key={exhibit} name="sw" checked={isExhibitChecked} />
           );
         });
-        const isColorChecked = isAllExhibitsChecked || (co ? co.includes(color): false);
+
+        const isColorChecked = isAllExhibitsChecked;
 
         return (
           <div className="p-filter__color" key={color}>
