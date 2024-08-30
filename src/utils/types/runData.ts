@@ -40,7 +40,7 @@ type TStation = {
   Node: TNodeObj,
   Status: TStatus,
   Data: TData,
-  Id?: string | number,
+  Id?: string,
   Rewards?: TRewards
 };
 type TStations = Array<TStation>;
