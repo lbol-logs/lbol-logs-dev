@@ -1,5 +1,5 @@
 import { Dispatch, ReducerAction } from 'react';
-import { TObjAny, TObjString, TRange16, TRange3, TRange4 } from './common';
+import { TObjAny, TRange16, TRange3, TRange4 } from './common';
 
 type TRunData = {
   Versions: string,

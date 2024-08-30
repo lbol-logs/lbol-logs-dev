@@ -1,6 +1,6 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
-import { TBaseMana, TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TRunData, TStation, TStations } from 'utils/types/runData';
+import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
