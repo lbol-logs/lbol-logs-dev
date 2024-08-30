@@ -1,6 +1,6 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
-import { TAct, TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStations } from 'utils/types/runData';
+import { TAct, TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
@@ -40,11 +40,16 @@ function toggleIsChecked(isChecked: boolean) {
   return isChecked ? toggleCheckedClassName : '';
 }
 
-function getCurrentLevel<T extends TCardChanges | TExhibitChanges>(changes: T, Stations: TStations, act: TAct, level: TLevel): T {
+function isSameStation(station1: TStation, station2: TStation): boolean {
+  const { Act, Level } = station1.Node;
+  const { Act: act, Level: level } = station2.Node;
+  const isCurrentStation = Act === act && Level === level;
+  return isCurrentStation;
+}
+
+function getCurrentLevel<T extends TCardChanges | TExhibitChanges>(changes: T, stations: TStations, station: TStation): T {
   return (changes as any[]).filter(({ Station }: { Station: number }) => {
-    const station = Stations[Station];
-    const { Act, Level } = station.Node;
-    const isCurrentLevel = Act === act && Level === level;
+    const isCurrentLevel = isSameStation(station, stations[Station]);
     return isCurrentLevel;
   }) as T;
 }

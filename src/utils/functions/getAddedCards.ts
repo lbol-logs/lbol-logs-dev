@@ -1,8 +1,8 @@
 import { copyObject, getCurrentLevel, getSameCardIndex } from 'utils/functions/helpers';
-import { TAct, TCard, TCardChanges, TCards, TLevel, TStations } from 'utils/types/runData';
+import { TCard, TCardChanges, TCards, TStation, TStations } from 'utils/types/runData';
 
-function getAddedCards({ CardRewards, CardChanges, Stations, act, Level }: { CardRewards: Array<TCards>, CardChanges: TCardChanges, Stations: TStations, act: TAct, Level: TLevel }) {
-  const currentCards = getCurrentLevel(CardChanges, Stations, act, Level);
+function getAddedCards({ CardRewards, CardChanges, Stations, station }: { CardRewards: Array<TCards>, CardChanges: TCardChanges, Stations: TStations, station: TStation }) {
+  const currentCards = getCurrentLevel(CardChanges, Stations, station);
   const currentAddedCards = currentCards.filter(({ Type }) => Type === 'Add');
   const excludeCards: TCardChanges = [];
 

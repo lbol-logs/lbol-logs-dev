@@ -9,7 +9,7 @@ import CurrentChange from '../currentChange';
 import { MoneyImage } from '../parts/stationWidgets';
 
 function TempStation({ station }: { station: TStation }) {
-  const { Data, Id, Rewards, Node: { Level } } = station;
+  const { Data, Id, Rewards } = station;
   const { t } = useTranslation();
 
   let data = null;
@@ -83,7 +83,7 @@ function TempStation({ station }: { station: TStation }) {
         {exhibits}
       </div>
       <div className="p-entities">
-        <CurrentChange level={Level} />
+        <CurrentChange station={station} />
       </div>
     </div>
   );

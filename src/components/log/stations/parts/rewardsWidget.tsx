@@ -52,8 +52,8 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
 
     {
       const { Stations, Cards: CardChanges, Exhibits } = runData;
-      if (Cards) ({ addedCards, excludeCards } = getAddedCards({ CardRewards: Cards, CardChanges, Stations, act, Level }));
-      const currentExhibits = getCurrentLevel(Exhibits, Stations, act, Level);
+      if (Cards) ({ addedCards, excludeCards } = getAddedCards({ CardRewards: Cards, CardChanges, Stations, station }));
+      const currentExhibits = getCurrentLevel(Exhibits, Stations, station);
       addedExhibits = currentExhibits.filter(({ Type }) => Type === 'Add');
     }
 
@@ -111,7 +111,7 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
     <div className="p-entities">
       {cards}
       {exhibits}
-      <CurrentChange level={Level} excludes={excludes} />
+      <CurrentChange station={station} excludes={excludes} />
     </div>
   );
 }

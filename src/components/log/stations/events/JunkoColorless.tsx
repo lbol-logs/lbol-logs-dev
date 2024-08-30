@@ -30,7 +30,7 @@ function JunkoColorless({ station }: { station: TStation }) {
 
   const values = { 0: t(`${Id}.${options['0_0']}`, { ns: 'dialogues' }) };
   props[0] = { values };
-  tips[0] = <BaseManaWidget baseMana={BaseMana} />;
+  if (BaseMana) tips[0] = <BaseManaWidget baseMana={BaseMana} />;
 
   const dialogueConfigs: TDialogueConfigs = {
     current,

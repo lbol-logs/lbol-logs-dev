@@ -1,6 +1,6 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext, useMemo } from 'react';
-import { TCardChanges, TExhibitObjs, TExhibits, TLevel } from 'utils/types/runData';
+import { TCardChanges, TExhibitObjs, TExhibits, TStation } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
@@ -8,14 +8,14 @@ import { getCommonImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
 import { copyObject, getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from 'utils/functions/helpers';
 
-function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards: TCardChanges, Exhibits: TExhibitObjs } }) {
-  const { runData, act } = useContext(LogContext);
+function CurrentChange({ station, excludes }: { station: TStation, excludes?: { Cards: TCardChanges, Exhibits: TExhibitObjs } }) {
+  const { runData } = useContext(LogContext);
   const { t } = useTranslation();
 
   const { Stations, Cards, Exhibits } = runData;
 
   const card = useMemo(() => {
-    const currentCards = getCurrentLevel(Cards, Stations, act, level);
+    const currentCards = getCurrentLevel(Cards, Stations, station);
     let excludeCards = excludes ? copyObject(excludes.Cards) : [];
 
     const cards = {
@@ -58,7 +58,7 @@ function CurrentChange({ level, excludes }: { level: TLevel, excludes?: { Cards:
   }, []);
 
   const exhibit = useMemo(() => {
-    const currentExhibits = getCurrentLevel(Exhibits, Stations, act, level);
+    const currentExhibits = getCurrentLevel(Exhibits, Stations, station);
     let excludeExhibits = excludes ? copyObject(excludes.Exhibits) : [];
 
     const exhibits = {
