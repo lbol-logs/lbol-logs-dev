@@ -2,7 +2,7 @@ import { TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runDa
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
-import { generateCards, getNext } from 'utils/functions/helpers';
+import { convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
@@ -28,15 +28,15 @@ function DoremyPortal({ station }: { station: TStation }) {
 
   const props: Array<TObjAny> = [];
   const cards: Array<TCards> = [];
-  const exhibits: TExhibits = [];
+  const exhibits: Array<TExhibits> = [];
 
-  exhibits[0] = exhibit;
+  exhibits[0] = [exhibit];
   const values = { 0: money };
   const components = { Money: <MoneyImage /> };
   props[1] = { values, components };
-  cards[1] = generateCards(misfortune);
+  cards[1] = convertCards([misfortune]);
   if (Exhibit) {
-    exhibits[1] = Exhibit;
+    exhibits[1] = [Exhibit];
   }
 
   const dialogueConfigs: TDialogueConfigs = {

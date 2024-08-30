@@ -3,8 +3,8 @@ import { TDialogueConfigs, TExhibit, TExhibits } from 'utils/types/runData';
 import { RevealImage } from './stationWidgets';
 import { concatObjects } from 'utils/functions/helpers';
 import { TObjString } from 'utils/types/common';
-import ExhibitImages from 'components/common/parts/exhibitImages';
 import CardCards from 'components/log/entityCards/cardCards';
+import ExhibitCards from 'components/log/entityCards/exhibitCards';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
   const { t } = useTranslation();
@@ -15,7 +15,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
   };
   const commonProps = { components };
 
-  const { current, next, chosen, props, tips, invalids, cards, exhibits } = dialogueConfigs;
+  const { current, next, chosen, props, invalids, cards, exhibits } = dialogueConfigs;
 
   return (
     <div className="p-dialogue">
@@ -31,7 +31,6 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             const isChosen = chosen === i;
             const hasCards = cards && cards[i];
             const hasExhibit = exhibits && exhibits[i];
-            let _exhibits: TExhibits = [];
 
             let _props;
             if (props && props[i]) {
@@ -41,30 +40,25 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
               _props = commonProps;
             }
             if (hasExhibit) {
-              if (typeof exhibits[i] === 'string') _exhibits = [exhibits[i] as TExhibit];
-              else _exhibits = exhibits[i] as TExhibits;
-
-              const values = _exhibits.reduce((a: TObjString, b, i) => {
+              console.log(exhibits[i], exhibits);
+              const values = exhibits[i].reduce((a: TObjString, b, i) => {
                 a[i] = t(b, { ns: 'exhibits' });
                 return a;
               }, {});
               _props = concatObjects(_props, { values });
             }
 
-            let tip = null;
-            const hasTip = tips && tips[i];
-            if (hasTip || hasCards || hasExhibit) {
-              const _tip = hasTip ? tips[i] : null;
+            let tips = null;
+            if (hasCards || hasExhibit) {
               const _cards = hasCards
                 ? <CardCards cards={cards[i]} />
                 : null;
               const _exhibit = hasExhibit
-                ? <ExhibitImages className="c-exhibit__img" exhibits={_exhibits} alt="" />
+                ? <ExhibitCards exhibits={exhibits[i]} />
                 : null;
-              tip = (
-                <span className="c-dialogue__tip">
+              tips = (
+                <span className="c-dialogue__tips">
                   <RevealImage />
-                  {_tip}
                   {_cards}
                   {_exhibit}
                 </span>
@@ -80,7 +74,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
                   ns="dialogues"
                   {..._props}
                 />
-                {tip}
+                {tips}
               </div>
             );
           })}

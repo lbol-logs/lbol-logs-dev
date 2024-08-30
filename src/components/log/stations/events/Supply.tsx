@@ -1,4 +1,4 @@
-import { TDialogueConfigs, TExhibit, TStation } from 'utils/types/runData';
+import { TDialogueConfigs, TExhibit, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObj, TObjAny } from 'utils/types/common';
@@ -27,16 +27,17 @@ function Supply({ station }: { station: TStation }) {
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
-  const tips: Array<JSX.Element> = [];
+  const exhibits: Array<TExhibits> = [];
 
+  exhibits[0] = [Exhibits[0]];
+  exhibits[1] = [Exhibits[1]];
   if (Both) {
     const values: TObj<string> = {};
     Exhibits.forEach((exhibit: TExhibit, i: number) => {
       values[i] = t(exhibit, { ns: 'exhibits' });
     });
     props[2] = { values };
-    const tip = <ExhibitImages exhibits={Exhibits} />;
-    tips[2] = tip;
+    exhibits[2] = Exhibits
   }
 
   const dialogueConfigs: TDialogueConfigs = {
@@ -44,8 +45,7 @@ function Supply({ station }: { station: TStation }) {
     next,
     chosen,
     props,
-    tips,
-    exhibits: Exhibits
+    exhibits
   };
 
   return (

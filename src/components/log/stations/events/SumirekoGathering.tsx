@@ -28,14 +28,12 @@ function SumirekoGathering({ station }: { station: TStation }) {
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
-  const tips: Array<JSX.Element> = [];
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
-    props,
-    tips
+    props
   };
 
   return (

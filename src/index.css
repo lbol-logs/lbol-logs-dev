@@ -939,13 +939,13 @@ html:lang(en) .p-result__type {
   display: inline-block;
   margin-bottom: 1em;
 }
-.c-dialogue__tip {
+.c-dialogue__tips {
   display: flex;
   column-gap: 0.5em;
   align-items: flex-start;
   flex-wrap: wrap;
 }
-.c-dialogue__tip > * {
+.c-dialogue__tips > * {
   margin: auto 0;
 }
 

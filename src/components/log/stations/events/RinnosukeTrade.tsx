@@ -26,7 +26,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
     const { current, next: options } = configs[0];
     
     const choices: Array<number | string> = [];
-    let exhibits: TExhibits = [];
+    let exhibits: Array<TExhibits> = [];
 
     if (!Prices) {
       choices.push('0_invalid');
@@ -34,7 +34,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
     }
     else {
       choices.push(0);
-      exhibits = Object.keys(Prices);
+      exhibits = Object.keys(Prices).map(exhibit => [exhibit]);
       if (exhibits.length === 2) choices.push(1);
       else choices.push('1_invalid');
     }
@@ -46,12 +46,11 @@ function RinnosukeTrade({ station }: { station: TStation }) {
     const props: Array<TObjAny> = [];
 
     choices.forEach((_, i: number) => {
-      const exhibit = exhibits[i];
+      const [exhibit] = exhibits[i];
       if (exhibit) {
         const values = { 1: Prices[exhibit] };
         const components = { Money: <MoneyImage /> };
         props[i] = { values, components };
-        // const tip = <ExhibitCard exhibit={exhibit} />;
       }
     });
 

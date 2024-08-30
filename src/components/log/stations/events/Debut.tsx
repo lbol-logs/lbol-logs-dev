@@ -1,15 +1,14 @@
-import { RequestTypes, TDialogueConfigs, TStation } from 'utils/types/runData';
+import { RequestTypes, TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import { getEnemyImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
-import { applyRate, convertCard, convertCards, getNext } from 'utils/functions/helpers';
+import { applyRate, convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import EventHead from '../parts/eventHead';
 import { MoneyImage, PowerImage } from '../parts/stationWidgets';
 import ExhibitCard from 'components/log/entityCards/exhibitCard';
-import CardCards from 'components/log/entityCards/cardCards';
 import CardCard from 'components/log/entityCards/cardCard';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { CommonContext } from 'contexts/commonContext';
@@ -50,7 +49,8 @@ function Debut({ station }: { station: TStation }) {
     const chosen = Choices[0];
 
     const props: Array<TObjAny> = [];
-    const tips: Array<JSX.Element> = [];
+    const cards: Array<TCards> = [];
+    const exhibits: Array<TExhibits> = [];
 
     Object.entries(options).forEach(([key, option]) => {
       const i = Number(key);
@@ -64,31 +64,25 @@ function Debut({ station }: { station: TStation }) {
         case 1: {
           const { Shining } = Data;
           if (!Shining) break;
-          const tip = <ExhibitCard exhibit={Shining} />;
-          tips[i] = tip;
+          exhibits[i] = [Shining];
           break;
         }
         case 2: {
           const { UncommonCards } = Data
           if (!UncommonCards) break;
-          const cards = convertCards(UncommonCards);
-          const tip = <CardCards cards={cards} />;
-          tips[i] = tip;
+          cards[i] = convertCards(UncommonCards);
           break;
         }
         case 3: {
           const { RareCard } = Data;
           if (!RareCard) break;
-          const card = convertCard(RareCard);
-          const tip = <CardCard card={card} />;
-          tips[i] = tip;
+          cards[i] = convertCards([RareCard]);
           break;
         }
         case 4: {
           const { RareExhibit } = Data;
           if (!RareExhibit) break;
-          const tip = <ExhibitCard exhibit={RareExhibit} />;
-          tips[i] = tip;
+          exhibits[i] = [RareExhibit];
           break;
         }
         case 5: {
@@ -100,9 +94,7 @@ function Debut({ station }: { station: TStation }) {
         case 7: {
           const { TransformCard } = Data;
           if (!TransformCard) break;
-          const card = convertCard(TransformCard);
-          const tip = <CardCard card={card} />;
-          tips[i] = tip;
+          cards[i] = convertCards([TransformCard]);
           break;
         }
       }
@@ -113,7 +105,8 @@ function Debut({ station }: { station: TStation }) {
       next,
       chosen,
       props,
-      tips
+      cards,
+      exhibits
     };
 
     advantages = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;

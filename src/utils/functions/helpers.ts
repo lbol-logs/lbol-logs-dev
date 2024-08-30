@@ -82,12 +82,8 @@ function getNext(next: TObjAny, choices?: Array<number | string>): [Array<string
   return [array, invalids];
 }
 
-function convertCard(Id: string, IsUpgraded: boolean = false): TCard {
-  return { Id, IsUpgraded };
-}
-
 function convertCards(Ids: Array<string>, IsUpgraded: boolean = false): TCards {
-  return Ids.map(Id => convertCard(Id, IsUpgraded));
+  return Ids.map(Id => ({ Id, IsUpgraded }));
 }
 
 function applyRate(n: number, rate: number) {
@@ -107,14 +103,6 @@ function concatObjects(props: TObjAny, obj: TObj<TObjElement | TObjString>): TOb
   return props;
 }
 
-function generateCards(cards: string | Array<string>): TCards {
-  if (typeof cards === 'string') cards = [cards];
-  return cards.map(Id => ({
-    Id,
-    IsUpgraded: false
-  }));
-}
-
 export {
   checkForce,
   validateRunData,
@@ -128,10 +116,8 @@ export {
   getSameExhibitIndex,
   showRandom,
   getNext,
-  convertCard,
   convertCards,
   applyRate,
   getExhibitId,
-  concatObjects,
-  generateCards
+  concatObjects
 };
