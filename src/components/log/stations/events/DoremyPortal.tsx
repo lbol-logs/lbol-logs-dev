@@ -1,11 +1,12 @@
-import { TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
+import { TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { generateCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
+import EventHead from '../parts/eventHead';
 
 function DoremyPortal({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -26,12 +27,14 @@ function DoremyPortal({ station }: { station: TStation }) {
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
+  const cards: Array<TCards> = [];
   const exhibits: TExhibits = [];
 
   exhibits[0] = exhibit;
   const values = { 0: money };
   const components = { Money: <MoneyImage /> };
   props[1] = { values, components };
+  cards[1] = generateCards(misfortune);
   if (Exhibit) {
     exhibits[1] = Exhibit;
   }
@@ -41,6 +44,7 @@ function DoremyPortal({ station }: { station: TStation }) {
     next,
     chosen,
     props,
+    cards,
     exhibits
   };
 
@@ -48,6 +52,7 @@ function DoremyPortal({ station }: { station: TStation }) {
     <div className="p-station__body">
       <div className="p-station__main">
         <div className="p-event">
+          <EventHead id={id} />
           <div className="p-event__body">
             <div className="p-dialogues">
               <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />

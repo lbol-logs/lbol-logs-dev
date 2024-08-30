@@ -195,6 +195,7 @@ type TDialogueConfigs = {
   props?: Array<TObjAny>,
   tips?: Array<JSX.Element>,
   invalids?: Array<number>,
+  cards?: Array<TCards>,
   exhibits?: Array<TExhibits | TExhibit>
 };
 

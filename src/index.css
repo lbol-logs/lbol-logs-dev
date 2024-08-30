@@ -928,7 +928,8 @@ html:lang(en) .p-result__type {
 }
 .p-dialogue__question {
   font-weight: bold;
-  margin-bottom: 1em;
+  margin: 0.5em 0;
+  padding: 0.2em 0.5em;
   background: var(--skyblue);
 }
 .p-dialogue__option {
@@ -942,6 +943,10 @@ html:lang(en) .p-result__type {
   display: flex;
   column-gap: 0.5em;
   align-items: flex-start;
+  flex-wrap: wrap;
+}
+.c-dialogue__tip > * {
+  margin: auto 0;
 }
 
 .p-event__head {

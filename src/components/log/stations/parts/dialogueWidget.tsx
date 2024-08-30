@@ -4,6 +4,7 @@ import { RevealImage } from './stationWidgets';
 import { concatObjects } from 'utils/functions/helpers';
 import { TObjString } from 'utils/types/common';
 import ExhibitImages from 'components/common/parts/exhibitImages';
+import CardCards from 'components/log/entityCards/cardCards';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
   const { t } = useTranslation();
@@ -14,7 +15,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
   };
   const commonProps = { components };
 
-  const { current, next, chosen, props, tips, invalids, exhibits } = dialogueConfigs;
+  const { current, next, chosen, props, tips, invalids, cards, exhibits } = dialogueConfigs;
 
   return (
     <div className="p-dialogue">
@@ -28,6 +29,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
       <div className="p-dialogue__options">
           {next.map((option, i) => {
             const isChosen = chosen === i;
+            const hasCards = cards && cards[i];
             const hasExhibit = exhibits && exhibits[i];
             let _exhibits: TExhibits = [];
 
@@ -51,8 +53,11 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
             let tip = null;
             const hasTip = tips && tips[i];
-            if (hasTip || hasExhibit) {
+            if (hasTip || hasCards || hasExhibit) {
               const _tip = hasTip ? tips[i] : null;
+              const _cards = hasCards
+                ? <CardCards cards={cards[i]} />
+                : null;
               const _exhibit = hasExhibit
                 ? <ExhibitImages className="c-exhibit__img" exhibits={_exhibits} alt="" />
                 : null;
@@ -60,6 +65,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
                 <span className="c-dialogue__tip">
                   <RevealImage />
                   {_tip}
+                  {_cards}
                   {_exhibit}
                 </span>
               );

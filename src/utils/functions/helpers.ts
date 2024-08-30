@@ -107,6 +107,14 @@ function concatObjects(props: TObjAny, obj: TObj<TObjElement | TObjString>): TOb
   return props;
 }
 
+function generateCards(cards: string | Array<string>): TCards {
+  if (typeof cards === 'string') cards = [cards];
+  return cards.map(Id => ({
+    Id,
+    IsUpgraded: false
+  }));
+}
+
 export {
   checkForce,
   validateRunData,
@@ -124,5 +132,6 @@ export {
   convertCards,
   applyRate,
   getExhibitId,
-  concatObjects
+  concatObjects,
+  generateCards
 };
