@@ -157,11 +157,6 @@ enum RequestTypes {
   StartMisfortune = 'StartMisfortune'
 };
 
-const eventsConvertBaseMana = {
-  JunkoColorless: 'CC',
-  PatchouliPhilosophy: 'P'
-};
-
 enum CardsWithUpgradeCounter {
   YuyukoSing = 'YuyukoSing'
 };
@@ -188,12 +183,7 @@ enum ExhibitsEnhanceDrinkTea {
   HuangyouJiqiren = 'HuangyouJiqiren'
 };
 
-enum EventsWithConvert {
-  JunkoColorless = 'JunkoColorless',
-  PatchouliPhilosophy = 'PatchouliPhilosophy'
-};
-
-const eventsColors: TObjString = {
+const eventsConvertBaseMana: TObjString = {
   JunkoColorless: 'CC',
   PatchouliPhilosophy: 'P'
 };
@@ -247,11 +237,9 @@ export type {
 
 export {
   RequestTypes,
-  eventsConvertBaseMana,
   CardsWithUpgradeCounter,
   ExhibitsWithCounter,
   exhibitCounters,
   ExhibitsEnhanceDrinkTea,
-  EventsWithConvert,
-  eventsColors
+  eventsConvertBaseMana
 };

@@ -1,12 +1,12 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext, useMemo } from 'react';
-import { eventsColors, EventsWithConvert, TCardChanges, TExhibitObjs, TExhibits, TStation } from 'utils/types/runData';
+import { eventsConvertBaseMana, TCardChanges, TExhibitObjs, TExhibits, TStation } from 'utils/types/runData';
 import CardCards from '../entityCards/cardCards';
 import ExhibitCards from '../entityCards/exhibitCards';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
-import { copyObject, getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from 'utils/functions/helpers';
+import { copyObject, getBaseMana, getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from 'utils/functions/helpers';
 import ManaWidget from 'components/common/parts/manaWidget';
 import { TObjString } from 'utils/types/common';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
@@ -107,7 +107,7 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
 
   const baseMana = useMemo(() => {
     const { Id, Data } = station;
-    if (!(Id as string in eventsColors) && !Data) return null;
+    if (!(Id as string in eventsConvertBaseMana) && !Data) return null;
     const { Color } = Data;
     if (!Color) return null;
 
@@ -119,7 +119,7 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
 
     const colors: TObjString = {
       Remove: Color,
-      Add: eventsColors[Id as EventsWithConvert]
+      Add: getBaseMana(Id)
     };
 
     return Object.entries(mana).map(([type, symbol]) => {

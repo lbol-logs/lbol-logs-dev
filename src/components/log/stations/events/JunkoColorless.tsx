@@ -15,7 +15,7 @@ function JunkoColorless({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
-  const { Choices, BaseMana, Color } = Data;
+  const { Choices, BaseMana } = Data;
 
   const id = Id as string;
   const configs = configsData.dialogues[id];

@@ -1,6 +1,6 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
-import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TRunData, TStation, TStations } from 'utils/types/runData';
+import { eventsConvertBaseMana, TBaseMana, TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
@@ -108,6 +108,10 @@ function concatObjects(props: TObjAny, obj: TObj<TObjElement | TObjString>): TOb
   return props;
 }
 
+function getBaseMana(Id: string | number | undefined): TBaseMana {
+  return eventsConvertBaseMana[Id as keyof typeof eventsConvertBaseMana];
+}
+
 export {
   checkForce,
   validateRunData,
@@ -124,5 +128,6 @@ export {
   convertCards,
   applyRate,
   getExhibitId,
-  concatObjects
+  concatObjects,
+  getBaseMana
 };
