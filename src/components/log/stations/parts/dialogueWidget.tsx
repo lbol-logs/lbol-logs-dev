@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { TDialogueConfigs, TExhibit, TExhibits } from 'utils/types/runData';
+import { TDialogueConfigs } from 'utils/types/runData';
 import { RevealImage } from './stationWidgets';
 import { concatObjects } from 'utils/functions/helpers';
 import { TObjString } from 'utils/types/common';

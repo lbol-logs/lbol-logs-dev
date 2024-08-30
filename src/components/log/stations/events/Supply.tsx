@@ -6,7 +6,6 @@ import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
-import ExhibitImages from 'components/common/parts/exhibitImages';
 
 function Supply({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);

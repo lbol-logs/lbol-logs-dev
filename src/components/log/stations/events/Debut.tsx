@@ -8,8 +8,6 @@ import { applyRate, convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import EventHead from '../parts/eventHead';
 import { MoneyImage, PowerImage } from '../parts/stationWidgets';
-import ExhibitCard from 'components/log/entityCards/exhibitCard';
-import CardCard from 'components/log/entityCards/cardCard';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { CommonContext } from 'contexts/commonContext';
 import RewardsWidget from '../parts/rewardsWidget';
