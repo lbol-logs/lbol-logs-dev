@@ -1,4 +1,4 @@
-import { TCards, TDialogueConfigs, TradeStations, TStation } from 'utils/types/runData';
+import { SpecialExhibits, TCards, TDialogueConfigs, TradeStations, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
@@ -76,7 +76,7 @@ function SumirekoGathering({ station }: { station: TStation }) {
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
 
-      const exhibits = [['WaijieYouxiji', 'WaijieYanshuang']];
+      const exhibits = [[SpecialExhibits.WaijieYouxiji.toString(), SpecialExhibits.WaijieYanshuang.toString()]];
 
       const [next] = getNext(options);
 

@@ -1,4 +1,4 @@
-import { TDialogueConfigs, TExhibits, TradeStations, TStation } from 'utils/types/runData';
+import { SpecialExhibits, TDialogueConfigs, TExhibits, TradeStations, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
@@ -68,7 +68,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
 
-      const exhibits = [['WaijieYanjing', 'WaijieYouxiji']];
+      const exhibits = [[SpecialExhibits.WaijieYanjing.toString(), SpecialExhibits.WaijieYouxiji.toString()]];
 
       const [next] = getNext(options);
 

@@ -180,6 +180,13 @@ enum TradeStations {
   SumirekoGathering = 'SumirekoGathering'
 };
 
+enum SpecialExhibits {
+  WaijieYanjing = 'WaijieYanjing',
+  WaijieYouxiji = 'WaijieYouxiji',
+  WaijieYanshuang = 'WaijieYanshuang',
+  JingjieGanzhiyi = 'JingjieGanzhiyi'
+};
+
 type TDialogueConfigs = {
   current: string,
   next: Array<string>,
@@ -233,5 +240,6 @@ export {
   CardsWithUpgradeCounter,
   ExhibitsWithCounter,
   ExhibitsEnhanceDrinkTea,
-  TradeStations
+  TradeStations,
+  SpecialExhibits
 };
