@@ -46,11 +46,17 @@ function MiyoiBartender({ station }: { station: TStation }) {
     cards[1] = convertCards(misfortunes);
 
     if (Exhibit) exhibits[2] = [Exhibit];
-    afters[2] = Ids.map((id: string, i: number) => {
-      const enemies = configsData.enemyGroups[id];
+    afters[2] = (
+      <div className="p-enemies-container">
+        {Ids.map((id: string, i: number) => {
+          const enemies = configsData.enemyGroups[id];
 
-      return <EnemyCards enemies={enemies} key={i} />;
-    });
+          return (
+            <EnemyCards enemies={enemies} key={i} />
+          );
+        })}
+      </div>
+    );
 
     const dialogueConfigs: TDialogueConfigs = {
       current,

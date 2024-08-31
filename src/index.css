@@ -613,6 +613,12 @@ html:lang(en) .c-entity__text {
   margin-left: var(--entity-margin);
 }
 
+.p-enemies-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 3em;
+  flex-basis: 100%;
+}
 .p-enemies {
   align-self: center;
   display: flex;
