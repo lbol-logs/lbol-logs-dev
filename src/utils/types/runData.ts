@@ -1,5 +1,5 @@
 import { Dispatch, ReducerAction } from 'react';
-import { TObjAny, TRange16, TRange3, TRange4 } from './common';
+import { TComponents, TObjAny, TRange16, TRange3, TRange4 } from './common';
 
 type TRunData = {
   Versions: string,
@@ -181,7 +181,7 @@ type TDialogueConfigs = {
   chosen: TRange3,
   props?: Array<TObjAny>,
   invalids?: Array<number>,
-  befores?: Array<JSX.Element>,
+  befores?: TComponents,
   cards?: Array<TCards>,
   exhibits?: Array<TExhibits>
 };

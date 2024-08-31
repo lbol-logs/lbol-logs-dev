@@ -14,6 +14,7 @@ type TRange16 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 |
 type TDispatch<T> = Dispatch<SetStateAction<T>>;
 
 type TConfigsData = TObj<TObjAny>;
+type TComponents = Array<JSX.Element>;
 
 export type {
   TObj,
@@ -26,5 +27,6 @@ export type {
   TRange3,
   TRange4,
   TRange16,
-  TConfigsData
+  TConfigsData,
+  TComponents
 };

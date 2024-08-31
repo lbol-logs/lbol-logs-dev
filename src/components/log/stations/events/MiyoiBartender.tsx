@@ -1,7 +1,7 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TComponents, TObjAny } from 'utils/types/common';
+import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
@@ -9,36 +9,34 @@ import EventHead from '../parts/eventHead';
 import { useTranslation } from 'react-i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
 
-function JunkoColorless({ station }: { station: TStation }) {
+function MiyoiBartender({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
   const { t } = useTranslation();
 
   const { Data, Id } = station;
 
-  const { Choices, BaseMana } = Data;
+  const { Choices, Ids, Id: enemy } = Data;
 
   const id = Id as string;
   const configs = configsData.dialogues[id];
 
-  const { current, next: options } = configs;
+  let first = null;
+  let second = null;
 
-  const [next] = getNext(options, [0, 1]);
-  const chosen = Choices[0];
+  {
+    const { current, next: options } = configs[0];
 
-  const props: Array<TObjAny> = [];
-  const befores: TComponents = [];
+    const [next] = getNext(options);
+    const chosen = Choices[0];
 
-  const values = { 0: t(`${Id}.${options['0_0']}`, { ns: 'dialogues' }) };
-  props[0] = { values };
-  if (BaseMana) befores[0] = <BaseManaWidget baseMana={BaseMana} />;
+    const dialogueConfigs: TDialogueConfigs = {
+      current,
+      next,
+      chosen
+    };
 
-  const dialogueConfigs: TDialogueConfigs = {
-    current,
-    next,
-    chosen,
-    props,
-    befores
-  };
+    first = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
+  }
 
   return (
     <div className="p-station__body">
@@ -47,7 +45,8 @@ function JunkoColorless({ station }: { station: TStation }) {
           <EventHead id={id} />
           <div className="p-event__body">
             <div className="p-dialogues">
-              <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />
+              {first}
+              {second}
             </div>
           </div>
         </div>
@@ -57,4 +56,4 @@ function JunkoColorless({ station }: { station: TStation }) {
   );
 }
 
-export default JunkoColorless;
+export default MiyoiBartender;

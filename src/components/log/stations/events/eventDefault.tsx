@@ -3,6 +3,7 @@ import ChoicesWidget from '../parts/choicesWidget';
 import BattleStation from '../stationTypes/battleStation';
 import EventHead from '../parts/eventHead';
 import RewardsWidget from '../parts/rewardsWidget';
+import { TComponents } from 'utils/types/common';
 
 function EventDefault({ station }: { station: TStation }) {
   const { Data, Id } = station;
@@ -17,7 +18,7 @@ function EventDefault({ station }: { station: TStation }) {
     </div>
   );
 
-  const additionalElements: Array<JSX.Element> = [];
+  const additionalElements: TComponents = [];
 
   if (Battle) {
     additionalElements.push(

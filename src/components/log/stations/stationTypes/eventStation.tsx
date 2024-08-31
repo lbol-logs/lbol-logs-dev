@@ -3,6 +3,7 @@ import EventDefault from '../events/eventDefault';
 import DoremyPortal from '../events/DoremyPortal';
 import JunkoColorless from '../events/JunkoColorless';
 import PatchouliPhilosophy from '../events/PatchouliPhilosophy';
+import MiyoiBartender from '../events/MiyoiBartender';
 
 function EventStation({ station }: { station: TStation }) {
   const { Id } = station;
@@ -14,6 +15,8 @@ function EventStation({ station }: { station: TStation }) {
       return <JunkoColorless station={station} />;
     case 'PatchouliPhilosophy':
       return <PatchouliPhilosophy station={station} />;
+    case 'MiyoiBartender':
+      return <MiyoiBartender station={station} />;
     default:
       return <EventDefault station={station} />;
   }
