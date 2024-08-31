@@ -23,8 +23,6 @@ function Summary() {
     <section className="p-summary">
       <ResultWidget resultData={resultData} />
       <RequestsWidget requests={Requests} />
-      
-      
       <BaseManaWidget baseMana={BaseMana} />
       <h3>{t('card', { ns: 'common', count: Cards.length })}</h3>
       <CardCards cards={Cards} />

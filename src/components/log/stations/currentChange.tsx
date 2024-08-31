@@ -42,7 +42,7 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
         }
         excludeCards = currentExcludes;
       }
-      
+
       const hasCards = cards.length > 0;
       if (hasCards) {
         return (
@@ -110,7 +110,10 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
     const { Id, Data } = station;
     if (!Data) return null;
 
-    const { mana } = eventConfigs[Id as string];
+    const config = eventConfigs[Id as string];
+    if (!config) return null;
+
+    const { mana } = config;
     const { Color } = Data;
     if (!mana || !Color) return null;
 

@@ -19,7 +19,7 @@ function getAddedCards({ CardRewards, CardChanges, Stations, station }: { CardRe
     return true;
   }
 
-  function getNextDuplicate(cards: TCards) {   
+  function getNextDuplicate(cards: TCards) {
     const a: TCards = [];
     for (const card of cards) {
       if (getSameCardIndex(a, card) !== -1) return card;
@@ -31,7 +31,7 @@ function getAddedCards({ CardRewards, CardChanges, Stations, station }: { CardRe
     for (let k = 0; k < CardRewards.length; k++) {
       for (let i = 0; i < currentMatches.length; i++) {
         const a = currentMatches[i];
-        
+
         const isMin = (a.length === k + 1 && getSameCardIndex(a, nextDuplicate) !== 1);
         if (isMin) return i;
       }

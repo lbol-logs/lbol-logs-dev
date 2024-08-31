@@ -51,7 +51,7 @@ function RoundImage() {
 }
 
 function RevealImage() {
-  return <LazyLoadImage2 callback={getStationImage} name="Reveal" alt="" />;
+  return <LazyLoadImage2 className="c-dialogue__tips-icon" callback={getStationImage} name="Reveal" alt="" />;
 }
 
 export {

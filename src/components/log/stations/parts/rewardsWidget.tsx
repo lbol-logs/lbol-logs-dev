@@ -106,7 +106,7 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
     return { cards, exhibits, excludes };
 
   }, []);
-  
+
   return (
     <div className="p-entities">
       {cards}

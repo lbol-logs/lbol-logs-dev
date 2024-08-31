@@ -5,7 +5,7 @@ function SelectStation({ station }: { station: TStation }) {
   const { Data } = station;
 
   if (!Data) return null;
-  
+
   return <Select station={station} />;
 }
 

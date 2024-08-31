@@ -11,7 +11,7 @@ import TradeStation from './tradeStation';
 
 function StationType({ station }: { station: TStation }) {
   const { Type } = station;
-	
+
 	switch (Type) {
 		case 'Enemy':
 		case 'EliteEnemy':

@@ -53,7 +53,7 @@ function useHoldings({ level, currentHolding, setHoldingsHeight }: { level: TLev
       'touchend': [resizer, stopResizing],
       'touchcancel': [resizer, stopResizing]
     };
-    
+
     Object.entries(o).forEach(([event, [e, handler]]) => e.addEventListener(event, handler));
 
     return () => {
@@ -81,7 +81,7 @@ function useHoldings({ level, currentHolding, setHoldingsHeight }: { level: TLev
           <div className="p-holdings__line">
             <BaseManaWidget baseMana={BaseMana} />
           </div>
-          
+
           <div className="p-holdings__counts">
             <span className="p-holdings__count--cards">
               <Trans

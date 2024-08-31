@@ -55,7 +55,7 @@ function getCurrentLevel<T extends TCardChanges | TExhibitChanges>(changes: T, s
 }
 
 function getSameCardIndex(cards: TCards, card: TCard): number {
-  return cards.findIndex(({ Id, IsUpgraded, UpgradeCounter }) => 
+  return cards.findIndex(({ Id, IsUpgraded, UpgradeCounter }) =>
     Id === card.Id &&
     IsUpgraded === card.IsUpgraded &&
     UpgradeCounter === card.UpgradeCounter

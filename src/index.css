@@ -948,6 +948,9 @@ html:lang(en) .p-result__type {
 .c-dialogue__tips > * {
   margin: auto 0;
 }
+.c-dialogue__tips-icon {
+  margin-top: 0;
+}
 
 .p-event__head {
   display: flex;

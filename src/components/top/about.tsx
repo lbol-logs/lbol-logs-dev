@@ -29,7 +29,7 @@ function About() {
           ns="site"
         />
       </p>
-      
+
       <div className="p-about__break"></div>
 
       <div className="p-about__about">

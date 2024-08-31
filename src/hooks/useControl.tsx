@@ -8,7 +8,7 @@ import { TAct, TLevel, TRunData } from 'utils/types/runData';
 
 function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, showMap, setShowMap, navigate, searchParams, setSearchParams }: { isRunDataLoaded: boolean, runData: TRunData, act: TAct, setAct: TDispatch<TAct>, setLevel: TDispatch<TLevel>, showMap: boolean, setShowMap: TDispatch<boolean>, navigate: NavigateFunction, searchParams: URLSearchParams, setSearchParams: SetURLSearchParams }) {
   if (!isRunDataLoaded) return;
-  
+
   const al = new ActLevel(runData, act);
   const maxAct: TAct = al.maxAct();
   const minLevel: TLevel = al.minLevel();

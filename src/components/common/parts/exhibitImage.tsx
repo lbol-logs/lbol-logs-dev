@@ -5,7 +5,7 @@ import { TExhibit } from 'utils/types/runData';
 
 function ExhibitImage({ exhibit, className, alt }: { exhibit: TExhibit, className?: string, alt?: string }) {
   const { t } = useTranslation();
-  
+
   const _alt = alt === undefined ? t(exhibit, { ns: 'exhibits' }) : alt;
 
   return <LazyLoadImage2 className={className} callback={getExhibitImage} name={exhibit} alt={_alt} />;

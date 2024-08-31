@@ -67,7 +67,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
               const _afters = hasAfters
                 ? afters[i]
                 : null;
-              
+
               _tips = (
                 <span className="c-dialogue__tips">
                   <RevealImage />

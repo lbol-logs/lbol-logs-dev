@@ -32,7 +32,11 @@ function MiyoiBartender({ station }: { station: TStation }) {
 
     const afters: TComponents = [];
 
-    afters[2] = <EnemyCards enemies={Ids} />;
+    afters[2] = Ids.map((id: string) => {
+      const enemies = configsData.enemyGroups[id];
+
+      return <EnemyCards enemies={enemies} />;
+    });
 
     const dialogueConfigs: TDialogueConfigs = {
       current,

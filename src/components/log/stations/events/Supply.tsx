@@ -19,7 +19,7 @@ function Supply({ station }: { station: TStation }) {
   const configs = configsData.dialogues[id];
 
   const { current, next: options } = configs;
-  
+
   if (!Both) delete options[2];
 
   const [next] = getNext(options);

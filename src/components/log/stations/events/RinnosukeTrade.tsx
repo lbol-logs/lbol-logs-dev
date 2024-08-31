@@ -24,7 +24,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
 
   {
     const { current, next: options } = configs[0];
-    
+
     const choices: Array<number | string> = [];
     let exhibits: Array<TExhibits> = [];
 
@@ -67,7 +67,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
     const chosen = Choices[1];
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
-      
+
       const exhibits = [['WaijieYanjing', 'WaijieYouxiji']];
 
       const [next] = getNext(options);

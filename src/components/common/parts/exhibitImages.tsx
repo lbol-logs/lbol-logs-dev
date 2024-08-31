@@ -5,7 +5,7 @@ import ExhibitImage from './exhibitImage';
 function ExhibitImages({ exhibits, className, alt }: { exhibits: TExhibits, className?: string, alt?: string }) {
   return (
     <>
-      {exhibits.map(exhibit => 
+      {exhibits.map(exhibit =>
         <Fragment key={exhibit}>
           <ExhibitImage exhibit={exhibit} className={className} alt={alt} />
         </Fragment>
