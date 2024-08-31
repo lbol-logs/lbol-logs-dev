@@ -9,29 +9,32 @@ function EnemyCards({ enemies }: { enemies: Array<string> }) {
   const size = iconSize * 2;
 
   return (
-    <div className="p-enemies">
-      {enemies.map((enemy, i) => {
-        let name: string;
-        switch (enemy) {
-          case 'RavenWen3':
-            name = 'RavenWen';
-            break;
-          case 'RavenGuo3':
-            name = 'RavenGuo';
-            break;
-          default:
-            name = enemy;
-            break;
-        }
+    <>
+      <span className="u-flex-br"></span>
+      <div className="p-enemies">
+        {enemies.map((enemy, i) => {
+          let name: string;
+          switch (enemy) {
+            case 'RavenWen3':
+              name = 'RavenWen';
+              break;
+            case 'RavenGuo3':
+              name = 'RavenGuo';
+              break;
+            default:
+              name = enemy;
+              break;
+          }
 
-        return (
-          <div className="p-enemy" key={i}>
-            <LazyLoadImage2 className="p-enemy__img" callback={getEnemyImage} name={name} width={size} height={size} alt="" />
-            <span className="p-enemy__text">{t(name, { ns: 'enemies' })}</span>
-          </div>
-        );
-      })}
-    </div>
+          return (
+            <div className="p-enemy" key={i}>
+              <LazyLoadImage2 className="p-enemy__img" callback={getEnemyImage} name={name} width={size} height={size} alt="" />
+              <span className="p-enemy__text">{t(name, { ns: 'enemies' })}</span>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
 
