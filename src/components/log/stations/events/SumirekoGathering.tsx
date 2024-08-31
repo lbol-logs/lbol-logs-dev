@@ -1,40 +1,95 @@
-import { TDialogueConfigs, TStation } from 'utils/types/runData';
+import { TCards, TDialogueConfigs, TradeStations, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TObj, TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { TObjAny } from 'utils/types/common';
+import { convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
-import { useTranslation } from 'react-i18next';
-import ExhibitCard from 'components/log/entityCards/exhibitCard';
-import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import RewardsWidget from '../parts/rewardsWidget';
+import { MoneyImage } from '../parts/stationWidgets';
 
 function SumirekoGathering({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
-  const { t } = useTranslation();
 
-  const { Type, Data } = station;
+  const { Data, Rewards } = station;
 
-  const { Choices, Exhibits, Both } = Data;
+  const { Choices, Card, Cards, HasMoney } = Data;
 
-  const id = Type;
+  const id = TradeStations.SumirekoGathering.toString();
   const configs = configsData.dialogues[id];
+  const eventConfigs = configsData.events[id];
 
-  const { current, next: options } = configs;
+  let card = null;
+  let exhibit = null;
 
-  if (!Both) delete options[2];
+  {
+    if (Cards) {
+      const { current, next: options } = configs[0];
 
-  const [next] = getNext(options);
-  const chosen = Choices[0];
+      const choices: Array<number | string> = [];
+      const chosen = Choices[0];
 
-  const props: Array<TObjAny> = [];
+      const props: Array<TObjAny> = [];
+      const cards: Array<TCards> = [];
 
-  const dialogueConfigs: TDialogueConfigs = {
-    current,
-    next,
-    chosen,
-    props
-  };
+      const _cards = convertCards(Cards);
+
+      if (Card) {
+        cards[0] = [Card, ..._cards];
+        choices.push(0);
+      }
+      else {
+        choices.push('0_invalid');
+      }
+
+      if (HasMoney) {
+        cards[1] = _cards;
+        const { money } = eventConfigs;
+        const values = { 0: money };
+        const components = { Money: <MoneyImage /> };
+        props[1] = { values, components };
+        choices.push(1);
+      }
+      else {
+        const components = { Money: <MoneyImage /> };
+        props[1] = { components };
+        choices.push('1_invalid');
+      }
+      choices.push(2);
+
+      const [next, invalids] = getNext(options, choices);
+
+      const dialogueConfigs: TDialogueConfigs = {
+        current,
+        next,
+        chosen,
+        props,
+        invalids,
+        cards
+      };
+
+      card = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
+    }
+  }
+
+  {
+    const chosen = Choices[1];
+    if (chosen !== undefined) {
+      const { current, next: options } = configs[1];
+
+      const exhibits = [['WaijieYouxiji', 'WaijieYanshuang']];
+
+      const [next] = getNext(options);
+
+      const dialogueConfigs: TDialogueConfigs = {
+        current,
+        next,
+        chosen,
+        exhibits
+      };
+
+      exhibit = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
+    }
+  }
 
   return (
     <div className="p-station__body">
@@ -42,7 +97,8 @@ function SumirekoGathering({ station }: { station: TStation }) {
         <div className="p-event">
           <div className="p-event__body">
             <div className="p-dialogues">
-              <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />
+              {card}
+              {exhibit}
             </div>
           </div>
         </div>

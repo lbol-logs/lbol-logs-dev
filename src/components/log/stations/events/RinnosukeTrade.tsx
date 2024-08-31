@@ -1,4 +1,4 @@
-import { TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
+import { TDialogueConfigs, TExhibits, TradeStations, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
@@ -16,7 +16,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
 
   const { Choices, Prices } = Data;
 
-  const id = 'RinnosukeTrade';
+  const id = TradeStations.RinnosukeTrade.toString();
   const configs = configsData.dialogues[id];
 
   let sell = null;

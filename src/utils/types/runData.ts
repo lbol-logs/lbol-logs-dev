@@ -175,6 +175,11 @@ enum ExhibitsEnhanceDrinkTea {
   HuangyouJiqiren = 'HuangyouJiqiren'
 };
 
+enum TradeStations {
+  RinnosukeTrade = 'RinnosukeTrade',
+  SumirekoGathering = 'SumirekoGathering'
+};
+
 type TDialogueConfigs = {
   current: string,
   next: Array<string>,
@@ -227,5 +232,6 @@ export {
   RequestTypes,
   CardsWithUpgradeCounter,
   ExhibitsWithCounter,
-  ExhibitsEnhanceDrinkTea
+  ExhibitsEnhanceDrinkTea,
+  TradeStations
 };

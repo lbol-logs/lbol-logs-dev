@@ -82,5 +82,16 @@
     "line:0b0300d": "\"Uwah! Please take this and keep it a secret.\"",
     "line:0b3a02b": "[Accept] Gain Exhibit: <h>{{0}}</h>.",
     "line:0d8166c": "[Refuse] Nothing happens."
+  },
+  "SumirekoGathering": {
+    "line:0977eb5": "\"We can trade with |Rare| cards. If you don''t have any, a reasonable price is also acceptable.\"",
+    "line:022ef50": "[Trade] Trade <h>{{0}}</h> for one of three Rare cards.",
+    "line:0d7f696": "[Invalid] You have no Rare cards to trade.",
+    "line:07a7bdc": "[Purchase] Pay {{0}} <Money /> to get one of three Rare cards.",
+    "line:00120ec": "[Invalid] Insufficient <Money />.",
+    "line:046c8a9": "[Leave] Nothing happens.",
+    "line:04c2389": "\"Can I have it for this high-end cosmetic? I got it from a raffle, but young people like me have no use for it.\"",
+    "line:0ed2833": "[Agree] Give <h>{{0}}</h>, Gain <h>{{1}}</h>.",
+    "line:06cd2f3": "[Leave] Nothing happens."
   }
 }
