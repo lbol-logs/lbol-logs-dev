@@ -1,13 +1,14 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TObjAny } from 'utils/types/common';
+import { TComponents, TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import { useTranslation } from 'react-i18next';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
+import EnemyCards from '../parts/enemyCards';
 
 function MiyoiBartender({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -29,10 +30,15 @@ function MiyoiBartender({ station }: { station: TStation }) {
     const [next] = getNext(options);
     const chosen = Choices[0];
 
+    const afters: TComponents = [];
+
+    afters[2] = <EnemyCards enemies={Ids} />;
+
     const dialogueConfigs: TDialogueConfigs = {
       current,
       next,
-      chosen
+      chosen,
+      afters
     };
 
     first = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
