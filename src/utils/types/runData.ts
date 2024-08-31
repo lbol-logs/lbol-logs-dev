@@ -184,6 +184,7 @@ type TDialogueConfigs = {
   befores?: TComponents,
   cards?: Array<TCards>,
   exhibits?: Array<TExhibits>
+  afters?: TComponents
 };
 
 export type {

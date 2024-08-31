@@ -19,7 +19,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
   const questionComponents = { Player: <CharacterShortName /> };
   const questionProps = concatObjects({ components }, { components: questionComponents });
 
-  const { current, next, chosen, props, invalids, befores, cards, exhibits } = dialogueConfigs;
+  const { current, next, chosen, props, invalids, befores, cards, exhibits, afters } = dialogueConfigs;
 
   return (
     <div className="p-dialogue">
@@ -53,15 +53,19 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
             let _tips = null;
             const hasBefores = befores && befores[i];
-            if (hasCards || hasExhibit || hasBefores) {
+            const hasAfters = afters && afters[i];
+            if (hasCards || hasExhibit || hasBefores || hasAfters) {
+              const _befores = hasBefores
+              ? befores[i]
+              : null;
               const _cards = hasCards
                 ? <CardCards cards={cards[i]} />
                 : null;
               const _exhibit = hasExhibit
                 ? <ExhibitCards exhibits={exhibits[i]} />
                 : null;
-              const _befores = hasBefores
-                ? befores[i]
+              const _afters = hasAfters
+                ? afters[i]
                 : null;
               
               _tips = (
@@ -70,6 +74,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
                   {_befores}
                   {_cards}
                   {_exhibit}
+                  {_afters}
                 </span>
               );
             }
