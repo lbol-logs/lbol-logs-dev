@@ -73,5 +73,14 @@
     "line:01cdad3": "[Accept] {{0}}",
     "line:07acb35": "Choose a colored base mana, and convert it into Philosopher''s Mana.",
     "line:04eeb1a": "[Refuse] Nothing happens."
+  },
+  "MiyoiBartender": {
+    "line:0868bad": "(Geidontei... If I remember correctly, it opens to youkai during the night.)",
+    "line:061da42": "[A Swig] Gain Exhibit: <h>{{0}}</h>, and remove a card from the library.",
+    "line:018cd9a": "[Drinking Competition] Gain {{0}} <Money /> and gain two Misfortunes: <h>{{1}}</h>.",
+    "line:0bea743": "[A Sip] Fight a random group of enemies and get a random Rare Exhibit.",
+    "line:0b0300d": "\"Uwah! Please take this and keep it a secret.\"",
+    "line:0b3a02b": "[Accept] Gain Exhibit: <h>{{0}}</h>.",
+    "line:0d8166c": "[Refuse] Nothing happens."
   }
 }
