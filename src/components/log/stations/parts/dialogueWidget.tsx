@@ -43,6 +43,15 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             else {
               _props = commonProps;
             }
+
+            if (hasCards) {
+              const values = cards[i].reduce((a: TObjString, b, i) => {
+                a[i] = t(b.Id, { ns: 'cards' });
+                return a;
+              }, {});
+              _props = concatObjects(_props, { values });
+            }
+
             if (hasExhibit) {
               const values = exhibits[i].reduce((a: TObjString, b, i) => {
                 a[i] = t(b, { ns: 'exhibits' });
