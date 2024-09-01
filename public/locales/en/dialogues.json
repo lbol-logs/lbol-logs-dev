@@ -101,6 +101,12 @@
     "line:0bb82a2": "[Transform] Choose {{0}} Basic cards to transform into Common cards, lose {{1}} maximum life.",
     "line:08c142c": "[Leave] Nothing happens."
   },
+  "WatatsukiPurify": {
+    "line:05fe9e1": "\"There you are, Master Eirin''s assistant. Allow me to lend you a hand.\"",
+    "line:0220408": "[Recite Prayer] Lose {{0}} maximum life, gain two <h>{{1}}</h>.",
+    "line:015cd2b": "[Consume Peach] Increase maximum life by {{0}}, gain Misfortune: <h>{{1}}</h>.",
+    "line:0c671d8": "[Refuse] Nothing happens."
+  },
   "YorigamiSisters": {
     "line:0e93370": "\"Their original price is 100<Money />, but we're offering a special discount of <hg>{{0}}%</hg> on all first-time purchases~\"",
     "line:035fe0b": "[Take the Money] Pay {{0}} <Money />, get: <h>{{1}}</h>.",
