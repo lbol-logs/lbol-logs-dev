@@ -8,7 +8,7 @@ import { validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
 import { logConfigs } from 'configs/globals';
-import { TConfigsData } from 'utils/types/common';
+import { TConfigsData, TObjAny } from 'utils/types/common';
 
 function useRunData(id: string)  {
   const { version, configsData } = useContext(CommonContext);
@@ -35,7 +35,8 @@ function useRunData(id: string)  {
     if (isValidRunData) {
       setRunDataId(id);
       setRunData(runData);
-      if (exhibitConfigs !== undefined && characterConfigs !== undefined && requestConfigs !== undefined) {
+      const array: Array<TObjAny | undefined> = [exhibitConfigs, characterConfigs, requestConfigs, eventsConfigs];
+      if (!array.includes(undefined)) {
         const ignoredPaths = setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfigs, requestConfigs, eventsConfigs });
         setIgnoredPaths(ignoredPaths);
       }
