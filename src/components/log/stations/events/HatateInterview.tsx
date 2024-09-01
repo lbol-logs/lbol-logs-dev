@@ -49,7 +49,7 @@ function HatateInterview({ station }: { station: TStation }) {
       const cards: Array<TCards> = [];
 
       _cards.forEach((card: string, i: number) => {
-        if (i == 2) cards[i] = convertCards([card, misfortune]);
+        if (i === 2) cards[i] = convertCards([card, misfortune]);
         else cards[i] = convertCards([card]);
       });
   
