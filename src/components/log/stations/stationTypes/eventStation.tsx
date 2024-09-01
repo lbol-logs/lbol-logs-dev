@@ -11,6 +11,7 @@ import HatateInterview from '../events/HatateInterview';
 import HinaCollect from '../events/HinaCollect';
 import { TObj } from 'utils/types/common';
 import KogasaSpook from '../events/KogasaSpook';
+import KosuzuBookstore from '../events/KosuzuBookstore';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -25,7 +26,8 @@ function EventStation({ station }: { station: TStation }) {
     YorigamiSisters: YorigamiSisters,
     HatateInterview: HatateInterview,
     HinaCollect: HinaCollect,
-    KogasaSpook: KogasaSpook
+    KogasaSpook: KogasaSpook,
+    KosuzuBookstore: KosuzuBookstore
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;

@@ -1,58 +1,46 @@
-import { TCards, TDialogueConfigs, TStation } from 'utils/types/runData';
+import { TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
-import { convertCards, getNext } from 'utils/functions/helpers';
+import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 
-function YorigamiSisters({ station }: { station: TStation }) {
+function KosuzuBookstore({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
 
   const { Data, Id } = station;
 
-  const { Choices, Values } = Data;
+  const { Choices } = Data;
 
   const id = Id as string;
   const configs = configsData.dialogues[id];
   const eventConfigs = configsData.events[id];
-
-  const { money, misfortune } = eventConfigs;
 
   let first = null;
   let second = null;
 
   {
     const { current, next: options } = configs[0];
-    const { discount, card } = eventConfigs;
+    const { Exhibits } = Data;
 
-    const [next] = getNext(options);
+    const choices: Array<number> = new Array(Exhibits.length).fill(null).map((_, i) => i);
+    choices.push(3);
     const chosen = Choices[0];
 
-    const currentComponents = { 0: discount };
-    const props: Array<TObjAny> = [];
-    const cards: Array<TCards> = [];
 
-    {
-      const money = (10 - Values[0]) * 10;
-      const values = { 0: money };
-      props[0] = { values };
-      cards[0] = convertCards([card]);
-    }
-    {
-      const values = { 0: money };
-      props[1] = { values };
-      cards[1] = convertCards([misfortune]);
-    }
+    const exhibits: Array<TExhibits> = [];
+
+    Exhibits.forEach((exhibit: string, i: number) => exhibits[i] = [exhibit]);
+
+    const [next] = getNext(options, choices);
 
     const dialogueConfigs: TDialogueConfigs = {
       current,
-      currentComponents,
       next,
       chosen,
-      props,
-      cards
+      exhibits
     };
 
     first = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
@@ -62,23 +50,39 @@ function YorigamiSisters({ station }: { station: TStation }) {
     const chosen = Choices[1];
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
+      const { Returns } = Data;
+      const { money } = eventConfigs;
+
+      const choices: Array<number | string> = [0];
   
-      const [next] = getNext(options);
-  
+      const currentComponents = { 0: money };
       const props: Array<TObjAny> = [];
-      const cards: Array<TCards> = [];
+      const exhibits: Array<TExhibits> = [];
   
       const values = { 0: money };
       props[0] = { values };
 
-      cards[1] = convertCards([misfortune]);
-  
+      if (Returns) {
+        const offset = 1;
+        Returns.forEach((exhibit: string, i: number) => {
+          choices.push(i + offset);
+          exhibits[i + offset] = [exhibit];
+        });
+      }
+      else {
+        choices.push('1_invalid');
+      }
+
+      const [next, invalids] = getNext(options, choices);
+    
       const dialogueConfigs: TDialogueConfigs = {
         current,
+        currentComponents,
         next,
         chosen,
         props,
-        cards
+        invalids,
+        exhibits
       };
   
       second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
@@ -103,4 +107,4 @@ function YorigamiSisters({ station }: { station: TStation }) {
   );
 }
 
-export default YorigamiSisters;
+export default KosuzuBookstore;

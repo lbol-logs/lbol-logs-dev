@@ -11,7 +11,7 @@ function KogasaSpook({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
-  const { Choices, Card } = Data;
+  const { Choices } = Data;
 
   const id = Id as string;
   const configs = configsData.dialogues[id];
