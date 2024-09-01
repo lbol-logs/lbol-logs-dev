@@ -37,8 +37,11 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             const hasExhibit = exhibits && exhibits[i];
 
             let _props;
+            let offset = 0;
             if (props && props[i]) {
               _props = concatObjects(props[i], { components });
+              const { values } = props[i];
+              if (values) offset = Object.keys(values).length;
             }
             else {
               _props = commonProps;
@@ -46,7 +49,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
             if (hasCards) {
               const values = cards[i].reduce((a: TObjString, b, i) => {
-                a[i] = t(b.Id, { ns: 'cards' });
+                a[i + offset] = t(b.Id, { ns: 'cards' });
                 return a;
               }, {});
               _props = concatObjects(_props, { values });
@@ -54,7 +57,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
             if (hasExhibit) {
               const values = exhibits[i].reduce((a: TObjString, b, i) => {
-                a[i] = t(b, { ns: 'exhibits' });
+                a[i + offset] = t(b, { ns: 'exhibits' });
                 return a;
               }, {});
               _props = concatObjects(_props, { values });
