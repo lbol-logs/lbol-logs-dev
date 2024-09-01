@@ -5,6 +5,7 @@ import JunkoColorless from '../events/JunkoColorless';
 import PatchouliPhilosophy from '../events/PatchouliPhilosophy';
 import MiyoiBartender from '../events/MiyoiBartender';
 import ShinmyoumaruForge from '../events/ShinmyoumaruForge';
+import WatatsukiPurify from '../events/WatatsukiPurify';
 
 function EventStation({ station }: { station: TStation }) {
   const { Id } = station;
@@ -20,6 +21,8 @@ function EventStation({ station }: { station: TStation }) {
       return <MiyoiBartender station={station} />;
     case 'ShinmyoumaruForge':
       return <ShinmyoumaruForge station={station} />;
+    case 'WatatsukiPurify':
+      return <WatatsukiPurify station={station} />;
     default:
       return <EventDefault station={station} />;
   }

@@ -8,46 +8,43 @@ import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
 import EventHead from '../parts/eventHead';
 
-function ShinmyoumaruForge({ station }: { station: TStation }) {
+function WatatsukiPurify({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
 
   const { Data, Id } = station;
 
-  const { Choices, HasUpgradableBasics, HasNonBasics, LoseMax } = Data;
+  const { Choices, LoseMax } = Data;
 
   const id = Id as string;
   const eventConfigs = configsData.events[id];
   const configs = configsData.dialogues[id];
 
-  const { upgrade, transform } = eventConfigs;
+  const { maxhp, cards: _cards, misfortune } = eventConfigs;
   const { current, next: options } = configs;
 
-  const choices: Array<number | string> = [];
-
-  if (HasUpgradableBasics) choices.push(0);
-  if (HasNonBasics) choices.push(1);
-  choices.push(2, 3);
-
-  const [next] = getNext(options, choices);
-  const chosen = choices.indexOf(Choices[0]) as TRange3;
+  const [next] = getNext(options);
+  const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
+  const cards: Array<TCards> = [];
 
-  if (HasUpgradableBasics) {
-    const values = { 0: upgrade };
+  {
+    const values = { 0: LoseMax };
     props[0] = { values };
+    cards[0] = convertCards(_cards);
   }
   {
-    const values = { 0: transform, 1: LoseMax };
-    const i = choices.indexOf(2);
-    props[i] = { values };
+    const values = { 0: maxhp };
+    props[1] = { values };
+    cards[1] = convertCards([misfortune]);
   }
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
-    props
+    props,
+    cards
   };
 
   return (
@@ -67,4 +64,4 @@ function ShinmyoumaruForge({ station }: { station: TStation }) {
   );
 }
 
-export default ShinmyoumaruForge;
+export default WatatsukiPurify;
