@@ -20,10 +20,10 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
   };
   const commonProps = { components };
 
-  const questionComponents = { Player: <CharacterShortName /> };
-  const questionProps = concatObjects({ components }, { components: questionComponents });
+  const { current, currentComponents, next, chosen, props, invalids, befores, cards, exhibits, afters } = dialogueConfigs;
 
-  const { current, next, chosen, props, invalids, befores, cards, exhibits, afters } = dialogueConfigs;
+  const questionComponents = { Player: <CharacterShortName />, ...(currentComponents || {}) };
+  const questionProps = concatObjects({ components }, { components: questionComponents });
 
   return (
     <div className="p-dialogue">

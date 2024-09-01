@@ -189,6 +189,7 @@ enum SpecialExhibits {
 
 type TDialogueConfigs = {
   current: string,
+  currentComponents?: TObjAny,
   next: Array<string>,
   chosen: TRange3,
   props?: Array<TObjAny>,

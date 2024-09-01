@@ -25,11 +25,12 @@ function YorigamiSisters({ station }: { station: TStation }) {
 
   {
     const { current, next: options } = configs[0];
-    const { card } = eventConfigs;
+    const { discount, card } = eventConfigs;
 
     const [next] = getNext(options);
     const chosen = Choices[0];
 
+    const currentComponents = { 0: discount };
     const props: Array<TObjAny> = [];
     const cards: Array<TCards> = [];
 
@@ -47,6 +48,7 @@ function YorigamiSisters({ station }: { station: TStation }) {
 
     const dialogueConfigs: TDialogueConfigs = {
       current,
+      currentComponents,
       next,
       chosen,
       props,
