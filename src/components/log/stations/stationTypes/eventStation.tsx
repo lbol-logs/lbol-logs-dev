@@ -9,32 +9,28 @@ import WatatsukiPurify from '../events/WatatsukiPurify';
 import YorigamiSisters from '../events/YorigamiSisters';
 import HatateInterview from '../events/HatateInterview';
 import HinaCollect from '../events/HinaCollect';
+import { TObj } from 'utils/types/common';
+import KogasaSpook from '../events/KogasaSpook';
+
+type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
 function EventStation({ station }: { station: TStation }) {
-  const { Id } = station;
+  const events: TObj<EventComponent> = {
+    DoremyPortal: DoremyPortal,
+    JunkoColorless: JunkoColorless,
+    PatchouliPhilosophy: PatchouliPhilosophy,
+    MiyoiBartender: MiyoiBartender,
+    ShinmyoumaruForge: ShinmyoumaruForge,
+    WatatsukiPurify: WatatsukiPurify,
+    YorigamiSisters: YorigamiSisters,
+    HatateInterview: HatateInterview,
+    HinaCollect: HinaCollect,
+    KogasaSpook: KogasaSpook
+  };
+  const Id = station.Id as string;
+  const EventComponent = Id in events ? events[Id] : EventDefault;
 
-  switch (Id) {
-    case 'DoremyPortal':
-      return <DoremyPortal station={station} />;
-    case 'JunkoColorless':
-      return <JunkoColorless station={station} />;
-    case 'PatchouliPhilosophy':
-      return <PatchouliPhilosophy station={station} />;
-    case 'MiyoiBartender':
-      return <MiyoiBartender station={station} />;
-    case 'ShinmyoumaruForge':
-      return <ShinmyoumaruForge station={station} />;
-    case 'WatatsukiPurify':
-      return <WatatsukiPurify station={station} />;
-    case 'YorigamiSisters':
-      return <YorigamiSisters station={station} />;
-    case 'HatateInterview':
-      return <HatateInterview station={station} />;
-    case 'HinaCollect':
-      return <HinaCollect station={station} />;
-    default:
-      return <EventDefault station={station} />;
-  }
+  return <EventComponent station={station} />;
 }
 
 export default EventStation;

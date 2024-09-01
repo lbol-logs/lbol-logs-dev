@@ -130,5 +130,10 @@
     "line:02dcea4": "[Accept Help] Remove all <h>Misfortune</h> cards.",
     "line:00dc670": "[Embrace Her] Gain a random <h>Misfortune</h>.",
     "line:0a76aa4": "[Leave] Nothing happens."
+  },
+  "KogasaSpook": {
+    "line:02f382c": "\"BOOOOOOOO!\"",
+    "line:03bbd9d": "[Play Along] Gain Misfortune: <h>{{0}}</h>, choose two cards to Upgrade.",
+    "line:04a4454": "[Beat Up] Nothing happens."
   }
 }
