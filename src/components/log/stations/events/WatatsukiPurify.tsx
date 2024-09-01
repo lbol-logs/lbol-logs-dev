@@ -1,10 +1,11 @@
-import { TDialogueConfigs, TStation } from 'utils/types/runData';
+import { TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny, TRange3 } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
+import { MoneyImage } from '../parts/stationWidgets';
 import EventHead from '../parts/eventHead';
 
 function ShinmyoumaruForge({ station }: { station: TStation }) {
