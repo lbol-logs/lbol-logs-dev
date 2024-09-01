@@ -4,7 +4,6 @@ import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
-import {  PowerImage } from '../parts/stationWidgets';
 import { useTranslation } from 'react-i18next';
 
 function Select({ station }: { station: TStation }) {
@@ -31,8 +30,7 @@ function Select({ station }: { station: TStation }) {
   });
   {
     const values = { 0: eventConfigs.power };
-    const components = { Power: <PowerImage /> };
-    props[3] = { values, components };
+    props[3] = { values };
   }
 
   const dialogueConfigs: TDialogueConfigs = {
