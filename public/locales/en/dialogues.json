@@ -52,7 +52,7 @@
     "line:06c2fe7": "[Trade] Sell <h>{{0}}</h>, receive {{1}} <Money />.",
     "line:0cc8782": "[Invalid] You have no items to sell.",
     "line:053c5be": "[Leave] Nothing happens.",
-    "line:0bb144b": "\"I''ll give you a very helpful item in exchange for it.\"",
+    "line:0bb144b": "\"I'll give you a very helpful item in exchange for it.\"",
     "line:00db216": "[Agree] Deliver <h>{{0}}</h>, gain <h>{{1}}</h>.",
     "line:0431aa2": "[Leave] Nothing happens."
   },
@@ -71,7 +71,7 @@
   "PatchouliPhilosophy": {
     "line:0b23fed": "\"What a coincidence, <Player />. I can help tune your affinity with these jewels.\"<br />(A more than sufficient test subject.)",
     "line:01cdad3": "[Accept] {{0}}",
-    "line:07acb35": "Choose a colored base mana, and convert it into Philosopher''s Mana.",
+    "line:07acb35": "Choose a colored base mana, and convert it into Philosopher's Mana.",
     "line:04eeb1a": "[Refuse] Nothing happens."
   },
   "MiyoiBartender": {
@@ -84,7 +84,7 @@
     "line:0d8166c": "[Refuse] Nothing happens."
   },
   "SumirekoGathering": {
-    "line:0977eb5": "\"We can trade with |Rare| cards. If you don''t have any, a reasonable price is also acceptable.\"",
+    "line:0977eb5": "\"We can trade with |Rare| cards. If you don't have any, a reasonable price is also acceptable.\"",
     "line:022ef50": "[Trade] Trade <h>{{0}}</h> for one of three Rare cards.",
     "line:0d7f696": "[Invalid] You have no Rare cards to trade.",
     "line:07a7bdc": "[Purchase] Pay {{0}} <Money /> to get one of three Rare cards.",
@@ -100,5 +100,13 @@
     "line:009a2f1": "[Shrink] Remove a |non-Basic| card from the library.",
     "line:0bb82a2": "[Transform] Choose {{0}} Basic cards to transform into Common cards, lose {{1}} maximum life.",
     "line:08c142c": "[Leave] Nothing happens."
+  },
+  "YorigamiSisters": {
+    "line:0e93370": "\"Their original price is 100<Money />, but we're offering a special discount of <hg>{{0}}</hg> on all first-time purchases~\"",
+    "line:035fe0b": "[Take the Money] Pay {{0}} <Money />, get: <h>{{1}}</h>.",
+    "line:03a90b9": "[Refuse to Buy] Pay {{0}} <Money />, or gain Misfortune: <h>{{1}}</h>.",
+    "line:09653e9": "\"Is it a good idea to punish someone as broke as her? Though it's not necessarily a bad thing.\"",
+    "line:027fc29": "[Spare Me] Pay {{0}} <Money />.",
+    "line:08ee578": "[I'm Broke] Gain Misfortune: <h>{{0}}</h>."
   }
 }

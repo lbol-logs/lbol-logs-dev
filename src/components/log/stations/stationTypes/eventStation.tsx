@@ -6,6 +6,7 @@ import PatchouliPhilosophy from '../events/PatchouliPhilosophy';
 import MiyoiBartender from '../events/MiyoiBartender';
 import ShinmyoumaruForge from '../events/ShinmyoumaruForge';
 import WatatsukiPurify from '../events/WatatsukiPurify';
+import YorigamiSisters from '../events/YorigamiSisters';
 
 function EventStation({ station }: { station: TStation }) {
   const { Id } = station;
@@ -23,6 +24,8 @@ function EventStation({ station }: { station: TStation }) {
       return <ShinmyoumaruForge station={station} />;
     case 'WatatsukiPurify':
       return <WatatsukiPurify station={station} />;
+    case 'YorigamiSisters':
+      return <YorigamiSisters station={station} />;
     default:
       return <EventDefault station={station} />;
   }
