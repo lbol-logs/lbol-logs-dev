@@ -45,7 +45,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             if (props && props[i]) {
               _props = concatObjects(props[i], { components });
               const { values } = props[i];
-              if (values) offset = Object.keys(values).length;
+              if (values && Object.keys(values).includes("0")) offset = 1;
             }
             else {
               _props = commonProps;

@@ -7,6 +7,7 @@ import MiyoiBartender from '../events/MiyoiBartender';
 import ShinmyoumaruForge from '../events/ShinmyoumaruForge';
 import WatatsukiPurify from '../events/WatatsukiPurify';
 import YorigamiSisters from '../events/YorigamiSisters';
+import HatateInterview from '../events/HatateInterview';
 
 function EventStation({ station }: { station: TStation }) {
   const { Id } = station;
@@ -26,6 +27,8 @@ function EventStation({ station }: { station: TStation }) {
       return <WatatsukiPurify station={station} />;
     case 'YorigamiSisters':
       return <YorigamiSisters station={station} />;
+    case 'HatateInterview':
+      return <HatateInterview station={station} />;
     default:
       return <EventDefault station={station} />;
   }

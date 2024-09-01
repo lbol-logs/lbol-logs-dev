@@ -102,11 +102,21 @@
     "line:08c142c": "[Leave] Nothing happens."
   },
   "YorigamiSisters": {
-    "line:0e93370": "\"Their original price is 100<Money />, but we're offering a special discount of <hg>{{0}}</hg> on all first-time purchases~\"",
+    "line:0e93370": "\"Their original price is 100<Money />, but we're offering a special discount of <hg>{{0}}%</hg> on all first-time purchases~\"",
     "line:035fe0b": "[Take the Money] Pay {{0}} <Money />, get: <h>{{1}}</h>.",
     "line:03a90b9": "[Refuse to Buy] Pay {{0}} <Money />, or gain Misfortune: <h>{{1}}</h>.",
     "line:09653e9": "\"Is it a good idea to punish someone as broke as her? Though it's not necessarily a bad thing.\"",
     "line:027fc29": "[Spare Me] Pay {{0}} <Money />.",
     "line:08ee578": "[I'm Broke] Gain Misfortune: <h>{{0}}</h>."
+  },
+  "HatateInterview": {
+    "line:0fed9a3": "\"Miss <Player />, can I have an interview?\"",
+    "line:0ffc3c5": "[Accept] Answer a question.",
+    "line:0b1bfc1": "[Refuse] Nothing happens.",
+    "line:0f1ab7b": "\"Why have you decided to take part in this incident, Miss <Player />?\"",
+    "line:0c26759": "[For Gensokyo] Gain <h>{{0}}</h>.",
+    "line:01f1aca": "[For Money] Gain <h>{{0}}</h>, gain {{1}} <Money />.",
+    "line:018ba4d": "[No Idea] Gain <h>{{0}}</h>, gain Misfortune: <h>{{1}}</h>.",
+    "line:0680a62": "[For Kaguya] Gain <h>{{0}}</h>, heal {{1}} life."
   }
 }
