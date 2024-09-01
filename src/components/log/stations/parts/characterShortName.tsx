@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 
-
 function CharacterShortName() {
   const { runData: { Settings: { Character } } } = useContext(LogContext);
   const { t } = useTranslation();

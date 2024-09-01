@@ -8,7 +8,7 @@ import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
 import EventHead from '../parts/eventHead';
 
-function DoremyPortal({ station }: { station: TStation }) {
+function ShinmyoumaruForge({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
 
   const { Data, Id } = station;
@@ -64,4 +64,4 @@ function DoremyPortal({ station }: { station: TStation }) {
   );
 }
 
-export default DoremyPortal;
+export default ShinmyoumaruForge;

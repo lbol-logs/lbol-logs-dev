@@ -23,7 +23,6 @@ def card(suffix = ''):
     cropped = resized.crop((0, top, w, top + h))
     cropped.save(rf'{dir}{dst}\{name}{suffix}.avif')
 
-
 def fit_height(height, suffix, append):
   dir = os.path.dirname(__file__)
   files = os.listdir(rf'{dir}{src}')
