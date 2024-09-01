@@ -1,7 +1,7 @@
 import { TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TObjAny } from 'utils/types/common';
+import { TObjAny, TRange3 } from 'utils/types/common';
 import { convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
@@ -13,38 +13,41 @@ function ShinmyoumaruForge({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
-  const { Choices, Exhibit } = Data;
+  const { Choices, HasUpgradableBasics, HasNonBasics, LoseMax } = Data;
 
   const id = Id as string;
   const eventConfigs = configsData.events[id];
   const configs = configsData.dialogues[id];
 
-  const { money, exhibit, misfortune } = eventConfigs;
+  const { upgrade, transform } = eventConfigs;
   const { current, next: options } = configs;
 
-  const [next] = getNext(options);
-  const chosen = Choices[0];
+  const choices: Array<number | string> = [];
+
+  if (HasUpgradableBasics) choices.push(0);
+  if (HasNonBasics) choices.push(1);
+  choices.push(2, 3);
+
+  const [next] = getNext(options, choices);
+  const chosen = choices.indexOf(Choices[0]) as TRange3;
 
   const props: Array<TObjAny> = [];
-  const cards: Array<TCards> = [];
-  const exhibits: Array<TExhibits> = [];
 
-  exhibits[0] = [exhibit];
-  const values = { 0: money };
-  const components = { Money: <MoneyImage /> };
-  props[1] = { values, components };
-  cards[1] = convertCards([misfortune]);
-  if (Exhibit) {
-    exhibits[1] = [Exhibit];
+  if (HasUpgradableBasics) {
+    const values = { 0: upgrade };
+    props[0] = { values };
+  }
+  {
+    const values = { 0: transform, 1: LoseMax };
+    const i = choices.indexOf(2);
+    props[i] = { values };
   }
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
-    props,
-    cards,
-    exhibits
+    props
   };
 
   return (

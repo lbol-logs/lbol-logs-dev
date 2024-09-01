@@ -93,5 +93,12 @@
     "line:04c2389": "\"Can I have it for this high-end cosmetic? I got it from a raffle, but young people like me have no use for it.\"",
     "line:0ed2833": "[Agree] Give <h>{{0}}</h>, Gain <h>{{1}}</h>.",
     "line:06cd2f3": "[Leave] Nothing happens."
+  },
+  "ShinmyoumaruForge": {
+    "line:04566b1": "\"We must use the Miracle Mallet to rebel against the rare cards, <Player />!\"",
+    "line:04e318b": "[Grow] Choose {{0}} Basic cards to Upgrade.",
+    "line:009a2f1": "[Shrink] Remove a |non-Basic| card from the library.",
+    "line:0bb82a2": "[Transform] Choose {{0}} Basic cards to transform into Common cards, lose {{1}} maximum life.",
+    "line:08c142c": "[Leave] Nothing happens."
   }
 }
