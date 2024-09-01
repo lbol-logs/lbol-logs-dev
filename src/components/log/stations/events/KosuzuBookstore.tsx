@@ -29,7 +29,6 @@ function KosuzuBookstore({ station }: { station: TStation }) {
     choices.push(3);
     const chosen = Choices[0];
 
-
     const exhibits: Array<TExhibits> = [];
 
     Exhibits.forEach((exhibit: string, i: number) => exhibits[i] = [exhibit]);

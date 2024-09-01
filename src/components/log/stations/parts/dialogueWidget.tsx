@@ -23,7 +23,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
   const { current, currentComponents, next, chosen, props, invalids, befores, cards, exhibits, afters } = dialogueConfigs;
 
   const questionComponents = { Player: <CharacterShortName />, ...(currentComponents || {}) };
-  const questionProps = concatObjects({ components }, { components: questionComponents });
+  const questionProps = concatObjects({}, { components }, { components: questionComponents });
 
   return (
     <div className="p-dialogue">
@@ -40,15 +40,15 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             const hasCards = cards && cards[i];
             const hasExhibit = exhibits && exhibits[i];
 
-            let _props;
+            let _props = {};
             let offset = 0;
             if (props && props[i]) {
-              _props = concatObjects(props[i], { components });
+              _props = concatObjects({}, props[i], { components });
               const { values } = props[i];
               if (values && Object.keys(values).includes("0")) offset = 1;
             }
             else {
-              _props = commonProps;
+              _props = concatObjects(_props, commonProps);
             }
 
             if (hasCards) {
@@ -62,9 +62,12 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             if (hasExhibit) {
               const values = exhibits[i].reduce((a: TObjString, b, i) => {
                 a[i + offset] = t(b, { ns: 'exhibits' });
+                console.log({ offset, i, b });
                 return a;
               }, {});
+              console.log({values});
               _props = concatObjects(_props, { values });
+              console.log(_props);
             }
 
             let _tips = null;

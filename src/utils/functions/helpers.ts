@@ -101,17 +101,14 @@ function getExhibitId(exhibit: TExhibit | TExhibitObj | TExhibitChange): string 
   return Id;
 }
 
-function concatObjects(props: TObjAny, obj: TObj<TObjElement | TObjString>): TObjAny {
-  const [key, value] = Object.entries(obj)[0];
-  Object.assign(value, props[key]);
-  Object.assign(props, { [key]: value });
+function concatObjects(props: TObjAny, ...objs: Array<TObj<TObjElement | TObjString>>): TObjAny {
+  for (const obj of objs) {
+    const [key, value] = Object.entries(obj)[0];
+    Object.assign(value, props[key]);
+    Object.assign(props, { [key]: value });
+  }
   return props;
 }
-
-// TODO: remove
-// function getBaseMana(Id: string | number | undefined): TBaseMana {
-//   return eventsConvertBaseMana[Id as keyof typeof eventsConvertBaseMana];
-// }
 
 export {
   checkForce,
