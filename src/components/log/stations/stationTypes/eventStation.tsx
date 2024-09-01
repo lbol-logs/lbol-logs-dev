@@ -1,4 +1,5 @@
 import { TStation } from 'utils/types/runData';
+import { TObj } from 'utils/types/common';
 import EventDefault from '../events/eventDefault';
 import DoremyPortal from '../events/DoremyPortal';
 import JunkoColorless from '../events/JunkoColorless';
@@ -9,7 +10,6 @@ import WatatsukiPurify from '../events/WatatsukiPurify';
 import YorigamiSisters from '../events/YorigamiSisters';
 import HatateInterview from '../events/HatateInterview';
 import HinaCollect from '../events/HinaCollect';
-import { TObj } from 'utils/types/common';
 import KogasaSpook from '../events/KogasaSpook';
 import KosuzuBookstore from '../events/KosuzuBookstore';
 
