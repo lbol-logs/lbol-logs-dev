@@ -124,5 +124,11 @@
     "line:01f1aca": "[For Money] Gain <h>{{0}}</h>, gain {{1}} <Money />.",
     "line:018ba4d": "[No Idea] Gain <h>{{0}}</h>, gain Misfortune: <h>{{1}}</h>.",
     "line:0680a62": "[For Kaguya] Gain <h>{{0}}</h>, heal {{1}} life."
+  },
+  "HinaCollect": {
+    "line:0183740": "\"Let me bear this misfortune for you.\"",
+    "line:02dcea4": "[Accept Help] Remove all <h>Misfortune</h> cards.",
+    "line:00dc670": "[Embrace Her] Gain a random <h>Misfortune</h>.",
+    "line:0a76aa4": "[Leave] Nothing happens."
   }
 }
