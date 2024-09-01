@@ -936,7 +936,7 @@ html:lang(en) .p-result__type {
   font-weight: bold;
   margin: 0.5em 0;
   padding: 0.2em 0.5em;
-  background: var(--skyblue);
+  background: var(--light-blue);
 }
 .p-dialogue__option {
   flex-wrap: wrap;
@@ -1032,6 +1032,9 @@ html:lang(en) .p-result__type {
 .c-highlight--orange {
   color: var(--orange);
 }
+.c-highlight--green {
+  color: var(--lime);
+}
 
 :root {
   color-scheme: light dark;
@@ -1055,7 +1058,8 @@ html:lang(en) .p-result__type {
   --blue: light-dark(blue, #0d0df2);
   --green: light-dark(green, #b1fbb1);
   --red: light-dark(red, #ff0000);
-  --orange: light-dark(orange, #f2a20d);
+  --orange: light-dark(#ff9400, #f2930d);
+  --lime: light-dark(#5fff99, #08963c);
   --purple: light-dark(purple, #f986f9);
   --skyblue: light-dark(#e3f8ff, #011218);
   --light-pink: light-dark(#ffe3e3, #180101);

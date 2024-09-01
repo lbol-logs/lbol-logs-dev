@@ -7,7 +7,7 @@ import { TObjAny } from 'utils/types/common';
 import { applyRate, convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import EventHead from '../parts/eventHead';
-import { MoneyImage, PowerImage } from '../parts/stationWidgets';
+import { PowerImage } from '../parts/stationWidgets';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { CommonContext } from 'contexts/commonContext';
 import RewardsWidget from '../parts/rewardsWidget';
@@ -55,8 +55,7 @@ function Debut({ station }: { station: TStation }) {
       switch (option) {
         case 0: {
             const values = { 0: eventConfigs.money };
-            const components = { Money: <MoneyImage /> };
-            props[i] = { values, components };
+            props[i] = { values };
             break;
         }
         case 1: {

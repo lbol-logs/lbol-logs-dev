@@ -6,7 +6,6 @@ import { TObjString } from 'utils/types/common';
 import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import CharacterShortName from './characterShortName';
-import { ReactNode } from 'react';
 import Highlight from './highlight';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
@@ -14,6 +13,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
   const components = {
     h: <Highlight>{}</Highlight>,
+    hg: <Highlight color="g">{}</Highlight>,
     l: <span className="c-dialogue__height">{}</span>,
     Money: <MoneyImage />,
     Power: <PowerImage />

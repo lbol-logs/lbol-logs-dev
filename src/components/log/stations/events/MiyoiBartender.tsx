@@ -6,10 +6,7 @@ import { convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
-import { useTranslation } from 'react-i18next';
-import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import EnemyCards from '../parts/enemyCards';
-import { MoneyImage } from '../parts/stationWidgets';
 import RoundsWidget from '../parts/roundsWidget';
 
 function MiyoiBartender({ station }: { station: TStation }) {
@@ -41,8 +38,7 @@ function MiyoiBartender({ station }: { station: TStation }) {
     exhibits[0] = [exhibit];
 
     const values = { 0: money };
-    const components = { Money: <MoneyImage /> };
-    props[1] = { values, components };
+    props[1] = { values };
     cards[1] = convertCards(misfortunes);
 
     if (Exhibit) exhibits[2] = [Exhibit];

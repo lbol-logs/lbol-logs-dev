@@ -6,7 +6,6 @@ import { convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
-import { MoneyImage } from '../parts/stationWidgets';
 
 function YorigamiSisters({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -37,14 +36,12 @@ function YorigamiSisters({ station }: { station: TStation }) {
     {
       const money = (10 - Values[0]) * 10;
       const values = { 0: money };
-      const components = { Money: <MoneyImage /> };
-      props[0] = { values, components };
+      props[0] = { values };
       cards[0] = convertCards([card]);
     }
     {
       const values = { 0: money };
-      const components = { Money: <MoneyImage /> };
-      props[1] = { values, components };
+      props[1] = { values };
       cards[1] = convertCards([misfortune]);
     }
 
@@ -70,8 +67,7 @@ function YorigamiSisters({ station }: { station: TStation }) {
       const cards: Array<TCards> = [];
   
     const values = { 0: money };
-    const components = { Money: <MoneyImage /> };
-    props[0] = { values, components };
+    props[0] = { values };
 
     cards[1] = convertCards([misfortune]);
   

@@ -5,7 +5,6 @@ import { TObjAny } from 'utils/types/common';
 import { convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
-import { MoneyImage } from '../parts/stationWidgets';
 import EventHead from '../parts/eventHead';
 
 function DoremyPortal({ station }: { station: TStation }) {
@@ -31,8 +30,7 @@ function DoremyPortal({ station }: { station: TStation }) {
 
   exhibits[0] = [exhibit];
   const values = { 0: money };
-  const components = { Money: <MoneyImage /> };
-  props[1] = { values, components };
+  props[1] = { values };
   cards[1] = convertCards([misfortune]);
   if (Exhibit) {
     exhibits[1] = [Exhibit];

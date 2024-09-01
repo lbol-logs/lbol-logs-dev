@@ -6,7 +6,6 @@ import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
-import { MoneyImage } from '../parts/stationWidgets';
 
 function RinnosukeTrade({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -47,8 +46,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
 
     Object.values(Prices).forEach((price, i: number) => {
       const values = { 1: price };
-      const components = { Money: <MoneyImage /> };
-      props[i] = { values, components };
+      props[i] = { values };
     });
 
     const dialogueConfigs: TDialogueConfigs = {
