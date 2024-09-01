@@ -1029,6 +1029,10 @@ html:lang(en) .p-result__type {
   color: var(--koishi);
 }
 
+.c-highlight--orange {
+  color: var(--orange);
+}
+
 :root {
   color-scheme: light dark;
   --padding-inner: 0.625em;
@@ -1094,10 +1098,6 @@ html:lang(en) .p-result__type {
 
 .u-flex-col {
   flex-direction: column;
-}
-
-.u-highlight {
-  color: var(--orange);
 }
 
 @media screen and (min-width: 601px) {

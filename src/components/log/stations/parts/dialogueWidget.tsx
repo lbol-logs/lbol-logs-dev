@@ -1,18 +1,22 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { TDialogueConfigs } from 'utils/types/runData';
-import { RevealImage } from './stationWidgets';
+import { MoneyImage, PowerImage, RevealImage } from './stationWidgets';
 import { concatObjects } from 'utils/functions/helpers';
 import { TObjString } from 'utils/types/common';
 import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import CharacterShortName from './characterShortName';
+import { ReactNode } from 'react';
+import Highlight from './highlight';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
   const { t } = useTranslation();
 
   const components = {
-    h: <span className="u-highlight">{}</span>,
-    l: <span className="c-dialogue__height">{}</span>
+    h: <Highlight>{}</Highlight>,
+    l: <span className="c-dialogue__height">{}</span>,
+    Money: <MoneyImage />,
+    Power: <PowerImage />
   };
   const commonProps = { components };
 
