@@ -135,5 +135,19 @@
     "line:02f382c": "\"BOOOOOOOO!\"",
     "line:03bbd9d": "[Play Along] Gain Misfortune: <h>{{0}}</h>, choose two cards to Upgrade.",
     "line:04a4454": "[Beat Up] Nothing happens."
+  },
+  "KosuzuBookstore": {
+    "line:0150d96": "\"Welcome to Suzunaan, the book rental shop. Got any books you'd like to read?\"",
+    "line:0b70964": "[This One] Gain Exhibit: <h>{{0}}</h>.",
+    "line:04432b2": "[That One] Gain Exhibit: <h>{{0}}</h>.",
+    "line:09f57d5": "[The Bottom One] Gain Exhibit: <h>{{0}}</h>.",
+    "line:0dccd45": "[Leave] Nothing happens.",
+    "line:09d3e76": "\"Alright. <br />You will need to pay a deposit of {{0}} <Money />. Or, you could return another book.\"",
+    "line:096ea9d": "[Make A Deposit] Lose {{0}} <Money />.",
+    "line:0d2b81d": "[Return] Lose <h>{{0}}</h>.",
+    "line:07162cf": "[Invalid] No other books owned.",
+    "line:02e54df": "[Return] Lose <h>{{0}}</h>.",
+    "line:02c51dc": "[Return] Lose <h>{{0}}</h>.",
+    "line:07f1497": "[Return] Lose <h>{{0}}</h>."
   }
 }
