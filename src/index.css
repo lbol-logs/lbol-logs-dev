@@ -3,6 +3,9 @@ body {
   overflow-y: scroll;
   background: var(--white);
 }
+main {
+  overflow: hidden;
+}
 a {
   text-decoration: none;
 }
