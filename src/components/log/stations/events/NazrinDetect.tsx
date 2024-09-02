@@ -13,7 +13,7 @@ import { MoneyImage } from '../parts/stationWidgets';
 
 function NazrinDetect({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
-  const { t } = useTranslation();
+  useTranslation();
 
   const { Data, Id } = station;
 
