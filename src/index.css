@@ -891,18 +891,23 @@ html:lang(en) .p-result__type {
   opacity: 1;
 }
 
-.p-gap-choices, .p-dialogue__options {
+.p-gap-choices,
+.p-dialogue__options,
+.p-nazrin-results {
   display: flex;
   flex-direction: column;
   row-gap: 0.5em;
   width: fit-content;
 }
-.p-gap-choice, .p-dialogue__option {
+.p-gap-choice,
+.p-dialogue__option,
+.p-nazrin-result {
   border-radius: 0.5em;
   padding: 0 0.5em;
   outline: 1px solid var(--black);
 }
-.p-gap-choice {
+.p-gap-choice,
+.p-nazrin-result {
   display: flex;
   align-items: flex-start;
   column-gap: 0.5em;
@@ -910,11 +915,14 @@ html:lang(en) .p-result__type {
 .p-dialogue__option--invalid {
   background: var(--gray);
 }
-.p-gap-choice--chosen, .p-dialogue__option--chosen {
+.p-gap-choice--chosen,
+.p-dialogue__option--chosen,
+.p-nazrin-result--chosen {
   outline-width: 2px;
   outline-color: var(--red);
 }
-.p-gap-choice__descs {
+.p-gap-choice__descs,
+.p-nazrin-result__descs {
   width: 100%;
   align-self: center;
 }

@@ -50,42 +50,46 @@ function NazrinDetect({ station }: { station: TStation }) {
 
   {
     const { Result } = Data;
-    const { coins } = eventConfigs;
+    if (Result !== undefined) {
+      const { coins } = eventConfigs;
 
-    const props: Array<TObjAny> = [];
-    const values = { 0: coins };
-    const components = { Money: <MoneyImage /> };
-    props[0] = { values, components };
+      const props: Array<TObjAny> = [];
+      const values = { 0: coins };
+      const components = { Money: <MoneyImage /> };
+      props[0] = { values, components };
 
-    const results = {
-      0: "1",
-      1: "2",
-      2: "5",
-      3: "6",
-      4: "3",
-      5: "4"
-    };
+      const results = {
+        0: "1",
+        1: "2",
+        2: "5",
+        3: "6",
+        4: "3",
+        5: "4"
+      };
 
-    second = (
-      <div className="p-nazrin-results">
-        {Object.entries(results).map(([result, name]) => {
-          const isChosen = Number(result) === Result;
-          const line = configs[1][result];
-          const key = `${id}.${line}`;
+      second = (
+        <div className="p-nazrin-results">
+          {Object.entries(results).map(([result, name]) => {
+            const isChosen = Number(result) === Result;
+            const line = configs[1][result];
+            const key = `${id}.${line}`;
 
-          return (
-            <div className={`p-nazrin-result ${isChosen ? 'p-nazrin-result--chosen' : ''}`} key={result}>
-              <LazyLoadImage2 className="p-nazrin-result__icon" callback={getNazrinImage} name={name} alt="" />
-              <Trans
-                i18nKey={key}
-                ns="dialogues"
-                {...props[Number(result)]}
-              />
-            </div>
-          );
-        })}
-      </div>
-    );
+            return (
+              <div className={`p-nazrin-result ${isChosen ? 'p-nazrin-result--chosen' : ''}`} key={result}>
+                <LazyLoadImage2 className="p-nazrin-result__icon" callback={getNazrinImage} name={name} alt="" />
+                <div className="p-nazrin-result__descs">
+                  <Trans
+                    i18nKey={key}
+                    ns="dialogues"
+                    {...props[Number(result)]}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
   }
 
   return (
