@@ -912,7 +912,8 @@ html:lang(en) .p-result__type {
   align-items: flex-start;
   column-gap: 0.5em;
 }
-.p-dialogue__option--invalid {
+.p-dialogue__option--invalid,
+.p-nazrin-result--invalid {
   background: var(--gray);
 }
 .p-gap-choice--chosen,

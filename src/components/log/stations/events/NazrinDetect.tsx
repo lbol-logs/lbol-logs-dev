@@ -75,7 +75,7 @@ function NazrinDetect({ station }: { station: TStation }) {
             const key = `${id}.${line}`;
 
             return (
-              <div className={`p-nazrin-result ${isChosen ? 'p-nazrin-result--chosen' : ''}`} key={result}>
+              <div className={`p-nazrin-result ${isChosen ? 'p-nazrin-result--chosen' : 'p-nazrin-result--invalid'}`} key={result}>
                 <LazyLoadImage2 className="p-nazrin-result__icon" callback={getNazrinImage} name={name} alt="" />
                 <div className="p-nazrin-result__descs">
                   <Trans
