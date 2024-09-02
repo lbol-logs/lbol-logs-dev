@@ -12,6 +12,7 @@ import HatateInterview from '../events/HatateInterview';
 import HinaCollect from '../events/HinaCollect';
 import KogasaSpook from '../events/KogasaSpook';
 import KosuzuBookstore from '../events/KosuzuBookstore';
+import NarumiOfferCard from '../events/NarumiOfferCard';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -27,7 +28,8 @@ function EventStation({ station }: { station: TStation }) {
     HatateInterview: HatateInterview,
     HinaCollect: HinaCollect,
     KogasaSpook: KogasaSpook,
-    KosuzuBookstore: KosuzuBookstore
+    KosuzuBookstore: KosuzuBookstore,
+    NarumiOfferCard: NarumiOfferCard
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;
