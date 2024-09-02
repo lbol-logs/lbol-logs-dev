@@ -149,5 +149,28 @@
     "line:02e54df": "[Return] Lose <h>{{0}}</h>.",
     "line:02c51dc": "[Return] Lose <h>{{0}}</h>.",
     "line:07f1497": "[Return] Lose <h>{{0}}</h>."
+  },
+  "NarumiOfferCard": {
+    "line:0a28cc1": "Will worshipping her bring good fortune?",
+    "line:08162bb": "Choose a card to offer, and gain a corresponding reward.",
+    "line:0e989ef": "Narumi hammers her little fist on <Player />'s chest.",
+    "line:0ff3d42": "[Continue] Lose {{0}} life.",
+    "line:0502c7d": "Narumi smiles at <Player />.",
+    "line:079a650": "[Continue] Increase maximum life by {{0}}.",
+    "line:0d02cdc": "Narumi smiles at <Player /> and heals her wounds with magic.",
+    "line:0f9e764": "[Continue] Restore {{0}}% life, increase maximum life by {{1}}.",
+    "line:07aab8f": "Narumi smiles at <Player />, casting magic to make herself look radiant.",
+    "line:0cc67e1": "[Continue] Restore life to max, increase maximum life by {{0}}."
+  },
+  "NazrinDetect": {
+    "line:062ca0e": "\"What do you say, <Player />? Just pay a small fee and it's yours...\"",
+    "line:0b435bf": "'[Hire] Pay {{0}} <Money />, get a random reward.",
+    "line:03c7b6c": "[Refuse] Nothing happens.",
+    "line:0aa76a7": "Nazrin finds some ancient coins! Gain {{0}} <Money />.",
+    "line:0bf5da1": "Oh no, Nazrin triggers a cursed trap! Gain a random Misfortune card.",
+    "line:04d438a": "Nazrin finds one of the exposition's lost treasures! Gain a random Exhibit.",
+    "line:0bc8048": "Nazrin digs up a hot spring! Restore all life.",
+    "line:0e8e6c2": "Nazrin finds a fairy's forging hammer! Upgrade a card.",
+    "line:0766cf1": "Nazrin digs up some dust-covered incense! Remove a card."
   }
 }

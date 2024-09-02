@@ -72,6 +72,10 @@ function getStatusEffectImage(name: string): string {
   return _getImage('statusEffects', name);
 }
 
+function getNazrinImage(name: string): string {
+  return _getImage('nazrin', name);
+}
+
 export {
   getImage,
   getCommonImage,
@@ -89,5 +93,6 @@ export {
   getEventImage,
   getEnemyImage,
   getStationImage,
-  getStatusEffectImage
+  getStatusEffectImage,
+  getNazrinImage
 };
