@@ -164,7 +164,7 @@
   },
   "NazrinDetect": {
     "line:062ca0e": "\"What do you say, <Player />? Just pay a small fee and it's yours...\"",
-    "line:0b435bf": "'[Hire] Pay {{0}} <Money />, get a random reward.",
+    "line:0b435bf": "[Hire] Pay {{0}} <Money />, get a random reward.",
     "line:03c7b6c": "[Refuse] Nothing happens.",
     "line:0aa76a7": "Nazrin finds some ancient coins! Gain {{0}} <Money />.",
     "line:0bf5da1": "Oh no, Nazrin triggers a cursed trap! Gain a random Misfortune card.",
