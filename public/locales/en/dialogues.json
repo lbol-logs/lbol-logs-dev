@@ -102,7 +102,7 @@
     "line:08c142c": "[Leave] Nothing happens."
   },
   "WatatsukiPurify": {
-    "line:05fe9e1": "\"There you are, Master Eirin''s assistant. Allow me to lend you a hand.\"",
+    "line:05fe9e1": "\"There you are, Master Eirin's assistant. Allow me to lend you a hand.\"",
     "line:0220408": "[Recite Prayer] Lose {{0}} maximum life, gain two <h>{{1}}</h>.",
     "line:015cd2b": "[Consume Peach] Increase maximum life by {{0}}, gain Misfortune: <h>{{1}}</h>.",
     "line:0c671d8": "[Refuse] Nothing happens."
@@ -198,5 +198,12 @@
     "line:0577ef3": "\"Miss <Player />, could you do a taste-test for me before I deliver them to Yuyuko-sama?\"",
     "line:0ea45c4": "[Iced Tricolor Dango] Transform one card into an Upgraded multicolor card.",
     "line:0d7cfde": "[Sardinia Mooncake] Gain Exhibit: <h>{{1}}</h>, and gain Misfortune: <h>{{0}}</h>."
+  },
+  "RemiliaMeet": {
+    "line:0c6dafc": "\"If you beg for it, I'm more than happy to lend you a hand~\"",
+    "line:0b0f1b1": "[Seek Help] Replace Basic attack cards with <h>Devil's Attack</h>, gain Misfortune: <h>{{2}}</h>.",
+    "line:0aa0a2f": "[Deal] Replace Basic attack cards with <h>Devil's Attack</h>, lose <h>{{2}}</h>.",
+    "line:0855034": "[Invalid] Requires <h>{{0}}</h>.",
+    "line:014dfb8": "[Leave] Nothing happens."
   }
 }
