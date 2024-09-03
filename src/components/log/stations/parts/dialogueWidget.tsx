@@ -45,7 +45,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
             if (props && props[i]) {
               _props = concatObjects({}, props[i], { components });
               const { values } = props[i];
-              if (values && Object.keys(values).includes("0")) offset = 1;
+              if (values && Object.keys(values).includes("0")) offset += 1;
             }
             else {
               _props = concatObjects(_props, commonProps);
@@ -56,6 +56,9 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
                 a[i + offset] = t(b.Id, { ns: 'cards' });
                 return a;
               }, {});
+              console.log('before', {offset});
+              offset += cards[i].length;
+              console.log('after', {offset});
               _props = concatObjects(_props, { values });
             }
 

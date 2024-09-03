@@ -17,6 +17,7 @@ import NazrinDetect from '../events/NazrinDetect';
 import HecatiaTshirt from '../events/HecatiaTshirt';
 import KeineSales from '../events/KeineSales';
 import MikeInvest from '../events/MikeInvest';
+import YoumuDelivery from '../events/YoumuDelivery';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -37,7 +38,8 @@ function EventStation({ station }: { station: TStation }) {
     NazrinDetect: NazrinDetect,
     HecatiaTshirt: HecatiaTshirt,
     KeineSales: KeineSales,
-    MikeInvest: MikeInvest
+    MikeInvest: MikeInvest,
+    YoumuDelivery: YoumuDelivery
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;
