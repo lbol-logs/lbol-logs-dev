@@ -1,9 +1,9 @@
-import { dataUrl } from 'configs/globals';
+import { configsUrl, logsUrl } from 'configs/globals';
 
 const cache = new Map();
 
-function fetchData(version: string, path: string) {
-  const url = `${dataUrl}/${version}/${path}.json`;
+function fetchData(baseUrl: string, version: string, path: string) {
+  const url = `${baseUrl}/${version}/${path}.json`;
   if (!cache.has(url)) {
     cache.set(url, getData(url));
   }
@@ -23,15 +23,15 @@ async function getData(url: string) {
 }
 
 function getRunList(version: string) {
-  return fetchData(version, 'list');
+  return fetchData(logsUrl, version, 'list');
 }
 
 function getLog(version: string, id: string) {
-  return fetchData(version, `logs/${id}`);
+  return fetchData(logsUrl, version, `logs/${id}`);
 }
 
 function getConfigs(version: string, name: string) {
-  return fetchData(version, `configs/${name}`);
+  return fetchData(configsUrl, version, name);
 }
 
 export {

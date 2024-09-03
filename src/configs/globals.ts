@@ -43,7 +43,9 @@ const baseUrl: string = process.env.PUBLIC_URL;
 
 const imageUrl: string = `${baseUrl}/images`;
 
-const dataUrl: string = 'https://ed-ev.github.io/lbol-logs-data';
+const configsUrl: string = 'https://ed-ev.github.io/lbol-logs-configs';
+
+const logsUrl: string = 'https://ed-ev.github.io/lbol-logs-logs';
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
 
@@ -91,7 +93,8 @@ export {
   latestVersion,
   baseUrl,
   imageUrl,
-  dataUrl,
+  configsUrl,
+  logsUrl,
   gameUrl,
   modUrl,
   iconSize,
