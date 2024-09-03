@@ -548,15 +548,17 @@ img {
   border-color: color-mix(in srgb, var(--f-red) var(--opacity-border), transparent);
 }
 .c-entity--Mythic {
-  border-image: linear-gradient(
-    to bottom right,
-    color-mix(in srgb, #b827fc var(--opacity-border), transparent) 0%,
-    color-mix(in srgb, #2c90fc var(--opacity-border), transparent) 25%,
-    color-mix(in srgb, #b8fd33 var(--opacity-border), transparent) 50%,
-    color-mix(in srgb, #fec837 var(--opacity-border), transparent) 75%,
-    color-mix(in srgb, #fd1892 var(--opacity-border), transparent) 100%
-  );
-  border-image-slice: 1;
+  background:
+    linear-gradient(var(--white) 0 0) padding-box,
+    linear-gradient(
+      to bottom right,
+      color-mix(in srgb, #b827fc var(--opacity-border), transparent) 0%,
+      color-mix(in srgb, #2c90fc var(--opacity-border), transparent) 25%,
+      color-mix(in srgb, #b8fd33 var(--opacity-border), transparent) 50%,
+      color-mix(in srgb, #fec837 var(--opacity-border), transparent) 75%,
+      color-mix(in srgb, #fd1892 var(--opacity-border), transparent) 100%
+    ) border-box;
+  border-color: transparent;
 }
 .c-entity--Misfortune {
   border-color: color-mix(in srgb, var(--f-purple) var(--opacity-border), transparent);
