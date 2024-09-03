@@ -15,6 +15,7 @@ import KosuzuBookstore from '../events/KosuzuBookstore';
 import NarumiOfferCard from '../events/NarumiOfferCard';
 import NazrinDetect from '../events/NazrinDetect';
 import HecatiaTshirt from '../events/HecatiaTshirt';
+import KeineSales from '../events/KeineSales';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -33,7 +34,8 @@ function EventStation({ station }: { station: TStation }) {
     KosuzuBookstore: KosuzuBookstore,
     NarumiOfferCard: NarumiOfferCard,
     NazrinDetect: NazrinDetect,
-    HecatiaTshirt: HecatiaTshirt
+    HecatiaTshirt: HecatiaTshirt,
+    KeineSales: KeineSales
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;

@@ -178,5 +178,14 @@
     "line:0678716": "[Receive Clothes] Gain Exhibit: <h>Idol T-Shirt</h>.",
     "line:01566ec": "[Trade Clothes] Gain Exhibit: <h>Idol T-Shirt (Large)</h>.",
     "line:00d22b0": "[Leave] Nothing happens."
+  },
+  "KeineSales": {
+    "line:0285d02": "\"That doesn't matter! Just sponsor the Hieda Temple School and stand a chance to win one of the 'Three Household Treasures of the Modern World!'\"",
+    "line:07b190b": "[Answer] Pay {{0}} <Money /> and choose a question to answer.",
+    "line:0ee3db9": "[Leave] Lose {{0}} <Power />.",
+    "line:06dcb37": "\"We're eager to see your performance! Please answer the following question:\"",
+    "line:0032bb0": "[Mathematics Question] Answer correctly to win <h>{{0}}</h>.",
+    "line:008a879": "[History Question] Answer correctly to win <h>{{0}}</h>.",
+    "line:05bdc79": "[Engineering Question] Answer correctly to win <h>{{0}}</h>."
   }
 }
