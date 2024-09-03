@@ -962,17 +962,17 @@ html:lang(en) .p-result__type {
 .c-dialogue-tips {
   display: flex;
   column-gap: 0.5em;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  /* align-items: flex-start; */
 }
-.c-dialogue-tips > * {
-  margin: auto 0;
-}
-.c-dialogue-tips-icon {
-  margin-top: 0;
+.c-dialogue-tips__icon {
+  margin-bottom: auto;
 }
 .c-dialogue-tips__body {
-  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+.c-dialogue-tips__body > * {
+  margin: auto 0;
 }
 
 .p-event__head {
