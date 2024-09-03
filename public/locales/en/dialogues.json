@@ -187,5 +187,11 @@
     "line:0032bb0": "[Mathematics Question] Answer correctly to win <h>{{0}}</h>.",
     "line:008a879": "[History Question] Answer correctly to win <h>{{0}}</h>.",
     "line:05bdc79": "[Engineering Question] Answer correctly to win <h>{{0}}</h>."
+  },
+  "MikeInvest": {
+    "line:0455736": "\"Guaranteed returns if you invest right now, wanna learn more?\"",
+    "line:09abc03": "[Long-Term Investment] Lose {{0}} <Money />, gain <h>{{1}}</h>.",
+    "line:085816e": "[Short-Term Investment] Lose {{0}} <Money />, gain a random Rare card.",
+    "line:0b1cdeb": "[Reject] Nothing happens."
   }
 }
