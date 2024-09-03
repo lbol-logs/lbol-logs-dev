@@ -205,5 +205,11 @@
     "line:0aa0a2f": "[Deal] Replace Basic attack cards with <h>Devil's Attack</h>, lose <h>{{2}}</h>.",
     "line:0855034": "[Invalid] Requires <h>{{0}}</h>.",
     "line:014dfb8": "[Leave] Nothing happens."
+  },
+  "RingoEmp": {
+    "line:00a9945": "\"Those are copies of our patent in the Lunar Capital, we hope you will help us defend our intellectual property.\"",
+    "line:05575e9": "[Help] Get card: <h>{{0}}</h>.",
+    "line:0b93b5a": "[Refuse] Get three random Tool cards and gain Misfortune: <h>{{0}}</h>.",
+    "line:095a793": "[None of My Business] Nothing happens."
   }
 }

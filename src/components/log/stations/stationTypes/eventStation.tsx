@@ -19,6 +19,7 @@ import KeineSales from '../events/KeineSales';
 import MikeInvest from '../events/MikeInvest';
 import YoumuDelivery from '../events/YoumuDelivery';
 import RemiliaMeet from '../events/RemiliaMeet';
+import RingoEmp from '../events/RingoEmp';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -41,7 +42,8 @@ function EventStation({ station }: { station: TStation }) {
     KeineSales: KeineSales,
     MikeInvest: MikeInvest,
     YoumuDelivery: YoumuDelivery,
-    RemiliaMeet: RemiliaMeet
+    RemiliaMeet: RemiliaMeet,
+    RingoEmp: RingoEmp
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;
