@@ -959,14 +959,20 @@ html:lang(en) .p-result__type {
   display: inline-block;
   margin-bottom: 1em;
 }
-.c-dialogue__tips {
+.c-dialogue-tips {
   display: flex;
   column-gap: 0.5em;
   align-items: flex-start;
   flex-wrap: wrap;
 }
-.c-dialogue__tips > * {
+.c-dialogue-tips > * {
   margin: auto 0;
+}
+.c-dialogue-tips-icon {
+  margin-top: 0;
+}
+.c-dialogue-tips__body {
+  flex: 1;
 }
 
 .p-event__head {

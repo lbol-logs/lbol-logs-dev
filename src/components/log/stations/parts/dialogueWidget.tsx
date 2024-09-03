@@ -88,12 +88,14 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
                 : null;
 
               _tips = (
-                <span className="c-dialogue__tips">
+                <span className="c-dialogue-tips">
                   <RevealImage />
-                  {_befores}
-                  {_cards}
-                  {_exhibit}
-                  {_afters}
+                  <div className="c-dialogue-tips__body">
+                    {_befores}
+                    {_cards}
+                    {_exhibit}
+                    {_afters}
+                  </div>
                 </span>
               );
             }

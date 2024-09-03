@@ -6,7 +6,7 @@ import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import { TComponents } from 'utils/types/common';
-import ExhibitCard from 'components/log/entityCards/exhibitCard';
+import ExhibitCards from 'components/log/entityCards/exhibitCards';
 
 function HecatiaTshirt({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -33,7 +33,7 @@ function HecatiaTshirt({ station }: { station: TStation }) {
     Id: exhibit,
     Counter: counter
   };
-  befores[1] = <ExhibitCard exhibit={Exhibit} />;
+  befores[1] = <ExhibitCards exhibits={[Exhibit]} />;
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
