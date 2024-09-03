@@ -211,5 +211,13 @@
     "line:05575e9": "[Help] Get card: <h>{{0}}</h>.",
     "line:0b93b5a": "[Refuse] Get three random Tool cards and gain Misfortune: <h>{{0}}</h>.",
     "line:095a793": "[None of My Business] Nothing happens."
+  },
+  "YachieOppression": {
+    "line:037c786": "\"The otter spirits smell some of the kappa's rogue drones. For the sake of the land, please deal with the issue as soon as you can~\"",
+    "line:07acb62": "[Fight] Fight a phalanx of drones and get a random Rare Exhibit.",
+    "line:09e89c0": "[Refuse] Gain Misfortune: <h>{{0}}</h>.",
+    "line:0970713": "\"As expected of <Player />! Please accept my carefully prepared gift!\"",
+    "line:0e2d8d9": "[Accept] Gain Exhibit: <h>{{0}}</h>.",
+    "line:01fd35f": "[Decline] Nothing happens."
   }
 }
