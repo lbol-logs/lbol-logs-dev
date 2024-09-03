@@ -14,6 +14,7 @@ import KogasaSpook from '../events/KogasaSpook';
 import KosuzuBookstore from '../events/KosuzuBookstore';
 import NarumiOfferCard from '../events/NarumiOfferCard';
 import NazrinDetect from '../events/NazrinDetect';
+import HecatiaTshirt from '../events/HecatiaTshirt';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -31,7 +32,8 @@ function EventStation({ station }: { station: TStation }) {
     KogasaSpook: KogasaSpook,
     KosuzuBookstore: KosuzuBookstore,
     NarumiOfferCard: NarumiOfferCard,
-    NazrinDetect: NazrinDetect
+    NazrinDetect: NazrinDetect,
+    HecatiaTshirt: HecatiaTshirt
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;

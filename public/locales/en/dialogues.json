@@ -172,5 +172,11 @@
     "line:0bc8048": "Nazrin digs up a hot spring! Restore all life.",
     "line:0e8e6c2": "Nazrin finds a fairy's forging hammer! Upgrade a card.",
     "line:0766cf1": "Nazrin digs up some dust-covered incense! Remove a card."
+  },
+  "HecatiaTshirt": {
+    "line:008fa52": "\"Come on, let's support Kaguya-chan!\"",
+    "line:0678716": "[Receive Clothes] Gain Exhibit: <h>Idol T-Shirt</h>.",
+    "line:01566ec": "[Trade Clothes] Gain Exhibit: <h>Idol T-Shirt (Large)</h>.",
+    "line:00d22b0": "[Leave] Nothing happens."
   }
 }
