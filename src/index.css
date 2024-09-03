@@ -4,7 +4,7 @@ body {
   background: var(--white);
 }
 main {
-  overflow: hidden;
+  overflow-x: clip;
 }
 a {
   text-decoration: none;
