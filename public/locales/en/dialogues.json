@@ -84,7 +84,7 @@
     "line:0d8166c": "[Refuse] Nothing happens."
   },
   "SumirekoGathering": {
-    "line:0977eb5": "\"We can trade with |Rare| cards. If you don't have any, a reasonable price is also acceptable.\"",
+    "line:0977eb5": "\"We can trade with <h>Rare</h> cards. If you don't have any, a reasonable price is also acceptable.\"",
     "line:022ef50": "[Trade] Trade <h>{{0}}</h> for one of three Rare cards.",
     "line:0d7f696": "[Invalid] You have no Rare cards to trade.",
     "line:07a7bdc": "[Purchase] Pay {{0}} <Money /> to get one of three Rare cards.",
@@ -97,7 +97,7 @@
   "ShinmyoumaruForge": {
     "line:04566b1": "\"We must use the Miracle Mallet to rebel against the rare cards, <Player />!\"",
     "line:04e318b": "[Grow] Choose {{0}} Basic cards to Upgrade.",
-    "line:009a2f1": "[Shrink] Remove a |non-Basic| card from the library.",
+    "line:009a2f1": "[Shrink] Remove a <h>non-Basic</h> card from the library.",
     "line:0bb82a2": "[Transform] Choose {{0}} Basic cards to transform into Common cards, lose {{1}} maximum life.",
     "line:08c142c": "[Leave] Nothing happens."
   },
@@ -262,5 +262,14 @@
     "line:05e7754": "<Player /> sees a dusk youkai speeding towards her.",
     "line:0240015": "[Crash] Lose {{0}} life, gain {{1}} <Money />.",
     "line:0311c57": "[Dodge] Lose {{0}} <Power />."
+  },
+  "TewiThreat": {
+    "line:05ef949": "<Player /> sees a large bag of money on the side of the road.",
+    "line:051369f": "[Take It] Get {{0}} <Money />.",
+    "line:050bd26": "[Ignore] Nothing happens.",
+    "line:0f3adf4": "\"If you want your luck to stay, it'll cost you a tiny bit.\"<br />*Rubbing fingers*",
+    "line:05a79f6": "[Give All] Lose {{0}} <Money />, get <h>Lucky Rabbit's Foot</h>.",
+    "line:083edbe": "[Give Some] Lose {{0}} <Money />.",
+    "line:0522823": "[Refuse] Gain Misfortune: <h>{{0}}</h>."
   }
 }

@@ -7,52 +7,38 @@ import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 
-function YorigamiSisters({ station }: { station: TStation }) {
+function TewiThreat({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
 
   const { Data, Id } = station;
 
-  const { Choices, Values } = Data;
+  const { Choices } = Data;
 
   const id = Id as string;
   const configs = configsData.dialogues[id];
   const eventConfigs = configsData.events[id];
 
-  const { money, misfortune } = eventConfigs;
+  const { moneys } = eventConfigs;
 
   let first = null;
   let second = null;
 
   {
     const { current, next: options } = configs[0];
-    const { discount, card } = eventConfigs;
 
     const [next] = getNext(options);
     const chosen = Choices[0];
 
-    const currentComponents = { 0: discount };
     const props: Array<TObjAny> = [];
-    const cards: Array<TCards> = [];
 
-    {
-      const money = (10 - Values[0]) * 10;
-      const values = { 0: money };
-      props[0] = { values };
-      cards[0] = convertCards([card]);
-    }
-    {
-      const values = { 0: money };
-      props[1] = { values };
-      cards[1] = convertCards([misfortune]);
-    }
+    const values = { 0: moneys[0] };
+    props[0] = { values };
 
     const dialogueConfigs: TDialogueConfigs = {
       current,
-      currentComponents,
       next,
       chosen,
-      props,
-      cards
+      props
     };
 
     first = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
@@ -62,16 +48,23 @@ function YorigamiSisters({ station }: { station: TStation }) {
     const chosen = Choices[1];
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
+      const { card, misfortune } = eventConfigs;
   
       const [next] = getNext(options);
   
       const props: Array<TObjAny> = [];
       const cards: Array<TCards> = [];
   
-      const values = { 0: money };
-      props[0] = { values };
-
-      cards[1] = convertCards([misfortune]);
+      {
+        const values = { 0: moneys[0] };
+        props[0] = { values };
+        cards[0] = convertCards([card]);
+      }
+      {
+        const values = { 0: moneys[1] };
+        props[1] = { values };
+      }
+      cards[2] = convertCards([misfortune]);
   
       const dialogueConfigs: TDialogueConfigs = {
         current,
@@ -103,4 +96,4 @@ function YorigamiSisters({ station }: { station: TStation }) {
   );
 }
 
-export default YorigamiSisters;
+export default TewiThreat;
