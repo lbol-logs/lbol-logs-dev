@@ -510,6 +510,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em var(--entity-column-gap);
+  margin: auto 0;
 }
 .c-entity {
   --opacity-border: 100%;

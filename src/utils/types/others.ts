@@ -1,6 +1,18 @@
 import { TObj, TObjAny, TObjStringOrArray, TRange3 } from './common';
+import { TExhibit, TRequests } from './runData';
 
-type TRunList = TObj<TObjStringOrArray>;
+type TRunListItem = {
+  id: string,
+  character: string,
+  type: string,
+  shining: TExhibit,
+  difficulty: string,
+  requests: TRequests,
+  result: string,
+  timestamp: string
+};
+
+type TRunList = Array<TRunListItem>;
 
 type TAboutComponent = {
   className: string,
@@ -25,6 +37,7 @@ type TFilterRadio = {
 type TFilter = TFilterRadio & TFilterCheckbox;
 
 export type {
+  TRunListItem,
   TRunList,
   TAboutComponent,
   TChoice,

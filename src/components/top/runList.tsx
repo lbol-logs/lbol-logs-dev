@@ -3,7 +3,7 @@ import { useContext, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router-dom';
 import useRunList from 'hooks/useRunList';
-import { TFilter, TFilterRadio, TRunList } from 'utils/types/others';
+import { TFilter, TFilterRadio } from 'utils/types/others';
 import { TObjNumber } from 'utils/types/common';
 import Filter from './filters/filter';
 import ResultWidget from 'components/common/parts/resultWidget';
@@ -18,9 +18,8 @@ function RunList() {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
 
-  const list: TRunList = useRunList(version);
+  const list = useRunList(version);
 
-  const keys = Object.keys(list);
   const currentFilter = useMemo(() => {
     const currentFilter: TFilter = {};
     for (const [key, value] of Array.from(searchParams.entries())) {
@@ -53,11 +52,11 @@ function RunList() {
   />;
 
   const ids = useMemo(() => {
-    const o: TObjNumber = {};
-    for (let i = 0; i < keys.length; i++) {
-      o[keys[i]] = i + 1;
-    }
-    return o;
+    return list.reduce((a: TObjNumber, b, i) => {
+      const id = b.id as string;
+      a[id] = i + 1;
+      return a;
+    }, {});
   }, [list]);
 
   return (
@@ -72,8 +71,9 @@ function RunList() {
             <div className="p-run-list__cell--requests">{t('requests', { ns: 'runList' })}</div>
           </div>
         </div>
-        {Object.entries(filteredList).reverse().map(([id, o]) => {
+        {filteredList.reverse().map(e => {
           const {
+            id,
             character: Character,
             type: PlayerType,
             result: Type,
@@ -81,7 +81,7 @@ function RunList() {
             difficulty: Difficulty,
             shining: exhibit,
             requests: Requests
-          } = o;
+          } = e;
           const resultData = { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests };
 
           return (

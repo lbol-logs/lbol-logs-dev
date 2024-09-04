@@ -1,11 +1,12 @@
 import DefaultFilter from 'utils/classes/DefaultFilter';
-import { compareArrays, copyObject, filterObject } from 'utils/functions/helpers';
-import { TObjAny, TObjString } from 'utils/types/common';
-import { TFilter, TRunList } from 'utils/types/others';
+import { compareArrays, copyObject } from 'utils/functions/helpers';
+import { TObj } from 'utils/types/common';
+import { TFilter, TRunList, TRunListItem } from 'utils/types/others';
+import { TRequests } from 'utils/types/runData';
 
 function useFilterOnList(list: TRunList, currentFilter: TFilter) {
   let filteredList = copyObject(list);
-  const map: TObjString = {
+  const map: TObj<keyof TRunListItem> = {
     ch: 'character',
     sc: 'type',
     st: 'shining',
@@ -23,20 +24,20 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter) {
       if (key === keys.rt) {
         const value = f as string;
         if (value === DefaultFilter.rt.inactive) {
-          filteredList = filterObject(filteredList, (o: TObjAny) => o.requests.length === 0);
+          filteredList = filteredList.filter(e => e.requests.length === 0);
         }
       }
     }
     else {
       const value = f as Array<string>;
       if (key === keys.sc) {
-        filteredList = filterObject(filteredList, (o: TObjAny) => value.includes(o[map.ch] + o[map[key]]));
+        filteredList = filteredList.filter(e => value.includes(e[map.ch] as string + e[map[key]] as string));
       }
       else if (key === keys.rq) {
-        filteredList = filterObject(filteredList, (o: TObjAny) => compareArrays(value, o[map[key]]));
+        filteredList = filteredList.filter(e => compareArrays(value, e[map[key]] as TRequests));
       }
       else {
-        filteredList = filterObject(filteredList, (o: TObjAny) => value.includes(o[map[key]]));
+        filteredList = filteredList.filter(e => value.includes(e[map[key]] as string));
       }
     }
   }
