@@ -43,9 +43,9 @@ const baseUrl: string = process.env.PUBLIC_URL;
 
 const imageUrl: string = `${baseUrl}/images`;
 
-const configsUrl: string = 'https://ed-ev.github.io/lbol-logs-configs';
+const configsUrl: string = 'https://lbol-logs.github.io/configs';
 
-const logsUrl: string = 'https://ed-ev.github.io/lbol-logs-logs';
+const logsUrl: string = 'https://lbol-logs.github.io/logs';
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
 
