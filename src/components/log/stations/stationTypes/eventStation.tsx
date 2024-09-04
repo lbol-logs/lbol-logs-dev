@@ -21,6 +21,7 @@ import YoumuDelivery from '../events/YoumuDelivery';
 import RemiliaMeet from '../events/RemiliaMeet';
 import RingoEmp from '../events/RingoEmp';
 import YachieOppression from '../events/YachieOppression';
+import AssistKagerou from '../events/AssistKagerou';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -45,7 +46,8 @@ function EventStation({ station }: { station: TStation }) {
     YoumuDelivery: YoumuDelivery,
     RemiliaMeet: RemiliaMeet,
     RingoEmp: RingoEmp,
-    YachieOppression: YachieOppression
+    YachieOppression: YachieOppression,
+    AssistKagerou: AssistKagerou
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;

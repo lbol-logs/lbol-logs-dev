@@ -5,39 +5,39 @@ import { convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
+import { TObjAny } from 'utils/types/common';
 
-function RemiliaMeet({ station }: { station: TStation }) {
+function AssistKagerou({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
 
   const { Data, Id } = station;
 
-  const { Choices, HasExhibit } = Data;
+  const { Choices, Values, Exhibit } = Data;
 
   const id = Id as string;
   const configs = configsData.dialogues[id];
   const eventConfigs = configsData.events[id];
 
   const { current, next: options } = configs;
-  const { cards: _cards, misfortune, exhibit } = eventConfigs;
+  const { card } = eventConfigs;
 
-  const choices = Object.keys(options);
-  const i = choices.indexOf(HasExhibit ? '1_invalid' : '1');
-  choices.splice(i, 1);
-
-  const [next] = getNext(options, choices);
+  const [next] = getNext(options);
   const chosen = Choices[0];
 
+  const props: Array<TObjAny> = [];
   const cards: Array<TCards> = [];
   const exhibits: Array<TExhibits> = [];
 
-  cards[0] = convertCards(_cards.concat(misfortune));
-  cards[1] = convertCards(_cards);
-  exhibits[1] = [exhibit];
+  cards[0] = convertCards([card]);
+  if (Exhibit) exhibits[0] = [Exhibit];
+  const values = { 0: Values[0] };
+  props[1] = { values };
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
+    props,
     cards,
     exhibits
   };
@@ -59,4 +59,4 @@ function RemiliaMeet({ station }: { station: TStation }) {
   );
 }
 
-export default RemiliaMeet;
+export default AssistKagerou;

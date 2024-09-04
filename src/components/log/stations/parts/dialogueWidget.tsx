@@ -56,9 +56,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
                 a[i + offset] = t(b.Id, { ns: 'cards' });
                 return a;
               }, {});
-              console.log('before', {offset});
               offset += cards[i].length;
-              console.log('after', {offset});
               _props = concatObjects(_props, { values });
             }
 
