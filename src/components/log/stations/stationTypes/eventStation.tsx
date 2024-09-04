@@ -23,6 +23,7 @@ import RingoEmp from '../events/RingoEmp';
 import YachieOppression from '../events/YachieOppression';
 import AssistKagerou from '../events/AssistKagerou';
 import EternityAscension from '../events/EternityAscension';
+import KaguyaVersusMokou from '../events/KaguyaVersusMokou';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -49,7 +50,8 @@ function EventStation({ station }: { station: TStation }) {
     RingoEmp: RingoEmp,
     YachieOppression: YachieOppression,
     AssistKagerou: AssistKagerou,
-    EternityAscension: EternityAscension
+    EternityAscension: EternityAscension,
+    KaguyaVersusMokou: KaguyaVersusMokou
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;

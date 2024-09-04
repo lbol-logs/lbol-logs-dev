@@ -230,5 +230,11 @@
     "line:0122dcf": "[Grant Enlightenment] Upgrade a card.",
     "line:0663fce": "[Grant Oblivion] Lose {{0}} life, remove a card from the library.",
     "line:0786492": "[Grant Change] Lose {{0}} life, choose a card from the library to transform into an Uncommon card."
+  },
+  "KaguyaVersusMokou": {
+    "line:0bc6368": "(I have no idea what they're fighting over, but if they continue to fight, the thief might use the chaos to get away.)",
+    "line:008a9a4": "[Help Kaguya] Lose {{0}} life, gain Exhibit: <h>{{1}}</h>.",
+    "line:0d3703c": "[Help Mokou] Lose {{0}} life, gain Exhibit: <h>{{1}}</h>.",
+    "line:0db14e0": "[Pass By] Nothing happens."
   }
 }
