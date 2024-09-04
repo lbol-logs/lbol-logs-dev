@@ -971,6 +971,7 @@ html:lang(en) .p-result__type {
 .c-dialogue-tips__body {
   display: flex;
   flex-wrap: wrap;
+  gap: .5em var(--entity-column-gap);
 }
 .c-dialogue-tips__body > * {
   margin: auto 0;
