@@ -236,5 +236,17 @@
     "line:008a9a4": "[Help Kaguya] Lose {{0}} life, gain Exhibit: <h>{{1}}</h>.",
     "line:0d3703c": "[Help Mokou] Lose {{0}} life, gain Exhibit: <h>{{1}}</h>.",
     "line:0db14e0": "[Pass By] Nothing happens."
+  },
+  "MystiaBbq": {
+    "line:0b7dfd2": "\"Come on, <Player />. Have some skewers or you won't have any energy to exterminate youkai~\"",
+    "line:026a5bc": "[Grilled Lamprey] Restore {{0}} life.",
+    "line:06598ae": "[Grilled Mushrooms] Gain {{0}} <Power />.",
+    "line:0c3600a": "[No Late Night Snacks] Nothing happens.",
+    "line:06bc591": "\"Gotcha~ one grilled lamprey, that will be {{0}} <Money />.\"",
+    "line:03e0868": "[Pay Normally] Lose {{0}} <Money />.",
+    "line:0284c65": "[Dine and Dash] Refuse to pay.",
+    "line:0f8955e": "\"Gotcha~ one skewer of grilled mushrooms, that will be {{0}} <Money />.\"",
+    "line:0554174": "[Pay Normally] Lose {{0}} <Money />.",
+    "line:0086f01": "[Dine and Dash] Refuse to pay."
   }
 }

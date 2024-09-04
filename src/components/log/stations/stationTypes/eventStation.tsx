@@ -24,6 +24,7 @@ import YachieOppression from '../events/YachieOppression';
 import AssistKagerou from '../events/AssistKagerou';
 import EternityAscension from '../events/EternityAscension';
 import KaguyaVersusMokou from '../events/KaguyaVersusMokou';
+import MystiaBbq from '../events/MystiaBbq';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -51,7 +52,8 @@ function EventStation({ station }: { station: TStation }) {
     YachieOppression: YachieOppression,
     AssistKagerou: AssistKagerou,
     EternityAscension: EternityAscension,
-    KaguyaVersusMokou: KaguyaVersusMokou
+    KaguyaVersusMokou: KaguyaVersusMokou,
+    MystiaBbq: MystiaBbq
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;
