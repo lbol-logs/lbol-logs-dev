@@ -22,6 +22,7 @@ import RemiliaMeet from '../events/RemiliaMeet';
 import RingoEmp from '../events/RingoEmp';
 import YachieOppression from '../events/YachieOppression';
 import AssistKagerou from '../events/AssistKagerou';
+import EternityAscension from '../events/EternityAscension';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -47,7 +48,8 @@ function EventStation({ station }: { station: TStation }) {
     RemiliaMeet: RemiliaMeet,
     RingoEmp: RingoEmp,
     YachieOppression: YachieOppression,
-    AssistKagerou: AssistKagerou
+    AssistKagerou: AssistKagerou,
+    EternityAscension: EternityAscension
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;

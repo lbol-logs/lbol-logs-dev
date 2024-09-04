@@ -224,5 +224,11 @@
     "line:0d31645": "\"Miss <Player />, will this treasure I found help you resolve the incident faster?\"",
     "line:09559cc": "[No Fluff] Gain a random Exhibit. Add <h>{{0}}</h> to the library.",
     "line:05b62f1": "[Yes Fluff] Gain {{0}} <Power />."
+  },
+  "EternityAscension": {
+    "line:0e35dc4": "\"Come and receive the blessing of the God of Evernight, <Player />!\"",
+    "line:0122dcf": "[Grant Enlightenment] Upgrade a card.",
+    "line:0663fce": "[Grant Oblivion] Lose {{0}} life, remove a card from the library.",
+    "line:0786492": "[Grant Change] Lose {{0}} life, choose a card from the library to transform into an Uncommon card."
   }
 }
