@@ -248,5 +248,14 @@
     "line:0f8955e": "\"Gotcha~ one skewer of grilled mushrooms, that will be {{0}} <Money />.\"",
     "line:0554174": "[Pay Normally] Lose {{0}} <Money />.",
     "line:0086f01": "[Dine and Dash] Refuse to pay."
+  },
+  "ParseeJealousy": {
+    "line:0340a4c": "<Player /> sees an Exhibit floating in the water. Fish it out?",
+    "line:0557dad": "[Take It] Gain a random Exhibit.",
+    "line:0c4a8da": "[Ignore] Nothing happens.",
+    "line:028b07c": "\"I'll place a curse on you! You'll only find bad exhibits tonight!\"",
+    "line:0bbc877": "[Give an Exhibit] Lose Exhibit: <h>{{0}}</h>.",
+    "line:0724a11": "[Give Another Exhibit] Lose Exhibit: <h>{{0}}</h>.",
+    "line:03c49f5": "[Give Nothing] Gain Misfortune: <h>{{0}}</h>."
   }
 }
