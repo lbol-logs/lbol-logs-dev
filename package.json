@@ -2,7 +2,7 @@
   "name": "lbol-logs-dev",
   "version": "0.2.0",
   "private": true,
-  "homepage": "https://ed-ev.github.io/lbol-logs/",
+  "homepage": "https://lbol-logs.github.io/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -r \"https://github.com/ed-ev/lbol-logs.git\" -b public"
+    "deploy": "gh-pages -d build -r \"https://github.com/lbol-logs/lbol-logs.git\" -b public"
   },
   "eslintConfig": {
     "extends": [
