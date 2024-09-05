@@ -31,14 +31,14 @@ function Debut({ station }: { station: TStation }) {
   {
     const { current, next: _next } = configs[0];
 
-    let options = {
-      0: 0
+    const options = {
+      0: 'money'
     };
     if (HasClearBonus && Options) {
       Object.assign(options, {
-        1: 1,
-        2: Options[0] + 2,
-        3: Options[1] + 2
+        1: 'shining',
+        2: Options[0],
+        3: Options[1]
       });
     }
     const choices = Object.values(options);
@@ -52,42 +52,42 @@ function Debut({ station }: { station: TStation }) {
     Object.entries(options).forEach(([key, option]) => {
       const i = Number(key);
       switch (option) {
-        case 0: {
+        case 'money': {
             const values = { 0: eventConfigs.money };
             props[i] = { values };
             break;
         }
-        case 1: {
+        case 'shining': {
           const { Shining } = Data;
           if (!Shining) break;
           exhibits[i] = [Shining];
           break;
         }
-        case 2: {
+        case '0': {
           const { UncommonCards } = Data
           if (!UncommonCards) break;
           cards[i] = convertCards(UncommonCards);
           break;
         }
-        case 3: {
+        case '1': {
           const { RareCard } = Data;
           if (!RareCard) break;
           cards[i] = convertCards([RareCard]);
           break;
         }
-        case 4: {
+        case '2': {
           const { RareExhibit } = Data;
           if (!RareExhibit) break;
           exhibits[i] = [RareExhibit];
           break;
         }
-        case 5: {
+        case '3': {
           break;
         }
-        case 6: {
+        case '4': {
           break;
         }
-        case 7: {
+        case '5': {
           const { TransformCard } = Data;
           if (!TransformCard) break;
           cards[i] = convertCards([TransformCard]);
