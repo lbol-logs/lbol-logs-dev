@@ -271,5 +271,21 @@
     "line:05a79f6": "[Give All] Lose {{0}} <Money />, get <h>Lucky Rabbit's Foot</h>.",
     "line:083edbe": "[Give Some] Lose {{0}} <Money />.",
     "line:0522823": "[Refuse] Gain Misfortune: <h>{{0}}</h>."
+  },
+  "BackgroundDancers": {
+    "line:0927a10": "\"With your life as the price, see what power you can gain from the master's doors.\"",
+    "line:0c1f815": "[Fortune] Lose {{0}} life, gain {{1}} <Money />.",
+    "line:024f6c3": "[Utility] Lose {{0}} life, get two random Tool cards.",
+    "line:0045201": "[Stamina] Lose {{0}} life, gain {{1}} maximum life.",
+    "line:02c03b1": "[Power] Lose {{0}} life, gain {{1}} <Power />.",
+    "line:0e4c0ab": "[Exhibit] Lose {{0}} life, gain a random Exhibit.",
+    "line:0ba21b9": "[Ability] Lose {{0}} life, gain a random ability card.",
+    "line:033d1fd": "[Leave] Lose {{0}} life.",
+    "line:0b8832a": "\"You still want money in the end~ Wanna continue?\"",
+    "line:0b3cea2": "\"Strange tools fall out!\"",
+    "line:0579e44": "\"You wanna become tougher? Lacking confidence I see~\"",
+    "line:08238a7": "\"Ah, in a hurry I see.\"",
+    "line:091e5ec": "\"Exhibits from the exposition?! Never thought that would be in the doors...\"",
+    "line:0a37d54": "\"Looking to obtain new abilities? Let's see how the door guides you.\""
   }
 }

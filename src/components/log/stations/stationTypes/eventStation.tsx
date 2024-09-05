@@ -28,6 +28,7 @@ import MystiaBbq from '../events/MystiaBbq';
 import ParseeJealousy from '../events/ParseeJealousy';
 import RumiaDriving from '../events/RumiaDriving';
 import TewiThreat from '../events/TewiThreat';
+import BackgroundDancers from '../events/BackgroundDancers';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -59,7 +60,8 @@ function EventStation({ station }: { station: TStation }) {
     MystiaBbq: MystiaBbq,
     ParseeJealousy: ParseeJealousy,
     RumiaDriving: RumiaDriving,
-    TewiThreat: TewiThreat
+    TewiThreat: TewiThreat,
+    BackgroundDancers: BackgroundDancers
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;
