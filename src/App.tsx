@@ -7,6 +7,7 @@ import { baseUrl, languages } from 'configs/globals';
 import RemoveTrailingSlash from 'components/common/utils/removeTrailingSlash';
 import Top from 'components/top';
 import Log from 'components/log';
+import About from 'components/about';
 
 function Layout() {
   const { t } = useTranslation();
@@ -43,6 +44,10 @@ function App() {
             {
               index: true,
               element: <Top />
+            },
+            {
+              path: 'about/',
+              element: <About />
             },
             {
               path: ':ver/',

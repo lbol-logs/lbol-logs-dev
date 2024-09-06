@@ -18,6 +18,9 @@ function Header({ versionSwitch }: { versionSwitch?: boolean }) {
             <span className="c-header__subtitle u-pc"> - {t('subtitle', { ns: 'site' })}</span>
           </h1>
         </Link>
+        <Link to="/about/">
+          About
+        </Link>
         <div className="l-header__widgets">
           <VersionWidget versionSwitch={!!versionSwitch} />
           <LanguageSwitcher />

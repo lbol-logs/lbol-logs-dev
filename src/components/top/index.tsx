@@ -1,6 +1,5 @@
 
 import Header from 'components/common/layouts/header';
-import About from './about';
 import useVersion from 'hooks/useVersion';
 import { baseUrl, latestVersion } from 'configs/globals';
 import { useParams } from 'react-router-dom';
@@ -34,7 +33,6 @@ function Top() {
       <Header />
       <main className="l-top">
         <div className="l-inner">
-          <About />
           <Suspense fallback={<Loading />}>
             <RunListProvider>
               <RunList />

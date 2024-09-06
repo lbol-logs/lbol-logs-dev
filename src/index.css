@@ -775,7 +775,7 @@ html:lang(en) .p-result__type {
 
 .p-filter {
   --gap: 0.5em;
-  margin-bottom: 2em;
+  margin: 2em 0;
 }
 .p-filter__row {
   display: flex;
