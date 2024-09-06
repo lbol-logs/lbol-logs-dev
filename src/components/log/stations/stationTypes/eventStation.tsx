@@ -31,6 +31,7 @@ import TewiThreat from '../events/TewiThreat';
 import BackgroundDancers from '../events/BackgroundDancers';
 import MedicinePoison from '../events/MedicinePoison';
 import MikoDonation from '../events/MikoDonation';
+import SatoriCounseling from '../events/SatoriCounseling';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -65,7 +66,8 @@ function EventStation({ station }: { station: TStation }) {
     TewiThreat: TewiThreat,
     BackgroundDancers: BackgroundDancers,
     MedicinePoison: MedicinePoison,
-    MikoDonation: MikoDonation
+    MikoDonation: MikoDonation,
+    SatoriCounseling: SatoriCounseling
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;

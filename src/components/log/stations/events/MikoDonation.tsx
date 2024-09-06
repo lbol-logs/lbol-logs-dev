@@ -12,7 +12,7 @@ function MikoDonation({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
-  const { Choices, Values } = Data;
+  const { Choices } = Data;
 
   const id = Id as string;
   const configs = configsData.dialogues[id];

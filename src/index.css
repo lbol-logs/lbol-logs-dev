@@ -384,10 +384,6 @@ img {
   gap: 0.5em 1em;
 }
 
-.p-entities {
-  flex: 1;
-}
-
 .c-station__stats {
   display: flex;
   align-items: flex-start;
@@ -952,9 +948,6 @@ html:lang(en) .p-result__type {
   margin: 0.5em 0;
   padding: 0.2em 0.5em;
   background: var(--light-blue);
-}
-.p-dialogue__option {
-  flex-wrap: wrap;
 }
 .c-dialogue__height {
   display: inline-block;
