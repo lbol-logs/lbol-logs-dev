@@ -23,13 +23,6 @@ function About() {
 
   return (
     <section className="p-about">
-      <p className="p-about__under-construction">
-        <Trans
-          i18nKey="underConstruction"
-          ns="site"
-        />
-      </p>
-
       <div className="p-about__break"></div>
 
       <div className="p-about__about">

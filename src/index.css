@@ -116,12 +116,6 @@ img {
   flex-wrap: wrap;
   column-gap: 0.625em;
 }
-.p-about__under-construction {
-  padding: 0.625em;
-  background: var(--light-pink);
-  margin-left: auto;
-  margin-right: auto;
-}
 .p-about__break {
   flex-basis: 100%;
 }
