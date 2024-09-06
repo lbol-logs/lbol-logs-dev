@@ -31,6 +31,7 @@ import BackgroundDancers from '../events/BackgroundDancers';
 import MedicinePoison from '../events/MedicinePoison';
 import MikoDonation from '../events/MikoDonation';
 import SatoriCounseling from '../events/SatoriCounseling';
+import BuduSuanming from '../events/BuduSuanming';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -66,9 +67,12 @@ function EventStation({ station }: { station: TStation }) {
     BackgroundDancers: BackgroundDancers,
     MedicinePoison: MedicinePoison,
     MikoDonation: MikoDonation,
-    SatoriCounseling: SatoriCounseling
+    SatoriCounseling: SatoriCounseling,
+    BuduSuanming: BuduSuanming
   };
   const Id = station.Id as string;
+  if (!(Id in events)) return null;
+
   const EventComponent = events[Id];
 
   return <EventComponent station={station} />;
