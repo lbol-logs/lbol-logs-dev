@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 /_avif
 /_original
+/public/images
+/public/locales
