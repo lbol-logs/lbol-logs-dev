@@ -1,25 +1,17 @@
 import i18next from 'i18next';
 import { useTranslation, Trans } from 'react-i18next';
 import { gameUrl, languages, modUrl } from 'configs/globals';
-import { ReactNode } from 'react';
-import RoadMap from 'components/about/roadMap';
-import Done from 'components/about/done';
 import Header from 'components/common/layouts/header';
-
-function External({ href, children }: { href: string, children?: ReactNode }) {
-  return <a href={href} target="_blank" rel="noreferrer">{children}</a>;
-}
+import Footer from 'components/common/layouts/footer';
+import { Link } from 'react-router-dom';
+import ExternalLink from 'components/common/parts/externalLink';
+import Compatability from 'components/common/parts/compatability';
 
 function About() {
   const { t } = useTranslation();
   const { discord } = languages[i18next.language];
 
-  type Categories = {
-    [key: string]: Array<string>
-  };
-
-  const roadmapCategories: Categories = t('roadmap.categories', { ns: 'site', returnObjects: true });
-  const doneCategories: Categories = t('done.categories', { ns: 'site', returnObjects: true });
+  const tasks: Array<string> = t('runLogs.tasks', { ns: 'site', returnObjects: true });
   const attention: Array<string> = t('attention.value', { ns: 'site', returnObjects: true });
 
   return (
@@ -28,34 +20,63 @@ function About() {
       <main className="l-about">
         <div className="l-inner">
           <section className="p-about">
-            <div className="p-about__break"></div>
-
             <div className="p-about__about">
               <Trans
                 i18nKey="about"
                 ns="site"
                 components={{
-                  steam: <External href={gameUrl} />,
-                  mod: <External href={modUrl} />,
-                  discord: <External href={discord} />
+                  steam: <ExternalLink href={gameUrl} />,
+                  compatability: <Compatability />,
+                  discord: <ExternalLink href={discord} />
                 }}
               />
             </div>
+            <div className="p-about__break"></div>
 
-            <div className="p-about__roadmap c-roadmap">
-              <h2 className="c-roadmap__title">{t('roadmap.keys.roadmap', { ns: 'site' })}</h2>
-              {Object.entries(roadmapCategories).map(([category, array]) => {
-                const key = `c-roadmap-${category}`;
-                return <RoadMap className={key} category={category} array={array} key={key} />;
-              })}
+            <div className="p-about-run-logger">
+              <h2 className="p-about-run-logger__about">{t('runLogger.about', { ns: 'site' })}</h2>
+              <div className="p-about-run-logger__block">
+                <h3 className="p-about-run-logger__about-steps">{t('runLogger.aboutSteps', { ns: 'site' })}</h3>
+                <ol className="p-about-run-logger__steps">
+                  <li className="p-about-run-logger__step">
+                    <Trans
+                      i18nKey="runLogger.step1"
+                      ns="site"
+                      components={{ r2modman: <ExternalLink href="https://thunderstore.io/package/ebkr/r2modman/" /> }}
+                    />
+                  </li>
+                  <li className="p-about-run-logger__step">
+                    <Trans
+                      i18nKey="runLogger.step2"
+                      ns="site"
+                      components={{ mod: <ExternalLink href={modUrl} /> }}
+                    />
+                  </li>
+                  <li className="p-about-run-logger__step">{t('runLogger.step3', { ns: 'site' })}</li>
+                  <li className="p-about-run-logger__step">
+                    <Trans
+                      i18nKey="runLogger.step4"
+                      ns="site"
+                    />
+                  </li>
+                  <li className="p-about-run-logger__step">
+                    <Trans
+                      i18nKey="runLogger.step5"
+                      ns="site"
+                      components={{ upload: <Link to="/upload/">{}</Link> }}
+                    />
+                  </li>
+                </ol>
+              </div>
             </div>
 
-            <div className="p-about__done c-done">
-            <h2 className="c-done__title">{t('done.keys.done', { ns: 'site' })}</h2>
-              {Object.entries(doneCategories).map(([category, array]) => {
-                const key = `c-done-${category}`;
-                return <Done className={key} category={category} array={array} key={key} />;
-              })}
+            <div className="p-about-run-logs">
+              <h2 className="p-about-run-logs__update">{t('runLogs.update', { ns: 'site' })}</h2>
+              <ul className="p-about-run-logs__tasks">
+                {tasks.map((task, i) => {
+                  return <li className="p-about-run-logs__task" key={i}>{task}</li>;
+                })}
+              </ul>
             </div>
 
             <div className="p-about__attention">
@@ -69,6 +90,7 @@ function About() {
           </section>
         </div>
       </main>
+      <Footer />
     </>
   );
 };

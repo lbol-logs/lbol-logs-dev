@@ -8,6 +8,7 @@ import RemoveTrailingSlash from 'components/common/utils/removeTrailingSlash';
 import Top from 'components/top';
 import Log from 'components/log';
 import About from 'components/about';
+import Upload from 'components/upload';
 
 function Layout() {
   const { t } = useTranslation();
@@ -48,6 +49,10 @@ function App() {
             {
               path: 'about/',
               element: <About />
+            },
+            {
+              path: 'upload/',
+              element: <Upload />
             },
             {
               path: ':ver/',

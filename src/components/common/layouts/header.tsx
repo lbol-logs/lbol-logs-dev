@@ -21,6 +21,9 @@ function Header({ versionSwitch }: { versionSwitch?: boolean }) {
         <Link to="/about/">
           About
         </Link>
+        <Link to="/upload/">
+          {t('upload', { ns: 'site' })}
+        </Link>
         <div className="l-header__widgets">
           <VersionWidget versionSwitch={!!versionSwitch} />
           <LanguageSwitcher />

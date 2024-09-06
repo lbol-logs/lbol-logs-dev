@@ -119,13 +119,18 @@ img {
 .p-about__break {
   flex-basis: 100%;
 }
-.p-about__roadmap, .p-about__done {
+.p-about-run-logger, .p-about-run-logs {
   flex-basis: calc(50% - 0.3125em);
 }
 
-.p-about__about {
+.p-about__about, .p-upload__about {
   padding: 0.625em;
   background: var(--skyblue);
+  margin: 0 auto;
+}
+
+.p-upload {
+  display: flex;
 }
 
 .p-run-list__table {
@@ -1127,7 +1132,7 @@ html:lang(en) .p-result__type {
     max-width: 12.5em;
   }
 
-  .p-about__roadmap, .p-about__done {
+  .p-about-run-logger, .p-about-run-logs {
     flex-basis: 100%;
   }
 
