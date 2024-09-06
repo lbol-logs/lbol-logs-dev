@@ -1,6 +1,5 @@
 import { TStation } from 'utils/types/runData';
 import { TObj } from 'utils/types/common';
-import EventDefault from '../events/eventDefault';
 import DoremyPortal from '../events/DoremyPortal';
 import JunkoColorless from '../events/JunkoColorless';
 import PatchouliPhilosophy from '../events/PatchouliPhilosophy';
@@ -70,7 +69,7 @@ function EventStation({ station }: { station: TStation }) {
     SatoriCounseling: SatoriCounseling
   };
   const Id = station.Id as string;
-  const EventComponent = Id in events ? events[Id] : EventDefault;
+  const EventComponent = events[Id];
 
   return <EventComponent station={station} />;
 }
