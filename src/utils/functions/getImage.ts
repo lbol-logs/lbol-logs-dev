@@ -1,7 +1,7 @@
-import { imageUrl } from 'configs/globals';
+import { imagesUrl } from 'configs/globals';
 
 function getImage(name: string): string {
-  return `${imageUrl}/${name}.avif`;
+  return `${imagesUrl}/${name}.avif`;
 }
 
 function _getImage(path: string, name: string): string {

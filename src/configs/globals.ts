@@ -41,11 +41,13 @@ const latestVersion: string = versions[0];
 
 const baseUrl: string = process.env.PUBLIC_URL;
 
-const imageUrl: string = `${baseUrl}/images`;
+const assetsUrl: string = `${baseUrl}/assets`;
 
-const configsUrl: string = 'https://lbol-logs.github.io/configs';
+const imagesUrl: string = `${assetsUrl}/images`;
 
-const logsUrl: string = 'https://lbol-logs.github.io/logs';
+const configsUrl: string = `${assetsUrl}/configs`;
+
+const logsUrl: string = `${assetsUrl}/logs`
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
 
@@ -92,7 +94,7 @@ export {
   versions,
   latestVersion,
   baseUrl,
-  imageUrl,
+  imagesUrl,
   configsUrl,
   logsUrl,
   gameUrl,

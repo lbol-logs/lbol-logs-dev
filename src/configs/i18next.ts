@@ -9,7 +9,7 @@ i18next
   .use(LanguageDetector)
   .use(initReactI18next)
   .use(resourcesToBackend((language: string, namespace: string, callback: ReadCallback) => {
-    import(`/public/locales/${language}/${namespace}.json`)
+    import(`/public/assets/locales/${language}/${namespace}.json`)
       .then((resources) => {
         callback(null, resources);
       })
