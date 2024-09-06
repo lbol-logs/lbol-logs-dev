@@ -51,7 +51,7 @@ const logsUrl: string = `${baseUrl}/logs`
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
 
-const modUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p/tami_ev/Run_Logger/';
+const modUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p/ed_ev/LBoL_Run_Logger/';
 
 const iconSize = 36;
 
