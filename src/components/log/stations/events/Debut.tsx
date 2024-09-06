@@ -149,13 +149,18 @@ function Debut({ station }: { station: TStation }) {
   {
     const chosen = Choices[2];
     if (chosen !== undefined) {
+      const { exhibits: _exhibits } = eventConfigs;
+
       const { current, next: options } = configs[2];
       const [next] = getNext(options);
+
+      const exhibits: Array<TExhibits> = _exhibits.map((exhibit: string) => [exhibit]);
 
       const dialogueConfigs: TDialogueConfigs = {
         current,
         next,
         chosen,
+        exhibits
       };
 
       const size = iconSize * 2;
