@@ -24,3 +24,4 @@ yarn-error.log*
 /avif/_avif
 /avif/_original
 /public/assets
+/public/logs

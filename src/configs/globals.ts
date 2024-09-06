@@ -47,7 +47,7 @@ const imagesUrl: string = `${assetsUrl}/images`;
 
 const configsUrl: string = `${assetsUrl}/configs`;
 
-const logsUrl: string = `${assetsUrl}/logs`
+const logsUrl: string = `${baseUrl}/logs`
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
 
