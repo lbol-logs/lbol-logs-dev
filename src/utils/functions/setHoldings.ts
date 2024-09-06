@@ -7,8 +7,6 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
   const { Character, PlayerType } = runData.Settings;
   const { BaseMana, [PlayerType]: { Cards, Exhibit } } = characterConfigs[Character];
 
-  // TODO: Junko, Patchu
-
   const actions = [];
   const ignoredPaths: Array<THoldingChange> = [];
   const Station: TNodeObj = {
