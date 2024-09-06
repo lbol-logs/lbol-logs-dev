@@ -30,6 +30,7 @@ import RumiaDriving from '../events/RumiaDriving';
 import TewiThreat from '../events/TewiThreat';
 import BackgroundDancers from '../events/BackgroundDancers';
 import MedicinePoison from '../events/MedicinePoison';
+import MikoDonation from '../events/MikoDonation';
 
 type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
@@ -63,7 +64,8 @@ function EventStation({ station }: { station: TStation }) {
     RumiaDriving: RumiaDriving,
     TewiThreat: TewiThreat,
     BackgroundDancers: BackgroundDancers,
-    MedicinePoison: MedicinePoison
+    MedicinePoison: MedicinePoison,
+    MikoDonation: MikoDonation
   };
   const Id = station.Id as string;
   const EventComponent = Id in events ? events[Id] : EventDefault;
