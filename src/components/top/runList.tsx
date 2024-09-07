@@ -62,7 +62,10 @@ function RunList() {
   return (
     <section className="p-run-list">
       <Filter />
-      <p className="p-run-list__results">{results}</p>
+      <div className="p-run-list__line">
+        <p className="p-run-list__results">{results}</p>
+        <p className="p-run-list__remark">{t('remark', { ns: 'runList' })}</p>
+      </div>
       <div className="p-run-list__table">
         <div className="p-run-list__row p-run-list__row--header">
           <div className="p-run-list__cell p-run-list__cell--id">Id</div>

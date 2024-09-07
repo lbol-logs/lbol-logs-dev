@@ -161,6 +161,15 @@ img {
   border-color: var(--red);
 }
 
+.p-run-list__line {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.p-run-list__results, .p-run-list__remark {
+  margin: 0;
+}
+
 .p-run-list__table {
   overflow-x: auto;
 }
