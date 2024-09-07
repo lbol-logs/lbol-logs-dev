@@ -169,6 +169,9 @@ img {
 .p-run-list__results, .p-run-list__remark {
   margin: 0;
 }
+.p-run-list__remark {
+  font-size: 0.9em;
+}
 
 .p-run-list__table {
   overflow-x: auto;
