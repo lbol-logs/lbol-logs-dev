@@ -4,20 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
 import ExhibitImage from 'components/common/parts/exhibitImage';
 import { getExhibitId } from 'utils/functions/helpers';
-import { dummyExhibit } from 'configs/globals';
 
 function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj | TExhibitChange, isNotAdded?: boolean }) {
   const { configsData } = useContext(CommonContext);
   const { t } = useTranslation();
 
   const isExhibit = typeof exhibit === 'string';
-  let Id = getExhibitId(exhibit);
-  let config = configsData.exhibits[Id];
-  if (config == undefined) {
-    Id = dummyExhibit;
-    config = configsData.exhibits[Id];
-  }
-  const { Rarity } = config;
+  const Id = getExhibitId(exhibit);
+  const { Rarity } = configsData.exhibits[Id];
   let counter = null;
 
   if (!isExhibit) {

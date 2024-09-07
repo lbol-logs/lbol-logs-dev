@@ -90,8 +90,6 @@ const enemiesShowDetails: Array<string> = [
   'Seija'
 ];
 
-const dummyExhibit: string = 'KongZhanpinhe';
-
 export {
   languages,
   namespaces,
@@ -111,6 +109,5 @@ export {
   defaultHoldingsHeight,
   commonConfigs,
   logConfigs,
-  enemiesShowDetails,
-  dummyExhibit
+  enemiesShowDetails
 };
