@@ -36,12 +36,23 @@ function getRunList(version: string) {
 }
 
 function getLog(version: string, id: string) {
-  return getData(logsUrl, version, `logs/${id}`);
+  const url = getLogUrl(version, id);
+  return _getData(url);
+}
+
+function getLogUrl(version: string, id: string) {
+  const url = `${logsUrl}/${version}/logs/${id}.json`;
+  return url;
 }
 
 function getLog2(version: string, id: string) {
-  const url = `${gasUrl}?v=${version}&id=${id}`;
+  const url = getGasUrl(version, id);
   return _getData(url);
+}
+
+function getGasUrl(version: string, id: string) {
+  const url = `${gasUrl}?v=${version}&id=${id}`;
+  return url;
 }
 
 function getConfigs(version: string, name: string) {
@@ -49,9 +60,12 @@ function getConfigs(version: string, name: string) {
 }
 
 export {
+  cache,
   getLastUpdated,
   getRunList,
   getLog,
+  getLogUrl,
   getLog2,
+  getGasUrl,
   getConfigs
 };

@@ -23,7 +23,7 @@ function useBackgroundDancers({ id, Data, configs, eventConfigs }: { id: string,
   let pointers: TObjNumber = {
     1: 0,
     4: 0,
-    5: 0,
+    5: 0
   };
 
   const choices = Object.values(options);

@@ -1,22 +1,32 @@
-import { gasUrl, logsUrl } from 'configs/globals';
+import { gasUrl } from 'configs/globals';
+import { cache, getGasUrl, getLogUrl } from 'utils/functions/fetchData';
+import { validateRunData } from 'utils/functions/helpers';
 import { TRunData } from 'utils/types/runData';
 
-async function checkGithub(text: string) {
-  const runData: TRunData = JSON.parse(text);
+async function checkGithub(runData: TRunData) {
   const { Version, Settings, Result } = runData;
   const { Character, PlayerType, Difficulty, Requests } = Settings;
   const { Type, Timestamp, Exhibits } = Result;
 
   const shining = Exhibits[0];
-  const key = `${Timestamp}_${Character}_${PlayerType}_${shining}_${Difficulty[0]}${Requests.length}_${Type}`;
-  const id = btoa(key).replace(/==$/, '');
+  const key = [
+    Timestamp.replace(/:/g, '-'),
+    Character,
+    PlayerType,
+    shining,
+    Difficulty[0],
+    Requests.length,
+    Type
+  ].join('_');
+  const id = encodeURIComponent(key);
 
-  const url = `${logsUrl}/${Version}/logs/${id}.json`;
+  const url = getLogUrl(Version, id);
   let isOnGithub;
   try {
     const response = await fetch(url);
-    const json = await response.json();
-    isOnGithub = Object.keys(json).length > 0;
+    const runData = await response.json();
+    isOnGithub = validateRunData(runData);
+    if (isOnGithub) setMap(url, runData);
   }
   catch(_) {
   }
@@ -25,10 +35,23 @@ async function checkGithub(text: string) {
   }
 }
 
-async function checkGas({ Version, id }: { Version: string, id: string }) {
-  // const isOnGas = true;
-  const isOnGas = false;
-  return { isOnGas };
+async function checkGas({ Version, id, runData }: { Version: string, id: string, runData: TRunData }) {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(runData)
+  };
+  await fetch(gasUrl, options);
+  const url = getGasUrl(Version, id);
+  setMap(url, runData);
+}
+
+function setMap(url: string, runData: TRunData) {
+  const data = new Promise(resolve => {
+    setTimeout(() => {
+      resolve(runData);
+    }, 0);
+  });
+  cache.set(url, data);
 }
 
 export {

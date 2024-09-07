@@ -3,6 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import { Trans, useTranslation } from 'react-i18next';
 import { checkGas, checkGithub } from './functions';
 import { useNavigate } from 'react-router-dom';
+import { TRunData } from 'utils/types/runData';
 
 function Uploader() {
   useTranslation();
@@ -16,22 +17,15 @@ function Uploader() {
       reader.onerror = () => {};
       reader.onload = async () => {
         const text = reader.result as string;
-        console.log(text);
-        const { isOnGithub, Version, id } = await checkGithub(text);
-        console.log({isOnGithub, Version, id})
+        const runData = JSON.parse(text) as TRunData;
+        const { isOnGithub, Version, id } = await checkGithub(runData);
         if (isOnGithub) {
-          // navigate(`/${Version}/${id}/`);
-          return;
-        }
-
-        const { isOnGas } = await checkGas({ Version, id });
-        if (isOnGas) {
           navigate(`/${Version}/${id}/`);
           return;
         }
 
-        // TODO: set preview
-        navigate(`/upload/preview/`);
+        await checkGas({ Version, id, runData });
+        navigate(`/${Version}/${id}/`);
       };
       reader.readAsText(file);
     });    
