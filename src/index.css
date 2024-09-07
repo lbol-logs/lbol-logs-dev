@@ -815,8 +815,11 @@ html:lang(en) .p-result__type {
 }
 
 .p-filter {
-  --gap: 0.5em;
+  --gap-row: 0.2em;
+  --gap-col: 0.5em;
+  --gap: var(--gap-row) var(--gap-col);
   margin: 2em 0;
+  width: fit-content;
 }
 .p-filter__row {
   display: flex;
@@ -862,7 +865,7 @@ html:lang(en) .p-result__type {
 
 .p-filter__color {
   display: flex;
-  column-gap: calc(var(--gap) * 2);
+  column-gap: calc(var(--gap-col) * 2);
 }
 .p-filter__exhibits {
   flex: 1;
@@ -892,8 +895,8 @@ html:lang(en) .p-result__type {
 .p-filter__buttons {
   display: flex;
   justify-content: center;
-  column-gap: calc(var(--gap) * 4);
-  margin: 1em 0;
+  column-gap: calc(var(--gap-col) * 4);
+  margin: 0.5em 0;
 }
 .p-filter__button {
   --color: var(--green);
@@ -1188,6 +1191,10 @@ html:lang(en) .p-result__type {
     font-size: 0.65em;
   }
 
+  .p-filter {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .p-filter__row {
     flex-direction: column;
   }
