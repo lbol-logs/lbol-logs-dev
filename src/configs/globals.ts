@@ -53,6 +53,8 @@ const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
 
 const modUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p/ed_ev/LBoL_Run_Logger/';
 
+const gasUrl: string = 'https://script.google.com/macros/s/AKfycbxQZf9xkxJX-YNYxXAjssmqT2-HFmH1EPZ6bjbcoz1RxvfWdHoP1eWC8D4XiQkIpmLvbw/exec';
+
 const iconSize = 36;
 
 const cardSize = {
@@ -99,6 +101,7 @@ export {
   logsUrl,
   gameUrl,
   modUrl,
+  gasUrl,
   iconSize,
   cardSize,
   resultSizes,

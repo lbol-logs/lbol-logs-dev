@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Trans, useTranslation } from 'react-i18next';
-import { checkGithub } from './functions';
+import { checkGas, checkGithub } from './functions';
 import { useNavigate } from 'react-router-dom';
 
 function Uploader() {
@@ -24,7 +24,14 @@ function Uploader() {
           return;
         }
 
+        const { isOnGas } = await checkGas({ Version, id });
+        if (isOnGas) {
+          navigate(`/${Version}/${id}/`);
+          return;
+        }
 
+        // TODO: set preview
+        navigate(`/upload/preview/`);
       };
       reader.readAsText(file);
     });    

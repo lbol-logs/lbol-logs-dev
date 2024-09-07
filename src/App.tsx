@@ -9,6 +9,7 @@ import Top from 'components/top';
 import Log from 'components/log';
 import About from 'components/about';
 import Upload from 'components/upload';
+import Preview from 'components/upload/preview';
 
 function Layout() {
   const { t } = useTranslation();
@@ -52,18 +53,27 @@ function App() {
             },
             {
               path: 'upload/',
-              element: <Upload />
+              children: [
+                {
+                  index: true,
+                  element: <Upload />
+                },
+                {
+                  path: 'preview/',
+                  element: <Preview />
+                }
+              ]
             },
             {
               path: ':ver/',
               children: [
                 {
                   index: true,
-                  element: <Top />,
+                  element: <Top />
                 },
                 {
                   path: ':id/',
-                  element: <Log />,
+                  element: <Log />
                 }
               ]
             },

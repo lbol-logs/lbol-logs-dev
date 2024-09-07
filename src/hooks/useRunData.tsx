@@ -1,4 +1,4 @@
-import { getConfigs, getLog } from 'utils/functions/fetchData';
+import { getConfigs, getLog, getLog2 } from 'utils/functions/fetchData';
 import { TRunData } from 'utils/types/runData';
 import { LogContext } from 'contexts/logContext';
 import { CommonContext } from 'contexts/commonContext';
@@ -21,9 +21,24 @@ function useRunData(id: string)  {
     requests: requestConfigs
   } = configsData;
 
-  let isValidRunData = false;
-  const runData = use(getLog(version, id)) as TRunData;
-  isValidRunData = validateRunData(runData);
+  function getRunData(): [TRunData, boolean] {
+    let runData = {} as TRunData;
+    let isValidRunData = false;
+
+    if (id) {
+      runData = use(getLog(version, id)) as TRunData;
+      isValidRunData = validateRunData(runData);
+
+      if (!isValidRunData) {
+        runData = use(getLog2(version, id)) as TRunData;
+        isValidRunData = validateRunData(runData);
+      }
+    }
+
+    return [runData, isValidRunData];
+  }
+
+  const [runData, isValidRunData] = getRunData();
   const currentConfigs: TConfigsData = {};
   for (const config of logConfigs) {
     const configs = use(getConfigs(version, config));

@@ -1,4 +1,4 @@
-import { logsUrl } from 'configs/globals';
+import { gasUrl, logsUrl } from 'configs/globals';
 import { TRunData } from 'utils/types/runData';
 
 async function checkGithub(text: string) {
@@ -9,20 +9,29 @@ async function checkGithub(text: string) {
 
   const shining = Exhibits[0];
   const key = `${Timestamp}_${Character}_${PlayerType}_${shining}_${Difficulty[0]}${Requests.length}_${Type}`;
-  const id = btoa(key);
+  const id = btoa(key).replace(/==$/, '');
 
   const url = `${logsUrl}/${Version}/logs/${id}.json`;
+  let isOnGithub;
   try {
     const response = await fetch(url);
     const json = await response.json();
-    const isOnGithub = Object.keys(json).length > 0;
-    return { isOnGithub, Version, id };
+    isOnGithub = Object.keys(json).length > 0;
   }
   catch(_) {
-    return {};
+  }
+  finally {
+    return { isOnGithub, Version, id };
   }
 }
 
+async function checkGas({ Version, id }: { Version: string, id: string }) {
+  // const isOnGas = true;
+  const isOnGas = false;
+  return { isOnGas };
+}
+
 export {
-  checkGithub
+  checkGithub,
+  checkGas
 };
