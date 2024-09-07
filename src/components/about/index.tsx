@@ -31,7 +31,7 @@ function About() {
                 }}
               />
             </div>
-            <div className="p-about__break"></div>
+            <div className="u-break"></div>
 
             <div className="p-about-run-logger">
               <h2 className="p-about-run-logger__about">{t('runLogger.about', { ns: 'site' })}</h2>

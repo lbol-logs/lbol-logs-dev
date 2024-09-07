@@ -3,6 +3,7 @@ import { useTranslation, Trans } from 'react-i18next';
 import Header from 'components/common/layouts/header';
 import Footer from 'components/common/layouts/footer';
 import Compatability from 'components/common/parts/compatability';
+import Uploader from './uploader';
 
 function Upload() {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ function Upload() {
               <div className="p-upload__about">
                 <Compatability />
               </div>
+              <Uploader />
             </section>
         </div>
       </main>

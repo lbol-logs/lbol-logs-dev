@@ -18,12 +18,14 @@ function Header({ versionSwitch }: { versionSwitch?: boolean }) {
             <span className="c-header__subtitle u-pc"> - {t('subtitle', { ns: 'site' })}</span>
           </h1>
         </Link>
-        <Link to="/about/">
-          About
-        </Link>
-        <Link to="/upload/">
-          {t('upload', { ns: 'site' })}
-        </Link>
+        <div className="l-header__menu">
+          <Link to="/about/">
+            About
+          </Link>
+          <Link to="/upload/">
+            {t('upload', { ns: 'site' })}
+          </Link>
+        </div>
         <div className="l-header__widgets">
           <VersionWidget versionSwitch={!!versionSwitch} />
           <LanguageSwitcher />

@@ -2,7 +2,7 @@ import { Dispatch, ReducerAction } from 'react';
 import { TComponents, TObjAny, TRange16, TRange3, TRange4 } from './common';
 
 type TRunData = {
-  Versions: string,
+  Version: string,
   Settings: TSettings,
   Stations: TStations,
   Acts: Array<TActObj>,
