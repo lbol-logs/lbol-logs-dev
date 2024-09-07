@@ -26,7 +26,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  column-gap: 0.625em;
+  gap: 0.625em;
 }
 .l-header__inner {
   padding: var(--padding-inner);
@@ -1198,7 +1198,7 @@ html:lang(en) .p-result__type {
   .l-header__menu {
     order: 2;
     flex-basis: 100%;
-    justify-content: center;
+    justify-content: space-evenly;
   }
 
   .u-pc {
