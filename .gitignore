@@ -21,7 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/avif/_avif
-/avif/_original
+/avif
 /public/assets
 /public/logs
