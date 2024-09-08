@@ -9,6 +9,7 @@ import Top from 'components/top';
 import Log from 'components/log';
 import About from 'components/about';
 import Upload from 'components/upload';
+import useVersion from 'hooks/useVersion';
 
 function Layout() {
   const { t } = useTranslation();
@@ -77,6 +78,7 @@ function App() {
     }
   ];
   const router = createBrowserRouter(routes);
+  useVersion();
 
   return (
     <RouterProvider router={router} />
