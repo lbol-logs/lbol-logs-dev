@@ -1,4 +1,4 @@
-import { TObj, TObjAny, TObjStringOrArray, TRange3 } from './common';
+import { TObj, TObjAny, TRange3 } from './common';
 import { TExhibit, TRequests } from './runData';
 
 type TRunListItem = {
@@ -40,6 +40,13 @@ type TFilterRadio = {
 type TFilterCheckbox = TObj<Array<string>>;
 type TFilter = TFilterText & TFilterRadio & TFilterCheckbox;
 
+enum ErrorType {
+  invalidFile = 'invalidFile',
+  invalidVersion = 'invalidVersion',
+  alreadyExist = 'alreadyExist',
+  unknownError = 'unknownError'
+};
+
 export type {
   TRunListItem,
   TRunList,
@@ -50,4 +57,8 @@ export type {
   TFilterRadio,
   TFilterCheckbox,
   TFilter
+};
+
+export {
+  ErrorType
 };

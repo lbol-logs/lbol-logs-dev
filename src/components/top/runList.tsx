@@ -9,7 +9,7 @@ import Filter from './filters/filter';
 import ResultWidget from 'components/common/parts/resultWidget';
 import RequestsWidget from 'components/common/parts/requestsWidget';
 import { TRequests } from 'utils/types/runData';
-import { getLength } from 'utils/functions/helpers';
+import { getLength, getLogLink } from 'utils/functions/helpers';
 import useFilterOnList from 'hooks/useFilterOnList';
 import DefaultFilter from 'utils/classes/DefaultFilter';
 
@@ -95,7 +95,7 @@ function RunList() {
           const resultData = { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests };
 
           return (
-            <Link className="p-run-list__row u-button" key={id} to={`/${version}/${id}/`}>
+            <Link className="p-run-list__row u-button" key={id} to={getLogLink(version, id)}>
               <div className="p-run-list__cell p-run-list__cell--id">{ids[id]}</div>
               <div className="p-run-list__cell p-run-list__cell--result-requests u-flex-col-sp">
                 <div className=" p-run-list__cell--result">

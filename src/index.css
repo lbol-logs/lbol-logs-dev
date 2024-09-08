@@ -136,10 +136,24 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
-  user-select: none;
-  cursor: pointer;
+  row-gap: 1em;
 }
-.p-file {
+.p-upload__error, .p-upload__success {
+  padding: 0.625em;
+  margin: 0 auto;
+}
+.p-upload__error {
+  background: var(--light-pink);
+}
+.p-upload__success {
+  background: var(--lime);
+}
+
+.p-file--uploading {
+  cursor: not-allowed;
+  visibility: hidden;
+}
+.p-file-zone {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -153,14 +167,19 @@ input {
   outline: none;
   transition: border .24s ease-in-out;
   margin: 1em 0;
+  user-select: none;
+  cursor: pointer;
 }
-.p-file--focused {
+.p-file--uploading .p-file-zone {
+  pointer-events: none;
+}
+.p-file-zone--focused {
   border-color: var(--blue);
 }
-.p-file--accept {
+.p-file-zone--accept {
   border-color: var(--green);
 }
-.p-file--reject {
+.p-file-zone--reject {
   border-color: var(--red);
 }
 

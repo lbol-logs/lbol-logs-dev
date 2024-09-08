@@ -101,6 +101,10 @@ function concatObjects(props: TObjAny, ...objs: Array<TObj<TObjElement | TObjStr
   return props;
 }
 
+function getLogLink(version: string, id: string) {
+  return `/${version}/${id}/`;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -116,5 +120,6 @@ export {
   convertCards,
   applyRate,
   getExhibitId,
-  concatObjects
+  concatObjects,
+  getLogLink
 };

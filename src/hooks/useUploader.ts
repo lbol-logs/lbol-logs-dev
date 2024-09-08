@@ -1,63 +1,57 @@
 import { gasUrl, versions } from 'configs/globals';
 import { useCallback } from 'react';
-import { NavigateFunction, SetURLSearchParams } from 'react-router-dom';
-import { getGasUrl, getLogUrl } from 'utils/functions/fetchData';
-import { validateRunData } from 'utils/functions/helpers';
+import { SetURLSearchParams } from 'react-router-dom';
+import { getLogUrl } from 'utils/functions/fetchData';
+import { getLogLink, validateRunData } from 'utils/functions/helpers';
+import { TDispatch, TObjAny } from 'utils/types/common';
+import { ErrorType } from 'utils/types/others';
 import { TRunData } from 'utils/types/runData';
 
-enum Error {
-  invalidFile = 'invalidFile',
-  invalidVersion = 'invalidVersion',
-  alreadyExist = 'alreadyExist',
-  unknownError = 'unknownError'
-};
-
-function useUploader(setSearchParams: SetURLSearchParams) {
+function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispatch<boolean>) {
   const onDrop = useCallback((acceptedFiles: Array<File>) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader();
 
-      reader.onabort = () => {
-        console.log('onabort');
-        reset();
-      };
+      reader.onabort = () => reset();
 
-      reader.onerror = () => {
-        console.log('onerror');
-        reset();
-      };
+      reader.onerror = () => reset();
 
       reader.onload = async () => {
+        setIsUploading(true);
         const text = reader.result as string;
-        const runData = JSON.parse(text) as TRunData;
-        const { error, Version, Id } = validateUpload(runData);
+        const { error, runData, Version, Id } = validateUpload(text);
         if (error) {
-          setSearchParams({ error: error.toString() }, { replace: true });
-          return;
-        }
-
-        const version = Version as string;
-        const id = Id as string;
-        const { isOnGithub, url } = await checkGithub(version, id);
-        if (isOnGithub) {
-          const o = {
-            error: Error.alreadyExist.toString(),
-            url: encodeURIComponent(url)
-          };
-          setSearchParams(o, { replace: true });
+          setSearchParams(error, { replace: true });
         }
         else {
-          const { error, isNew, url } = await checkGas({ version, id, runData });
-          const _url = url && encodeURIComponent(url);
+          const version = Version as string;
+          const id = Id as string;
+          const { error, isOnGithub, url } = await checkGithub(version, id);
           if (error) {
-            const o = { error: error.toString() };
-            if (!isNew) Object.assign(o, { url: _url });
-            setSearchParams(o, { replace: true });
-            return;
+            setSearchParams(error, { replace: true });
           }
-
-          setSearchParams({ success: _url as string }, { replace: true });
+          else {
+            if (isOnGithub) {
+              const error = {
+                error: ErrorType.alreadyExist.toString(),
+                url: encodeURIComponent(url)
+              };
+              setSearchParams(error, { replace: true });
+            }
+            else {
+              const { error, isNew, url } = await checkGas({ version, id, runData: runData as TRunData });
+              const _url = url && encodeURIComponent(url);
+              if (error) {
+                if (!isNew) Object.assign(error, { url: _url });
+                setSearchParams(error, { replace: true });
+              }
+              else {
+                setSearchParams({ success: _url as string }, { replace: true });
+              }
+            }
+          }
         }
+        setIsUploading(false);
       };
 
       reader.readAsText(file);
@@ -65,72 +59,96 @@ function useUploader(setSearchParams: SetURLSearchParams) {
   }, []);
 
   function reset() {
+    setIsUploading(false);
     setSearchParams({}, { replace: true });
   }
 
-  function validateUpload(runData: TRunData) {
-    let error, Version, Id;
+  function validateUpload(text: string) {
+    let error: TObjAny | undefined, runData, Version, Id;
+
     try {
-      if (!validateRunData(runData)) {
-        error = Error.invalidFile;
-      }
-      else {
-        ({ Version } = runData);
-        if (!versions.includes(Version)) {
-          error = Error.invalidVersion;
+      runData = JSON.parse(text) as TRunData;
+
+      try {
+        if (!validateRunData(runData)) {
+          error = {
+            error: ErrorType.invalidFile.toString()
+          };
         }
         else {
-          const { Settings, Result } = runData;
-          const { Character, PlayerType, Difficulty, Requests } = Settings;
-          const { Type, Timestamp, Exhibits } = Result;
-
-          const array = [
-            Character,
-            PlayerType,
-            Difficulty,
-            Requests,
-            Type,
-            Timestamp,
-            Exhibits
-          ] as Array<unknown>;
-          if (array.includes(undefined)) {
-            error = Error.invalidFile;
+          ({ Version } = runData);
+          if (!versions.includes(Version)) {
+            error = {
+              error: ErrorType.invalidVersion.toString(),
+              version: Version
+            };
           }
           else {
-            const shining = Exhibits[0];
-            const key = [
-              Timestamp.replace(/:/g, '-'),
+            const { Settings, Result } = runData;
+            const { Character, PlayerType, Difficulty, Requests } = Settings;
+            const { Type, Timestamp, Exhibits } = Result;
+  
+            const array = [
               Character,
               PlayerType,
-              shining,
-              Difficulty[0] + Requests.length,
-              Type
-            ].join('_');
-            Id = encodeURIComponent(key);
+              Difficulty,
+              Requests,
+              Type,
+              Timestamp,
+              Exhibits
+            ] as Array<unknown>;
+            if (array.includes(undefined)) {
+              error = {
+                error: ErrorType.invalidFile.toString()
+              };
+            }
+            else {
+              const shining = Exhibits[0];
+              const key = [
+                Timestamp.replace(/:/g, '-'),
+                Character,
+                PlayerType,
+                shining,
+                Difficulty[0] + Requests.length,
+                Type
+              ].join('_');
+              Id = encodeURIComponent(key);
+            }
           }
         }
+      }
+      catch (_) {
+        error = {
+          error: ErrorType.unknownError.toString()
+        };
       }
     }
     catch (_) {
-      error = Error.unknownError;
+      error = {
+        error: ErrorType.invalidFile.toString()
+      };
     }
     finally {
-      return { error, Version, Id };
+      return { error, runData, Version, Id };
     }
   }
 
   async function checkGithub(version: string, id: string) { 
-    const url = getLogUrl(version, id);
-    let isOnGithub;
+    const url = getLogLink(version, id);
+    let error, isOnGithub;
     try {
+      const url = getLogUrl(version, id);
       const response = await fetch(url);
       const runData = await response.json();
       isOnGithub = validateRunData(runData);
     }
     catch(_) {
+      error = {
+        error: ErrorType.unknownError.toString()
+      };
     }
     finally {
-      return { isOnGithub, url };
+      return { error, isOnGithub, url };
     }
   }
   
@@ -144,11 +162,17 @@ function useUploader(setSearchParams: SetURLSearchParams) {
       const response = await fetch(gasUrl, options);
       const json = await response.json();
       ({ isNew } = json);
-      if (!isNew) error = Error.alreadyExist;
-      url = getLogUrl(version, id);
+      if (!isNew) {
+        error = {
+          error: ErrorType.alreadyExist.toString()
+        };
+      }
+      url = getLogLink(version, id);
     }
     catch (_) {
-      error = Error.unknownError;
+      error = {
+        error: ErrorType.unknownError.toString()
+      };
     }
     finally {
       return { error, isNew, url };
