@@ -1,4 +1,4 @@
-import { SpecialExhibits, TDialogueConfigs, TExhibits, TradeStations, TStation } from 'utils/types/runData';
+import { SpecialExhibit, TDialogueConfigs, TExhibits, TradeStation, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
@@ -15,7 +15,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
 
   const { Choices, Prices } = Data;
 
-  const id = TradeStations.RinnosukeTrade.toString();
+  const id = TradeStation.RinnosukeTrade.toString();
   const configs = configsData.dialogues[id];
 
   let sell = null;
@@ -66,7 +66,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
 
-      const exhibits = [[SpecialExhibits.WaijieYanjing.toString(), SpecialExhibits.WaijieYouxiji.toString()]];
+      const exhibits = [[SpecialExhibit.WaijieYanjing.toString(), SpecialExhibit.WaijieYouxiji.toString()]];
 
       const [next] = getNext(options);
 

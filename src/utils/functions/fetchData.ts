@@ -60,7 +60,6 @@ function getConfigs(version: string, name: string) {
 }
 
 export {
-  cache,
   getLastUpdated,
   getRunList,
   getLog,

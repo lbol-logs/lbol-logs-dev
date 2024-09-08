@@ -1,4 +1,4 @@
-import { ExhibitsWithCounter, RequestTypes, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
+import { ExhibitsWithCounter, RequestType, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
 import { copyObject } from 'utils/functions/helpers';
 
@@ -44,7 +44,7 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
       actions.push(action);
     }
 
-    const StartMisfortune = RequestTypes.StartMisfortune.toString();
+    const StartMisfortune = RequestType.StartMisfortune.toString();
     if (runData.Settings.Requests.includes(StartMisfortune)) {
       const Id = requestConfigs[StartMisfortune];
       const action: THoldingAction = {

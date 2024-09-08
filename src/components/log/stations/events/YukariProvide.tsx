@@ -1,7 +1,7 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { getNext } from 'utils/functions/helpers';
-import { SpecialExhibits, TDialogueConfigs, TStation } from 'utils/types/runData';
+import { SpecialExhibit, TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useTranslation } from 'react-i18next';
 
@@ -13,7 +13,7 @@ function YukariProvide({ station }: { station: TStation }) {
 
   const id = 'YukariProvide';
   const title = t(`${id}.Title`, { ns: 'events' });
-  const exhibits = [[SpecialExhibits.WaijieYanshuang.toString(), SpecialExhibits.JingjieGanzhiyi.toString()]];
+  const exhibits = [[SpecialExhibit.WaijieYanshuang.toString(), SpecialExhibit.JingjieGanzhiyi.toString()]];
 
   const configs = configsData.dialogues[id];
   const { current, next: _next } = configs;

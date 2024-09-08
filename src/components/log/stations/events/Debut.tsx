@@ -1,4 +1,4 @@
-import { RequestTypes, TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
+import { RequestType, TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import { getEnemyImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 import DialogueWidget from '../parts/dialogueWidget';
@@ -117,7 +117,7 @@ function Debut({ station }: { station: TStation }) {
 
     const props: Array<TObjAny> = [];
 
-    const HalfDrug = RequestTypes.HalfDrug.toString();
+    const HalfDrug = RequestType.HalfDrug.toString();
     const x = Requests.includes(HalfDrug) ? requestConfigs[HalfDrug] : 1;
 
     Object.keys(options).forEach(key => {

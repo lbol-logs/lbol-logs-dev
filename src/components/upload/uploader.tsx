@@ -1,35 +1,14 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Trans, useTranslation } from 'react-i18next';
-import { checkGas, checkGithub } from './functions';
-import { useNavigate } from 'react-router-dom';
-import { TRunData } from 'utils/types/runData';
+import { useSearchParams } from 'react-router-dom';
+import useUploader from 'hooks/useUploader';
 
 function Uploader() {
   useTranslation();
-  const navigate = useNavigate();
+  const [_, setSearchParams] = useSearchParams();
 
-  const onDrop = useCallback((acceptedFiles: Array<File>) => {
-    acceptedFiles.forEach((file) => {
-      const reader = new FileReader();
-
-      reader.onabort = () => {};
-      reader.onerror = () => {};
-      reader.onload = async () => {
-        const text = reader.result as string;
-        const runData = JSON.parse(text) as TRunData;
-        const { isOnGithub, Version, id } = await checkGithub(runData);
-        if (isOnGithub) {
-          navigate(`/${Version}/${id}/`);
-          return;
-        }
-
-        await checkGas({ Version, id, runData });
-        navigate(`/${Version}/${id}/`);
-      };
-      reader.readAsText(file);
-    });    
-  }, []);
+  const onDrop = useUploader(setSearchParams);
 
   const options = {
     onDrop,

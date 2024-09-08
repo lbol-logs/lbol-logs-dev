@@ -163,7 +163,7 @@ type THoldingAction = {
 };
 type THoldingsReducer = Dispatch<ReducerAction<(holdings: THoldings, action: THoldingAction) => THoldings>>;
 
-enum RequestTypes {
+enum RequestType {
   HalfDrug = 'HalfDrug',
   StartMisfortune = 'StartMisfortune'
 };
@@ -186,12 +186,12 @@ enum ExhibitsEnhanceDrinkTea {
   HuangyouJiqiren = 'HuangyouJiqiren'
 };
 
-enum TradeStations {
+enum TradeStation {
   RinnosukeTrade = 'RinnosukeTrade',
   SumirekoGathering = 'SumirekoGathering'
 };
 
-enum SpecialExhibits {
+enum SpecialExhibit {
   WaijieYanjing = 'WaijieYanjing',
   WaijieYouxiji = 'WaijieYouxiji',
   WaijieYanshuang = 'WaijieYanshuang',
@@ -249,10 +249,10 @@ export type {
 };
 
 export {
-  RequestTypes,
+  RequestType,
   CardsWithUpgradeCounter,
   ExhibitsWithCounter,
   ExhibitsEnhanceDrinkTea,
-  TradeStations,
-  SpecialExhibits
+  TradeStation,
+  SpecialExhibit
 };

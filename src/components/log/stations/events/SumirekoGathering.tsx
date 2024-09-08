@@ -1,4 +1,4 @@
-import { SpecialExhibits, TCards, TDialogueConfigs, TradeStations, TStation } from 'utils/types/runData';
+import { SpecialExhibit, TCards, TDialogueConfigs, TradeStation, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
@@ -13,7 +13,7 @@ function SumirekoGathering({ station }: { station: TStation }) {
 
   const { Choices, Card, Cards, HasMoney } = Data;
 
-  const id = TradeStations.SumirekoGathering.toString();
+  const id = TradeStation.SumirekoGathering.toString();
   const configs = configsData.dialogues[id];
   const eventConfigs = configsData.events[id];
 
@@ -70,7 +70,7 @@ function SumirekoGathering({ station }: { station: TStation }) {
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
 
-      const exhibits = [[SpecialExhibits.WaijieYouxiji.toString(), SpecialExhibits.WaijieYanshuang.toString()]];
+      const exhibits = [[SpecialExhibit.WaijieYouxiji.toString(), SpecialExhibit.WaijieYanshuang.toString()]];
 
       const [next] = getNext(options);
 
