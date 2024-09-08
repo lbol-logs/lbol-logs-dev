@@ -379,14 +379,16 @@ img {
   padding-left: var(--padding-inner);
   padding-right: var(--padding-inner);
 }
-
+.p-summary {
+  padding-bottom: calc(100vh - var(--control-height));
+}
 .p-summary__head {
   display: flex;
   gap: 1em;
   flex-wrap: wrap;
 }
 .p-summary__settings {
-  padding: 0.2em;
+  padding: 0.2em 0;
 }
 .p-summary__line {
   display: flex;
