@@ -3,7 +3,7 @@ import { useContext, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router-dom';
 import useRunList from 'hooks/useRunList';
-import { TFilter, TFilterRadio } from 'utils/types/others';
+import { TFilter, TFilterRadio, TFilterText } from 'utils/types/others';
 import { TObjNumber } from 'utils/types/common';
 import Filter from './filters/filter';
 import ResultWidget from 'components/common/parts/resultWidget';
@@ -23,7 +23,10 @@ function RunList() {
   const currentFilter = useMemo(() => {
     const currentFilter: TFilter = {};
     for (const [key, value] of Array.from(searchParams.entries())) {
-      if (DefaultFilter.radios.includes(key)) {
+      if (DefaultFilter.texts.includes(key)) {
+        currentFilter[key as keyof TFilterText] = value;
+      }
+      else if (DefaultFilter.radios.includes(key)) {
         currentFilter[key as keyof TFilterRadio] = value;
       }
       else {
@@ -77,6 +80,7 @@ function RunList() {
         {filteredList.reverse().map(e => {
           const {
             id,
+            name,
             character: Character,
             type: PlayerType,
             result: Type,
@@ -96,6 +100,7 @@ function RunList() {
                 </div>
                 <div className="p-run-list__cell--requests">
                   <RequestsWidget requests={Requests as TRequests} />
+                  {name}
                 </div>
               </div>
             </Link>

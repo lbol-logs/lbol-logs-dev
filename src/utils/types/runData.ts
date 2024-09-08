@@ -3,6 +3,7 @@ import { TComponents, TObjAny, TRange16, TRange3, TRange4 } from './common';
 
 type TRunData = {
   Version: string,
+  Name?: string,
   Settings: TSettings,
   Stations: TStations,
   Acts: Array<TActObj>,

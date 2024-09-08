@@ -1,5 +1,6 @@
 class DefaultFilter {
   static keys = {
+    na: 'na',
     sc: 'sc',
     et: 'et',
     rt: 'rt',
@@ -17,6 +18,10 @@ class DefaultFilter {
     inactive: 'inactive',
     active: 'active'
   };
+
+  static texts = [
+    this.keys.na
+  ];
 
   static radios = [
     this.keys.et,

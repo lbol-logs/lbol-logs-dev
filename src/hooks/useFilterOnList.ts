@@ -15,12 +15,20 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter) {
     rq: 'requests',
     re: 'result'
   };
+  const texts = DefaultFilter.texts;
   const radios = DefaultFilter.radios;
   const keys = DefaultFilter.keys;
 
   for (const [key, f] of Object.entries(currentFilter)) {
+    const isTexts = texts.includes(key);
     const isRadio = radios.includes(key);
-    if (isRadio) {
+    if (isTexts) {
+      if (key === keys.na) {
+        const value = f as string;
+        filteredList = filteredList.filter(e => e.name && e.name.toLowerCase().includes(value));
+      }
+    }
+    else if (isRadio) {
       if (key === keys.rt) {
         const value = f as string;
         if (value === DefaultFilter.rt.inactive) {

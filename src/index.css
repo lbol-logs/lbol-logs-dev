@@ -555,6 +555,11 @@ img {
 .p-control__component--center {
   width: 100%;
   flex: 1;
+  overflow: hidden;
+}
+.p-control__name {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .p-control__range {
   width: 100%;
@@ -718,6 +723,7 @@ html:lang(en) .c-entity__text {
 
 .c-base-mana {
   position: relative;
+  display: block;
 }
 .c-base-mana__unknown {
   position: absolute;
@@ -860,12 +866,18 @@ html:lang(en) .p-result__type {
   margin: 2em 0;
   width: fit-content;
 }
+.p-filter__rows--hide {
+  max-height: 0;
+  visibility: hidden;
+  opacity: 0;
+}
 .p-filter__row {
   display: flex;
   align-items: center;
   column-gap: var(--gap);
   border-radius: 0.5em;
   margin: 0.2em 0;
+  overflow: hidden;
 }
 .p-filter__row:nth-child(odd) {
   background: var(--light-blue);
@@ -879,11 +891,18 @@ html:lang(en) .p-result__type {
   padding: 0.2em 0.5em;
   font-weight: bold;
 }
+.p-filter__label.p-filter__label--head {
+  width: 100%;
+  border-radius: inherit;
+}
 .p-filter__values {
   display: flex;
   flex-wrap: wrap;
   padding: 0.2em 0.5em;
   gap: var(--gap);
+}
+.p-filter__input {
+  width: 100%;
 }
 .p-filter__checkbox {
   display: none;

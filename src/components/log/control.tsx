@@ -7,7 +7,6 @@ import { getCommonImage, getControlImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
 import useControl from 'hooks/useControl';
 import { showRandom } from 'utils/functions/helpers';
-import ShowRandomResultWidget from './parts/showRandomResultWidget';
 
 function Control() {
   const { isRunDataLoaded, runData, act, setAct, level, setLevel, showMap, setShowMap } = useContext(LogContext);
@@ -44,7 +43,7 @@ function Control() {
     );
     centerArea = (
       <span className="p-control__component p-control__component--center">
-        <ShowRandomResultWidget show={showRandom(runData)} />
+        <span className="p-control__name">{runData.Name}</span>
       </span>
     );
     buttonRight2 = (

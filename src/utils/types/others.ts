@@ -3,6 +3,7 @@ import { TExhibit, TRequests } from './runData';
 
 type TRunListItem = {
   id: string,
+  name: string,
   character: string,
   type: string,
   shining: TExhibit,
@@ -29,12 +30,15 @@ type TPromise = {
   then: (result: TObjAny, error: TObjAny) => {}
 };
 
-type TFilterCheckbox = TObj<Array<string>>
+type TFilterText = {
+  na?: string
+};
 type TFilterRadio = {
   et?: string
   rt?: string
 };
-type TFilter = TFilterRadio & TFilterCheckbox;
+type TFilterCheckbox = TObj<Array<string>>;
+type TFilter = TFilterText & TFilterRadio & TFilterCheckbox;
 
 export type {
   TRunListItem,
@@ -42,7 +46,8 @@ export type {
   TAboutComponent,
   TChoice,
   TPromise,
-  TFilterCheckbox,
+  TFilterText,
   TFilterRadio,
+  TFilterCheckbox,
   TFilter
 };
