@@ -14,8 +14,7 @@ async function checkGithub(runData: TRunData) {
     Character,
     PlayerType,
     shining,
-    Difficulty[0],
-    Requests.length,
+    Difficulty[0] + Requests.length,
     Type
   ].join('_');
   const id = encodeURIComponent(key);
