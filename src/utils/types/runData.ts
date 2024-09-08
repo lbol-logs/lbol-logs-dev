@@ -17,8 +17,9 @@ type TSettings = {
   HasClearBonus: boolean,
   ShowRandomResult: boolean,
   IsAutoSeed: boolean,
-  Requests: TRequests,
   Difficulty: string,
+  Requests: TRequests,
+  Mods?: TMods,
   Status: TStatus
 };
 
@@ -26,6 +27,13 @@ type TCharacter = string;
 type TPlayerType = 'A' | 'B';
 
 type TRequests = Array<string>;
+
+type TMod = {
+  GUID: string,
+  Name: string,
+  Version: string
+};
+type TMods = Array<TMod>;
 
 type TStatus = {
   Money: number,
@@ -101,7 +109,9 @@ type TResult = {
   Timestamp: string,
   Cards: TCards,
   Exhibits: TExhibits,
-  BaseMana: string
+  BaseMana: string,
+  ReloadTimes?: number,
+  Seed?: string
 };
 
 type TChange = {
@@ -233,6 +243,7 @@ export type {
   TBaseManaObj,
   THoldingChange,
   TRequests,
+  TMods,
   TDialogueConfigs
 };
 

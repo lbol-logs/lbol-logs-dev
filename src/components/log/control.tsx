@@ -4,9 +4,10 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import Loading from 'components/common/layouts/loading';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage, getControlImage } from 'utils/functions/getImage';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import useControl from 'hooks/useControl';
 import { showRandom } from 'utils/functions/helpers';
+import ShowRandomResultWidget from './parts/showRandomResultWidget';
 
 function Control() {
   const { isRunDataLoaded, runData, act, setAct, level, setLevel, showMap, setShowMap } = useContext(LogContext);
@@ -43,11 +44,7 @@ function Control() {
     );
     centerArea = (
       <span className="p-control__component p-control__component--center">
-        <Trans
-          i18nKey="ShowRandomResult"
-          ns="log"
-          context={showRandom(runData).toString()}
-        />
+        <ShowRandomResultWidget show={showRandom(runData)} />
       </span>
     );
     buttonRight2 = (
