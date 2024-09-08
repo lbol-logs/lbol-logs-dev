@@ -74,7 +74,10 @@ function RunList() {
           <div className="p-run-list__cell p-run-list__cell--id">Id</div>
           <div className="p-run-list__cell p-run-list__cell--result-requests u-flex-col-sp">
             <div className="p-run-list__cell--result">{t('result', { ns: 'runList' })}</div>
-            <div className="p-run-list__cell--requests">{t('requests', { ns: 'runList' })}</div>
+            <div className="p-run-list__cell--requests">
+              <span>{t('requests', { ns: 'runList' })}</span>
+              <span>{t('name', { ns: 'runList' })}</span>
+            </div>
           </div>
         </div>
         {filteredList.reverse().map(e => {

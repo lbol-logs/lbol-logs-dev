@@ -17,6 +17,9 @@ img {
   max-width: 100%;
   height: auto;
 }
+input {
+  font-size: 16px;
+}
 
 .l-header {
   border-bottom: 1px solid var(--gray);
@@ -212,6 +215,11 @@ img {
 }
 .p-run-list__cell--requests {
   width: calc(var(--dot-size) * 13);
+}
+.p-run-list__row--header .p-run-list__cell--requests {
+  display: flex;
+  column-gap: 1em;
+  justify-content: center;
 }
 
 .c-log__processing {

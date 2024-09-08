@@ -6,7 +6,6 @@ import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage, getControlImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
 import useControl from 'hooks/useControl';
-import { showRandom } from 'utils/functions/helpers';
 
 function Control() {
   const { isRunDataLoaded, runData, act, setAct, level, setLevel, showMap, setShowMap } = useContext(LogContext);
