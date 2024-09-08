@@ -17,6 +17,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
       reader.onerror = () => reset();
 
       reader.onload = async () => {
+        reset();
         setIsUploading(true);
         const text = reader.result as string;
         const { error, runData, Version, Id } = validateUpload(text);
@@ -139,8 +140,14 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     try {
       const url = getLogUrl(version, id);
       const response = await fetch(url);
-      const runData = await response.json();
-      isOnGithub = validateRunData(runData);
+      const text = await response.text();
+      try {
+        const runData = JSON.parse(text);
+        isOnGithub = validateRunData(runData);
+      }
+      catch (_) {
+        isOnGithub = false;
+      }
     }
     catch(_) {
       error = {
