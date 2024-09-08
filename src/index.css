@@ -402,6 +402,7 @@ img {
 .p-mod {
   flex-basis: calc((100% - 0.5em) / 2);
   display: grid;
+  grid-auto-rows: max-content;
   justify-content: space-between;
 }
 .p-mod__guid {
@@ -409,10 +410,6 @@ img {
 }
 .p-mod > * {
   margin: 0;
-  flex: 1 1 60%;
-}
-.p-mod__guid {
-  grid-column: 1 / span 1;
 }
 .p-mod__version {
   grid-row: 1 / span 2;
@@ -855,7 +852,7 @@ html:lang(en) .p-result__type {
 }
 
 .p-filter {
-  --gap-row: 0.2em;
+  --gap-row: 0;
   --gap-col: 0.5em;
   --gap: var(--gap-row) var(--gap-col);
   margin: 2em 0;

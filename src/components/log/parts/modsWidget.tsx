@@ -1,8 +1,6 @@
 import { TMods } from 'utils/types/runData';
 
-function ModsWidget({ mods }: { mods?: TMods}) {
-  if (!mods) return null;
-
+function ModsWidget({ mods }: { mods: TMods}) {
   return (
     <div className="p-mods">
       {mods.map(({ GUID, Name, Version}) => {

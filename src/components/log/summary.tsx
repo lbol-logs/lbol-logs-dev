@@ -33,16 +33,16 @@ function Summary() {
         </div>
         <div className="p-summary__settings">
           <div className="p-summary__line">
-            <span className="p-summary__seed">{Seed}</span>
+            {Seed !== undefined && <span className="p-summary__seed">{Seed}</span>}
             <IsAutoSeedWidget is={IsAutoSeed} />
           </div>
           <div className="p-summary__line">
             <span className="p-summary__version">{Version}</span>
             <ShowRandomResultWidget show={ShowRandomResult} />
-            <ReloadTimesWidget count={ReloadTimes} />
+            {ReloadTimes !== undefined && <ReloadTimesWidget count={ReloadTimes} />}
           </div>
         </div>
-        <ModsWidget mods={Mods} />
+        {Mods !== undefined && <ModsWidget mods={Mods} />}
       </div>
       <div className="p-summary__cards">
         <h3>{t('card', { ns: 'common', count: Cards.length })}</h3>
