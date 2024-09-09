@@ -59,7 +59,7 @@ function Uploader() {
     );
   }
 
-  if (isUploading) {
+  if (isUploading || hasError) {
     buttons = (
       <div className="p-upload__buttons">
         {(isValidRunData && !hasError) && <button className="p-upload__button p-upload__button--upload" onClick={upload}>{t('upload', { ns: 'site' })}</button>}
@@ -69,7 +69,7 @@ function Uploader() {
   }
 
   const isProcessing = isValidRunData && !isUploading;
-  if (isProcessing) {
+  if (isProcessing && !hasError) {
     processing = (
       <p className="p-upload__processing">{t('processing', { ns: 'common' })}</p>
     )
