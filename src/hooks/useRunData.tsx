@@ -1,8 +1,6 @@
 import { getConfigs, getLog, getLog2 } from 'utils/functions/fetchData';
 import { TRunData } from 'utils/types/runData';
-import { LogContext } from 'contexts/logContext';
-import { CommonContext } from 'contexts/commonContext';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
@@ -10,10 +8,13 @@ import setHoldings from 'utils/functions/setHoldings';
 import { defaultRunData, logConfigs } from 'configs/globals';
 import { TConfigsData, TObjAny } from 'utils/types/common';
 
-function useRunData(id: string)  {
-  const { version, configsData } = useContext(CommonContext);
-  const { configsData: { events: eventsConfigs } } = useContext(LogContext);
-  const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData } = useContext(LogContext);
+function useRunData(args: TObjAny)  {
+  const {
+    version, id,
+    configsData,
+    eventsConfigs,
+    setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData
+  } = args;
 
   const {
     characters: characterConfigs,
