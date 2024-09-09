@@ -1,13 +1,13 @@
-import { gasUrl, versions } from 'configs/globals';
+import { defaultRunData, gasUrl, versions } from 'configs/globals';
 import { useCallback } from 'react';
 import { SetURLSearchParams } from 'react-router-dom';
 import { getLogUrl } from 'utils/functions/fetchData';
 import { getLogLink, validateRunData } from 'utils/functions/helpers';
-import { TDispatch, TObjAny } from 'utils/types/common';
+import { TDispatch, TObjString } from 'utils/types/common';
 import { ErrorType } from 'utils/types/others';
 import { TRunData } from 'utils/types/runData';
 
-function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispatch<boolean>) {
+function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispatch<boolean>, previewData: TRunData, setPreviewData: TDispatch<TRunData>) {
   const onDrop = useCallback((acceptedFiles: Array<File>) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader();
@@ -16,126 +16,135 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
 
       reader.onerror = () => reset();
 
-      reader.onload = async () => {
+      reader.onload = () => {
         reset();
         setIsUploading(true);
         const text = reader.result as string;
-        const { error, runData, Version, Id } = validateFile(text);
+        const error = validateFile(text);
         if (error) {
-          setSearchParams(error, { replace: true });
+          setSearchParams(error as TObjString, { replace: true });
           return;
         }
-
-        await tryUpload(text);
-
-        setIsUploading(false);
       };
-
       reader.readAsText(file);
     });
   }, []);
 
+  async function upload() {
+    setIsUploading(false);
+    await tryUpload();
+  }
+
   function reset() {
     setIsUploading(false);
+    setPreviewData(defaultRunData);
     setSearchParams({}, { replace: true });
   }
 
-  async function tryUpload(text: string) {
-    const version = Version as string;
-    const id = Id as string;
-    var { error, isOnGithub, url } = await checkGithub(version, id);
-    if (error) {
-      setSearchParams(error, { replace: true });
-      return;
+  async function tryUpload() {
+    const runData = previewData;
+    const { Version } = runData;
+    const id = getId(runData);
+    
+    {
+      const { error, isOnGithub, url } = await checkGithub(Version, id);
+      if (error) {
+        setSearchParams(error, { replace: true });
+        return;
+      }
+
+      if (isOnGithub) {
+        const error = {
+          error: ErrorType.alreadyExist.toString(),
+          url: encodeURIComponent(url)
+        };
+        setSearchParams(error, { replace: true });
+        return;
+      }
     }
 
-    if (isOnGithub) {
-      const error = {
-        error: ErrorType.alreadyExist.toString(),
-        url: encodeURIComponent(url)
-      };
-      setSearchParams(error, { replace: true });
-      return;
+    {
+      const { error, isNew, url: _url } = await checkGas({ version: Version, id, runData });
+      const url = encodeURIComponent(_url);
+      if (error) {
+        if (!isNew) Object.assign(error, { url });
+        setSearchParams(error, { replace: true });
+      }
+      else {
+        setSearchParams({ success: url as string }, { replace: true });
+      }
     }
 
-    var { error, isNew, url } = await checkGas({ version, id, runData: runData as TRunData });
-    url = encodeURIComponent(url);
-    if (error) {
-      if (!isNew) Object.assign(error, { url });
-      setSearchParams(error, { replace: true });
-    }
-    else {
-      setSearchParams({ success: url as string }, { replace: true });
-    }
+    setPreviewData(defaultRunData);
+  }
+
+  function getId(runData: TRunData) {
+    const { Settings, Result } = runData;
+    const { Character, PlayerType, Difficulty, Requests } = Settings;
+    const { Type, Timestamp, Exhibits } = Result;
+    const shining = Exhibits[0];
+    const key = [
+      Timestamp.replace(/:/g, '-'),
+      Character,
+      PlayerType,
+      shining,
+      Difficulty[0] + Requests.length,
+      Type
+    ].join('_');
+    const id = encodeURIComponent(key);
+    return id;
   }
 
   function validateFile(text: string) {
-    let error: TObjAny | undefined, runData, Version, Id;
-
     try {
-      runData = JSON.parse(text) as TRunData;
+      const runData = JSON.parse(text) as TRunData;
 
       try {
         if (!validateRunData(runData)) {
-          error = {
+          return {
             error: ErrorType.invalidFile.toString()
           };
         }
-        else {
-          ({ Version } = runData);
-          if (!versions.includes(Version)) {
-            error = {
-              error: ErrorType.invalidVersion.toString(),
-              version: Version
-            };
-          }
-          else {
-            const { Settings, Result } = runData;
-            const { Character, PlayerType, Difficulty, Requests } = Settings;
-            const { Type, Timestamp, Exhibits } = Result;
 
-            const array = [
-              Character,
-              PlayerType,
-              Difficulty,
-              Requests,
-              Type,
-              Timestamp,
-              Exhibits
-            ] as Array<unknown>;
-            if (array.includes(undefined)) {
-              error = {
-                error: ErrorType.invalidFile.toString()
-              };
-            }
-            else {
-              const shining = Exhibits[0];
-              const key = [
-                Timestamp.replace(/:/g, '-'),
-                Character,
-                PlayerType,
-                shining,
-                Difficulty[0] + Requests.length,
-                Type
-              ].join('_');
-              Id = encodeURIComponent(key);
-            }
-          }
+        const { Version } = runData;
+        if (!versions.includes(Version)) {
+          return {
+            error: ErrorType.invalidVersion.toString(),
+            version: Version
+          };
         }
+
+        const { Settings, Result } = runData;
+        const { Character, PlayerType, Difficulty, Requests } = Settings;
+        const { Type, Timestamp, Exhibits } = Result;
+
+        const array = [
+          Character,
+          PlayerType,
+          Difficulty,
+          Requests,
+          Type,
+          Timestamp,
+          Exhibits
+        ] as Array<unknown>;
+        if (array.includes(undefined)) {
+          return {
+            error: ErrorType.invalidFile.toString()
+          };
+        }
+
+        setPreviewData(runData);
       }
       catch (_) {
-        error = {
+        return {
           error: ErrorType.unknownError.toString()
         };
       }
     }
     catch (_) {
-      error = {
+      return {
         error: ErrorType.invalidFile.toString()
       };
-    }
-    finally {
-      return { error, runData, Version, Id };
     }
   }
 
@@ -191,7 +200,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     }
   }
 
-  return { onDrop, reset };
+  return { onDrop, upload, reset };
 }
 
 export default useUploader;

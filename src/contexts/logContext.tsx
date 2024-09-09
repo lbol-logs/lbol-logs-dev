@@ -1,3 +1,4 @@
+import { defaultRunData } from 'configs/globals';
 import holdingsReducer from 'hooks/holdingsReducer';
 import { createContext, ReactNode, useReducer, useState } from 'react';
 import { TConfigsData, TDispatch } from 'utils/types/common';
@@ -5,7 +6,6 @@ import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } f
 
 const defaultIsRunDataLoaded = false;
 const defaultRunDataId = '';
-const defaultRunData = {} as TRunData;
 const defaultAct: TAct = 0;
 const defaultLevel: TLevel = 0;
 const defaultIsStationsLoaded = false;

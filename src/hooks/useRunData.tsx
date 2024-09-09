@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 import { validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
-import { logConfigs } from 'configs/globals';
+import { defaultRunData, logConfigs } from 'configs/globals';
 import { TConfigsData, TObjAny } from 'utils/types/common';
 
 function useRunData(id: string)  {
@@ -22,7 +22,7 @@ function useRunData(id: string)  {
   } = configsData;
 
   function getRunData(): [TRunData, boolean] {
-    let runData = {} as TRunData;
+    let runData = defaultRunData;
     let isValidRunData = false;
 
     if (id) {

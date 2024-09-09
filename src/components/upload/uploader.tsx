@@ -3,14 +3,21 @@ import { useDropzone } from 'react-dropzone';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import useUploader from 'hooks/useUploader';
+import { defaultRunData } from 'configs/globals';
+import { getResultData, validateRunData } from 'utils/functions/helpers';
+import ResultWidget from 'components/common/parts/resultWidget';
+import RequestsWidget from 'components/common/parts/requestsWidget';
+import useVersion from 'hooks/useVersion';
 
 function Uploader() {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
+  const [previewData, setPreviewData] = useState(defaultRunData);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [, setSearchParams] = useSearchParams();
+  const { onDrop, upload, reset } = useUploader(setSearchParams, setIsUploading, previewData, setPreviewData);
 
-  const { onDrop, reset } = useUploader(setSearchParams, setIsUploading);
+  useVersion();
 
   const options = {
     onDrop,
@@ -36,13 +43,44 @@ function Uploader() {
     return className;
   }, [isFocused, isDragAccept, isDragReject]);
 
-  return (
-    <>
+  let preview = null;
+  let processing = null;
+  let buttons = null;
+
+  const isValidRunData = validateRunData(previewData);
+  const hasError = searchParams.get('error');
+
+  if (isValidRunData) {
+    preview = (
+      <div className="p-upload__preview">
+        <ResultWidget resultData={getResultData(previewData)} />
+        <RequestsWidget requests={previewData.Settings.Requests} />
+      </div>
+    );
+  }
+
+  if (isUploading) {
+    buttons = (
       <div className="p-upload__buttons">
-        <button className="p-upload__button p-upload__button--upload" /*onClick={apply}*/>{t('upload', { ns: 'site' })}</button>
+        {(isValidRunData && !hasError) && <button className="p-upload__button p-upload__button--upload" onClick={upload}>{t('upload', { ns: 'site' })}</button>}
         <button className="p-upload__button p-upload__button--reset" onClick={reset}>{t('reset', { ns: 'runList' })}</button>
       </div>
-      <div className={`p-file ${isUploading ? 'p-file--uploading' : ''}`}>
+    );
+  }
+
+  const isProcessing = isValidRunData && !isUploading;
+  if (isProcessing) {
+    processing = (
+      <p className="p-upload__processing">{t('processing', { ns: 'common' })}</p>
+    )
+  }
+
+  return (
+    <>
+      {preview}
+      {processing}
+      {buttons}
+      <div className={`p-file ${(isUploading || isProcessing) ? 'p-file--uploading' : ''}`}>
         <div {...getRootProps({ className })}>
           <input {...getInputProps()} />
           <p>

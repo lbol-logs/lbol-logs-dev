@@ -1,4 +1,5 @@
 import { TObj, TObjString } from 'utils/types/common';
+import { TRunData } from 'utils/types/runData';
 
 const languages: TObj<TObjString> = {
   en: {
@@ -102,6 +103,8 @@ const resultTypes: TObjString = {
   TrueEnd: 'TrueEnd'
 };
 
+const defaultRunData = {} as TRunData;
+
 export {
   languages,
   namespaces,
@@ -122,5 +125,6 @@ export {
   commonConfigs,
   logConfigs,
   enemiesShowDetails,
-  resultTypes
+  resultTypes,
+  defaultRunData
 };

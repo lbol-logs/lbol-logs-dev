@@ -150,8 +150,7 @@ input {
 }
 
 .p-file--uploading {
-  cursor: not-allowed;
-  visibility: hidden;
+  display: none;
 }
 .p-file-zone {
   flex: 1;
@@ -169,9 +168,6 @@ input {
   margin: 1em 0;
   user-select: none;
   cursor: pointer;
-}
-.p-file--uploading .p-file-zone {
-  pointer-events: none;
 }
 .p-file-zone--focused {
   border-color: var(--blue);
