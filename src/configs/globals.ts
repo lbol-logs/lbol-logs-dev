@@ -95,6 +95,13 @@ const enemiesShowDetails: Array<string> = [
   'Seija'
 ];
 
+const resultTypes: TObjString = {
+  Failure: 'Failure',
+  NormalEnd: 'Normal',
+  TrueEndFail: 'Normal',
+  TrueEnd: 'TrueEnd'
+};
+
 export {
   languages,
   namespaces,
@@ -114,5 +121,6 @@ export {
   defaultHoldingsHeight,
   commonConfigs,
   logConfigs,
-  enemiesShowDetails
+  enemiesShowDetails,
+  resultTypes
 };

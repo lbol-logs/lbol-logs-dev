@@ -4,7 +4,8 @@ class DefaultFilter {
     sc: 'sc',
     et: 'et',
     rt: 'rt',
-    rq: 'rq'
+    rq: 'rq',
+    re: 're'
   };
 
   static et = {

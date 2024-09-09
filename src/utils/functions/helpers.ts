@@ -1,4 +1,5 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
+import { resultTypes } from 'configs/globals';
 import { TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
 import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
@@ -105,6 +106,10 @@ function getLogLink(version: string, id: string) {
   return `/${version}/${id}/`;
 }
 
+function getResultType(result: string) {
+  return resultTypes[result];
+}
+
 export {
   checkForce,
   validateRunData,
@@ -121,5 +126,6 @@ export {
   applyRate,
   getExhibitId,
   concatObjects,
-  getLogLink
+  getLogLink,
+  getResultType
 };
