@@ -20,38 +20,9 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
         reset();
         setIsUploading(true);
         const text = reader.result as string;
-        const { error, runData, Version, Id } = validateUpload(text);
-        if (error) {
-          setSearchParams(error, { replace: true });
-        }
-        else {
-          const version = Version as string;
-          const id = Id as string;
-          const { error, isOnGithub, url } = await checkGithub(version, id);
-          if (error) {
-            setSearchParams(error, { replace: true });
-          }
-          else {
-            if (isOnGithub) {
-              const error = {
-                error: ErrorType.alreadyExist.toString(),
-                url: encodeURIComponent(url)
-              };
-              setSearchParams(error, { replace: true });
-            }
-            else {
-              const { error, isNew, url } = await checkGas({ version, id, runData: runData as TRunData });
-              const _url = url && encodeURIComponent(url);
-              if (error) {
-                if (!isNew) Object.assign(error, { url: _url });
-                setSearchParams(error, { replace: true });
-              }
-              else {
-                setSearchParams({ success: _url as string }, { replace: true });
-              }
-            }
-          }
-        }
+
+        await tryUpload(text);
+
         setIsUploading(false);
       };
 
@@ -62,6 +33,41 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
   function reset() {
     setIsUploading(false);
     setSearchParams({}, { replace: true });
+  }
+
+  async function tryUpload(text: string) {
+    var { error: e, runData, Version, Id } = validateUpload(text);
+    if (e) {
+      setSearchParams(e, { replace: true });
+      return;
+    }
+
+    const version = Version as string;
+    const id = Id as string;
+    var { error, isOnGithub, url } = await checkGithub(version, id);
+    if (error) {
+      setSearchParams(error, { replace: true });
+      return;
+    }
+
+    if (isOnGithub) {
+      const error = {
+        error: ErrorType.alreadyExist.toString(),
+        url: encodeURIComponent(url)
+      };
+      setSearchParams(error, { replace: true });
+      return;
+    }
+
+    var { error, isNew, url } = await checkGas({ version, id, runData: runData as TRunData });
+    url = encodeURIComponent(url);
+    if (error) {
+      if (!isNew) Object.assign(error, { url });
+      setSearchParams(error, { replace: true });
+    }
+    else {
+      setSearchParams({ success: url as string }, { replace: true });
+    }
   }
 
   function validateUpload(text: string) {
@@ -160,7 +166,8 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
   }
   
   async function checkGas({ version, id, runData }: { version: string, id: string, runData: TRunData }) {
-    let error, isNew, url;
+    let error, isNew;
+    const url = getLogLink(version, id);
     const options = {
       method: 'POST',
       body: JSON.stringify(runData)
@@ -174,7 +181,6 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
           error: ErrorType.alreadyExist.toString()
         };
       }
-      url = getLogLink(version, id);
     }
     catch (_) {
       error = {
