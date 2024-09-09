@@ -878,7 +878,7 @@ html:lang(en) .p-result__type {
 .p-result__timestamp {
   color: var(--f-white);
   left: var(--left);
-  bottom: 15%;
+  bottom: 13%;
 }
 .p-result__exhibit {
   right: 10%;
