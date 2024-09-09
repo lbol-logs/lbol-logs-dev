@@ -20,9 +20,7 @@ function RemiliaMeet({ station }: { station: TStation }) {
   const { current, next: options } = configs;
   const { cards: _cards, misfortune, exhibit } = eventConfigs;
 
-  const choices = Object.keys(options);
-  const i = choices.indexOf(HasExhibit ? '1_invalid' : '1');
-  choices.splice(i, 1);
+  const choices = [0, HasExhibit ? '1_invalid' : 1, 2];
 
   const [next] = getNext(options, choices);
   const chosen = Choices[0];
