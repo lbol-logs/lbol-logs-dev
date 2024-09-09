@@ -1,7 +1,9 @@
 import { TStatus } from 'utils/types/runData';
 import { HpWidget, MoneyImage, PowerImage } from './stationWidgets';
 
-function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus }) {
+function StatusWidget({ status, lastStatus }: { status: TStatus, lastStatus: TStatus }) {
+  if (!status) return null;
+  
   const { Hp, MaxHp } = status;
 
   const _getValuWithChange = (key: keyof TStatus) => {
@@ -30,7 +32,7 @@ function Statuses({ status, lastStatus }: { status: TStatus, lastStatus: TStatus
   );
 }
 
-export default Statuses;
+export default StatusWidget;
 
 function getValuWithChange(value: number, lastValue: number | undefined) {
   let change;
