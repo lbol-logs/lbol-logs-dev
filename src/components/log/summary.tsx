@@ -11,6 +11,7 @@ import ShowRandomResultWidget from './parts/showRandomResultWidget';
 import IsAutoSeedWidget from './parts/isAutoSeedWidget';
 import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
+import { getResultData } from 'utils/functions/helpers';
 
 function Summary() {
   const { runData, isRunDataLoaded } = useContext(LogContext);
@@ -18,10 +19,9 @@ function Summary() {
   if (!isRunDataLoaded) return <Loading />;
 
   const { Version, Settings, Result } = runData;
-  const { Character, PlayerType, Requests, Difficulty, ShowRandomResult, IsAutoSeed, Mods } = Settings;
-  const { Type, Timestamp, Cards, Exhibits, BaseMana, Seed, ReloadTimes } = Result;
-  const exhibit = Exhibits[0];
-  const resultData = { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests };
+  const { Requests, ShowRandomResult, IsAutoSeed, Mods } = Settings;
+  const { Cards, Exhibits, BaseMana, Seed, ReloadTimes } = Result;
+  const resultData = getResultData(runData);
 
   return (
     <section className="p-summary">

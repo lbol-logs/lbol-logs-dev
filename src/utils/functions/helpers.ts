@@ -110,6 +110,15 @@ function getResultType(result: string) {
   return resultTypes[result];
 }
 
+function getResultData(runData: TRunData) {
+  const { Settings, Result } = runData;
+  const { Character, PlayerType, Requests, Difficulty } = Settings;
+  const { Type, Timestamp, Exhibits } = Result;
+  const exhibit = Exhibits[0];
+  const resultData = { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests };
+  return resultData;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -127,5 +136,6 @@ export {
   getExhibitId,
   concatObjects,
   getLogLink,
-  getResultType
+  getResultType,
+  getResultData
 };
