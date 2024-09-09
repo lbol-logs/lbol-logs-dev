@@ -55,20 +55,20 @@ function KeineSales({ station }: { station: TStation }) {
       const { current, next: options } = configs[1];
       const { Questions } = Data;
       const { exhibits: _exhibits } = eventConfigs;
-  
+
       const [next] = getNext(options, Questions);
-  
+
       let exhibits: Array<TExhibits> = [];
-  
+
       exhibits = Questions.map((question: number) => [_exhibits[question]]);
-  
+
       const dialogueConfigs: TDialogueConfigs = {
         current,
         next,
         chosen,
         exhibits
       };
-  
+
       second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }

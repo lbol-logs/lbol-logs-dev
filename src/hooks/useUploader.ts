@@ -1,13 +1,13 @@
-import { gasUrl, versions } from 'configs/globals';
+import { defaultRunData, gasUrl, versions } from 'configs/globals';
 import { useCallback } from 'react';
 import { SetURLSearchParams } from 'react-router-dom';
 import { getLogUrl } from 'utils/functions/fetchData';
 import { getLogLink, validateRunData } from 'utils/functions/helpers';
-import { TDispatch, TObjAny } from 'utils/types/common';
+import { TDispatch, TObjString } from 'utils/types/common';
 import { ErrorType } from 'utils/types/others';
 import { TRunData } from 'utils/types/runData';
 
-function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispatch<boolean>) {
+function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispatch<boolean>, previewData: TRunData, setPreviewData: TDispatch<TRunData>) {
   const onDrop = useCallback((acceptedFiles: Array<File>) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader();
@@ -16,125 +16,139 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
 
       reader.onerror = () => reset();
 
-      reader.onload = async () => {
+      reader.onload = () => {
         reset();
         setIsUploading(true);
         const text = reader.result as string;
-        const { error, runData, Version, Id } = validateUpload(text);
+        const error = validateFile(text);
         if (error) {
-          setSearchParams(error, { replace: true });
+          setSearchParams(error as TObjString, { replace: true });
+          return;
         }
-        else {
-          const version = Version as string;
-          const id = Id as string;
-          const { error, isOnGithub, url } = await checkGithub(version, id);
-          if (error) {
-            setSearchParams(error, { replace: true });
-          }
-          else {
-            if (isOnGithub) {
-              const error = {
-                error: ErrorType.alreadyExist.toString(),
-                url: encodeURIComponent(url)
-              };
-              setSearchParams(error, { replace: true });
-            }
-            else {
-              const { error, isNew, url } = await checkGas({ version, id, runData: runData as TRunData });
-              const _url = url && encodeURIComponent(url);
-              if (error) {
-                if (!isNew) Object.assign(error, { url: _url });
-                setSearchParams(error, { replace: true });
-              }
-              else {
-                setSearchParams({ success: _url as string }, { replace: true });
-              }
-            }
-          }
-        }
-        setIsUploading(false);
       };
-
       reader.readAsText(file);
-    });    
+    });
   }, []);
+
+  async function upload() {
+    setIsUploading(false);
+    await tryUpload();
+  }
 
   function reset() {
     setIsUploading(false);
+    setPreviewData(defaultRunData);
     setSearchParams({}, { replace: true });
   }
 
-  function validateUpload(text: string) {
-    let error: TObjAny | undefined, runData, Version, Id;
+  async function tryUpload() {
+    const runData = previewData;
+    const { Version } = runData;
+    const id = getId(runData);
+    
+    {
+      const { error, isOnGithub, url } = await checkGithub(Version, id);
+      if (error) {
+        setSearchParams(error, { replace: true });
+        return;
+      }
 
+      if (isOnGithub) {
+        const error = {
+          error: ErrorType.alreadyExist.toString(),
+          url: encodeURIComponent(url)
+        };
+        setSearchParams(error, { replace: true });
+        return;
+      }
+    }
+
+    {
+      const { error, isNew, url: _url } = await checkGas({ version: Version, id, runData });
+      const url = encodeURIComponent(_url);
+      if (error) {
+        if (!isNew) Object.assign(error, { url });
+        setSearchParams(error, { replace: true });
+      }
+      else {
+        setSearchParams({ success: url as string }, { replace: true });
+      }
+    }
+
+    setPreviewData(defaultRunData);
+  }
+
+  function getId(runData: TRunData) {
+    const { Settings, Result } = runData;
+    const { Character, PlayerType, Difficulty, Requests } = Settings;
+    const { Type, Timestamp, Exhibits } = Result;
+    const shining = Exhibits[0];
+    const key = [
+      Timestamp.replace(/:/g, '-'),
+      Character,
+      PlayerType,
+      shining,
+      Difficulty[0] + Requests.length,
+      Type
+    ].join('_');
+    const id = encodeURIComponent(key);
+    return id;
+  }
+
+  function validateFile(text: string) {
     try {
-      runData = JSON.parse(text) as TRunData;
+      const runData = JSON.parse(text) as TRunData;
 
       try {
         if (!validateRunData(runData)) {
-          error = {
+          return {
             error: ErrorType.invalidFile.toString()
           };
         }
-        else {
-          ({ Version } = runData);
-          if (!versions.includes(Version)) {
-            error = {
-              error: ErrorType.invalidVersion.toString(),
-              version: Version
-            };
-          }
-          else {
-            const { Settings, Result } = runData;
-            const { Character, PlayerType, Difficulty, Requests } = Settings;
-            const { Type, Timestamp, Exhibits } = Result;
-  
-            const array = [
-              Character,
-              PlayerType,
-              Difficulty,
-              Requests,
-              Type,
-              Timestamp,
-              Exhibits
-            ] as Array<unknown>;
-            if (array.includes(undefined)) {
-              error = {
-                error: ErrorType.invalidFile.toString()
-              };
-            }
-            else {
-              const shining = Exhibits[0];
-              const key = [
-                Timestamp.replace(/:/g, '-'),
-                Character,
-                PlayerType,
-                shining,
-                Difficulty[0] + Requests.length,
-                Type
-              ].join('_');
-              Id = encodeURIComponent(key);
-            }
-          }
+
+        const { Version } = runData;
+        if (!versions.includes(Version)) {
+          return {
+            error: ErrorType.invalidVersion.toString(),
+            version: Version
+          };
         }
+
+        const { Settings, Result } = runData;
+        const { Character, PlayerType, Difficulty, Requests } = Settings;
+        const { Type, Timestamp, Exhibits } = Result;
+
+        const array = [
+          Character,
+          PlayerType,
+          Difficulty,
+          Requests,
+          Type,
+          Timestamp,
+          Exhibits
+        ] as Array<unknown>;
+        if (array.includes(undefined)) {
+          return {
+            error: ErrorType.invalidFile.toString()
+          };
+        }
+
+        setPreviewData(runData);
       }
       catch (_) {
-        error = {
+        return {
           error: ErrorType.unknownError.toString()
         };
       }
     }
     catch (_) {
-      error = {
+      return {
         error: ErrorType.invalidFile.toString()
       };
     }
-    finally {
-      return { error, runData, Version, Id };
-    }
   }
 
-  async function checkGithub(version: string, id: string) { 
+  async function checkGithub(version: string, id: string) {
     const url = getLogLink(version, id);
     let error, isOnGithub;
     try {
@@ -158,9 +172,10 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
       return { error, isOnGithub, url };
     }
   }
-  
+
   async function checkGas({ version, id, runData }: { version: string, id: string, runData: TRunData }) {
-    let error, isNew, url;
+    let error, isNew;
+    const url = getLogLink(version, id);
     const options = {
       method: 'POST',
       body: JSON.stringify(runData)
@@ -174,7 +189,6 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
           error: ErrorType.alreadyExist.toString()
         };
       }
-      url = getLogLink(version, id);
     }
     catch (_) {
       error = {
@@ -186,7 +200,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     }
   }
 
-  return onDrop;
+  return { onDrop, upload, reset };
 }
 
 export default useUploader;

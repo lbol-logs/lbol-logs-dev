@@ -44,8 +44,6 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
   }
 
   function validateActLevel(a: TAct, l: TLevel) {
-    // TODO: strict
-    // if (Act < a || (Act === a && Level < l)) throw new Error(`Invalid holding dispatch. Current: Act ${Act} Level ${Level}, Last: Act ${a} Level ${l}`);
     const isCurrentHolding = Act === a && Level === l;
     return isCurrentHolding;
   }

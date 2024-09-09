@@ -1,5 +1,5 @@
 import DefaultFilter from 'utils/classes/DefaultFilter';
-import { compareArrays, copyObject } from 'utils/functions/helpers';
+import { compareArrays, copyObject, getResultType } from 'utils/functions/helpers';
 import { TObj } from 'utils/types/common';
 import { TFilter, TRunList, TRunListItem } from 'utils/types/others';
 import { TRequests } from 'utils/types/runData';
@@ -43,6 +43,9 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter) {
       }
       else if (key === keys.rq) {
         filteredList = filteredList.filter(e => compareArrays(value, e[map[key]] as TRequests));
+      }
+      else if (key === keys.re) {
+        filteredList = filteredList.filter(e => value.includes(getResultType(e[map[key]] as string)));
       }
       else {
         filteredList = filteredList.filter(e => value.includes(e[map[key]] as string));

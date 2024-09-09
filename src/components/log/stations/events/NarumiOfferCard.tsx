@@ -58,7 +58,7 @@ function NarumiOfferCard({ station }: { station: TStation }) {
       values = { 0: maxhp };
     }
     props[0] = { values };
-  
+
     const dialogueConfigs: TDialogueConfigs = {
       current,
       next,

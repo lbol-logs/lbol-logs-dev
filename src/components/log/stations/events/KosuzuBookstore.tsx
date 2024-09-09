@@ -53,11 +53,11 @@ function KosuzuBookstore({ station }: { station: TStation }) {
       const { money } = eventConfigs;
 
       const choices: Array<number | string> = [0];
-  
+
       const currentComponents = { 0: money };
       const props: Array<TObjAny> = [];
       const exhibits: Array<TExhibits> = [];
-  
+
       const values = { 0: money };
       props[0] = { values };
 
@@ -73,7 +73,7 @@ function KosuzuBookstore({ station }: { station: TStation }) {
       }
 
       const [next, invalids] = getNext(options, choices);
-    
+
       const dialogueConfigs: TDialogueConfigs = {
         current,
         currentComponents,
@@ -83,7 +83,7 @@ function KosuzuBookstore({ station }: { station: TStation }) {
         invalids,
         exhibits
       };
-  
+
       second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }

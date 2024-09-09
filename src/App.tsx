@@ -3,17 +3,16 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import CommonProvider from 'contexts/commonContext';
-import { baseUrl, languages } from 'configs/globals';
+import { baseUrl } from 'configs/globals';
 import RemoveTrailingSlash from 'components/common/utils/removeTrailingSlash';
 import Top from 'components/top';
 import Log from 'components/log';
 import About from 'components/about';
 import Upload from 'components/upload';
-import useVersion from 'hooks/useVersion';
 
 function Layout() {
   const { t } = useTranslation();
-  const { lang } = languages[i18next.language];
+  const lang = i18next.language;
   const title = t('title', { ns: 'site' });
   const substitle = t('subtitle', { ns: 'site' });
 
@@ -78,7 +77,6 @@ function App() {
     }
   ];
   const router = createBrowserRouter(routes);
-  useVersion();
 
   return (
     <RouterProvider router={router} />

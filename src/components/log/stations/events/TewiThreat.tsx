@@ -49,12 +49,12 @@ function TewiThreat({ station }: { station: TStation }) {
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
       const { card, misfortune } = eventConfigs;
-  
+
       const [next] = getNext(options);
-  
+
       const props: Array<TObjAny> = [];
       const cards: Array<TCards> = [];
-  
+
       {
         const values = { 0: moneys[0] };
         props[0] = { values };
@@ -65,7 +65,7 @@ function TewiThreat({ station }: { station: TStation }) {
         props[1] = { values };
       }
       cards[2] = convertCards([misfortune]);
-  
+
       const dialogueConfigs: TDialogueConfigs = {
         current,
         next,
@@ -73,7 +73,7 @@ function TewiThreat({ station }: { station: TStation }) {
         props,
         cards
       };
-  
+
       second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }

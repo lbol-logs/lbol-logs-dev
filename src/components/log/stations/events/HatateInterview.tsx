@@ -42,9 +42,9 @@ function HatateInterview({ station }: { station: TStation }) {
       const { current, next: options } = configs[1];
       const { Values } = Data;
       const { cards: _cards, misfortune } = eventConfigs;
-  
+
       const [next] = getNext(options);
-  
+
       const props: Array<TObjAny> = [];
       const cards: Array<TCards> = [];
 
@@ -52,7 +52,7 @@ function HatateInterview({ station }: { station: TStation }) {
         if (i === 2) cards[i] = convertCards([card, misfortune]);
         else cards[i] = convertCards([card]);
       });
-  
+
       {
         const values = { 1: Values[0] };
         props[1] = { values };
@@ -69,7 +69,7 @@ function HatateInterview({ station }: { station: TStation }) {
         props,
         cards
       };
-  
+
       second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }

@@ -62,17 +62,17 @@ function YorigamiSisters({ station }: { station: TStation }) {
     const chosen = Choices[1];
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
-  
+
       const [next] = getNext(options);
-  
+
       const props: Array<TObjAny> = [];
       const cards: Array<TCards> = [];
-  
+
       const values = { 0: money };
       props[0] = { values };
 
       cards[1] = convertCards([misfortune]);
-  
+
       const dialogueConfigs: TDialogueConfigs = {
         current,
         next,
@@ -80,7 +80,7 @@ function YorigamiSisters({ station }: { station: TStation }) {
         props,
         cards
       };
-  
+
       second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }

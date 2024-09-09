@@ -6,8 +6,10 @@ import Footer from 'components/common/layouts/footer';
 import { Link } from 'react-router-dom';
 import ExternalLink from 'components/common/parts/externalLink';
 import Compatability from 'components/common/parts/compatability';
+import useVersion from 'hooks/useVersion';
 
 function About() {
+  useVersion();
   const { t } = useTranslation();
   const { discord } = languages[i18next.language];
 

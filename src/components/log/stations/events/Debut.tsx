@@ -3,7 +3,7 @@ import { getEnemyImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TObjAny } from 'utils/types/common';
+import { TObj, TObjAny } from 'utils/types/common';
 import { applyRate, convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import EventHead from '../parts/eventHead';
@@ -31,7 +31,7 @@ function Debut({ station }: { station: TStation }) {
   {
     const { current, next: _next } = configs[0];
 
-    const options = {
+    const options: TObj<string | number> = {
       0: 'money'
     };
     if (HasClearBonus && Options) {
@@ -63,31 +63,31 @@ function Debut({ station }: { station: TStation }) {
           exhibits[i] = [Shining];
           break;
         }
-        case '0': {
+        case 0: {
           const { UncommonCards } = Data
           if (!UncommonCards) break;
           cards[i] = convertCards(UncommonCards);
           break;
         }
-        case '1': {
+        case 1: {
           const { RareCard } = Data;
           if (!RareCard) break;
           cards[i] = convertCards([RareCard]);
           break;
         }
-        case '2': {
+        case 2: {
           const { RareExhibit } = Data;
           if (!RareExhibit) break;
           exhibits[i] = [RareExhibit];
           break;
         }
-        case '3': {
+        case 3: {
           break;
         }
-        case '4': {
+        case 4: {
           break;
         }
-        case '5': {
+        case 5: {
           const { TransformCard } = Data;
           if (!TransformCard) break;
           cards[i] = convertCards([TransformCard]);

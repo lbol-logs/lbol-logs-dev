@@ -146,6 +146,10 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
       const value = data.get(key);
       if (value === DefaultFilter.check(key)) data.delete(key);
     }
+    for (const key of DefaultFilter.texts) {
+      const value = data.get(key);
+      if (value === '') data.delete(key);
+    }
     data.delete(DefaultFilter.et.co);
     return data;
   }

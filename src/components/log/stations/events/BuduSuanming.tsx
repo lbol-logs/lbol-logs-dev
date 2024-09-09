@@ -64,8 +64,6 @@ function BuduSuanming({ station }: { station: TStation }) {
         case 2:
           const { Exhibit } = Data;
           text = t(Exhibit, { ns: 'exhibits' });
-        // case 2:
-        //   const { }
       }
       const currentComponents = { 0: text };
 
@@ -75,7 +73,7 @@ function BuduSuanming({ station }: { station: TStation }) {
         next: [],
         chosen: 0
       };
-  
+
       second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }

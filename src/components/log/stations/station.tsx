@@ -1,7 +1,7 @@
 import { RefObject, useContext, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { TActObj, TStation, TStatus } from 'utils/types/runData';
-import Statuses from './parts/statuses';
+import StatusWidget from './parts/statuses';
 import { LogContext } from 'contexts/logContext';
 import StationType from './stationTypes/stationType';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
@@ -54,7 +54,7 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
           />
         </h3>
         <LazyLoadImage2 className="p-station__icon" callback={callback} name={type} alt={t(`stations.${Type}`, { ns: 'log' })} />
-        <Statuses status={Status} lastStatus={lastStatus as TStatus} />
+        <StatusWidget status={Status} lastStatus={lastStatus as TStatus} />
       </div>
 
       <StationType station={station} />

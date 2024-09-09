@@ -71,13 +71,13 @@ function MiyoiBartender({ station }: { station: TStation }) {
     const chosen = Choices[1];
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
-  
+
       const [next] = getNext(options);
-  
+
       const exhibits: Array<TExhibits> = [];
-  
+
       if (Exhibit) exhibits[0] = [Exhibit];
-  
+
       const dialogueConfigs: TDialogueConfigs = {
         current,
         next,
@@ -86,7 +86,7 @@ function MiyoiBartender({ station }: { station: TStation }) {
       };
 
       const enemies = configsData.enemyGroups[enemyGroupId];
-  
+
       second = (
         <>
           <EnemyCards enemies={enemies} />
