@@ -6,7 +6,7 @@ import { TObjAny } from 'utils/types/common';
 import ExhibitImage from './exhibitImage';
 import { getResultType } from 'utils/functions/helpers';
 
-function ResultWidget({ resultData }: { resultData: TObjAny }) {
+function ResultWidget({ resultData, name }: { resultData: TObjAny, name: string | undefined }) {
   const { t } = useTranslation();
   const { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests } = resultData;
   const { bg, avatar, height } = resultSizes;
@@ -20,6 +20,7 @@ function ResultWidget({ resultData }: { resultData: TObjAny }) {
 
   return (
     <div className="p-result u-text-shadow">
+      {name && <span className="p-result__name">{name}</span>}
       <LazyLoadImage2 className="p-result__avatar" callback={getResultImage} name={`${Character}${resultType}`} width={avatar} height={height} alt={`${character} ${type}`} />
       <LazyLoadImage2 className="p-result__spellcard" callback={getSpellcardImage} name={spellcard} alt={t(`spellcards.${spellcard}`, { ns: 'common' })} />
       <span className={`p-result__type p-result__type--${resultType}`}>{type}</span>

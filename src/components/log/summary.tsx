@@ -18,7 +18,7 @@ function Summary() {
   const { t } = useTranslation();
   if (!isRunDataLoaded) return <Loading />;
 
-  const { Version, Settings, Result } = runData;
+  const { Version, Name, Settings, Result } = runData;
   const { Requests, ShowRandomResult, IsAutoSeed, Mods } = Settings;
   const { Cards, Exhibits, BaseMana, Seed, ReloadTimes } = Result;
   const resultData = getResultData(runData);
@@ -27,7 +27,7 @@ function Summary() {
     <section className="p-summary">
       <div className="p-summary__head">
         <div className="p-summary__widgets">
-          <ResultWidget resultData={resultData} />
+          <ResultWidget resultData={resultData} name={Name} />
           <RequestsWidget requests={Requests} />
           <BaseManaWidget baseMana={BaseMana} />
         </div>

@@ -73,10 +73,12 @@ function RunList() {
         <div className="p-run-list__row p-run-list__row--header">
           <div className="p-run-list__cell p-run-list__cell--id">Id</div>
           <div className="p-run-list__cell p-run-list__cell--result-requests u-flex-col-sp">
-            <div className="p-run-list__cell--result">{t('result', { ns: 'runList' })}</div>
+            <div className="p-run-list__cell--result">
+              <span>{t('result', { ns: 'runList' })}</span>
+              <span>{t('name', { ns: 'runList' })}</span>
+            </div>
             <div className="p-run-list__cell--requests">
               <span>{t('requests', { ns: 'runList' })}</span>
-              <span>{t('name', { ns: 'runList' })}</span>
             </div>
           </div>
         </div>
@@ -99,11 +101,10 @@ function RunList() {
               <div className="p-run-list__cell p-run-list__cell--id">{ids[id]}</div>
               <div className="p-run-list__cell p-run-list__cell--result-requests u-flex-col-sp">
                 <div className=" p-run-list__cell--result">
-                  <ResultWidget resultData={resultData} />
+                  <ResultWidget resultData={resultData} name={name} />
                 </div>
                 <div className="p-run-list__cell--requests">
                   <RequestsWidget requests={Requests as TRequests} />
-                  {name}
                 </div>
               </div>
             </Link>

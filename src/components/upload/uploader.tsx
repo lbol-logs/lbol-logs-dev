@@ -51,10 +51,13 @@ function Uploader() {
   const hasError = searchParams.get('error');
 
   if (isValidRunData) {
+    const { Name } = previewData;
+    const { Requests } = previewData.Settings;
+
     preview = (
       <div className="p-upload__preview">
-        <ResultWidget resultData={getResultData(previewData)} />
-        <RequestsWidget requests={previewData.Settings.Requests} />
+        <ResultWidget resultData={getResultData(previewData)} name={Name} />
+        <RequestsWidget requests={Requests} />
       </div>
     );
   }

@@ -228,13 +228,13 @@ input {
 .p-run-list__cell--result {
   width: var(--result-width);
 }
-.p-run-list__cell--requests {
-  width: calc(var(--dot-size) * 13);
-}
-.p-run-list__row--header .p-run-list__cell--requests {
+.p-run-list__row--header .p-run-list__cell--result {
   display: flex;
   column-gap: 1em;
   justify-content: center;
+}
+.p-run-list__cell--requests {
+  width: calc(var(--dot-size) * 13);
 }
 
 .c-log__processing {
@@ -841,6 +841,14 @@ html:lang(en) .c-entity__text {
 .p-result > * {
   position: absolute;
   z-index: 2;
+}
+.p-result__name {
+  bottom: 10%;
+  left: 0;
+  background: color-mix(in srgb, var(--f-black) 70%, transparent);
+  color: var(--f-white);
+  z-index: 3;
+  padding: 0 0.3em;
 }
 .p-result__background {
   position: relative;
