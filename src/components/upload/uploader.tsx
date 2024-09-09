@@ -7,7 +7,6 @@ import { defaultRunData } from 'configs/globals';
 import { getResultData, validateRunData } from 'utils/functions/helpers';
 import ResultWidget from 'components/common/parts/resultWidget';
 import RequestsWidget from 'components/common/parts/requestsWidget';
-import useVersion from 'hooks/useVersion';
 
 function Uploader() {
   const { t } = useTranslation();
@@ -16,8 +15,6 @@ function Uploader() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { onDrop, upload, reset } = useUploader(setSearchParams, setIsUploading, previewData, setPreviewData);
-
-  // useVersion();
 
   const options = {
     onDrop,
