@@ -977,13 +977,16 @@ html:lang(en) .p-result__type {
   gap: var(--gap);
 }
 
-.p-filter__buttons {
+.p-filter__buttons, .p-upload__buttons {
   display: flex;
   justify-content: center;
   column-gap: calc(var(--gap-col) * 4);
   margin: 0.5em 0;
 }
-.p-filter__button {
+.p-upload__buttons {
+  column-gap: 1em;
+}
+.p-filter__button, .p-upload__button {
   --color: var(--green);
   font-weight: bold;
   border-radius: 2em;
@@ -1001,11 +1004,14 @@ html:lang(en) .p-result__type {
   justify-content: center;
   align-items: center;
 }
-.p-filter__button--apply {
+.p-upload__button {
+  width: 8em;
+}
+.p-filter__button--apply, .p-upload__button--upload {
   background: var(--color);
   color: var(--white);
 }
-.p-filter__button--reset {
+.p-filter__button--reset, .p-upload__button--reset {
   border: 2px solid var(--color);
   color: var(--color);
 }

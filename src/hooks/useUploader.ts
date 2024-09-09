@@ -20,6 +20,11 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
         reset();
         setIsUploading(true);
         const text = reader.result as string;
+        const { error, runData, Version, Id } = validateFile(text);
+        if (error) {
+          setSearchParams(error, { replace: true });
+          return;
+        }
 
         await tryUpload(text);
 
@@ -27,7 +32,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
       };
 
       reader.readAsText(file);
-    });    
+    });
   }, []);
 
   function reset() {
@@ -36,12 +41,6 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
   }
 
   async function tryUpload(text: string) {
-    var { error: e, runData, Version, Id } = validateUpload(text);
-    if (e) {
-      setSearchParams(e, { replace: true });
-      return;
-    }
-
     const version = Version as string;
     const id = Id as string;
     var { error, isOnGithub, url } = await checkGithub(version, id);
@@ -70,7 +69,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     }
   }
 
-  function validateUpload(text: string) {
+  function validateFile(text: string) {
     let error: TObjAny | undefined, runData, Version, Id;
 
     try {
@@ -192,7 +191,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     }
   }
 
-  return onDrop;
+  return { onDrop, reset };
 }
 
 export default useUploader;
