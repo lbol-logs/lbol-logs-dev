@@ -423,11 +423,11 @@ input {
   flex-wrap: wrap;
   flex: 1;
   gap: 0.2em 0.5em;
+  align-content: flex-start;
 }
 .p-mod {
   flex-basis: calc((100% - 0.5em) / 2);
   display: grid;
-  grid-auto-rows: max-content;
   justify-content: space-between;
 }
 .p-mod__guid {
