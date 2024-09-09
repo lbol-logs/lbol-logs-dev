@@ -843,7 +843,7 @@ html:lang(en) .c-entity__text {
   z-index: 2;
 }
 .p-result__name {
-  bottom: 10%;
+  bottom: 13%;
   left: 0;
   background: color-mix(in srgb, var(--f-black) 70%, transparent);
   color: var(--f-white);
