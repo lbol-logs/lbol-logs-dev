@@ -56,21 +56,21 @@ function SatoriCounseling({ station }: { station: TStation }) {
     const chosen = Choices[1];
     if (chosen !== undefined) {
         const { current, next: options } = configs[1];
-    
+
         const [next] = getNext(options);
-    
+
         const props: Array<TObjAny> = [];
-    
+
         const components = { Player: <CharacterShortName /> };
         props[0] = { components };
-    
+
         const dialogueConfigs: TDialogueConfigs = {
           current,
           next,
           chosen,
           props
         };
-    
+
         second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }
@@ -79,15 +79,15 @@ function SatoriCounseling({ station }: { station: TStation }) {
     const chosen = Choices[2];
     if (chosen !== undefined) {
         const { current, next: options } = configs[2];
-    
+
         const [next] = getNext(options);
-    
+
         const dialogueConfigs: TDialogueConfigs = {
           current,
           next,
           chosen
         };
-    
+
         third = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }

@@ -93,7 +93,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
             const { Settings, Result } = runData;
             const { Character, PlayerType, Difficulty, Requests } = Settings;
             const { Type, Timestamp, Exhibits } = Result;
-  
+
             const array = [
               Character,
               PlayerType,
@@ -139,7 +139,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     }
   }
 
-  async function checkGithub(version: string, id: string) { 
+  async function checkGithub(version: string, id: string) {
     const url = getLogLink(version, id);
     let error, isOnGithub;
     try {
@@ -163,7 +163,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
       return { error, isOnGithub, url };
     }
   }
-  
+
   async function checkGas({ version, id, runData }: { version: string, id: string, runData: TRunData }) {
     let error, isNew;
     const url = getLogLink(version, id);

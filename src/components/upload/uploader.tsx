@@ -7,7 +7,7 @@ import useUploader from 'hooks/useUploader';
 function Uploader() {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
-  
+
   const [, setSearchParams] = useSearchParams();
 
   const { onDrop, reset } = useUploader(setSearchParams, setIsUploading);

@@ -47,16 +47,16 @@ function ParseeJealousy({ station }: { station: TStation }) {
       const { current, next: options } = configs[1];
       const { Exhibits } = Data;
       const { misfortune } = eventConfigs;
-  
+
       const [next] = getNext(options);
 
       const cards: Array<TCards> = [];
       const exhibits: Array<TExhibits> = [];
-  
+
       exhibits[0] = [Exhibits[0]];
       exhibits[1] = [Exhibits[1]];
       cards[2] = convertCards([misfortune]);
-  
+
       const dialogueConfigs: TDialogueConfigs = {
         current,
         next,
@@ -64,7 +64,7 @@ function ParseeJealousy({ station }: { station: TStation }) {
         cards,
         exhibits
       };
-  
+
       second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }

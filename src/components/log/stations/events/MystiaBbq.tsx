@@ -54,15 +54,15 @@ function MystiaBbq({ station }: { station: TStation }) {
     const chosen = Choices[1];
     if (chosen !== undefined) {
       const { current, next: options } = configs[1][Choices[0]];
-  
+
       const [next] = getNext(options);
-  
+
       const currentComponents = { 0: money };
       const props: Array<TObjAny> = [];
-  
+
       const values = { 0: money };
       props[0] = { values };
-  
+
       const dialogueConfigs: TDialogueConfigs = {
         current,
         currentComponents,
@@ -70,7 +70,7 @@ function MystiaBbq({ station }: { station: TStation }) {
         chosen,
         props
       };
-  
+
       second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }

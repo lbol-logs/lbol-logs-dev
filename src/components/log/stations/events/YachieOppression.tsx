@@ -52,13 +52,13 @@ function YachieOppression({ station }: { station: TStation }) {
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
       const { Money } = station.Rewards as TRewards;
-  
+
       const [next] = getNext(options);
-  
+
       const exhibits: Array<TExhibits> = [];
-  
+
       exhibits[0] = [Exhibit];
-  
+
       const dialogueConfigs: TDialogueConfigs = {
         current,
         next,
@@ -73,7 +73,7 @@ function YachieOppression({ station }: { station: TStation }) {
           {Money}
         </span>
       );
-  
+
       second = (
         <>
           <EnemyCards enemies={enemies} />

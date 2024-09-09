@@ -112,7 +112,7 @@ function useBackgroundDancers({ id, Data, configs, eventConfigs }: { id: string,
       const [nextLine] = getNext(_next, [option]);
       next[chosen] = nextLine[0];
       chosen = Choices[i];
-    
+
       const dialogueConfigs: TDialogueConfigs = {
         current,
         next,
@@ -127,7 +127,7 @@ function useBackgroundDancers({ id, Data, configs, eventConfigs }: { id: string,
       Object.assign(options, { [chosen]: Options[3 + i] });
     }
   }
-  
+
   return dialogues;
 }
 

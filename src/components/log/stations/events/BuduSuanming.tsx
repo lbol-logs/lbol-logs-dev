@@ -75,7 +75,7 @@ function BuduSuanming({ station }: { station: TStation }) {
         next: [],
         chosen: 0
       };
-  
+
       second = <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />;
     }
   }
