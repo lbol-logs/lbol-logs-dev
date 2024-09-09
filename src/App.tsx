@@ -3,7 +3,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import CommonProvider from 'contexts/commonContext';
-import { baseUrl, languages } from 'configs/globals';
+import { baseUrl } from 'configs/globals';
 import RemoveTrailingSlash from 'components/common/utils/removeTrailingSlash';
 import Top from 'components/top';
 import Log from 'components/log';
