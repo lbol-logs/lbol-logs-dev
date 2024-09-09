@@ -12,7 +12,7 @@ import Upload from 'components/upload';
 
 function Layout() {
   const { t } = useTranslation();
-  const { lang } = languages[i18next.language];
+  const lang = i18next.language;
   const title = t('title', { ns: 'site' });
   const substitle = t('subtitle', { ns: 'site' });
 

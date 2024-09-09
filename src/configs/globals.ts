@@ -4,23 +4,19 @@ import { TRunData } from 'utils/types/runData';
 const languages: TObj<TObjString> = {
   en: {
     label: 'EN',
-    lang: 'en',
     discord: 'https://discord.com/channels/1040229874176098344/1267772366054887506'
   },
   ja: {
     label: '日本語',
-    lang: 'ja',
     discord: 'https://discord.com/channels/1040229874176098344/1267772986254163990'
   },
   // TODO
-  // "zh-cmn-Hant": {
+  // 'zh-cmn-Hant': {
   //   label: '繁中',
-  //   lang: 'zh-cmn-Hant',
   //   discord: 'https://discord.com/channels/1040229874176098344/1282271721898115163'
   // },
-  // "zh-cmn-Hans": {
+  // 'zh-cmn-Hans': {
   //   label: '简中',
-  //   lang: 'zh-cmn-Hans',
   //   discord: 'https://discord.com/channels/1040229874176098344/1282271721898115163'
   // }
 };
