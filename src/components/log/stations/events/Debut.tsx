@@ -51,7 +51,6 @@ function Debut({ station }: { station: TStation }) {
 
     Object.entries(options).forEach(([key, option]) => {
       const i = Number(key);
-      console.log({key, i, option});
       switch (option) {
         case 'money': {
             const values = { 0: eventConfigs.money };

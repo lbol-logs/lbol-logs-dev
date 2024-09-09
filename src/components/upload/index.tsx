@@ -4,9 +4,15 @@ import Compatability from 'components/common/parts/compatability';
 import Uploader from './uploader';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
+import { Suspense, useContext } from 'react';
+import Loading from 'components/common/layouts/loading';
+import { CommonContext } from 'contexts/commonContext';
+import useVersion from 'hooks/useVersion';
 
 function Upload() {
+  const { version } = useContext(CommonContext);
   const [searchParams] = useSearchParams();
+  useVersion(version);
   useTranslation();
 
   let _success = null;
@@ -64,7 +70,9 @@ function Upload() {
               </div>
               {_success}
               {_error}
+              <Suspense fallback={<Loading />}>
               <Uploader />
+              </Suspense>
             </section>
         </div>
       </main>

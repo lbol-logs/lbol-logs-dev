@@ -7,7 +7,6 @@ import { TRequests } from 'utils/types/runData';
 function RequestsWidget({ requests, onChange }: { requests: TRequests, onChange?: ChangeEventHandler }) {
   const { t } = useTranslation();
   const { configsData } = useContext(CommonContext);
-
   const requestConfigs: TRequests = Object.keys(configsData.requests) as TRequests;
 
   return (

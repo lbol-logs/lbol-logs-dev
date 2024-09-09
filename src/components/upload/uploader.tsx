@@ -17,7 +17,7 @@ function Uploader() {
 
   const { onDrop, upload, reset } = useUploader(setSearchParams, setIsUploading, previewData, setPreviewData);
 
-  useVersion();
+  // useVersion();
 
   const options = {
     onDrop,
