@@ -8,7 +8,7 @@
 
 | Repo | Desc |
 | --- | --- |
-| lbol-logs-dev (this)| react app project |
+| lbol-logs-dev (this)| React App project |
 | [lbol-logs.gothub.io](https://github.com/lbol-logs/lbol-logs.github.io/) | GitHub page deploy |
 | [assets](https://github.com/lbol-logs/assets/) | `/configs/`, `/images/`, `/locales/` assets<br />locales are loaded via webpack |
 | [logs](https://github.com/lbol-logs/logs) | Logs uploaded |
