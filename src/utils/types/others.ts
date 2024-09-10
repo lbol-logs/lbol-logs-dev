@@ -21,7 +21,7 @@ type TAboutComponent = {
   array: Array<string>
 };
 
-type TChoice = TRange3;
+type TChoice = TRange4 | string;
 
 type TPromise = {
   status: string,
