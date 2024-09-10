@@ -6,14 +6,14 @@ import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import { useTranslation } from 'react-i18next';
 
-function Select({ station }: { station: TStation }) {
+function SelectOpponent({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
   const { t } = useTranslation();
 
-  const { Type, Data } = station;
+  const { Data } = station;
   const { Choices, Opponents } = Data;
 
-  const id = Type;
+  const id = 'SelectOpponent';
   const eventConfigs = configsData.events[id];
   const configs = configsData.dialogues[id];
 
@@ -55,4 +55,4 @@ function Select({ station }: { station: TStation }) {
   );
 }
 
-export default Select;
+export default SelectOpponent;

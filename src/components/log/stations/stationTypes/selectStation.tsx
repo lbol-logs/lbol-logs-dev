@@ -1,12 +1,12 @@
 import { TStation } from 'utils/types/runData';
-import Select from '../events/Select';
+import SelectOpponent from '../events/SelectOpponent';
 
 function SelectStation({ station }: { station: TStation }) {
   const { Data } = station;
 
   if (!Data) return null;
 
-  return <Select station={station} />;
+  return <SelectOpponent station={station} />;
 }
 
 export default SelectStation;
