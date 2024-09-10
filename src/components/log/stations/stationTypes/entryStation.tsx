@@ -1,7 +1,8 @@
-import { TEventComponent, TStation } from 'utils/types/runData';
+import { TStation } from 'utils/types/runData';
 import Debut from '../events/Debut';
 import RewardsWidget from '../parts/rewardsWidget';
 import { TObj } from 'utils/types/common';
+import { TEventComponent } from 'utils/types/others';
 
 function EntryStation({ station }: { station: TStation }) {
   const events: TObj<TEventComponent> = {

@@ -1,5 +1,6 @@
 import { Dispatch, ReducerAction } from 'react';
 import { TComponents, TObjAny, TRange16, TRange3, TRange4 } from './common';
+import { TChoice } from './others';
 
 type TRunData = {
   Version: string,
@@ -202,7 +203,7 @@ type TDialogueConfigs = {
   current: string,
   currentComponents?: TObjAny,
   next: Array<string>,
-  chosen: TRange3,
+  chosen: TChoice,
   props?: Array<TObjAny>,
   invalids?: Array<number>,
   befores?: TComponents,
@@ -210,8 +211,6 @@ type TDialogueConfigs = {
   exhibits?: Array<TExhibits>
   afters?: TComponents
 };
-
-type TEventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
 export type {
   TRunData,
@@ -247,8 +246,7 @@ export type {
   THoldingChange,
   TRequests,
   TMods,
-  TDialogueConfigs,
-  TEventComponent
+  TDialogueConfigs
 };
 
 export {

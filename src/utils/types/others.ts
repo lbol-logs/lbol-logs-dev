@@ -1,5 +1,5 @@
 import { TObj, TObjAny, TRange4 } from './common';
-import { TExhibit, TRequests } from './runData';
+import { TExhibit, TRequests, TStation } from './runData';
 
 type TRunListItem = {
   id: string,
@@ -40,6 +40,8 @@ type TFilterRadio = {
 type TFilterCheckbox = TObj<Array<string>>;
 type TFilter = TFilterText & TFilterRadio & TFilterCheckbox;
 
+type TEventComponent = ({ station }: { station: TStation }) => JSX.Element;
+
 enum ErrorType {
   invalidFile = 'invalidFile',
   invalidVersion = 'invalidVersion',
@@ -56,7 +58,8 @@ export type {
   TFilterText,
   TFilterRadio,
   TFilterCheckbox,
-  TFilter
+  TFilter,
+  TEventComponent
 };
 
 export {

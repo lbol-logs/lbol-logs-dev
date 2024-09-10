@@ -1,4 +1,4 @@
-import { TEventComponent, TStation } from 'utils/types/runData';
+import { TStation } from 'utils/types/runData';
 import { TObj } from 'utils/types/common';
 import DoremyPortal from '../events/DoremyPortal';
 import JunkoColorless from '../events/JunkoColorless';
@@ -32,6 +32,7 @@ import MedicinePoison from '../events/MedicinePoison';
 import MikoDonation from '../events/MikoDonation';
 import SatoriCounseling from '../events/SatoriCounseling';
 import BuduSuanming from '../events/BuduSuanming';
+import { TEventComponent } from 'utils/types/others';
 
 function EventStation({ station }: { station: TStation }) {
   const events: TObj<TEventComponent> = {

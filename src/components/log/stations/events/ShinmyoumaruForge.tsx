@@ -1,11 +1,12 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TObjAny, TRange3 } from 'utils/types/common';
+import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
+import { TChoice } from 'utils/types/others';
 
 function ShinmyoumaruForge({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -28,7 +29,7 @@ function ShinmyoumaruForge({ station }: { station: TStation }) {
   choices.push(2, 3);
 
   const [next] = getNext(options, choices);
-  const chosen = choices.indexOf(Choices[0]) as TRange3;
+  const chosen = choices.indexOf(Choices[0]) as TChoice;
 
   const props: Array<TObjAny> = [];
 

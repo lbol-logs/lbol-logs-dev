@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { getGapImage } from 'utils/functions/getImage';
 import { TStation } from 'utils/types/runData';
 import GapDescriptions from '../parts/gapDescriptions';
-import { TRange3 } from 'utils/types/common';
 import RewardsWidget from '../parts/rewardsWidget';
 import YukariProvide from '../events/YukariProvide';
+import { TChoice } from 'utils/types/others';
 
 function GapStation({ station }: { station: TStation }) {
 
   const { Data } = station;
-  const { Choice, Options, Choices } = Data as { Choice: string, Options: Array<string>, Choices: Array<TRange3> };
+  const { Choice, Options, Choices } = Data as { Choice: string, Options: Array<string>, Choices: Array<TChoice> };
   const { t } = useTranslation();
 
   let littleChat = null;
