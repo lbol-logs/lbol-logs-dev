@@ -1,4 +1,4 @@
-import { TStation } from 'utils/types/runData';
+import { TEventComponent, TStation } from 'utils/types/runData';
 import { TObj } from 'utils/types/common';
 import DoremyPortal from '../events/DoremyPortal';
 import JunkoColorless from '../events/JunkoColorless';
@@ -33,10 +33,8 @@ import MikoDonation from '../events/MikoDonation';
 import SatoriCounseling from '../events/SatoriCounseling';
 import BuduSuanming from '../events/BuduSuanming';
 
-type EventComponent = ({ station }: { station: TStation }) => JSX.Element;
-
 function EventStation({ station }: { station: TStation }) {
-  const events: TObj<EventComponent> = {
+  const events: TObj<TEventComponent> = {
     DoremyPortal: DoremyPortal,
     JunkoColorless: JunkoColorless,
     PatchouliPhilosophy: PatchouliPhilosophy,

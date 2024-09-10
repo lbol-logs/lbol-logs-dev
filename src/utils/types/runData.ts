@@ -211,6 +211,8 @@ type TDialogueConfigs = {
   afters?: TComponents
 };
 
+type TEventComponent = ({ station }: { station: TStation }) => JSX.Element;
+
 export type {
   TRunData,
   TCharacter,
@@ -245,7 +247,8 @@ export type {
   THoldingChange,
   TRequests,
   TMods,
-  TDialogueConfigs
+  TDialogueConfigs,
+  TEventComponent
 };
 
 export {

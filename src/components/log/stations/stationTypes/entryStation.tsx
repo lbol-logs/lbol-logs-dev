@@ -1,12 +1,19 @@
-import { TStation } from 'utils/types/runData';
+import { TEventComponent, TStation } from 'utils/types/runData';
 import Debut from '../events/Debut';
 import RewardsWidget from '../parts/rewardsWidget';
+import { TObj } from 'utils/types/common';
 
 function EntryStation({ station }: { station: TStation }) {
-  const { Data } = station;
+  const events: TObj<TEventComponent> = {
+    Debut: Debut
+  };
 
-  if (Data) return <Debut station={station} />;
-  else return <RewardsWidget station={station} />;
+  const Id = station.Id as string;
+  if (!(Id in events)) return <RewardsWidget station={station} />;
+  
+  const EventComponent = events[Id];
+
+  return <EventComponent station={station} />;
 }
 
 export default EntryStation;
