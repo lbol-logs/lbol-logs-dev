@@ -2,17 +2,14 @@ import Header from 'components/common/layouts/header';
 import Footer from 'components/common/layouts/footer';
 import Compatability from 'components/common/parts/compatability';
 import Uploader from './uploader';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, Navigate, useLocation, useSearchParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
-import { Suspense, useContext } from 'react';
+import { Suspense } from 'react';
 import Loading from 'components/common/layouts/loading';
-import { CommonContext } from 'contexts/commonContext';
-import useVersion from 'hooks/useVersion';
+import Init from 'components/common/layouts/init';
 
 function Upload() {
-  const { version } = useContext(CommonContext);
   const [searchParams] = useSearchParams();
-  useVersion(version);
   useTranslation();
 
   let _success = null;
@@ -59,8 +56,13 @@ function Upload() {
     }
   }
 
+  const location = useLocation();
+
   return (
-    <>
+    <Init>
+      <Navigate replace to={{
+        pathname: location.pathname
+      }}/>
       <Header />
       <main className="l-upload">
         <div className="l-inner">
@@ -77,7 +79,7 @@ function Upload() {
         </div>
       </main>
       <Footer />
-    </>
+    </Init>
   );
 };
 

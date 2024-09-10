@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import useVersion from 'hooks/useVersion';
 import useRunData from 'hooks/useRunData';
 import RunDataTemplate from './runDataTemplate';
 import Loading from 'components/common/layouts/loading';
@@ -12,7 +11,6 @@ function RunData({ ver, id }: { ver: string, id: string }) {
   const { configsData: { events: eventsConfigs } } = useContext(LogContext);
   const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData } = useContext(LogContext);
 
-  useVersion(ver);
   const args = {
     version: ver, id,
     configsData,
