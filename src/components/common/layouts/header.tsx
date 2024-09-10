@@ -6,6 +6,7 @@ import Logo from '../parts/logo';
 
 function Header({ versionSwitch }: { versionSwitch?: boolean }) {
   const { t } = useTranslation();
+
   versionSwitch = versionSwitch === undefined ? true : versionSwitch;
 
   return (

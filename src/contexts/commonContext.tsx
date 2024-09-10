@@ -1,7 +1,8 @@
-import { defaultHoldingsHeight, latestVersion } from 'configs/globals';
+import { defaultHoldingsHeight } from 'configs/globals';
 import { createContext, ReactNode, useState } from 'react';
 import { TConfigsData, TDispatch } from 'utils/types/common';
 
+const defaultVersion = '';
 const defaultConfigsData = {};
 
 type TCommonContext = {
@@ -14,7 +15,7 @@ type TCommonContext = {
 };
 
 export const CommonContext = createContext<TCommonContext>({
-  version: latestVersion,
+  version: defaultVersion,
   setVersion: () => {},
   configsData: defaultConfigsData,
   setConfigsData: () => {},
@@ -23,7 +24,7 @@ export const CommonContext = createContext<TCommonContext>({
 });
 
 function CommonProvider({ children }: { children: ReactNode }) {
-  const [version, setVersion] = useState(latestVersion);
+  const [version, setVersion] = useState(defaultVersion);
   const [configsData, setConfigsData] = useState(defaultConfigsData);
   const [holdingsHeight, setHoldingsHeight] = useState(defaultHoldingsHeight);
 
