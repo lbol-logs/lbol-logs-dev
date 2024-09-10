@@ -6,10 +6,9 @@ import Footer from 'components/common/layouts/footer';
 import { Link } from 'react-router-dom';
 import ExternalLink from 'components/common/parts/externalLink';
 import Compatability from 'components/common/parts/compatability';
-import useVersion from 'hooks/useVersion';
+import Init from 'components/common/layouts/init';
 
 function About() {
-  useVersion();
   const { t } = useTranslation();
   const { discord } = languages[i18next.language];
 
@@ -17,7 +16,7 @@ function About() {
   const attention: Array<string> = t('attention.value', { ns: 'site', returnObjects: true });
 
   return (
-    <>
+    <Init>
       <Header />
       <main className="l-about">
         <div className="l-inner">
@@ -93,7 +92,7 @@ function About() {
         </div>
       </main>
       <Footer />
-    </>
+    </Init>
   );
 };
 

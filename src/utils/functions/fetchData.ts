@@ -56,7 +56,13 @@ function getGasUrl(version: string, id: string) {
 }
 
 function getConfigs(version: string, name: string) {
-  return getData(configsUrl, version, name);
+  const url = getConfigsUrl(version, name);
+  return _getData(url);
+}
+
+function getConfigsUrl(version: string, name: string) {
+  const url = `${configsUrl}/${version}/${name}.json`;
+  return url;
 }
 
 export {
@@ -66,5 +72,6 @@ export {
   getLogUrl,
   getLog2,
   getGasUrl,
-  getConfigs
+  getConfigs,
+  getConfigsUrl
 };
