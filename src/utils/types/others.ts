@@ -1,4 +1,4 @@
-import { TObj, TObjAny, TRange3 } from './common';
+import { TObj, TObjAny, TRange4 } from './common';
 import { TExhibit, TRequests } from './runData';
 
 type TRunListItem = {
