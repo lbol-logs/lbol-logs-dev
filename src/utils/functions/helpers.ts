@@ -1,7 +1,7 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { resultTypes } from 'configs/globals';
 import { TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
-import { TRound, TRounds } from 'utils/types/others';
+import { TRounds } from 'utils/types/others';
 import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
@@ -129,7 +129,7 @@ function getCleanUrl() {
   return url;
 }
 
-function getScrollHeight(level: TLevel, showMap: boolean, r?: TRound) {
+function getScrollHeight(level: TLevel, showMap: boolean, rounds: TRounds) {
   let target: HTMLDivElement;
   const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
   if (!station) return;
@@ -138,8 +138,9 @@ function getScrollHeight(level: TLevel, showMap: boolean, r?: TRound) {
   const selector = showMap ? '.js-map' : '.js-holdings';
   const element = document.querySelector(selector) as HTMLDivElement;
 
-  if (r !== undefined) {
-    const round = station.querySelector(`.js-round-${r}`) as HTMLDivElement;
+  const { current } = rounds;
+  if (current !== undefined && current >= 0) {
+    const round = station.querySelector(`.js-round-${current}`) as HTMLDivElement;
     if (round) target = round;
   }
 

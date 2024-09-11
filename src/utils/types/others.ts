@@ -1,5 +1,5 @@
 import { TObj, TObjAny, TRange4 } from './common';
-import { TExhibit, TRequests, TStation } from './runData';
+import { TExhibit, TLevel, TRequests, TStation } from './runData';
 
 type TRunListItem = {
   id: string,
@@ -42,8 +42,12 @@ type TFilter = TFilterText & TFilterRadio & TFilterCheckbox;
 
 type TEventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
-type TRound = number | undefined;
-type TRounds = [TRound, TRound];
+type TRounds = {
+  current: number,
+  minRound: number,
+  maxRound: number,
+  maxLevel: TLevel
+};
 
 enum ErrorType {
   invalidFile = 'invalidFile',
@@ -63,7 +67,6 @@ export type {
   TFilterCheckbox,
   TFilter,
   TEventComponent,
-  TRound,
   TRounds
 };
 

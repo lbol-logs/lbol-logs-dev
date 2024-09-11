@@ -3,7 +3,7 @@ import { TRounds } from 'utils/types/others';
 import { TLevel } from 'utils/types/runData';
 import { getScrollHeight } from './helpers';
 
-function scrollToLevel(nextLevel: TLevel, showMap: boolean, scrollToY = true, r?: number, rounds?: TRounds) {
+function scrollToLevel(nextLevel: TLevel, showMap: boolean, rounds: TRounds, scrollToY = true) {
   if (showMap) {
     const inner = document.querySelector('.js-mapInner') as HTMLDivElement;
     if (inner) {
@@ -15,7 +15,7 @@ function scrollToLevel(nextLevel: TLevel, showMap: boolean, scrollToY = true, r?
   }
 
   if (scrollToY) {
-    const height = getScrollHeight(nextLevel, showMap, r);
+    const height = getScrollHeight(nextLevel, showMap, rounds);
     if (!height) return;
     window.scrollTo(0, height);
   }

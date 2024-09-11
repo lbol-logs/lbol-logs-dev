@@ -58,7 +58,7 @@ function Summary() {
               if (!count) return null;
 
               return (
-                <span className={`p-summary__rarity p-summary__rarity--${rarity}`}>
+                <span className={`p-summary__rarity p-summary__rarity--${rarity}`} key={rarity}>
                   {t(`rarities.${rarity}`, { ns: 'log' })}
                   {t('delimiter', { ns: 'log' })}
                   {count}
@@ -82,7 +82,7 @@ function Summary() {
               if (!count) return null;
 
               return (
-                <span className={`p-summary__rarity p-summary__rarity--${rarity}`}>
+                <span className={`p-summary__rarity p-summary__rarity--${rarity}`} key={rarity}>
                   {t(`rarities.${rarity}`, { ns: 'log' })}
                   {t('delimiter', { ns: 'log' })}
                   {count}

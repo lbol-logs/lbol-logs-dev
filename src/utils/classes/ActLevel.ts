@@ -2,6 +2,7 @@ import { getLength } from 'utils/functions/helpers';
 import { TAct, TLevel, TRunData, TStation } from '../types/runData';
 import { TObjAny } from 'utils/types/common';
 import { TRounds } from 'utils/types/others';
+import { enemiesShowDetails } from 'configs/globals';
 
 class ActLevel {
   constructor(runData: TRunData, act: TAct) {
@@ -40,19 +41,28 @@ class ActLevel {
   }
 
   public rounds(): TRounds {
-    const defaultRounds = [undefined, undefined] as TRounds;
-    if (this._act !== 4) return defaultRounds;
-    const { Data } = this._runData.Stations.at(-1) as TStation;
+    const defaultRounds = {} as TRounds;
+    const lastStation = this._runData.Stations.at(-1) as TStation;
+    const { Id } =  lastStation;
+    if (!Id || !enemiesShowDetails.includes(Id)) return defaultRounds;
+    const { Data } = lastStation;
     if (!Data) return defaultRounds;
     const { Details } = Data;
     if (!Details) return defaultRounds;
 
-    const rounds = Details.reduce((a: [number, number], b: TObjAny) => {
+    const { Level } = lastStation.Node;
+    const [minRound, maxRound] = Details.reduce((a: [number, number], b: TObjAny) => {
       const { Round } = b;
       const min = Math.min(a[0], Round);
       const max = Math.max(a[1], Round);
       return [min, max];
     }, [Infinity, -Infinity]);
+    const rounds = {
+      current: -1,
+      minRound,
+      maxRound,
+      maxLevel: Level
+    };
     return rounds;
   }
 

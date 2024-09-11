@@ -10,10 +10,10 @@ import ActLevel from 'utils/classes/ActLevel';
 import { scrollTolerance } from 'configs/globals';
 import CurrentHoldings from './currentHoldings';
 import { getScrollHeight } from 'utils/functions/helpers';
-import { TRound } from 'utils/types/others';
+import { flushSync } from 'react-dom';
 
 function RunDataTemplate() {
-  const { isRunDataLoaded, runData, act, setAct, setLevel, setRound, showMap } = useContext(LogContext);
+  const { isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap } = useContext(LogContext);
   const [searchParams] = useSearchParams();
 
   const isSummary = act === 0;
@@ -22,19 +22,26 @@ function RunDataTemplate() {
     if (!isRunDataLoaded) return;
     let a = parseInt(searchParams.get('a') || '0') as TAct;
     let l = parseInt(searchParams.get('l') || '0') as TLevel;
-    const r = searchParams.get('r');
     const al = new ActLevel(runData, act);
     ( { a, l } = al.actLevel(a, l) );
-    let round: TRound;
-    if (r !== null) {
-      round = Number(r);
-      setRound(round);
-    }
     setAct(a);
     setLevel(l);
+
+    let r = searchParams.get('r');
+    console.log('template', {r});
+    if (r !== null) {
+      const current = Number(r);
+      const rounds = al.rounds();
+      const currentRounds = Object.assign({}, rounds, { current });
+      console.log('template', {currentRounds});
+      flushSync(() => {
+      setRounds(currentRounds);
+      });
+    }
+
     if (!showMap) return;
 
-    const height = getScrollHeight(l, showMap, round);
+    const height = getScrollHeight(l, showMap, rounds);
     if (!height) return;
     if (window.scrollY < height - scrollTolerance) window.scrollTo(0, height);
   }, [isRunDataLoaded, runData, act, showMap]);
