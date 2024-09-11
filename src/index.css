@@ -422,7 +422,9 @@ input {
   column-gap: 0.8em;
 }
 .p-summary__entity {
-  margin: 0 1em 0 0;
+  margin: 0;
+  padding-right: 1em;
+  margin-right: auto;
 }
 .p-summary__rarities {
   display: flex;
@@ -1348,6 +1350,9 @@ html:lang(en) .p-result__type {
     flex-basis: 100%;
   }
 
+  .p-summary__pivot {
+    justify-content: flex-end;
+  }
   .p-summary__rarities {
     display: contents;
   }
