@@ -650,7 +650,6 @@ input {
   align-items: center;
   border-width: var(--entity-border);
   border-style: solid;
-  border-radius: 4px;
   box-shadow: 1px 1px 0 var(--shadow), -1px 1px 0 var(--shadow), -1px -1px 0 var(--shadow), 1px -1px 0 var(--shadow);
   outline: 1px solid color-mix(in srgb, var(--f-gray) var(--opacity-border), transparent);
   outline-offset: -3px;
@@ -714,6 +713,7 @@ html:lang(en) .c-entity__text {
 
 .c-card {
   position: relative;
+  border-radius: 4px;
 }
 .c-card__text {
   z-index: 1;
