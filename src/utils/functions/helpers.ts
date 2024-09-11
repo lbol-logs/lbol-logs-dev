@@ -119,6 +119,15 @@ function getResultData(runData: TRunData) {
   return resultData;
 }
 
+function getCleanUrl() {
+  const url = [
+    window.location.protocol,
+    '//',
+    window.location.host,
+    window.location.pathname].join('');
+  return url;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -137,5 +146,6 @@ export {
   concatObjects,
   getLogLink,
   getResultType,
-  getResultData
+  getResultData,
+  getCleanUrl
 };

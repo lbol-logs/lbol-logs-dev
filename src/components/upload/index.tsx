@@ -10,6 +10,7 @@ import Init from 'components/common/layouts/init';
 
 function Upload() {
   const [searchParams] = useSearchParams();
+  const { pathname } = useLocation();
   useTranslation();
 
   let _success = null;
@@ -56,13 +57,9 @@ function Upload() {
     }
   }
 
-  const location = useLocation();
-
   return (
     <Init>
-      <Navigate replace to={{
-        pathname: location.pathname
-      }}/>
+      <Navigate replace to={{ pathname }}/>
       <Header />
       <main className="l-upload">
         <div className="l-inner">

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import LanguageSwitcher from 'components/common/parts/languageSwitcher';
 import VersionWidget from 'components/common/parts/versionWidget';
 import Logo from '../parts/logo';
+import Meta from './meta';
 
 function Header({ versionSwitch }: { versionSwitch?: boolean }) {
   const { t } = useTranslation();
@@ -11,6 +12,7 @@ function Header({ versionSwitch }: { versionSwitch?: boolean }) {
 
   return (
     <header className="l-header">
+      <Meta />
       <div className="l-header__inner l-inner">
         <Link className="l-header__link" to="/">
           <Logo className="l-header__logo" />

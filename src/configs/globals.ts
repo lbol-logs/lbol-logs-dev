@@ -37,24 +37,20 @@ const namespaces: Array<string> = [
 const versions: Array<string> = [
   '1.5.1'
 ];
-
 const latestVersion: string = versions[0];
 
 const baseUrl: string = process.env.PUBLIC_URL;
-
 const assetsUrl: string = `${baseUrl}/assets`;
-
 const imagesUrl: string = `${assetsUrl}/images`;
-
 const configsUrl: string = `${assetsUrl}/configs`;
-
 const logsUrl: string = `${baseUrl}/logs`;
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
-
 const modUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p/ed_ev/LBoL_Run_Logger/';
-
 const gasUrl: string = 'https://script.google.com/macros/s/AKfycbxQZf9xkxJX-YNYxXAjssmqT2-HFmH1EPZ6bjbcoz1RxvfWdHoP1eWC8D4XiQkIpmLvbw/exec';
+
+const GA4_MEASUREMENT_ID = 'G-8Q07V7QP73';
+const gaLanguage= 'ja';
 
 const iconSize = 36;
 
@@ -112,6 +108,8 @@ export {
   gameUrl,
   modUrl,
   gasUrl,
+  GA4_MEASUREMENT_ID,
+  gaLanguage,
   iconSize,
   cardSize,
   resultSizes,

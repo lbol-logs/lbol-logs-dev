@@ -14,13 +14,13 @@ function Layout() {
   const { t } = useTranslation();
   const lang = i18next.language;
   const title = t('title', { ns: 'site' });
-  const substitle = t('subtitle', { ns: 'site' });
+  const subtitle = t('subtitle', { ns: 'site' });
 
   return (
     <HelmetProvider>
       <Helmet>
         <html lang={lang} />
-        <title>{title} - {substitle}</title>
+        <title>{title} - {subtitle}</title>
         <meta name="description" content={t('description', { ns: 'site' })} />
         <link rel="manifest" href={`${baseUrl}/locales/${i18next.language}/manifest.json`} />
         <meta name="apple-mobile-web-app-title" content={title} />
