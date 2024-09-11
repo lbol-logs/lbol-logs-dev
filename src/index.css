@@ -59,7 +59,6 @@ input {
 .l-header__version, .l-header__language {
   display: flex;
   align-items: center;
-  z-index: 999;
 }
 .c-version__text {
   display: flex;
@@ -70,9 +69,6 @@ input {
 }
 .c-version__text--latest {
   background: var(--light-green);
-}
-.c-version__select, .c-language__select, .c-version__text {
-  height: 2em;
 }
 
 .l-footer {
