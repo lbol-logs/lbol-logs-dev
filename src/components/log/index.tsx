@@ -21,7 +21,7 @@ function Log() {
     const [, Character, PlayerType, shining, difficultyRequest, Type] = array
     const resultType = getResultType(Type);
     name = [
-      t(Character, { ns: 'enemies' }) + PlayerType,
+      t(Character, { ns: 'enemies', context: 'short'  }) + PlayerType,
       t(shining, { ns: 'exhibits' }),
       difficultyRequest,
       t(`results.${resultType}`, { ns: 'common' })
