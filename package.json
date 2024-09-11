@@ -38,7 +38,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -r \"https://github.com/lbol-logs/lbol-logs.git\" -b public"
+    "deploy": "gh-pages -d build -r \"https://github.com/lbol-logs/lbol-logs.github.io.git\" -b public"
   },
   "eslintConfig": {
     "extends": [
