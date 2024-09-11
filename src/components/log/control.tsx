@@ -8,12 +8,12 @@ import { useTranslation } from 'react-i18next';
 import useControl from 'hooks/useControl';
 
 function Control() {
-  const { isRunDataLoaded, runData, act, setAct, level, setLevel, showMap, setShowMap } = useContext(LogContext);
+  const { isRunDataLoaded, runData, act, setAct, level, setLevel, round, setRound, showMap, setShowMap } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const o = useControl({ isRunDataLoaded, runData, act, setAct, setLevel, showMap, setShowMap, navigate, searchParams, setSearchParams });
+  const o = useControl({ isRunDataLoaded, runData, act, setAct, setLevel, setRound, showMap, setShowMap, navigate, searchParams, setSearchParams });
 
   if (!o) return <Loading />;
 
@@ -21,6 +21,7 @@ function Control() {
     maxAct,
     minLevel,
     maxLevel,
+    rounds,
     backToTop,
     changeAct,
     changeLevel,
@@ -34,6 +35,19 @@ function Control() {
   const isSummary = act === 0;
   const isLastAct = act === maxAct;
 
+  const [minRound, maxRound] = rounds;
+  let value = level;
+
+  console.log({value, level, round});
+  let max = maxLevel;
+  if (minRound !== undefined) {
+    if (round !== undefined) {
+      value += Math.max(0, round - minRound + 1);
+    }
+    max += (maxRound as number) - minRound + 1;
+  }
+
+console.log({value,max})
   if (isSummary) {
     buttonLeft = (
       <span className="p-control__component" onClick={backToTop}>
@@ -59,7 +73,7 @@ function Control() {
     );
     centerArea = (
       <span className="p-control__component p-control__component--center">
-        <input className="p-control__range" type="range" value={level} min={minLevel} max={maxLevel} onChange={changeLevel} />
+        <input className="p-control__range" type="range" value={value} min={minLevel} max={max} onChange={(e) => changeLevel(e, maxLevel, rounds)} />
       </span>
     );
 

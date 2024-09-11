@@ -1,5 +1,7 @@
 import { getLength } from 'utils/functions/helpers';
-import { TAct, TLevel, TRunData } from '../types/runData';
+import { TAct, TLevel, TRunData, TStation } from '../types/runData';
+import { TObjAny } from 'utils/types/common';
+import { TRounds } from 'utils/types/others';
 
 class ActLevel {
   constructor(runData: TRunData, act: TAct) {
@@ -37,6 +39,23 @@ class ActLevel {
     return maxLevel;
   }
 
+  public rounds(): TRounds {
+    const defaultRounds = [undefined, undefined] as TRounds;
+    if (this._act !== 4) return defaultRounds;
+    const { Data } = this._runData.Stations.at(-1) as TStation;
+    if (!Data) return defaultRounds;
+    const { Details } = Data;
+    if (!Details) return defaultRounds;
+
+    const rounds = Details.reduce((a: [number, number], b: TObjAny) => {
+      const { Round } = b;
+      const min = Math.min(a[0], Round);
+      const max = Math.max(a[1], Round);
+      return [min, max];
+    }, [Infinity, -Infinity]);
+    return rounds;
+  }
+
   public act(act: TAct) {
     let a;
     if (act < 0) a = 0;
@@ -48,7 +67,7 @@ class ActLevel {
   public level(level: TLevel) {
     let l;
     if (level < 0) l = 0;
-    else if (level > (this._maxLevel as TLevel)) l = 0;
+    else if (level > (this._maxLevel as TLevel)) l = this._maxLevel;
     else l = level;
     return l as TLevel;
   }

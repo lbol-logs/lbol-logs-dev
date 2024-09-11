@@ -6,9 +6,10 @@ import { TAct, TLevel } from 'utils/types/runData';
 import { scrollTolerance } from 'configs/globals';
 import scrollToLevel from 'utils/functions/scrollToLevel';
 import updateQs from 'utils/functions/updateQs';
+import ActLevel from 'utils/classes/ActLevel';
 
 function Stations() {
-  const { runData, act, setLevel, showMap } = useContext(LogContext);
+  const { runData, act, setLevel, showMap, round } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { Stations } = runData;
@@ -29,16 +30,19 @@ function Stations() {
       const levels = stations.map(({ Node: { Level } }) => Level);
       for (const level of levels.reverse()) {
         const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
-        if (!station || !element) break;
+        if (!station) break;
         const height = station.offsetTop - element.offsetHeight - scrollTolerance;
+        console.log('onscroll', {level, bool:window.scrollY >= height});
         if (!level || window.scrollY >= height) {
           setLevel(level);
-          scrollToLevel(level, showMap, false);
-          updateQs(searchParams, setSearchParams, act, level);
+          const rounds = new ActLevel(runData, act).rounds();
+          scrollToLevel(level, showMap, false, round, rounds);
+          console.log('onscroll', {round})
+          updateQs(searchParams, setSearchParams, act, level, round, rounds);
           break;
         }
       }
-    }, 100);
+    }, 200);
     timerRef.current = _timer;
   };
 

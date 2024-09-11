@@ -1,7 +1,9 @@
 import MapNodes from 'utils/classes/MapNodes';
+import { TRounds } from 'utils/types/others';
 import { TLevel } from 'utils/types/runData';
+import { getScrollHeight } from './helpers';
 
-function scrollToLevel(nextLevel: TLevel, showMap: boolean, scrollToY = true) {
+function scrollToLevel(nextLevel: TLevel, showMap: boolean, scrollToY = true, r?: number, rounds?: TRounds) {
   if (showMap) {
     const inner = document.querySelector('.js-mapInner') as HTMLDivElement;
     if (inner) {
@@ -13,13 +15,9 @@ function scrollToLevel(nextLevel: TLevel, showMap: boolean, scrollToY = true) {
   }
 
   if (scrollToY) {
-    const station = document.querySelector(`.js-level-${nextLevel}`) as HTMLDivElement;
-    if (station) {
-      const selector = showMap ? '.js-map' : '.js-holdings';
-      const element = document.querySelector(selector) as HTMLDivElement;
-      const y = station.offsetTop - element.offsetHeight;
-      window.scrollTo(0, y);
-    }
+    const height = getScrollHeight(nextLevel, showMap, r);
+    if (!height) return;
+    window.scrollTo(0, height);
   }
 }
 

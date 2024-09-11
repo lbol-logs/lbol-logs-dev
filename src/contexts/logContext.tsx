@@ -2,12 +2,14 @@ import { defaultRunData } from 'configs/globals';
 import holdingsReducer from 'hooks/holdingsReducer';
 import { createContext, ReactNode, useReducer, useState } from 'react';
 import { TConfigsData, TDispatch } from 'utils/types/common';
+import { TRound } from 'utils/types/others';
 import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
 
 const defaultIsRunDataLoaded = false;
 const defaultRunDataId = '';
 const defaultAct: TAct = 0;
 const defaultLevel: TLevel = 0;
+const defaultRound: TRound = undefined;
 const defaultIsStationsLoaded = false;
 const defaultHoldings = [] as THoldings;
 const defaultShowMap = true;
@@ -25,6 +27,8 @@ type TLogContext = {
   setAct: TDispatch<TAct>,
   level: TLevel,
   setLevel: TDispatch<TLevel>,
+  round: TRound,
+  setRound: TDispatch<TRound>,
   isStationsLoaded: boolean,
   setIsStationsLoaded: TDispatch<boolean>,
   holdings: THoldings,
@@ -48,6 +52,8 @@ export const LogContext = createContext<TLogContext>({
   setAct: () => {},
   level: defaultLevel,
   setLevel: () => {},
+  round: defaultRound,
+  setRound: () => {},
   isStationsLoaded: defaultIsStationsLoaded,
   setIsStationsLoaded: () => {},
   holdings: defaultHoldings,
@@ -66,6 +72,7 @@ function LogProvider({ children }: { children: ReactNode }) {
   const [runData, setRunData] = useState(defaultRunData);
   const [act, setAct] = useState(defaultAct);
   const [level, setLevel] = useState(defaultLevel);
+  const [round, setRound] = useState(defaultRound);
   const [isStationsLoaded, setIsStationsLoaded] = useState(defaultIsStationsLoaded);
   const [holdings, dispatchHoldings] = useReducer(holdingsReducer, defaultHoldings);
   const [showMap, setShowMap] = useState(defaultShowMap);
@@ -83,6 +90,8 @@ function LogProvider({ children }: { children: ReactNode }) {
     setAct,
     level,
     setLevel,
+    round,
+    setRound,
     isStationsLoaded,
     setIsStationsLoaded,
     holdings,

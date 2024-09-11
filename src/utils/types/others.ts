@@ -42,6 +42,9 @@ type TFilter = TFilterText & TFilterRadio & TFilterCheckbox;
 
 type TEventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
+type TRound = number | undefined;
+type TRounds = [TRound, TRound];
+
 enum ErrorType {
   invalidFile = 'invalidFile',
   invalidVersion = 'invalidVersion',
@@ -59,7 +62,9 @@ export type {
   TFilterRadio,
   TFilterCheckbox,
   TFilter,
-  TEventComponent
+  TEventComponent,
+  TRound,
+  TRounds
 };
 
 export {

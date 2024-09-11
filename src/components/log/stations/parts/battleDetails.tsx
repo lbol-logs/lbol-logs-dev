@@ -37,7 +37,7 @@ function BattleDetails({ details }: { details: Array<TObjAny> }) {
         const hp = <HpWidget hp={Hp} lastHp={lastHp} />;
 
         return (
-          <div className={`p-battle-details__row ${isPlayer ? 'p-battle-details__row--player' : 'p-battle-details__row--enemy'}`} key={i}>
+          <div className={`p-battle-details__row ${isPlayer ? 'p-battle-details__row--player' : 'p-battle-details__row--enemy'} js-round-${Round}`} key={i}>
             <div className="p-battle-details__body">
               <div className="p-battle-details__line">
                 <span className="p-battle-details__round">

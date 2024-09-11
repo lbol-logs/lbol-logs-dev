@@ -1,7 +1,8 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { resultTypes } from 'configs/globals';
 import { TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
-import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TRunData, TStation, TStations } from 'utils/types/runData';
+import { TRound, TRounds } from 'utils/types/others';
+import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
@@ -128,6 +129,24 @@ function getCleanUrl() {
   return url;
 }
 
+function getScrollHeight(level: TLevel, showMap: boolean, r?: TRound) {
+  let target: HTMLDivElement;
+  const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
+  if (!station) return;
+  
+  target = station;
+  const selector = showMap ? '.js-map' : '.js-holdings';
+  const element = document.querySelector(selector) as HTMLDivElement;
+
+  if (r !== undefined) {
+    const round = station.querySelector(`.js-round-${r}`) as HTMLDivElement;
+    if (round) target = round;
+  }
+
+  const height = target.offsetTop - element.offsetHeight;
+  return height;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -147,5 +166,6 @@ export {
   getLogLink,
   getResultType,
   getResultData,
-  getCleanUrl
+  getCleanUrl,
+  getScrollHeight
 };
