@@ -12,9 +12,11 @@ import IsAutoSeedWidget from './parts/isAutoSeedWidget';
 import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
 import { getResultData } from 'utils/functions/helpers';
+import { CommonContext } from 'contexts/commonContext';
 
 function Summary() {
-  const { runData, isRunDataLoaded } = useContext(LogContext);
+  const { configsData: { exhibits: exhibitConfigs } } = useContext(CommonContext);
+  const { runData, isRunDataLoaded, configsData: { cards: cardConfigs } } = useContext(LogContext);
   const { t } = useTranslation();
   if (!isRunDataLoaded) return <Loading />;
 
@@ -22,6 +24,9 @@ function Summary() {
   const { Requests, ShowRandomResult, IsAutoSeed, Mods } = Settings;
   const { Cards, Exhibits, BaseMana, Seed, ReloadTimes } = Result;
   const resultData = getResultData(runData);
+
+  const exhibitRarities = ["Mythic", "Shining", "Rare", "Uncommon", "Common"];
+  const cardRarities = ["Rare", "Uncommon", "Common", "Misfortune"];
 
   return (
     <section className="p-summary">
@@ -44,13 +49,49 @@ function Summary() {
         </div>
         {Mods !== undefined && <ModsWidget mods={Mods} />}
       </div>
-      <div className="p-summary__cards">
-        <h3>{t('card', { ns: 'common', count: Cards.length })}</h3>
-        <CardCards cards={Cards} />
-      </div>
       <div className="p-summary__exhibits">
-        <h3>{t('exhibit', { ns: 'common', count: Exhibits.length })}</h3>
+        <div className="p-summary__pivot">
+          <h3 className="p-summary__entity">{t('exhibitsCount', { ns: 'log', count: Exhibits.length })}</h3>
+          <div className="p-summary__rarities">
+            {exhibitRarities.map(rarity => {
+              const count = Exhibits.filter(exhibit => exhibitConfigs[exhibit].Rarity === rarity).length;
+              if (!count) return null;
+
+              return (
+                <span className={`p-summary__rarity p-summary__rarity--${rarity}`}>
+                  {t(`rarities.${rarity}`, { ns: 'log' })}
+                  {t('delimiter', { ns: 'log' })}
+                  {count}
+                </span>
+              );
+            })}
+          </div>
+        </div>
         <ExhibitCards exhibits={Exhibits} />
+      </div>
+      <div className="p-summary__cards">
+        <div className="p-summary__pivot">
+          <h3 className="p-summary__entity">{t('cardsCount', { ns: 'log', count: Cards.length })}</h3>
+          <div className="p-summary__rarities">
+            {cardRarities.map(rarity => {
+              const count = Cards.filter(({ Id }) => {
+                const { Rarity, IsMisfortune } = cardConfigs[Id];
+                const type = IsMisfortune ? 'Misfortune' : Rarity;
+                return type === rarity;
+              }).length;
+              if (!count) return null;
+
+              return (
+                <span className={`p-summary__rarity p-summary__rarity--${rarity}`}>
+                  {t(`rarities.${rarity}`, { ns: 'log' })}
+                  {t('delimiter', { ns: 'log' })}
+                  {count}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+        <CardCards cards={Cards} />
       </div>
     </section>
   );

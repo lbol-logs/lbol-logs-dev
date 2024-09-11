@@ -15,7 +15,7 @@ function Log() {
   const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();
   const { t } = useTranslation();
 
-  let name: string | undefined;
+  let name;
   const array = id.split('_');
   if (array.length === 6) {
     const [, Character, PlayerType, shining, difficultyRequest, Type] = array
@@ -26,6 +26,9 @@ function Log() {
       difficultyRequest,
       t(`results.${resultType}`, { ns: 'common' })
     ].join(' ');
+  }
+  else {
+    name = id;
   }
 
   return (

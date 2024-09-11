@@ -413,6 +413,41 @@ input {
   display: flex;
   gap: 0.2em 0.5em;
 }
+.p-summary__pivot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 1.5em 0 0.5em;
+  column-gap: 0.8em;
+}
+.p-summary__entity {
+  margin: 0 1em 0 0;
+}
+.p-summary__rarities {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.8em;
+  font-weight: bold;
+}
+.p-summary__rarity--Common {
+  color: var(--f-gray);
+}
+.p-summary__rarity--Uncommon {
+  color: var(--f-blue);
+}
+.p-summary__rarity--Rare {
+  color: var(--f-gold);
+}
+.p-summary__rarity--Shining {
+  color: var(--f-red);
+}
+.p-summary__rarity--Mythic {
+  color: var(--f-purple);
+}
+.p-summary__rarity--Misfortune {
+  color: var(--f-purple);
+}
 
 .p-mods {
   display: flex;
@@ -1311,6 +1346,10 @@ html:lang(en) .p-result__type {
 
   .p-mod {
     flex-basis: 100%;
+  }
+
+  .p-summary__rarities {
+    display: contents;
   }
 
   .u-pc {
