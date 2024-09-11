@@ -2,10 +2,12 @@ import { GA4_MEASUREMENT_ID } from 'configs/globals';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { getCleanUrl } from 'utils/functions/helpers';
 
 function Meta() {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
 
   const title = t('title', { ns: 'site' });
   const subtitle = t('subtitle', { ns: 'site' });
@@ -15,7 +17,7 @@ function Meta() {
 
   useEffect(() => {
     gtag('config', GA4_MEASUREMENT_ID, {
-      page_title,
+      page_title: pathname,
       page_path,
     });
   }, []);

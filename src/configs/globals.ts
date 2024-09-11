@@ -50,7 +50,6 @@ const modUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p
 const gasUrl: string = 'https://script.google.com/macros/s/AKfycbxQZf9xkxJX-YNYxXAjssmqT2-HFmH1EPZ6bjbcoz1RxvfWdHoP1eWC8D4XiQkIpmLvbw/exec';
 
 const GA4_MEASUREMENT_ID = 'G-8Q07V7QP73';
-const gaLanguage= 'ja';
 
 const iconSize = 36;
 
@@ -109,7 +108,6 @@ export {
   modUrl,
   gasUrl,
   GA4_MEASUREMENT_ID,
-  gaLanguage,
   iconSize,
   cardSize,
   resultSizes,
