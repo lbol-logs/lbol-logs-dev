@@ -13,6 +13,7 @@ import CurrentHoldings from './currentHoldings';
 function RunDataTemplate() {
   const { isRunDataLoaded, runData, act, setAct, setLevel, showMap } = useContext(LogContext);
   const [searchParams] = useSearchParams();
+
   const isSummary = act === 0;
 
   useEffect(() => {

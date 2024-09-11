@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import ExternalLink from 'components/common/parts/externalLink';
 import Compatability from 'components/common/parts/compatability';
 import Init from 'components/common/layouts/init';
+import Title from 'components/common/layouts/title';
 
 function About() {
   const { t } = useTranslation();
@@ -17,6 +18,7 @@ function About() {
 
   return (
     <Init>
+      <Title name="About" />
       <Header />
       <main className="l-about">
         <div className="l-inner">

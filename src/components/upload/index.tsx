@@ -7,11 +7,12 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Suspense } from 'react';
 import Loading from 'components/common/layouts/loading';
 import Init from 'components/common/layouts/init';
+import Title from 'components/common/layouts/title';
 
 function Upload() {
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
-  useTranslation();
+  const { t } = useTranslation();
 
   let _success = null;
   let _error = null;
@@ -60,6 +61,7 @@ function Upload() {
   return (
     <Init>
       <Navigate replace to={{ pathname }}/>
+      <Title name={t('upload', { ns: 'site' })} />
       <Header />
       <main className="l-upload">
         <div className="l-inner">

@@ -24,7 +24,6 @@ function Meta() {
 
   return (
     <Helmet>
-      <title>{page_title}</title>
       <link rel="canonical" href={page_path} />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={page_title} />
