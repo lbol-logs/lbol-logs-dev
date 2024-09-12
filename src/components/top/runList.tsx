@@ -1,17 +1,15 @@
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import useRunList from 'hooks/useRunList';
 import { TFilter, TFilterRadio, TFilterText } from 'utils/types/others';
 import { TObjNumber } from 'utils/types/common';
 import Filter from './filters/filter';
-import ResultWidget from 'components/common/parts/resultWidget';
-import RequestsWidget from 'components/common/parts/requestsWidget';
-import { TRequests } from 'utils/types/runData';
-import { getLength, getLogLink } from 'utils/functions/helpers';
+import { getLength } from 'utils/functions/helpers';
 import useFilterOnList from 'hooks/useFilterOnList';
 import DefaultFilter from 'utils/classes/DefaultFilter';
+import RunListItems from './runListItems';
 
 function RunList() {
   const { version } = useContext(CommonContext);
@@ -67,51 +65,32 @@ function RunList() {
   return (
     <section className="p-run-list">
       <Filter />
-      <div className="p-run-list__line">
-        <p className="p-run-list__results">{results}</p>
-        <p className="p-run-list__remark">{t('remark', { ns: 'runList' })}</p>
-      </div>
-      <div className="p-run-list__table">
-        <div className="p-run-list__row p-run-list__row--header">
-          <div className="p-run-list__cell p-run-list__cell--id">Id</div>
-          <div className="p-run-list__cell p-run-list__cell--result-requests u-flex-col-sp">
-            <div className="p-run-list__cell--result">
-              <span>{t('result', { ns: 'runList' })}</span>
-              <span>{t('name', { ns: 'runList' })}</span>
-            </div>
-            <div className="p-run-list__cell--requests">
-              <span>{t('requests', { ns: 'runList' })}</span>
-            </div>
-          </div>
+      <div className="p-run-list__output">
+        <div className="p-run-list__line">
+          <p className="p-run-list__results">{results}</p>
+          <p className="p-run-list__remark">{t('remark', { ns: 'runList' })}</p>
         </div>
-        {filteredList.reverse().map(e => {
-          const {
-            id,
-            name,
-            character: Character,
-            type: PlayerType,
-            result: Type,
-            timestamp: Timestamp,
-            difficulty: Difficulty,
-            shining: exhibit,
-            requests: Requests
-          } = e;
-          const resultData = { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests };
-
-          return (
-            <Link className="p-run-list__row u-button" key={id} to={getLogLink(version, id)}>
-              <div className="p-run-list__cell p-run-list__cell--id">{ids[id]}</div>
-              <div className="p-run-list__cell p-run-list__cell--result-requests u-flex-col-sp">
-                <div className=" p-run-list__cell--result">
-                  <ResultWidget resultData={resultData} name={name} />
+        <div className="p-run-list__table">
+          <div className="p-run-list__row p-run-list__row--header">
+            {['', 'u-pc', 'u-pc'].map((className, i) => {
+              return (
+                <div className={`p-run-list__item ${className}`} key={i}>
+                  <div className="p-run-list__cell p-run-list__cell--id">Id</div>
+                  <div className="p-run-list__cell p-run-list__cell--result-requests">
+                    <div className="p-run-list__cell--result">
+                      <span>{t('result', { ns: 'runList' })}</span>
+                      <span>{t('name', { ns: 'runList' })}</span>
+                    </div>
+                    <div className="p-run-list__cell--requests">
+                      <span>{t('requests', { ns: 'runList' })}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-run-list__cell--requests">
-                  <RequestsWidget requests={Requests as TRequests} />
-                </div>
-              </div>
-            </Link>
-          );
-        })}
+              );
+            })}
+          </div>
+          <RunListItems ids={ids} filteredList={filteredList} />
+        </div>
       </div>
     </section>
   );
