@@ -163,9 +163,11 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
 
   useEffect(() => {
     let currentFilter: TFilter = {};
+    const keys = DefaultFilter.keys;
     const radios = DefaultFilter.radios;
 
     for (const [key, value] of Array.from(searchParams.entries())) {
+      if (!(key in keys)) continue;
       if (radios.includes(key)) continue;
       if (!(key in currentFilter)) currentFilter[key] = [];
       (currentFilter[key] as Array<string>).push(value);

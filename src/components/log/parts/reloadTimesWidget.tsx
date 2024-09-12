@@ -4,7 +4,7 @@ function ReloadTimesWidget({ count }: { count: number }) {
   useTranslation();
 
   return (
-    <span className="c-reload-times u-text-shadow">
+    <span className="c-reload-times">
       <Trans
         i18nKey="ReloadTimes"
         ns="log"

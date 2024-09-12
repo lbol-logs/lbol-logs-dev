@@ -1219,9 +1219,11 @@ html:lang(en) .p-result__type {
 
 .c-show-random-result {
   color: var(--reimu);
+  font-weight: bold;;
 }
 .c-reload-times {
-  color: var(--sakuya);
+  color: var(--cirno);
+  font-weight: bold;;
 }
 
 :root {

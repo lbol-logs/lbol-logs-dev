@@ -4,7 +4,7 @@ function ShowRandomResultWidget({ show }: { show: boolean }) {
   useTranslation();
 
   return (
-    <span className="c-show-random-result u-text-shadow">
+    <span className="c-show-random-result">
       <Trans
         i18nKey="ShowRandomResult"
         ns="log"

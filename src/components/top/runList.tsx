@@ -22,7 +22,9 @@ function RunList() {
 
   const currentFilter = useMemo(() => {
     const currentFilter: TFilter = {};
+    const keys = DefaultFilter.keys;
     for (const [key, value] of Array.from(searchParams.entries())) {
+      if (!(key in keys)) continue;
       if (DefaultFilter.texts.includes(key)) {
         currentFilter[key as keyof TFilterText] = value;
       }

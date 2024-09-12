@@ -1,8 +1,12 @@
 class DefaultFilter {
   static keys = {
     na: 'na',
+    ch: 'ch',
     sc: 'sc',
     et: 'et',
+    st: 'st',
+    sw: 'sw',
+    di: 'di',
     rt: 'rt',
     rq: 'rq',
     re: 're'
