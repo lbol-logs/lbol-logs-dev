@@ -5,9 +5,12 @@ import { convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
+import { TObjAny } from 'utils/types/common';
+import { useTranslation } from 'react-i18next';
 
 function RemiliaMeet({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
+  const { t } = useTranslation();
 
   const { Data, Id } = station;
 
@@ -25,17 +28,27 @@ function RemiliaMeet({ station }: { station: TStation }) {
   const [next] = getNext(options, choices);
   const chosen = Choices[0];
 
+  const props: Array<TObjAny> = [];
   const cards: Array<TCards> = [];
   const exhibits: Array<TExhibits> = [];
 
-  cards[0] = convertCards(_cards.concat(misfortune));
-  cards[1] = convertCards(_cards);
-  exhibits[1] = [exhibit];
+  {
+    const values = { 0: t(misfortune, { ns: 'cards' }) };
+    props[0] = { values };
+    cards[0] = convertCards(_cards.concat(misfortune));
+  }
+  {
+    const values = { 0: t(exhibit, { ns: 'exhibits' }) };
+    props[1] = { values };
+    cards[1] = convertCards(_cards);
+    exhibits[1] = [exhibit];
+  }
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
+    props,
     cards,
     exhibits
   };
