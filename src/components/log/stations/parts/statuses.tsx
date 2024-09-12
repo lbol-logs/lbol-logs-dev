@@ -3,7 +3,7 @@ import { HpWidget, MoneyImage, PowerImage } from './stationWidgets';
 
 function StatusWidget({ status, lastStatus }: { status: TStatus, lastStatus: TStatus }) {
   if (!status) return null;
-  
+
   const { Hp, MaxHp } = status;
 
   const _getValuWithChange = (key: keyof TStatus) => {

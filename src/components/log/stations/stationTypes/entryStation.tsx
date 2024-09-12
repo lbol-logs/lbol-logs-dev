@@ -11,7 +11,7 @@ function EntryStation({ station }: { station: TStation }) {
 
   const Id = station.Id as string;
   if (!(Id in events)) return <RewardsWidget station={station} />;
-  
+
   const EventComponent = events[Id];
 
   return <EventComponent station={station} />;

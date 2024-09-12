@@ -133,7 +133,7 @@ function getScrollHeight(level: TLevel, showMap: boolean, rounds: TRounds) {
   let target: HTMLDivElement;
   const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
   if (!station) return;
-  
+
   target = station;
   const selector = showMap ? '.js-map' : '.js-holdings';
   const element = document.querySelector(selector) as HTMLDivElement;

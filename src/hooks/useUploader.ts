@@ -45,7 +45,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     const runData = previewData;
     const { Version } = runData;
     const id = getId(runData);
-    
+
     {
       const { error, isOnGithub, url } = await checkGithub(Version, id);
       if (error) {
