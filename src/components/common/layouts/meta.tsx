@@ -1,18 +1,18 @@
 import { GA4_MEASUREMENT_ID } from 'configs/globals';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { getCleanUrl } from 'utils/functions/helpers';
 
 function Meta() {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const { pathname } = useLocation();
 
-  const title = t('title', { ns: 'site' });
-  const subtitle = t('subtitle', { ns: 'site' });
+  // const title = t('title', { ns: 'site' });
+  // const subtitle = t('subtitle', { ns: 'site' });
 
-  const page_title = `${title} - ${subtitle}`;
+  // const page_title = `${title} - ${subtitle}`;
   const page_path = getCleanUrl();
 
   useEffect(() => {
@@ -25,10 +25,10 @@ function Meta() {
   return (
     <Helmet>
       <link rel="canonical" href={page_path} />
-      <meta name="twitter:card" content="summary" />
+      {/* <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={page_title} />
       <meta name="twitter:description" content={t('description', { ns: 'site' })} />
-      {/* <meta name="twitter:image" content={`${baseUrl}/logo512.png`} /> */}
+      <meta name="twitter:image" content={`${baseUrl}/logo512.png`} /> */}
     </Helmet>
   );
 }
