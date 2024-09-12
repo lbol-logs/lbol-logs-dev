@@ -889,6 +889,7 @@ html:lang(en) .c-entity__text {
   width: fit-content;
   font-size: 0.8em;
   z-index: 1;
+  color: var(--f-white);
 }
 .p-result > * {
   position: absolute;
@@ -898,7 +899,6 @@ html:lang(en) .c-entity__text {
   bottom: 13%;
   left: 0;
   background: color-mix(in srgb, var(--f-black) 70%, transparent);
-  color: var(--f-white);
   z-index: 3;
   padding: 0 0.3em;
 }
@@ -927,12 +927,10 @@ html:lang(en) .p-result__type {
   color: var(--f-light-yellow);
 }
 .p-result__difficulty {
-  color: var(--f-white);
   left: var(--left);
   top: 40%;
 }
 .p-result__timestamp {
-  color: var(--f-white);
   left: var(--left);
   bottom: 13%;
 }
