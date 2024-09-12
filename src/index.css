@@ -49,6 +49,10 @@ input {
 .l-header__logo {
   height: 100%;
 }
+.l-header__button {
+  padding: 0 1em;
+  box-sizing: border-box;
+}
 .l-header__widgets {
   display: flex;
   justify-content: flex-end;
@@ -1312,6 +1316,11 @@ html:lang(en) .p-result__type {
     max-width: 12.5em;
   }
 
+  .p-run-list__row {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .p-about-run-logger, .p-about-run-logs {
     flex-basis: 100%;
   }
@@ -1345,7 +1354,12 @@ html:lang(en) .p-result__type {
   .l-header__menu {
     order: 2;
     flex-basis: 100%;
-    justify-content: space-evenly;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  .l-header__button {
+    flex-basis: calc((100% - 2em) / 2.5);
   }
 
   .p-mod {

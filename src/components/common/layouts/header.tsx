@@ -22,12 +22,8 @@ function Header({ versionSwitch }: { versionSwitch?: boolean }) {
           </h1>
         </Link>
         <div className="l-header__menu">
-          <Link to="/about/">
-            About
-          </Link>
-          <Link to="/upload/">
-            {t('upload', { ns: 'site' })}
-          </Link>
+          <Link className="l-header__button u-button" to="/about/">About</Link>
+          <Link className="l-header__button u-button" to="/upload/">{t('upload', { ns: 'site' })}</Link>
         </div>
         <div className="l-header__widgets">
           <VersionWidget versionSwitch={!!versionSwitch} />
