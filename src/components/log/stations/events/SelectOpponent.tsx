@@ -25,7 +25,7 @@ function SelectOpponent({ station }: { station: TStation }) {
   const props: Array<TObjAny> = [];
 
   Opponents.forEach((opponent: string, i: number) => {
-    const values = { 0: t(opponent, { ns: 'enemies' }) };
+    const values = { 0: t(opponent, { ns: 'units' }) };
     props[i] = { values };
   });
   {

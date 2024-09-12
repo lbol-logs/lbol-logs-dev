@@ -55,11 +55,11 @@ function BuduSuanming({ station }: { station: TStation }) {
       switch (chosen) {
         case 0:
           const { Boss } = Data;
-          text = t(Boss, { ns: 'enemies' });
+          text = t(Boss, { ns: 'units' });
           break;
         case 1:
           const { Host } = Data;
-          text = t(Host, { ns: 'enemies' });
+          text = t(Host, { ns: 'units' });
           break;
         case 2:
           const { Exhibit } = Data;

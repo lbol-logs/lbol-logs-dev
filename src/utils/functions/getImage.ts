@@ -60,8 +60,8 @@ function getEventImage(name: string): string {
   return _getImage('events', name);
 }
 
-function getEnemyImage(name: string): string {
-  return _getImage('enemies', name);
+function getUnitImage(name: string): string {
+  return _getImage('units', name);
 }
 
 function getStationImage(name: string): string {
@@ -91,7 +91,7 @@ export {
   getSpellcardImage,
   getGapImage,
   getEventImage,
-  getEnemyImage,
+  getUnitImage,
   getStationImage,
   getStatusEffectImage,
   getNazrinImage

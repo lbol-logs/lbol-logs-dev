@@ -1,5 +1,5 @@
 import { RequestType, TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
-import { getEnemyImage } from 'utils/functions/getImage';
+import { getUnitImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
@@ -167,7 +167,7 @@ function Debut({ station }: { station: TStation }) {
 
       secretTreasures = (
         <>
-          <LazyLoadImage2 className="p-event__img" callback={getEnemyImage} name="Kaguya" width={size} height={size} alt="" />
+          <LazyLoadImage2 className="p-event__img" callback={getUnitImage} name="Kaguya" width={size} height={size} alt="" />
           <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />
         </>
       );
@@ -186,7 +186,7 @@ function Debut({ station }: { station: TStation }) {
     <div className="p-station__body">
       <div className="p-station__main">
         <div className="p-event">
-          <EventHead id={id} callback={getEnemyImage} name="Eirin" />
+          <EventHead id={id} callback={getUnitImage} name="Eirin" />
           <div className="p-event__body">
             {choices}
           </div>

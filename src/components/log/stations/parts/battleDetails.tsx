@@ -27,7 +27,7 @@ function BattleDetails({ details }: { details: Array<TObjAny> }) {
           cards = <CardCards cards={Cards} />;
         }
         else {
-          unit = <LazyLoadImage2 callback={getCommonImage} name={Id} alt={t(Id, { ns: 'enemies' })} />;
+          unit = <LazyLoadImage2 callback={getCommonImage} name={Id} alt={t(Id, { ns: 'units' })} />;
           se = <StatusEffectsWidget statusEffects={statusEffects} newStatusEffect={Se} />;
           if (Se) statusEffects = [...statusEffects, Se];
         }

@@ -27,7 +27,7 @@ const namespaces: Array<string> = [
   'log',
   'cards',
   'exhibits',
-  'enemies',
+  'units',
   'events',
   'dialogues',
   'gap',

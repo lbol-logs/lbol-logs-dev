@@ -6,7 +6,7 @@ function CharacterShortName() {
   const { runData: { Settings: { Character } } } = useContext(LogContext);
   const { t } = useTranslation();
 
-  const name = t(Character, { ns: 'enemies', context: 'short' });
+  const name = t(Character, { ns: 'units', context: 'short' });
 
   return (
     <span className={`c-character-short-name c-character-short-name--${Character}`}>

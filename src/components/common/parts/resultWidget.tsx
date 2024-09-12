@@ -11,7 +11,7 @@ function ResultWidget({ resultData, name }: { resultData: TObjAny, name: string 
   const { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests } = resultData;
   const { bg, avatar, height } = resultSizes;
   const spellcard = Character + PlayerType;
-  const character = t(Character, { ns: 'enemies' });
+  const character = t(Character, { ns: 'units' });
   const resultType = getResultType(Type);
   const type = t(`results.${resultType}`, { ns: 'common' });
   const count = Requests.length;
