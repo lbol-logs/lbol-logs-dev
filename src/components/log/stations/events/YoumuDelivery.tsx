@@ -5,9 +5,12 @@ import { convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
+import { TObjAny } from 'utils/types/common';
+import { useTranslation } from 'react-i18next';
 
 function YoumuDelivery({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
+  const { t } = useTranslation();
 
   const { Data, Id } = station;
 
@@ -23,12 +26,15 @@ function YoumuDelivery({ station }: { station: TStation }) {
   const [next] = getNext(options);
   const chosen = Choices[0];
 
+  const props: Array<TObjAny> = [];
   const cards: Array<TCards> = [];
   const exhibits: Array<TExhibits> = [];
 
   if (Card) {
     cards[0] = convertCards([Card], true);
   }
+  const values = { 0: t(exhibit, { ns: 'exhibits' }), 1: t(misfortune, { ns: 'cards' }) };
+  props[1] = { values };
   cards[1] = convertCards([misfortune]);
   exhibits[1] = [exhibit];
 
@@ -36,6 +42,7 @@ function YoumuDelivery({ station }: { station: TStation }) {
     current,
     next,
     chosen,
+    props,
     cards,
     exhibits
   };
