@@ -946,7 +946,7 @@ html:lang(en) .p-result__type {
   --gap-row: 0;
   --gap-col: 0.5em;
   --gap: var(--gap-row) var(--gap-col);
-  margin: 2em auto;
+  margin: 1em auto;
   width: fit-content;
 }
 .p-filter__rows--hide {
