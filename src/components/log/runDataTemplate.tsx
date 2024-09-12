@@ -9,8 +9,7 @@ import { useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/classes/ActLevel';
 import { scrollTolerance } from 'configs/globals';
 import CurrentHoldings from './currentHoldings';
-import { getScrollHeight } from 'utils/functions/helpers';
-import { flushSync } from 'react-dom';
+import { checkRounds, getScrollHeight } from 'utils/functions/helpers';
 
 function RunDataTemplate() {
   const { isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap } = useContext(LogContext);
@@ -28,16 +27,10 @@ function RunDataTemplate() {
     setLevel(l);
 
     let r = searchParams.get('r');
-    console.log('template', {r});
-    if (r !== null) {
-      const current = Number(r);
-      const rounds = al.rounds();
-      const currentRounds = Object.assign({}, rounds, { current });
-      console.log('template', {currentRounds});
-      flushSync(() => {
-      setRounds(currentRounds);
-      });
-    }
+    const current = parseInt(r || '-1');
+    const currentRounds = checkRounds(rounds) ? rounds : new ActLevel(runData, act).rounds();
+    Object.assign(currentRounds, { current });
+    setRounds(currentRounds);
 
     if (!showMap) return;
 

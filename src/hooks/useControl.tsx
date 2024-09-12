@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
-import { flushSync } from 'react-dom';
 import { NavigateFunction, SetURLSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/classes/ActLevel';
+import { copyObject } from 'utils/functions/helpers';
 import scrollToLevel from 'utils/functions/scrollToLevel';
 import updateQs from 'utils/functions/updateQs';
 import { TDispatch } from 'utils/types/common';
@@ -36,21 +36,16 @@ function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, s
     setAct(a);
     setLevel(_l);
 
-    const { minRound, maxLevel } = rounds;
-    console.log('trigger', {rounds})
+    const currentRounds = copyObject(rounds);
+    const { minRound, maxLevel } = currentRounds;
     if (maxLevel !== undefined) {
       const diff = l - (maxLevel as TLevel);
-      if (diff > 0) {
-        const current = diff - 1 + minRound;
-        const currentRounds = Object.assign({}, rounds, { current });
-        flushSync(() => {
-          setRounds(currentRounds);
-        });
-        console.log('trigger', {currentRounds});
-      }
+      const current = diff - 1 + minRound;
+      Object.assign(currentRounds, { current });
+      setRounds(currentRounds);
     }
-    updateQs(searchParams, setSearchParams, a, _l, rounds);
-    scrollToLevel(_l, showMap, rounds);
+    updateQs(searchParams, setSearchParams, a, _l, currentRounds);
+    scrollToLevel(_l, showMap, currentRounds);
   }
 
   function handleToggle() {

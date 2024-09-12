@@ -7,7 +7,7 @@ import { scrollTolerance } from 'configs/globals';
 import scrollToLevel from 'utils/functions/scrollToLevel';
 import updateQs from 'utils/functions/updateQs';
 import ActLevel from 'utils/classes/ActLevel';
-import { flushSync } from 'react-dom';
+import { checkRounds } from 'utils/functions/helpers';
 
 function Stations() {
   const { runData, act, setLevel, showMap, rounds, setRounds } = useContext(LogContext);
@@ -34,39 +34,25 @@ function Stations() {
         const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
         if (!station) break;
         const height = station.offsetTop - element.offsetHeight - scrollTolerance;
-        console.log('onscroll', {level, bool:window.scrollY >= height});
+
         if (window.scrollY >= height) {
           setLevel(level);
 
-          let currentRounds = rounds;
-          const isRoundsLoaded = Object.keys(rounds).length > 0;
-          console.log('onscroll',{isRoundsLoaded, rounds})
-          if (!isRoundsLoaded) {
-            currentRounds = new ActLevel(runData, act).rounds();
-            flushSync(() => {
-              console.log('onscroll',{currentRounds})
-            // setRounds(currentRounds);
-            });
-          }
+          const currentRounds = checkRounds(rounds) ? rounds : new ActLevel(runData, act).rounds();
           const { maxLevel } = currentRounds;
           if (maxLevel && level === maxLevel) {
             const { minRound, maxRound } = currentRounds;
             for (let current = maxRound; current >= minRound; current--) {
               const row = station.querySelector(`.js-round-${current}`) as HTMLDivElement;
               const height = row.offsetTop - element.offsetHeight - scrollTolerance;
-              console.log(row, height)
               if (window.scrollY >= height) {
                 Object.assign(currentRounds, { current });
-                flushSync(() => {
-                  console.log('onscroll set', {currentRounds});
                 setRounds(currentRounds);
-                });
                 break;
               }
             }
           }
           scrollToLevel(level, showMap, currentRounds, false);
-          console.log('onscroll', {currentRounds,rounds})
           updateQs(searchParams, setSearchParams, act, level, currentRounds);
           break;
         }

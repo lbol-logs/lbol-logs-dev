@@ -13,7 +13,7 @@ function checkForce(Nodes: TNodes) {
 }
 
 function validateRunData(runData: TRunData) {
-  if (!Object.keys(runData).length) return false;
+  if (!getLength(runData)) return false;
   else return true;
 }
 
@@ -148,6 +148,11 @@ function getScrollHeight(level: TLevel, showMap: boolean, rounds: TRounds) {
   return height;
 }
 
+function checkRounds(rounds: TRounds) {
+  if (!getLength(rounds)) return false;
+  else return true;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -168,5 +173,6 @@ export {
   getResultType,
   getResultData,
   getCleanUrl,
-  getScrollHeight
+  getScrollHeight,
+  checkRounds
 };

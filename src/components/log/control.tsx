@@ -38,7 +38,6 @@ function Control() {
   let max = maxLevel;
 
   const { current, minRound, maxRound } = rounds;
-  console.log({value, level, rounds});
   if (minRound !== undefined) {
     if (current >= 0) {
       value += Math.max(0, current - minRound + 1);
@@ -46,7 +45,6 @@ function Control() {
     max += maxRound - minRound + 1;
   }
 
-console.log({value,max})
   if (isSummary) {
     buttonLeft = (
       <span className="p-control__component" onClick={backToTop}>

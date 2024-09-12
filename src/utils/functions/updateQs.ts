@@ -10,7 +10,6 @@ function updateQs(searchParams: URLSearchParams, setSearchParams: SetURLSearchPa
   if (l) o['l'] = l.toString();
   else searchParams.delete('l');
 
-console.log('updateQs', {rounds})
   const { current, maxLevel } = rounds;
   if (l === maxLevel && current >= 0) o['r'] = current.toString();
   else searchParams.delete('r');
