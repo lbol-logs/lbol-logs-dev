@@ -38,15 +38,16 @@ function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, s
 
     const { minRound, maxLevel } = rounds;
     console.log('trigger', {rounds})
-    if (maxLevel === undefined) return;
-    const diff = l - (maxLevel as TLevel);
-    if (diff > 0) {
-      const current = diff - 1 + minRound;
-      const currentRounds = Object.assign({}, rounds, { current });
-      flushSync(() => {
-        setRounds(currentRounds);
-      });
-      console.log('trigger', {currentRounds});
+    if (maxLevel !== undefined) {
+      const diff = l - (maxLevel as TLevel);
+      if (diff > 0) {
+        const current = diff - 1 + minRound;
+        const currentRounds = Object.assign({}, rounds, { current });
+        flushSync(() => {
+          setRounds(currentRounds);
+        });
+        console.log('trigger', {currentRounds});
+      }
     }
     updateQs(searchParams, setSearchParams, a, _l, rounds);
     scrollToLevel(_l, showMap, rounds);
