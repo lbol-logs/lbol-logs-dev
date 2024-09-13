@@ -513,6 +513,9 @@ input {
   flex-wrap: wrap;
   align-items: center;
   column-gap: 0.3125em;
+  border: 3px solid var(--light-orange);
+  border-radius: 1em;
+  padding: 0.5em;
 }
 .p-station__level {
   margin: 0;
@@ -1167,6 +1170,7 @@ html:lang(en) .p-result__type {
 }
 .p-battle-details__round {
   width: 5em;
+  font-weight: bold;
 }
 .p-battle-details__body {
   display: flex;
