@@ -516,6 +516,7 @@ input {
   border: 3px solid var(--light-orange);
   border-radius: 1em;
   padding: 0.5em;
+  margin: 0.5em 0;
 }
 .p-station__level {
   margin: 0;
