@@ -111,10 +111,29 @@ input {
   padding-right: var(--padding-inner);
 }
 
+.l-log--aside {
+  --width: 1024px;
+  --gap: 0.5em;
+  display: flex;
+  column-gap: var(--gap);
+}
 .l-log__inner {
   display: flex;
   flex-direction: column;
   padding: 0;
+}
+.l-log__inner--aside {
+  min-width: var(--width);
+  max-width: var(--width);
+}
+
+.p-holdings--aside {
+  border-left: 1px solid var(--gray);
+  padding: 0 var(--gap);
+  width: calc(100% - var(--width) - var(--gap) * 2);
+  height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 .p-about {

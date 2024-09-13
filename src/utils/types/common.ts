@@ -16,6 +16,14 @@ type TDispatch<T> = Dispatch<SetStateAction<T>>;
 type TConfigsData = TObj<TObjAny>;
 type TComponents = Array<JSX.Element>;
 
+enum AsideType {
+  null = '',
+  none = '',
+  left = 'left',
+  right = 'right'
+};
+type TAsideHoldings = AsideType;
+
 export type {
   TObj,
   TObjAny,
@@ -28,5 +36,10 @@ export type {
   TRange4,
   TRange16,
   TConfigsData,
-  TComponents
+  TComponents,
+  TAsideHoldings
+};
+
+export {
+  AsideType
 };

@@ -1,4 +1,4 @@
-import { TObj, TObjString } from 'utils/types/common';
+import { AsideType, TObj, TObjString } from 'utils/types/common';
 import { TRunData } from 'utils/types/runData';
 
 const languages: TObj<TObjString> = {
@@ -67,6 +67,8 @@ const resultSizes = {
 const scrollTolerance = 50;
 
 const defaultHoldingsHeight = 144;
+const asideHoldingsthreshold = 1536;
+const defaultAsideHoldings = AsideType.right;
 
 const commonConfigs: Array<string> = [
   'characters',
@@ -113,6 +115,8 @@ export {
   resultSizes,
   scrollTolerance,
   defaultHoldingsHeight,
+  asideHoldingsthreshold,
+  defaultAsideHoldings,
   commonConfigs,
   logConfigs,
   enemiesShowDetails,

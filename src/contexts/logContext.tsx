@@ -4,6 +4,7 @@ import { createContext, ReactNode, useReducer, useState } from 'react';
 import { TConfigsData, TDispatch } from 'utils/types/common';
 import { TRounds } from 'utils/types/others';
 import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
+import Processing from 'components/common/layouts/processing';
 
 const defaultIsRunDataLoaded = false;
 const defaultRunDataId = '';
@@ -15,6 +16,7 @@ const defaultHoldings = [] as THoldings;
 const defaultShowMap = true;
 const defaultIgnoredPaths = [] as Array<THoldingChange>;
 const defaultConfigsData = {};
+const defaultHolding = <Processing />;
 
 type TLogContext = {
   isRunDataLoaded: boolean,
@@ -38,7 +40,9 @@ type TLogContext = {
   ignoredPaths: Array<THoldingChange>,
   setIgnoredPaths: TDispatch<Array<THoldingChange>>,
   configsData: TConfigsData;
-  setConfigsData: TDispatch<TConfigsData>
+  setConfigsData: TDispatch<TConfigsData>,
+  holding: JSX.Element,
+  setHolding: TDispatch<JSX.Element>
 };
 
 export const LogContext = createContext<TLogContext>({
@@ -63,7 +67,9 @@ export const LogContext = createContext<TLogContext>({
   ignoredPaths: defaultIgnoredPaths,
   setIgnoredPaths: () => {},
   configsData: defaultConfigsData,
-  setConfigsData: () => {}
+  setConfigsData: () => {},
+  holding: defaultHolding,
+  setHolding: () => {},
 });
 
 function LogProvider({ children }: { children: ReactNode }) {
@@ -78,6 +84,7 @@ function LogProvider({ children }: { children: ReactNode }) {
   const [showMap, setShowMap] = useState(defaultShowMap);
   const [ignoredPaths, setIgnoredPaths] = useState(defaultIgnoredPaths);
   const [configsData, setConfigsData] = useState(defaultConfigsData);
+  const [holding, setHolding] = useState(defaultHolding);
 
   const value = {
     isRunDataLoaded,
@@ -101,7 +108,9 @@ function LogProvider({ children }: { children: ReactNode }) {
     ignoredPaths,
     setIgnoredPaths,
     configsData,
-    setConfigsData
+    setConfigsData,
+    holding,
+    setHolding
   };
 
   return (
