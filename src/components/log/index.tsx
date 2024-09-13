@@ -24,7 +24,7 @@ function Log() {
       t(Character, { ns: 'units', context: 'short'  }) + PlayerType,
       t(shining, { ns: 'exhibits' }),
       difficultyRequest,
-      t(`results.${resultType}`, { ns: 'common' })
+      t(`results.${resultType}`, { ns: 'common', context: 'title' })
     ].join(' ');
   }
   else {
