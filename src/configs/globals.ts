@@ -10,14 +10,14 @@ const languages: TObj<TObjString> = {
     label: '日本語',
     discord: 'https://discord.com/channels/1040229874176098344/1267772986254163990'
   },
-  // 'zh-cmn-Hant': {
-  //   label: '繁中',
-  //   discord: 'https://discord.com/channels/1040229874176098344/1282271721898115163'
-  // },
-  // 'zh-cmn-Hans': {
-  //   label: '简中',
-  //   discord: 'https://discord.com/channels/1040229874176098344/1282271721898115163'
-  // }
+  'zh-cmn-Hant': {
+    label: '繁中',
+    discord: 'https://discord.com/channels/1040229874176098344/1282271721898115163'
+  },
+  'zh-cmn-Hans': {
+    label: '简中',
+    discord: 'https://discord.com/channels/1040229874176098344/1282271721898115163'
+  }
 };
 
 const namespaces: Array<string> = [
