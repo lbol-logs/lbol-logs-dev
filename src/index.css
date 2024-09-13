@@ -1127,6 +1127,11 @@ html:lang(en) .p-result__type {
   margin-left: var(--size);
 }
 
+.p-dialogues--shop {
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+}
 .p-dialogue {
   margin-bottom: 1em;
 }
@@ -1344,6 +1349,12 @@ html:lang(en) .p-result__type {
 
   .p-station__main {
     flex-basis: 100%;
+  }
+  .p-station__main--battle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    column-gap: 1em;
   }
 
   html:lang(en) .c-entity__text {

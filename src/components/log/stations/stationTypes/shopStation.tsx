@@ -53,7 +53,7 @@ function ShopStation({ station }: { station: TStation }) {
       <div className="p-station__main">
         <div className="p-event">
           <div className="p-event__body">
-            <div className="p-dialogues">
+            <div className="p-dialogues p-dialogues--shop">
               <LazyLoadImage2 className="p-event__img" callback={getStationImage} name="ShopCardService" width={size} height={size} alt="" />
               {dialogue}
             </div>
