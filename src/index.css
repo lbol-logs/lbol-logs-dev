@@ -113,9 +113,13 @@ input {
 
 .l-log--aside {
   --width: 1024px;
-  --gap: 0.5em;
   display: flex;
-  column-gap: var(--gap);
+  --padding: 0.5em;
+  --n: 5;
+  --width: calc(var(--n)*(var(--entity-width) + var(--entity-column-gap) + var(--entity-border)* 2) - var(--entity-column-gap) + var(--padding) * 2);
+}
+.l-log--left {
+  flex-direction: row-reverse;
 }
 .l-log__inner {
   display: flex;
@@ -123,17 +127,30 @@ input {
   padding: 0;
 }
 .l-log__inner--aside {
-  min-width: var(--width);
-  max-width: var(--width);
+  min-width: calc(100% - var(--width));
+  max-width: calc(100% - var(--width));
+  /* flex-basis: calc(100% - var(--width)); */
 }
 
 .p-holdings--aside {
-  border-left: 1px solid var(--gray);
-  padding: 0 var(--gap);
-  width: calc(100% - var(--width) - var(--gap) * 2);
+  border-width: 0;
+  border-style: solid;
+  border-color: var(--gray);
+  padding: 0 var(--padding);
   height: 100vh;
   position: sticky;
   top: 0;
+  overflow-y: auto;
+  width: var(--width);
+}
+.l-log--right .p-holdings--aside {
+  border-left-width: 1px;
+}
+.l-log--left .p-holdings--aside {
+  border-right-width: 1px;
+}
+.p-holdings--aside .p-holdings__cards {
+  --n: 3;
 }
 
 .p-about {
@@ -396,6 +413,9 @@ input {
 .p-holdings__exhibits {
   --n: 2;
   flex-basis: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
+}
+.p-holdings__exhibits .c-exhibits {
+  justify-content: flex-end;
 }
 
 .p-map__svg {
@@ -663,6 +683,9 @@ input {
   width: 100%;
 }
 
+.l-log--right .p-control__arrow {
+  transform: scaleX(-1);
+}
 .p-control__component .p-control__card,
 .p-control__component .p-control__exhibit {
   position: absolute;

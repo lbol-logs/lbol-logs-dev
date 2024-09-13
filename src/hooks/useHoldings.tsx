@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import Processing from 'components/common/layouts/processing';
 import { THolding, TLevel } from 'utils/types/runData';
@@ -8,17 +8,12 @@ import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import CardCards from 'components/log/entityCards/cardCards';
 import i18next from 'i18next';
-import { LogContext } from 'contexts/logContext';
-import { CommonContext } from 'contexts/commonContext';
 
-function useHoldings(/*{ level: _l, holding, setHolding, currentHolding: _, setHoldingsHeight }: { level: TLevel, holding: JSX.Element, setHolding: TDispatch<JSX.Element>, currentHolding: THolding, setHoldingsHeight: TDispatch<number> }*/) {
+function useHoldings({ level, currentHolding, setHoldingsHeight, isAside }: { level: TLevel, currentHolding: THolding, setHoldingsHeight: TDispatch<number>, isAside?: boolean }) {
   const defaultHolding = <Processing />;
+  const [holding, setHolding] = useState(defaultHolding);
   const holdingsRef = useRef<HTMLDivElement>(null);
   const [isResizing, setIsResizing] = useState(false);
-
-  const { holdingsHeight, setHoldingsHeight } = useContext(CommonContext);
-  const { act, level, holdings, holding, setHolding } = useContext(LogContext);
-  const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
 
   useTranslation();
 
@@ -50,6 +45,7 @@ function useHoldings(/*{ level: _l, holding, setHolding, currentHolding: _, setH
   }, [isResizing]);
 
   useEffect(() => {
+    if (isAside !== undefined) return;
     const resizer = (document.querySelector('.p-holdings__resizer') as HTMLDivElement);
     const o: TObj<[Window & typeof globalThis | HTMLDivElement, EventListenerOrEventListenerObject]> = {
       'mousemove': [window, resize as EventListenerOrEventListenerObject],
@@ -67,7 +63,6 @@ function useHoldings(/*{ level: _l, holding, setHolding, currentHolding: _, setH
   }, [holding, resize, stopResizing]);
 
   useEffect(() => {
-    console.log({currentHolding});
     if (currentHolding) {
       const { Cards, Exhibits, BaseMana } = currentHolding;
       const holding = (
@@ -129,6 +124,7 @@ function useHoldings(/*{ level: _l, holding, setHolding, currentHolding: _, setH
 
   return {
     holdingsRef,
+    holding,
     startResizing,
     stopResizing
   };

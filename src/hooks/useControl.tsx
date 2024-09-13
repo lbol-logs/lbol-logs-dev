@@ -4,11 +4,11 @@ import ActLevel from 'utils/classes/ActLevel';
 import { copyObject } from 'utils/functions/helpers';
 import scrollToLevel from 'utils/functions/scrollToLevel';
 import updateQs from 'utils/functions/updateQs';
-import { TDispatch } from 'utils/types/common';
+import { AsideType, TDispatch } from 'utils/types/common';
 import { TRounds } from 'utils/types/others';
 import { TAct, TLevel, TRunData } from 'utils/types/runData';
 
-function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams }: { isRunDataLoaded: boolean, runData: TRunData, act: TAct, setAct: TDispatch<TAct>, setLevel: TDispatch<TLevel>, rounds: TRounds, setRounds: TDispatch<TRounds>, showMap: boolean, setShowMap: TDispatch<boolean>, navigate: NavigateFunction, searchParams: URLSearchParams, setSearchParams: SetURLSearchParams }) {
+function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams, asideHoldings, setAsideHoldings }: { isRunDataLoaded: boolean, runData: TRunData, act: TAct, setAct: TDispatch<TAct>, setLevel: TDispatch<TLevel>, rounds: TRounds, setRounds: TDispatch<TRounds>, showMap: boolean, setShowMap: TDispatch<boolean>, navigate: NavigateFunction, searchParams: URLSearchParams, setSearchParams: SetURLSearchParams, asideHoldings: AsideType, setAsideHoldings: TDispatch<AsideType> }) {
   if (!isRunDataLoaded) return;
 
   const al = new ActLevel(runData, act);
@@ -52,6 +52,12 @@ function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, s
     setShowMap(!showMap);
   }
 
+  function handleAside() {
+    const { left, right } = AsideType;
+    const aside = (asideHoldings === left) ? right : left;
+    setAsideHoldings(aside);
+  }
+
   return {
     maxAct,
     minLevel,
@@ -59,7 +65,8 @@ function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, s
     backToTop,
     changeAct,
     changeLevel,
-    handleToggle
+    handleToggle,
+    handleAside
   };
 }
 

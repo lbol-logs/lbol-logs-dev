@@ -7,10 +7,12 @@ import { LogContext } from 'contexts/logContext';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useEffect } from 'react';
 import { AsideType } from 'utils/types/common';
+import useHoldings from 'hooks/useHoldings';
+import { THolding } from 'utils/types/runData';
 
 function RunData({ ver, id }: { ver: string, id: string }) {
-  const { asideHoldings, setAsideHoldings, configsData } = useContext(CommonContext);
-  const { configsData: { events: eventsConfigs }, holding } = useContext(LogContext);
+  const { setHoldingsHeight, asideHoldings, setAsideHoldings, configsData } = useContext(CommonContext);
+  const { act, level, holdings, configsData: { events: eventsConfigs } } = useContext(LogContext);
   const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData } = useContext(LogContext);
 
   const args = {
@@ -30,6 +32,9 @@ function RunData({ ver, id }: { ver: string, id: string }) {
       setAsideHoldings(width >= asideHoldingsthreshold ? defaultAsideHoldings : AsideType.none);
     }
   }, []);
+
+  const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
+  const { holding } = useHoldings({ level, currentHolding, setHoldingsHeight, isAside });
 
   if (!isValidRunData) return redirect as unknown as JSX.Element;
 

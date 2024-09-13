@@ -6,14 +6,16 @@ import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage, getControlImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
 import useControl from 'hooks/useControl';
+import { CommonContext } from 'contexts/commonContext';
 
 function Control() {
+  const { asideHoldings, setAsideHoldings } = useContext(CommonContext);
   const { isRunDataLoaded, runData, act, setAct, level, setLevel, rounds, setRounds, showMap, setShowMap } = useContext(LogContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const o = useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams });
+  const o = useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams, asideHoldings, setAsideHoldings });
 
   if (!o) return <Loading />;
 
@@ -24,7 +26,8 @@ function Control() {
     backToTop,
     changeAct,
     changeLevel,
-    handleToggle
+    handleToggle,
+    handleAside
   } = o;
 
   let buttonLeft = null;
@@ -33,6 +36,7 @@ function Control() {
   let buttonRight2 = null;
   const isSummary = act === 0;
   const isLastAct = act === maxAct;
+  const isAside = asideHoldings.toString() !== '';
 
   let value = level;
   let max = maxLevel;
@@ -75,24 +79,33 @@ function Control() {
     );
 
     let img;
-    if (showMap) {
-      img = (
-        <>
-          <LazyLoadImage2 className="p-control__card" callback={getCommonImage} name="Card" alt={t('card', { ns: 'common' })} />
-          <LazyLoadImage2 className="p-control__exhibit" callback={getCommonImage} name="Exhibit" alt={t('exhibit', { ns: 'common' })} />
-        </>
+    if (isAside) {
+      buttonRight2 = (
+        <span className="p-control__component p-control__arrow" onClick={handleAside}>
+          <LazyLoadImage2 callback={getControlImage} name="Arrow" alt={t('control.left', { ns: 'log' })} />
+        </span>
       );
     }
     else {
-      img = (
-        <LazyLoadImage2 callback={getControlImage} name="Map" alt={t('control.map', { ns: 'log' })} />
+      if (showMap) {
+        img = (
+          <>
+            <LazyLoadImage2 className="p-control__card" callback={getCommonImage} name="Card" alt={t('card', { ns: 'common' })} />
+            <LazyLoadImage2 className="p-control__exhibit" callback={getCommonImage} name="Exhibit" alt={t('exhibit', { ns: 'common' })} />
+          </>
+        );
+      }
+      else {
+        img = (
+          <LazyLoadImage2 callback={getControlImage} name="Map" alt={t('control.map', { ns: 'log' })} />
+        );
+      }
+      buttonRight2 = (
+        <span className="p-control__component" onClick={handleToggle}>
+          {img}
+        </span>
       );
     }
-    buttonRight2 = (
-      <span className="p-control__component" onClick={handleToggle}>
-        {img}
-      </span>
-    );
   }
 
   if (isLastAct) {

@@ -6,14 +6,15 @@ import { THolding } from 'utils/types/runData';
 
 function CurrentHoldings() {
   const { holdingsHeight, setHoldingsHeight } = useContext(CommonContext);
-  const { act, level, holdings, holding, setHolding } = useContext(LogContext);
+  const { act, level, holdings } = useContext(LogContext);
   const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
 
   const {
     holdingsRef,
+    holding,
     startResizing,
     stopResizing
-  } = useHoldings({ level, holding, setHolding, currentHolding, setHoldingsHeight });
+  } = useHoldings({ level, currentHolding, setHoldingsHeight });
 
   return (
     <div
