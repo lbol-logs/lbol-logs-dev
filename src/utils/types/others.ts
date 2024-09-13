@@ -1,5 +1,5 @@
 import { TObj, TObjAny, TRange4 } from './common';
-import { TExhibit, TLevel, TRequests, TStation } from './runData';
+import { TAct, TExhibit, TLevel, TRequests, TStation } from './runData';
 
 type TRunListItem = {
   id: string,
@@ -46,6 +46,7 @@ type TRounds = {
   current: number,
   minRound: number,
   maxRound: number,
+  act: TAct,
   maxLevel: TLevel
 };
 

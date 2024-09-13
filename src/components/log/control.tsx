@@ -37,8 +37,8 @@ function Control() {
   let value = level;
   let max = maxLevel;
 
-  const { current, minRound, maxRound } = rounds;
-  if (minRound !== undefined) {
+  const { current, minRound, maxRound, act: _act } = rounds;
+  if (act === _act) {
     if (current >= 0) {
       value += Math.max(0, current - minRound + 1);
     }

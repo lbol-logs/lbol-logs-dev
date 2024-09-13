@@ -39,16 +39,19 @@ function Stations() {
           setLevel(level);
 
           const currentRounds = checkRounds(rounds) ? rounds : new ActLevel(runData, act).rounds();
-          const { maxLevel } = currentRounds;
-          if (maxLevel && level === maxLevel) {
-            const { minRound, maxRound } = currentRounds;
-            for (let current = maxRound; current >= minRound; current--) {
-              const row = station.querySelector(`.js-round-${current}`) as HTMLDivElement;
-              const height = row.offsetTop - element.offsetHeight - scrollTolerance;
-              if (window.scrollY >= height) {
-                Object.assign(currentRounds, { current });
-                setRounds(currentRounds);
-                break;
+          const { act: _act } = currentRounds;
+          if (act === _act) {
+            const { maxLevel } = currentRounds;
+            if (maxLevel && level === maxLevel) {
+              const { minRound, maxRound } = currentRounds;
+              for (let current = maxRound; current >= minRound; current--) {
+                const row = station.querySelector(`.js-round-${current}`) as HTMLDivElement;
+                const height = row.offsetTop - element.offsetHeight - scrollTolerance;
+                if (window.scrollY >= height) {
+                  Object.assign(currentRounds, { current });
+                  setRounds(currentRounds);
+                  break;
+                }
               }
             }
           }

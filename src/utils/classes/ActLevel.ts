@@ -50,7 +50,7 @@ class ActLevel {
     const { Details } = Data;
     if (!Details) return defaultRounds;
 
-    const { Level } = lastStation.Node;
+    const { Act, Level } = lastStation.Node;
     const [minRound, maxRound] = Details.reduce((a: [number, number], b: TObjAny) => {
       const { Round } = b;
       const min = Math.min(a[0], Round);
@@ -61,6 +61,7 @@ class ActLevel {
       current: -1,
       minRound,
       maxRound,
+      act: Act,
       maxLevel: Level
     };
     return rounds;
