@@ -24,6 +24,9 @@ function RunData({ ver, id }: { ver: string, id: string }) {
   const [isValidRunData, redirect] = useRunData(args);
 
   const isAside = asideHoldings.toString() !== '';
+  const isSummary = act === 0;
+  const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
+  const { holding } = useHoldings({ level, currentHolding, setHoldingsHeight, isAside });
 
   useEffect(() => {
     if (!isValidRunData) return;
@@ -32,9 +35,6 @@ function RunData({ ver, id }: { ver: string, id: string }) {
       setAsideHoldings(width >= asideHoldingsthreshold ? defaultAsideHoldings : AsideType.none);
     }
   }, []);
-
-  const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
-  const { holding } = useHoldings({ level, currentHolding, setHoldingsHeight, isAside });
 
   if (!isValidRunData) return redirect as unknown as JSX.Element;
 
@@ -47,7 +47,7 @@ function RunData({ ver, id }: { ver: string, id: string }) {
       </div>
       {isAside && (
         <aside className="p-holdings--aside">
-          {holding}
+          {!isSummary && holding}
         </aside>
       )}
     </main>
