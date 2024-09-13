@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useState } from 'react';
-import {  TDispatch } from 'utils/types/common';
+import { TDispatch } from 'utils/types/common';
 import { TFilter } from 'utils/types/others';
 
 const defaultFilter: TFilter = {};
