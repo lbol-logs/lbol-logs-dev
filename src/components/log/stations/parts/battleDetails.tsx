@@ -8,15 +8,19 @@ import { TObjAny } from 'utils/types/common';
 import { HpWidget } from './stationWidgets';
 import CardCards from 'components/log/entityCards/cardCards';
 import StatusEffectsWidget from './statusEffectsWidget';
+import { CommonContext } from 'contexts/commonContext';
 
 function BattleDetails({ details }: { details: Array<TObjAny> }) {
+  const { holdingsWidth, asideHoldings } = useContext(CommonContext);
   const { runData: { Settings: { Character } } } = useContext(LogContext);
   const { t } = useTranslation();
+
+  const style = (asideHoldings.toString()  ? { '--holdings-width': Math.min(Math.max(487, holdingsWidth), 801) + 'px' } : {}) as React.CSSProperties;
 
   let statusEffects: Array<string> = [];
 
   return (
-    <div className="p-battle-details">
+    <div className="p-battle-details" style={style}>
       {details.map((roundObj, i) => {
         const { Round, Id, Hp, Cards, Se } = roundObj;
         const isPlayer = Id === 'Player';
@@ -28,8 +32,8 @@ function BattleDetails({ details }: { details: Array<TObjAny> }) {
         }
         else {
           unit = <LazyLoadImage2 callback={getCommonImage} name={Id} alt={t(Id, { ns: 'units' })} />;
-          se = <StatusEffectsWidget statusEffects={statusEffects} newStatusEffect={Se} />;
           if (Se) statusEffects = [...statusEffects, Se];
+          se = <StatusEffectsWidget statusEffects={statusEffects} />;
         }
         if ((i - 2) in details) {
           ({ Hp: lastHp } = details[i - 2]);
