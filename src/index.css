@@ -301,6 +301,7 @@ input {
 }
 
 .p-holdings {
+  --padding: 0.5em;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -315,7 +316,6 @@ input {
   max-height: calc(100vh - var(--control-height));
 }
 .p-holdings--vertical {
-  --padding: 0.5em;
   --min-n: 3;
   --min-width: calc(var(--min-n)*(var(--entity-width) + var(--entity-column-gap) + var(--entity-border)* 2) + var(--padding) * 2);
   --max-n: 5;
@@ -434,11 +434,11 @@ input {
   --n: 2;
   --width: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
   flex-basis: var(--width);
-  flex-shrink: 0;
 }
 .p-holdings--vertical .p-holdings__exhibits {
   --n-v: var(--exhibits-n, var(--n));
   --width: calc(var(--n-v) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
+  flex-shrink: 0;
 }
 .p-holdings__exhibits .c-exhibits {
   justify-content: flex-end;
