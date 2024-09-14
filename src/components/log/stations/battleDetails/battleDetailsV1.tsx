@@ -5,12 +5,12 @@ import { useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { getCommonImage } from 'utils/functions/getImage';
 import { TObjAny } from 'utils/types/common';
-import { HpWidget } from './stationWidgets';
+import { HpWidget } from '../parts/stationWidgets';
 import CardCards from 'components/log/entityCards/cardCards';
-import StatusEffectsWidget from './statusEffectsWidget';
+import StatusEffectsWidget from '../parts/statusEffectsWidget';
 import { CommonContext } from 'contexts/commonContext';
 
-function BattleDetails({ details }: { details: Array<TObjAny> }) {
+function BattleDetailsV1({ details }: { details: Array<TObjAny> }) {
   const { holdingsWidth, asideHoldings } = useContext(CommonContext);
   const { runData: { Settings: { Character } } } = useContext(LogContext);
   const { t } = useTranslation();
@@ -64,4 +64,4 @@ function BattleDetails({ details }: { details: Array<TObjAny> }) {
   );
 }
 
-export default BattleDetails;
+export default BattleDetailsV1;

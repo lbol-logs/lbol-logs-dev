@@ -245,6 +245,7 @@ export type {
   TBaseManaObj,
   THoldingChange,
   TRequests,
+  TMod,
   TMods,
   TDialogueConfigs
 };

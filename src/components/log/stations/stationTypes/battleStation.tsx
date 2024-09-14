@@ -6,7 +6,7 @@ import RoundsWidget from '../parts/roundsWidget';
 import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
 import { enemiesShowDetails } from 'configs/globals';
-import BattleDetails from '../parts/battleDetails';
+import BattleDetails from '../battleDetails';
 
 function BattleStation({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
