@@ -1,6 +1,6 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { resultTypes } from 'configs/globals';
-import { TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
+import { AsideType, TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
 import { TRounds } from 'utils/types/others';
 import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
@@ -153,6 +153,12 @@ function checkRounds(rounds: TRounds) {
   else return true;
 }
 
+function toggleAside(asideHoldings: AsideType) {
+  const { left, right } = AsideType;
+  const aside = (asideHoldings === left) ? right : left;
+  return aside;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -174,5 +180,6 @@ export {
   getResultData,
   getCleanUrl,
   getScrollHeight,
-  checkRounds
+  checkRounds,
+  toggleAside
 };

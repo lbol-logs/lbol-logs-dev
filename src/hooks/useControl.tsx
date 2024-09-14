@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import { NavigateFunction, SetURLSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/classes/ActLevel';
-import { copyObject } from 'utils/functions/helpers';
+import { copyObject, toggleAside } from 'utils/functions/helpers';
 import scrollToLevel from 'utils/functions/scrollToLevel';
 import updateQs from 'utils/functions/updateQs';
 import { AsideType, TDispatch } from 'utils/types/common';
@@ -53,8 +53,7 @@ function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, s
   }
 
   function handleAside() {
-    const { left, right } = AsideType;
-    const aside = (asideHoldings === left) ? right : left;
+    const aside = toggleAside(asideHoldings);
     setAsideHoldings(aside);
   }
 

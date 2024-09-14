@@ -7,6 +7,7 @@ import { getCommonImage, getControlImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
 import useControl from 'hooks/useControl';
 import { CommonContext } from 'contexts/commonContext';
+import { toggleAside } from 'utils/functions/helpers';
 
 function Control() {
   const { asideHoldings, setAsideHoldings } = useContext(CommonContext);
@@ -82,7 +83,7 @@ function Control() {
     if (isAside) {
       buttonRight2 = (
         <span className="p-control__component p-control__arrow" onClick={handleAside}>
-          <LazyLoadImage2 callback={getControlImage} name="Arrow" alt={t('control.left', { ns: 'log' })} />
+            <LazyLoadImage2 callback={getControlImage} name="Arrow" alt={t(`control.${toggleAside(asideHoldings)}`, { ns: 'log' })} />
         </span>
       );
     }
