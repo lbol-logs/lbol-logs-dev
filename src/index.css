@@ -542,8 +542,7 @@ input {
 }
 
 .p-station--last {
-  margin-bottom: 0;
-  padding-bottom: calc(70vh - var(--map-height));
+  padding-bottom: calc(75vh - var(--map-height));
   box-sizing: border-box;
 }
 

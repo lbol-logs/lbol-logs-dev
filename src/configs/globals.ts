@@ -64,7 +64,7 @@ const resultSizes = {
   height: 100
 };
 
-const scrollTolerance = 50;
+const scrollTolerance = 70;
 
 const defaultHoldingsHeight = 144;
 const asideHoldingsthreshold = 1536;

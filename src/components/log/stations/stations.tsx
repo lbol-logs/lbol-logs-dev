@@ -28,12 +28,14 @@ function Stations() {
       const selector = showMap ? '.js-map' : '.js-holdings';
       const element = document.querySelector(selector) as HTMLDivElement;
       if (!element) return;
+
+      const { y } = element.getBoundingClientRect();
       const levels = stations.map(({ Node: { Level } }) => Level);
+
       for (const level of levels.reverse()) {
-        if (!level) continue;
         const station = document.querySelector(`.js-level-${level}`) as HTMLDivElement;
         if (!station) break;
-        const height = station.offsetTop - element.offsetHeight - scrollTolerance;
+        const height = station.offsetTop - element.offsetHeight - scrollTolerance - y;
 
         if (window.scrollY >= height) {
           setLevel(level);
