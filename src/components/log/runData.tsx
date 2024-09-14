@@ -53,7 +53,7 @@ function RunData({ ver, id }: { ver: string, id: string }) {
           <RunDataTemplate />
         </Suspense>
       </div>
-      {isAside && (
+      {(isAside && !isSummary) && (
         <div
           className={`p-holdings p-holdings--vertical p-holdings--${aside}  js-holdings`}
           ref={holdingsRef}
@@ -64,7 +64,7 @@ function RunData({ ver, id }: { ver: string, id: string }) {
           style={{ width: holdingsWidth }}
         >
           <div className="p-holdings__inner" style={n}>
-            {!isSummary && holding}
+            {holding}
           </div>
           <div
             className="p-holdings__resizer p-holdings__resizer--vertical js-resizer"
