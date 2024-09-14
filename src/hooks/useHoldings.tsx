@@ -54,17 +54,16 @@ function useHoldings({ level, currentHolding, setHoldingsHeight, setHoldingsWidt
           clientX = event.clientX;
         }
         if (clientX === undefined) return;
-        const { left, right } = (holdingsRef.current as HTMLDivElement).getBoundingClientRect();
-        const currentWidth = left || right;
-        const width = clientX - currentWidth;
+        const { left } = (holdingsRef.current as HTMLDivElement).getBoundingClientRect();
+        const width = left ? window.screen.width - clientX : clientX;
         (setHoldingsWidth as TDispatch<number>)(width);
       }
     }
   }, [isResizing]);
 
   useEffect(() => {
-    if (isAside !== undefined) return;
-    const resizer = (document.querySelector('.p-holdings__resizer') as HTMLDivElement);
+    const resizer = (document.querySelector('.js-resizer') as HTMLDivElement);
+    if (!resizer) return;
     const o: TObj<[Window & typeof globalThis | HTMLDivElement, EventListenerOrEventListenerObject]> = {
       'mousemove': [window, resize as EventListenerOrEventListenerObject],
       'mouseup': [window, stopResizing],

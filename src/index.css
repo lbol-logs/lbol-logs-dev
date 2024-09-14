@@ -112,11 +112,7 @@ input {
 }
 
 .l-log--aside {
-  --width: 1024px;
   display: flex;
-  --padding: 0.5em;
-  --n: 5;
-  --width: calc(var(--n)*(var(--entity-width) + var(--entity-column-gap) + var(--entity-border)* 2) - var(--entity-column-gap) + var(--padding) * 2);
 }
 .l-log--left {
   flex-direction: row-reverse;
@@ -127,8 +123,9 @@ input {
   padding: 0;
 }
 .l-log__inner--aside {
-  min-width: calc(100% - var(--width));
-  max-width: calc(100% - var(--width));
+  flex: 1;
+  /* min-width: calc(100% - var(--width));
+  max-width: calc(100% - var(--width)); */
   /* flex-basis: calc(100% - var(--width)); */
 }
 
@@ -307,36 +304,44 @@ input {
   position: sticky;
   top: 0;
   z-index: 999;
-  min-height: var(--map-height);
-  max-height: calc(100vh - var(--control-height));
   box-shadow: 0 0.5em 0.5em -0.5em var(--shadow);
   background: var(--white);
   display: flex;
-  --entity-column-gap: 0.6em;
+  --entity-column-gap: 0.5625em;
 }
 .p-holdings--horizontal {
   flex-direction: column;
+  min-height: var(--map-height);
+  max-height: calc(100vh - var(--control-height));
 }
 .p-holdings--vertical {
-  width: var(--width);
+  --padding: 0.5em;
+  --min-n: 3;
+  --min-width: calc(var(--min-n)*(var(--entity-width) + var(--entity-column-gap) + var(--entity-border)* 2) + var(--padding) * 2);
+  --max-n: 5;
+  --max-width: calc(var(--max-n)*(var(--entity-width) + var(--entity-column-gap) + var(--entity-border)* 2) + var(--padding) * 2);
+  height: calc(100vh - var(--control-height));
+  min-width: var(--min-width);
+  max-width: var(--max-width);
+  container-name: aside;
 }
 .p-holdings--right {
   flex-direction: row-reverse;
-}
-.p-holdings--vertical .p-holdings__inner {
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  overflow-y: auto;
 }
 .p-holdings--vertical .p-holdings__cards {
   --n: 3;
 }
 .p-holdings__inner {
-  padding: 0.5em;
-  overflow-y: scroll;
+  padding: var(--padding);
+  overflow-y: auto;
   height: 100%;
   scrollbar-width: thin;
+}
+.p-holdings--vertical .p-holdings__inner {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  scrollbar-width: none;
 }
 
 .p-holdings__resizer {
@@ -344,11 +349,11 @@ input {
   flex-shrink: 0;
   flex-basis: 6px;
   justify-self: flex-end;
-  cursor: row-resize;
   resize: vertical;
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
   touch-action: none;
   --color: var(--gray);
   --visible: hidden;
@@ -356,10 +361,10 @@ input {
   --size: 3px;
 }
 .p-holdings__resizer--horizontal {
-  height: var(--size);
+  cursor: row-resize;
 }
 .p-holdings__resizer--vertical {
-  width: var(--size);
+  cursor: col-resize;
 }
 .p-holdings__resizer:before, .p-holdings__resizer:after {
   content: '';
@@ -371,13 +376,21 @@ input {
   pointer-events: none;
   visibility: var(--visible);
 }
-.p-holdings__resizer:before {
+.p-holdings__resizer--horizontal:before {
   bottom: 100%;
   transform: rotate(-135deg);
 }
-.p-holdings__resizer:after {
+.p-holdings__resizer--horizontal:after {
   top: 100%;
   transform: rotate(45deg);
+}
+.p-holdings__resizer--vertical:before {
+  right: 100%;
+  transform: rotate(135deg);
+}
+.p-holdings__resizer--vertical:after {
+  left: 100%;
+  transform: rotate(-45deg);
 }
 .p-holdings__resizer:hover {
   --color: var(--green);
@@ -409,13 +422,23 @@ input {
   display: flex;
   justify-content: space-between;
 }
+.p-holdings--vertical .p-holdings__entities {
+  column-gap: var(--entity-column-gap);
+  padding-bottom: calc(50vh + var(--control-height));
+}
 .p-holdings__cards {
   --n: 6;
   flex-basis: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
 }
 .p-holdings__exhibits {
   --n: 2;
-  flex-basis: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
+  --width: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
+  flex-basis: var(--width);
+  flex-shrink: 0;
+}
+.p-holdings--vertical .p-holdings__exhibits {
+  --n-v: var(--exhibits-n, var(--n));
+  --width: calc(var(--n-v) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
 }
 .p-holdings__exhibits .c-exhibits {
   justify-content: flex-end;
@@ -707,7 +730,7 @@ input {
 .c-entities {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5em var(--entity-column-gap);
+  gap: var(--entity-row-gap) var(--entity-column-gap);
   margin: auto 0;
 }
 .c-entity {
@@ -1306,7 +1329,8 @@ html:lang(en) .p-result__type {
   --result-width: 292px;
   --requests-count: 7;
   --dot-size: calc(var(--result-width) / (var(--requests-count) * 2 - 1));
-  --entity-column-gap: 0.65em;
+  --entity-row-gap: 0.5em;
+  --entity-column-gap: 0.625em;
   --entity-width: 9em;
   --entity-height: 2.5em;
   --entity-margin: 0.5em;

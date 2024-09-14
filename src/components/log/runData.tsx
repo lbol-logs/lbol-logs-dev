@@ -42,6 +42,8 @@ function RunData({ ver, id }: { ver: string, id: string }) {
     }
   }, []);
 
+  const n = (holdingsWidth < 641 ? { '--exhibits-n': 1 } : {}) as React.CSSProperties;
+
   if (!isValidRunData) return redirect as unknown as JSX.Element;
 
   return (
@@ -61,7 +63,7 @@ function RunData({ ver, id }: { ver: string, id: string }) {
           onTouchCancel={(e) => e.preventDefault()}
           style={{ width: holdingsWidth }}
         >
-          <div className="p-holdings__inner">
+          <div className="p-holdings__inner" style={n}>
             {!isSummary && holding}
           </div>
           <div
