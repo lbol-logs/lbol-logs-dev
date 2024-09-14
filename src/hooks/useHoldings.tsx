@@ -9,7 +9,7 @@ import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import CardCards from 'components/log/entityCards/cardCards';
 import i18next from 'i18next';
 
-function useHoldings({ level, currentHolding, setHoldingsHeight, isAside }: { level: TLevel, currentHolding: THolding, setHoldingsHeight: TDispatch<number>, isAside?: boolean }) {
+function useHoldings({ level, currentHolding, setHoldingsHeight, setHoldingsWidth, isAside }: { level: TLevel, currentHolding: THolding, setHoldingsHeight?: TDispatch<number>, setHoldingsWidth?: TDispatch<number>, isAside?: boolean }) {
   const defaultHolding = <Processing />;
   const [holding, setHolding] = useState(defaultHolding);
   const holdingsRef = useRef<HTMLDivElement>(null);
@@ -30,17 +30,35 @@ function useHoldings({ level, currentHolding, setHoldingsHeight, isAside }: { le
   }
 
   const resize = useCallback((event: MouseEvent | TouchEvent) => {
-    if (isResizing) {
-      let clientY;
-      if (isTouchEvent(event)) {
-        clientY = event.touches[0].clientY;
+    if (setHoldingsHeight) {
+      if (isResizing) {
+        let clientY;
+        if (isTouchEvent(event)) {
+          clientY = event.touches[0].clientY;
+        }
+        else {
+          clientY = event.clientY;
+        }
+        if (clientY === undefined) return;
+        const height = clientY - (holdingsRef.current as HTMLDivElement).getBoundingClientRect().top;
+        setHoldingsHeight(height);
       }
-      else {
-        clientY = event.clientY;
+    }
+    else {
+      if (isResizing) {
+        let clientX;
+        if (isTouchEvent(event)) {
+          clientX = event.touches[0].clientX;
+        }
+        else {
+          clientX = event.clientX;
+        }
+        if (clientX === undefined) return;
+        const { left, right } = (holdingsRef.current as HTMLDivElement).getBoundingClientRect();
+        const currentWidth = left || right;
+        const width = clientX - currentWidth;
+        (setHoldingsWidth as TDispatch<number>)(width);
       }
-      if (clientY === undefined) return;
-      const height = clientY - (holdingsRef.current as HTMLDivElement).getBoundingClientRect().top;
-      setHoldingsHeight(height);
     }
   }, [isResizing]);
 

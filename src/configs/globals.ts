@@ -67,6 +67,7 @@ const resultSizes = {
 const scrollTolerance = 70;
 
 const defaultHoldingsHeight = 144;
+const defaultHoldingsWidth = 796;
 const asideHoldingsthreshold = 1536;
 const defaultAsideHoldings = AsideType.right;
 
@@ -115,6 +116,7 @@ export {
   resultSizes,
   scrollTolerance,
   defaultHoldingsHeight,
+  defaultHoldingsWidth,
   asideHoldingsthreshold,
   defaultAsideHoldings,
   commonConfigs,

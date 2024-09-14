@@ -18,7 +18,7 @@ function CurrentHoldings() {
 
   return (
     <div
-      className="p-holdings js-holdings"
+      className="p-holdings p-holdings--horizontal js-holdings"
       ref={holdingsRef}
       onMouseDown={(e) => e.preventDefault()}
       onTouchStart={(e) => e.preventDefault()}
@@ -30,7 +30,7 @@ function CurrentHoldings() {
         {holding}
       </div>
       <div
-        className="p-holdings__resizer js-resizer"
+        className="p-holdings__resizer p-holdings__resizer--horizontal js-resizer"
         onMouseDown={startResizing}
         onTouchStart={startResizing}
         onTouchEnd={stopResizing}

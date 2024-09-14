@@ -132,27 +132,6 @@ input {
   /* flex-basis: calc(100% - var(--width)); */
 }
 
-.p-holdings--aside {
-  border-width: 0;
-  border-style: solid;
-  border-color: var(--gray);
-  padding: 0 var(--padding);
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  overflow-y: auto;
-  width: var(--width);
-}
-.l-log--right .p-holdings--aside {
-  border-left-width: 1px;
-}
-.l-log--left .p-holdings--aside {
-  border-right-width: 1px;
-}
-.p-holdings--aside .p-holdings__cards {
-  --n: 3;
-}
-
 .p-about {
   display: flex;
   flex-wrap: wrap;
@@ -333,8 +312,25 @@ input {
   box-shadow: 0 0.5em 0.5em -0.5em var(--shadow);
   background: var(--white);
   display: flex;
-  flex-direction: column;
   --entity-column-gap: 0.6em;
+}
+.p-holdings--horizontal {
+  flex-direction: column;
+}
+.p-holdings--vertical {
+  width: var(--width);
+}
+.p-holdings--right {
+  flex-direction: row-reverse;
+}
+.p-holdings--vertical .p-holdings__inner {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+.p-holdings--vertical .p-holdings__cards {
+  --n: 3;
 }
 .p-holdings__inner {
   padding: 0.5em;
@@ -342,6 +338,7 @@ input {
   height: 100%;
   scrollbar-width: thin;
 }
+
 .p-holdings__resizer {
   flex-grow: 0;
   flex-shrink: 0;
@@ -353,10 +350,16 @@ input {
   display: flex;
   justify-content: center;
   touch-action: none;
-  height: 3px;
   --color: var(--gray);
   --visible: hidden;
   background: var(--color);
+  --size: 3px;
+}
+.p-holdings__resizer--horizontal {
+  height: var(--size);
+}
+.p-holdings__resizer--vertical {
+  width: var(--size);
 }
 .p-holdings__resizer:before, .p-holdings__resizer:after {
   content: '';
@@ -640,7 +643,7 @@ input {
   background: var(--light-gray);
   height: var(--control-height);
   width: 100%;
-  z-index: 999;
+  z-index: 1000;
 }
 .p-control__inner {
   display: flex;

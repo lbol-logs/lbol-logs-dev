@@ -11,7 +11,7 @@ import useHoldings from 'hooks/useHoldings';
 import { THolding } from 'utils/types/runData';
 
 function RunData({ ver, id }: { ver: string, id: string }) {
-  const { setHoldingsHeight, asideHoldings, setAsideHoldings, configsData } = useContext(CommonContext);
+  const { holdingsWidth, setHoldingsWidth, asideHoldings, setAsideHoldings, configsData } = useContext(CommonContext);
   const { act, level, holdings, configsData: { events: eventsConfigs } } = useContext(LogContext);
   const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData } = useContext(LogContext);
 
@@ -23,10 +23,16 @@ function RunData({ ver, id }: { ver: string, id: string }) {
   };
   const [isValidRunData, redirect] = useRunData(args);
 
-  const isAside = asideHoldings.toString() !== '';
+  const aside = asideHoldings.toString();
+  const isAside = aside !== '';
   const isSummary = act === 0;
   const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
-  const { holding } = useHoldings({ level, currentHolding, setHoldingsHeight, isAside });
+  const {
+    holdingsRef,
+    holding,
+    startResizing,
+    stopResizing  
+  } = useHoldings({ level, currentHolding, setHoldingsWidth, isAside });
 
   useEffect(() => {
     if (!isValidRunData) return;
@@ -39,16 +45,33 @@ function RunData({ ver, id }: { ver: string, id: string }) {
   if (!isValidRunData) return redirect as unknown as JSX.Element;
 
   return (
-    <main className={`l-log ${isAside ? `l-log--aside l-log--${asideHoldings.toString()}` : ''}`}>
+    <main className={`l-log ${isAside ? `l-log--aside l-log--${aside}` : ''}`}>
       <div className={`l-log__inner ${isAside ? 'l-log__inner--aside': ''} l-inner`}>
         <Suspense fallback={<Loading />}>
           <RunDataTemplate />
         </Suspense>
       </div>
       {isAside && (
-        <aside className="p-holdings--aside">
-          {!isSummary && holding}
-        </aside>
+        <div
+          className={`p-holdings p-holdings--vertical p-holdings--${aside}  js-holdings`}
+          ref={holdingsRef}
+          onMouseDown={(e) => e.preventDefault()}
+          onTouchStart={(e) => e.preventDefault()}
+          onTouchEnd={(e) => e.preventDefault()}
+          onTouchCancel={(e) => e.preventDefault()}
+          style={{ width: holdingsWidth }}
+        >
+          <div className="p-holdings__inner">
+            {!isSummary && holding}
+          </div>
+          <div
+            className="p-holdings__resizer p-holdings__resizer--vertical js-resizer"
+            onMouseDown={startResizing}
+            onTouchStart={startResizing}
+            onTouchEnd={stopResizing}
+            onTouchCancel={stopResizing}
+          />
+        </div>
       )}
     </main>
   );
