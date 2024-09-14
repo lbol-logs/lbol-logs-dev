@@ -16,6 +16,7 @@ function LazyLoadImage2({ callback, name, alt, width, height, className }: TLazy
     height: height || iconSize,
     className: className
   };
+  if (alt !== '') Object.assign(props, { title: alt });
 
   const src = callback(name);
   const src2x = callback(name + '@2x');
