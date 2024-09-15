@@ -84,41 +84,43 @@ function useHoldings({ level, currentHolding, setHoldingsHeight, setHoldingsWidt
       const { Cards, Exhibits, BaseMana } = currentHolding;
       const holding = (
         <>
-          <div className="p-holdings__line">
-            <h2 className="p-holdings__act">
-              <Act />
-            </h2>
-            <h3 className="p-holdings__level">
-              <Trans
-                i18nKey="level"
-                ns="log"
-                values={{ level }}
-              />
-            </h3>
-          </div>
-          <div className="p-holdings__line">
-            <BaseManaWidget baseMana={BaseMana} />
-          </div>
+          <div className="p-holdings__head">
+            <div className="p-holdings__line">
+              <h2 className="p-holdings__act">
+                <Act />
+              </h2>
+              <h3 className="p-holdings__level">
+                <Trans
+                  i18nKey="level"
+                  ns="log"
+                  values={{ level }}
+                />
+              </h3>
+            </div>
+            <div className="p-holdings__line">
+              <BaseManaWidget baseMana={BaseMana} />
+            </div>
 
-          <div className="p-holdings__counts">
-            <span className="p-holdings__count--cards">
-              <Trans
-                i18nKey="cardsCount"
-                ns="log"
-                values={{
-                  count: Cards.length
-                }}
-              />
-            </span>
-            <span className="p-holdings__count--exhibits">
-              <Trans
-                i18nKey="exhibitsCount"
-                ns="log"
-                values={{
-                  count: Exhibits.length
-                }}
-              />
-            </span>
+            <div className="p-holdings__counts">
+              <span className="p-holdings__count--cards">
+                <Trans
+                  i18nKey="cardsCount"
+                  ns="log"
+                  values={{
+                    count: Cards.length
+                  }}
+                />
+              </span>
+              <span className="p-holdings__count--exhibits">
+                <Trans
+                  i18nKey="exhibitsCount"
+                  ns="log"
+                  values={{
+                    count: Exhibits.length
+                  }}
+                />
+              </span>
+            </div>
           </div>
 
           <div className="p-holdings__entities">

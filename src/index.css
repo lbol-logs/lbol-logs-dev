@@ -330,7 +330,6 @@ input {
   --n: 3;
 }
 .p-holdings__inner {
-  padding: var(--padding);
   overflow-y: auto;
   height: 100%;
   scrollbar-width: thin;
@@ -340,6 +339,19 @@ input {
   position: sticky;
   top: 0;
   scrollbar-width: none;
+}
+.p-holdings__head {
+  padding: var(--padding);
+  margin-bottom: var(--padding);
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+}
+.p-holdings--vertical .p-holdings__head {
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 9999;
 }
 
 .p-holdings__resizer {
@@ -414,11 +426,13 @@ input {
 .p-holdings__counts {
   display: flex;
   justify-content: space-between;
+  flex-basis: 100%;
 }
 
 .p-holdings__entities {
   display: flex;
   justify-content: space-between;
+  padding: 0 var(--padding);
 }
 .p-holdings--vertical .p-holdings__entities {
   column-gap: var(--entity-column-gap);
