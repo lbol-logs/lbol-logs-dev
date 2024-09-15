@@ -37,14 +37,6 @@ type TMod = {
 };
 type TMods = Array<TMod>;
 
-type TStatus = {
-  Money: number,
-  Hp: number,
-  MaxHp: number,
-  Power: number,
-  MaxPower: number
-};
-
 type TStation = {
   Type: string,
   Node: TNodeObj,
@@ -55,6 +47,14 @@ type TStation = {
 };
 type TStations = Array<TStation>;
 
+type TData = TObjAny;
+
+type TRewards = {
+  Money?: number,
+  Cards?: Array<TCards>,
+  Exhibits?: TExhibits
+};
+
 type TNodeObj = {
   Act: TAct,
   Level: TLevel,
@@ -62,15 +62,14 @@ type TNodeObj = {
 };
 
 type TAct = TRange4;
-
 type TLevel = TRange16;
 
-type TData = TObjAny;
-
-type TRewards = {
+type TStatus = {
   Money: number,
-  Cards: Array<TCards>,
-  Exhibits?: TExhibits
+  Hp: number,
+  MaxHp: number,
+  Power: number,
+  MaxPower: number
 };
 
 type TCard = {
@@ -79,6 +78,11 @@ type TCard = {
   UpgradeCounter?: number
 };
 type TCards = Array<TCard>;
+type TCardWithPrice = TCard & {
+  Price: number,
+  IsDiscounted?: boolean
+};
+type TCardsWithPrice = Array<TCardWithPrice>;
 
 type TExhibit = string;
 type TExhibits = Array<TExhibit>;
@@ -229,6 +233,8 @@ export type {
   TRewards,
   TCard,
   TCards,
+  TCardWithPrice,
+  TCardsWithPrice,
   TExhibit,
   TExhibits,
   THolding,
