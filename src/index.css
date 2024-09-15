@@ -441,6 +441,7 @@ input {
 .p-holdings__cards {
   --n: 6;
   flex-basis: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
+  flex: 1;
 }
 .p-holdings__exhibits {
   --n: 2;
