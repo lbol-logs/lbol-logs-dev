@@ -123,7 +123,7 @@ input {
   padding: 0;
 }
 .l-log__inner--aside {
-  flex: 1;
+  width: calc(100% - var(--holdings-width));
 }
 
 .p-about {
@@ -321,6 +321,7 @@ input {
   min-width: var(--min-width);
   max-width: var(--max-width);
   container-name: aside;
+  width: var(--holdings-width);
 }
 .p-holdings--right {
   flex-direction: row-reverse;

@@ -8,19 +8,15 @@ import { TObjAny } from 'utils/types/common';
 import { HpWidget } from '../parts/stationWidgets';
 import CardCards from 'components/log/entityCards/cardCards';
 import StatusEffectsWidget from '../parts/statusEffectsWidget';
-import { CommonContext } from 'contexts/commonContext';
 
 function BattleDetailsV2({ details }: { details: Array<TObjAny> }) {
-  const { holdingsWidth, asideHoldings } = useContext(CommonContext);
   const { runData: { Settings: { Character } } } = useContext(LogContext);
   const { t } = useTranslation();
-
-  const style = (asideHoldings.toString()  ? { '--holdings-width': Math.min(Math.max(487, holdingsWidth), 801) + 'px' } : {}) as React.CSSProperties;
 
   let statusEffects: Array<string> = [];
 
   return (
-    <div className="p-battle-details" style={style}>
+    <div className="p-battle-details">
       {details.map((roundObj, i) => {
         const { Round, Id, Hp, Cards, Se } = roundObj;
         const isPlayer = Id === 'Player';

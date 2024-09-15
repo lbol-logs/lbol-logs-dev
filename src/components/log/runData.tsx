@@ -42,12 +42,13 @@ function RunData({ ver, id }: { ver: string, id: string }) {
     }
   }, []);
 
+  const style = (isAside ? { '--holdings-width': Math.min(Math.max(487, holdingsWidth), 801) + 'px' } : {}) as React.CSSProperties;
   const n = (holdingsWidth < 641 ? { '--exhibits-n': 1 } : {}) as React.CSSProperties;
 
   if (!isValidRunData) return redirect as unknown as JSX.Element;
 
   return (
-    <main className={`l-log ${isAside ? `l-log--aside l-log--${aside}` : ''}`}>
+    <main className={`l-log ${isAside ? `l-log--aside l-log--${aside}` : ''}`} style={style}>
       <div className={`l-log__inner ${isAside ? 'l-log__inner--aside': ''} l-inner`}>
         <Suspense fallback={<Loading />}>
           <RunDataTemplate />
@@ -61,7 +62,6 @@ function RunData({ ver, id }: { ver: string, id: string }) {
           onTouchStart={(e) => e.preventDefault()}
           onTouchEnd={(e) => e.preventDefault()}
           onTouchCancel={(e) => e.preventDefault()}
-          style={{ width: holdingsWidth }}
         >
           <div className="p-holdings__inner" style={n}>
             {holding}
