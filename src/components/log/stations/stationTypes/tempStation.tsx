@@ -44,20 +44,22 @@ function TempStation({ station }: { station: TStation }) {
       </span>
     );
 
-    cards = (
-      <>
-        {Cards.map((cards, i) => {
-          return (
-            <div className="p-entity p-entity--cards" key={i}>
-              <div className="p-entity__label">
-                <LazyLoadImage2 callback={getCommonImage} name="Card" alt={t('card', { ns: 'common' })} />
+    if (Cards) {
+      cards = (
+        <>
+          {Cards.map((cards, i) => {
+            return (
+              <div className="p-entity p-entity--cards" key={i}>
+                <div className="p-entity__label">
+                  <LazyLoadImage2 callback={getCommonImage} name="Card" alt={t('card', { ns: 'common' })} />
+                </div>
+                <CardCards cards={cards} />
               </div>
-              <CardCards cards={cards} />
-            </div>
-          );
-        })}
-      </>
-    );
+            );
+          })}
+        </>
+      );
+    }
 
     if (Exhibits) {
       exhibits = (
