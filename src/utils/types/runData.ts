@@ -110,15 +110,41 @@ type TNodeType = 'None' | 'Enemy' | 'EliteEnemy' | 'Supply' | 'Gap' | 'Shop' | '
 type TFollowers = [TFollower?, TFollower?, TFollower?, TFollower?];
 type TFollower = TNodeY;
 
-type TResult = {
-  Type: string,
-  Timestamp: string,
-  Cards: TCards,
-  Exhibits: TExhibits,
-  BaseMana: string,
-  ReloadTimes?: number,
-  Seed?: string
+type TTurn = {
+  Round: number
+  Turn: number
+  Id: string,
+  Cards?: TCards,
+  Intentions?: TIntentions,
+  Status: TBattleStatus,
+  StatusEffects: TStatusEffects
 };
+type TTurns = Array<TTurn>;
+
+type TIntention = {
+  Type: string
+};
+type TIntentionWithAttack = TIntention & {
+  Damage: number,
+  Times: number,
+  IsAccurary: number
+};
+type TIntentions = Array<TIntention | TIntentionWithAttack>;
+
+type TBattleStatus = {
+  Hp: number,
+  Block: number,
+  Barrier: number,
+  Power?: number
+};
+
+type TStatusEffect = {
+  Id: string,
+  Level?: number,
+  Duration?: number,
+  Count?: number
+};
+type TStatusEffects = Array<TStatusEffect>;
 
 type TChange = {
   Type: TChangeType,
@@ -138,6 +164,16 @@ type TExhibitChange = TExhibitObj & TChange;
 type TExhibitChanges = Array<TExhibitChange>;
 
 type TChangeType = 'Add' | 'Remove' | 'Upgrade' | 'Use';
+
+type TResult = {
+  Type: string,
+  Timestamp: string,
+  Cards: TCards,
+  Exhibits: TExhibits,
+  BaseMana: string,
+  ReloadTimes?: number,
+  Seed?: string
+};
 
 type TBaseMana = string;
 type TBaseManaObj = {
@@ -237,10 +273,6 @@ export type {
   TCardsWithPrice,
   TExhibit,
   TExhibits,
-  THolding,
-  THoldings,
-  THoldingAction,
-  THoldingsReducer,
   TCardChanges,
   TExhibitChange,
   TExhibitChanges,
@@ -249,6 +281,10 @@ export type {
   TExhibitObjs,
   TBaseMana,
   TBaseManaObj,
+  THolding,
+  THoldings,
+  THoldingAction,
+  THoldingsReducer,
   THoldingChange,
   TRequests,
   TMod,
