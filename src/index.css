@@ -433,9 +433,9 @@ input {
   display: flex;
   justify-content: space-between;
   padding: 0 var(--padding);
+  column-gap: var(--entity-column-gap);
 }
 .p-holdings--vertical .p-holdings__entities {
-  column-gap: var(--entity-column-gap);
   padding-bottom: calc(50vh + var(--control-height));
 }
 .p-holdings__cards {
@@ -447,6 +447,11 @@ input {
   --n: 2;
   --width: calc(var(--n) * (var(--entity-width) + var(--entity-column-gap) + var(--entity-border) * 2) - var(--entity-column-gap));
   flex-basis: var(--width);
+}
+@media screen and (max-width: 634px) {
+  .p-holdings__exhibits {
+    --n: 1;
+  }
 }
 .p-holdings--vertical .p-holdings__exhibits {
   --n-v: var(--exhibits-n, var(--n));
@@ -1447,8 +1452,12 @@ html:lang(en) .p-result__type {
     font-size: 0.55rem;
   }
 
-  .c-entities {
+  
+  .p-holdings__entities, .c-entities {
     font-size: 0.65em;
+  }
+  .p-holdings__entities .c-entities {
+    font-size: inherit;
   }
 
   .p-filter__row {
