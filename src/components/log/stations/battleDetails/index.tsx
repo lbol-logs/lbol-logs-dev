@@ -2,7 +2,7 @@ import { TObjAny } from 'utils/types/common';
 import BattleDetailsV1 from './battleDetailsV1';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
-import { TMod } from 'utils/types/runData';
+import { TMod, TStatus } from 'utils/types/runData';
 import BattleDetailsV2 from './battleDetailsV2';
 
 class Ver {
@@ -31,7 +31,7 @@ class Ver {
   }
 }
 
-function BattleDetails({ details }: { details: Array<TObjAny> }) {
+function BattleDetails({ details, enemy, status }: { details: Array<TObjAny>, enemy: string, status: TStatus }) {
   const { runData: { Settings: { Mods } } } = useContext(LogContext);
 
   const v = (() => {
@@ -45,7 +45,7 @@ function BattleDetails({ details }: { details: Array<TObjAny> }) {
   })();
 
   if (v === 1) return <BattleDetailsV1 details={details} />;
-  else if (v === 2) return <BattleDetailsV2 details={details} />;
+  else if (v === 2) return <BattleDetailsV2 details={details} enemy={enemy} status={status} />;
   else return null;
 }
 

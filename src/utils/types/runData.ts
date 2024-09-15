@@ -271,6 +271,8 @@ export type {
   TCards,
   TCardWithPrice,
   TCardsWithPrice,
+  TTurns,
+  TIntentions,
   TExhibit,
   TExhibits,
   TCardChanges,

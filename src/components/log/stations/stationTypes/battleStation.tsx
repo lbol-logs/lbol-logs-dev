@@ -9,7 +9,7 @@ import { enemiesShowDetails } from 'configs/globals';
 import BattleDetails from '../battleDetails';
 
 function BattleStation({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { runData: { Stations }, configsData } = useContext(LogContext);
   const { Data, Id } = station;
 
   const { Rewards } = station;
@@ -27,12 +27,19 @@ function BattleStation({ station }: { station: TStation }) {
     );
   }
 
-  if (enemiesShowDetails.includes(Id as string)) {
+  const id = Id as string;
+
+  if (enemiesShowDetails.includes(id)) {
     const { Details } = Data;
-    if (Details) details = <BattleDetails details={Details} />;
+    if (Details) {
+      const { Act: a, Level: l } = station.Node;
+      const currentStationIndex = Stations.findIndex(({ Node: { Act, Level } }) => Act === a && Level === l);
+      const { Status } = Stations[currentStationIndex - 1];
+      details = <BattleDetails details={Details} enemy={id} status={Status} />;
+    }
   }
 
-  const enemies = configsData.enemyGroups[Id as string];
+  const enemies = configsData.enemyGroups[id];
 
   const { Rounds } = Data;
 
