@@ -1284,8 +1284,80 @@ html:lang(en) .p-result__type {
   align-items: center;
   flex-shrink: 0;
 }
+.p-battle-details__item .p-battle-details__line {
+  flex-shrink: 1;
+}
 .p-battle-details__body .c-status {
   width: 2em;
+}
+.p-battle-details__item {
+  display: flex;
+  column-gap: 1em;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.p-battle-details__label {
+  width: 6em;
+  flex-shrink: 0;
+}
+.p-battle-details__statuses {
+  display: flex;
+  column-gap: 1em;
+  flex-wrap: wrap;
+}
+.p-battle-details__status {
+  display: flex;
+  align-items: center;
+}
+.p-battle-details__defense {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.p-battle-details__block, .p-battle-details__barrier {
+  width: 70%;
+}
+.p-battle-details__barrier {
+  filter: hue-rotate(45deg);
+}
+
+.p-intention {
+  display: flex;
+  column-gap: 0.5em;
+  align-items: center;
+}
+.p-intention__damage {
+  display: flex;
+  column-gap: 0.5em;
+}
+.p-intention__accurary {
+  position: relative;
+}
+.p-intention__accurary:before, .p-intention__accurary:after {
+  content: '';
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px solid var(--f-red);
+  border-radius: 50%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.p-intention__accurary:before {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+}
+.p-intention__accurary:after {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-conic-gradient(transparent, transparent 9deg, var(--f-red) 9deg 12deg);
+  z-index: -1;
 }
 
 .c-status-effects {
@@ -1457,7 +1529,6 @@ html:lang(en) .p-result__type {
   html:lang(en) .c-entity__text {
     font-size: 0.55rem;
   }
-
   
   .p-holdings__entities, .c-entities {
     font-size: 0.65em;

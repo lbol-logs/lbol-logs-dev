@@ -127,7 +127,7 @@ type TIntention = {
 type TIntentionWithDamage = TIntention & {
   Damage: number,
   Times: number,
-  IsAccurary: number
+  IsAccurate: number
 };
 type TIntentions = Array<TIntention | TIntentionWithDamage>;
 

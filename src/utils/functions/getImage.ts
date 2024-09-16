@@ -76,6 +76,10 @@ function getNazrinImage(name: string): string {
   return _getImage('nazrin', name);
 }
 
+function getIntentionImage(name: string): string {
+  return _getImage('intentions', name);
+}
+
 export {
   getImage,
   getCommonImage,
@@ -94,5 +98,6 @@ export {
   getUnitImage,
   getStationImage,
   getStatusEffectImage,
-  getNazrinImage
+  getNazrinImage,
+  getIntentionImage
 };
