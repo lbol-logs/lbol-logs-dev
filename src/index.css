@@ -1384,6 +1384,28 @@ html:lang(en) .p-result__type {
   border-radius: 2em;
   background: var(--light-orange);
 }
+.c-status-effect .c-status-effect__value {
+  position: absolute;
+  font-size: 0.7em;
+  font-weight: bold;
+  box-shadow: 0 0 0 var(--f-white);
+  --shadow-color: var(--f-white);
+}
+.c-status-effect__value--level {
+  right: 0;
+  bottom: 0;
+  color: var(--f-red);
+}
+.c-status-effect__value--duration {
+  right: 0;
+  bottom: 0;
+  color: var(--f-blue);
+}
+.c-status-effect__value--count {
+  right: 0;
+  top: 0;
+  color: var(--f-green);
+}
 
 .c-price {
   align-self: center;
@@ -1465,6 +1487,7 @@ html:lang(en) .p-result__type {
   --f-white: #fff;
   --f-black: #000;
   --f-red: red;
+  --f-green: green;
   --f-gray: gray;
   --f-light-blue: #d1cef3;
   --f-light-yellow: #fdfdc1;
@@ -1483,7 +1506,8 @@ html:lang(en) .p-result__type {
 }
 
 .u-text-shadow {
-  text-shadow: 1px 1px 2px #000, -1px 1px 2px #000, -1px -1px 2px #000, 1px -1px 2px #000;
+  --shadow-color: var(--f-black);
+  text-shadow: 1px 1px 2px var(--shadow-color), -1px 1px 2px var(--shadow-color), -1px -1px 2px var(--shadow-color), 1px -1px 2px var(--shadow-color);
 }
 
 .u-flex-col {

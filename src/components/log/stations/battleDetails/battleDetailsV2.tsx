@@ -1,13 +1,7 @@
-import CharacterImage from 'components/common/parts/characterImage';
-import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { LogContext } from 'contexts/logContext';
-import { useContext } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { getCommonImage } from 'utils/functions/getImage';
+import { useTranslation } from 'react-i18next';
 import { TObj, TObjAny, TObjNumber } from 'utils/types/common';
-import { HpWidget } from '../parts/stationWidgets';
 import CardCards from 'components/log/entityCards/cardCards';
-import StatusEffectsWidgetV1 from './parts/statusEffectsWidgetV1';
+import StatusEffectsWidgetV2 from './parts/statusEffectsWidgetV2';
 import { TStatus, TTurns } from 'utils/types/runData';
 import IntentionsWidget from './parts/intentionsWidget';
 import RoundTurnWidget from './parts/roundTurnWidget';
@@ -24,8 +18,6 @@ function BattleDetailsV2({ details, enemy, status: lastStatus }: { details: Arra
   const o = { Hp, Power };
   lastStatuses['Player'] = o;
   lastStatuses[enemy] = {};
-
-  let statusEffects: Array<string> = [];
 
   const startOfTurn = t('startOfTurn', { ns: 'log' });
   const endOfTurn = t('endOfTurn', { ns: 'log' });
@@ -44,7 +36,7 @@ function BattleDetailsV2({ details, enemy, status: lastStatus }: { details: Arra
         const status = <BattleDetailsItem label={endOfTurn} children={<BattleStatusWidget status={Status} lastStatus={lastStatuses[Id]} />} />;
         lastStatuses[Id] = Status;
 
-        const se = <BattleDetailsItem label={endOfTurn} children={<StatusEffectsWidgetV1 statusEffects={statusEffects} />} />;
+        const se = <BattleDetailsItem label={endOfTurn} children={<StatusEffectsWidgetV2 statusEffects={StatusEffects} />} />;
 
         return (
           <div className={`p-battle-details__row ${isPlayer ? 'p-battle-details__row--player' : 'p-battle-details__row--enemy'} js-round-${Round}`} key={i}>

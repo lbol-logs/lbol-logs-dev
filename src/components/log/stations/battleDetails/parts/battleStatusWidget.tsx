@@ -1,4 +1,4 @@
-import { TObj, TObjNumber } from 'utils/types/common';
+import { TObjNumber } from 'utils/types/common';
 import { TBattleStatus } from 'utils/types/runData';
 import { HpWidget, PowerImage } from '../../parts/stationWidgets';
 import { getValuWithChange } from '../../parts/statuses';

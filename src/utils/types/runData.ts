@@ -275,6 +275,7 @@ export type {
   TIntentionWithDamage,
   TIntentions,
   TBattleStatus,
+  TStatusEffects,
   TExhibit,
   TExhibits,
   TCardChanges,

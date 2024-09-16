@@ -58,7 +58,7 @@ function IntentionsWidget({ intentions }: { intentions: TIntentions }) {
         }
 
         return (
-          <div className="p-intention">
+          <div className="p-intention" key={i}>
             {intention}
           </div>
         );
