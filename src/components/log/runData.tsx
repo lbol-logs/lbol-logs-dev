@@ -42,19 +42,20 @@ function RunData({ ver, id }: { ver: string, id: string }) {
     }
   }, []);
 
-  const style = (isAside ? { '--holdings-width': Math.min(Math.max(487, holdingsWidth), 801) + 'px' } : {}) as React.CSSProperties;
+  const showAside = isAside && !isSummary;
+  const style = (showAside ? { '--holdings-width': Math.min(Math.max(487, holdingsWidth), 801) + 'px' } : {}) as React.CSSProperties;
   const n = (holdingsWidth < 641 ? { '--exhibits-n': 1 } : {}) as React.CSSProperties;
 
   if (!isValidRunData) return redirect as unknown as JSX.Element;
 
   return (
-    <main className={`l-log ${isAside ? `l-log--aside l-log--${aside}` : ''}`} style={style}>
-      <div className={`l-log__inner ${isAside ? 'l-log__inner--aside': ''} l-inner`}>
+    <main className={`l-log ${showAside ? `l-log--aside l-log--${aside}` : ''}`} style={style}>
+      <div className={`l-log__inner ${showAside ? 'l-log__inner--aside': ''} l-inner`}>
         <Suspense fallback={<Loading />}>
           <RunDataTemplate />
         </Suspense>
       </div>
-      {(isAside && !isSummary) && (
+      {showAside && (
         <div
           className={`p-holdings p-holdings--vertical p-holdings--${aside}  js-holdings`}
           ref={holdingsRef}
