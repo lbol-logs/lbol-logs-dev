@@ -7,7 +7,7 @@ import { getCommonImage } from 'utils/functions/getImage';
 import { TObjAny } from 'utils/types/common';
 import { HpWidget } from '../parts/stationWidgets';
 import CardCards from 'components/log/entityCards/cardCards';
-import StatusEffectsWidget from '../parts/statusEffectsWidget';
+import StatusEffectsWidgetV1 from './parts/statusEffectsWidgetV1';
 
 function BattleDetailsV1({ details }: { details: Array<TObjAny> }) {
   const { runData: { Settings: { Character } } } = useContext(LogContext);
@@ -29,7 +29,7 @@ function BattleDetailsV1({ details }: { details: Array<TObjAny> }) {
         else {
           unit = <LazyLoadImage2 callback={getCommonImage} name={Id} alt={t(Id, { ns: 'units' })} />;
           if (Se) statusEffects = [...statusEffects, Se];
-          se = <StatusEffectsWidget statusEffects={statusEffects} />;
+          se = <StatusEffectsWidgetV1 statusEffects={statusEffects} />;
         }
         if ((i - 2) in details) {
           ({ Hp: lastHp } = details[i - 2]);

@@ -2,7 +2,7 @@ import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { useTranslation } from 'react-i18next';
 import { getStatusEffectImage } from 'utils/functions/getImage';
 
-function StatusEffectsWidget({ statusEffects }: { statusEffects: Array<string> }) {
+function StatusEffectsWidgetV1({ statusEffects }: { statusEffects: Array<string> }) {
   const { t } = useTranslation();
 
   return (
@@ -20,4 +20,4 @@ function StatusEffectsWidget({ statusEffects }: { statusEffects: Array<string> }
   );
 }
 
-export default StatusEffectsWidget;
+export default StatusEffectsWidgetV1;
