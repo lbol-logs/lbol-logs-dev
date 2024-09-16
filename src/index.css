@@ -1323,6 +1323,10 @@ html:lang(en) .p-result__type {
   filter: hue-rotate(45deg);
 }
 
+.p-intentions {
+  display: flex;
+  column-gap: 1em;
+}
 .p-intention {
   display: flex;
   column-gap: 0.5em;
@@ -1332,31 +1336,33 @@ html:lang(en) .p-result__type {
   display: flex;
   column-gap: 0.5em;
 }
-.p-intention__accurary {
+.p-intention__accurate {
   position: relative;
 }
-.p-intention__accurary:before, .p-intention__accurary:after {
+.p-intention__accurate:before, .p-intention__accurate:after {
   content: '';
   position: absolute;
   box-sizing: border-box;
-  border: 2px solid var(--f-red);
   border-radius: 50%;
   opacity: 0.5;
   pointer-events: none;
 }
-.p-intention__accurary:before {
+.p-intention__accurate:before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70%;
-  height: 70%;
+  width: 60%;
+  height: 60%;
+  border: 2px solid var(--f-red);
+  outline: 2px solid var(--f-red);
+  outline-offset: 2px;
 }
-.p-intention__accurary:after {
+.p-intention__accurate:after {
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: repeating-conic-gradient(transparent, transparent 9deg, var(--f-red) 9deg 12deg);
+  background: repeating-conic-gradient(transparent, transparent 12deg, var(--f-red) 12deg 14deg);
   z-index: -1;
 }
 

@@ -31,7 +31,7 @@ function IntentionsWidget({ intentions }: { intentions: TIntentions }) {
           else type += '1';
 
           const icon = (
-            <span className={`p-intention__icon ${IsAccurate ? 'p-intention__accurary' : ''}`}>
+            <span className={`p-intention__icon ${IsAccurate ? 'p-intention__accurate' : ''}`}>
               <Intention type={Type} name={type} />
             </span>
           );
