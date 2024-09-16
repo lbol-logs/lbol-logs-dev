@@ -46,7 +46,7 @@ function BattleDetailsV1({ details }: { details: Array<TObjAny> }) {
                     ns="log"
                     values={{ 0: Round }}
                   />
-                  </span>
+                </span>
                 {unit}
                 {hp}
               </div>
