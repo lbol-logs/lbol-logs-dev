@@ -1,4 +1,4 @@
-import { TCards, TCardsWithPrice } from 'utils/types/runData';
+import { TCard, TCards, TCardsWithPrice, TCardWithPrice } from 'utils/types/runData';
 import CardCard from './cardCard';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getStationImage } from 'utils/functions/getImage';
@@ -11,8 +11,8 @@ function CardCards({ cards, added }: { cards: TCards | TCardsWithPrice, added?: 
       {cards.map((card, i) => {
         const isNotAdded = Boolean(added && !added.includes(i))
         let price;
-        if ('Price' in card) {
-          const { Price, IsDiscounted } = card;
+        const { Price, IsDiscounted } = card as TCardWithPrice;
+        if (Price !== undefined) {
           price = (
             <span className="c-price">
               {Price}
@@ -23,7 +23,7 @@ function CardCards({ cards, added }: { cards: TCards | TCardsWithPrice, added?: 
 
         return (
           <Fragment key={i}>
-            <CardCard card={card} isNotAdded={isNotAdded} />
+            <CardCard card={card as TCard} isNotAdded={isNotAdded} />
             {price}
           </Fragment>
         );

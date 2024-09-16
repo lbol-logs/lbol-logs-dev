@@ -124,12 +124,12 @@ type TTurns = Array<TTurn>;
 type TIntention = {
   Type: string
 };
-type TIntentionWithAttack = TIntention & {
+type TIntentionWithDamage = TIntention & {
   Damage: number,
   Times: number,
   IsAccurary: number
 };
-type TIntentions = Array<TIntention | TIntentionWithAttack>;
+type TIntentions = Array<TIntention | TIntentionWithDamage>;
 
 type TBattleStatus = {
   Hp: number,
@@ -272,7 +272,9 @@ export type {
   TCardWithPrice,
   TCardsWithPrice,
   TTurns,
+  TIntentionWithDamage,
   TIntentions,
+  TBattleStatus,
   TExhibit,
   TExhibits,
   TCardChanges,
