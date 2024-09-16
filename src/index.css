@@ -566,7 +566,7 @@ input {
   justify-content: space-between;
 }
 .p-mod__guid {
-  font-size: 0.5em;
+  font-size: 8px;
 }
 .p-mod > * {
   margin: 0;
