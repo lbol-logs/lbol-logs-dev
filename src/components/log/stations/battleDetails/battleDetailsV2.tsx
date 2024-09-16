@@ -9,12 +9,10 @@ import { HpWidget } from '../parts/stationWidgets';
 import CardCards from 'components/log/entityCards/cardCards';
 import StatusEffectsWidget from '../parts/statusEffectsWidget';
 import { TStatus, TTurns } from 'utils/types/runData';
-import IntentionsWidget from './intentionsWidget';
+import IntentionsWidget from './parts/intentionsWidget';
+import RoundTurnWidget from './parts/roundTurnWidget';
 
 function BattleDetailsV2({ details, enemy, status: lastStatus }: { details: Array<TObjAny>, enemy: string, status: TStatus }) {
-  const { runData: { Settings: { Character } } } = useContext(LogContext);
-  const { t } = useTranslation();
-
   const turns = details as TTurns;
   const lastStatuses: TObj<TObjNumber> = {};
 
@@ -32,16 +30,10 @@ function BattleDetailsV2({ details, enemy, status: lastStatus }: { details: Arra
         const isPlayer = Id === 'Player';
 
         let cards, intentions, status, se;
-        let unit;
 
-        if (isPlayer) {
-          unit = <CharacterImage character={Character} />;
-          if (Cards) cards = <CardCards cards={Cards} />;
-        }
-        else {
-          unit = <LazyLoadImage2 callback={getCommonImage} name={Id} alt={t(Id, { ns: 'units' })} />;
-          if (Intentions) intentions = <IntentionsWidget intentions={Intentions} />
-        }
+        if (Cards) cards = <CardCards cards={Cards} />;
+        if (Intentions) intentions = <IntentionsWidget intentions={Intentions} />
+
         // if ((i - 2) in details) {
         //   ({ Hp: lastHp } = details[i - 2]);
         // }
@@ -51,19 +43,10 @@ function BattleDetailsV2({ details, enemy, status: lastStatus }: { details: Arra
         return (
           <div className={`p-battle-details__row ${isPlayer ? 'p-battle-details__row--player' : 'p-battle-details__row--enemy'} js-round-${Round}`} key={i}>
             <div className="p-battle-details__body">
-              <div className="p-battle-details__line">
-                <span className="p-battle-details__round">
-                  <Trans
-                    i18nKey="roundCounter"
-                    ns="log"
-                    values={{ 0: Round }}
-                  />
-                  </span>
-                {unit}
-                {/* {hp} */}
-              </div>
+              <RoundTurnWidget round={Round} turn={Turn} id={Id} />
               {cards}
               {se}
+              {intentions}
             </div>
           </div>
         );

@@ -1254,10 +1254,17 @@ html:lang(en) .p-result__type {
   margin: 0;
 }
 
+.p-battle-details {
+  width: 100%;
+}
 .p-battle-details__row {
   margin: 0.5em 0;
 }
 .p-battle-details__round {
+  width: 6em;
+  font-weight: bold;
+}
+.p-battle-details__turn {
   width: 5em;
   font-weight: bold;
 }
@@ -1269,7 +1276,6 @@ html:lang(en) .p-result__type {
   position: relative;
   border-radius: 0.5em;
 }
-.p-battle-details__row--player .p-battle-details__round,
 .p-battle-details__row--player .p-battle-details__body {
   background: var(--light-green);
 }
