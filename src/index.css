@@ -320,7 +320,6 @@ input {
   height: calc(100vh - var(--control-height));
   min-width: var(--min-width);
   max-width: var(--max-width);
-  container-name: aside;
   width: var(--holdings-width);
 }
 .p-holdings--right {
