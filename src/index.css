@@ -1296,7 +1296,7 @@ html:lang(en) .p-result__type {
   flex-wrap: wrap;
 }
 .p-battle-details__label {
-  width: 6em;
+  width: 6.5em;
   flex-shrink: 0;
 }
 .p-battle-details__statuses {
