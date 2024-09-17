@@ -83,7 +83,7 @@ function Control() {
     if (isAside) {
       buttonRight2 = (
         <span className="p-control__component p-control__arrow" onClick={handleAside}>
-            <LazyLoadImage2 callback={getControlImage} name="Arrow" alt={t(`control.${toggleAside(asideHoldings)}`, { ns: 'log' })} />
+            <LazyLoadImage2 callback={getControlImage} name="Arrow" alt={t(`control.${toggleAside(asideHoldings).toString()}`, { ns: 'log' })} />
         </span>
       );
     }
