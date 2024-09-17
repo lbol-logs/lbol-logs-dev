@@ -6,6 +6,7 @@ import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
+import { TChoice } from 'utils/types/others';
 
 function KosuzuBookstore({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -27,7 +28,7 @@ function KosuzuBookstore({ station }: { station: TStation }) {
 
     const choices: Array<number> = new Array(Exhibits.length).fill(null).map((_, i) => i);
     choices.push(3);
-    const chosen = Choices[0];
+    const chosen = choices.indexOf(Choices[0]) as TChoice;
 
     const exhibits: Array<TExhibits> = [];
 
