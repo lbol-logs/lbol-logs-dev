@@ -1,10 +1,11 @@
 import { defaultHoldingsHeight, defaultHoldingsWidth } from 'configs/globals';
 import { createContext, ReactNode, useState } from 'react';
-import { AsideType, TAsideHoldings, TConfigsData, TDispatch } from 'utils/types/common';
+import { AsideType, TAsideHoldings, TConfigsData, TDispatch, TObjNumber } from 'utils/types/common';
 
 const defaultVersion = '';
 const defaultConfigsData = {};
 const defaultAsideHoldings = AsideType.none;
+const defaultTopScrollHeights = {};
 
 type TCommonContext = {
   version: string
@@ -16,7 +17,9 @@ type TCommonContext = {
   holdingsWidth: number,
   setHoldingsWidth: TDispatch<number>
   asideHoldings: TAsideHoldings,
-  setAsideHoldings: TDispatch<TAsideHoldings>
+  setAsideHoldings: TDispatch<TAsideHoldings>,
+  topScrollHeights: TObjNumber,
+  setTopScrollHeights: TDispatch<TObjNumber>
 };
 
 export const CommonContext = createContext<TCommonContext>({
@@ -29,7 +32,9 @@ export const CommonContext = createContext<TCommonContext>({
   holdingsWidth: defaultHoldingsWidth,
   setHoldingsWidth: () => {},
   asideHoldings: defaultAsideHoldings,
-  setAsideHoldings: () => {}
+  setAsideHoldings: () => {},
+  topScrollHeights: defaultTopScrollHeights,
+  setTopScrollHeights: () => {}
 });
 
 function CommonProvider({ children }: { children: ReactNode }) {
@@ -38,6 +43,7 @@ function CommonProvider({ children }: { children: ReactNode }) {
   const [holdingsHeight, setHoldingsHeight] = useState(defaultHoldingsHeight);
   const [holdingsWidth, setHoldingsWidth] = useState(defaultHoldingsWidth);
   const [asideHoldings, setAsideHoldings] = useState(defaultAsideHoldings);
+  const [topScrollHeights, setTopScrollHeights] = useState(defaultTopScrollHeights);
 
   const value = {
     version,
@@ -49,7 +55,9 @@ function CommonProvider({ children }: { children: ReactNode }) {
     holdingsWidth,
     setHoldingsWidth,
     asideHoldings,
-    setAsideHoldings
+    setAsideHoldings,
+    topScrollHeights,
+    setTopScrollHeights
   };
 
   return (

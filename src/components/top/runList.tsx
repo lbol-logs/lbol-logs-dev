@@ -1,5 +1,5 @@
 import { CommonContext } from 'contexts/commonContext';
-import { useContext, useMemo } from 'react';
+import { useContext, useEffect, useMemo, useRef } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import useRunList from 'hooks/useRunList';
@@ -12,7 +12,7 @@ import DefaultFilter from 'utils/classes/DefaultFilter';
 import RunListItems from './runListItems';
 
 function RunList() {
-  const { version } = useContext(CommonContext);
+  const { version, topScrollHeights, setTopScrollHeights } = useContext(CommonContext);
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
 
@@ -61,6 +61,23 @@ function RunList() {
       return a;
     }, {});
   }, [list]);
+
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const onScroll = () => {
+    const timer = timerRef.current as NodeJS.Timeout;
+    if (timer) clearTimeout(timer);
+    const _timer = setTimeout(() => {
+      const height = window.scrollY;
+      if (height) setTopScrollHeights(Object.assign(topScrollHeights, { [version]: height }));
+    }, 200);
+    timerRef.current = _timer;
+  };
+  window.addEventListener('scroll', onScroll);
+
+  useEffect(() => {
+    const height = topScrollHeights[version];
+    if (height) window.scrollTo(0, height);
+  }, []);
 
   return (
     <section className="p-run-list">
