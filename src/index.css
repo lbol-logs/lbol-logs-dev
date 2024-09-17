@@ -716,6 +716,7 @@ input {
   width: 100%;
   flex: 1;
   overflow: hidden;
+  margin: 0 -0.5em;
 }
 .p-control__name {
   text-overflow: ellipsis;
@@ -1202,9 +1203,8 @@ html:lang(en) .p-result__type {
 .p-dialogue__option,
 .p-nazrin-result {
   border-radius: 0.5em;
-  padding: 0 0.5em;
+  padding: 0.2em 0.5em;
   outline: 1px solid var(--black);
-  line-height: 1.75em;
 }
 .p-gap-choice,
 .p-nazrin-result {
