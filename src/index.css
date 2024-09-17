@@ -722,7 +722,34 @@ input {
   overflow: hidden;
 }
 .p-control__range {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
   width: 100%;
+}
+.p-control__range::-webkit-slider-runnable-track {
+  background: var(--skyblue);
+  border: 1px solid var(--gray);
+  height: 1em;
+  border-radius: 8px;
+}
+.p-control__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: image-set(url(https://lbol-logs.github.io/assets/images/control/Thumb.avif) 1x, url(https://lbol-logs.github.io/assets/images/control/Thumb@2x.avif) 2x) center / auto 30px no-repeat transparent;
+  --height: 36px;
+  height: var(--height);
+  width: 21px;
+  margin-top: calc((1em - var(--height)) / 2);
+  position: relative;
+  box-shadow: none;
+  opacity: 0.8;
+}
+.p-control__range:active::-webkit-slider-thumb {
+  opacity: 1;
+  background-size: 100%;
 }
 
 .l-log--right .p-control__arrow {
@@ -1177,6 +1204,7 @@ html:lang(en) .p-result__type {
   border-radius: 0.5em;
   padding: 0 0.5em;
   outline: 1px solid var(--black);
+  line-height: 1.75em;
 }
 .p-gap-choice,
 .p-nazrin-result {
