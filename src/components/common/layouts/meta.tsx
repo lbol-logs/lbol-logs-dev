@@ -18,9 +18,9 @@ function Meta() {
   useEffect(() => {
     gtag('config', GA4_MEASUREMENT_ID, {
       page_title: pathname,
-      page_path,
+      page_path: pathname,
     });
-  }, []);
+  }, [pathname]);
 
   return (
     <Helmet>
