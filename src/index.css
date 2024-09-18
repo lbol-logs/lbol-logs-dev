@@ -212,7 +212,6 @@ input {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 992px;
 }
 
 .p-run-list__item, .p-run-list__item--header {
@@ -220,7 +219,7 @@ input {
   align-items: stretch;
   width: fit-content;
   color: inherit;
-  padding-right: 0.3125em;
+  padding: 0 0.3125em;
   margin: 0.3125em 0;
   border-radius: 0.625em;
 }
@@ -229,13 +228,25 @@ input {
   text-align: center;
 }
 
-@media screen and (width < 673px) {
+@media screen and (width < 354px) {
+  .p-run-list__table {
+    overflow-y: auto;
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (width < 683px) {
   .p-run-list__item--tb {
     display: none;
   }
   .p-run-list__item--pc {
     display: none;
   }
+
+  .p-run-list__table {
+    max-width: 334px;
+  }
+
   .p-run-list__item:nth-of-type(odd) {
     background: var(--light-blue);
   }
@@ -244,9 +255,13 @@ input {
     background: var(--light-green);
   }
 }
-@media screen and (673px <= width < 1002px) {
+@media screen and (683px <= width < 1012px) {
   .p-run-list__item--pc {
     display: none;
+  }
+
+  .p-run-list__table {
+    max-width: 663px;
   }
 
   .p-run-list__item:nth-of-type(4n + 1),
@@ -257,13 +272,6 @@ input {
   .p-run-list__item:nth-of-type(4n + 3),
   .p-run-list__item:nth-of-type(4n + 4) {
     background: var(--light-green);
-  }
-
-  /* first */
-  .p-run-list__item--header:nth-of-type(1),
-  .p-run-list__item:nth-of-type(4n + 1),
-  .p-run-list__item:nth-of-type(4n + 3) {
-    padding-left: 0.3125em;
   }
 
   /* non-last */
@@ -278,11 +286,16 @@ input {
   .p-run-list__item--header:nth-of-type(2),
   .p-run-list__item:nth-of-type(4n + 2),
   .p-run-list__item:nth-of-type(4n + 4) {
+    padding-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0
   }
 }
-@media screen and (1002px <= width) {
+@media screen and (1012px <= width) {
+  .p-run-list__table {
+    max-width: 992px;
+  }
+
   .p-run-list__item:nth-of-type(6n + 1),
   .p-run-list__item:nth-of-type(6n + 2),
   .p-run-list__item:nth-of-type(6n + 3) {
@@ -293,13 +306,6 @@ input {
   .p-run-list__item:nth-of-type(6n + 5),
   .p-run-list__item:nth-of-type(6n + 6) {
     background: var(--light-green);
-  }
-
-  /* first */
-  .p-run-list__item--header:nth-of-type(1),
-  .p-run-list__item:nth-of-type(6n + 1),
-  .p-run-list__item:nth-of-type(6n + 4) {
-    padding-left: 0.3125em;
   }
 
   /* non-last */
@@ -320,6 +326,7 @@ input {
   .p-run-list__item:nth-of-type(6n + 3),
   .p-run-list__item:nth-of-type(6n + 5)
   .p-run-list__item:nth-of-type(6n + 6) {
+    padding-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0
   }
