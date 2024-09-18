@@ -1,5 +1,5 @@
 import { CommonContext } from 'contexts/commonContext';
-import { useContext, useEffect, useMemo, useRef } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import useRunList from 'hooks/useRunList';
