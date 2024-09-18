@@ -240,7 +240,7 @@ input {
 @media screen and (width < 354px) {
   .p-run-list__table {
     overflow-y: auto;
-    justify-content: flex-start;
+    align-items: flex-start;
   }
 }
 
