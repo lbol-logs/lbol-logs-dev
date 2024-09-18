@@ -212,6 +212,7 @@ input {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 992px;
 }
 
 .p-run-list__item, .p-run-list__item--header {
