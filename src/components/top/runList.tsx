@@ -90,24 +90,22 @@ function RunList() {
           </p>
         </div>
         <div className="p-run-list__table">
-          <div className="p-run-list__row p-run-list__row--header">
-            {['', 'u-pc', 'u-pc'].map((className, i) => {
-              return (
-                <div className={`p-run-list__item ${className}`} key={i}>
-                  <div className="p-run-list__cell p-run-list__cell--id">Id</div>
-                  <div className="p-run-list__cell p-run-list__cell--result-requests">
-                    <div className="p-run-list__cell--result">
-                      <span>{t('result', { ns: 'runList' })}</span>
-                      <span>{t('name', { ns: 'runList' })}</span>
-                    </div>
-                    <div className="p-run-list__cell--requests">
-                      <span>{t('requests', { ns: 'runList' })}</span>
-                    </div>
+          {['', 'p-run-list__item--tb', 'p-run-list__item--pc'].map((className, i) => {
+            return (
+              <div className={`p-run-list__item--header ${className}`} key={i}>
+                <div className="p-run-list__cell p-run-list__cell--id">Id</div>
+                <div className="p-run-list__cell p-run-list__cell--result-requests">
+                  <div className="p-run-list__cell--result">
+                    <span>{t('result', { ns: 'runList' })}</span>
+                    <span>{t('name', { ns: 'runList' })}</span>
+                  </div>
+                  <div className="p-run-list__cell--requests">
+                    <span>{t('requests', { ns: 'runList' })}</span>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
           <RunListItems ids={ids} filteredList={filteredList} />
         </div>
       </div>
