@@ -62,21 +62,17 @@ function RunList() {
     }, {});
   }, [list]);
 
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const onScroll = () => {
-    const timer = timerRef.current as NodeJS.Timeout;
-    if (timer) clearTimeout(timer);
-    const _timer = setTimeout(() => {
-      const height = window.scrollY;
-      if (height) setTopScrollHeights(Object.assign(topScrollHeights, { [version]: height }));
-    }, 200);
-    timerRef.current = _timer;
-  };
-  window.addEventListener('scroll', onScroll);
+  function onClick() {
+    const height = window.scrollY;
+    setTopScrollHeights(Object.assign(topScrollHeights, { [version]: height }));
+  }
 
   useEffect(() => {
     const height = topScrollHeights[version];
-    if (height) window.scrollTo(0, height);
+    if (height !== undefined) window.scrollTo(0, height);
+
+    const anchors = Array.from(document.querySelectorAll('a'));
+    anchors.forEach(a => a.addEventListener('click', onClick));
   }, []);
 
   return (
