@@ -43,6 +43,13 @@ function RunListItems({ ids, filteredList }: { ids: TObjNumber, filteredList: TR
     items.push(item);
   }
 
+  for (let i = 1; i < 3; i++) {
+    const dummy = (
+      <div className="p-run-list__item p-run-list__item--dummy" key={`dummy-${i}`}></div>
+    );
+    items.push(dummy);
+  }
+
   return (
     <>
       {items}
