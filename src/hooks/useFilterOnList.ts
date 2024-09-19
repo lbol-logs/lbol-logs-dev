@@ -24,7 +24,7 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter) {
     const isRadio = radios.includes(key);
     if (isTexts) {
       if (key === keys.na) {
-        const value = f as string;
+        const value = (f as string).toLowerCase();
         filteredList = filteredList.filter(e => e.name && e.name.toLowerCase().includes(value));
       }
     }
