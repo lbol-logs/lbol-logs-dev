@@ -29,7 +29,7 @@ function RunListItems({ ids, filteredList }: { ids: TObjNumber, filteredList: TR
     const item = (
       <Link className="p-run-list__item u-button" key={id} to={getLogLink(version, id)}>
         <div className="p-run-list__cell p-run-list__cell--id">{ids[id]}</div>
-        <div className="p-run-list__cell p-run-list__cell--result-requests u-flex-col-sp">
+        <div className="p-run-list__cell p-run-list__cell--result-requests">
           <div className=" p-run-list__cell--result">
             <ResultWidget resultData={resultData} name={name} />
           </div>
