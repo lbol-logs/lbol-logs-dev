@@ -16,7 +16,7 @@ function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj 
 
   if (!isExhibit) {
     const { Counter } = exhibit;
-    if (Counter) {
+    if (Counter !== undefined) {
       counter = (
         <span className="c-exhibit__counter">
           {'('}{Counter}{')'}
