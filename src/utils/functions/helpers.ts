@@ -85,7 +85,7 @@ function convertCards(Ids: Array<string>, IsUpgraded: boolean = false): TCards {
 }
 
 function applyRate(n: number, rate: number) {
-  return Math.floor((n as number) * rate);
+  return Math.round((n as number) * rate);
 }
 
 function getExhibitId(exhibit: TExhibit | TExhibitObj | TExhibitChange): string {
