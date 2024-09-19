@@ -42,7 +42,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
   }
 
   async function tryUpload() {
-    const runData = previewData;
+    const runData = getRunData(previewData);
     const { Version } = runData;
     const id = getId(runData);
 
@@ -171,6 +171,13 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     finally {
       return { error, isOnGithub, url };
     }
+  }
+
+  function getRunData(previewData: TRunData) {
+    const textarea = document.querySelector('.js-textarea') as HTMLTextAreaElement;
+    const Description = textarea.value.trim();
+    if (Description !== '') Object.assign(previewData, { Description });
+    return previewData;
   }
 
   async function checkGas({ version, id, runData }: { version: string, id: string, runData: TRunData }) {

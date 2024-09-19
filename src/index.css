@@ -52,6 +52,7 @@ input {
 .l-header__button {
   padding: 0 1em;
   box-sizing: border-box;
+  white-space: nowrap;
 }
 .l-header__widgets {
   display: flex;
@@ -156,6 +157,26 @@ input {
 }
 .p-upload__success {
   background: var(--lime);
+}
+
+.p-upload__preview {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+}
+.p-upload__preview, .p-upload-description__textarea {
+  max-width: 100%;
+}
+.p-upload-description__line {
+  display: flex;
+  justify-content: space-between;
+}
+.p-upload-description__title {
+  display: flex;
+  column-gap: 0.5em;
+}
+.p-upload-description__head {
+  margin: 0;
 }
 
 .p-file--uploading {
@@ -357,9 +378,10 @@ input {
   }
 }
 
-.p-run-list__cell--result-requests {
+.p-run-list__cell--result-requests, .p-upload__result-requests {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .p-run-list__cell--id {
   width: 2em;
@@ -631,6 +653,9 @@ input {
 .p-summary__line {
   display: flex;
   gap: 0.2em 0.5em;
+}
+.p-summary__description {
+  margin: 1.5em 0 0.5em;
 }
 .p-summary__pivot {
   display: flex;

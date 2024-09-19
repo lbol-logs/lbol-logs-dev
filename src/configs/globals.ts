@@ -71,6 +71,8 @@ const defaultHoldingsWidth = 801;
 const asideHoldingsthreshold = 1536;
 const defaultAsideHoldings = AsideType.right;
 
+const descriptionMaxLength = 300;
+
 const commonConfigs: Array<string> = [
   'characters',
   'requests',
@@ -119,6 +121,7 @@ export {
   defaultHoldingsWidth,
   asideHoldingsthreshold,
   defaultAsideHoldings,
+  descriptionMaxLength,
   commonConfigs,
   logConfigs,
   enemiesShowDetails,

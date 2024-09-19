@@ -7,6 +7,7 @@ import { defaultRunData } from 'configs/globals';
 import { getResultData, validateRunData } from 'utils/functions/helpers';
 import ResultWidget from 'components/common/parts/resultWidget';
 import RequestsWidget from 'components/common/parts/requestsWidget';
+import Description from './description';
 
 function Uploader() {
   const { t } = useTranslation();
@@ -53,8 +54,11 @@ function Uploader() {
 
     preview = (
       <div className="p-upload__preview">
-        <ResultWidget resultData={getResultData(previewData)} name={Name} />
-        <RequestsWidget requests={Requests} />
+        <div className="p-upload__result-requests">
+          <ResultWidget resultData={getResultData(previewData)} name={Name} />
+          <RequestsWidget requests={Requests} />
+        </div>
+        <Description />
       </div>
     );
   }

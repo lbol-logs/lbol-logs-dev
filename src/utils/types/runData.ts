@@ -10,7 +10,8 @@ type TRunData = {
   Acts: Array<TActObj>,
   Cards: TCardChanges,
   Exhibits: TExhibitChanges,
-  Result: TResult
+  Result: TResult,
+  Description?: string
 };
 
 type TSettings = {

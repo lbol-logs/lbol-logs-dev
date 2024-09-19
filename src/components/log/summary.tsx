@@ -20,13 +20,28 @@ function Summary() {
   const { t } = useTranslation();
   if (!isRunDataLoaded) return <Loading />;
 
-  const { Version, Name, Settings, Result } = runData;
+  const { Version, Name, Settings, Result, Description } = runData;
   const { Requests, ShowRandomResult, IsAutoSeed, Mods } = Settings;
   const { Cards, Exhibits, BaseMana, Seed, ReloadTimes } = Result;
   const resultData = getResultData(runData);
 
   const exhibitRarities = ["Mythic", "Shining", "Rare", "Uncommon", "Common"];
   const cardRarities = ["Rare", "Uncommon", "Common", "Misfortune"];
+
+  let description = null;
+  if (Description) {
+    console.log(Description, Description.split('\n'))
+    description = (
+      <div className="p-description">
+        <h3 className="p-summary__description">{t('description', { ns: 'log' })}</h3>
+        {Description.split('\n').map((e, i) => {
+          return (
+            <p className="p-description__line" key={i}>{e}</p>
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <section className="p-summary">
@@ -49,6 +64,7 @@ function Summary() {
         </div>
         {Mods !== undefined && <ModsWidget mods={Mods} />}
       </div>
+      {description}
       <div className="p-summary__exhibits">
         <div className="p-summary__pivot">
           <h3 className="p-summary__entity">{t('exhibitsCount', { ns: 'log', count: Exhibits.length })}</h3>
