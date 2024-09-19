@@ -130,6 +130,7 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
   function apply(e: MouseEvent<HTMLButtonElement>) {
     const data = deleteValues();
     submit(data);
+    scroll();
     e.preventDefault();
   }
 
@@ -137,7 +138,13 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
     setFilter({});
     reflectExhibitsTypes(DefaultFilter.get(DefaultFilter.keys.et) as string);
     submit(null);
+    scroll();
     e.preventDefault();
+  }
+
+  function scroll() {
+    const div = document.querySelector('.js-runList') as HTMLDivElement;
+    div.scrollIntoView({ behavior: 'smooth' });
   }
 
   function deleteValues() {

@@ -78,7 +78,7 @@ function RunList() {
   return (
     <section className="p-run-list">
       <Filter />
-      <div className="p-run-list__output">
+      <div className="p-run-list__output js-runList">
         <div className="p-run-list__line">
           <p className="p-run-list__results">{results}</p>
           <p className="p-run-list__remark">
