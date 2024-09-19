@@ -1,13 +1,14 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { TObjAny } from 'utils/types/common';
+import { TComponents, TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import { useTranslation } from 'react-i18next';
+import CharacterImage from 'components/common/parts/characterImage';
 
 function SelectOpponent({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { runData: { Acts }, configsData } = useContext(LogContext);
   const { t } = useTranslation();
 
   const { Data } = station;
@@ -23,6 +24,7 @@ function SelectOpponent({ station }: { station: TStation }) {
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
+  const afters: TComponents = [];
 
   Opponents.forEach((opponent: string, i: number) => {
     const values = { 0: t(opponent, { ns: 'units' }) };
@@ -31,13 +33,23 @@ function SelectOpponent({ station }: { station: TStation }) {
   {
     const values = { 0: eventConfigs.power };
     props[3] = { values };
+    if (chosen === 3) {
+      const boss = Acts[0].Boss as string;
+      afters[3] = (
+        <>
+          <CharacterImage character={boss} />
+          <span>{t(boss, { ns: 'units' })}</span>
+        </>
+      );
+    }
   }
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
-    props
+    props,
+    afters
   };
 
   return (
