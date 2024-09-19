@@ -15,7 +15,7 @@ function Description() {
       <div className="p-upload-description__line">
         <div className="p-upload-description__title">
           <h3 className="p-upload-description__head">{t('description', { ns: 'log' })}</h3>
-          <span>({t('optional', { ns: 'site' })})</span>
+          <span className="p-upload-description__optional">({t('optional', { ns: 'site' })})</span>
         </div>
         <span className="p-upload-description__count">
           {length}

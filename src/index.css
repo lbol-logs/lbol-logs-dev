@@ -174,9 +174,13 @@ input {
 .p-upload-description__title {
   display: flex;
   column-gap: 0.5em;
+  align-items: center;
 }
 .p-upload-description__head {
   margin: 0;
+}
+.p-upload-description__optional {
+  font-size: 0.8em;
 }
 
 .p-file--uploading {
