@@ -17,7 +17,7 @@ function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, s
   const maxLevel: TLevel = al.maxLevel();
 
   function backToTop() {
-    navigate('../');
+    navigate(-1);
   }
 
   function changeAct(offset: number) {
