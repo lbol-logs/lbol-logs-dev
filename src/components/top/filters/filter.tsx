@@ -1,5 +1,5 @@
 import { CommonContext } from 'contexts/commonContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import CharactersWidget from './charactersWidget';
 import DifficultiesWidget from './difficultiesWidget';
@@ -76,6 +76,11 @@ function Filter() {
     );
   }
 
+  const isFiltering = Object.values(filter).some(v => (typeof v === 'string') ? (v !== '') : (v.length > 0));
+  useEffect(() => {
+    if (!showFilter && isFiltering) setShowFilter(true);
+  }, [isFiltering]);
+
   return (
     <Form action="./" className="p-filter" ref={formRef}>
       <div className="p-filter__row">
@@ -85,7 +90,7 @@ function Filter() {
       <div className="p-filter__row">
           <div className="p-filter__label">{t('name', { ns: 'runList' })}</div>
           <div className="p-filter__values">
-            <input className="p-filter__input" name="na" value={na} />
+            <input className="p-filter__input" name="na" defaultValue={na} />
           </div>
         </div>
         <div className="p-filter__row">
