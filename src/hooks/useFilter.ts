@@ -147,8 +147,9 @@ function useFilter({ filter, setFilter, version, configsData, searchParams }: { 
       if (value === DefaultFilter.check(key)) data.delete(key);
     }
     for (const key of DefaultFilter.texts) {
-      const value = data.get(key);
+      const value = (data.get(key) as string).trim();
       if (value === '') data.delete(key);
+      else data.set(key, value);
     }
     data.delete(DefaultFilter.et.co);
     return data;
