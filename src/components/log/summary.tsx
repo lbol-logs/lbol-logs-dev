@@ -13,6 +13,7 @@ import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
 import { getResultData } from 'utils/functions/helpers';
 import { CommonContext } from 'contexts/commonContext';
+import ScrollToTop from 'components/common/utils/scrollToTop';
 
 function Summary() {
   const { configsData: { exhibits: exhibitConfigs } } = useContext(CommonContext);
@@ -45,6 +46,7 @@ function Summary() {
 
   return (
     <section className="p-summary">
+      <ScrollToTop />
       <div className="p-summary__head">
         <div className="p-summary__widgets">
           <ResultWidget resultData={resultData} name={Name} />
