@@ -7,9 +7,9 @@ import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 
 function HinaCollect({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { configsData, holdings } = useContext(LogContext);
 
-  const { Data, Id } = station;
+  const { Data, Id, Node: { Act, Level } } = station;
 
   const { Choices, Card } = Data;
 
@@ -23,6 +23,14 @@ function HinaCollect({ station }: { station: TStation }) {
 
   const cards: Array<TCards> = [];
 
+  {
+    const cardConfigs = configsData.cards;
+    const currentHoldingIndex = holdings.findIndex(({ Act: a, Level: l }) => Act === a && Level === l);
+    const lastHolding = holdings[currentHoldingIndex - 1];
+    const { Cards } = lastHolding;
+    const _cards = Cards.filter(({ Id }) => cardConfigs[Id].IsMisfortune && !cardConfigs[Id].IsUnremovable);
+    cards[0] = _cards;
+  }
   if (Card) cards[1] = convertCards([Card]);
 
   const dialogueConfigs: TDialogueConfigs = {
