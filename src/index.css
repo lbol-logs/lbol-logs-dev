@@ -644,7 +644,7 @@ input {
   padding-right: var(--padding-inner);
 }
 .p-summary {
-  padding-bottom: calc(100vh - var(--control-height));
+  padding-bottom: 75vh;
 }
 .p-summary__head {
   display: flex;
