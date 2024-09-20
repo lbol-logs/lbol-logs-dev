@@ -31,7 +31,6 @@ function Summary() {
 
   let description = null;
   if (Description) {
-    console.log(Description, Description.split('\n'))
     description = (
       <div className="p-description">
         <h3 className="p-summary__description">{t('description', { ns: 'log' })}</h3>
