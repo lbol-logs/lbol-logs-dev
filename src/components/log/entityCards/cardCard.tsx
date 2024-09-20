@@ -11,8 +11,9 @@ function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
   const { Id, IsUpgraded, UpgradeCounter } = card;
   const { t } = useTranslation();
   const { width, height } = cardSize;
-  const { Rarity, IsMisfortune } = configsData.cards[Id];
-  const type = IsMisfortune ? 'Misfortune' : Rarity;
+  const { Rarity, IsMisfortune, IsUnremovable } = configsData.cards[Id];
+  let type = IsMisfortune ? 'Misfortune' : Rarity;
+  if (IsUnremovable) type += '-Unremovable';
   const upgradeCounter = UpgradeCounter ? UpgradeCounter : '';
 
   return (
