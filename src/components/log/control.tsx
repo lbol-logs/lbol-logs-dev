@@ -53,7 +53,7 @@ function Control() {
   if (isSummary) {
     buttonLeft = (
       <span className="p-control__component" onClick={backToTop}>
-        <LazyLoadImage2 callback={getControlImage} name="Back" alt={t('control.back', { ns: 'log' })} />
+        <LazyLoadImage2 callback={getControlImage} name="Return" alt={t('control.return', { ns: 'log' })} />
       </span>
     );
     centerArea = (
