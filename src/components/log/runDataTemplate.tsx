@@ -10,6 +10,7 @@ import ActLevel from 'utils/classes/ActLevel';
 import { scrollTolerance } from 'configs/globals';
 import CurrentHoldings from './currentHoldings';
 import { checkRounds, getScrollHeight } from 'utils/functions/helpers';
+import Modal from './modal';
 
 function RunDataTemplate() {
   const { isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap } = useContext(LogContext);
@@ -53,6 +54,7 @@ function RunDataTemplate() {
           <Stations />
         </>
       )}
+      <Modal />
       <Control />
     </>
   );
