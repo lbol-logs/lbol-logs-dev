@@ -20,6 +20,7 @@ function RunDataTemplate() {
 
   useEffect(() => {
     if (!isRunDataLoaded) return;
+    // TODO: remove
     setEntityModal({exhibit:{} as TExhibit});
     let a = parseInt(searchParams.get('a') || '0') as TAct;
     let l = parseInt(searchParams.get('l') || '0') as TLevel;

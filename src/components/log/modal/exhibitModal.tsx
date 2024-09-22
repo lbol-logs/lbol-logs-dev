@@ -1,6 +1,7 @@
 import { TExhibit } from 'utils/types/runData';
 
 function ExhibitModal({ exhibit }: { exhibit: TExhibit }) {
+  // TODO: remove
   const inner = (
     <div style={{height:'1000px',border:'1px solid'}}>
     </div>

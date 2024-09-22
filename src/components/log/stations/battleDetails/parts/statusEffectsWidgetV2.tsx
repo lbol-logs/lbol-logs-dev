@@ -5,6 +5,7 @@ import { TStatusEffects } from 'utils/types/runData';
 
 function StatusEffectsWidgetV2({ statusEffects }: { statusEffects: TStatusEffects }) {
   const { t } = useTranslation();
+  // TODO
 
   return (
     <div className="c-status-effects">

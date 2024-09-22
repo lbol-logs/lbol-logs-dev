@@ -1554,6 +1554,7 @@ html:lang(en) .p-result__type {
 .c-status-effect {
   position: relative;
 }
+/* TODO: remove */
 .c-status-effect:hover:after {
   content: attr(data-name);
   position: fixed;
