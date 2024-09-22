@@ -1636,6 +1636,26 @@ html:lang(en) .p-result__type {
   height: 100%;
   background: var(--overlay);
   z-index: var(--z-7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.p-modal__outer {
+  display: flex;
+  justify-content: center;
+  max-width: var(--card-width);
+  width: 100%;
+  padding: var(--unity-offset);
+}
+.p-modal__inner {
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.p-modal__inner--exhibit, .p-modal__inner--status-effect {
+  background: var(--white);
+  padding: 0.5em;
 }
 
 :root {
@@ -1654,6 +1674,8 @@ html:lang(en) .p-result__type {
   --entity-margin: 0.5em;
   --entity-border: 2px;
   --map-height: 144px;
+  --card-width: 288px;
+  --unity-offset: 14px;
 
   --z--1: -1;
   --z-0: 0;

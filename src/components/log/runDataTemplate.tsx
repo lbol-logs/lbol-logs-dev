@@ -4,7 +4,7 @@ import Map from './map/map';
 import Stations from './stations/stations';
 import Summary from './summary';
 import Control from './control';
-import { TAct, TLevel } from 'utils/types/runData';
+import { TAct, TExhibit, TLevel } from 'utils/types/runData';
 import { useSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/classes/ActLevel';
 import { scrollTolerance } from 'configs/globals';
@@ -13,13 +13,14 @@ import { checkRounds, getScrollHeight } from 'utils/functions/helpers';
 import Modal from './modal';
 
 function RunDataTemplate() {
-  const { isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap } = useContext(LogContext);
+  const { isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setEntityModal } = useContext(LogContext);
   const [searchParams] = useSearchParams();
 
   const isSummary = act === 0;
 
   useEffect(() => {
     if (!isRunDataLoaded) return;
+    setEntityModal({exhibit:{} as TExhibit});
     let a = parseInt(searchParams.get('a') || '0') as TAct;
     let l = parseInt(searchParams.get('l') || '0') as TLevel;
     const al = new ActLevel(runData, act);

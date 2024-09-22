@@ -1,23 +1,62 @@
 import { LogContext } from 'contexts/logContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
+import CardModal from './cardModal';
+import ExhibitModal from './exhibitModal';
+import StatusEffectModal from './cardStatusEffect';
+import { TCard, TExhibit, TStatusEffect } from 'utils/types/runData';
 
 function Modal() {
-  const { entityModal } = useContext(LogContext);
+  const { entityModal, setEntityModal } = useContext(LogContext);
   const { card, exhibit, statusEffect } = entityModal;
 
-  let inner = null;
+  // TODO: remove
+  // const card = undefined;
+  // const exhibit = undefined;
+  // const exhibit = {} as TExhibit;
+  // const statusEffect = undefined;
+  // const statusEffect = {} as TStatusEffect;
 
-  if (card) inner = null;
-  else if (exhibit) inner = null;
-  else if (statusEffect) inner = null;
+  let type;
+  let entity;
 
-  return (
-    <div className="p-modal">
-      <div className="p-modal--inner">
-        {inner}
+  if (card) {
+    type = 'card';
+    entity = <CardModal card={card} />;
+  }
+  else if (exhibit) {
+    type = 'exhibit';
+    entity = <ExhibitModal exhibit={exhibit} />;
+  }
+  else if (statusEffect) {
+    type = 'status-effect';
+    entity = <StatusEffectModal statusEffect={statusEffect} />;
+  }
+
+  function onBlur() {
+    setEntityModal({});
+  }
+
+  const innerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const inner = innerRef.current;
+    console.log(inner);
+    if (inner) inner.focus();
+  }, [entity]);
+
+  if (entity) {
+    return (
+      <div className="p-modal">
+        <div className="p-modal__outer">
+          <div className={`p-modal__inner p-modal__inner--${type}`} tabIndex={0} onBlur={onBlur} ref={innerRef}>
+            {entity}
+          </div>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
+  else {
+    return null;
+  }
 }
 
 export default Modal;
