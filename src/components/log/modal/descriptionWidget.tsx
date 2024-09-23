@@ -63,6 +63,10 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     Limit: <Desc v={Limit} />
   };
 
+  const values = {
+    Duration
+  };
+
   if (isStatusEffect) {
     const {
       SourceCard,
@@ -139,6 +143,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       ns={ns}
       context={Version}
       components={components}
+      values={values}
     />
   );
 }
