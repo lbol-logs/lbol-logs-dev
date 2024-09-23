@@ -2,7 +2,7 @@ import ManaWidget from 'components/common/parts/manaWidget';
 import { MoneyImage, PowerImage } from '../stations/parts/stationWidgets';
 import Highlight from 'components/log/parts/highlight';
 import { Trans, useTranslation } from 'react-i18next';
-import { TCard, TExhibit, TStatusEffect } from 'utils/types/runData';
+import { TCard, TExhibit, THolding, TStatusEffect } from 'utils/types/runData';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import CharacterShortName from '../stations/parts/characterShortName';
@@ -15,7 +15,7 @@ function Desc({ v }: { v: string | number | undefined }) {
 }
 
 function DescriptionWidget({ ns, ...o }: { ns: string }) {
-  const { configsData } = useContext(LogContext);
+  const { configsData, act, level, holdings } = useContext(LogContext);
   const { t } = useTranslation();
 
   const {
@@ -33,13 +33,8 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
   const config = configsData[ns][Id] || {};
   const { Version } = config;
 
-  const OwnerName = [undefined, 'Player'].includes(owner) ? <CharacterShortName /> : <>{t(owner as string, { ns: 'units' })}</>;
-  let SourceCardName = <></>;
-  if (isStatusEffect) {
-    const { SourceCard } = config;
-    const name = t(SourceCard, { ns: 'cards' });
-    SourceCardName = <Desc v={name} />;
-  }
+  const isPlayer = [undefined, 'Player'].includes(owner);
+  const OwnerName = isPlayer ? <CharacterShortName /> : <>{t(owner as string, { ns: 'units' })}</>;
 
   const components = {
     h: <Highlight>{}</Highlight>,
@@ -54,12 +49,34 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     Manap: <ManaWidget mana="P" />,
     OwnerName,
     PlayerName: <CharacterShortName />,
-    SourceCardName,
     Level: <Desc v={Level} />,
     Duration: <Desc v={Duration} />,
     Count: <Desc v={Count} />,
     Limit: <Desc v={Limit} />
   };
+
+  if (isStatusEffect) {
+    const { SourceCard, Value } = config;
+
+    if (SourceCard) {
+      const name = t(SourceCard, { ns: 'cards' });
+      const SourceCardName = <Desc v={name} />;
+      Object.assign(components, { SourceCardName });
+    }
+
+    if (Value) {
+      let v = Value;
+      const { Extra } = config;
+      if (Extra) {
+        const { Exhibit, Enemy, Player } = Extra;
+        const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
+        const hasExhibit = currentHolding.Exhibits.find(({ Id }) => Id === Exhibit);
+        if (hasExhibit) v += isPlayer ? Player : Enemy;
+      }
+      Object.assign(components, { Value: <Desc v={v} /> });
+    }
+
+  }
 
   return (
     <Trans
