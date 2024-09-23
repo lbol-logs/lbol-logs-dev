@@ -1555,6 +1555,7 @@ html:lang(en) .p-result__type {
   position: relative;
   display: block;
   width: var(--icon-size);
+  height: var(--icon-size);
 }
 .c-status-effects .c-status-effect {
   cursor: zoom-in;
