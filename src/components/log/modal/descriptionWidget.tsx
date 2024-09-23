@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import CharacterShortName from '../stations/parts/characterShortName';
 import CardManasWidget from './cardManasWidget';
+import CardManaWidget from './cardManaWidget';
 
 function Desc({ v }: { v: string | number | undefined }) {
   if (v === undefined) return <></>;
@@ -53,8 +54,8 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     l: <span className="c-dialogue__height">{}</span>,
     Money: <MoneyImage />,
     Power: <PowerImage />,
-    Mana1: <BaseManaWidget mana="C" />,
-    Manap: <BaseManaWidget mana="P" />,
+    Mana1: <CardManaWidget mana="1" />,
+    ManaP: <CardManaWidget mana="P" />,
     OwnerName,
     PlayerName: <CharacterShortName />,
     Level: <Desc v={Level} />,
