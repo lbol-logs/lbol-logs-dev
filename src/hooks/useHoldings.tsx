@@ -4,7 +4,7 @@ import Processing from 'components/common/layouts/processing';
 import { THolding, TLevel } from 'utils/types/runData';
 import { TDispatch, TObj } from 'utils/types/common';
 import Act from 'components/log/act';
-import BaseManaWidget from 'components/common/parts/baseManaWidget';
+import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import CardCards from 'components/log/entityCards/cardCards';
 import i18next from 'i18next';
@@ -98,7 +98,7 @@ function useHoldings({ level, currentHolding, setHoldingsHeight, setHoldingsWidt
               </h3>
             </div>
             <div className="p-holdings__line">
-              <BaseManaWidget baseMana={BaseMana} />
+              <BaseManasWidget baseMana={BaseMana} />
             </div>
 
             <div className="p-holdings__counts">

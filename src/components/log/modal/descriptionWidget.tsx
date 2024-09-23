@@ -1,4 +1,4 @@
-import ManaWidget from 'components/common/parts/manaWidget';
+import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import { MoneyImage, PowerImage } from '../stations/parts/stationWidgets';
 import Highlight from 'components/log/parts/highlight';
 import { Trans, useTranslation } from 'react-i18next';
@@ -45,8 +45,8 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     l: <span className="c-dialogue__height">{}</span>,
     Money: <MoneyImage />,
     Power: <PowerImage />,
-    Mana1: <ManaWidget mana="C" />,
-    Manap: <ManaWidget mana="P" />,
+    Mana1: <BaseManaWidget mana="C" />,
+    Manap: <BaseManaWidget mana="P" />,
     OwnerName,
     PlayerName: <CharacterShortName />,
     Level: <Desc v={Level} />,
