@@ -1062,7 +1062,6 @@ html:lang(en) .c-entity__text {
 .p-base-mana {
   display: flex;
 }
-
 .c-base-mana {
   position: relative;
   display: block;
@@ -1071,6 +1070,19 @@ html:lang(en) .c-entity__text {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.p-card-mana {
+  display: inline-flex;
+  vertical-align: middle;
+}
+.c-card-mana {
+  display: flex;
+  align-items: center;
+}
+.p-modal__exhibit .c-card-mana,
+.p-modal__status-effect .c-card-mana {
+  width: 1.5em;
 }
 
 .c-requests {

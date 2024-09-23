@@ -6,7 +6,7 @@ import DescriptionWidget from './descriptionWidget';
 function StatusEffectModal({ statusEffect }: { statusEffect: TStatusEffect }) {
   const { t } = useTranslation();
   const { Id } = statusEffect;
-  // TODO
+
   return (
     <div className="p-modal__status-effect">
       <div className="p-modal__line">

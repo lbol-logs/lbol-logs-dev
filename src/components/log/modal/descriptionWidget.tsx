@@ -6,6 +6,7 @@ import { TCard, TExhibit, THolding, TStatusEffect } from 'utils/types/runData';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import CharacterShortName from '../stations/parts/characterShortName';
+import CardManasWidget from './cardManasWidget';
 
 function Desc({ v }: { v: string | number | undefined }) {
   if (v === undefined) return <></>;
@@ -24,14 +25,21 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     Level, Duration, Count, Limit, owner
   } = o as TCard & TExhibit & TStatusEffect;
 
-  const ug = IsUpgraded === undefined ? '' : `.${IsUpgraded}`;
-  const key = `${Id}${ug}.Description`;
-
   const isCard = ns === 'cards';
   const isExhibit = ns === 'exhibits';
   const isStatusEffect = ns === 'statusEffects';
   const config = configsData[ns][Id] || {};
   const { Version } = config;
+
+  const array = [Id];
+  if (IsUpgraded !== undefined) array.push(IsUpgraded.toString());
+  if (isStatusEffect && Id === 'TianziRockSe' && Limit === 1) {
+    array.push('ExtraDescription');
+  }
+  else {
+    array.push('Description');
+  }
+  const key = array.join('.');
 
   const isPlayer = [undefined, 'Player'].includes(owner);
   const OwnerName = isPlayer ? <CharacterShortName /> : <>{t(owner as string, { ns: 'units' })}</>;
@@ -56,7 +64,12 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
   };
 
   if (isStatusEffect) {
-    const { SourceCard, Value } = config;
+    const {
+      SourceCard,
+      Value,
+      Mana,
+      DamageRate
+    } = config;
 
     if (SourceCard) {
       const name = t(SourceCard, { ns: 'cards' });
@@ -76,6 +89,14 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       Object.assign(components, { Value: <Desc v={v} /> });
     }
 
+    {
+      const mana = Mana === undefined ? (Level === undefined ? (Limit || 0) : Level) : Mana;
+      Object.assign(components, { Mana: <CardManasWidget cardMana={mana} /> });
+    }
+
+    if (DamageRate) {
+      Object.assign(components, { DamageRate: <Desc v={DamageRate} /> });
+    }
   }
 
   return (

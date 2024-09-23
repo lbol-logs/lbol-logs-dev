@@ -64,6 +64,8 @@ type TStatusEffectConfig = {
 } & TConfigVersion;
 type TStatusEffectConfigs = Array<TStatusEffectConfig>;
 
+type TCardMana = string | number;
+
 enum ErrorType {
   invalidFile = 'invalidFile',
   invalidVersion = 'invalidVersion',
@@ -84,7 +86,8 @@ export type {
   TEventComponent,
   TRounds,
   TEntityModel,
-  TStatusEffectConfigs
+  TStatusEffectConfigs,
+  TCardMana
 };
 
 export {
