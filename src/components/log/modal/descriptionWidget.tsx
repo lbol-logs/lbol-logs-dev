@@ -68,13 +68,17 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       SourceCard,
       Value,
       Mana,
-      DamageRate
+      DamageRate,
+      TriggerLevel,
+      BaseDamage,
+      StackMultiply,
+      SourceCardName,
+      Block
     } = config;
 
-    if (SourceCard) {
-      const name = t(SourceCard, { ns: 'cards' });
-      const SourceCardName = <Desc v={name} />;
-      Object.assign(components, { SourceCardName });
+    if (SourceCardName) {
+      const name = t(SourceCardName, { ns: 'cards' });
+      Object.assign(components, { SourceCardName: <Desc v={name} /> });
     }
 
     if (Value) {
@@ -96,6 +100,36 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
     if (DamageRate) {
       Object.assign(components, { DamageRate: <Desc v={DamageRate} /> });
+    }
+
+    if (Id === 'ExtraBlizzard') {
+      Object.assign(components, { Damage: <Desc v={Level} /> });
+    }
+
+    if (TriggerLevel) {
+      Object.assign(components, { TriggerLevel: <Desc v={TriggerLevel} /> });
+    }
+
+    if (BaseDamage) {
+      Object.assign(components, { BaseDamage: <Desc v={BaseDamage} /> });
+    }
+
+    if (Id === 'Cold') {
+      const StackDamage = BaseDamage * StackMultiply;
+      Object.assign(components, { StackMultiply: <Desc v={StackMultiply} />, StackDamage: <Desc v={StackDamage} /> });
+    }
+
+    if (Id === 'MeihongPowerSe') {
+      const Heal = Level as number * 2;
+      Object.assign(components, { Heal: <Desc v={Heal} /> });
+    }
+
+    if (Id === 'SeeFengshuiSe') {
+      Object.assign(components, { Scry: <Desc v={Level} /> });
+    }
+
+    if (Block) {
+      Object.assign(components, { Block: <Desc v={Block} /> });
     }
   }
 
