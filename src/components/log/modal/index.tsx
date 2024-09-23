@@ -2,19 +2,11 @@ import { LogContext } from 'contexts/logContext';
 import { useContext, useEffect, useRef } from 'react';
 import CardModal from './cardModal';
 import ExhibitModal from './exhibitModal';
-import StatusEffectModal from './cardStatusEffect';
-import { TCard, TExhibit, TStatusEffect } from 'utils/types/runData';
+import StatusEffectModal from './statusEffectModal';
 
 function Modal() {
   const { entityModal, setEntityModal } = useContext(LogContext);
   const { card, exhibit, statusEffect } = entityModal;
-
-  // TODO: remove
-  // const card = undefined;
-  // const exhibit = undefined;
-  // const exhibit = {} as TExhibit;
-  // const statusEffect = undefined;
-  // const statusEffect = {} as TStatusEffect;
 
   let type;
   let entity;

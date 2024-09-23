@@ -1553,22 +1553,8 @@ html:lang(en) .p-result__type {
 }
 .c-status-effect {
   position: relative;
-}
-/* TODO: remove */
-.c-status-effect:hover:after {
-  content: attr(data-name);
-  position: fixed;
-  bottom: calc(var(--control-height) * 2);
-  left: calc((100% - var(--holdings-width, 0px)) / 2);
-  transform: translateX(-50%);
-  width: fit-content;
-  min-width: 3em;
-  text-align: center;
-  height: fit-content;
-  padding: 0.5em 1em;
-  z-index: var(--z-6);
-  border-radius: 2em;
-  background: var(--light-orange);
+  display: block;
+  width: var(--icon-size);
 }
 .c-status-effect .c-status-effect__value {
   position: absolute;
@@ -1636,10 +1622,11 @@ html:lang(en) .p-result__type {
   width: 100%;
   height: 100%;
   background: var(--overlay);
-  z-index: var(--z-7);
+  z-index: var(--z-6);
   display: flex;
   justify-content: center;
   align-items: center;
+  --padding: 0.5em 1em;
 }
 .p-modal__outer {
   display: flex;
@@ -1654,9 +1641,28 @@ html:lang(en) .p-result__type {
   overflow-y: auto;
   scrollbar-width: none;
 }
+.p-modal__inner:focus {
+  outline: none;
+}
 .p-modal__inner--exhibit, .p-modal__inner--status-effect {
   background: var(--white);
-  padding: 0.5em;
+}
+
+.p-modal__line {
+  display: flex;
+  column-gap: 1em;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  padding: var(--padding);
+}
+.p-modal__name {
+  flex: 1;
+}
+
+.p-modal__body {
+  padding: var(--padding);
 }
 
 :root {
@@ -1686,7 +1692,6 @@ html:lang(en) .p-result__type {
   --z-4: 4;
   --z-5: 5;
   --z-6: 6;
-  --z-7: 7;
 
   --white: light-dark(#fff, #121212);
   --black: light-dark(#000, #fff);
