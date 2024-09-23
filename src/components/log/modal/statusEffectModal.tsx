@@ -11,7 +11,7 @@ function StatusEffectModal({ statusEffect }: { statusEffect: TStatusEffect }) {
     <div className="p-modal__status-effect">
       <div className="p-modal__line">
         <StatusEffectWidget statusEffect={statusEffect} />
-        <span className="p-modal__name">{t(Id, { ns: 'statusEffects' })}</span>
+        <span className="p-modal__name">{t(`${Id}.Name`, { ns: 'statusEffects' })}</span>
       </div>
       <div className="p-modal__body">
         <DescriptionWidget ns="statusEffects" {...statusEffect} />

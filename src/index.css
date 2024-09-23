@@ -1616,6 +1616,7 @@ html:lang(en) .p-result__type {
 }
 .c-highlight--white {
   color: var(--white);
+  text-shadow: var(--text-shadow);
 }
 .c-highlight--purple {
   color: var(--purple);
@@ -1646,7 +1647,7 @@ html:lang(en) .p-result__type {
 .p-modal__outer {
   display: flex;
   justify-content: center;
-  max-width: var(--card-width);
+  max-width: calc(var(--card-width) * 2);
   width: 100%;
   padding: var(--unity-offset);
 }
@@ -1814,6 +1815,10 @@ html:lang(en) .p-result__type {
   }
   .p-filter__requests-types {
     justify-content: center;
+  }
+
+  .p-modal__outer {
+    max-width: var(--card-width);
   }
 
   .l-header__menu {

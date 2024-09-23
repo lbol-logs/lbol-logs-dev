@@ -28,7 +28,7 @@ function StatusEffectWidget({ statusEffect }: { statusEffect: TStatusEffect }) {
       {level}
       {duration}
       {count}
-      <LazyLoadImage2 callback={getStatusEffectImage} name={Id} alt={t(Id, { ns: 'statusEffects' })} />
+      <LazyLoadImage2 callback={getStatusEffectImage} name={Id} alt={t(`${Id}.Name`, { ns: 'statusEffects' })} />
     </span>
   );
 }
