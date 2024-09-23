@@ -144,7 +144,8 @@ type TStatusEffect = {
   Level?: number,
   Duration?: number,
   Count?: number,
-  Limit?: number
+  Limit?: number,
+  owner?: string
 };
 type TStatusEffects = Array<TStatusEffect>;
 

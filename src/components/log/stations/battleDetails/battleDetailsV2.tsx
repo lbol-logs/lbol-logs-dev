@@ -36,7 +36,7 @@ function BattleDetailsV2({ details, enemy, status: lastStatus }: { details: Arra
         const status = <BattleDetailsItem label={endOfTurn} children={<BattleStatusWidget status={Status} lastStatus={lastStatuses[Id]} />} />;
         lastStatuses[Id] = Status;
 
-        const se = <BattleDetailsItem label={endOfTurn} children={<StatusEffectsWidgetV2 statusEffects={StatusEffects} />} />;
+        const se = <BattleDetailsItem label={endOfTurn} children={<StatusEffectsWidgetV2 statusEffects={StatusEffects} owner={Id} />} />;
 
         return (
           <div className={`p-battle-details__row ${isPlayer ? 'p-battle-details__row--player' : 'p-battle-details__row--enemy'} js-round-${Round}`} key={i}>

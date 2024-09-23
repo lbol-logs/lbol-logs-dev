@@ -1680,6 +1680,9 @@ html:lang(en) .p-result__type {
 .p-modal__body {
   padding: var(--padding);
 }
+.p-modal__variable {
+  color: var(--f-blue);
+}
 
 :root {
   color-scheme: light dark;
