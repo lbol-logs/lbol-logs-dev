@@ -1,4 +1,3 @@
-import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import { MoneyImage, PowerImage } from '../stations/parts/stationWidgets';
 import Highlight from 'components/log/parts/highlight';
 import { Trans, useTranslation } from 'react-i18next';
@@ -65,7 +64,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
   };
 
   const values = {
-    Duration
+    Level, Duration, Count, Limit
   };
 
   if (isStatusEffect) {
