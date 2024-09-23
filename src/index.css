@@ -1556,6 +1556,9 @@ html:lang(en) .p-result__type {
   display: block;
   width: var(--icon-size);
 }
+.c-status-effects .c-status-effect {
+  cursor: zoom-in;
+}
 .c-status-effect .c-status-effect__value {
   position: absolute;
   font-size: 0.7em;
@@ -1604,6 +1607,18 @@ html:lang(en) .p-result__type {
 }
 .c-highlight--green {
   color: var(--lime);
+}
+.c-highlight--blue {
+  color: var(--blue);
+}
+.c-highlight--red {
+  color: var(--red);
+}
+.c-highlight--white {
+  color: var(--white);
+}
+.c-highlight--purple {
+  color: var(--purple);
 }
 
 .c-show-random-result {

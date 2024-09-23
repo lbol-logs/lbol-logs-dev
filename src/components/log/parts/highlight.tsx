@@ -4,7 +4,11 @@ import { TObjString } from 'utils/types/common';
 function Highlight({ color = '', children }: { color?: string, children?: ReactNode }) {
   const colors: TObjString = {
     '': 'orange',
-    'g': 'green'
+    'g': 'green',
+    'a': 'blue',
+    'u': 'red',
+    'd': 'white',
+    'p': 'purple'
   };
 
   return <span className={`c-highlight--${colors[color]}`}>{children}</span>;

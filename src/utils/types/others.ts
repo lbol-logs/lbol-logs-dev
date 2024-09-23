@@ -56,6 +56,14 @@ type TEntityModel = {
   statusEffect?: TStatusEffect
 };
 
+type TConfigVersion = {
+  Version?: string
+};
+type TStatusEffectConfig = {
+  Value?: number
+} & TConfigVersion;
+type TStatusEffectConfigs = Array<TStatusEffectConfig>;
+
 enum ErrorType {
   invalidFile = 'invalidFile',
   invalidVersion = 'invalidVersion',
@@ -75,7 +83,8 @@ export type {
   TFilter,
   TEventComponent,
   TRounds,
-  TEntityModel
+  TEntityModel,
+  TStatusEffectConfigs
 };
 
 export {

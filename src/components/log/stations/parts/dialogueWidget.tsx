@@ -6,7 +6,7 @@ import { TObjString } from 'utils/types/common';
 import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import CharacterShortName from './characterShortName';
-import Highlight from './highlight';
+import Highlight from '../../parts/highlight';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
   const { t } = useTranslation();

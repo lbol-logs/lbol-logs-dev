@@ -1,10 +1,11 @@
 import { TStatusEffect } from 'utils/types/runData';
 import StatusEffectWidget from '../stations/battleDetails/parts/statusEffectWidget';
 import { useTranslation } from 'react-i18next';
+import DescriptionWidget from './descriptionWidget';
 
 function StatusEffectModal({ statusEffect }: { statusEffect: TStatusEffect }) {
   const { t } = useTranslation();
-  const { Id, Level, Duration, Count } = statusEffect;
+  const { Id } = statusEffect;
   // TODO
   return (
     <div className="p-modal__status-effect">
@@ -13,12 +14,7 @@ function StatusEffectModal({ statusEffect }: { statusEffect: TStatusEffect }) {
         <span className="p-modal__name">{t(Id, { ns: 'statusEffects' })}</span>
       </div>
       <div className="p-modal__body">
-        a<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        b
+        <DescriptionWidget ns="statusEffects" {...statusEffect} />
       </div>
     </div>
   );

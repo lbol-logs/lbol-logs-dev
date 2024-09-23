@@ -31,7 +31,6 @@ function Modal() {
   const innerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const inner = innerRef.current;
-    console.log(inner);
     if (inner) inner.focus();
   }, [entity]);
 

@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { TObjAny } from 'utils/types/common';
 import { MoneyImage, PowerImage } from './stationWidgets';
 import { applyRate } from 'utils/functions/helpers';
-import Highlight from './highlight';
+import Highlight from '../../parts/highlight';
 
 function GapDescription({ option, maxhp, children }: { option: string, maxhp?: number, children?: ReactNode }) {
   const { configsData } = useContext(LogContext);

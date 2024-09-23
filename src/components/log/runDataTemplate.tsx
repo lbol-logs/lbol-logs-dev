@@ -13,7 +13,7 @@ import { checkRounds, getScrollHeight } from 'utils/functions/helpers';
 import Modal from './modal';
 
 function RunDataTemplate() {
-  const { isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setEntityModal } = useContext(LogContext);
+  const { isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap } = useContext(LogContext);
   const [searchParams] = useSearchParams();
 
   const isSummary = act === 0;
