@@ -22,7 +22,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
   const { current, currentComponents, next, chosen, props, invalids, befores, cards, exhibits, afters } = dialogueConfigs;
 
-  const questionComponents = { Player: <CharacterShortName />, ...(currentComponents || {}) };
+  const questionComponents = { PlayerName: <CharacterShortName />, ...(currentComponents || {}) };
   const questionProps = concatObjects({}, { components }, { components: questionComponents });
 
   return (
