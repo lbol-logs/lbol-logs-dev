@@ -10,7 +10,7 @@ import { CommonContext } from 'contexts/commonContext';
 
 function RunListItems({ ids, filteredList }: { ids: TObjNumber, filteredList: TRunList }) {
   const { version } = useContext(CommonContext);
-  
+
   const items: TComponents = [];
   for (let i = filteredList.length - 1; i >= 0; i--) {
     const {
