@@ -60,6 +60,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     Power: <PowerImage />,
     Mana1: <CardManaWidget mana="1" />,
     ManaP: <CardManaWidget mana="P" />,
+    ManaC: <CardManaWidget mana="C" />,
     OwnerName,
     PlayerName: <CharacterShortName />,
     Level: <Desc v={Level} />,
