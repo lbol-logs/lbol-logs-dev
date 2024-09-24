@@ -69,7 +69,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     Level: <Desc v={Level} />,
     Duration: <Desc v={Duration} />,
     Count: <Desc v={Count} />,
-    Limit: <Desc v={Limit} />
+    Limit: <Desc v={Limit || 0} />
   };
 
   const values = {
