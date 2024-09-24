@@ -13,7 +13,7 @@ function ExhibitWidget({ exhibit }: { exhibit: TExhibitObj}) {
   return (
     <span className="c-exhibit-with-counter">
       {counter}
-      <ExhibitImage className="c-exhibit-with-counter__img" exhibit={Id} alt={t(Id, { ns: 'exhibits' })} />
+      <ExhibitImage className="c-exhibit-with-counter__img" exhibit={Id} alt={t(`${Id}.Name`, { ns: 'exhibits' })} />
     </span>
   )
 }

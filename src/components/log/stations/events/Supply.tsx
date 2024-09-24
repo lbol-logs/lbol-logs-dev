@@ -33,7 +33,7 @@ function Supply({ station }: { station: TStation }) {
   if (Both) {
     const values: TObj<string> = {};
     Exhibits.forEach((exhibit: TExhibit, i: number) => {
-      values[i] = t(exhibit, { ns: 'exhibits' });
+      values[i] = t(`${exhibit}.Name`, { ns: 'exhibits' });
     });
     props[2] = { values };
     exhibits[2] = Exhibits

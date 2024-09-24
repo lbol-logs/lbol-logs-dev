@@ -35,7 +35,7 @@ function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj 
   return (
     <span className={`c-entity c-entity--${Rarity} ${isNotAdded === true ? 'c-entity--not-added' : ''} c-exhibit`} onClick={onClick}>
       <ExhibitImage className="c-exhibit__img" exhibit={Id} alt="" />
-      <span className="c-entity__text c-exhibit__text">{t(Id, { ns: 'exhibits' })}</span>
+      <span className="c-entity__text c-exhibit__text">{t(`${Id}.Name`, { ns: 'exhibits' })}</span>
       {counter}
     </span>
   );

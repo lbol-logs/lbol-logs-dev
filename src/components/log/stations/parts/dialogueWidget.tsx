@@ -62,7 +62,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
             if (hasExhibit) {
               const values = exhibits[i].reduce((a: TObjString, b, i) => {
-                a[i + offset] = t(b, { ns: 'exhibits' });
+                a[i + offset] = t(`${b}.Name`, { ns: 'exhibits' });
                 return a;
               }, {});
               _props = concatObjects(_props, { values });

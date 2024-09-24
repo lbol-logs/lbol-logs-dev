@@ -63,7 +63,7 @@ function BuduSuanming({ station }: { station: TStation }) {
           break;
         case 2:
           const { Exhibit } = Data;
-          text = t(Exhibit, { ns: 'exhibits' });
+          text = t(`${Exhibit}.Name`, { ns: 'exhibits' });
       }
       const currentComponents = { 0: text };
 
