@@ -1,7 +1,7 @@
 import { MoneyImage, PowerImage } from '../stations/parts/stationWidgets';
 import Highlight from 'components/log/parts/highlight';
 import { Trans, useTranslation } from 'react-i18next';
-import { TCard, TExhibit, THolding, TStatusEffect } from 'utils/types/runData';
+import { TCard, TExhibitObj, THolding, TStatusEffect } from 'utils/types/runData';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import CharacterShortName from '../stations/parts/characterShortName';
@@ -27,8 +27,9 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
   const {
     Id,
     IsUpgraded,
+    Counter,
     Level, Duration, Count, Limit, owner
-  } = o as TCard & TExhibit & TStatusEffect;
+  } = o as TCard & TExhibitObj & TStatusEffect;
 
   const isCard = ns === 'cards';
   const isExhibit = ns === 'exhibits';
@@ -83,7 +84,6 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       Value3,
       Mana,
       BaseMana,
-      Counter,
       InitialCounter
     } = config;
 
