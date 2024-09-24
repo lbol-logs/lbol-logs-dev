@@ -22,7 +22,7 @@ function Log() {
     const resultType = getResultType(Type);
     name = [
       t(Character, { ns: 'units', context: 'short' }) + PlayerType,
-      t(shining, { ns: 'exhibits' }),
+      t(`${shining}.Name`, { ns: 'exhibits' }),
       difficultyRequest,
       t(`results.${resultType}`, { ns: 'common', context: 'title' })
     ].join(' ');

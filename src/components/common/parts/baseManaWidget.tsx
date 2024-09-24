@@ -1,22 +1,29 @@
+import { useTranslation } from 'react-i18next';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
+import { getBaseManaImage } from 'utils/functions/getImage';
 import { TBaseMana } from 'utils/types/runData';
-import ManaWidget from './manaWidget';
 
-function BaseManaWidget({ baseMana }: { baseMana: TBaseMana }) {
-  let extended = baseMana;
-  const regExp = /\{(\d+)([WUBRGCP])\}/g;
-  let m;
-  while ((m = regExp.exec(baseMana)) !== null) {
-    extended = extended.replace(m[0], m[2].repeat(Number(m[1])));
+function BaseManaWidget({ mana }: { mana: TBaseMana }) {
+  const { t } = useTranslation();
+
+  const imgs = [];
+  const isA = mana === 'A';
+  const _mana = isA ? 'P' : mana;
+
+  imgs[0] = (
+    <LazyLoadImage2 callback={getBaseManaImage} name={_mana} alt={isA ? '' : t(`mana.${_mana}`, { ns: 'common' })} key={_mana} />
+  );
+  if (isA) {
+    const img = (
+      <LazyLoadImage2 className="c-base-mana__unknown" callback={getBaseManaImage} name="Unknown" alt={t(`mana.A`, { ns: 'common' })} key="A" />
+    );
+    imgs.unshift(img);
   }
 
   return (
-    <div className="p-base-mana">
-    {extended.split('').map((mana, i) => {
-      return (
-        <ManaWidget mana={mana} key={i} />
-      );
-    })}
-    </div>
+    <span className="c-base-mana">
+      {imgs}
+    </span>
   );
 }
 

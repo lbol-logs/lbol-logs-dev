@@ -7,7 +7,7 @@ import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import { useTranslation } from 'react-i18next';
-import BaseManaWidget from 'components/common/parts/baseManaWidget';
+import BaseManasWidget from 'components/common/parts/baseManasWidget';
 
 function JunkoColorless({ station }: { station: TStation }) {
   const { configsData } = useContext(LogContext);
@@ -30,7 +30,7 @@ function JunkoColorless({ station }: { station: TStation }) {
 
   const values = { 0: t(`${Id}.${options['0_0']}`, { ns: 'dialogues' }) };
   props[0] = { values };
-  if (BaseMana) befores[0] = <BaseManaWidget baseMana={BaseMana} />;
+  if (BaseMana) befores[0] = <BaseManasWidget baseMana={BaseMana} />;
 
   const dialogueConfigs: TDialogueConfigs = {
     current,

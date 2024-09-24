@@ -7,9 +7,9 @@ import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage } from 'utils/functions/getImage';
 import { useTranslation } from 'react-i18next';
 import { copyObject, getCurrentLevel, getSameCardIndex, getSameExhibitIndex } from 'utils/functions/helpers';
-import ManaWidget from 'components/common/parts/manaWidget';
-import { TObjString } from 'utils/types/common';
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
+import { TObjString } from 'utils/types/common';
+import BaseManasWidget from 'components/common/parts/baseManasWidget';
 
 function CurrentChange({ station, excludes }: { station: TStation, excludes?: { Cards: TCardChanges, Exhibits: TExhibitObjs } }) {
   const { runData, configsData } = useContext(LogContext);
@@ -121,7 +121,7 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
       Remove: '－',
       Add: '＋'
     };
-    const colorIcon = <ManaWidget mana="A" />;
+    const colorIcon = <BaseManaWidget mana="A" />;
 
     const colors: TObjString = {
       Remove: Color,
@@ -135,7 +135,7 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
             {colorIcon}
             <span className={`p-entity__symbol p-entity__symbol--${type}`}>{symbol}</span>
           </div>
-          <BaseManaWidget baseMana={colors[type]} />
+          <BaseManasWidget baseMana={colors[type]} />
         </div>
       );
     });

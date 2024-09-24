@@ -143,7 +143,9 @@ type TStatusEffect = {
   Id: string,
   Level?: number,
   Duration?: number,
-  Count?: number
+  Count?: number,
+  Limit?: number,
+  owner?: string
 };
 type TStatusEffects = Array<TStatusEffect>;
 
@@ -276,6 +278,7 @@ export type {
   TIntentionWithDamage,
   TIntentions,
   TBattleStatus,
+  TStatusEffect,
   TStatusEffects,
   TExhibit,
   TExhibits,

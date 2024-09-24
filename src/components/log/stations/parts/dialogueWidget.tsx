@@ -6,7 +6,7 @@ import { TObjString } from 'utils/types/common';
 import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import CharacterShortName from './characterShortName';
-import Highlight from './highlight';
+import Highlight from '../../parts/highlight';
 
 function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: TDialogueConfigs }) {
   const { t } = useTranslation();
@@ -22,7 +22,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
   const { current, currentComponents, next, chosen, props, invalids, befores, cards, exhibits, afters } = dialogueConfigs;
 
-  const questionComponents = { Player: <CharacterShortName />, ...(currentComponents || {}) };
+  const questionComponents = { PlayerName: <CharacterShortName />, ...(currentComponents || {}) };
   const questionProps = concatObjects({}, { components }, { components: questionComponents });
 
   return (
@@ -62,7 +62,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
             if (hasExhibit) {
               const values = exhibits[i].reduce((a: TObjString, b, i) => {
-                a[i + offset] = t(b, { ns: 'exhibits' });
+                a[i + offset] = t(`${b}.Name`, { ns: 'exhibits' });
                 return a;
               }, {});
               _props = concatObjects(_props, { values });

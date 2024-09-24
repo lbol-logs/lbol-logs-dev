@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import { useTranslation } from 'react-i18next';
-import BaseManaWidget from 'components/common/parts/baseManaWidget';
+import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import RequestsWidget from 'components/common/parts/requestsWidget';
 import ResultWidget from 'components/common/parts/resultWidget';
 import ShowRandomResultWidget from './parts/showRandomResultWidget';
@@ -50,7 +50,7 @@ function Summary() {
         <div className="p-summary__widgets">
           <ResultWidget resultData={resultData} name={Name} />
           <RequestsWidget requests={Requests} />
-          <BaseManaWidget baseMana={BaseMana} />
+          <BaseManasWidget baseMana={BaseMana} />
         </div>
         <div className="p-summary__settings">
           <div className="p-summary__line">

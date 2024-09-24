@@ -84,7 +84,8 @@ const logConfigs: Array<string> = [
   'enemyGroups',
   'dialogues',
   'gap',
-  'events'
+  'events',
+  'statusEffects'
 ];
 
 const enemiesShowDetails: Array<string> = [

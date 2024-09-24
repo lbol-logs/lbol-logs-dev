@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { getIntentionImage } from 'utils/functions/getImage';
 import { TIntentions, TIntentionWithDamage } from 'utils/types/runData';
 
-function Intention({ type, name }: { type: string, name?: string }) {
+function Intention({ type, name, alt }: { type: string, name?: string, alt?: string }) {
   const { t } = useTranslation();
 
-  return <LazyLoadImage2 callback={getIntentionImage} name={name || type} alt={t(`intentions.${type}`, { ns: 'log' })} />;
+  return <LazyLoadImage2 callback={getIntentionImage} name={name || type} alt={t(`intentions.${alt || type}`, { ns: 'log' })} />;
 }
 
 function IntentionsWidget({ intentions }: { intentions: TIntentions }) {
@@ -30,9 +30,11 @@ function IntentionsWidget({ intentions }: { intentions: TIntentions }) {
           else if (totalDamage >= 10) type += '2';
           else type += '1';
 
+          const alt = IsAccurate ? 'AttackAccurate' : undefined;
+
           const icon = (
             <span className={`p-intention__icon ${IsAccurate ? 'p-intention__accurate' : ''}`}>
-              <Intention type={Type} name={type} />
+              <Intention type={Type} name={type} alt={alt} />
             </span>
           );
 

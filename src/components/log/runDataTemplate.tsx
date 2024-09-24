@@ -10,6 +10,7 @@ import ActLevel from 'utils/classes/ActLevel';
 import { scrollTolerance } from 'configs/globals';
 import CurrentHoldings from './currentHoldings';
 import { checkRounds, getScrollHeight } from 'utils/functions/helpers';
+import Modal from './modal';
 
 function RunDataTemplate() {
   const { isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap } = useContext(LogContext);
@@ -19,6 +20,7 @@ function RunDataTemplate() {
 
   useEffect(() => {
     if (!isRunDataLoaded) return;
+    
     let a = parseInt(searchParams.get('a') || '0') as TAct;
     let l = parseInt(searchParams.get('l') || '0') as TLevel;
     const al = new ActLevel(runData, act);
@@ -41,6 +43,7 @@ function RunDataTemplate() {
 
   return (
     <>
+      <Modal />
       {isSummary && (
         <Summary />
       )}

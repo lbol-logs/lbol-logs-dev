@@ -1,5 +1,5 @@
 import { TObj, TObjAny, TRange4 } from './common';
-import { TAct, TExhibit, TLevel, TRequests, TStation } from './runData';
+import { TAct, TCard, TExhibit, TExhibitObj, TLevel, TRequests, TStation, TStatusEffect } from './runData';
 
 type TRunListItem = {
   id: string,
@@ -50,6 +50,14 @@ type TRounds = {
   maxLevel: TLevel
 };
 
+type TEntityModel = {
+  card?: TCard,
+  exhibit?: TExhibitObj,
+  statusEffect?: TStatusEffect
+};
+
+type TCardMana = string | number;
+
 enum ErrorType {
   invalidFile = 'invalidFile',
   invalidVersion = 'invalidVersion',
@@ -68,7 +76,9 @@ export type {
   TFilterCheckbox,
   TFilter,
   TEventComponent,
-  TRounds
+  TRounds,
+  TEntityModel,
+  TCardMana
 };
 
 export {

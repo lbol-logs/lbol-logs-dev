@@ -20,8 +20,12 @@ function getControlImage(name: string): string {
   return _getImage('control', name);
 }
 
-function getManaImage(name: string): string {
-  return _getImage('mana', name);
+function getBaseManaImage(name: string): string {
+  return _getImage('mana/baseMana', name);
+}
+
+function getCardManaImage(name: string): string {
+  return _getImage('mana/cardMana', name);
 }
 
 function getBossImage(name: string): string {
@@ -85,7 +89,8 @@ export {
   getCommonImage,
   getMapImage,
   getControlImage,
-  getManaImage,
+  getBaseManaImage,
+  getCardManaImage,
   getBossImage,
   getCardImage,
   getExhibitImage,

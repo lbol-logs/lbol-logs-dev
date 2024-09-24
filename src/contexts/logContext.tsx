@@ -2,7 +2,7 @@ import { defaultRunData } from 'configs/globals';
 import holdingsReducer from 'hooks/holdingsReducer';
 import { createContext, ReactNode, useReducer, useState } from 'react';
 import { TConfigsData, TDispatch } from 'utils/types/common';
-import { TRounds } from 'utils/types/others';
+import { TEntityModel, TRounds } from 'utils/types/others';
 import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
 
 const defaultIsRunDataLoaded = false;
@@ -15,6 +15,7 @@ const defaultHoldings = [] as THoldings;
 const defaultShowMap = true;
 const defaultIgnoredPaths = [] as Array<THoldingChange>;
 const defaultConfigsData = {};
+const defaultEntityModal = {};
 
 type TLogContext = {
   isRunDataLoaded: boolean,
@@ -39,6 +40,8 @@ type TLogContext = {
   setIgnoredPaths: TDispatch<Array<THoldingChange>>,
   configsData: TConfigsData;
   setConfigsData: TDispatch<TConfigsData>
+  entityModal: TEntityModel,
+  setEntityModal: TDispatch<TEntityModel>
 };
 
 export const LogContext = createContext<TLogContext>({
@@ -63,7 +66,9 @@ export const LogContext = createContext<TLogContext>({
   ignoredPaths: defaultIgnoredPaths,
   setIgnoredPaths: () => {},
   configsData: defaultConfigsData,
-  setConfigsData: () => {}
+  setConfigsData: () => {},
+  entityModal: defaultEntityModal,
+  setEntityModal: () => {}
 });
 
 function LogProvider({ children }: { children: ReactNode }) {
@@ -78,6 +83,7 @@ function LogProvider({ children }: { children: ReactNode }) {
   const [showMap, setShowMap] = useState(defaultShowMap);
   const [ignoredPaths, setIgnoredPaths] = useState(defaultIgnoredPaths);
   const [configsData, setConfigsData] = useState(defaultConfigsData);
+  const [entityModal, setEntityModal] = useState(defaultEntityModal);
 
   const value = {
     isRunDataLoaded,
@@ -101,7 +107,9 @@ function LogProvider({ children }: { children: ReactNode }) {
     ignoredPaths,
     setIgnoredPaths,
     configsData,
-    setConfigsData
+    setConfigsData,
+    entityModal,
+    setEntityModal
   };
 
   return (

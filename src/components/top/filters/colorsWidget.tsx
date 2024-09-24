@@ -1,4 +1,4 @@
-import ManaWidget from 'components/common/parts/manaWidget';
+import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import { TExhibits } from 'utils/types/runData';
 import ExhibitWidget from './exhibitWidget';
 import { ChangeEventHandler, useContext } from 'react';
@@ -28,7 +28,7 @@ function ColorsWidget({ onChange, swappedExhibits }: { onChange: ChangeEventHand
         return (
           <div className="p-filter__color" key={color}>
             <label className={`p-filter__toggle ${toggleIsChecked(isColorChecked)} u-button`}>
-              <ManaWidget mana={color} />
+              <BaseManaWidget mana={color} />
               <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="co" value={color} checked={isColorChecked} />
             </label>
             <div className="p-filter__exhibits">

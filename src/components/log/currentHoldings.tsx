@@ -20,10 +20,6 @@ function CurrentHoldings() {
     <div
       className="p-holdings p-holdings--horizontal js-holdings"
       ref={holdingsRef}
-      onMouseDown={(e) => e.preventDefault()}
-      onTouchStart={(e) => e.preventDefault()}
-      onTouchEnd={(e) => e.preventDefault()}
-      onTouchCancel={(e) => e.preventDefault()}
       style={{ height: holdingsHeight }}
     >
       <div className="p-holdings__inner">
