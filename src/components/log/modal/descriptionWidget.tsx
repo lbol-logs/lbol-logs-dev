@@ -7,6 +7,8 @@ import { LogContext } from 'contexts/logContext';
 import CharacterShortName from '../stations/parts/characterShortName';
 import CardManasWidget from './cardManasWidget';
 import CardManaWidget from './cardManaWidget';
+import { CommonContext } from 'contexts/commonContext';
+import { TObjAny } from 'utils/types/common';
 
 function Desc({ v }: { v: string | number | undefined }) {
   if (v === undefined) return <></>;
@@ -16,7 +18,8 @@ function Desc({ v }: { v: string | number | undefined }) {
 }
 
 function DescriptionWidget({ ns, ...o }: { ns: string }) {
-  const { configsData, act, level, holdings } = useContext(LogContext);
+  const { configsData: { exhibits } } = useContext(CommonContext);
+  const { configsData: { cards, statusEffects }, act, level, holdings } = useContext(LogContext);
   const { t } = useTranslation();
 
   const {
@@ -28,7 +31,9 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
   const isCard = ns === 'cards';
   const isExhibit = ns === 'exhibits';
   const isStatusEffect = ns === 'statusEffects';
-  const config = configsData[ns][Id] || {};
+
+  const configs = { cards, exhibits, statusEffects }[ns] as TObjAny;
+  const config = configs[Id] || {};
   const { Version } = config;
 
   const array = [Id];

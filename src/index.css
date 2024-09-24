@@ -942,6 +942,7 @@ input {
   width: var(--entity-width);
   height: var(--entity-height);
   overflow: hidden;
+  cursor: zoom-in;
 }
 .c-entity--not-added {
   --opacity-border: 50%;
@@ -1566,6 +1567,7 @@ html:lang(en) .p-result__type {
   flex-wrap: wrap;
   gap: 0.5em;
 }
+.c-exhibit-with-counter,
 .c-status-effect {
   position: relative;
   display: block;
@@ -1575,6 +1577,7 @@ html:lang(en) .p-result__type {
 .c-status-effects .c-status-effect {
   cursor: zoom-in;
 }
+.c-exhibit-with-counter__counter,
 .c-status-effect .c-status-effect__value {
   position: absolute;
   font-size: 0.7em;
@@ -1592,6 +1595,7 @@ html:lang(en) .p-result__type {
   bottom: 0;
   color: var(--f-blue);
 }
+.c-exhibit-with-counter__counter,
 .c-status-effect__value--count {
   right: 0;
   top: 0;
@@ -1678,6 +1682,10 @@ html:lang(en) .p-result__type {
 }
 .p-modal__inner--exhibit, .p-modal__inner--status-effect {
   background: var(--white);
+}
+.p-modal__exhibit .c-exhibit--with-counter,
+.p-modal__status-effect .c-status-effect {
+  pointer-events: none;
 }
 
 .p-modal__line {

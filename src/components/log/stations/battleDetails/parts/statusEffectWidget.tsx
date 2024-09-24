@@ -15,9 +15,9 @@ function StatusEffectWidget({ statusEffect }: { statusEffect: TStatusEffect }) {
   let duration = null;
   let count = null;
 
-  if (Level) level = <span className="c-status-effect__value c-status-effect__value--level u-text-shadow">{Level}</span>;
-  if (Duration) duration = <span className="c-status-effect__value c-status-effect__value--duration u-text-shadow">{Duration}</span>;
-  if (Count) count = <span className="c-status-effect__value c-status-effect__value--count u-text-shadow">{Count}</span>;
+  if (Level !== undefined) level = <span className="c-status-effect__value c-status-effect__value--level u-text-shadow">{Level}</span>;
+  if (Duration !== undefined) duration = <span className="c-status-effect__value c-status-effect__value--duration u-text-shadow">{Duration}</span>;
+  if (Count !== undefined) count = <span className="c-status-effect__value c-status-effect__value--count u-text-shadow">{Count}</span>;
 
   function onClick() {
     setEntityModal({ statusEffect });

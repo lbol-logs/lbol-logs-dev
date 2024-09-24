@@ -1,15 +1,21 @@
-import { TExhibit } from 'utils/types/runData';
+import { TExhibitObj } from 'utils/types/runData';
+import DescriptionWidget from './descriptionWidget';
+import { useTranslation } from 'react-i18next';
+import ExhibitWidget from './exhibitWidget';
 
-function ExhibitModal({ exhibit }: { exhibit: TExhibit }) {
-  // TODO: remove
-  const inner = (
-    <div style={{height:'1000px',border:'1px solid'}}>
-    </div>
-  );
+function ExhibitModal({ exhibit }: { exhibit: TExhibitObj }) {
+  const { t } = useTranslation();
+  const { Id } = exhibit;
 
   return (
     <div className="p-modal__exhibit">
-      {inner}
+      <div className="p-modal__line">
+        <ExhibitWidget exhibit={exhibit} />
+        <span className="p-modal__name">{t(`${Id}.Name`, { ns: 'exhibits' })}</span>
+      </div>
+      <div className="p-modal__body">
+        <DescriptionWidget ns="exhibits" {...exhibit} />
+      </div>
     </div>
   );
 }

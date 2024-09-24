@@ -1,5 +1,5 @@
 import { TObj, TObjAny, TRange4 } from './common';
-import { TAct, TCard, TExhibit, TLevel, TRequests, TStation, TStatusEffect } from './runData';
+import { TAct, TCard, TExhibit, TExhibitObj, TLevel, TRequests, TStation, TStatusEffect } from './runData';
 
 type TRunListItem = {
   id: string,
@@ -52,7 +52,7 @@ type TRounds = {
 
 type TEntityModel = {
   card?: TCard,
-  exhibit?: TExhibit,
+  exhibit?: TExhibitObj,
   statusEffect?: TStatusEffect
 };
 

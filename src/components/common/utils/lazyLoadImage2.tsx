@@ -1,7 +1,7 @@
 import { iconSize } from 'configs/globals';
 import { useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCardImage, getCommonImage, getExhibitImage } from 'utils/functions/getImage';
+import { getCommonImage } from 'utils/functions/getImage';
 import { TObjString } from 'utils/types/common';
 
 type TLazyLoadImageArgs = {
@@ -36,7 +36,7 @@ function LazyLoadImage2({ callback, name, alt, width, height, className }: TLazy
     setSrcs({ src, srcSet });
   }
 
-  useMemo(() => getSrcs(callback, name), []);
+  useMemo(() => getSrcs(callback, name), [callback, name, alt, width, height, className]);
   const { src, srcSet } = srcs;
 
   return (
