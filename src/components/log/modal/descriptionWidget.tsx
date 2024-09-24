@@ -9,6 +9,8 @@ import CardManasWidget from './cardManasWidget';
 import CardManaWidget from './cardManaWidget';
 import { CommonContext } from 'contexts/commonContext';
 import { TObjAny } from 'utils/types/common';
+import BaseManasWidget from 'components/common/parts/baseManasWidget';
+import { TCardMana } from 'utils/types/others';
 
 function Desc({ v }: { v: string | number | undefined }) {
   if (v === undefined) return <></>;
@@ -55,6 +57,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     hu: <Highlight color="u">{}</Highlight>,
     hd: <Highlight color="d">{}</Highlight>,
     hp: <Highlight color="p">{}</Highlight>,
+    he: <Highlight color="e">{}</Highlight>,
     l: <span className="c-dialogue__height">{}</span>,
     Money: <MoneyImage />,
     Power: <PowerImage />,
@@ -73,9 +76,48 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     Level, Duration, Count, Limit
   };
 
+  if (isExhibit) {
+    const {
+      Value1,
+      Value2,
+      Value3,
+      Mana,
+      BaseMana,
+      Counter,
+      InitialCounter
+    } = config;
+
+    if (Value1 !== undefined) {
+      Object.assign(components, { Value1: <Desc v={Value1} /> });
+    }
+
+    if (Value2 !== undefined) {
+      Object.assign(components, { Value2: <Desc v={Value2} /> });
+    }
+
+    if (Value3 !== undefined) {
+      Object.assign(components, { Value3: <Desc v={Value3} /> });
+    }
+
+    if (Mana !== undefined) {
+      Object.assign(components, { Mana: <CardManasWidget cardMana={Mana} /> });
+    }
+
+    if (BaseMana !== undefined) {
+      Object.assign(components, { BaseMana: <BaseManasWidget baseMana={BaseMana} /> });
+    }
+
+    if (Counter !== undefined) {
+      Object.assign(components, { Counter: <Desc v={Counter} /> });
+    }
+
+    if (InitialCounter !== undefined) {
+      Object.assign(components, { InitialCounter: <Desc v={InitialCounter} /> });
+    }
+  }
+
   if (isStatusEffect) {
     const {
-      SourceCard,
       Value,
       Mana,
       DamageRate,
@@ -85,11 +127,6 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       SourceCardName,
       Block
     } = config;
-
-    if (SourceCardName) {
-      const name = t(SourceCardName, { ns: 'cards' });
-      Object.assign(components, { SourceCardName: <Desc v={name} /> });
-    }
 
     if (Value) {
       let v = Value;
@@ -127,6 +164,11 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     if (Id === 'Cold') {
       const StackDamage = BaseDamage * StackMultiply;
       Object.assign(components, { StackMultiply: <Desc v={StackMultiply} />, StackDamage: <Desc v={StackDamage} /> });
+    }
+
+    if (SourceCardName) {
+      const name = t(SourceCardName, { ns: 'cards' });
+      Object.assign(components, { SourceCardName: <Desc v={name} /> });
     }
 
     if (Id === 'MeihongPowerSe') {

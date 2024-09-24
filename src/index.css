@@ -1073,6 +1073,7 @@ html:lang(en) .c-entity__text {
   left: 0;
 }
 
+.p-modal .p-base-mana,
 .p-card-mana {
   display: inline-flex;
   vertical-align: middle;
@@ -1081,8 +1082,8 @@ html:lang(en) .c-entity__text {
   display: flex;
   align-items: center;
 }
-.p-modal__exhibit .c-card-mana,
-.p-modal__status-effect .c-card-mana {
+.p-modal__exhibit .p-modal__body img,
+.p-modal__status-effect .p-modal__body img {
   width: 1.5em;
 }
 
@@ -1640,6 +1641,9 @@ html:lang(en) .p-result__type {
 }
 .c-highlight--purple {
   color: var(--purple);
+}
+.c-highlight--lightblue {
+  color: var(--light-blue);
 }
 
 .c-show-random-result {

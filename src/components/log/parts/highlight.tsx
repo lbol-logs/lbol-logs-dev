@@ -8,7 +8,8 @@ function Highlight({ color = '', children }: { color?: string, children?: ReactN
     'a': 'blue',
     'u': 'red',
     'd': 'white',
-    'p': 'purple'
+    'p': 'purple',
+    'e': 'lightblue'
   };
 
   return <span className={`c-highlight--${colors[color]}`}>{children}</span>;
