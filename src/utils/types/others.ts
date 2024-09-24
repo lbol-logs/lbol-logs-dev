@@ -56,14 +56,6 @@ type TEntityModel = {
   statusEffect?: TStatusEffect
 };
 
-type TConfigVersion = {
-  Version?: string
-};
-type TStatusEffectConfig = {
-  Value?: number
-} & TConfigVersion;
-type TStatusEffectConfigs = Array<TStatusEffectConfig>;
-
 type TCardMana = string | number;
 
 enum ErrorType {
@@ -86,7 +78,6 @@ export type {
   TEventComponent,
   TRounds,
   TEntityModel,
-  TStatusEffectConfigs,
   TCardMana
 };
 
