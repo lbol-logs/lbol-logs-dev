@@ -31,7 +31,7 @@ function RunData({ ver, id }: { ver: string, id: string }) {
     holdingsRef,
     holding,
     startResizing,
-    stopResizing  
+    stopResizing
   } = useHoldings({ level, currentHolding, setHoldingsWidth, isAside });
 
   useEffect(() => {
