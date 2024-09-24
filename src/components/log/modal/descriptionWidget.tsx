@@ -10,7 +10,6 @@ import CardManaWidget from './cardManaWidget';
 import { CommonContext } from 'contexts/commonContext';
 import { TObjAny } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
-import { TCardMana } from 'utils/types/others';
 
 function Desc({ v }: { v: string | number | undefined }) {
   if (v === undefined) return <></>;
