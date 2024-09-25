@@ -33,7 +33,8 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
   const values = {};
 
-  let key, Version;
+  let Version;
+  const keys: Array<string> = [];
   const c = new Components(components);
 
   switch (ns) {
@@ -44,10 +45,14 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       const config = cards[Id];
 
       ({ Version } = config);
-      const array = [Id];
-      if (IsUpgraded !== undefined) array.push(IsUpgraded.toString());
-      array.push('Description');
-      key = array.join('.');
+
+      if (IsUpgraded) {
+        const array = [Id, true, 'Description'];
+        keys.push(array.join('.'));
+      }
+
+      const array = [Id, false, 'Description'];
+      keys.push(array.join('.'));
 
       break;
     }
@@ -57,7 +62,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
       ({ Version } = config);
       const array = [Id, 'Description'];
-      key = array.join('.');
+      keys.push(array.join('.'));
 
       const { Value1, Value2, Value3, Mana, BaseMana, InitialCounter } = config;
 
@@ -77,7 +82,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       const array = [Id];
       if (Id === 'TianziRockSe' && Limit === 1) array.push('ExtraDescription');
       else array.push('Description');
-      key = array.join('.');
+      keys.push(array.join('.'));
 
       const isPlayer = [undefined, 'Player'].includes(owner);
 
@@ -132,13 +137,9 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
   }
 
   return (
-    <Trans
-      i18nKey={key}
-      ns={ns}
-      context={Version}
-      components={components}
-      values={values}
-    />
+    <Trans context={Version} components={components} values={values}>
+      {t(keys, { ns })}
+    </Trans>
   );
 }
 
