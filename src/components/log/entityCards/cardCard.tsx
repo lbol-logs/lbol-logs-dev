@@ -5,15 +5,18 @@ import { useTranslation } from 'react-i18next';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCardImage } from 'utils/functions/getImage';
 import { TCard } from 'utils/types/runData';
+import { isMisfortune, isUnremovable } from 'utils/functions/helpers';
 
 function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
   const { configsData, setEntityModal } = useContext(LogContext);
   const { Id, IsUpgraded, UpgradeCounter } = card;
   const { t } = useTranslation();
   const { width, height } = cardSize;
-  const { Rarity, IsMisfortune, IsUnremovable } = configsData.cards[Id];
-  let type = IsMisfortune ? 'Misfortune' : Rarity;
-  if (IsUnremovable) type += '-Unremovable';
+
+  const config = configsData.cards[Id];
+  const { Rarity, Type, [IsUpgraded.toString()]: { Keywords } } = config;
+  let type = isMisfortune(Type) ? Type : Rarity;
+  if (isUnremovable(Keywords)) type += '-Unremovable';
   const upgradeCounter = UpgradeCounter ? UpgradeCounter : '';
 
   function onClick() {

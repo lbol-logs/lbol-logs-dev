@@ -159,6 +159,14 @@ function toggleAside(asideHoldings: AsideType) {
   return aside;
 }
 
+function isMisfortune(Type: string) {
+  return Type === 'Misfortune';
+}
+
+function isUnremovable(Keywords: Array<string>) {
+  return Keywords.includes('Unremovable');
+}
+
 export {
   checkForce,
   validateRunData,
@@ -181,5 +189,7 @@ export {
   getCleanUrl,
   getScrollHeight,
   checkRounds,
-  toggleAside
+  toggleAside,
+  isMisfortune,
+  isUnremovable
 };

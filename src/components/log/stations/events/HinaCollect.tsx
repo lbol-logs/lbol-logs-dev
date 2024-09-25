@@ -1,7 +1,7 @@
 import { TCards, TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
-import { convertCards, getNext } from 'utils/functions/helpers';
+import { convertCards, getNext, isMisfortune, isUnremovable } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
@@ -28,7 +28,10 @@ function HinaCollect({ station }: { station: TStation }) {
     const currentHoldingIndex = holdings.findIndex(({ Act: a, Level: l }) => Act === a && Level === l);
     const lastHolding = holdings[currentHoldingIndex - 1];
     const { Cards } = lastHolding;
-    const _cards = Cards.filter(({ Id }) => cardConfigs[Id].IsMisfortune && !cardConfigs[Id].IsUnremovable);
+    const _cards = Cards.filter(({ Id }) => {
+      const { Type, false: { Keywords } } = cardConfigs[Id];
+      return isMisfortune(Type) && !isUnremovable(Keywords);
+    });
     cards[0] = _cards;
   }
   if (Card) cards[1] = convertCards([Card]);

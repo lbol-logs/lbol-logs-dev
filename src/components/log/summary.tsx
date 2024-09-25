@@ -11,7 +11,7 @@ import ShowRandomResultWidget from './parts/showRandomResultWidget';
 import IsAutoSeedWidget from './parts/isAutoSeedWidget';
 import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
-import { getResultData } from 'utils/functions/helpers';
+import { getResultData, isMisfortune } from 'utils/functions/helpers';
 import { CommonContext } from 'contexts/commonContext';
 
 function Summary() {
@@ -96,8 +96,8 @@ function Summary() {
           <div className="p-summary__rarities">
             {cardRarities.map(rarity => {
               const count = Cards.filter(({ Id }) => {
-                const { Rarity, IsMisfortune } = cardConfigs[Id];
-                const type = IsMisfortune ? 'Misfortune' : Rarity;
+                const { Rarity, Type } = cardConfigs[Id];
+                const type = isMisfortune(Type) ? Type : Rarity;
                 return type === rarity;
               }).length;
               if (!count) return null;
