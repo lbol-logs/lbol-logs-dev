@@ -8,48 +8,13 @@ import CharacterShortName from '../stations/parts/characterShortName';
 import CardManasWidget from './cardManasWidget';
 import CardManaWidget from './cardManaWidget';
 import { CommonContext } from 'contexts/commonContext';
-import { TObjAny } from 'utils/types/common';
+import { TObjElement, TObjAny } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
-
-function Desc({ v }: { v: string | number | undefined }) {
-  if (v === undefined) return <></>;
-  return (
-    <span className="p-modal__variable">{v}</span>
-  );
-}
 
 function DescriptionWidget({ ns, ...o }: { ns: string }) {
   const { configsData: { exhibits } } = useContext(CommonContext);
   const { configsData: { cards, statusEffects }, act, level, holdings } = useContext(LogContext);
   const { t } = useTranslation();
-
-  const {
-    Id,
-    IsUpgraded,
-    Counter,
-    Level, Duration, Count, Limit, owner
-  } = o as TCard & TExhibitObj & TStatusEffect;
-
-  const isCard = ns === 'cards';
-  const isExhibit = ns === 'exhibits';
-  const isStatusEffect = ns === 'statusEffects';
-
-  const configs = { cards, exhibits, statusEffects }[ns] as TObjAny;
-  const config = configs[Id] || {};
-  const { Version } = config;
-
-  const array = [Id];
-  if (IsUpgraded !== undefined) array.push(IsUpgraded.toString());
-  if (isStatusEffect && Id === 'TianziRockSe' && Limit === 1) {
-    array.push('ExtraDescription');
-  }
-  else {
-    array.push('Description');
-  }
-  const key = array.join('.');
-
-  const isPlayer = [undefined, 'Player'].includes(owner);
-  const OwnerName = isPlayer ? <CharacterShortName /> : <>{t(owner as string, { ns: 'units' })}</>;
 
   const components = {
     h: <Highlight>{}</Highlight>,
@@ -58,129 +23,111 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     hd: <Highlight color="d">{}</Highlight>,
     hp: <Highlight color="p">{}</Highlight>,
     he: <Highlight color="e">{}</Highlight>,
-    l: <span className="c-dialogue__height">{}</span>,
     Money: <MoneyImage />,
     Power: <PowerImage />,
     Mana1: <CardManaWidget mana="1" />,
     ManaP: <CardManaWidget mana="P" />,
     ManaC: <CardManaWidget mana="C" />,
-    OwnerName,
-    PlayerName: <CharacterShortName />,
-    Level: <Desc v={Level} />,
-    Duration: <Desc v={Duration} />,
-    Count: <Desc v={Count} />,
-    Limit: <Desc v={Limit || 0} />
+    PlayerName: <CharacterShortName />
   };
 
-  const values = {
-    Level, Duration, Count, Limit
-  };
+  const values = {};
 
-  if (isExhibit) {
-    const {
-      Value1,
-      Value2,
-      Value3,
-      Mana,
-      BaseMana,
-      InitialCounter
-    } = config;
+  let key, Version;
+  const c = new Components(components);
 
-    if (Value1 !== undefined) {
-      Object.assign(components, { Value1: <Desc v={Value1} /> });
+  switch (ns) {
+    case 'cards': {
+      const {
+        Id, IsUpgraded
+      } = o as TCard;
+      const config = cards[Id];
+
+      ({ Version } = config);
+      const array = [Id];
+      if (IsUpgraded !== undefined) array.push(IsUpgraded.toString());
+      array.push('Description');
+      key = array.join('.');
+
+      break;
     }
+    case 'exhibits': {
+      const { Id, Counter } = o as TExhibitObj;
+      const config = exhibits[Id];
 
-    if (Value2 !== undefined) {
-      Object.assign(components, { Value2: <Desc v={Value2} /> });
+      ({ Version } = config);
+      const array = [Id, 'Description'];
+      key = array.join('.');
+
+      const { Value1, Value2, Value3, Mana, BaseMana, InitialCounter } = config;
+
+      const args = { Value1, Value2, Value3, InitialCounter };
+      c.appendDescs(args);
+      c.insert('Mana', <CardManasWidget cardMana={Mana} />);
+      c.insert('BaseMana', <BaseManasWidget baseMana={BaseMana} />);
+      c.insert('Counter', <Desc value={Counter} />);
+
+      break;
     }
+    case 'statusEffects': {
+      const { Id, Level, Duration, Count, Limit, owner } = o as TStatusEffect;
+      const config = statusEffects[Id] || {};
 
-    if (Value3 !== undefined) {
-      Object.assign(components, { Value3: <Desc v={Value3} /> });
-    }
+      ({ Version } = config);
+      const array = [Id];
+      if (Id === 'TianziRockSe' && Limit === 1) array.push('ExtraDescription');
+      else array.push('Description');
+      key = array.join('.');
 
-    if (Mana !== undefined) {
-      Object.assign(components, { Mana: <CardManasWidget cardMana={Mana} /> });
-    }
+      const isPlayer = [undefined, 'Player'].includes(owner);
 
-    if (BaseMana !== undefined) {
-      Object.assign(components, { BaseMana: <BaseManasWidget baseMana={BaseMana} /> });
-    }
-
-    if (Counter !== undefined) {
-      Object.assign(components, { Counter: <Desc v={Counter} /> });
-    }
-
-    if (InitialCounter !== undefined) {
-      Object.assign(components, { InitialCounter: <Desc v={InitialCounter} /> });
-    }
-  }
-
-  if (isStatusEffect) {
-    const {
-      Value,
-      Mana,
-      DamageRate,
-      TriggerLevel,
-      BaseDamage,
-      StackMultiply,
-      SourceCardName,
-      Block
-    } = config;
-
-    if (Value) {
-      let v = Value;
-      const { Extra } = config;
-      if (Extra) {
-        const { Exhibit, Enemy, Player } = Extra;
-        const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
-        const hasExhibit = currentHolding.Exhibits.find(({ Id }) => Id === Exhibit);
-        if (hasExhibit) v += isPlayer ? Player : Enemy;
+      {
+        const OwnerName = isPlayer ? <CharacterShortName /> : <>{t(owner as string, { ns: 'units' })}</>;
+        c.insertObj({ OwnerName });
+        const args = { Level, Duration, Count, Limit: Limit || 0 };
+        c.appendDescs(args);
+        Object.assign(values, args);
       }
-      Object.assign(components, { Value: <Desc v={v} /> });
-    }
 
-    {
+      const { Value, Mana, DamageRate, TriggerLevel, BaseDamage, StackMultiply, SourceCardName, Block } = config;
+
+      if (Value !== undefined) {
+        let v = Value;
+        const { Extra } = config;
+        if (Extra) {
+          const { Exhibit, Enemy, Player } = Extra;
+          const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
+          const hasExhibit = currentHolding.Exhibits.find(({ Id }) => Id === Exhibit);
+          if (hasExhibit) v += isPlayer ? Player : Enemy;
+        }
+        c.insert('Value', <Desc value={v} />);
+      }
+
       const mana = Mana === undefined ? (Level === undefined ? (Limit || 0) : Level) : Mana;
-      Object.assign(components, { Mana: <CardManasWidget cardMana={mana} /> });
-    }
+      c.insert('Mana', <CardManasWidget cardMana={mana} />);
 
-    if (DamageRate) {
-      Object.assign(components, { DamageRate: <Desc v={DamageRate} /> });
-    }
+      {
+        const StackDamage = StackMultiply === undefined ? undefined : (BaseDamage * StackMultiply);
+        const args = { DamageRate, TriggerLevel, BaseDamage, StackMultiply, StackDamage, Block };
+        c.appendDescs(args);
+      }
 
-    if (Id === 'ExtraBlizzard') {
-      Object.assign(components, { Damage: <Desc v={Level} /> });
-    }
+      if (Id === 'ExtraBlizzard') {
+        c.insert('Damage', <Desc value={Level} />);
+      }
+      if (SourceCardName !== undefined) {
+        const name = t(SourceCardName, { ns: 'cards' });
+        c.insert('SourceCardName', <Desc value={name} />);
+      }
+      if (Id === 'MeihongPowerSe') {
+        const Heal = Level as number * 2;
+        c.insert('Heal', <Desc value={Heal} />);
+      }
+      if (Id === 'SeeFengshuiSe') {
+        c.insert('Scry', <Desc value={Level} />);
+      }
 
-    if (TriggerLevel) {
-      Object.assign(components, { TriggerLevel: <Desc v={TriggerLevel} /> });
-    }
-
-    if (BaseDamage) {
-      Object.assign(components, { BaseDamage: <Desc v={BaseDamage} /> });
-    }
-
-    if (Id === 'Cold') {
-      const StackDamage = BaseDamage * StackMultiply;
-      Object.assign(components, { StackMultiply: <Desc v={StackMultiply} />, StackDamage: <Desc v={StackDamage} /> });
-    }
-
-    if (SourceCardName) {
-      const name = t(SourceCardName, { ns: 'cards' });
-      Object.assign(components, { SourceCardName: <Desc v={name} /> });
-    }
-
-    if (Id === 'MeihongPowerSe') {
-      const Heal = Level as number * 2;
-      Object.assign(components, { Heal: <Desc v={Heal} /> });
-    }
-
-    if (Id === 'SeeFengshuiSe') {
-      Object.assign(components, { Scry: <Desc v={Level} /> });
-    }
-
-    if (Block) {
-      Object.assign(components, { Block: <Desc v={Block} /> });
+      break;
     }
   }
 
@@ -196,3 +143,43 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 }
 
 export default DescriptionWidget;
+
+function Desc({ value }: { value: string | number | undefined }) {
+  if (value === undefined) return <></>;
+  return (
+    <span className="p-modal__variable">{value}</span>
+  );
+}
+
+class Components {
+  private _components: TObjElement;
+
+  constructor(components: TObjElement) {
+    this._components = components;
+  }
+
+  insertObj(o: TObjElement) {
+    const [id, component] = Object.entries(o)[0];
+    this.insert(id, component);
+  }
+
+  insert(id: string, component: JSX.Element) {
+    this._components[id] = component;
+  }
+
+  appendDescs(o: TObjAny) {
+    for (const [id, value] of Object.entries(o)) {
+      this.appendDesc(id, value);
+    }
+  }
+
+  appendDesc(id: string, value: any) {
+    if (value === undefined) return;
+    const component = <Desc value={value} />;
+    this.insert(id, component);
+  }
+
+  get components() {
+    return this._components;
+  }
+}
