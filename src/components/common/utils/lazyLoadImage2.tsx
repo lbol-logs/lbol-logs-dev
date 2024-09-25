@@ -14,6 +14,10 @@ type TLazyLoadImageArgs = {
   props?: TObjAny
 };
 
+export type {
+  TLazyLoadImageArgs
+};
+
 function LazyLoadImage2({ callback, name, alt, width, height, className, props = {} }: TLazyLoadImageArgs) {
   const [srcs, setSrcs] = useState({} as { src: string, srcSet: string });
 

@@ -1,4 +1,4 @@
-import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
+import LazyLoadImage2, { TLazyLoadImageArgs } from 'components/common/utils/lazyLoadImage2';
 import { cardSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { getCardImage } from 'utils/functions/getImage';
@@ -12,7 +12,7 @@ function CardModal({ card }: { card: TCard }) {
   // TODO
   // const { width, height } = cardArtSize;
 
-  const props = { srcSet: null };
+
 
   return (
     <div className="p-modal__card">
@@ -27,3 +27,11 @@ function CardModal({ card }: { card: TCard }) {
 }
 
 export default CardModal;
+
+function LazyLoadImage2x({ callback, name, alt, width, height, className}: TLazyLoadImageArgs) {
+  const props = { srcSet: null };
+
+  return (
+    <LazyLoadImage2 className={className} callback={callback} name={`${name}@2x`} width={width} height={height} alt={alt} props={props} />
+  );
+}
