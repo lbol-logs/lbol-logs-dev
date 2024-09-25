@@ -178,8 +178,4 @@ class Components {
     const component = <Desc value={value} />;
     this.insert(id, component);
   }
-
-  get components() {
-    return this._components;
-  }
 }
