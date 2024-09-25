@@ -7,7 +7,7 @@ import { getCardImage } from 'utils/functions/getImage';
 import { TCard } from 'utils/types/runData';
 
 function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
-  const { configsData } = useContext(LogContext);
+  const { configsData, setEntityModal } = useContext(LogContext);
   const { Id, IsUpgraded, UpgradeCounter } = card;
   const { t } = useTranslation();
   const { width, height } = cardSize;
@@ -16,8 +16,12 @@ function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
   if (IsUnremovable) type += '-Unremovable';
   const upgradeCounter = UpgradeCounter ? UpgradeCounter : '';
 
+  function onClick() {
+    setEntityModal({ card });
+  }
+
   return (
-    <span className={`c-entity c-entity--${type} ${isNotAdded === true ? 'c-entity--not-added': ''} c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`}>
+    <span className={`c-entity c-entity--${type} ${isNotAdded === true ? 'c-entity--not-added': ''} c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`} onClick={onClick}>
       <span className="c-entity__text c-card__text u-text-shadow">{t(Id, { ns: 'cards' })}{IsUpgraded && '+'}{upgradeCounter}</span>
       <LazyLoadImage2 className="c-card__img" callback={getCardImage} name={Id} width={width} height={height} alt="" />
     </span>

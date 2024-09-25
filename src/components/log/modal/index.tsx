@@ -24,8 +24,9 @@ function Modal() {
     entity = <StatusEffectModal statusEffect={statusEffect} />;
   }
 
+  // TODO
   function onBlur() {
-    setEntityModal({});
+    // setEntityModal({});
   }
 
   const innerRef = useRef<HTMLDivElement>(null);
