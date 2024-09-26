@@ -33,7 +33,7 @@ function YoumuDelivery({ station }: { station: TStation }) {
   if (Card) {
     cards[0] = convertCards([Card], true);
   }
-  const values = { 0: t(`${exhibit}.Name`, { ns: 'exhibits' }), 1: t(misfortune, { ns: 'cards' }) };
+  const values = { 0: t(`${exhibit}.Name`, { ns: 'exhibits' }), 1: t(`${misfortune}.Name`, { ns: 'cards' }) };
   props[1] = { values };
   cards[1] = convertCards([misfortune]);
   exhibits[1] = [exhibit];

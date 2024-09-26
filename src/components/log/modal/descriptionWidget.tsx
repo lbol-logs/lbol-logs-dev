@@ -121,7 +121,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
         c.insert('Damage', <Desc value={Level} />);
       }
       if (SourceCardName !== undefined) {
-        const name = t(SourceCardName, { ns: 'cards' });
+        const name = t(`${SourceCardName}.Name`, { ns: 'cards' });
         c.insert('SourceCardName', <Desc value={name} />);
       }
       if (Id === 'MeihongPowerSe') {

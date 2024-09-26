@@ -33,7 +33,7 @@ function RemiliaMeet({ station }: { station: TStation }) {
   const exhibits: Array<TExhibits> = [];
 
   {
-    const values = { 0: t(misfortune, { ns: 'cards' }) };
+    const values = { 0: t(`${misfortune}.Name`, { ns: 'cards' }) };
     props[0] = { values };
     cards[0] = convertCards(_cards.concat(misfortune));
   }

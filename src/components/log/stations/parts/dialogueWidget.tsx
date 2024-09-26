@@ -53,7 +53,7 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
             if (hasCards) {
               const values = cards[i].reduce((a: TObjString, b, i) => {
-                a[i + offset] = t(b.Id, { ns: 'cards' });
+                a[i + offset] = t(`${b.Id}.Name`, { ns: 'cards' });
                 return a;
               }, {});
               offset += cards[i].length;
