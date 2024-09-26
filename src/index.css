@@ -1169,22 +1169,20 @@ html:lang(en) .c-entity__text {
   position: relative;
   width: fit-content;
   font-size: 0.8em;
-  z-index: var(--z-1);
   color: var(--f-white);
 }
 .p-result > * {
   position: absolute;
-  z-index: var(--z-2);
 }
 .p-result__name {
   bottom: 13%;
   left: 0;
   background: color-mix(in srgb, var(--f-black) 70%, transparent);
-  z-index: var(--z-3);
   padding: 0 0.3em;
 }
 .p-result__avatar {
   max-height: 100%;
+  top: 0;
 }
 .p-result__spellcard {
   top: 30%;
@@ -1217,11 +1215,9 @@ html:lang(en) .p-result__type {
 .p-result__exhibit {
   right: 10%;
   top: 30%;
-  z-index: var(--z-1);
 }
 .p-result__background {
   position: relative;
-  z-index: var(--z-0);
 }
 
 .p-filter {

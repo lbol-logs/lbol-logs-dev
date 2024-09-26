@@ -20,16 +20,16 @@ function ResultWidget({ resultData, name }: { resultData: TObjAny, name: string 
 
   return (
     <div className="p-result u-text-shadow">
-      {name && <span className="p-result__name">{name}</span>}
+      <LazyLoadImage2 className="p-result__background" callback={getResultImage} name="bg" width={bg} height={height} alt="" />
       <LazyLoadImage2 className="p-result__avatar" callback={getResultImage} name={`${Character}${resultType}`} width={avatar} height={height} alt={`${character} ${type}`} />
       <LazyLoadImage2 className="p-result__spellcard" callback={getSpellcardImage} name={spellcard} alt={t(`spellcards.${spellcard}`, { ns: 'common' })} />
+      <ExhibitImage className="p-result__exhibit" exhibit={exhibit} />
       <span className={`p-result__type p-result__type--${resultType}`}>{type}</span>
       <span className="p-result__difficulty">
         {Difficulty}{requests}
       </span>
       <time className="p-result__timestamp" dateTime={Timestamp}>{date}</time>
-      <ExhibitImage className="p-result__exhibit" exhibit={exhibit} />
-      <LazyLoadImage2 className="p-result__background" callback={getResultImage} name="bg" width={bg} height={height} alt="" />
+      {name && <span className="p-result__name">{name}</span>}
     </div>
   );
 }
