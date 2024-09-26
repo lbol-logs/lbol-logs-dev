@@ -1,14 +1,15 @@
 import { TCard } from 'utils/types/runData';
 import { useTranslation } from 'react-i18next';
 
-function CardName({ card }: { card: TCard }) {
+function CardName({ className, card }: { className: string, card: TCard }) {
   const { t } = useTranslation();
 
   const { Id, IsUpgraded, UpgradeCounter } = card;
   const upgradeCounter = UpgradeCounter || '';
 
   return (
-    <span className="c-entity__text c-card__text u-text-shadow">
+    <span className={className}>
+      {/* TODO */}
       {t(Id, { ns: 'cards' })}
       {IsUpgraded && '+'}
       {upgradeCounter}
