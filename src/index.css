@@ -1723,16 +1723,11 @@ html:lang(en) .p-result__type {
 }
 .p-card__frame {
   position: relative;
-  /* display: none; */
 }
 .p-card__art {
   width: 440px;
   height: 304px;
   top: 64px;
-}
-/* TODO: remove */
-.p-card__art img {
-  height: 304px;
 }
 .p-card__type {
   width: 62px;
