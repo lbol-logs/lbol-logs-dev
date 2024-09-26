@@ -29,7 +29,7 @@ function RingoEmp({ station }: { station: TStation }) {
   const props: Array<TObjAny> = [];
   const cards: Array<TCards> = [];
 
-  const values = { 0: t(misfortune, { ns: 'cards' }) };
+  const values = { 0: t(`${misfortune}.Name`, { ns: 'cards' }) };
   props[1] = { values };
   cards[0] = convertCards([card]);
   const _cards = [misfortune];

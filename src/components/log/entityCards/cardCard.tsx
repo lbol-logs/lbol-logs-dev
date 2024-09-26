@@ -1,25 +1,32 @@
 import { cardSize } from 'configs/globals';
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { getCardImage } from 'utils/functions/getImage';
+import { getCardArtImage } from 'utils/functions/getImage';
 import { TCard } from 'utils/types/runData';
+import { getArt, isMisfortune, isUnremovable } from 'utils/functions/helpers';
+import CardName from './cardName';
 
 function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
-  const { configsData } = useContext(LogContext);
-  const { Id, IsUpgraded, UpgradeCounter } = card;
-  const { t } = useTranslation();
+  const { configsData, setEntityModal } = useContext(LogContext);
+  const { Id, IsUpgraded } = card;
+
   const { width, height } = cardSize;
-  const { Rarity, IsMisfortune, IsUnremovable } = configsData.cards[Id];
-  let type = IsMisfortune ? 'Misfortune' : Rarity;
-  if (IsUnremovable) type += '-Unremovable';
-  const upgradeCounter = UpgradeCounter ? UpgradeCounter : '';
+
+  const config = configsData.cards[Id];
+  const { Rarity, Type, [IsUpgraded.toString()]: { Keywords } } = config;
+  let type = isMisfortune(Type) ? Type : Rarity;
+  if (isUnremovable(Keywords)) type += '-Unremovable';
+  const art = getArt(card, config);
+
+  function onClick() {
+    setEntityModal({ card });
+  }
 
   return (
-    <span className={`c-entity c-entity--${type} ${isNotAdded === true ? 'c-entity--not-added': ''} c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`}>
-      <span className="c-entity__text c-card__text u-text-shadow">{t(Id, { ns: 'cards' })}{IsUpgraded && '+'}{upgradeCounter}</span>
-      <LazyLoadImage2 className="c-card__img" callback={getCardImage} name={Id} width={width} height={height} alt="" />
+    <span className={`c-entity c-entity--${type} ${isNotAdded === true ? 'c-entity--not-added': ''} c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`} onClick={onClick}>
+      <CardName className="c-entity__text c-card__text u-text-shadow" card={card} />
+      <LazyLoadImage2 className="c-card__img" callback={getCardArtImage} name={art} width={width} height={height} alt="" />
     </span>
   );
 }

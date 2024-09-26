@@ -1013,7 +1013,7 @@ html:lang(en) .c-entity__text {
 .c-card--upgraded .c-card__text {
   color: var(--f-light-green);
 }
-.c-card__text:after {
+.c-entity__text.c-card__text:after {
   content: '';
   position: absolute;
   top: 0;
@@ -1027,7 +1027,7 @@ html:lang(en) .c-entity__text {
 
 .c-card__img {
   position: absolute;
-  top: 0;
+  top: -40%;
   left: 0;
 }
 
@@ -1169,22 +1169,20 @@ html:lang(en) .c-entity__text {
   position: relative;
   width: fit-content;
   font-size: 0.8em;
-  z-index: var(--z-1);
   color: var(--f-white);
 }
 .p-result > * {
   position: absolute;
-  z-index: var(--z-2);
 }
 .p-result__name {
   bottom: 13%;
   left: 0;
   background: color-mix(in srgb, var(--f-black) 70%, transparent);
-  z-index: var(--z-3);
   padding: 0 0.3em;
 }
 .p-result__avatar {
   max-height: 100%;
+  top: 0;
 }
 .p-result__spellcard {
   top: 30%;
@@ -1217,11 +1215,9 @@ html:lang(en) .p-result__type {
 .p-result__exhibit {
   right: 10%;
   top: 30%;
-  z-index: var(--z-1);
 }
 .p-result__background {
   position: relative;
-  z-index: var(--z-0);
 }
 
 .p-filter {
@@ -1675,17 +1671,15 @@ html:lang(en) .p-result__type {
   width: 100%;
   padding: var(--unity-offset);
 }
-.p-modal__inner {
-  width: 100%;
-  max-height: 70vh;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
 .p-modal__inner:focus {
   outline: none;
 }
 .p-modal__inner--exhibit, .p-modal__inner--status-effect {
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
   background: var(--white);
+  max-height: 70vh;
 }
 .p-modal__exhibit .c-exhibit--with-counter,
 .p-modal__status-effect .c-status-effect {
@@ -1712,6 +1706,62 @@ html:lang(en) .p-result__type {
   color: var(--f-blue);
 }
 
+.p-modal__card {
+  position: relative;
+  width: 512px;
+  height: 714px;
+}
+.p-modal__card > * {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+.p-card__watermark {
+  width: 446px;
+  top: 434px;
+  opacity: 0.4;
+}
+.p-card__frame {
+  position: relative;
+  /* display: none; */
+}
+.p-card__art {
+  width: 440px;
+  height: 304px;
+  top: 64px;
+}
+/* TODO: remove */
+.p-card__art img {
+  height: 304px;
+}
+.p-card__type {
+  width: 62px;
+  top: 7px;
+  left: 5px;
+}
+.p-card__name {
+  width: 80%;
+  height: 36px;
+  top: 374px;
+  text-align: center;
+  font-size: 24px;
+}
+.p-card-name__name {
+  max-width: 100%;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+  display: inline-block;
+}
+.c-card__center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.c-card__resize {
+  display: block;
+  overflow: hidden;
+}
+
 :root {
   color-scheme: light dark;
   --padding-inner: 0.625em;
@@ -1728,7 +1778,7 @@ html:lang(en) .p-result__type {
   --entity-margin: 0.5em;
   --entity-border: 2px;
   --map-height: 144px;
-  --card-width: 288px;
+  --card-width: 256px;
   --unity-offset: 14px;
 
   --z--1: -1;
@@ -1830,7 +1880,7 @@ html:lang(en) .p-result__type {
   html:lang(en) .c-entity__text {
     font-size: 0.55rem;
   }
-  
+
   .p-holdings__entities, .c-entities {
     font-size: 0.65em;
   }
@@ -1872,6 +1922,10 @@ html:lang(en) .p-result__type {
   }
   .p-summary__rarities {
     display: contents;
+  }
+
+  .p-modal__card {
+    transform: scale(0.5);
   }
 
   .u-pc {

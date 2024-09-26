@@ -1,10 +1,13 @@
 import { TCardMana } from 'utils/types/others';
 import CardManaWidget from './cardManaWidget';
+import CMana from 'utils/classes/CMana';
 
 function CardManasWidget({ cardMana }: { cardMana: TCardMana }) {
+  const { manas } = new CMana(cardMana);
+
   return (
     <div className="p-card-mana">
-    {cardMana.toString().split('').map((mana, i) => {
+    {manas.map((mana, i) => {
       return (
         <CardManaWidget mana={mana} key={i} />
       );

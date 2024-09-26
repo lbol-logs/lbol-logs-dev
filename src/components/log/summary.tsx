@@ -1,6 +1,6 @@
 import Loading from 'components/common/layouts/loading';
 import { LogContext } from 'contexts/logContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import { useTranslation } from 'react-i18next';
@@ -11,14 +11,19 @@ import ShowRandomResultWidget from './parts/showRandomResultWidget';
 import IsAutoSeedWidget from './parts/isAutoSeedWidget';
 import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
-import { getResultData } from 'utils/functions/helpers';
+import { getResultData, isMisfortune } from 'utils/functions/helpers';
 import { CommonContext } from 'contexts/commonContext';
-import ScrollToTop from 'components/common/utils/scrollToTop';
 
 function Summary() {
   const { configsData: { exhibits: exhibitConfigs } } = useContext(CommonContext);
   const { runData, isRunDataLoaded, configsData: { cards: cardConfigs } } = useContext(LogContext);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (!isRunDataLoaded) return;
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!isRunDataLoaded) return <Loading />;
 
   const { Version, Name, Settings, Result, Description } = runData;
@@ -45,7 +50,6 @@ function Summary() {
 
   return (
     <section className="p-summary">
-      <ScrollToTop />
       <div className="p-summary__head">
         <div className="p-summary__widgets">
           <ResultWidget resultData={resultData} name={Name} />
@@ -92,8 +96,8 @@ function Summary() {
           <div className="p-summary__rarities">
             {cardRarities.map(rarity => {
               const count = Cards.filter(({ Id }) => {
-                const { Rarity, IsMisfortune } = cardConfigs[Id];
-                const type = IsMisfortune ? 'Misfortune' : Rarity;
+                const { Rarity, Type } = cardConfigs[Id];
+                const type = isMisfortune(Type) ? Type : Rarity;
                 return type === rarity;
               }).length;
               if (!count) return null;

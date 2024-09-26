@@ -1,5 +1,5 @@
 import { copyObject, getSameCardIndex } from 'utils/functions/helpers';
-import Mana from 'utils/classes/Mana';
+import BMana from 'utils/classes/BMana';
 import { CardsWithUpgradeCounter, TAct, TBaseManaObj, TCard, TExhibitObj, THolding, THoldingAction, THoldings, TLevel } from 'utils/types/runData';
 
 function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings {
@@ -83,10 +83,10 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
   if (type === 'BaseMana') {
     const { BaseMana } = entity as TBaseManaObj;
     if (Type === 'Add') {
-      currentHolding.BaseMana = Mana.add(currentHolding.BaseMana, BaseMana);
+      currentHolding.BaseMana = BMana.add(currentHolding.BaseMana, BaseMana);
     }
     else if (Type === 'Remove') {
-      currentHolding.BaseMana = Mana.remove(currentHolding.BaseMana, BaseMana);
+      currentHolding.BaseMana = BMana.remove(currentHolding.BaseMana, BaseMana);
     }
   }
   else if (Type === 'Add') {

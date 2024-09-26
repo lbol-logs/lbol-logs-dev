@@ -1,87 +1,104 @@
-import { imagesUrl } from 'configs/globals';
+import { baseUrl, imagesUrl } from 'configs/globals';
 
-function getImage(name: string): string {
+function getImage(name: string) {
   return `${imagesUrl}/${name}.avif`;
 }
 
-function _getImage(path: string, name: string): string {
+function _getImage(path: string, name: string) {
   return getImage(`${path}/${name}`);
 }
 
-function getCommonImage(name: string): string {
+function getCommonImage(name: string) {
   return _getImage('common', name);
 }
 
-function getMapImage(name: string): string {
+function getMapImage(name: string) {
   return _getImage('map', name);
 }
 
-function getControlImage(name: string): string {
+function getControlImage(name: string) {
   return _getImage('control', name);
 }
 
-function getBaseManaImage(name: string): string {
+function getBaseManaImage(name: string) {
   return _getImage('mana/baseMana', name);
 }
 
-function getCardManaImage(name: string): string {
+function getCardManaImage(name: string) {
   return _getImage('mana/cardMana', name);
 }
 
-function getBossImage(name: string): string {
+function getBossImage(name: string) {
   return _getImage('boss', name);
 }
 
-function getCardImage(name: string): string {
-  return _getImage('cards', name);
-}
-
-function getExhibitImage(name: string): string {
+function getExhibitImage(name: string) {
   return _getImage('exhibits', name);
 }
 
-function getAvatarImage(name: string): string {
+function getAvatarImage(name: string) {
   return _getImage('avatars', name);
 }
 
-function getDifficultyImage(name: string): string {
+function getDifficultyImage(name: string) {
   return _getImage('difficulties', name);
 }
 
-function getResultImage(name: string): string {
+function getResultImage(name: string) {
   return _getImage('results', name);
 }
 
-function getSpellcardImage(name: string): string {
+function getSpellcardImage(name: string) {
   return _getImage('spellcards', name);
 }
 
-function getGapImage(name: string): string {
+function getGapImage(name: string) {
   return _getImage('gap', name);
 }
 
-function getEventImage(name: string): string {
+function getEventImage(name: string) {
   return _getImage('events', name);
 }
 
-function getUnitImage(name: string): string {
+function getUnitImage(name: string) {
   return _getImage('units', name);
 }
 
-function getStationImage(name: string): string {
+function getStationImage(name: string) {
   return _getImage('station', name);
 }
 
-function getStatusEffectImage(name: string): string {
+function getStatusEffectImage(name: string) {
   return _getImage('statusEffects', name);
 }
 
-function getNazrinImage(name: string): string {
+function getNazrinImage(name: string) {
   return _getImage('nazrin', name);
 }
 
-function getIntentionImage(name: string): string {
+function getIntentionImage(name: string) {
   return _getImage('intentions', name);
+}
+
+function getCardFrameImage(name: string) {
+  return _getImage('cards/frames', name);
+}
+
+function getCardWatermarkImage(name: string) {
+  return _getImage('cards/watermarks', name);
+}
+
+function getCardTypeImage(name: string) {
+  return _getImage('cards/types', name);
+}
+
+function getCardArtImage(name: string) {
+  return _getImage('cards/arts', name);
+}
+
+// TODO: remove function
+function getTestImage(name: string) {
+  return `${baseUrl}/test/${name.replace('@2x', '')}.png`;
 }
 
 export {
@@ -92,7 +109,7 @@ export {
   getBaseManaImage,
   getCardManaImage,
   getBossImage,
-  getCardImage,
+  getCardArtImage,
   getExhibitImage,
   getAvatarImage,
   getDifficultyImage,
@@ -104,5 +121,9 @@ export {
   getStationImage,
   getStatusEffectImage,
   getNazrinImage,
-  getIntentionImage
+  getIntentionImage,
+  getCardFrameImage,
+  getCardWatermarkImage,
+  getCardTypeImage,
+  getTestImage
 };

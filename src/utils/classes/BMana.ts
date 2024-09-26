@@ -1,6 +1,6 @@
 import { TBaseMana } from 'utils/types/runData';
 
-class Mana {
+class BMana {
   private static _colors = 'WUBRGCPA';
 
   static add(before: TBaseMana, change: TBaseMana) {
@@ -33,4 +33,4 @@ class Mana {
   }
 }
 
-export default Mana;
+export default BMana;
