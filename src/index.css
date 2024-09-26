@@ -1013,7 +1013,7 @@ html:lang(en) .c-entity__text {
 .c-card--upgraded .c-card__text {
   color: var(--f-light-green);
 }
-.c-card__text:after {
+.c-entity__text.c-card__text:after {
   content: '';
   position: absolute;
   top: 0;
@@ -1715,7 +1715,6 @@ html:lang(en) .p-result__type {
   position: absolute;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 .p-card__watermark {
   width: 446px;
@@ -1731,12 +1730,36 @@ html:lang(en) .p-result__type {
   height: 304px;
   top: 64px;
 }
+/* TODO: remove */
 .p-card__art img {
   height: 304px;
+}
+.p-card__type {
+  width: 62px;
+  top: 7px;
+  left: 5px;
+}
+.p-card__name {
+  width: 80%;
+  height: 36px;
+  top: 374px;
+  text-align: center;
+  font-size: 24px;
+}
+.p-card-name__name {
+  max-width: 100%;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+  display: inline-block;
 }
 .c-card__center {
   left: 50%;
   transform: translateX(-50%);
+}
+.c-card__resize {
+  display: block;
+  overflow: hidden;
 }
 
 :root {

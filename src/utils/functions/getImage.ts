@@ -84,6 +84,14 @@ function getCardFrameImage(name: string) {
   return _getImage('cards/frames', name);
 }
 
+function getCardWatermarkImage(name: string) {
+  return _getImage('cards/watermarks', name);
+}
+
+function getCardTypeImage(name: string) {
+  return _getImage('cards/types', name);
+}
+
 function getCardArtImage(name: string) {
   return _getImage('cards/arts', name);
 }
@@ -115,5 +123,7 @@ export {
   getNazrinImage,
   getIntentionImage,
   getCardFrameImage,
+  getCardWatermarkImage,
+  getCardTypeImage,
   getTestImage
 };

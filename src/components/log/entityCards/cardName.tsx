@@ -10,7 +10,8 @@ function CardName({ className, card }: { className: string, card: TCard }) {
   return (
     <span className={className}>
       {/* TODO */}
-      {t(Id, { ns: 'cards' })}
+      {/* {t(Id, { ns: 'cards' })} */}
+      {t(Id, { ns: 'cards' })}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       {IsUpgraded && '+'}
       {upgradeCounter}
     </span>
