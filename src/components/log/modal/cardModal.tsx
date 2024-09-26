@@ -34,10 +34,6 @@ card.IsUpgraded = true;
     }
   }, []);
 
-  // TODO
-  // const { width, height } = cardArtSize;
-// 1HH:HWR
-
   return (
     <div className="p-modal__card">
       <div style={{zIndex:999,top:0,right:0,display:'none'}}>

@@ -96,7 +96,7 @@ function getCardArtImage(name: string) {
   return _getImage('cards/arts', name);
 }
 
-// TODO
+// TODO: remove function
 function getTestImage(name: string) {
   return `${baseUrl}/test/${name.replace('@2x', '')}.png`;
 }
