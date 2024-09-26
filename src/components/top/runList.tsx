@@ -75,6 +75,8 @@ function RunList() {
     anchors.forEach(a => a.addEventListener('click', onClick));
   }, []);
 
+  // TODO: pagination
+
   return (
     <section className="p-run-list">
       <Filter />
