@@ -9,15 +9,23 @@ import CMana from 'utils/classes/CMana';
 import { useContext, useEffect, useRef } from 'react';
 import { LogContext } from 'contexts/logContext';
 import { TObj } from 'utils/types/common';
+import { getArt } from 'utils/functions/helpers';
 
 function CardModal({ card }: { card: TCard }) {
   const { configsData } = useContext(LogContext);
   const { t } = useTranslation();
-card.Id = 'DoubleLianhuadie';
-card.IsUpgraded = true;
+
   const { Id, IsUpgraded } = card;
   const config = configsData.cards[Id];
-  const { Type, Colors, Owner } = config;
+  const { Type, Rarity, Colors, Owner } = config;
+
+  let color;
+  if (['Tool', 'Misfortune'].includes(Type)) color = Type;
+  else if (Colors === undefined) color = 'C';
+  else if (Colors.length >= 3) color = 'Rainbow';
+  else color = Colors;
+  const frame = `${Rarity}/${color}`;
+  const art = getArt(card, config);
 
   useEffect(() => {
     const divs: Array<HTMLDivElement> = Array.from(document.querySelectorAll('.js-resize'));
@@ -28,7 +36,6 @@ card.IsUpgraded = true;
         if (child <= parent) break;
         const size = parseInt(div.style.fontSize || window.getComputedStyle(div, null).getPropertyValue('font-size'));
         if (!size) break;
-        console.log(size);
         div.style.fontSize = (size - 1) + 'px';
       }
     }
@@ -36,18 +43,19 @@ card.IsUpgraded = true;
 
   return (
     <div className="p-modal__card">
-      <div style={{zIndex:999,top:0,right:0,display:'none'}}>
+      {/* <div style={{zIndex:999,top:0,right:0,display:'none'}}>
         <LazyLoadImage2x callback={getCardFrameImage} name="Dichromatic_Lotus_Butterfly" width="512" height="714" />
-      </div>
+      </div> */}
+
       <div className="p-card__body c-card__resize js-resize">
         <DescriptionWidget ns="cards" {...card} />
       </div>
 
       <div className="p-card__art c-card__center">
-      <LazyLoadImage2x callback={getCardArtImage} name={Id} width="440" height="304" />
+      <LazyLoadImage2x callback={getCardArtImage} name={art} width="440" height="304" />
       </div>
       <div className="p-card__frame">
-        <LazyLoadImage2x callback={getCardFrameImage} name={Colors} width="512" height="714" />
+        <LazyLoadImage2x callback={getCardFrameImage} name={frame} width="512" height="714" />
       </div>
       {Owner && (
         <div className="p-card__watermark c-card__center">
@@ -61,11 +69,9 @@ card.IsUpgraded = true;
         <CardName className="c-card__text u-text-shadow p-card-name__name" card={card} />
       </div>
 
-      {/* <LazyLoadImage2 callback={getCardImage} name={Id} width={width} height={height} alt="" props={props} /> */}
-
-      <div style={{top:0,right:0,display:'none'}}>
+      {/* <div style={{top:0,right:0,display:'none'}}>
         <LazyLoadImage2x callback={getCardFrameImage} name="Dichromatic_Lotus_Butterfly" width="512" height="714" />
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -76,7 +82,7 @@ function LazyLoadImage2x({ callback, name, width, height }: { callback: Function
   const props = { srcSet: null };
 
   // TODO
-  callback = getTestImage;
+  // callback = getTestImage;
 
   return (
     <LazyLoadImage2 callback={callback} name={`${name}@2x`} width={width} height={height} alt="" props={props} />

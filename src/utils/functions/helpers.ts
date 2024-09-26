@@ -171,6 +171,13 @@ function createArray(len: number, callback: (value: any, index?: number) => any)
   return new Array(len).fill(null).map(callback);
 }
 
+function getArt(card: TCard, config: TObjAny) {
+  const { Id, IsUpgraded } = card;
+  const { ImageId } = config[IsUpgraded.toString()];
+  const art = ImageId || Id;
+  return art;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -196,5 +203,6 @@ export {
   toggleAside,
   isMisfortune,
   isUnremovable,
-  createArray
+  createArray,
+  getArt
 };

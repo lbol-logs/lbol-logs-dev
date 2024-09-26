@@ -1027,7 +1027,7 @@ html:lang(en) .c-entity__text {
 
 .c-card__img {
   position: absolute;
-  top: 0;
+  top: -40%;
   left: 0;
 }
 

@@ -26,7 +26,7 @@ function Modal() {
 
   // TODO
   function onBlur() {
-    // setEntityModal({});
+    setEntityModal({});
   }
 
   const innerRef = useRef<HTMLDivElement>(null);

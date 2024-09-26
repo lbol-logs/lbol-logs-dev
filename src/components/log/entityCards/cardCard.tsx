@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCardArtImage } from 'utils/functions/getImage';
 import { TCard } from 'utils/types/runData';
-import { isMisfortune, isUnremovable } from 'utils/functions/helpers';
+import { getArt, isMisfortune, isUnremovable } from 'utils/functions/helpers';
 import CardName from './cardName';
 
 function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
@@ -17,6 +17,7 @@ function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
   const { Rarity, Type, [IsUpgraded.toString()]: { Keywords } } = config;
   let type = isMisfortune(Type) ? Type : Rarity;
   if (isUnremovable(Keywords)) type += '-Unremovable';
+  const art = getArt(card, config);
 
   function onClick() {
     setEntityModal({ card });
@@ -25,7 +26,7 @@ function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
   return (
     <span className={`c-entity c-entity--${type} ${isNotAdded === true ? 'c-entity--not-added': ''} c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`} onClick={onClick}>
       <CardName className="c-entity__text c-card__text u-text-shadow" card={card} />
-      <LazyLoadImage2 className="c-card__img" callback={getCardArtImage} name={Id} width={width} height={height} alt="" />
+      <LazyLoadImage2 className="c-card__img" callback={getCardArtImage} name={art} width={width} height={height} alt="" />
     </span>
   );
 }
