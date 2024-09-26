@@ -1675,17 +1675,15 @@ html:lang(en) .p-result__type {
   width: 100%;
   padding: var(--unity-offset);
 }
-.p-modal__inner {
-  width: 100%;
-  max-height: 70vh;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
 .p-modal__inner:focus {
   outline: none;
 }
 .p-modal__inner--exhibit, .p-modal__inner--status-effect {
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
   background: var(--white);
+  max-height: 70vh;
 }
 .p-modal__exhibit .c-exhibit--with-counter,
 .p-modal__status-effect .c-status-effect {
@@ -1712,6 +1710,30 @@ html:lang(en) .p-result__type {
   color: var(--f-blue);
 }
 
+.p-modal__card {
+  position: relative;
+  width: 512px;
+  height: 714px;
+  transform: scale(0.5);
+}
+.p-modal__card > * {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.p-card__watermark {
+  width: 446px;
+  top: 434px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.4;
+}
+.p-card__frame {
+  position: initial;
+  /* display: none; */
+}
+
 :root {
   color-scheme: light dark;
   --padding-inner: 0.625em;
@@ -1728,7 +1750,7 @@ html:lang(en) .p-result__type {
   --entity-margin: 0.5em;
   --entity-border: 2px;
   --map-height: 144px;
-  --card-width: 288px;
+  --card-width: 256px;
   --unity-offset: 14px;
 
   --z--1: -1;
