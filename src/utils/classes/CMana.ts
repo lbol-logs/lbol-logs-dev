@@ -8,7 +8,7 @@ class CMana {
     this.s = input.toString();
 
     do {
-      const m = this.s.match(/\{(\d)([^\}]+)\}/);
+      const m = this.s.match(/\{(\d)([^}]+)\}/);
       if (m) {
         for (let i = 0; i < Number(m[1]); i++) this._handle(m[2], false);
         this._remove(m[0]);
