@@ -1714,7 +1714,6 @@ html:lang(en) .p-result__type {
   position: relative;
   width: 512px;
   height: 714px;
-  transform: scale(0.5);
 }
 .p-modal__card > * {
   position: absolute;
@@ -1725,13 +1724,23 @@ html:lang(en) .p-result__type {
 .p-card__watermark {
   width: 446px;
   top: 434px;
-  left: 50%;
-  transform: translateX(-50%);
   opacity: 0.4;
 }
 .p-card__frame {
-  position: initial;
+  position: relative;
   /* display: none; */
+}
+.p-card__art {
+  width: 440px;
+  height: 304px;
+  top: 64px;
+}
+.p-card__art img {
+  height: 304px;
+}
+.c-card__center {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 :root {
@@ -1894,6 +1903,10 @@ html:lang(en) .p-result__type {
   }
   .p-summary__rarities {
     display: contents;
+  }
+
+  .p-modal__card {
+    transform: scale(0.5);
   }
 
   .u-pc {

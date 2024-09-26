@@ -1,7 +1,7 @@
 import LazyLoadImage2, { TLazyLoadImageArgs } from 'components/common/utils/lazyLoadImage2';
 import { cardSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
-import { getCardFrameImage, getCardImage, getTestImage } from 'utils/functions/getImage';
+import { getCardFrameImage, getCardArtImage, getTestImage } from 'utils/functions/getImage';
 import { TCard } from 'utils/types/runData';
 import DescriptionWidget from './descriptionWidget';
 import CardName from '../entityCards/cardName';
@@ -23,29 +23,31 @@ card.Id = 'DoubleLianhuadie';
 
   return (
     <div className="p-modal__card">
-      <div style={{zIndex:999,display:'none'}}>
+      <div style={{zIndex:999,top:0,right:0,display:'none'}}>
         <LazyLoadImage2x callback={getCardFrameImage} name="Dichromatic_Lotus_Butterfly" width="512" height="714" />
       </div>
 
-      <div className="p-card__name">
+      <div className="p-card__name c-card__center">
         <CardName className={`p-card-name__name ${IsUpgraded ? 'p-card-name__name--upgraded' : ''} js-resize`} card={card} />
       </div>
       <div className="p-card__description js-resize">
         <DescriptionWidget ns="cards" {...card} />
       </div>
 
-      {Owner && (
-        <div className="p-card__watermark">
-          <LazyLoadImage2x callback={getCardFrameImage} name={Owner} width="460" height="240" />
-        </div>
-      )}
+      <div className="p-card__art c-card__center">
+      <LazyLoadImage2x callback={getCardArtImage} name={Id} width="440" height="300" />
+      </div>
       <div className="p-card__frame">
         <LazyLoadImage2x callback={getCardFrameImage} name={Colors} width="512" height="714" />
       </div>
-
+      {Owner && (
+        <div className="p-card__watermark c-card__center">
+          <LazyLoadImage2x callback={getCardFrameImage} name={Owner} width="460" height="240" />
+        </div>
+      )}
       {/* <LazyLoadImage2 callback={getCardImage} name={Id} width={width} height={height} alt="" props={props} /> */}
 
-      <div style={{top:0,display:'none'}}>
+      <div style={{top:0,right:0,display:'none'}}>
         <LazyLoadImage2x callback={getCardFrameImage} name="Dichromatic_Lotus_Butterfly" width="512" height="714" />
       </div>
     </div>

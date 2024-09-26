@@ -84,8 +84,8 @@ function getCardFrameImage(name: string) {
   return _getImage('cards/frames', name);
 }
 
-function getCardImage(name: string) {
-  return _getImage('cards', name);
+function getCardArtImage(name: string) {
+  return _getImage('cards/arts', name);
 }
 
 // TODO
@@ -101,7 +101,7 @@ export {
   getBaseManaImage,
   getCardManaImage,
   getBossImage,
-  getCardImage,
+  getCardArtImage,
   getExhibitImage,
   getAvatarImage,
   getDifficultyImage,
