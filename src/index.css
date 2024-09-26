@@ -1924,7 +1924,7 @@ html:lang(en) .p-result__type {
     display: contents;
   }
 
-  .p-modal__card {
+  .p-modal__inner--card {
     transform: scale(0.5);
   }
 
