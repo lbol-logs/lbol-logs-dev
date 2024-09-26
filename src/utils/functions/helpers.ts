@@ -167,6 +167,10 @@ function isUnremovable(Keywords: Array<string>) {
   return Keywords.includes('Unremovable');
 }
 
+function createArray(len: number, callback: (value: any, index?: number) => any) {
+  return new Array(len).fill(null).map(callback);
+}
+
 export {
   checkForce,
   validateRunData,
@@ -191,5 +195,6 @@ export {
   checkRounds,
   toggleAside,
   isMisfortune,
-  isUnremovable
+  isUnremovable,
+  createArray
 };

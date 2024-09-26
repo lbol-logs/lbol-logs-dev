@@ -1,4 +1,4 @@
-import { copyObject, getCurrentLevel, getSameCardIndex } from 'utils/functions/helpers';
+import { copyObject, createArray, getCurrentLevel, getSameCardIndex } from 'utils/functions/helpers';
 import { TCard, TCardChanges, TCards, TStation, TStations } from 'utils/types/runData';
 
 function getAddedCards({ CardRewards, CardChanges, Stations, station }: { CardRewards: Array<TCards>, CardChanges: TCardChanges, Stations: TStations, station: TStation }) {
@@ -8,7 +8,7 @@ function getAddedCards({ CardRewards, CardChanges, Stations, station }: { CardRe
 
   type TCM = Array<TCards>;
 
-  const matches: TCM = new Array(CardRewards.length).fill(null).map(_ => new Array(0));
+  const matches: TCM = createArray(CardRewards.length, _ => new Array(0));
 
   function isUnique(matches: TCM) {
     const cards = matches.flat();

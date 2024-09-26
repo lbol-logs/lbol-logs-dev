@@ -2,7 +2,7 @@ import { TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { createArray, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
@@ -26,7 +26,7 @@ function KosuzuBookstore({ station }: { station: TStation }) {
     const { current, next: options } = configs[0];
     const { Exhibits } = Data;
 
-    const choices: Array<number> = new Array(Exhibits.length).fill(null).map((_, i) => i);
+    const choices: Array<number> = createArray(Exhibits.length, (_, i) => i);
     choices.push(3);
     const chosen = choices.indexOf(Choices[0]) as TChoice;
 
