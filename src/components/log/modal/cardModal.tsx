@@ -70,7 +70,7 @@ function CardModal({ card }: { card: TCard }) {
         <Image2x callback={getCardTypeImage} name={Type} width="72" height="72" />
       </div>
       <div className={`p-card__name c-card__center ${upgraded ? 'c-card--upgraded' : ''} c-card__resize js-resize`}>
-        <CardName className="c-card__text p-card-name__name" card={_card} />
+        <CardName className="p-card-name__name c-card__text u-text-shadow" card={_card} />
       </div>
 
       {/* <div style={{top:0,right:0,display:'none'}}>

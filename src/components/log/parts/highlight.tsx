@@ -11,8 +11,11 @@ function Highlight({ color = '', children }: { color?: string, children?: ReactN
     'p': 'purple',
     'e': 'lightblue'
   };
+  const c = colors[color];
+  let className = `c-highlight--${c}`;
+  if (c === 'white') className += ' u-text-shadow';
 
-  return <span className={`c-highlight--${colors[color]}`}>{children}</span>;
+  return <span className={className}>{children}</span>;
 }
 
 export default Highlight;

@@ -1008,7 +1008,6 @@ html:lang(en) .c-entity__text {
 .c-card__text {
   z-index: var(--z-1);
   color: var(--f-white);
-  text-shadow: var(--text-shadow);
 }
 .c-card--upgraded .c-card__text {
   color: var(--f-light-green);
@@ -1754,12 +1753,6 @@ html:lang(en) .p-result__type {
   vertical-align: middle;
   --shadow-thickness: 2px;
   ---shadow-thickness: calc(var(--shadow-thickness) * -1);
-  --text-shadow:
-    var(--shadow-thickness) var(--shadow-thickness) 2px var(--shadow-color),
-    var(---shadow-thickness) var(--shadow-thickness) 2px var(--shadow-color),
-    var(---shadow-thickness) var(---shadow-thickness) 2px var(--shadow-color),
-    var(--shadow-thickness) var(---shadow-thickness) 2px var(--shadow-color);
-  text-shadow: var(--text-shadow);
 }
 
 .p-card__upgrade-switcher {
@@ -1842,11 +1835,6 @@ html:lang(en) .p-result__type {
   --shadow-color: var(--f-black);
   --shadow-thickness: 1px;
   ---shadow-thickness: calc(var(--shadow-thickness) * -1);
-  --text-shadow:
-    var(--shadow-thickness) var(--shadow-thickness) 2px var(--shadow-color),
-    var(---shadow-thickness) var(--shadow-thickness) 2px var(--shadow-color),
-    var(---shadow-thickness) var(---shadow-thickness) 2px var(--shadow-color),
-    var(--shadow-thickness) var(---shadow-thickness) 2px var(--shadow-color);
 
   --z--1: -1;
   --z-0: 0;
@@ -1904,7 +1892,11 @@ html:lang(en) .p-result__type {
 }
 
 .u-text-shadow {
-  text-shadow: var(--text-shadow);
+  text-shadow:
+    var(--shadow-thickness) var(--shadow-thickness) 2px var(--shadow-color),
+    var(---shadow-thickness) var(--shadow-thickness) 2px var(--shadow-color),
+    var(---shadow-thickness) var(---shadow-thickness) 2px var(--shadow-color),
+    var(--shadow-thickness) var(---shadow-thickness) 2px var(--shadow-color);
 }
 
 .u-flex-col {
