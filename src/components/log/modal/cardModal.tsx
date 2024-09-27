@@ -9,7 +9,6 @@ import CMana from 'utils/classes/CMana';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { LogContext } from 'contexts/logContext';
 import { TObj } from 'utils/types/common';
-import { getArt } from 'utils/functions/helpers';
 import UpgradeSwitcher from './upgradeSwitcher';
 
 function CardModal({ card }: { card: TCard }) {
@@ -17,12 +16,12 @@ function CardModal({ card }: { card: TCard }) {
   const { t } = useTranslation();
 
   const { Id, IsUpgraded } = card;
-  const config = cardsConfigs.get(Id);
+  const [upgraded, setUpgraded] = useState(IsUpgraded);
+  const _card = Object.assign({}, card, { IsUpgraded: upgraded });
+  const config = cardsConfigs.set(_card);
 
   const { Type, Rarity, Colors, Owner } = config;
 
-  const [upgraded, setUpgraded] = useState(IsUpgraded);
-  const _card = Object.assign({}, card, { IsUpgraded: upgraded });
 
   let color;
   if (['Tool', 'Misfortune'].includes(Type)) color = Type;
@@ -30,7 +29,7 @@ function CardModal({ card }: { card: TCard }) {
   else if (Colors.length >= 3) color = 'Rainbow';
   else color = Colors;
   const frame = `${Rarity}/${color}`;
-  const art = getArt(_card, config);
+  const { art } = cardsConfigs;
 
   useEffect(() => {
     const divs: Array<HTMLDivElement> = Array.from(document.querySelectorAll('.js-resize'));

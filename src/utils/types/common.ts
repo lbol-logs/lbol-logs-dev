@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import Configs from 'utils/classes/Configs';
+import Configs, { CardsConfigs } from 'utils/classes/Configs';
 
 type TObj<T> = Record<string, T>;
 type TObjAny = TObj<any>;
@@ -14,7 +14,7 @@ type TRange16 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 |
 
 type TDispatch<T> = Dispatch<SetStateAction<T>>;
 
-type TConfigsData = TObj<Configs>;
+type TConfigsData = { cardsConfigs: CardsConfigs } & TObj<Configs>;
 type TComponents = Array<JSX.Element>;
 
 enum AsideType {

@@ -75,7 +75,7 @@ const defaultAsideHoldings = AsideType.right;
 const descriptionMaxLength = 300;
 
 const CONFIGS_DATA: ConfigsData = new ConfigsData();
-const configsData: TConfigsData = {};
+const configsData: TConfigsData = {} as TConfigsData;
 const commonConfigs: Array<string> = [
   'characters',
   'requests',

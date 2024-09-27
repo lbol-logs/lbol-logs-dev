@@ -11,7 +11,7 @@ import ShowRandomResultWidget from './parts/showRandomResultWidget';
 import IsAutoSeedWidget from './parts/isAutoSeedWidget';
 import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
-import { getResultData, isMisfortune } from 'utils/functions/helpers';
+import { getResultData } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 
 function Summary() {
@@ -95,9 +95,9 @@ function Summary() {
           <h3 className="p-summary__entity">{t('cardsCount', { ns: 'log', count: Cards.length })}</h3>
           <div className="p-summary__rarities">
             {cardRarities.map(rarity => {
-              const count = Cards.filter(({ Id }) => {
-                const { Rarity, Type } = cardsConfigs.get(Id);
-                const type = isMisfortune(Type) ? Type : Rarity;
+              const count = Cards.filter(card => {
+                cardsConfigs.set(card);
+                const { type } = cardsConfigs;
                 return type === rarity;
               }).length;
               if (!count) return null;

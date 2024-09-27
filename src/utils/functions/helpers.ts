@@ -159,24 +159,8 @@ function toggleAside(asideHoldings: AsideType) {
   return aside;
 }
 
-function isMisfortune(Type: string) {
-  return Type === 'Misfortune';
-}
-
-function isUnremovable(Keywords: Array<string>) {
-  if (Keywords === undefined) return false;
-  return Keywords.includes('Unremovable');
-}
-
 function createArray(len: number, callback: (value: any, index?: number) => any) {
   return new Array(len).fill(null).map(callback);
-}
-
-function getArt(card: TCard, config: TObjAny) {
-  const { Id, IsUpgraded } = card;
-  const { ImageId } = config[IsUpgraded ? 1 : 0];
-  const art = ImageId || Id;
-  return art;
 }
 
 function getConfigsKey(name: string) {
@@ -206,9 +190,6 @@ export {
   getScrollHeight,
   checkRounds,
   toggleAside,
-  isMisfortune,
-  isUnremovable,
   createArray,
-  getArt,
   getConfigsKey
 };

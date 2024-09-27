@@ -1,6 +1,7 @@
 import { TConfigsData, TObj, TObjAny } from 'utils/types/common';
 import CMana from './CMana';
 import { configsData } from 'configs/globals';
+import { TCard } from 'utils/types/runData';
 
 class Configs {
   protected json: TObjAny;
@@ -21,6 +22,8 @@ class Configs {
 export default Configs;
 
 class CardsConfigs extends Configs {
+  public card: TCard = {} as TCard;
+
   constructor (json: TObjAny) {
     super(json);
     for (const [id, configs] of Object.entries(json)) {
@@ -38,6 +41,42 @@ class CardsConfigs extends Configs {
         if (!(key in after)) this.json[id][1][key] = value;
       }
     }
+  }
+
+  set(card: TCard) {
+    this.card = card;
+    return this.getAll();
+  }
+
+  getAll() {
+    const { Id, IsUpgraded } = this.card;
+    const config = this.get(Id);
+    const key = IsUpgraded ? 1 : 0;
+    return { ...config, ...config[key] };
+  }
+
+  get art() {
+    const { Id } = this.card;
+    const { ImageId } = this.getAll();
+    const art = ImageId || Id;
+    return art;
+  }
+
+  get isUnremovable() {
+    const { Keywords } = this.getAll();
+    if (Keywords === undefined) return false;
+    return Keywords.includes('Unremovable');
+  }
+
+  get isMisfortune() {
+    const { Type } = this.getAll();
+    return Type === 'Misfortune';
+  }
+
+  get type() {
+    const { Type, Rarity } = this.getAll();
+    const _type = this.isMisfortune ? Type : Rarity;
+    return _type;
   }
 
   private _handle(id: string, configs: TObjAny, IsUpgraded: number) {
@@ -69,7 +108,7 @@ class ConfigsData {
 
   private _init(version: string) {
     this.ver = version;
-    if (!(version in this.configs)) this.configs[version] = {};
+    if (!(version in this.configs)) this.configs[version] = {} as TConfigsData;
   }
 }
 
