@@ -34,6 +34,7 @@ class CardsConfigs extends Configs {
       this._handle(id, configs, 1);
 
       for (const [key, value] of Object.entries(before)) {
+        if (key === 'Keywords') continue;
         if (!(key in after)) this.json[id][1][key] = value;
       }
     }
