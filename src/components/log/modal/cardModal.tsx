@@ -22,7 +22,7 @@ function CardModal({ card }: { card: TCard }) {
   const { Type, Rarity, Colors, Owner } = config;
 
   const [upgraded, setUpgraded] = useState(IsUpgraded);
-  Object.assign(card, { IsUpgraded: upgraded });
+  const _card = Object.assign({}, card, { IsUpgraded: upgraded });
 
   let color;
   if (['Tool', 'Misfortune'].includes(Type)) color = Type;
@@ -30,7 +30,7 @@ function CardModal({ card }: { card: TCard }) {
   else if (Colors.length >= 3) color = 'Rainbow';
   else color = Colors;
   const frame = `${Rarity}/${color}`;
-  const art = getArt(card, config);
+  const art = getArt(_card, config);
 
   useEffect(() => {
     const divs: Array<HTMLDivElement> = Array.from(document.querySelectorAll('.js-resize'));
@@ -53,7 +53,7 @@ function CardModal({ card }: { card: TCard }) {
       </div> */}
 
       <div className="p-card__body c-card__resize js-resize">
-        <DescriptionWidget ns="cards" {...card} />
+        <DescriptionWidget ns="cards" {..._card} />
       </div>
 
       <div className="p-card__art c-card__center">
@@ -71,7 +71,7 @@ function CardModal({ card }: { card: TCard }) {
         <Image2x callback={getCardTypeImage} name={Type} width="72" height="72" />
       </div>
       <div className={`p-card__name c-card__center ${upgraded ? 'c-card--upgraded' : ''} c-card__resize js-resize`}>
-        <CardName className="c-card__text p-card-name__name" card={card} />
+        <CardName className="c-card__text p-card-name__name" card={_card} />
       </div>
 
       {/* <div style={{top:0,right:0,display:'none'}}>
