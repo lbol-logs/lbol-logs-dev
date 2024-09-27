@@ -52,21 +52,21 @@ function CardModal({ card }: { card: TCard }) {
       </div>
 
       <div className="p-card__art c-card__center">
-      <LazyLoadImage2x callback={getCardArtImage} name={art} width="440" height="304" />
+      <Image2x callback={getCardArtImage} name={art} width="440" height="304" />
       </div>
       <div className="p-card__frame">
-        <LazyLoadImage2x callback={getCardFrameImage} name={frame} width="512" height="714" />
+        <Image2x callback={getCardFrameImage} name={frame} width="512" height="714" />
       </div>
       {Owner && (
         <div className="p-card__watermark c-card__center">
-          <LazyLoadImage2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" />
+          <Image2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" />
         </div>
       )}
       <div className="p-card__type">
-        <LazyLoadImage2x callback={getCardTypeImage} name={Type} width="72" height="72" />
+        <Image2x callback={getCardTypeImage} name={Type} width="72" height="72" />
       </div>
       <div className={`p-card__name c-card__center ${IsUpgraded ? 'c-card--upgraded' : ''} c-card__resize js-resize`}>
-        <CardName className="c-card__text u-text-shadow p-card-name__name" card={card} />
+        <CardName className="c-card__text p-card-name__name" card={card} />
       </div>
 
       {/* <div style={{top:0,right:0,display:'none'}}>
@@ -78,13 +78,12 @@ function CardModal({ card }: { card: TCard }) {
 
 export default CardModal;
 
-function LazyLoadImage2x({ callback, name, width, height }: { callback: Function, name: string, width: string | number, height?: string | number }) {
-  const props = { srcSet: null };
+function Image2x({ callback, name, width, height }: { callback: Function, name: string, width: string | number, height?: string | number }) {
 
   // TODO
   // callback = getTestImage;
 
   return (
-    <LazyLoadImage2 callback={callback} name={`${name}@2x`} width={width} height={height} alt="" props={props} />
+    <img src={callback(`${name}@2x`)} width={width} height={height} alt="" />
   );
 }
