@@ -1,6 +1,5 @@
 import { configsData } from 'configs/globals';
-import { CommonContext } from 'contexts/commonContext';
-import { ChangeEventHandler, useContext } from 'react';
+import { ChangeEventHandler } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toggleIsChecked } from 'utils/functions/helpers';
 import { TRequests } from 'utils/types/runData';

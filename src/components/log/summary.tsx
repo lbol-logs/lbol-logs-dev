@@ -12,7 +12,6 @@ import IsAutoSeedWidget from './parts/isAutoSeedWidget';
 import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
 import { getResultData, isMisfortune } from 'utils/functions/helpers';
-import { CommonContext } from 'contexts/commonContext';
 import { configsData } from 'configs/globals';
 
 function Summary() {

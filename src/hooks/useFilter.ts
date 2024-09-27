@@ -1,5 +1,5 @@
 import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
-import { TConfigsData, TDispatch, TObj, TObjAny } from 'utils/types/common';
+import { TDispatch, TObj } from 'utils/types/common';
 import { TExhibits } from 'utils/types/runData';
 import { getConfigs } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';

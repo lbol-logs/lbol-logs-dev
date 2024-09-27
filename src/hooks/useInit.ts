@@ -1,7 +1,7 @@
 import { commonConfigs, configsData, latestVersion, versions } from 'configs/globals';
 import { useEffect, useMemo } from 'react';
 import { getConfigsUrl } from 'utils/functions/fetchData';
-import { TConfigsData, TDispatch, TObj } from 'utils/types/common';
+import { TDispatch, TObj } from 'utils/types/common';
 import { NavigateFunction } from 'react-router-dom';
 import { flushSync } from 'react-dom';
 import Configs from 'utils/classes/Configs';

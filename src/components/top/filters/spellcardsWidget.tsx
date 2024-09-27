@@ -1,6 +1,5 @@
 import { ChangeEventHandler, useContext } from 'react';
 import { RunListContext } from 'contexts/runListContext';
-import { CommonContext } from 'contexts/commonContext';
 import SpellcardWidget from './spellcardWidget';
 import { configsData } from 'configs/globals';
 
