@@ -38,9 +38,11 @@ function useRunData(args: TObjAny)  {
 
   const [runData, isValidRunData] = getRunData();
   for (const name of logConfigs) {
+    const key = getConfigsKey(name);
+    if (key in configsData) continue;
     const configs = use(getConfigs(version, name));
     const C = name === 'cards' ? CardsConfigs : Configs;
-    configsData[getConfigsKey(name)] = new C(configs);
+    configsData[key] = new C(configs);
   }
 
   useEffect(() => {

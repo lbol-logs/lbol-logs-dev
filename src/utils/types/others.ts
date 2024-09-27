@@ -56,7 +56,7 @@ type TEntityModel = {
   statusEffect?: TStatusEffect
 };
 
-type TCardMana = string | number;
+type TCardMana = Array<string>;
 
 enum ErrorType {
   invalidFile = 'invalidFile',

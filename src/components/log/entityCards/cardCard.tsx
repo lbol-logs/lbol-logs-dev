@@ -15,7 +15,7 @@ function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
   const { width, height } = cardSize;
 
   const config = cardsConfigs.get(Id);
-  const { Rarity, Type, [IsUpgraded.toString()]: { Keywords } } = config;
+  const { Rarity, Type, [IsUpgraded ? 1 : 0]: { Keywords } } = config;
   let type = isMisfortune(Type) ? Type : Rarity;
   if (isUnremovable(Keywords)) type += '-Unremovable';
   const art = getArt(card, config);

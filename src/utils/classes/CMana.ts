@@ -2,9 +2,9 @@ import { TCardMana } from 'utils/types/others';
 
 class CMana {
   private s: string;
-  public manas: Array<string> = [];
+  public manas: TCardMana = [];
 
-  constructor(input: TCardMana) {
+  constructor(input: string) {
     this.s = input.toString();
 
     do {

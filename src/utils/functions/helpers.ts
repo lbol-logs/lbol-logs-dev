@@ -164,6 +164,7 @@ function isMisfortune(Type: string) {
 }
 
 function isUnremovable(Keywords: Array<string>) {
+  if (Keywords === undefined) return false;
   return Keywords.includes('Unremovable');
 }
 
@@ -173,7 +174,7 @@ function createArray(len: number, callback: (value: any, index?: number) => any)
 
 function getArt(card: TCard, config: TObjAny) {
   const { Id, IsUpgraded } = card;
-  const { ImageId } = config[IsUpgraded.toString()];
+  const { ImageId } = config[IsUpgraded ? 1 : 0];
   const art = ImageId || Id;
   return art;
 }

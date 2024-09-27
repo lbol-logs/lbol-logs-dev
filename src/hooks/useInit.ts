@@ -26,9 +26,11 @@ function useInit({ version, setVersion, navigate, isInitialized, setIsInitialize
       if (isValidInit) {
         (async () => {
           for (const name of commonConfigs) {
+            const key = getConfigsKey(name);
+            if (key in configsData) continue;
             const response = await fetch(getConfigsUrl(_ver, name));
             const json = await response.json();
-            configsData[getConfigsKey(name)] = new Configs(json);
+            configsData[key] = new Configs(json);
           }
           flushSync(() => {
             setVersion(_ver);
