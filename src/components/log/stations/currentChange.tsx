@@ -10,13 +10,14 @@ import { copyObject, getCurrentLevel, getSameCardIndex, getSameExhibitIndex } fr
 import BaseManaWidget from 'components/common/parts/baseManaWidget';
 import { TObjString } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
+import { configsData } from 'configs/globals';
 
 function CurrentChange({ station, excludes }: { station: TStation, excludes?: { Cards: TCardChanges, Exhibits: TExhibitObjs } }) {
-  const { runData, configsData } = useContext(LogContext);
+  const { runData } = useContext(LogContext);
+  const { eventsConfigs } = configsData;
   const { t } = useTranslation();
 
   const { Stations, Cards, Exhibits } = runData;
-  const eventConfigs = configsData.events;
 
   const card = useMemo(() => {
     const currentCards = getCurrentLevel(Cards, Stations, station);
@@ -110,7 +111,7 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
     const { Id, Data } = station;
     if (!Data) return null;
 
-    const config = eventConfigs[Id as string];
+    const config = eventsConfigs.get(Id as string);
     if (!config) return null;
 
     const { mana } = config;

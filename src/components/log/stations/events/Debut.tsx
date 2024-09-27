@@ -1,19 +1,18 @@
 import { RequestType, TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import { getUnitImage } from 'utils/functions/getImage';
-import { iconSize } from 'configs/globals';
+import { configsData, iconSize } from 'configs/globals';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TObj, TObjAny } from 'utils/types/common';
 import { applyRate, convertCards, getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
 import EventHead from '../parts/eventHead';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { CommonContext } from 'contexts/commonContext';
 import RewardsWidget from '../parts/rewardsWidget';
+import { useContext } from 'react';
+import { LogContext } from 'contexts/logContext';
 
 function Debut({ station }: { station: TStation }) {
-  const { configsData: { requests: requestConfigs } } = useContext(CommonContext);
-  const { runData, configsData } = useContext(LogContext);
+  const { requestsConfigs, eventsConfigs, dialoguesConfigs } = configsData;
+  const { runData } = useContext(LogContext);
   const { HasClearBonus, Requests } = runData.Settings;
 
   const { Data } = station;
@@ -21,8 +20,8 @@ function Debut({ station }: { station: TStation }) {
   const { Choices, Options } = Data;
 
   const id = 'Debut';
-  const eventConfigs = configsData.events[id];
-  const configs = configsData.dialogues[id];
+  const { money } = eventsConfigs.get(id);
+  const configs = dialoguesConfigs.get(id);
 
   let advantages = null;
   let pills = null;
@@ -53,7 +52,7 @@ function Debut({ station }: { station: TStation }) {
       const i = Number(key);
       switch (option) {
         case 'money': {
-            const values = { 0: eventConfigs.money };
+            const values = { 0: money };
             props[i] = { values };
             break;
         }
@@ -109,7 +108,7 @@ function Debut({ station }: { station: TStation }) {
   }
 
   {
-    const { red, blue } = eventConfigs;
+    const { red, blue } = eventsConfigs.get(id);
     const { current, next: options } = configs[1];
 
     const [next] = getNext(options);
@@ -118,7 +117,7 @@ function Debut({ station }: { station: TStation }) {
     const props: Array<TObjAny> = [];
 
     const HalfDrug = RequestType.HalfDrug.toString();
-    const x = Requests.includes(HalfDrug) ? requestConfigs[HalfDrug] : 1;
+    const x = Requests.includes(HalfDrug) ? requestsConfigs.get(HalfDrug) : 1;
 
     Object.keys(options).forEach(key => {
       const i = Number(key);
@@ -149,7 +148,7 @@ function Debut({ station }: { station: TStation }) {
   {
     const chosen = Choices[2];
     if (chosen !== undefined) {
-      const { exhibits: _exhibits } = eventConfigs;
+      const { exhibits: _exhibits } = eventsConfigs.get(id);
 
       const { current, next: options } = configs[2];
       const [next] = getNext(options);

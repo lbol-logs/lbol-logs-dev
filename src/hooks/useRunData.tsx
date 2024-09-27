@@ -2,25 +2,22 @@ import { getConfigs, getLog, getLog2 } from 'utils/functions/fetchData';
 import { TRunData } from 'utils/types/runData';
 import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import { validateRunData } from 'utils/functions/helpers';
+import { getConfigsKey, validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
-import { defaultRunData, logConfigs } from 'configs/globals';
-import { TConfigsData, TObjAny } from 'utils/types/common';
+import { configsData, defaultRunData, logConfigs } from 'configs/globals';
+import { TObjAny } from 'utils/types/common';
+import Configs, { CardsConfigs } from 'utils/classes/Configs';
 
 function useRunData(args: TObjAny)  {
   const {
     version, id,
-    configsData,
-    eventsConfigs,
-    setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData
+    setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths
   } = args;
 
-  const {
-    characters: characterConfigs,
-    exhibits: exhibitConfigs,
-    requests: requestConfigs
-  } = configsData;
+  const { charactersConfigs, exhibitsConfigs, requestsConfigs, eventsConfigs } = configsData;
+  const array: Array<Configs | undefined> = [exhibitsConfigs, charactersConfigs, requestsConfigs, eventsConfigs];
+  const isConfigsLoaded = !array.includes(undefined);
 
   function getRunData(): [TRunData, boolean] {
     let runData = defaultRunData;
@@ -40,26 +37,23 @@ function useRunData(args: TObjAny)  {
   }
 
   const [runData, isValidRunData] = getRunData();
-  const currentConfigs: TConfigsData = {};
-  for (const config of logConfigs) {
-    const configs = use(getConfigs(version, config));
-    currentConfigs[config] = configs;
+  for (const name of logConfigs) {
+    const configs = use(getConfigs(version, name));
+    const C = name === 'cards' ? CardsConfigs : Configs;
+    configsData[getConfigsKey(name)] = new C(configs);
   }
 
   useEffect(() => {
     setIsRunDataLoaded(false);
-    if (isValidRunData) {
-      setRunDataId(id);
-      setRunData(runData);
-      const array: Array<TObjAny | undefined> = [exhibitConfigs, characterConfigs, requestConfigs, eventsConfigs];
-      if (!array.includes(undefined)) {
-        const ignoredPaths = setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfigs, requestConfigs, eventsConfigs });
-        setIgnoredPaths(ignoredPaths);
-      }
-      setConfigsData(currentConfigs);
-      setIsRunDataLoaded(true);
-    }
-  }, [isValidRunData, runData, exhibitConfigs, characterConfigs, requestConfigs, eventsConfigs]);
+    if (!isConfigsLoaded) return;
+    if (!isValidRunData) return;
+
+    setRunDataId(id);
+    setRunData(runData);
+    const ignoredPaths = setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsConfigs, requestsConfigs, eventsConfigs });
+    setIgnoredPaths(ignoredPaths);
+    setIsRunDataLoaded(true);
+  }, [isValidRunData, runData, isConfigsLoaded]);
 
   let redirect = null;
   if (!isValidRunData) redirect = <Navigate to="/" replace />;

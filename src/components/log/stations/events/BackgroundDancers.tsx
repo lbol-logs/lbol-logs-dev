@@ -1,18 +1,17 @@
 import { TStation } from 'utils/types/runData';
-import { useContext } from 'react';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import useBackgroundDancers from 'hooks/useBackgroundDancers';
 
 function BackgroundDancers({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
   const id = Id as string;
-  const configs = configsData.dialogues[id];
-  const eventConfigs = configsData.events[id];
+  const eventConfigs = eventsConfigs.get(id);
+  const configs = dialoguesConfigs.get(id);
 
   const dialogues = useBackgroundDancers({ id, Data, configs, eventConfigs });
 

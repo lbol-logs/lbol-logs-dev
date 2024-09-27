@@ -12,11 +12,11 @@ import IsAutoSeedWidget from './parts/isAutoSeedWidget';
 import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
 import { getResultData, isMisfortune } from 'utils/functions/helpers';
-import { CommonContext } from 'contexts/commonContext';
+import { configsData } from 'configs/globals';
 
 function Summary() {
-  const { configsData: { exhibits: exhibitConfigs } } = useContext(CommonContext);
-  const { runData, isRunDataLoaded, configsData: { cards: cardConfigs } } = useContext(LogContext);
+  const { exhibitsConfigs, cardsConfigs } = configsData;
+  const { runData, isRunDataLoaded } = useContext(LogContext);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function Summary() {
           <h3 className="p-summary__entity">{t('exhibitsCount', { ns: 'log', count: Exhibits.length })}</h3>
           <div className="p-summary__rarities">
             {exhibitRarities.map(rarity => {
-              const count = Exhibits.filter(exhibit => exhibitConfigs[exhibit].Rarity === rarity).length;
+              const count = Exhibits.filter(exhibit => exhibitsConfigs.get(exhibit).Rarity === rarity).length;
               if (!count) return null;
 
               return (
@@ -96,7 +96,7 @@ function Summary() {
           <div className="p-summary__rarities">
             {cardRarities.map(rarity => {
               const count = Cards.filter(({ Id }) => {
-                const { Rarity, Type } = cardConfigs[Id];
+                const { Rarity, Type } = cardsConfigs.get(Id);
                 const type = isMisfortune(Type) ? Type : Rarity;
                 return type === rarity;
               }).length;

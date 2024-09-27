@@ -1,15 +1,14 @@
 import { TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { convertCards, getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import { TObjAny } from 'utils/types/common';
 import { useTranslation } from 'react-i18next';
 
 function RemiliaMeet({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs } = configsData;
   const { t } = useTranslation();
 
   const { Data, Id } = station;
@@ -17,11 +16,10 @@ function RemiliaMeet({ station }: { station: TStation }) {
   const { Choices, HasExhibit } = Data;
 
   const id = Id as string;
-  const configs = configsData.dialogues[id];
-  const eventConfigs = configsData.events[id];
+  const configs = dialoguesConfigs.get(id);
 
   const { current, next: options } = configs;
-  const { cards: _cards, misfortune, exhibit } = eventConfigs;
+  const { cards: _cards, misfortune, exhibit } = eventsConfigs.get(id);
 
   const choices = [0, HasExhibit ? '1_invalid' : 1, 2];
 

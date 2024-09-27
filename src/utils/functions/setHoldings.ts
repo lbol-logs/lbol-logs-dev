@@ -1,11 +1,12 @@
 import { ExhibitsWithCounter, RequestType, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
 import { copyObject } from 'utils/functions/helpers';
+import Configs from 'utils/classes/Configs';
 
-function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfigs, requestConfigs, eventsConfigs }: { runData: TRunData, dispatchHoldings: THoldingsReducer, characterConfigs: TObjAny, exhibitConfigs: TObjAny, requestConfigs: TObjAny, eventsConfigs: TObjAny }) {
+function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsConfigs, requestsConfigs, eventsConfigs }: { runData: TRunData, dispatchHoldings: THoldingsReducer, charactersConfigs: Configs, exhibitsConfigs: Configs, requestsConfigs: Configs, eventsConfigs: TObjAny }) {
   const { Stations } = runData;
   const { Character, PlayerType } = runData.Settings;
-  const { BaseMana, [PlayerType]: { Cards, Exhibit } } = characterConfigs[Character];
+  const { BaseMana, [PlayerType]: { Cards, Exhibit } } = charactersConfigs.get(Character);
 
   const actions = [];
   const ignoredPaths: Array<THoldingChange> = [];
@@ -46,7 +47,7 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
 
     const StartMisfortune = RequestType.StartMisfortune.toString();
     if (runData.Settings.Requests.includes(StartMisfortune)) {
-      const Id = requestConfigs[StartMisfortune];
+      const Id = requestsConfigs.get(StartMisfortune);
       const action: THoldingAction = {
         type: 'Card',
         change: {
@@ -76,7 +77,7 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
     }
 
     {
-      const { BaseMana } = exhibitConfigs[Exhibit];
+      const { BaseMana } = exhibitsConfigs.get(Exhibit);
       const action: THoldingAction = {
         type: 'BaseMana',
         change: {
@@ -114,7 +115,7 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
       const { Node } = Stations[Station];
       exhibit.Station = Node;
 
-      const { BaseMana, Counter } = exhibitConfigs[Id];
+      const { BaseMana, Counter } = exhibitsConfigs.get(Id);
       if (Counter && Type === 'Add') {
         exhibit.Counter = Counter;
       }
@@ -165,7 +166,7 @@ function setHoldings({ runData, dispatchHoldings, characterConfigs, exhibitConfi
       }
 
       {
-        const BaseMana = eventsConfigs[Id as string].mana;
+        const BaseMana = eventsConfigs.get(Id as string).mana;
         const action: THoldingAction = {
           type: 'BaseMana',
           change: {

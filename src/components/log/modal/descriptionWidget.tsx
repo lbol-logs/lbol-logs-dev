@@ -7,13 +7,13 @@ import { LogContext } from 'contexts/logContext';
 import CharacterShortName from '../stations/parts/characterShortName';
 import CardManasWidget from './cardManasWidget';
 import CardManaWidget from './cardManaWidget';
-import { CommonContext } from 'contexts/commonContext';
 import { TObjElement, TObjAny } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
+import { configsData } from 'configs/globals';
 
 function DescriptionWidget({ ns, ...o }: { ns: string }) {
-  const { configsData: { exhibits } } = useContext(CommonContext);
-  const { configsData: { cards, statusEffects }, act, level, holdings } = useContext(LogContext);
+  const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
+  const { act, level, holdings } = useContext(LogContext);
   const { t } = useTranslation();
 
   const components = {
@@ -42,7 +42,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       const {
         Id, IsUpgraded
       } = o as TCard;
-      const config = cards[Id];
+      const config = cardsConfigs.get(Id);
 
       ({ Version } = config);
 
@@ -58,7 +58,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     }
     case 'exhibits': {
       const { Id, Counter } = o as TExhibitObj;
-      const config = exhibits[Id];
+      const config = exhibitsConfigs.get(Id);
 
       ({ Version } = config);
       const array = [Id, 'Description'];
@@ -76,7 +76,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     }
     case 'statusEffects': {
       const { Id, Level, Duration, Count, Limit, owner } = o as TStatusEffect;
-      const config = statusEffects[Id] || {};
+      const config = statusEffectsConfigs.get(Id) || {};
 
       ({ Version } = config);
       const array = [Id];

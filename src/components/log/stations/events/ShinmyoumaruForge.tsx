@@ -1,25 +1,23 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import { TChoice } from 'utils/types/others';
 
 function ShinmyoumaruForge({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
   const { Choices, HasUpgradableBasics, HasNonBasics, LoseMax } = Data;
 
   const id = Id as string;
-  const eventConfigs = configsData.events[id];
-  const configs = configsData.dialogues[id];
+  const configs = dialoguesConfigs.get(id);
 
-  const { upgrade, transform } = eventConfigs;
+  const { upgrade, transform } = eventsConfigs.get(id);
   const { current, next: options } = configs;
 
   const choices: Array<number | string> = [];

@@ -1,17 +1,17 @@
-import { LogContext } from 'contexts/logContext';
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { TObjAny } from 'utils/types/common';
 import { MoneyImage, PowerImage } from './stationWidgets';
 import { applyRate } from 'utils/functions/helpers';
 import Highlight from '../../parts/highlight';
+import { configsData } from 'configs/globals';
 
 function GapDescription({ option, maxhp, children }: { option: string, maxhp?: number, children?: ReactNode }) {
-  const { configsData } = useContext(LogContext);
+  const { gapConfigs } = configsData;
   useTranslation();
 
   const props: TObjAny = {};
-  const config = configsData.gap[option];
+  const config = gapConfigs.get(option);
 
   switch(option) {
     case 'DrinkTea':

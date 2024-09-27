@@ -1,22 +1,21 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import CharacterShortName from '../parts/characterShortName';
 
 function SatoriCounseling({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
   const { Choices, Values, HasMoney } = Data;
 
   const id = Id as string;
-  const configs = configsData.dialogues[id];
+  const configs = dialoguesConfigs.get(id);
 
   let first = null;
   let second = null;
