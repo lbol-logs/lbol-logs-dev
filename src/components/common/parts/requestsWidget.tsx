@@ -1,3 +1,4 @@
+import { configsData } from 'configs/globals';
 import { CommonContext } from 'contexts/commonContext';
 import { ChangeEventHandler, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,12 +7,12 @@ import { TRequests } from 'utils/types/runData';
 
 function RequestsWidget({ requests, onChange }: { requests: TRequests, onChange?: ChangeEventHandler }) {
   const { t } = useTranslation();
-  const { configsData } = useContext(CommonContext);
-  const requestConfigs: TRequests = Object.keys(configsData.requests) as TRequests;
+  const { requestsConfigs } = configsData;
+  const ids = requestsConfigs.ids as TRequests;
 
   return (
     <div className="c-requests">
-      {requestConfigs.map((request) => {
+      {ids.map((request) => {
         const active = requests.includes(request);
 
         let dot;

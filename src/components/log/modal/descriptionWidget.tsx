@@ -7,12 +7,12 @@ import { LogContext } from 'contexts/logContext';
 import CharacterShortName from '../stations/parts/characterShortName';
 import CardManasWidget from './cardManasWidget';
 import CardManaWidget from './cardManaWidget';
-import { CommonContext } from 'contexts/commonContext';
 import { TObjElement, TObjAny } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
+import { configsData } from 'configs/globals';
 
 function DescriptionWidget({ ns, ...o }: { ns: string }) {
-  const { configsData: { exhibits } } = useContext(CommonContext);
+  const { exhibitsConfigs } = configsData;
   const { configsData: { cards, statusEffects }, act, level, holdings } = useContext(LogContext);
   const { t } = useTranslation();
 
@@ -58,7 +58,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
     }
     case 'exhibits': {
       const { Id, Counter } = o as TExhibitObj;
-      const config = exhibits[Id];
+      const config = exhibitsConfigs.get(Id);
 
       ({ Version } = config);
       const array = [Id, 'Description'];

@@ -1,12 +1,12 @@
-import { CommonContext } from 'contexts/commonContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
 import ExhibitImage from 'components/common/parts/exhibitImage';
 import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 
 function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj | TExhibitChange, isNotAdded?: boolean }) {
-  const { configsData } = useContext(CommonContext);
+  const { exhibitsConfigs } = configsData;
   const { setEntityModal } = useContext(LogContext);
   const { t } = useTranslation();
 
@@ -14,7 +14,7 @@ function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj 
   const _exhibit = isExhibit ? { Id: exhibit } : exhibit;
 
   const { Id } = _exhibit;
-  const { Rarity } = configsData.exhibits[Id];
+  const { Rarity } = exhibitsConfigs.get(Id);
   let counter = null;
 
   if (!isExhibit) {

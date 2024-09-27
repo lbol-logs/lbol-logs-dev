@@ -13,9 +13,10 @@ import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
 import { getResultData, isMisfortune } from 'utils/functions/helpers';
 import { CommonContext } from 'contexts/commonContext';
+import { configsData } from 'configs/globals';
 
 function Summary() {
-  const { configsData: { exhibits: exhibitConfigs } } = useContext(CommonContext);
+  const { exhibitsConfigs } = configsData;
   const { runData, isRunDataLoaded, configsData: { cards: cardConfigs } } = useContext(LogContext);
   const { t } = useTranslation();
 
@@ -75,7 +76,7 @@ function Summary() {
           <h3 className="p-summary__entity">{t('exhibitsCount', { ns: 'log', count: Exhibits.length })}</h3>
           <div className="p-summary__rarities">
             {exhibitRarities.map(rarity => {
-              const count = Exhibits.filter(exhibit => exhibitConfigs[exhibit].Rarity === rarity).length;
+              const count = Exhibits.filter(exhibit => exhibitsConfigs.get(exhibit).Rarity === rarity).length;
               if (!count) return null;
 
               return (

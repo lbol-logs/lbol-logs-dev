@@ -20,7 +20,7 @@ export { toggleCheckedClassName };
 function Filter() {
   const { t } = useTranslation();
   const { filter, setFilter, showFilter, setShowFilter } = useContext(RunListContext);
-  const { version, configsData } = useContext(CommonContext);
+  const { version } = useContext(CommonContext);
   const [searchParams] = useSearchParams();
 
   const {
@@ -40,7 +40,7 @@ function Filter() {
     onRequestsTypesChange,
     apply,
     reset
-  } = useFilter({ filter, setFilter, version, configsData, searchParams });
+  } = useFilter({ filter, setFilter, version, searchParams });
 
   const { na } = filter;
 

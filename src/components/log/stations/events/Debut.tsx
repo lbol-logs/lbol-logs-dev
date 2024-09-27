@@ -1,6 +1,6 @@
 import { RequestType, TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import { getUnitImage } from 'utils/functions/getImage';
-import { iconSize } from 'configs/globals';
+import { configsData, iconSize } from 'configs/globals';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useContext } from 'react';
 import { TObj, TObjAny } from 'utils/types/common';
@@ -8,12 +8,11 @@ import { applyRate, convertCards, getNext } from 'utils/functions/helpers';
 import { LogContext } from 'contexts/logContext';
 import EventHead from '../parts/eventHead';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { CommonContext } from 'contexts/commonContext';
 import RewardsWidget from '../parts/rewardsWidget';
 
 function Debut({ station }: { station: TStation }) {
-  const { configsData: { requests: requestConfigs } } = useContext(CommonContext);
-  const { runData, configsData } = useContext(LogContext);
+  const { requestsConfigs } = configsData;
+  const { runData, configsData: _configsData } = useContext(LogContext);
   const { HasClearBonus, Requests } = runData.Settings;
 
   const { Data } = station;
@@ -21,8 +20,8 @@ function Debut({ station }: { station: TStation }) {
   const { Choices, Options } = Data;
 
   const id = 'Debut';
-  const eventConfigs = configsData.events[id];
-  const configs = configsData.dialogues[id];
+  const eventConfigs = _configsData.events[id];
+  const configs = _configsData.dialogues[id];
 
   let advantages = null;
   let pills = null;
@@ -118,7 +117,7 @@ function Debut({ station }: { station: TStation }) {
     const props: Array<TObjAny> = [];
 
     const HalfDrug = RequestType.HalfDrug.toString();
-    const x = Requests.includes(HalfDrug) ? requestConfigs[HalfDrug] : 1;
+    const x = Requests.includes(HalfDrug) ? requestsConfigs.get(HalfDrug) : 1;
 
     Object.keys(options).forEach(key => {
       const i = Number(key);

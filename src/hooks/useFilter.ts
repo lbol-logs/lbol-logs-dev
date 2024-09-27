@@ -8,32 +8,34 @@ import { useTranslation } from 'react-i18next';
 import { TFilter, TFilterCheckbox, TFilterRadio } from 'utils/types/others';
 import DefaultFilter from 'utils/classes/DefaultFilter';
 import { useSubmit } from 'react-router-dom';
+import { configsData } from 'configs/globals';
+import Configs from 'utils/classes/Configs';
 
-function useFilter({ filter, setFilter, version, configsData, searchParams }: { filter: TFilter, setFilter: TDispatch<TFilter>, version: string, configsData: TConfigsData, searchParams: URLSearchParams }) {
+function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilter, setFilter: TDispatch<TFilter>, version: string, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
 
   const [showStartingExhibits, setShowStartingExhibits] = useState(false);
   const [showSwappedExhibits, setShowSwappedExhibits] = useState(false);
   const [showRequests, seteShowRequests] = useState(false);
 
-  const characterConfigs = configsData.characters;
-  const exhibitConfigs = configsData.exhibits;
+  const { charactersConfigs, exhibitsConfigs } = configsData;
   const difficultyConfigs = use(getConfigs(version, 'difficulties'));
   const resultConfigs = use(getConfigs(version, 'results'));
 
-  const characters = Object.keys(characterConfigs);
+  const characters = charactersConfigs.ids;
 
-  const [startingExhibits, swappedExhibits] = getExhibits(exhibitConfigs);
+  const [startingExhibits, swappedExhibits] = getExhibits(exhibitsConfigs);
   const startingExhibit = t('startingExhibit', { ns: 'runList' });
   const swappedExhibit = t('swappedExhibit', { ns: 'runList' });
 
   const formRef = useRef<HTMLFormElement>(null);
   const submit = useSubmit();
 
-  function getExhibits(configs: TObjAny) {
+  function getExhibits(configs: Configs) {
     const startingExhibits: TObj<TExhibits> = {};
     const swappedExhibits: TObj<TExhibits> = {};
-    for (const [id, { Rarity, BaseMana, Owner }] of Object.entries(configs)) {
+    for (const id of configs.ids) {
+      const { Rarity, BaseMana, Owner } = configs.get(id);
       if (Rarity !== 'Shining') continue;
       if (Owner) {
         if (!(Owner in startingExhibits)) startingExhibits[Owner] = [];

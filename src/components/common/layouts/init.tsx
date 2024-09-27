@@ -8,10 +8,10 @@ import { TObj } from 'utils/types/common';
 const defaultIsInitilized: TObj<boolean> = {};
 
 function Init({ children, ver }: { children?: ReactNode, ver?: string }) {
-  const { version, setVersion, setConfigsData } = useContext(CommonContext);
+  const { version, setVersion } = useContext(CommonContext);
   const [isInitialized, setIsInitialized] = useState(defaultIsInitilized);
   const navigate = useNavigate();
-  useInit({ version, setVersion, setConfigsData, navigate, isInitialized, setIsInitialized, ver });
+  useInit({ version, setVersion, navigate, isInitialized, setIsInitialized, ver });
 
   if (!isInitialized[version]) return <Loading />;
 
