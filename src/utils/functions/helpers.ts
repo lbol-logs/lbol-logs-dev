@@ -172,10 +172,9 @@ function createArray(len: number, callback: (value: any, index?: number) => any)
   return new Array(len).fill(null).map(callback);
 }
 
-function getArt(card: TCard, config: TObjAny) {
-  const { Id, IsUpgraded } = card;
-  const { ImageId } = config[IsUpgraded ? 1 : 0];
-  const art = ImageId || Id;
+function getArt(id: string, isUpgraded: boolean, config: TObjAny) {
+  const { ImageId } = config[isUpgraded ? 1 : 0];
+  const art = ImageId || id;
   return art;
 }
 

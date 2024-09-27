@@ -23,14 +23,13 @@ function CardModal({ card }: { card: TCard }) {
 
   const [upgraded, setUpgraded] = useState(IsUpgraded);
 
-
   let color;
   if (['Tool', 'Misfortune'].includes(Type)) color = Type;
   else if (Colors === undefined) color = 'C';
   else if (Colors.length >= 3) color = 'Rainbow';
   else color = Colors;
   const frame = `${Rarity}/${color}`;
-  const art = getArt(card, config);
+  const art = getArt(Id, upgraded, config);
 
   useEffect(() => {
     const divs: Array<HTMLDivElement> = Array.from(document.querySelectorAll('.js-resize'));

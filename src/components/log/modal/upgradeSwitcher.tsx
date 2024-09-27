@@ -6,11 +6,11 @@ function UpgradeSwitcher({ upgraded, setUpgraded }: { upgraded: boolean, setUpgr
   }
 
   return (
-    <div className=" c-card__center">
-      <label className="toggleLabel">
-        <input className="toggleButton" type="checkbox" defaultChecked={upgraded} onChange={onChange} />
-        Upgrade
-      </label>
+    <div className="p-card__upgrade-switcher c-card__center">
+      <div className="c-upgrade-switcher">
+        <input id="upgrade" className="c-upgrade-switcher__toggle" type="checkbox" defaultChecked={upgraded} onChange={onChange} />
+        <label className="c-upgrade-switcher__text" htmlFor="upgrade">Upgrade</label>
+      </div>
     </div>
   );
 }
