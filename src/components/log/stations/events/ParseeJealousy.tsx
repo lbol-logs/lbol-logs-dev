@@ -1,21 +1,19 @@
 import { TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { convertCards, getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 
 function ParseeJealousy({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
   const { Choices } = Data;
 
   const id = Id as string;
-  const configs = configsData.dialogues[id];
-  const eventConfigs = configsData.events[id];
+  const configs = dialoguesConfigs.get(id);
 
   let first = null;
   let second = null;
@@ -46,7 +44,7 @@ function ParseeJealousy({ station }: { station: TStation }) {
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
       const { Exhibits } = Data;
-      const { misfortune } = eventConfigs;
+      const { misfortune } = eventsConfigs.get(id);
 
       const [next] = getNext(options);
 

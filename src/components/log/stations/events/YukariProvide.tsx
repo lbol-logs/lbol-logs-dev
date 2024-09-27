@@ -1,12 +1,11 @@
-import { LogContext } from 'contexts/logContext';
-import { useContext } from 'react';
+import { configsData } from 'configs/globals';
 import { getNext } from 'utils/functions/helpers';
 import { SpecialExhibit, TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useTranslation } from 'react-i18next';
 
 function YukariProvide({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { dialoguesConfigs } = configsData;
   const { t } = useTranslation();
 
   const { Choices } = station.Data;
@@ -15,7 +14,7 @@ function YukariProvide({ station }: { station: TStation }) {
   const title = t(`${id}.Title`, { ns: 'events' });
   const exhibits = [[SpecialExhibit.WaijieYanshuang.toString(), SpecialExhibit.JingjieGanzhiyi.toString()]];
 
-  const configs = configsData.dialogues[id];
+  const configs = dialoguesConfigs.get(id);
   const { current, next: _next } = configs;
   const [next] = getNext(_next);
   const chosen = Choices[0] === 2 ? 1 : Choices[0];

@@ -1,16 +1,15 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TComponents, TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import { useTranslation } from 'react-i18next';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
 
 function JunkoColorless({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { dialoguesConfigs } = configsData;
   const { t } = useTranslation();
 
   const { Data, Id } = station;
@@ -18,7 +17,7 @@ function JunkoColorless({ station }: { station: TStation }) {
   const { Choices, BaseMana } = Data;
 
   const id = Id as string;
-  const configs = configsData.dialogues[id];
+  const configs = dialoguesConfigs.get(id);
 
   const { current, next: options } = configs;
 

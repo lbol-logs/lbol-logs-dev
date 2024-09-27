@@ -1,24 +1,22 @@
 import { TCards, TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
 import { convertCards, getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 
 function TewiThreat({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
   const { Choices } = Data;
 
   const id = Id as string;
-  const configs = configsData.dialogues[id];
-  const eventConfigs = configsData.events[id];
+  const configs = dialoguesConfigs.get(id);
 
-  const { moneys } = eventConfigs;
+  const { moneys } = eventsConfigs.get(id);
 
   let first = null;
   let second = null;
@@ -48,7 +46,7 @@ function TewiThreat({ station }: { station: TStation }) {
     const chosen = Choices[1];
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
-      const { card, misfortune } = eventConfigs;
+      const { card, misfortune } = eventsConfigs.get(id);
 
       const [next] = getNext(options);
 

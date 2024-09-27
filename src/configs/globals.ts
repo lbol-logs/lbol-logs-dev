@@ -1,4 +1,3 @@
-import Configs from 'utils/classes/Configs';
 import { AsideType, TConfigsData, TObj, TObjString } from 'utils/types/common';
 import { TRunData } from 'utils/types/runData';
 
@@ -74,8 +73,7 @@ const defaultAsideHoldings = AsideType.right;
 
 const descriptionMaxLength = 300;
 
-// TODO
-const configsData: TObj<Configs> = {};
+const configsData: TConfigsData = {};
 const commonConfigs: Array<string> = [
   'characters',
   'requests',

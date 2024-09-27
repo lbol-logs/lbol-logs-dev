@@ -15,8 +15,8 @@ import { getResultData, isMisfortune } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 
 function Summary() {
-  const { exhibitsConfigs } = configsData;
-  const { runData, isRunDataLoaded, configsData: { cards: cardConfigs } } = useContext(LogContext);
+  const { exhibitsConfigs, cardsConfigs } = configsData;
+  const { runData, isRunDataLoaded } = useContext(LogContext);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -96,7 +96,7 @@ function Summary() {
           <div className="p-summary__rarities">
             {cardRarities.map(rarity => {
               const count = Cards.filter(({ Id }) => {
-                const { Rarity, Type } = cardConfigs[Id];
+                const { Rarity, Type } = cardsConfigs.get(Id);
                 const type = isMisfortune(Type) ? Type : Rarity;
                 return type === rarity;
               }).length;

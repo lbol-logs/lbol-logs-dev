@@ -5,11 +5,12 @@ import EnemyCards from '../parts/enemyCards';
 import RoundsWidget from '../parts/roundsWidget';
 import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
-import { enemiesShowDetails } from 'configs/globals';
+import { configsData, enemiesShowDetails } from 'configs/globals';
 import BattleDetails from '../battleDetails';
 
 function BattleStation({ station }: { station: TStation }) {
-  const { runData: { Stations }, configsData } = useContext(LogContext);
+  const { runData: { Stations } } = useContext(LogContext);
+  const { enemyGroupsConfigs } = configsData;
   const { Data, Id } = station;
 
   const { Rewards } = station;
@@ -39,7 +40,7 @@ function BattleStation({ station }: { station: TStation }) {
     }
   }
 
-  const enemies = configsData.enemyGroups[id];
+  const enemies = enemyGroupsConfigs.get(id);
 
   const { Rounds } = Data;
 

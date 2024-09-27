@@ -5,6 +5,7 @@ import { TDispatch, TObj } from 'utils/types/common';
 import { NavigateFunction } from 'react-router-dom';
 import { flushSync } from 'react-dom';
 import Configs from 'utils/classes/Configs';
+import { getConfigsKey } from 'utils/functions/helpers';
 
 function useInit({ version, setVersion, navigate, isInitialized, setIsInitialized, ver }: { version: string, setVersion: TDispatch<string>, navigate: NavigateFunction, isInitialized: TObj<boolean>, setIsInitialized: TDispatch<TObj<boolean>>, ver?: string })  {
   const [_ver, isValidVersion, isValidInit] = useMemo(() => {
@@ -27,7 +28,7 @@ function useInit({ version, setVersion, navigate, isInitialized, setIsInitialize
           for (const name of commonConfigs) {
             const response = await fetch(getConfigsUrl(_ver, name));
             const json = await response.json();
-            configsData[`${name}Configs`] = new Configs(json);
+            configsData[getConfigsKey(name)] = new Configs(json);
           }
           flushSync(() => {
             setVersion(_ver);

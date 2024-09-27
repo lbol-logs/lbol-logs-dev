@@ -1,24 +1,22 @@
 import { TCards, TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
 import { convertCards, getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 
 function WatatsukiPurify({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
   const { Choices, LoseMax } = Data;
 
   const id = Id as string;
-  const eventConfigs = configsData.events[id];
-  const configs = configsData.dialogues[id];
+  const configs = dialoguesConfigs.get(id);
 
-  const { maxhp, cards: _cards, misfortune } = eventConfigs;
+  const { maxhp, cards: _cards, misfortune } = eventsConfigs.get(id);
   const { current, next: options } = configs;
 
   const [next] = getNext(options);

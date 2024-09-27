@@ -1,7 +1,7 @@
 import { defaultRunData } from 'configs/globals';
 import holdingsReducer from 'hooks/holdingsReducer';
 import { createContext, ReactNode, useReducer, useState } from 'react';
-import { TConfigsData, TDispatch } from 'utils/types/common';
+import { TDispatch } from 'utils/types/common';
 import { TEntityModel, TRounds } from 'utils/types/others';
 import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
 
@@ -14,7 +14,6 @@ const defaultIsStationsLoaded = false;
 const defaultHoldings = [] as THoldings;
 const defaultShowMap = true;
 const defaultIgnoredPaths = [] as Array<THoldingChange>;
-const defaultConfigsData = {};
 const defaultEntityModal = {};
 
 type TLogContext = {
@@ -38,8 +37,6 @@ type TLogContext = {
   setShowMap: TDispatch<boolean>,
   ignoredPaths: Array<THoldingChange>,
   setIgnoredPaths: TDispatch<Array<THoldingChange>>,
-  configsData: TConfigsData;
-  setConfigsData: TDispatch<TConfigsData>
   entityModal: TEntityModel,
   setEntityModal: TDispatch<TEntityModel>
 };
@@ -65,8 +62,6 @@ export const LogContext = createContext<TLogContext>({
   setShowMap: () => {},
   ignoredPaths: defaultIgnoredPaths,
   setIgnoredPaths: () => {},
-  configsData: defaultConfigsData,
-  setConfigsData: () => {},
   entityModal: defaultEntityModal,
   setEntityModal: () => {}
 });
@@ -82,7 +77,6 @@ function LogProvider({ children }: { children: ReactNode }) {
   const [holdings, dispatchHoldings] = useReducer(holdingsReducer, defaultHoldings);
   const [showMap, setShowMap] = useState(defaultShowMap);
   const [ignoredPaths, setIgnoredPaths] = useState(defaultIgnoredPaths);
-  const [configsData, setConfigsData] = useState(defaultConfigsData);
   const [entityModal, setEntityModal] = useState(defaultEntityModal);
 
   const value = {
@@ -106,8 +100,6 @@ function LogProvider({ children }: { children: ReactNode }) {
     setShowMap,
     ignoredPaths,
     setIgnoredPaths,
-    configsData,
-    setConfigsData,
     entityModal,
     setEntityModal
   };

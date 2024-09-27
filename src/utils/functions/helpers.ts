@@ -178,6 +178,10 @@ function getArt(card: TCard, config: TObjAny) {
   return art;
 }
 
+function getConfigsKey(name: string) {
+  return `${name}Configs`;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -204,5 +208,6 @@ export {
   isMisfortune,
   isUnremovable,
   createArray,
-  getArt
+  getArt,
+  getConfigsKey
 };

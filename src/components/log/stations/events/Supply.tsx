@@ -1,14 +1,13 @@
 import { TDialogueConfigs, TExhibit, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TObj, TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
 
 function Supply({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { dialoguesConfigs } = configsData;
   const { t } = useTranslation();
 
   const { Type, Data } = station;
@@ -16,7 +15,7 @@ function Supply({ station }: { station: TStation }) {
   const { Choices, Exhibits, Both } = Data;
 
   const id = Type;
-  const configs = configsData.dialogues[id];
+  const configs = dialoguesConfigs.get(id);
 
   const { current, next: options } = configs;
 

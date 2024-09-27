@@ -2,20 +2,20 @@ import { getConfigs, getLog, getLog2 } from 'utils/functions/fetchData';
 import { TRunData } from 'utils/types/runData';
 import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import { validateRunData } from 'utils/functions/helpers';
+import { getConfigsKey, validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
 import { configsData, defaultRunData, logConfigs } from 'configs/globals';
-import { TConfigsData, TObjAny } from 'utils/types/common';
+import { TObjAny } from 'utils/types/common';
+import Configs from 'utils/classes/Configs';
 
 function useRunData(args: TObjAny)  {
   const {
     version, id,
-    eventsConfigs,
-    setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData
+    setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths
   } = args;
 
-  const { charactersConfigs, exhibitsConfigs, requestsConfigs } = configsData;
+  const { charactersConfigs, exhibitsConfigs, requestsConfigs, eventsConfigs } = configsData;
 
   function getRunData(): [TRunData, boolean] {
     let runData = defaultRunData;
@@ -35,10 +35,9 @@ function useRunData(args: TObjAny)  {
   }
 
   const [runData, isValidRunData] = getRunData();
-  const currentConfigs: TConfigsData = {};
-  for (const config of logConfigs) {
-    const configs = use(getConfigs(version, config));
-    currentConfigs[config] = configs;
+  for (const name of logConfigs) {
+    const configs = use(getConfigs(version, name));
+    configsData[getConfigsKey(name)] = new Configs(configs);
   }
 
   useEffect(() => {
@@ -51,7 +50,6 @@ function useRunData(args: TObjAny)  {
         const ignoredPaths = setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsConfigs, requestsConfigs, eventsConfigs });
         setIgnoredPaths(ignoredPaths);
       }
-      setConfigsData(currentConfigs);
       setIsRunDataLoaded(true);
     }
   }, [isValidRunData, runData, exhibitsConfigs, charactersConfigs, requestsConfigs, eventsConfigs]);

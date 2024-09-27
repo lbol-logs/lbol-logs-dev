@@ -1,5 +1,5 @@
 import LazyLoadImage2, { TLazyLoadImageArgs } from 'components/common/utils/lazyLoadImage2';
-import { cardSize } from 'configs/globals';
+import { cardSize, configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { getCardFrameImage, getCardArtImage, getTestImage, getCardWatermarkImage, getCardTypeImage } from 'utils/functions/getImage';
 import { TCard } from 'utils/types/runData';
@@ -12,11 +12,11 @@ import { TObj } from 'utils/types/common';
 import { getArt } from 'utils/functions/helpers';
 
 function CardModal({ card }: { card: TCard }) {
-  const { configsData } = useContext(LogContext);
+  const { cardsConfigs } = configsData;
   const { t } = useTranslation();
 
   const { Id, IsUpgraded } = card;
-  const config = configsData.cards[Id];
+  const config = cardsConfigs.get(Id);
   const { Type, Rarity, Colors, Owner } = config;
 
   let color;

@@ -1,8 +1,7 @@
 import { TCards, TDialogueConfigs, TExhibits, TRewards, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { convertCards, getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import EnemyCards from '../parts/enemyCards';
@@ -10,22 +9,21 @@ import RoundsWidget from '../parts/roundsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
 
 function YachieOppression({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs, enemyGroupsConfigs } = configsData;
 
   const { Data, Id } = station;
 
   const { Choices, Exhibit, Id: enemyGroupId, Rounds } = Data;
 
   const id = Id as string;
-  const configs = configsData.dialogues[id];
-  const eventConfigs = configsData.events[id];
+  const configs = dialoguesConfigs.get(id);
 
   let first = null;
   let second = null;
 
   {
     const { current, next: options } = configs[0];
-    const { misfortune } = eventConfigs;
+    const { misfortune } = eventsConfigs.get(id);
 
     const [next] = getNext(options);
     const chosen = Choices[0];
@@ -66,7 +64,7 @@ function YachieOppression({ station }: { station: TStation }) {
         exhibits
       };
 
-      const enemies = configsData.enemyGroups[enemyGroupId];
+      const enemies = enemyGroupsConfigs.get(enemyGroupId);
       const money = (
         <span className="c-station__money">
           <MoneyImage />

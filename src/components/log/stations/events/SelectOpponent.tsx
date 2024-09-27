@@ -1,22 +1,24 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TComponents, TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import CharacterImage from 'components/common/parts/characterImage';
+import { useContext } from 'react';
+import { LogContext } from 'contexts/logContext';
 
 function SelectOpponent({ station }: { station: TStation }) {
-  const { runData: { Acts }, configsData } = useContext(LogContext);
+  const { runData: { Acts } } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs } = configsData;
   const { t } = useTranslation();
 
   const { Data } = station;
   const { Choices, Opponents } = Data;
 
   const id = 'SelectOpponent';
-  const eventConfigs = configsData.events[id];
-  const configs = configsData.dialogues[id];
+  const { power } = eventsConfigs.get(id);
+  const configs = dialoguesConfigs.get(id);
 
   const { current, next: options } = configs;
 
@@ -31,7 +33,7 @@ function SelectOpponent({ station }: { station: TStation }) {
     props[i] = { values };
   });
   {
-    const values = { 0: eventConfigs.power };
+    const values = { 0: power };
     props[3] = { values };
     if (chosen === 3) {
       const boss = Acts[0].Boss as string;
