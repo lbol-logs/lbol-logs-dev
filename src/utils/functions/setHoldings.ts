@@ -166,7 +166,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
       }
 
       {
-        const BaseMana = eventsConfigs[Id as string].mana;
+        const BaseMana = eventsConfigs.get(Id as string).mana;
         const action: THoldingAction = {
           type: 'BaseMana',
           change: {

@@ -4,6 +4,7 @@ class Configs {
   private _json: TObjAny;
 
   constructor (json: TObjAny) {
+    // console.log('configs')
     this._json = json;
   }
 
@@ -17,3 +18,14 @@ class Configs {
 }
 
 export default Configs;
+
+class CardsConfigs extends Configs {
+  constructor (json: TObjAny) {
+    // console.log('cards');
+    super(json);
+  }
+}
+
+export {
+  CardsConfigs
+};

@@ -26,7 +26,7 @@ function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
 
   return (
     <span className={`c-entity c-entity--${type} ${isNotAdded === true ? 'c-entity--not-added': ''} c-card ${IsUpgraded ? 'c-card--upgraded' : ''}`} onClick={onClick}>
-      <CardName className="c-entity__text c-card__text u-text-shadow" card={card} />
+      <CardName className="c-entity__text c-card__text" card={card} />
       <LazyLoadImage2 className="c-card__img" callback={getCardArtImage} name={art} width={width} height={height} alt="" />
     </span>
   );

@@ -1735,18 +1735,27 @@ html:lang(en) .p-result__type {
   left: 5px;
 }
 .p-card__name {
+  --size: 36px;
   width: 80%;
-  height: 36px;
+  height: var(--size);
   top: 374px;
   text-align: center;
-  font-size: 24px;
+  font-size: var(--size);
+  line-height: var(--size);
 }
 .p-card-name__name {
   max-width: 100%;
-  top: 50%;
-  position: relative;
-  transform: translateY(-50%);
   display: inline-block;
+  line-height: var(--size);
+  vertical-align: middle;
+  --shadow-thickness: 2px;
+  ---shadow-thickness: calc(var(--shadow-thickness) * -1);
+  --text-shadow:
+    var(--shadow-thickness) var(--shadow-thickness) 2px var(--shadow-color),
+    var(---shadow-thickness) var(--shadow-thickness) 2px var(--shadow-color),
+    var(---shadow-thickness) var(---shadow-thickness) 2px var(--shadow-color),
+    var(--shadow-thickness) var(---shadow-thickness) 2px var(--shadow-color);
+  text-shadow: var(--text-shadow);
 }
 .c-card__center {
   left: 50%;
@@ -1775,6 +1784,15 @@ html:lang(en) .p-result__type {
   --map-height: 144px;
   --card-width: 256px;
   --unity-offset: 14px;
+
+  --shadow-color: var(--f-black);
+  --shadow-thickness: 1px;
+  ---shadow-thickness: calc(var(--shadow-thickness) * -1);
+  --text-shadow:
+    var(--shadow-thickness) var(--shadow-thickness) 2px var(--shadow-color),
+    var(---shadow-thickness) var(--shadow-thickness) 2px var(--shadow-color),
+    var(---shadow-thickness) var(---shadow-thickness) 2px var(--shadow-color),
+    var(--shadow-thickness) var(---shadow-thickness) 2px var(--shadow-color);
 
   --z--1: -1;
   --z-0: 0;
@@ -1832,8 +1850,7 @@ html:lang(en) .p-result__type {
 }
 
 .u-text-shadow {
-  --shadow-color: var(--f-black);
-  text-shadow: 1px 1px 2px var(--shadow-color), -1px 1px 2px var(--shadow-color), -1px -1px 2px var(--shadow-color), 1px -1px 2px var(--shadow-color);
+  text-shadow: var(--text-shadow);
 }
 
 .u-flex-col {

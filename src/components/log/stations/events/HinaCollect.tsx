@@ -9,7 +9,7 @@ import { LogContext } from 'contexts/logContext';
 
 function HinaCollect({ station }: { station: TStation }) {
   const { holdings } = useContext(LogContext);
-  const { dialoguesConfigs, cardConfigs } = configsData;
+  const { dialoguesConfigs, cardsConfigs } = configsData;
 
   const { Data, Id, Node: { Act, Level } } = station;
 
@@ -30,7 +30,7 @@ function HinaCollect({ station }: { station: TStation }) {
     const lastHolding = holdings[currentHoldingIndex - 1];
     const { Cards } = lastHolding;
     const _cards = Cards.filter(({ Id }) => {
-      const { Type, false: { Keywords } } = cardConfigs.get(Id);
+      const { Type, false: { Keywords } } = cardsConfigs.get(Id);
       return isMisfortune(Type) && !isUnremovable(Keywords);
     });
     cards[0] = _cards;
