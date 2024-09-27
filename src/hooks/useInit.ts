@@ -1,4 +1,4 @@
-import { commonConfigs, configsData, latestVersion, versions } from 'configs/globals';
+import { commonConfigs, CONFIGS_DATA, configsData, latestVersion, versions } from 'configs/globals';
 import { useEffect, useMemo } from 'react';
 import { getConfigsUrl } from 'utils/functions/fetchData';
 import { TDispatch, TObj } from 'utils/types/common';
@@ -25,12 +25,13 @@ function useInit({ version, setVersion, navigate, isInitialized, setIsInitialize
     else {
       if (isValidInit) {
         (async () => {
+          CONFIGS_DATA.version = _ver;
           for (const name of commonConfigs) {
             const key = getConfigsKey(name);
             if (key in configsData) continue;
             const response = await fetch(getConfigsUrl(_ver, name));
             const json = await response.json();
-            configsData[key] = new Configs(json);
+            CONFIGS_DATA.set(key, new Configs(json));
           }
           flushSync(() => {
             setVersion(_ver);

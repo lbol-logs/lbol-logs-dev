@@ -1,5 +1,6 @@
-import { TObjAny } from 'utils/types/common';
+import { TConfigsData, TObj, TObjAny } from 'utils/types/common';
 import CMana from './CMana';
+import { configsData } from 'configs/globals';
 
 class Configs {
   protected json: TObjAny;
@@ -46,6 +47,32 @@ class CardsConfigs extends Configs {
   }
 }
 
+class ConfigsData {
+  private ver: string = '';
+  private configs: TObj<TConfigsData> = {};
+
+  get(version: string) {
+    this._init(version);
+    return this.configs[version];
+  }
+
+  set(key: string, configs: Configs) {
+    this.configs[this.ver][key] = configs;
+    configsData[key] = configs;
+  }
+
+  set version(version: string) {
+    this._init(version);
+    for (const [key, value] of Object.entries(this.configs[version])) configsData[key] = value;
+  }
+
+  private _init(version: string) {
+    this.ver = version;
+    if (!(version in this.configs)) this.configs[version] = {};
+  }
+}
+
 export {
-  CardsConfigs
+  CardsConfigs,
+  ConfigsData
 };

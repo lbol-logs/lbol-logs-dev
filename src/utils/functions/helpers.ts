@@ -1,6 +1,6 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
-import { resultTypes } from 'configs/globals';
-import { AsideType, TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
+import { CONFIGS_DATA, configsData, resultTypes } from 'configs/globals';
+import { AsideType, TDispatch, TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
 import { TRounds } from 'utils/types/others';
 import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';

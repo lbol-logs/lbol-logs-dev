@@ -17,7 +17,7 @@ function CardModal({ card }: { card: TCard }) {
 
   const { Id, IsUpgraded } = card;
   const config = cardsConfigs.get(Id);
-  console.log(config);
+
   const { Type, Rarity, Colors, Owner } = config;
 
   let color;

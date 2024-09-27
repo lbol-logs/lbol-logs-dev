@@ -12,7 +12,7 @@ function SpellcardsWidget({ onChange, characters }: { onChange: ChangeEventHandl
     <>
       {characters.map(character => {
         const isCharacterChecked = ch ? (!ch.length || ch.includes(character)) : true;
-        const playerTypes = charactersConfigs.ids.filter(key => key !== 'BaseMana');
+        const playerTypes = Object.keys(charactersConfigs.get(character)).filter(key => key !== 'BaseMana');
 
         return (
           <div className={`p-filter__character-spellcards ${isCharacterChecked ? 'p-filter__character-spellcards--visible' : ''}`} key={character}>
