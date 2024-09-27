@@ -1,25 +1,23 @@
 import { TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import { TObjAny } from 'utils/types/common';
 
 function MikoDonation({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
   const { Choices } = Data;
 
   const id = Id as string;
-  const configs = configsData.dialogues[id];
-  const eventConfigs = configsData.events[id];
+  const configs = dialoguesConfigs.get(id);
 
   const { current, next: options } = configs;
-  const { money, exhibit } = eventConfigs;
+  const { money, exhibit } = eventsConfigs.get(id);
 
   const [next] = getNext(options);
   const chosen = Choices[0];

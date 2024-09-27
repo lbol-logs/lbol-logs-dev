@@ -11,15 +11,13 @@ import useHoldings from 'hooks/useHoldings';
 import { THolding } from 'utils/types/runData';
 
 function RunData({ ver, id }: { ver: string, id: string }) {
-  const { holdingsWidth, setHoldingsWidth, asideHoldings, setAsideHoldings, configsData } = useContext(CommonContext);
-  const { act, level, holdings, configsData: { events: eventsConfigs } } = useContext(LogContext);
-  const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData } = useContext(LogContext);
+  const { holdingsWidth, setHoldingsWidth, asideHoldings, setAsideHoldings } = useContext(CommonContext);
+  const { act, level, holdings } = useContext(LogContext);
+  const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths } = useContext(LogContext);
 
   const args = {
     version: ver, id,
-    configsData,
-    eventsConfigs,
-    setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths, setConfigsData
+    setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths
   };
   const [isValidRunData, redirect] = useRunData(args);
 

@@ -1,21 +1,19 @@
 import { SpecialExhibit, TCards, TDialogueConfigs, TradeStation, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
 import { convertCards, getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 
 function SumirekoGathering({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs } = configsData;
 
   const { Data } = station;
 
   const { Choices, Card, Cards, HasMoney } = Data;
 
   const id = TradeStation.SumirekoGathering.toString();
-  const configs = configsData.dialogues[id];
-  const eventConfigs = configsData.events[id];
+  const configs = dialoguesConfigs.get(id);
 
   let card = null;
   let exhibit = null;
@@ -41,7 +39,7 @@ function SumirekoGathering({ station }: { station: TStation }) {
 
     if (HasMoney) {
       cards[1] = _cards;
-      const { money } = eventConfigs;
+      const { money } = eventsConfigs.get(id);
       const values = { 0: money };
       props[1] = { values };
       choices.push(1);

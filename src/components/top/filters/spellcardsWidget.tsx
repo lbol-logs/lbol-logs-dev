@@ -1,11 +1,10 @@
 import { ChangeEventHandler, useContext } from 'react';
 import { RunListContext } from 'contexts/runListContext';
-import { CommonContext } from 'contexts/commonContext';
 import SpellcardWidget from './spellcardWidget';
+import { configsData } from 'configs/globals';
 
 function SpellcardsWidget({ onChange, characters }: { onChange: ChangeEventHandler, characters: Array<string> }) {
-  const { configsData } = useContext(CommonContext);
-  const characterConfigs = configsData.characters;
+  const { charactersConfigs } = configsData;
   const { filter } = useContext(RunListContext);
   const { ch, sc } = filter;
 
@@ -13,7 +12,7 @@ function SpellcardsWidget({ onChange, characters }: { onChange: ChangeEventHandl
     <>
       {characters.map(character => {
         const isCharacterChecked = ch ? (!ch.length || ch.includes(character)) : true;
-        const playerTypes = Object.keys(characterConfigs[character]).filter(key => key !== 'BaseMana');
+        const playerTypes = Object.keys(charactersConfigs.get(character)).filter(key => key !== 'BaseMana');
 
         return (
           <div className={`p-filter__character-spellcards ${isCharacterChecked ? 'p-filter__character-spellcards--visible' : ''}`} key={character}>

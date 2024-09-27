@@ -1,31 +1,29 @@
 import { TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TComponents, TObjAny } from 'utils/types/common';
 import { convertCards, getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import EnemyCards from '../parts/enemyCards';
 import RoundsWidget from '../parts/roundsWidget';
 
 function MiyoiBartender({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { eventsConfigs, dialoguesConfigs, enemyGroupsConfigs } = configsData;
 
   const { Data, Id } = station;
 
   const { Choices, Ids, Id: enemyGroupId, Exhibit, Rounds } = Data;
 
   const id = Id as string;
-  const configs = configsData.dialogues[id];
-  const eventConfigs = configsData.events[id];
+  const configs = dialoguesConfigs.get(id);
 
   let first = null;
   let second = null;
 
   {
     const { current, next: options } = configs[0];
-    const { exhibit, money, misfortunes } = eventConfigs;
+    const { exhibit, money, misfortunes } = eventsConfigs.get(id);
 
     const [next] = getNext(options);
     const chosen = Choices[0];
@@ -45,7 +43,7 @@ function MiyoiBartender({ station }: { station: TStation }) {
     afters[2] = (
       <div className="p-enemies-container">
         {Ids.map((id: string, i: number) => {
-          const enemies = configsData.enemyGroups[id];
+          const enemies = enemyGroupsConfigs.get(id);
 
           return (
             <EnemyCards enemies={enemies} key={i} />
@@ -85,7 +83,7 @@ function MiyoiBartender({ station }: { station: TStation }) {
         exhibits
       };
 
-      const enemies = configsData.enemyGroups[enemyGroupId];
+      const enemies = enemyGroupsConfigs.get(enemyGroupId);
 
       second = (
         <>

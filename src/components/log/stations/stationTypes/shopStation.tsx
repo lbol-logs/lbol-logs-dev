@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { getStationImage } from 'utils/functions/getImage';
+import { getNazrinImage, getStationImage } from 'utils/functions/getImage';
 import { iconSize } from 'configs/globals';
 
 function ShopStation({ station }: { station: TStation }) {
@@ -23,7 +23,8 @@ function ShopStation({ station }: { station: TStation }) {
           {t('Shop.CardService', { ns: 'dialogues' })}
         </div>
         <div className="p-dialogue__options">
-          <div className={`p-dialogue__option ${Choice === 0 ? 'p-dialogue__option--chosen' : ''}`}>
+          <div className={`p-shop-card-service p-dialogue__option ${Choice === 0 ? 'p-dialogue__option--chosen' : ''}`}>
+            <LazyLoadImage2 className="p-shop-card-service__icon" callback={getNazrinImage} name="3" alt="" />
             {t('Shop.RemoveService', { ns: 'dialogues' })}
             <Trans
               i18nKey="Shop.ShopRemovePrice"
@@ -32,7 +33,8 @@ function ShopStation({ station }: { station: TStation }) {
               components={{ Money: <MoneyImage /> }}
             />
           </div>
-          <div className={`p-dialogue__option ${Choice === 1 ? 'p-dialogue__option--chosen' : ''}`}>
+          <div className={`p-shop-card-service p-dialogue__option ${Choice === 1 ? 'p-dialogue__option--chosen' : ''}`}>
+            <LazyLoadImage2 className="p-shop-card-service__icon" callback={getNazrinImage} name="4" alt="" />
             {t('Shop.UpgradeService', { ns: 'dialogues' })}
             <Trans
               i18nKey="Shop.ShopUpgradePrice"

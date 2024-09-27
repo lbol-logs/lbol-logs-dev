@@ -7,13 +7,14 @@ import { LogContext } from 'contexts/logContext';
 import CharacterShortName from '../stations/parts/characterShortName';
 import CardManasWidget from './cardManasWidget';
 import CardManaWidget from './cardManaWidget';
-import { CommonContext } from 'contexts/commonContext';
 import { TObjElement, TObjAny } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
+import { configsData } from 'configs/globals';
+import CMana from 'utils/classes/CMana';
 
 function DescriptionWidget({ ns, ...o }: { ns: string }) {
-  const { configsData: { exhibits } } = useContext(CommonContext);
-  const { configsData: { cards, statusEffects }, act, level, holdings } = useContext(LogContext);
+  const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
+  const { act, level, holdings } = useContext(LogContext);
   const { t } = useTranslation();
 
   const components = {
@@ -35,6 +36,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
   let Version;
   const keys: Array<string> = [];
+  let key;
   const c = new Components(components);
 
   switch (ns) {
@@ -42,7 +44,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       const {
         Id, IsUpgraded
       } = o as TCard;
-      const config = cards[Id];
+      const config = cardsConfigs.get(Id);
 
       ({ Version } = config);
 
@@ -53,36 +55,38 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
       const array = [Id, false, 'Description'];
       keys.push(array.join('.'));
+      key = keys[0];
 
       break;
     }
     case 'exhibits': {
       const { Id, Counter } = o as TExhibitObj;
-      const config = exhibits[Id];
+      const config = exhibitsConfigs.get(Id);
 
       ({ Version } = config);
       const array = [Id, 'Description'];
-      keys.push(array.join('.'));
+      key = array.join('.');
 
       const { Value1, Value2, Value3, Mana, BaseMana, InitialCounter } = config;
 
       const args = { Value1, Value2, Value3, InitialCounter };
       c.appendDescs(args);
-      c.insert('Mana', <CardManasWidget cardMana={Mana} />);
-      c.insert('BaseMana', <BaseManasWidget baseMana={BaseMana} />);
-      c.insert('Counter', <Desc value={Counter} />);
+      Object.assign(values, args);
+      if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={new CMana(Mana).manas} />);
+      if (BaseMana !== undefined) c.insert('BaseMana', <BaseManasWidget baseMana={BaseMana} />);
+      if (Counter !== undefined) c.insert('Counter', <Desc value={Counter} />);
 
       break;
     }
     case 'statusEffects': {
       const { Id, Level, Duration, Count, Limit, owner } = o as TStatusEffect;
-      const config = statusEffects[Id] || {};
+      const config = statusEffectsConfigs.get(Id) || {};
 
       ({ Version } = config);
       const array = [Id];
       if (Id === 'TianziRockSe' && Limit === 1) array.push('ExtraDescription');
       else array.push('Description');
-      keys.push(array.join('.'));
+      key = array.join('.');
 
       const isPlayer = [undefined, 'Player'].includes(owner);
 
@@ -109,7 +113,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       }
 
       const mana = Mana === undefined ? (Level === undefined ? (Limit || 0) : Level) : Mana;
-      c.insert('Mana', <CardManasWidget cardMana={mana} />);
+      if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={new CMana(mana).manas} />);
 
       {
         const StackDamage = StackMultiply === undefined ? undefined : (BaseDamage * StackMultiply);
@@ -137,9 +141,17 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
   }
 
   return (
-    <Trans context={Version} components={components} values={values}>
-      {t(keys, { ns })}
-    </Trans>
+    <Trans
+      i18nKey={key}
+      ns={ns}
+      context={Version}
+      components={components}
+      values={values}
+    />
+
+    // <Trans context={Version} components={components} values={values}>
+    //   {t(keys, { ns })}
+    // </Trans>
   );
 }
 

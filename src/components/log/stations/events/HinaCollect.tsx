@@ -1,20 +1,22 @@
 import { TCards, TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { convertCards, getNext, isMisfortune, isUnremovable } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
+import { useContext } from 'react';
+import { LogContext } from 'contexts/logContext';
 
 function HinaCollect({ station }: { station: TStation }) {
-  const { configsData, holdings } = useContext(LogContext);
+  const { holdings } = useContext(LogContext);
+  const { dialoguesConfigs, cardsConfigs } = configsData;
 
   const { Data, Id, Node: { Act, Level } } = station;
 
   const { Choices, Card } = Data;
 
   const id = Id as string;
-  const configs = configsData.dialogues[id];
+  const configs = dialoguesConfigs.get(id);
 
   const { current, next: options } = configs;
 
@@ -24,12 +26,11 @@ function HinaCollect({ station }: { station: TStation }) {
   const cards: Array<TCards> = [];
 
   {
-    const cardConfigs = configsData.cards;
     const currentHoldingIndex = holdings.findIndex(({ Act: a, Level: l }) => Act === a && Level === l);
     const lastHolding = holdings[currentHoldingIndex - 1];
     const { Cards } = lastHolding;
     const _cards = Cards.filter(({ Id }) => {
-      const { Type, false: { Keywords } } = cardConfigs[Id];
+      const { Type, false: { Keywords } } = cardsConfigs.get(Id);
       return isMisfortune(Type) && !isUnremovable(Keywords);
     });
     cards[0] = _cards;

@@ -1,4 +1,5 @@
-import { AsideType, TObj, TObjString } from 'utils/types/common';
+import { ConfigsData } from 'utils/classes/Configs';
+import { AsideType, TConfigsData, TObj, TObjString } from 'utils/types/common';
 import { TRunData } from 'utils/types/runData';
 
 const languages: TObj<TObjString> = {
@@ -73,12 +74,13 @@ const defaultAsideHoldings = AsideType.right;
 
 const descriptionMaxLength = 300;
 
+const CONFIGS_DATA: ConfigsData = new ConfigsData();
+const configsData: TConfigsData = {};
 const commonConfigs: Array<string> = [
   'characters',
   'requests',
   'exhibits'
 ];
-
 const logConfigs: Array<string> = [
   'cards',
   'enemyGroups',
@@ -123,6 +125,8 @@ export {
   asideHoldingsthreshold,
   defaultAsideHoldings,
   descriptionMaxLength,
+  CONFIGS_DATA,
+  configsData,
   commonConfigs,
   logConfigs,
   enemiesShowDetails,

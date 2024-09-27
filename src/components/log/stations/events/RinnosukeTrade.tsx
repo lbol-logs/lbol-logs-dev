@@ -1,14 +1,13 @@
 import { SpecialExhibit, TDialogueConfigs, TExhibits, TradeStation, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { useContext } from 'react';
 import { TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
-import { LogContext } from 'contexts/logContext';
+import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
 
 function RinnosukeTrade({ station }: { station: TStation }) {
-  const { configsData } = useContext(LogContext);
+  const { dialoguesConfigs } = configsData;
   useTranslation();
 
   const { Data } = station;
@@ -16,7 +15,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
   const { Choices, Prices } = Data;
 
   const id = TradeStation.RinnosukeTrade.toString();
-  const configs = configsData.dialogues[id];
+  const configs = dialoguesConfigs.get(id);
 
   let sell = null;
   let exchange = null;
