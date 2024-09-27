@@ -5,7 +5,7 @@ function CardName({ className, card }: { className: string, card: TCard }) {
   const { t } = useTranslation();
 
   const { Id, IsUpgraded, UpgradeCounter } = card;
-  const upgradeCounter = UpgradeCounter || '';
+  const upgradeCounter = IsUpgraded ? (UpgradeCounter || '') : '';
 
   return (
     <span className={className}>
