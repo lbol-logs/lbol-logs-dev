@@ -6,10 +6,11 @@ import { TCard } from 'utils/types/runData';
 import DescriptionWidget from './descriptionWidget';
 import CardName from '../entityCards/cardName';
 import CMana from 'utils/classes/CMana';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { LogContext } from 'contexts/logContext';
 import { TObj } from 'utils/types/common';
 import { getArt } from 'utils/functions/helpers';
+import UpgradeSwitcher from './upgradeSwitcher';
 
 function CardModal({ card }: { card: TCard }) {
   const { cardsConfigs } = configsData;
@@ -19,6 +20,9 @@ function CardModal({ card }: { card: TCard }) {
   const config = cardsConfigs.get(Id);
 
   const { Type, Rarity, Colors, Owner } = config;
+
+  const [upgraded, setUpgraded] = useState(IsUpgraded);
+
 
   let color;
   if (['Tool', 'Misfortune'].includes(Type)) color = Type;
@@ -66,13 +70,14 @@ function CardModal({ card }: { card: TCard }) {
       <div className="p-card__type">
         <Image2x callback={getCardTypeImage} name={Type} width="72" height="72" />
       </div>
-      <div className={`p-card__name c-card__center ${IsUpgraded ? 'c-card--upgraded' : ''} c-card__resize js-resize`}>
+      <div className={`p-card__name c-card__center ${upgraded ? 'c-card--upgraded' : ''} c-card__resize js-resize`}>
         <CardName className="c-card__text p-card-name__name" card={card} />
       </div>
 
       {/* <div style={{top:0,right:0,display:'none'}}>
         <LazyLoadImage2x callback={getCardFrameImage} name="Dichromatic_Lotus_Butterfly" width="512" height="714" />
       </div> */}
+      <UpgradeSwitcher upgraded={upgraded} setUpgraded={setUpgraded} />
     </div>
   );
 }

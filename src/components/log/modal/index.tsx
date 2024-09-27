@@ -24,12 +24,21 @@ function Modal() {
     entity = <StatusEffectModal statusEffect={statusEffect} />;
   }
 
-  // TODO
-  function onBlur() {
-    setEntityModal({});
-  }
-
   const innerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (innerRef.current && !innerRef.current.contains(e.target as HTMLElement)) {
+        setEntityModal({});
+      }
+    }
+    const event = 'mousedown';
+    document.addEventListener(event, handleClickOutside);
+    return () => {
+      document.removeEventListener(event, handleClickOutside);
+    };
+  }, [innerRef]);
+
   useEffect(() => {
     const inner = innerRef.current;
     if (inner) inner.focus();
@@ -39,7 +48,7 @@ function Modal() {
     return (
       <div className="p-modal">
         <div className="p-modal__outer">
-          <div className={`p-modal__inner p-modal__inner--${type}`} tabIndex={0} onBlur={onBlur} ref={innerRef}>
+          <div className={`p-modal__inner p-modal__inner--${type}`} tabIndex={0} ref={innerRef}>
             {entity}
           </div>
         </div>
