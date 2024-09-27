@@ -1774,6 +1774,7 @@ html:lang(en) .p-result__type {
   padding: 0.2em 1em;
   cursor: pointer;
   background: var(--light-blue);
+  width: calc(var(--size) * 10);
 }
 .c-upgrade-switcher__toggle {
   appearance: none;
@@ -1782,7 +1783,7 @@ html:lang(en) .p-result__type {
   position: relative;
   border: none;
   border-radius: calc(var(--size) / 2);
-  background-color: #BCBDBD;
+  background-color: var(--gray);
   cursor: inherit;
 }
 .c-upgrade-switcher__toggle:after {
@@ -1793,8 +1794,8 @@ html:lang(en) .p-result__type {
   border-radius: 100%;
   left: 1px;
   top: 1px;
-  background: #FFFFFF;
-  border: 1px solid #BCBDBD;
+  background: var(--white);
+  border: 1px solid var(--gray);
 }
 .c-upgrade-switcher__toggle:checked {
   background-color: var(--koishi);
@@ -1806,6 +1807,8 @@ html:lang(en) .p-result__type {
 .c-upgrade-switcher__text {
   cursor: inherit;
   user-select: none;
+  text-align: center;
+  flex-grow: 1;
 }
 
 .c-card__center {

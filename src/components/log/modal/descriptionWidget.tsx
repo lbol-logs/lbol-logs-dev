@@ -36,7 +36,6 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
   let Version;
   const keys: Array<string> = [];
-  let key;
   const c = new Components(components);
 
   switch (ns) {
@@ -55,7 +54,6 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
       const array = [Id, false, 'Description'];
       keys.push(array.join('.'));
-      key = keys[0];
 
       break;
     }
@@ -65,7 +63,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
       ({ Version } = config);
       const array = [Id, 'Description'];
-      key = array.join('.');
+      keys.push(array.join('.'));
 
       const { Value1, Value2, Value3, Mana, BaseMana, InitialCounter } = config;
 
@@ -86,7 +84,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       const array = [Id];
       if (Id === 'TianziRockSe' && Limit === 1) array.push('ExtraDescription');
       else array.push('Description');
-      key = array.join('.');
+      keys.push(array.join('.'));
 
       const isPlayer = [undefined, 'Player'].includes(owner);
 
@@ -141,17 +139,9 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
   }
 
   return (
-    <Trans
-      i18nKey={key}
-      ns={ns}
-      context={Version}
-      components={components}
-      values={values}
-    />
-
-    // <Trans context={Version} components={components} values={values}>
-    //   {t(keys, { ns })}
-    // </Trans>
+    <Trans ns={ns} context={Version} components={components} values={values}>
+      {t(keys)}
+    </Trans>
   );
 }
 
