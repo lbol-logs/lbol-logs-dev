@@ -1372,10 +1372,14 @@ html:lang(en) .p-result__type {
   outline: 1px solid var(--black);
 }
 .p-gap-choice,
-.p-nazrin-result {
+.p-nazrin-result,
+.p-shop-card-service {
   display: flex;
   align-items: flex-start;
   column-gap: 0.5em;
+}
+.p-shop-card-service {
+  align-items: center;
 }
 .p-dialogue__option--invalid,
 .p-nazrin-result--invalid {
