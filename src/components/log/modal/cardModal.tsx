@@ -22,6 +22,7 @@ function CardModal({ card }: { card: TCard }) {
   const { Type, Rarity, Colors, Owner } = config;
 
   const [upgraded, setUpgraded] = useState(IsUpgraded);
+  Object.assign(card, { IsUpgraded: upgraded });
 
   let color;
   if (['Tool', 'Misfortune'].includes(Type)) color = Type;
@@ -29,7 +30,7 @@ function CardModal({ card }: { card: TCard }) {
   else if (Colors.length >= 3) color = 'Rainbow';
   else color = Colors;
   const frame = `${Rarity}/${color}`;
-  const art = getArt(Id, upgraded, config);
+  const art = getArt(card, config);
 
   useEffect(() => {
     const divs: Array<HTMLDivElement> = Array.from(document.querySelectorAll('.js-resize'));
@@ -43,7 +44,7 @@ function CardModal({ card }: { card: TCard }) {
         div.style.fontSize = (size - 1) + 'px';
       }
     }
-  }, []);
+  }, [upgraded]);
 
   return (
     <div className="p-modal__card">
@@ -76,7 +77,7 @@ function CardModal({ card }: { card: TCard }) {
       {/* <div style={{top:0,right:0,display:'none'}}>
         <LazyLoadImage2x callback={getCardFrameImage} name="Dichromatic_Lotus_Butterfly" width="512" height="714" />
       </div> */}
-      <UpgradeSwitcher upgraded={upgraded} setUpgraded={setUpgraded} />
+      {config.IsUpgradable && <UpgradeSwitcher upgraded={upgraded} setUpgraded={setUpgraded} />}
     </div>
   );
 }
