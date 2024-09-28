@@ -96,9 +96,8 @@ function getCardArtImage(name: string) {
   return _getImage('cards/arts', name);
 }
 
-// TODO: remove function
-function getTestImage(name: string) {
-  return `${baseUrl}/test/${name.replace('@2x', '')}.png`;
+function getCardImage(name: string) {
+  return _getImage('cards', name);
 }
 
 export {
@@ -125,5 +124,5 @@ export {
   getCardFrameImage,
   getCardWatermarkImage,
   getCardTypeImage,
-  getTestImage
+  getCardImage
 };

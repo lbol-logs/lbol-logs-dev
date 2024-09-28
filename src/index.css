@@ -1009,7 +1009,7 @@ html:lang(en) .c-entity__text {
   z-index: var(--z-1);
   color: var(--f-white);
 }
-.c-card__text, .c-exhibit__text, .c-card-type__text {
+.c-card__text, .c-exhibit__text, .p-card__text {
   font-family: 'Comic Sans', 'Comic Sans MS', 'Chalkboard', 'ChalkboardSE-Regular', sans-serif;
 }
 .c-card--upgraded .c-card__text {
@@ -1750,7 +1750,7 @@ html:lang(en) .p-result__type {
 }
 .p-card__name {
   --size: 36px;
-  width: 80%;
+  width: 76%;
   top: 374px;
 }
 .p-card__name, .p-card__type-text {
@@ -1786,7 +1786,20 @@ html:lang(en) .p-result__type {
 }
 .p-card__cost .c-card-mana {
   flex-basis: 54px;
-  margin-left: -8px;
+  margin-left: -6px;
+}
+.p-card__unity {
+  top: 346px;
+  left: -26px;
+}
+.c-card-unity__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--f-light-blue);
+  font-size: 50px;
+  font-weight: bold;
 }
 
 .p-card__upgrade-switcher {
