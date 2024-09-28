@@ -26,8 +26,8 @@ function CardFrame({ cardConfigs }: { cardConfigs: CardConfigs }) {
 
   return (
     <div className="p-card__frame">
-      {sub}
       {main}
+      {sub}
     </div>
   );
 }

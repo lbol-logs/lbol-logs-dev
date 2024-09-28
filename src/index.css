@@ -1010,7 +1010,7 @@ html:lang(en) .c-entity__text {
   color: var(--f-white);
 }
 .c-card__text, .c-exhibit__text {
-  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+  font-family: 'Comic Sans', 'Comic Sans MS', 'Chalkboard', 'ChalkboardSE-Regular', sans-serif;
 }
 .c-card--upgraded .c-card__text {
   color: var(--f-light-green);
@@ -1729,11 +1729,8 @@ html:lang(en) .p-result__type {
 .p-card__frame {
   position: relative;
 }
-.c-card-frame__main {
-  /* mask-image: url(../public/assets/images/cards/frames/AlphaMask.png); */
-  mask-image: linear-gradient(to right, var(--f-white) 37.5%, transparent 62.5%);
-}
 .c-card-frame__sub {
+  mask-image: linear-gradient(to right, transparent 37.5%, var(--f-white) 62.5%);
   position: absolute;
   top: 0;
   left: 0;
