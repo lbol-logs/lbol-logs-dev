@@ -1009,6 +1009,9 @@ html:lang(en) .c-entity__text {
   z-index: var(--z-1);
   color: var(--f-white);
 }
+.c-card__text, .c-exhibit__text {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+}
 .c-card--upgraded .c-card__text {
   color: var(--f-light-green);
 }
@@ -1750,7 +1753,6 @@ html:lang(en) .p-result__type {
   max-width: 100%;
   display: inline-block;
   line-height: var(--size);
-  vertical-align: middle;
   --shadow-thickness: 2px;
   ---shadow-thickness: calc(var(--shadow-thickness) * -1);
 }

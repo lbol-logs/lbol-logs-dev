@@ -30,8 +30,7 @@ function HinaCollect({ station }: { station: TStation }) {
     const lastHolding = holdings[currentHoldingIndex - 1];
     const { Cards } = lastHolding;
     const _cards = Cards.filter(card => {
-      cardsConfigs.set(card);
-      const { isMisfortune, isUnremovable } = cardsConfigs;
+      const { isMisfortune, isUnremovable } = cardsConfigs.get(card);
       return isMisfortune && !isUnremovable;
     });
     cards[0] = _cards;
