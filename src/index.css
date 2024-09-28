@@ -1766,10 +1766,14 @@ html:lang(en) .p-result__type {
 }
 .p-card-name__text {
   max-width: 100%;
-  display: inline-block;
-  line-height: var(--size);
   --shadow-thickness: 2px;
   ---shadow-thickness: calc(var(--shadow-thickness) * -1);
+}
+.p-card-name__text,
+.c-card-type__text,
+.p-card__descriptions {
+  display: inline-block;
+  line-height: 1em;
 }
 .p-card__type-text {
   --size: 32px;
@@ -1779,8 +1783,6 @@ html:lang(en) .p-result__type {
 }
 .c-card-type__text {
   color: var(--f-white);
-  display: inline-block;
-  line-height: var(--size);
 }
 .p-card__cost {
   top: 16px;
@@ -1805,6 +1807,28 @@ html:lang(en) .p-result__type {
   transform: translate(-50%, -50%);
   color: var(--f-light-blue);
   font-weight: bold;
+  --shadow-thickness: 3px;
+  ---shadow-thickness: calc(var(--shadow-thickness) * -1);
+}
+
+.p-card__body {
+  /* TODO */
+  font-size: 30px;
+  top: 430px;
+  width: 76%;
+  height: 34%;
+  color: var(--f-white);
+}
+.p-card__body--one-line {
+  text-align: center;
+}
+.p-card__descriptions {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.p-card__description + .p-card__description {
+  margin-top: 10px;
 }
 
 .p-card__upgrade-switcher {
