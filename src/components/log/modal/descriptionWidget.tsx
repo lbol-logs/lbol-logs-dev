@@ -80,7 +80,6 @@ function DescriptionWidget({ ns, key = 'Description', ...o }: { ns: string, key?
       const config = statusEffectsConfigs.get(Id) || {};
 
       ({ Version } = config);
-      const array = [Id];
       if (Id === 'TianziRockSe' && Limit === 1) key = 'ExtraDescription';
       addKey(Id, key);
 

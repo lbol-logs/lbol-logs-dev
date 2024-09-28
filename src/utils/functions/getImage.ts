@@ -1,4 +1,4 @@
-import { baseUrl, imagesUrl } from 'configs/globals';
+import { imagesUrl } from 'configs/globals';
 
 function getImage(name: string) {
   return `${imagesUrl}/${name}.avif`;

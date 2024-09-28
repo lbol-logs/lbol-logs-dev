@@ -25,6 +25,7 @@ function CardModal({ card }: { card: TCard }) {
   const descriptions: TComponents = [];
   const description = (
     <div className="p-card__description" key="Description">
+      WIP<br />
       <DescriptionWidget ns="cards" {..._card} />
     </div>
   );
@@ -120,7 +121,7 @@ function CardModal({ card }: { card: TCard }) {
       </div>
 
       <div style={{top:0,right:0,width:536,display:'none'}}>
-        <img src="/2.png" width="536" height="714" />
+        <img src="/2.png" width="536" height="714" alt="" />
       </div>
 
       {IsUpgradable && <UpgradeSwitcher upgraded={upgraded} setUpgraded={setUpgraded} />}

@@ -70,10 +70,10 @@ class CardConfigs {
   }
 
   getAll() {
-    const { Id, IsUpgraded } = this.card;
+    const { IsUpgraded } = this.card;
     const configs = this.configs;
     const key = IsUpgraded ? 1 : 0;
-    return { ...configs, ...configs[key], ...this };
+    return { ...configs, ...configs[key] };
   }
 
   get art() {
