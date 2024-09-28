@@ -10,6 +10,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { LogContext } from 'contexts/logContext';
 import { TObj } from 'utils/types/common';
 import UpgradeSwitcher from './upgradeSwitcher';
+import CardFrame from './cardFrame';
 
 function CardModal({ card }: { card: TCard }) {
   const { cardsConfigs } = configsData;
@@ -20,15 +21,8 @@ function CardModal({ card }: { card: TCard }) {
   const _card = Object.assign({}, card, { IsUpgraded: upgraded });
   const config = cardsConfigs.set(_card);
 
-  const { Type, Rarity, Colors, Owner } = config;
+  const { Type, Owner } = config;
 
-
-  let color;
-  if (['Tool', 'Misfortune'].includes(Type)) color = Type;
-  else if (Colors === undefined) color = 'C';
-  else if (Colors.length >= 3) color = 'Rainbow';
-  else color = Colors;
-  const frame = `${Rarity}/${color}`;
   const { art } = cardsConfigs;
 
   useEffect(() => {
@@ -58,9 +52,7 @@ function CardModal({ card }: { card: TCard }) {
       <div className="p-card__art c-card__center">
       <Image2x callback={getCardArtImage} name={art} width="440" height="304" />
       </div>
-      <div className="p-card__frame">
-        <Image2x callback={getCardFrameImage} name={frame} width="512" height="714" />
-      </div>
+      <CardFrame config={config} />
       {Owner && (
         <div className="p-card__watermark c-card__center">
           <Image2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" />
@@ -83,12 +75,16 @@ function CardModal({ card }: { card: TCard }) {
 
 export default CardModal;
 
-function Image2x({ callback, name, width, height }: { callback: Function, name: string, width: string | number, height?: string | number }) {
+function Image2x({ callback, name, width, height, className }: { callback: Function, name: string, width: string | number, height?: string | number, className?: string }) {
 
   // TODO
   // callback = getTestImage;
 
   return (
-    <img src={callback(`${name}@2x`)} width={width} height={height} alt="" />
+    <img className={className} src={callback(`${name}@2x`)} width={width} height={height} alt="" />
   );
 }
+
+export {
+  Image2x
+};
