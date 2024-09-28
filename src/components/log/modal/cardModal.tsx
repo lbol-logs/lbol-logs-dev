@@ -28,10 +28,13 @@ function CardModal({ card }: { card: TCard }) {
   useEffect(() => {
     const divs: Array<HTMLDivElement> = Array.from(document.querySelectorAll('.js-resize'));
     for (const div of divs) {
-      const parent = div.offsetHeight;
+      const parentHeight = div.offsetHeight;
+      const parentWidth = div.offsetWidth;
       while (true) {
-        const child = (div.firstChild as HTMLElement).offsetHeight;
-        if (child <= parent) break;
+        const child = div.firstChild as HTMLElement;
+        const childHeight = child.offsetHeight;
+        const childWidth = child.offsetWidth;
+        if (childHeight <= parentHeight && childWidth <= parentWidth) break;
         const size = parseInt(div.style.fontSize || window.getComputedStyle(div, null).getPropertyValue('font-size'));
         if (!size) break;
         div.style.fontSize = (size - 1) + 'px';
@@ -58,11 +61,14 @@ function CardModal({ card }: { card: TCard }) {
           <Image2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" />
         </div>
       )}
-      <div className="p-card__type">
+      <div className="p-card__type-icon">
         <Image2x callback={getCardTypeImage} name={Type} width="72" height="72" />
       </div>
+      <div className="p-card__type-text c-card__resize js-resize">
+        <span className="c-card-type__text u-text-shadow">{t(`cardTypes.${Type}`, { ns: 'log' })}</span>
+      </div>
       <div className={`p-card__name c-card__center ${upgraded ? 'c-card--upgraded' : ''} c-card__resize js-resize`}>
-        <CardName className="p-card-name__name c-card__text u-text-shadow" card={_card} />
+        <CardName className="p-card-name__text c-card__text u-text-shadow" card={_card} />
       </div>
 
       {/* <div style={{top:0,right:0,display:'none'}}>

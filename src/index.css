@@ -1009,7 +1009,7 @@ html:lang(en) .c-entity__text {
   z-index: var(--z-1);
   color: var(--f-white);
 }
-.c-card__text, .c-exhibit__text {
+.c-card__text, .c-exhibit__text, .c-card-type__text {
   font-family: 'Comic Sans', 'Comic Sans MS', 'Chalkboard', 'ChalkboardSE-Regular', sans-serif;
 }
 .c-card--upgraded .c-card__text {
@@ -1743,7 +1743,7 @@ html:lang(en) .p-result__type {
   height: 304px;
   top: 64px;
 }
-.p-card__type {
+.p-card__type-icon {
   width: 62px;
   top: 7px;
   left: 5px;
@@ -1751,18 +1751,32 @@ html:lang(en) .p-result__type {
 .p-card__name {
   --size: 36px;
   width: 80%;
-  height: var(--size);
   top: 374px;
+}
+.p-card__name, .p-card__type-text {
+  height: var(--size);
   text-align: center;
   font-size: var(--size);
   line-height: var(--size);
 }
-.p-card-name__name {
+.p-card-name__text {
   max-width: 100%;
   display: inline-block;
   line-height: var(--size);
   --shadow-thickness: 2px;
   ---shadow-thickness: calc(var(--shadow-thickness) * -1);
+}
+.p-card__type-text {
+  --size: 36px;
+  width: 130px;
+  top: 27px;
+  left: 70px;
+  font-size: 32px;
+}
+.c-card-type__text {
+  color: var(--f-white);
+  display: inline-block;
+  line-height: var(--size);
 }
 
 .p-card__upgrade-switcher {
