@@ -75,7 +75,7 @@ function CardModal({ card }: { card: TCard }) {
         <CardManasWidget cardMana={cost} is2x={true} />
       </div>
       <div className={`p-card__name c-card__center ${upgraded ? 'c-card--upgraded' : ''} c-card__resize js-resize`}>
-        <CardName className="p-card-name__text c-card__text u-text-shadow" card={_card} />
+        <CardName className="p-card-name__text c-card__text p-card__text u-text-shadow" card={_card} />
       </div>
       {isTeammate && (
         <div className="p-card__unity">

@@ -1724,6 +1724,9 @@ html:lang(en) .p-result__type {
 .p-modal__card img {
   -webkit-user-drag: none;
 }
+.p-card__text {
+  vertical-align: middle;
+}
 .p-card__watermark {
   width: 446px;
   top: 434px;
@@ -1753,7 +1756,9 @@ html:lang(en) .p-result__type {
   width: 76%;
   top: 374px;
 }
-.p-card__name, .p-card__type-text {
+.p-card__name,
+.p-card__type-text,
+.c-card-unity__text {
   height: var(--size);
   text-align: center;
   font-size: var(--size);
@@ -1793,12 +1798,12 @@ html:lang(en) .p-result__type {
   left: -26px;
 }
 .c-card-unity__text {
+  --size: 50px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: var(--f-light-blue);
-  font-size: 50px;
   font-weight: bold;
 }
 
