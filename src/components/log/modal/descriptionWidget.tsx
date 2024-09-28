@@ -12,7 +12,7 @@ import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import { configsData } from 'configs/globals';
 import CMana from 'utils/classes/CMana';
 
-function DescriptionWidget({ ns, ...o }: { ns: string }) {
+function DescriptionWidget({ ns, key = 'Description', ...o }: { ns: string, key?: string }) {
   const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
   const { act, level, holdings } = useContext(LogContext);
   const { t } = useTranslation();
@@ -38,6 +38,10 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
   const keys: Array<string> = [];
   const c = new Components(components);
 
+  function addKey(...array: Array<string>) {
+    keys.push(array.join('.'));
+  }
+
   switch (ns) {
     case 'cards': {
       const card = o as TCard;
@@ -48,13 +52,8 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
       ({ Version } = config.getAll());
 
-      if (IsUpgraded) {
-        const array = [Id, true, 'Description'];
-        keys.push(array.join('.'));
-      }
-
-      const array = [Id, false, 'Description'];
-      keys.push(array.join('.'));
+      if (IsUpgraded) addKey(Id, `Upgraded${key}`);
+      addKey(Id, key);
 
       break;
     }
@@ -63,8 +62,7 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
       const config = exhibitsConfigs.get(Id);
 
       ({ Version } = config);
-      const array = [Id, 'Description'];
-      keys.push(array.join('.'));
+      addKey(Id, key);
 
       const { Value1, Value2, Value3, Mana, BaseMana, InitialCounter } = config;
 
@@ -83,9 +81,8 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
       ({ Version } = config);
       const array = [Id];
-      if (Id === 'TianziRockSe' && Limit === 1) array.push('ExtraDescription');
-      else array.push('Description');
-      keys.push(array.join('.'));
+      if (Id === 'TianziRockSe' && Limit === 1) key = 'ExtraDescription';
+      addKey(Id, key);
 
       const isPlayer = [undefined, 'Player'].includes(owner);
 
