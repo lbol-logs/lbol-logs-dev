@@ -1721,6 +1721,9 @@ html:lang(en) .p-result__type {
   display: flex;
   justify-content: center;
 }
+.p-modal__card img {
+  -webkit-user-drag: none;
+}
 .p-card__watermark {
   width: 446px;
   top: 434px;

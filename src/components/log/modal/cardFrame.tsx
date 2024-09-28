@@ -14,7 +14,7 @@ function CardFrame({ cardConfigs }: { cardConfigs: CardConfigs }) {
   else if (Colors.length >= 3) color = 'Rainbow';
   else {
     color = Colors[0];
-    sub = getFrame('c-card-frame__sub', Colors[1]);
+    if (Colors.length === 2) sub = getFrame('c-card-frame__sub', Colors[1]);
   }
   main = getFrame('c-card-frame__main', color);
 
