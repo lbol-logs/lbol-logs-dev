@@ -1767,11 +1767,10 @@ html:lang(en) .p-result__type {
   ---shadow-thickness: calc(var(--shadow-thickness) * -1);
 }
 .p-card__type-text {
-  --size: 36px;
+  --size: 32px;
   width: 130px;
   top: 27px;
   left: 70px;
-  font-size: 32px;
 }
 .c-card-type__text {
   color: var(--f-white);
@@ -1834,7 +1833,6 @@ html:lang(en) .p-result__type {
 }
 .c-card__resize {
   display: block;
-  overflow: hidden;
 }
 
 :root {
