@@ -40,12 +40,13 @@ function DescriptionWidget({ ns, ...o }: { ns: string }) {
 
   switch (ns) {
     case 'cards': {
+      const card = o as TCard;
       const {
         Id, IsUpgraded
-      } = o as TCard;
-      const config = cardsConfigs.get(Id);
+      } = card;
+      const config = cardsConfigs.get(card);
 
-      ({ Version } = config);
+      ({ Version } = config.getAll());
 
       if (IsUpgraded) {
         const array = [Id, true, 'Description'];

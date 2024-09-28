@@ -96,8 +96,7 @@ function Summary() {
           <div className="p-summary__rarities">
             {cardRarities.map(rarity => {
               const count = Cards.filter(card => {
-                cardsConfigs.set(card);
-                const { type } = cardsConfigs;
+                const { type } = cardsConfigs.get(card);
                 return type === rarity;
               }).length;
               if (!count) return null;

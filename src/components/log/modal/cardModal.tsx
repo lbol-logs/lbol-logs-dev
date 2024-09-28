@@ -19,11 +19,11 @@ function CardModal({ card }: { card: TCard }) {
   const { Id, IsUpgraded } = card;
   const [upgraded, setUpgraded] = useState(IsUpgraded);
   const _card = Object.assign({}, card, { IsUpgraded: upgraded });
-  const config = cardsConfigs.set(_card);
+  const configs = cardsConfigs.getAll(_card);
 
-  const { Type, Owner } = config;
+  const { Type, Owner, IsUpgradable } = configs;
 
-  const { art } = cardsConfigs;
+  const { art } = configs;
 
   useEffect(() => {
     const divs: Array<HTMLDivElement> = Array.from(document.querySelectorAll('.js-resize'));
@@ -52,7 +52,7 @@ function CardModal({ card }: { card: TCard }) {
       <div className="p-card__art c-card__center">
       <Image2x callback={getCardArtImage} name={art} width="440" height="304" />
       </div>
-      <CardFrame config={config} />
+      <CardFrame configs={configs} />
       {Owner && (
         <div className="p-card__watermark c-card__center">
           <Image2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" />
@@ -68,7 +68,7 @@ function CardModal({ card }: { card: TCard }) {
       {/* <div style={{top:0,right:0,display:'none'}}>
         <LazyLoadImage2x callback={getCardFrameImage} name="Dichromatic_Lotus_Butterfly" width="512" height="714" />
       </div> */}
-      {config.IsUpgradable && <UpgradeSwitcher upgraded={upgraded} setUpgraded={setUpgraded} />}
+      {IsUpgradable && <UpgradeSwitcher upgraded={upgraded} setUpgraded={setUpgraded} />}
     </div>
   );
 }

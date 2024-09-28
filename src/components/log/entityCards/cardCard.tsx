@@ -13,8 +13,7 @@ function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
 
   const { width, height } = cardSize;
 
-  cardsConfigs.set(card);
-  const { art, isUnremovable, type } = cardsConfigs;
+  const { art, isUnremovable, type } = cardsConfigs.get(card);
 
   let _type = type;
   if (isUnremovable) _type += '-Unremovable';

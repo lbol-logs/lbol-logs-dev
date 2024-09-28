@@ -22,8 +22,6 @@ class Configs {
 export default Configs;
 
 class CardsConfigs extends Configs {
-  public card: TCard = {} as TCard;
-
   constructor (json: TObjAny) {
     super(json);
     for (const [id, configs] of Object.entries(json)) {
@@ -43,16 +41,39 @@ class CardsConfigs extends Configs {
     }
   }
 
-  set(card: TCard) {
+  override get(card: TCard | string) {
+    const _card = card as TCard;
+    const configs = super.get(_card.Id);
+    const cardConfigs = new CardConfigs(configs, _card);
+    return cardConfigs;
+  }
+
+  getAll(card: TCard) {
+    return this.get(card).getAll();
+  }
+
+  private _handle(id: string, configs: TObjAny, IsUpgraded: number) {
+    const { Keywords, Cost, Mana } = configs[IsUpgraded];
+    if (Keywords !== undefined) this.json[id][IsUpgraded].Keywords = Keywords.split(',');
+    if (Cost !== undefined) this.json[id][IsUpgraded].Cost = new CMana(Cost).manas;
+    if (Mana !== undefined) this.json[id][IsUpgraded].Mana = new CMana(Mana).manas;
+  }
+}
+
+class CardConfigs {
+  private configs: TObjAny;
+  private card: TCard;
+
+  constructor (configs: TObjAny, card: TCard) {
+    this.configs = configs;
     this.card = card;
-    return this.getAll();
   }
 
   getAll() {
     const { Id, IsUpgraded } = this.card;
-    const config = this.get(Id);
+    const configs = this.configs;
     const key = IsUpgraded ? 1 : 0;
-    return { ...config, ...config[key] };
+    return { ...configs, ...configs[key], ...this };
   }
 
   get art() {
@@ -77,13 +98,6 @@ class CardsConfigs extends Configs {
     const { Type, Rarity } = this.getAll();
     const _type = this.isMisfortune ? Type : Rarity;
     return _type;
-  }
-
-  private _handle(id: string, configs: TObjAny, IsUpgraded: number) {
-    const { Keywords, Cost, Mana } = configs[IsUpgraded];
-    if (Keywords !== undefined) this.json[id][IsUpgraded].Keywords = Keywords.split(',');
-    if (Cost !== undefined) this.json[id][IsUpgraded].Cost = new CMana(Cost).manas;
-    if (Mana !== undefined) this.json[id][IsUpgraded].Mana = new CMana(Mana).manas;
   }
 }
 
@@ -114,5 +128,6 @@ class ConfigsData {
 
 export {
   CardsConfigs,
+  CardConfigs,
   ConfigsData
 };
