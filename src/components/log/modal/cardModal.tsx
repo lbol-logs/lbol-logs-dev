@@ -19,11 +19,11 @@ function CardModal({ card }: { card: TCard }) {
   const { Id, IsUpgraded } = card;
   const [upgraded, setUpgraded] = useState(IsUpgraded);
   const _card = Object.assign({}, card, { IsUpgraded: upgraded });
-  const configs = cardsConfigs.getAll(_card);
+  const cardConfigs = cardsConfigs.get(_card);
 
-  const { Type, Owner, IsUpgradable } = configs;
+  const { Type, Owner, IsUpgradable } = cardConfigs.getAll();
 
-  const { art } = configs;
+  const { art } = cardConfigs;
 
   useEffect(() => {
     const divs: Array<HTMLDivElement> = Array.from(document.querySelectorAll('.js-resize'));
@@ -52,7 +52,7 @@ function CardModal({ card }: { card: TCard }) {
       <div className="p-card__art c-card__center">
       <Image2x callback={getCardArtImage} name={art} width="440" height="304" />
       </div>
-      <CardFrame configs={configs} />
+      <CardFrame cardConfigs={cardConfigs} />
       {Owner && (
         <div className="p-card__watermark c-card__center">
           <Image2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" />
