@@ -2,8 +2,8 @@ import { getCardFrameImage } from 'utils/functions/getImage';
 import { Image2x } from './cardModal';
 import { TObjAny } from 'utils/types/common';
 
-function CardFrame({ config }: { config: TObjAny }) {
-  const { Type, Rarity, Colors, Owner } = config;
+function CardFrame({ configs }: { configs: TObjAny }) {
+  const { Type, Rarity, Colors } = configs;
 
   let main;
   let sub = null;
