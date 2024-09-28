@@ -83,6 +83,15 @@ class CardConfigs {
     return art;
   }
 
+  get cost() {
+    const { Cost, Keywords } = this.getAll();
+    if (Keywords !== undefined) {
+      const isUnplayable = Keywords.includes('Forbidden');
+      if (isUnplayable) return [];
+    }
+    return Cost;
+  }
+
   get isUnremovable() {
     const { Keywords } = this.getAll();
     if (Keywords === undefined) return false;

@@ -11,19 +11,21 @@ import { LogContext } from 'contexts/logContext';
 import { TObj } from 'utils/types/common';
 import UpgradeSwitcher from './upgradeSwitcher';
 import CardFrame from './cardFrame';
+import CardManasWidget from './cardManasWidget';
 
 function CardModal({ card }: { card: TCard }) {
   const { cardsConfigs } = configsData;
   const { t } = useTranslation();
 
-  const { Id, IsUpgraded } = card;
+  const { IsUpgraded } = card;
   const [upgraded, setUpgraded] = useState(IsUpgraded);
   const _card = Object.assign({}, card, { IsUpgraded: upgraded });
+// Object.assign(_card, { Id: 'ModuoluoSeasons' })
   const cardConfigs = cardsConfigs.get(_card);
 
   const { Type, Owner, IsUpgradable } = cardConfigs.getAll();
 
-  const { art } = cardConfigs;
+  const { art, cost } = cardConfigs;
 
   useEffect(() => {
     const divs: Array<HTMLDivElement> = Array.from(document.querySelectorAll('.js-resize'));
@@ -67,13 +69,17 @@ function CardModal({ card }: { card: TCard }) {
       <div className="p-card__type-text c-card__resize js-resize">
         <span className="c-card-type__text u-text-shadow">{t(`cardTypes.${Type}`, { ns: 'log' })}</span>
       </div>
+      <div className="p-card__cost">
+        <CardManasWidget cardMana={cost} is2x={true} />
+      </div>
       <div className={`p-card__name c-card__center ${upgraded ? 'c-card--upgraded' : ''} c-card__resize js-resize`}>
         <CardName className="p-card-name__text c-card__text u-text-shadow" card={_card} />
       </div>
 
-      {/* <div style={{top:0,right:0,display:'none'}}>
-        <LazyLoadImage2x callback={getCardFrameImage} name="Dichromatic_Lotus_Butterfly" width="512" height="714" />
-      </div> */}
+      <div style={{top:0,right:0,display:'none'}}>
+        <img src="/1.png" width="512" height="714" />
+      </div>
+
       {IsUpgradable && <UpgradeSwitcher upgraded={upgraded} setUpgraded={setUpgraded} />}
     </div>
   );
