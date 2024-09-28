@@ -18,7 +18,7 @@ export type {
   TLazyLoadImageArgs
 };
 
-function LazyLoadImage2({ callback, name, alt, width, height, className, props = {} }: TLazyLoadImageArgs) {
+function LazyLoadImage2({ callback, name, alt, width, height, className }: TLazyLoadImageArgs) {
   const [srcs, setSrcs] = useState({} as { src: string, srcSet: string });
 
   const fakeIcons: TObjString = {
@@ -27,13 +27,12 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
     getStatusEffectImage: 'FakeStatusEffectIcon'
   };
 
-  const _props = {
+  const props = {
     width: width || iconSize,
     height: height || iconSize,
     className: className
   };
-  Object.assign(_props, props);
-  if (alt !== '') Object.assign(_props, { title: alt });
+  if (alt !== '') Object.assign(props, { title: alt });
 
   function getSrcs(callback: Function, name: string) {
     const src = callback(name);
@@ -54,7 +53,7 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
         const fakeIcon = fakeIcons[callback.name];
         if (fakeIcon) getSrcs(getCommonImage, fakeIcon);
       }}
-      {..._props}
+      {...props}
     />
   );
 }

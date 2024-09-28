@@ -1639,7 +1639,6 @@ html:lang(en) .p-result__type {
 }
 .c-highlight--white {
   color: var(--white);
-  text-shadow: var(--text-shadow);
 }
 .c-highlight--purple {
   color: var(--purple);
@@ -1729,6 +1728,15 @@ html:lang(en) .p-result__type {
 }
 .p-card__frame {
   position: relative;
+}
+.c-card-frame__main {
+  /* mask-image: url(../public/assets/images/cards/frames/AlphaMask.png); */
+  mask-image: linear-gradient(to right, var(--f-white) 37.5%, transparent 62.5%);
+}
+.c-card-frame__sub {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .p-card__art {
   width: 440px;
