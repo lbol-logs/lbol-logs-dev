@@ -23,12 +23,7 @@ function CardModal({ card }: { card: TCard }) {
   const { art, cost } = cardConfigs;
 
   const descriptions: TComponents = [];
-  const description = (
-    <div className="p-card__description" key="Description">
-      WIP<br />
-      <DescriptionWidget ns="cards" {..._card} />
-    </div>
-  );
+  const description = <DescriptionWidget ns="cards" {..._card} key="Description" />;
   descriptions.push(description);
 
   let unity = null;

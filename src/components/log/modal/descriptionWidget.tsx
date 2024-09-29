@@ -15,7 +15,7 @@ import CMana from 'utils/classes/CMana';
 function DescriptionWidget({ ns, key = 'Description', ...o }: { ns: string, key?: string }) {
   const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
   const { act, level, holdings } = useContext(LogContext);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const components = {
     h: <Highlight>{}</Highlight>,
@@ -65,13 +65,13 @@ function DescriptionWidget({ ns, key = 'Description', ...o }: { ns: string, key?
       addKey(Id, key);
 
       const { Value1, Value2, Value3, Mana, BaseMana, InitialCounter } = config;
+      const counter = Counter === undefined ? InitialCounter : Counter;
 
-      const args = { Value1, Value2, Value3, InitialCounter };
+      const args = { Value1, Value2, Value3, Counter: counter, InitialCounter };
       c.appendDescs(args);
       Object.assign(values, args);
       if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={new CMana(Mana).manas} />);
       if (BaseMana !== undefined) c.insert('BaseMana', <BaseManasWidget baseMana={BaseMana} />);
-      if (Counter !== undefined) c.insert('Counter', <Desc value={Counter} />);
 
       break;
     }
@@ -135,10 +135,13 @@ function DescriptionWidget({ ns, key = 'Description', ...o }: { ns: string, key?
     }
   }
 
+  if (!i18n.exists(keys, { ns })) return null;
   return (
-    <Trans ns={ns} context={Version} components={components} values={values}>
-      {t(keys)}
-    </Trans>
+    <div className="p-modal__description">
+      <Trans ns={ns} context={Version} components={components} values={values}>
+        {t(keys)}
+      </Trans>
+    </div>
   );
 }
 
