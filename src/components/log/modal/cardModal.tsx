@@ -16,7 +16,7 @@ function CardModal({ card }: { card: TCard }) {
   const { cardsConfigs } = configsData;
   const { t, i18n } = useTranslation();
 
-  const { IsUpgraded } = card;
+  const { Id, IsUpgraded } = card;
   const [upgraded, setUpgraded] = useState(IsUpgraded);
   const _card = Object.assign({}, card, { IsUpgraded: upgraded });
 
@@ -29,14 +29,10 @@ function CardModal({ card }: { card: TCard }) {
   const ns = 'cards';
 
   const descriptions: TComponents = [];
-  let exist = true;
-  if (isTeammate) {
-    const { Id } = card;
-    const keys = [`${Id}.Description`];
-    if (IsUpgraded) keys.unshift(`${Id}.UpgradedDescription`);
-      // TODO
-    if (!i18n.exists(keys, { ns })) exist = false;
-  }
+
+  const keys = [`${Id}.Description`];
+  if (IsUpgraded) keys.unshift(`${Id}.UpgradedDescription`);
+  const exist = i18n.exists(keys, { ns });
 
   if (exist) {
     const description = (
