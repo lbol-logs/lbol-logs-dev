@@ -53,9 +53,14 @@ class CardsConfigs extends Configs {
   }
 
   private _handle(id: string, configs: TObjAny, IsUpgraded: number) {
+    const { IsXCost } = configs;
     const { Keywords, Cost, Mana } = configs[IsUpgraded];
     if (Keywords !== undefined) this.json[id][IsUpgraded].Keywords = Keywords.split(',');
-    if (Cost !== undefined) this.json[id][IsUpgraded].Cost = new CMana(Cost).manas;
+    if (Cost !== undefined) {
+      const cost = new CMana(Cost).manas;
+      if (IsXCost) cost.unshift('X');
+      this.json[id][IsUpgraded].Cost = cost;
+    }
     if (Mana !== undefined) this.json[id][IsUpgraded].Mana = new CMana(Mana).manas;
   }
 }
