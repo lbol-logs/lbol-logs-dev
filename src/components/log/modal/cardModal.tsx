@@ -10,6 +10,7 @@ import UpgradeSwitcher from './upgradeSwitcher';
 import CardFrame from './cardFrame';
 import CardManasWidget from './cardManasWidget';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
+import KeywordsWidget from './keywordsWidget';
 
 function CardModal({ card }: { card: TCard }) {
   const { cardsConfigs } = configsData;
@@ -21,7 +22,7 @@ function CardModal({ card }: { card: TCard }) {
 
   const cardConfigs = cardsConfigs.get(_card);
   const allCardConfigs = cardConfigs.getAll();
-  const { Type, Cost, Owner, IsUpgradable, OverrideUltimateCost } = allCardConfigs;
+  const { Type, Cost, Owner, IsUpgradable, OverrideUltimateCost, Keywords } = allCardConfigs;
   const { art } = cardConfigs;
 
   const isTeammate = Type === 'Friend';
@@ -69,9 +70,17 @@ function CardModal({ card }: { card: TCard }) {
       const description = (
         <div className="p-card__description p-card__description--teammate" key={key}>
           <LazyLoadImage2x className="c-teammate-cost" callback={getUnityImage} name={`${type}/${cost}`} width="76" height="38" />
-          <DescriptionWidget ns={ns} {..._card} key={key} />
+          <DescriptionWidget ns={ns} {..._card} prefix={key} />
         </div>
       );
+      descriptions.push(description);
+    }
+  }
+
+  if (Keywords !== undefined) {
+    const keywords = Keywords.filter((keyword: string) => keyword !== 'Basic');
+    if (keywords.length) {
+      const description = <KeywordsWidget keywords={keywords} />;
       descriptions.push(description);
     }
   }

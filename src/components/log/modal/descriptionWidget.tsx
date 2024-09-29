@@ -12,8 +12,8 @@ import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import { configsData } from 'configs/globals';
 import CMana from 'utils/classes/CMana';
 
-function DescriptionWidget({ ns, key = 'Descriptoin', ...o }: { ns: string, key?: string }) {
-  console.log({key, o});
+function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: string }) {
+
   const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
   const { act, level, holdings } = useContext(LogContext);
   const { t } = useTranslation();
@@ -39,10 +39,10 @@ function DescriptionWidget({ ns, key = 'Descriptoin', ...o }: { ns: string, key?
   const keys: Array<string> = [];
   const c = new Components(components);
 
-  function addKey(...array: Array<string>) {
-    keys.push(array.join('.'));
+  function addKey(id: string, prefix: string) {
+    keys.push(`${id}.${prefix}Description`);
   }
-console.log({key})
+
   switch (ns) {
     case 'cards': {
       const card = o as TCard;
@@ -53,8 +53,8 @@ console.log({key})
 
       ({ Version } = config.getAll());
 
-      if (IsUpgraded) addKey(Id, `Upgraded${key}`);
-      addKey(Id, key);
+      if (IsUpgraded) addKey(Id, `Upgraded${prefix}`);
+      addKey(Id, prefix);
 
       break;
     }
@@ -63,7 +63,7 @@ console.log({key})
       const config = exhibitsConfigs.get(Id);
 
       ({ Version } = config);
-      addKey(Id, key);
+      addKey(Id, prefix);
 
       const { Value1, Value2, Value3, Mana, BaseMana, InitialCounter } = config;
       const counter = Counter === undefined ? InitialCounter : Counter;
@@ -81,8 +81,8 @@ console.log({key})
       const config = statusEffectsConfigs.get(Id) || {};
 
       ({ Version } = config);
-      if (Id === 'TianziRockSe' && Limit === 1) key = 'ExtraDescription';
-      addKey(Id, key);
+      if (Id === 'TianziRockSe' && Limit === 1) prefix = 'Extra';
+      addKey(Id, prefix);
 
       const isPlayer = [undefined, 'Player'].includes(owner);
 

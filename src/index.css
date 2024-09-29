@@ -1830,6 +1830,9 @@ html:lang(en) .p-result__type {
   top: 50%;
   transform: translateY(-50%);
 }
+.p-card__description:not(:last-child) {
+  margin-bottom: 28px;
+}
 .p-card__description {
   position: relative;
 }
@@ -1844,8 +1847,10 @@ html:lang(en) .p-result__type {
   width: 76px;
 }
 
-.p-card__description:not(:last-child) {
-  margin-bottom: 28px;
+.p-card__keywords {
+  display: flex;
+  column-gap: 0.2em;
+  color: var(--orange);
 }
 
 .p-card__upgrade-switcher {
