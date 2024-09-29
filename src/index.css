@@ -1837,12 +1837,12 @@ html:lang(en) .p-result__type {
 .p-card__description--teammate {
   margin-top: 14px;
 }
-.c-teammate__cost {
+.c-teammate-cost {
   position: absolute;
   left: -50px;
   top: -14px;
-  letter-spacing: 5px;
 }
+
 .p-card__description:not(:last-child) {
   margin-bottom: 28px;
 }

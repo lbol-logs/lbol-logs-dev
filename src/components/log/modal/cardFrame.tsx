@@ -1,5 +1,5 @@
 import { getCardFrameImage } from 'utils/functions/getImage';
-import { Image2x } from './cardModal';
+import { LazyLoadImage2x } from './cardModal';
 import { CardConfigs } from 'utils/classes/Configs';
 
 function CardFrame({ cardConfigs }: { cardConfigs: CardConfigs }) {
@@ -36,6 +36,6 @@ export default CardFrame;
 
 function Frame({ name, className }: { name: string, className: string }) {
   return (
-    <Image2x className={className} callback={getCardFrameImage} name={name} width="512" height="714" />
+    <LazyLoadImage2x className={className} callback={getCardFrameImage} name={name} width="512" height="714" />
   );
 }

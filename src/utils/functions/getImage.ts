@@ -96,8 +96,8 @@ function getCardArtImage(name: string) {
   return _getImage('cards/arts', name);
 }
 
-function getCardImage(name: string) {
-  return _getImage('cards', name);
+function getUnityImage(name: string) {
+  return _getImage('cards/unities', name);
 }
 
 export {
@@ -124,5 +124,5 @@ export {
   getCardFrameImage,
   getCardWatermarkImage,
   getCardTypeImage,
-  getCardImage
+  getUnityImage
 };

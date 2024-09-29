@@ -1,6 +1,6 @@
 import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
-import { getCardArtImage, getCardWatermarkImage, getCardTypeImage, getCardImage } from 'utils/functions/getImage';
+import { getCardArtImage, getCardWatermarkImage, getCardTypeImage, getUnityImage } from 'utils/functions/getImage';
 import { TCard } from 'utils/types/runData';
 import DescriptionWidget from './descriptionWidget';
 import CardName from '../entityCards/cardName';
@@ -9,6 +9,7 @@ import { TComponents } from 'utils/types/common';
 import UpgradeSwitcher from './upgradeSwitcher';
 import CardFrame from './cardFrame';
 import CardManasWidget from './cardManasWidget';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 
 function CardModal({ card }: { card: TCard }) {
   const { cardsConfigs } = configsData;
@@ -51,7 +52,7 @@ Object.assign(_card, { Id: 'YukariFriend' })
 
     unity = (
       <div className="p-card__unity">
-        <Image2x callback={getCardImage} name="Unity" width="92" height="92" />
+        <LazyLoadImage2x callback={getUnityImage} name="Unity" width="92" height="92" />
         <span className="c-card-unity__text p-card__text u-text-shadow">{Loyalty}</span>
       </div>
     );
@@ -62,11 +63,12 @@ Object.assign(_card, { Id: 'YukariFriend' })
       Ultimate: OverrideUltimateCost ? 'Active' : 'Ultimate'
     };
     for (const [key, type] of Object.entries(keys)) {
-      const cost = allCardConfigs[`${key}Cost`];
+      let cost = allCardConfigs[`${key}Cost`];
       if (cost === undefined) continue;
+
       const description = (
         <div className="p-card__description p-card__description--teammate" key={key}>
-          <span className={`c-teammate__cost c-teammate__cost--${type}`}>{cost}</span>
+          <LazyLoadImage2x className="c-teammate-cost" callback={getUnityImage} name={`${type}/${cost}`} width="92" height="92" />
           <DescriptionWidget ns={ns} {..._card} key={key} />
         </div>
       );
@@ -122,16 +124,16 @@ Object.assign(_card, { Id: 'YukariFriend' })
       </div> */}
 
       <div className="p-card__art c-card__center">
-      <Image2x callback={getCardArtImage} name={art} width="440" height="304" />
+      <LazyLoadImage2x callback={getCardArtImage} name={art} width="440" height="304" />
       </div>
       <CardFrame cardConfigs={cardConfigs} />
       {Owner && (
         <div className="p-card__watermark c-card__center">
-          <Image2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" />
+          <LazyLoadImage2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" />
         </div>
       )}
       <div className="p-card__type-icon">
-        <Image2x callback={getCardTypeImage} name={Type} width="72" height="72" />
+        <LazyLoadImage2x callback={getCardTypeImage} name={Type} width="72" height="72" />
       </div>
       <div className="p-card__type-text c-card__resize js-resize">
         <span className="c-card-type__text p-card__text u-text-shadow">{t(`cardTypes.${Type}`, { ns: 'log' })}</span>
@@ -160,16 +162,14 @@ Object.assign(_card, { Id: 'YukariFriend' })
 
 export default CardModal;
 
-function Image2x({ callback, name, width, height, className }: { callback: Function, name: string, width: string | number, height?: string | number, className?: string }) {
-
-  // TODO
-  // callback = getTestImage;
+function LazyLoadImage2x({ callback, name, width, height, className }: { callback: Function, name: string, width: string | number, height?: string | number, className?: string }) {
+  const props = { srcSet: null };
 
   return (
-    <img className={className} src={callback(`${name}@2x`)} width={width} height={height} alt="" />
+    <LazyLoadImage2 className={className} callback={callback} name={`${name}@2x`} width={width} height={height} alt="" props={props} />
   );
 }
 
 export {
-  Image2x
+  LazyLoadImage2x
 };
