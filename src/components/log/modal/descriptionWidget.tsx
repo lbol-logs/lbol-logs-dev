@@ -15,7 +15,7 @@ import CMana from 'utils/classes/CMana';
 function DescriptionWidget({ ns, key = 'Description', ...o }: { ns: string, key?: string }) {
   const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
   const { act, level, holdings } = useContext(LogContext);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const components = {
     h: <Highlight>{}</Highlight>,
@@ -41,7 +41,7 @@ function DescriptionWidget({ ns, key = 'Description', ...o }: { ns: string, key?
   function addKey(...array: Array<string>) {
     keys.push(array.join('.'));
   }
-
+console.log({key})
   switch (ns) {
     case 'cards': {
       const card = o as TCard;
@@ -135,7 +135,6 @@ function DescriptionWidget({ ns, key = 'Description', ...o }: { ns: string, key?
     }
   }
 
-  if (!i18n.exists(keys, { ns })) return null;
   return (
     <div className="p-modal__description">
       <Trans ns={ns} context={Version} components={components} values={values}>

@@ -12,25 +12,42 @@ import CardManasWidget from './cardManasWidget';
 
 function CardModal({ card }: { card: TCard }) {
   const { cardsConfigs } = configsData;
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { IsUpgraded } = card;
   const [upgraded, setUpgraded] = useState(IsUpgraded);
   const _card = Object.assign({}, card, { IsUpgraded: upgraded });
-// Object.assign(_card, { Id: 'YukariFriend' })
+Object.assign(_card, { Id: 'YukariFriend' })
   const cardConfigs = cardsConfigs.get(_card);
-  const { Type, Owner, IsUpgradable } = cardConfigs.getAll();
-  const { art, cost } = cardConfigs;
+  const allCardConfigs = cardConfigs.getAll();
+  const { Type, Cost, Owner, IsUpgradable, OverrideUltimateCost } = allCardConfigs;
+  const { art } = cardConfigs;
+
+  const isTeammate = Type === 'Friend';
+  const ns = 'cards';
 
   const descriptions: TComponents = [];
-  const description = <DescriptionWidget ns="cards" {..._card} key="Description" />;
-  descriptions.push(description);
+  let exist = true;
+  if (isTeammate) {
+    const { Id } = card;
+    const keys = [`${Id}.Description`];
+    if (IsUpgraded) keys.unshift(`${Id}.UpgradedDescription`);
+      // TODO
+    if (!i18n.exists(keys, { ns })) exist = false;
+  }
+  if (exist) {
+    const description = (
+      <div className="p-card__description" key="Description">
+        <DescriptionWidget ns={ns} {..._card} />
+      </div>
+    );
+    descriptions.push(description);
+  }
 
   let unity = null;
-  const isTeammate = Type === 'Friend';
 
   if (isTeammate) {
-    const { Loyalty } = cardConfigs.getAll();
+    const { Loyalty } = allCardConfigs;
 
     unity = (
       <div className="p-card__unity">
@@ -38,6 +55,23 @@ function CardModal({ card }: { card: TCard }) {
         <span className="c-card-unity__text p-card__text u-text-shadow">{Loyalty}</span>
       </div>
     );
+
+    const keys = { 
+      Passive: 'Passive',
+      Active: 'Active',
+      Ultimate: OverrideUltimateCost ? 'Active' : 'Ultimate'
+    };
+    for (const [key, type] of Object.entries(keys)) {
+      const cost = allCardConfigs[`${key}Cost`];
+      if (cost === undefined) continue;
+      const description = (
+        <div className="p-card__description p-card__description--teammate" key={key}>
+          <span className={`c-teammate__cost c-teammate__cost--${type}`}>{cost}</span>
+          <DescriptionWidget ns={ns} {..._card} key={key} />
+        </div>
+      );
+      descriptions.push(description);
+    }
   }
 
   const oneLine = 'p-card__body--one-line';
@@ -103,7 +137,7 @@ function CardModal({ card }: { card: TCard }) {
         <span className="c-card-type__text p-card__text u-text-shadow">{t(`cardTypes.${Type}`, { ns: 'log' })}</span>
       </div>
       <div className="p-card__cost">
-        <CardManasWidget cardMana={cost} is2x={true} />
+        <CardManasWidget cardMana={Cost} is2x={true} />
       </div>
       <div className={`p-card__name c-card__center ${upgraded ? 'c-card--upgraded' : ''} c-card__resize js-resize`}>
         <CardName className="p-card-name__text c-card__text p-card__text u-text-shadow" card={_card} />

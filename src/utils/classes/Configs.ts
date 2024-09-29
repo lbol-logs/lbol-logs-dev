@@ -57,8 +57,15 @@ class CardsConfigs extends Configs {
     const { Keywords, Cost, Mana } = configs[IsUpgraded];
     if (Keywords !== undefined) this.json[id][IsUpgraded].Keywords = Keywords.split(',');
     if (Cost !== undefined) {
-      const cost = new CMana(Cost).manas;
-      if (IsXCost) cost.unshift('X');
+      let cost;
+      if (Keywords !== undefined) {
+        const isUnplayable = Keywords.includes('Forbidden');
+        if (isUnplayable) cost = [];
+      }
+      else {
+        cost = new CMana(Cost).manas;
+        if (IsXCost) cost.unshift('X');
+      }
       this.json[id][IsUpgraded].Cost = cost;
     }
     if (Mana !== undefined) this.json[id][IsUpgraded].Mana = new CMana(Mana).manas;
@@ -86,15 +93,6 @@ class CardConfigs {
     const { ImageId } = this.getAll();
     const art = ImageId || Id;
     return art;
-  }
-
-  get cost() {
-    const { Cost, Keywords } = this.getAll();
-    if (Keywords !== undefined) {
-      const isUnplayable = Keywords.includes('Forbidden');
-      if (isUnplayable) return [];
-    }
-    return Cost;
   }
 
   get isUnremovable() {

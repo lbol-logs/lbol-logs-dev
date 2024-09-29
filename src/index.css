@@ -1177,10 +1177,14 @@ html:lang(en) .c-entity__text {
   position: absolute;
 }
 .p-result__name {
-  bottom: 13%;
   left: 0;
   background: color-mix(in srgb, var(--f-black) 70%, transparent);
-  padding: 0 0.3em;
+  --padding: 0.2em;
+  padding: var(--padding) 0.3em;
+}
+.p-result__name, .p-result__timestamp {
+  bottom: calc(17% - var(--padding, 0px));
+  line-height: 1em;
 }
 .p-result__avatar {
   max-height: 100%;
@@ -1212,7 +1216,6 @@ html:lang(en) .p-result__type {
 }
 .p-result__timestamp {
   left: var(--left);
-  bottom: 13%;
 }
 .p-result__exhibit {
   right: 10%;
@@ -1774,6 +1777,7 @@ html:lang(en) .p-result__type {
 .p-card__descriptions {
   display: inline-block;
   line-height: 1em;
+  vertical-align: baseline;
 }
 .p-card__type-text {
   --size: 32px;
@@ -1798,21 +1802,21 @@ html:lang(en) .p-result__type {
 .p-card__unity {
   top: 346px;
   left: -26px;
+  justify-content: center;
+  align-items: center;
 }
 .c-card-unity__text {
   --size: 50px;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: var(--f-light-blue);
   font-weight: bold;
   --shadow-thickness: 3px;
   ---shadow-thickness: calc(var(--shadow-thickness) * -1);
+  line-height: 46px;
 }
 
 .p-card__body {
-  /* TODO */
+  /* TODO: adjust initial size */
   font-size: 30px;
   top: 430px;
   width: 76%;
@@ -1827,8 +1831,20 @@ html:lang(en) .p-result__type {
   top: 50%;
   transform: translateY(-50%);
 }
-.p-card__description + .p-card__description {
-  margin-top: 10px;
+.p-card__description {
+  position: relative;
+}
+.p-card__description--teammate {
+  margin-top: 14px;
+}
+.c-teammate__cost {
+  position: absolute;
+  left: -50px;
+  top: -14px;
+  letter-spacing: 5px;
+}
+.p-card__description:not(:last-child) {
+  margin-bottom: 28px;
 }
 
 .p-card__upgrade-switcher {
