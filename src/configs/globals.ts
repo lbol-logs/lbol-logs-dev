@@ -32,7 +32,8 @@ const namespaces: Array<string> = [
   'events',
   'dialogues',
   'gap',
-  'statusEffects'
+  'statusEffects',
+  'keywords'
 ];
 
 const versions: Array<string> = [

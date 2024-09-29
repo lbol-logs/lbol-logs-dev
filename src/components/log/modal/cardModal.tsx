@@ -10,7 +10,7 @@ import UpgradeSwitcher from './upgradeSwitcher';
 import CardFrame from './cardFrame';
 import CardManasWidget from './cardManasWidget';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import KeywordsWidget from './keywordsWidget';
+import KeywordsWidget, { notAutoAppend } from './keywordsWidget';
 
 function CardModal({ card }: { card: TCard }) {
   const { cardsConfigs } = configsData;
@@ -37,6 +37,7 @@ function CardModal({ card }: { card: TCard }) {
       // TODO
     if (!i18n.exists(keys, { ns })) exist = false;
   }
+
   if (exist) {
     const description = (
       <div className="p-card__description" key="Description">
@@ -58,7 +59,7 @@ function CardModal({ card }: { card: TCard }) {
       </div>
     );
 
-    const keys = { 
+    const keys = {
       Passive: 'Passive',
       Active: 'Active',
       Ultimate: OverrideUltimateCost ? 'Active' : 'Ultimate'
@@ -78,7 +79,7 @@ function CardModal({ card }: { card: TCard }) {
   }
 
   if (Keywords !== undefined) {
-    const keywords = Keywords.filter((keyword: string) => keyword !== 'Basic');
+    const keywords = Keywords.filter((keyword: string) => !notAutoAppend.includes(keyword));
     if (keywords.length) {
       const description = <KeywordsWidget keywords={keywords} />;
       descriptions.push(description);

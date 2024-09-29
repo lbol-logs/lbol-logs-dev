@@ -1852,6 +1852,9 @@ html:lang(en) .p-result__type {
   column-gap: 0.2em;
   color: var(--orange);
 }
+.p-card__description + .p-card__keywords {
+  margin-top: -24px;
+}
 
 .p-card__upgrade-switcher {
   --size: 24px;
