@@ -12,7 +12,8 @@ import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import { configsData } from 'configs/globals';
 import CMana from 'utils/classes/CMana';
 
-function DescriptionWidget({ ns, key = 'Description', ...o }: { ns: string, key?: string }) {
+function DescriptionWidget({ ns, key = 'Descriptoin', ...o }: { ns: string, key?: string }) {
+  console.log({key, o});
   const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
   const { act, level, holdings } = useContext(LogContext);
   const { t } = useTranslation();

@@ -1816,8 +1816,7 @@ html:lang(en) .p-result__type {
 }
 
 .p-card__body {
-  /* TODO: adjust initial size */
-  font-size: 30px;
+  font-size: 38px;
   top: 430px;
   width: 76%;
   height: 34%;
@@ -1839,8 +1838,10 @@ html:lang(en) .p-result__type {
 }
 .c-teammate-cost {
   position: absolute;
-  left: -50px;
+  left: -80px;
   top: -14px;
+
+  width: 76px;
 }
 
 .p-card__description:not(:last-child) {

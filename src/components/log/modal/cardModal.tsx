@@ -18,7 +18,7 @@ function CardModal({ card }: { card: TCard }) {
   const { IsUpgraded } = card;
   const [upgraded, setUpgraded] = useState(IsUpgraded);
   const _card = Object.assign({}, card, { IsUpgraded: upgraded });
-Object.assign(_card, { Id: 'YukariFriend' })
+
   const cardConfigs = cardsConfigs.get(_card);
   const allCardConfigs = cardConfigs.getAll();
   const { Type, Cost, Owner, IsUpgradable, OverrideUltimateCost } = allCardConfigs;
@@ -68,7 +68,7 @@ Object.assign(_card, { Id: 'YukariFriend' })
 
       const description = (
         <div className="p-card__description p-card__description--teammate" key={key}>
-          <LazyLoadImage2x className="c-teammate-cost" callback={getUnityImage} name={`${type}/${cost}`} width="92" height="92" />
+          <LazyLoadImage2x className="c-teammate-cost" callback={getUnityImage} name={`${type}/${cost}`} width="76" height="38" />
           <DescriptionWidget ns={ns} {..._card} key={key} />
         </div>
       );
@@ -119,10 +119,6 @@ Object.assign(_card, { Id: 'YukariFriend' })
 
   return (
     <div className="p-modal__card">
-      {/* <div style={{zIndex:999,top:0,right:0,display:'none'}}>
-        <LazyLoadImage2x callback={getCardFrameImage} name="Dichromatic_Lotus_Butterfly" width="512" height="714" />
-      </div> */}
-
       <div className="p-card__art c-card__center">
       <LazyLoadImage2x callback={getCardArtImage} name={art} width="440" height="304" />
       </div>
@@ -150,11 +146,6 @@ Object.assign(_card, { Id: 'YukariFriend' })
           {descriptions}
         </div>
       </div>
-
-      <div style={{top:0,right:0,width:536,display:'none'}}>
-        <img src="/2.png" width="536" height="714" alt="" />
-      </div>
-
       {IsUpgradable && <UpgradeSwitcher upgraded={upgraded} setUpgraded={setUpgraded} />}
     </div>
   );

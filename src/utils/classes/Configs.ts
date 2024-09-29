@@ -2,6 +2,7 @@ import { TConfigsData, TObj, TObjAny } from 'utils/types/common';
 import CMana from './CMana';
 import { configsData } from 'configs/globals';
 import { TCard } from 'utils/types/runData';
+import { TCardMana } from 'utils/types/others';
 
 class Configs {
   protected json: TObjAny;
@@ -57,12 +58,11 @@ class CardsConfigs extends Configs {
     const { Keywords, Cost, Mana } = configs[IsUpgraded];
     if (Keywords !== undefined) this.json[id][IsUpgraded].Keywords = Keywords.split(',');
     if (Cost !== undefined) {
-      let cost;
-      if (Keywords !== undefined) {
-        const isUnplayable = Keywords.includes('Forbidden');
-        if (isUnplayable) cost = [];
-      }
-      else {
+      let cost: TCardMana = [];
+      let isUnplayable = false;
+      if (Keywords !== undefined) isUnplayable = Keywords.includes('Forbidden');
+
+      if (!isUnplayable) {
         cost = new CMana(Cost).manas;
         if (IsXCost) cost.unshift('X');
       }
