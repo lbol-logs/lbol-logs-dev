@@ -2025,6 +2025,10 @@ html:lang(en) .p-result__type {
 }
 
 @media screen and (min-width: 601px) {
+  .p-entity--boss-exhibits .c-entity--Shining:nth-child(2) {
+    order: 1;
+  }
+
   .u-sp {
     display: none;
   }
@@ -2061,6 +2065,11 @@ html:lang(en) .p-result__type {
   }
   .p-holdings__entities .c-entities {
     font-size: inherit;
+  }
+
+  .p-entity--boss-exhibits .c-exhibits {
+    justify-content: center;
+    width: calc((var(--entity-width) + var(--entity-border)* 2)* 2 + var(--entity-column-gap));
   }
 
   .p-filter__row {

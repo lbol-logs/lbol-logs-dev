@@ -88,8 +88,11 @@ function RewardsWidget({ station, additionalCards }: { station: TStation, additi
         }
       }).filter(i => i !== undefined) as Array<number>;
 
+      const { Type } = station;
+      const isBoss = Type === 'Boss';
+
       exhibits = (
-        <div className="p-entity p-entity--exhibits">
+        <div className={`p-entity p-entity--exhibits ${isBoss ? 'p-entity--boss-exhibits': ''}`}>
           <div className="p-entity__label">
             <LazyLoadImage2 callback={getCommonImage} name="Exhibit" alt={t('exhibit', { ns: 'common' })} />
           </div>
