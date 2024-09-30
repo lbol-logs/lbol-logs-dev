@@ -53,8 +53,10 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
 
       const { Damage, Block, Shield, Value1, Value2, Mana, Scry } = cardConfigs;
 
-      const args = { Damage, Block, Shield, Value1, Value2, Mana, Scry };
+      const args = { Damage, Block, Shield, Value1, Value2, Scry };
       c.appendDescs(args);
+      // Object.assign(values, args);
+      if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={Mana} />);
 
       break;
     }
