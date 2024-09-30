@@ -13,10 +13,9 @@ import { configsData } from 'configs/globals';
 import CMana from 'utils/classes/CMana';
 
 function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: string }) {
-
   const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
   const { act, level, holdings } = useContext(LogContext);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const components = {
     h: <Highlight>{}</Highlight>,
@@ -136,11 +135,15 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
     }
   }
 
+  let key = keys[0];
+  for (let i = 1; i < keys.length; i++) {
+    if (!i18n.exists(key, { ns })) key = keys[i];
+    else break;
+  }
+
   return (
     <div className="p-modal__description">
-      <Trans ns={ns} context={Version} components={components} values={values}>
-        {t(keys)}
-      </Trans>
+      <Trans i18nKey={key} ns={ns} context={Version} components={components} values={values} />
     </div>
   );
 }

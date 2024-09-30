@@ -31,7 +31,7 @@ function CardModal({ card }: { card: TCard }) {
   const descriptions: TComponents = [];
 
   const keys = [`${Id}.Description`];
-  if (IsUpgraded) keys.unshift(`${Id}.UpgradedDescription`);
+  if (upgraded) keys.unshift(`${Id}.UpgradedDescription`);
   const exist = i18n.exists(keys, { ns });
 
   if (exist) {
