@@ -1084,6 +1084,9 @@ html:lang(en) .c-entity__text {
   display: flex;
   align-items: center;
 }
+.p-card__descriptions .c-card-mana {
+  max-width: 1em;
+}
 .p-modal__exhibit .p-modal__body img,
 .p-modal__status-effect .p-modal__body img {
   width: 1.5em;
