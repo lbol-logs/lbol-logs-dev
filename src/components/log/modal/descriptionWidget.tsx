@@ -58,6 +58,8 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       // Object.assign(values, args);
       if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={Mana} />);
 
+      c.insert('SelfName', <span className="c-self-name">{t(`${Id}.Name`, { ns })}</span>)
+
       break;
     }
     case 'exhibits': {

@@ -1941,6 +1941,10 @@ html:lang(en) .p-result__type {
   color: var(--f-enemy-Long);
 }
 
+.c-self-name {
+  color: var(--f-value);
+}
+
 :root {
   color-scheme: light dark;
   --padding-inner: 0.625em;
