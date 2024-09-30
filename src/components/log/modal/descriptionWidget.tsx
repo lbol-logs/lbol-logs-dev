@@ -44,11 +44,17 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
         Id, IsUpgraded
       } = card;
       const config = cardsConfigs.get(card);
+      const cardConfigs = config.getAll();
 
-      ({ Version } = config.getAll());
+      ({ Version } = cardConfigs);
 
       if (IsUpgraded) addKey(Id, `Upgraded${prefix}`);
       addKey(Id, prefix);
+
+      const { Damage, Block, Shield, Value1, Value2, Mana, Scry } = cardConfigs;
+
+      const args = { Damage, Block, Shield, Value1, Value2, Mana, Scry };
+      c.appendDescs(args);
 
       break;
     }

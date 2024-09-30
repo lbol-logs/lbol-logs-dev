@@ -1720,7 +1720,7 @@ html:lang(en) .p-result__type {
   padding: var(--padding);
 }
 .p-modal__variable {
-  color: var(--f-blue);
+  color: var(--f-value);
 }
 
 .p-modal__card {
@@ -2005,6 +2005,7 @@ html:lang(en) .p-result__type {
   --f-purple: purple;
   --f-brown: #dabfa2;
   --f-cyan: cyan;
+  --f-value: #b3ffff;
 
   --f-highlight: #efc851;
   --f-upgraded-green: #5fff99;
