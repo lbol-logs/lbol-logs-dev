@@ -1850,7 +1850,7 @@ html:lang(en) .p-result__type {
 .p-card__keywords {
   display: flex;
   column-gap: 0.2em;
-  color: var(--orange);
+  color: var(--f-gold);
 }
 .p-card__description + .p-card__keywords {
   margin-top: -24px;
@@ -1979,7 +1979,7 @@ html:lang(en) .p-result__type {
   --f-light-gray: lightgray;
   --f-light-green: palegreen;
   --f-blue: dodgerblue;
-  --f-gold: #eebe42;
+  --f-gold: #efc851;
   --f-red: orangered;
   --f-light-purple: mediumorchid;
   --f-purple: purple;
