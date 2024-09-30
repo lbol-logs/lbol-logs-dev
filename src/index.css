@@ -1866,6 +1866,7 @@ html:lang(en) .p-result__type {
   display: flex;
   column-gap: 0.2em;
   color: var(--f-highlight);
+  flex-wrap: wrap;
 }
 .p-card__description + .p-card__keywords {
   margin-top: -28px;
