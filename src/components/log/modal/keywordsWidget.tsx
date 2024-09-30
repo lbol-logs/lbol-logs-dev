@@ -7,7 +7,7 @@ function KeywordsWidget({ keywords}: { keywords: Array<string> }) {
     <div className="p-card__keywords" key="keywords">
       {keywords.map(keyword => {
         return (
-          <span className="c-card__keyword">{t(keyword, { ns: 'keywords' })}</span>
+          <span className="c-card__keyword" key={keyword}>{t(keyword, { ns: 'keywords' })}</span>
         );
       })}
     </div>
