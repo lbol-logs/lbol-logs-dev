@@ -1922,6 +1922,19 @@ html:lang(en) .p-result__type {
   display: block;
 }
 
+.c-enemy--Sakuya {
+  color: var(--f-enemy-Sakuya);
+}
+.c-enemy--FraudRabbit {
+  color: var(--f-enemy-FraudRabbit);
+}
+.c-enemy--LoveGirl {
+  color: var(--f-enemy-LoveGirl);
+}
+.c-enemy--Long {
+  color: var(--f-enemy-Long);
+}
+
 :root {
   color-scheme: light dark;
   --padding-inner: 0.625em;
@@ -2001,6 +2014,11 @@ html:lang(en) .p-result__type {
   --f-ui-purple: #c850c8;
   --f-entity-color: #99ffff;
   --f-ui-green: #8bc88a;
+
+  --f-enemy-Sakuya: #b7f0ff;
+  --f-enemy-FraudRabbit: #b7646b;
+  --f-enemy-LoveGirl: #eab8bf;
+  --f-enemy-Long: #4f6e97;
 }
 
 .u-img-vertical-align {
