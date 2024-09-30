@@ -1,5 +1,5 @@
 import { MoneyImage, PowerImage } from '../stations/parts/stationWidgets';
-import Highlight from 'components/log/parts/highlight';
+import Highlight, { highlightColors } from 'components/log/parts/highlight';
 import { Trans, useTranslation } from 'react-i18next';
 import { TCard, TExhibitObj, THolding, TStatusEffect } from 'utils/types/runData';
 import { useContext } from 'react';
@@ -17,20 +17,13 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
   const { act, level, holdings } = useContext(LogContext);
   const { t, i18n } = useTranslation();
 
-  const components = {
-    h: <Highlight>{}</Highlight>,
-    ha: <Highlight color="a">{}</Highlight>,
-    hu: <Highlight color="u">{}</Highlight>,
-    hd: <Highlight color="d">{}</Highlight>,
-    hp: <Highlight color="p">{}</Highlight>,
-    he: <Highlight color="e">{}</Highlight>,
+  const components: TObjElement = {
     Money: <MoneyImage />,
     Power: <PowerImage />,
-    Mana1: <CardManaWidget mana="1" />,
-    ManaP: <CardManaWidget mana="P" />,
-    ManaC: <CardManaWidget mana="C" />,
     PlayerName: <CharacterShortName />
   };
+  for (const color in highlightColors) components[`h${color}`] = <Highlight color={color}>{}</Highlight>;
+  for (const mana of '1WUBRGCP') components[`Mana${mana}`] = <CardManaWidget mana={mana} />;
 
   const values = {};
 
