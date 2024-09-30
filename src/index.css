@@ -689,7 +689,7 @@ input {
   color: var(--f-blue);
 }
 .p-summary__rarity--Rare {
-  color: var(--f-gold);
+  color: var(--f-highlight);
 }
 .p-summary__rarity--Shining {
   color: var(--f-red);
@@ -958,7 +958,7 @@ input {
   border-color: color-mix(in srgb, var(--f-blue) var(--opacity-border), transparent);
 }
 .c-entity--Rare {
-  border-color: color-mix(in srgb, var(--f-gold) var(--opacity-border), transparent);
+  border-color: color-mix(in srgb, var(--f-highlight) var(--opacity-border), transparent);
 }
 .c-entity--Shining {
   border-color: color-mix(in srgb, var(--f-red) var(--opacity-border), transparent);
@@ -1013,7 +1013,7 @@ html:lang(en) .c-entity__text {
   font-family: 'Comic Sans', 'Comic Sans MS', 'Chalkboard', 'ChalkboardSE-Regular', sans-serif;
 }
 .c-card--upgraded .c-card__text {
-  color: var(--f-light-green);
+  color: var(--f-upgraded-green);
 }
 .c-entity__text.c-card__text:after {
   content: '';
@@ -1629,25 +1629,34 @@ html:lang(en) .p-result__type {
 }
 
 .c-highlight--orange {
-  color: var(--orange);
+  color: var(--f-highlight);
 }
-.c-highlight--green {
-  color: var(--lime);
+.c-highlight--updatad-green {
+  color: var(--f-upgraded-green);
 }
 .c-highlight--blue {
-  color: var(--blue);
+  color: var(--f-ui-blue);
 }
-.c-highlight--red {
-  color: var(--red);
+.c-highlight--ui-red {
+  color: var(--f-ui-red);
 }
-.c-highlight--white {
-  color: var(--white);
+.c-highlight--transparent {
+  color: var(--f-ui-transparent);
 }
 .c-highlight--purple {
-  color: var(--purple);
+  color: var(--f-ui-purple);
 }
 .c-highlight--lightblue {
-  color: var(--light-blue);
+  color: var(--f-entity-color);
+}
+.c-highlight--green {
+  color: var(--f-ui-green);
+}
+.c-highlight--red {
+  color: var(--f-red);
+}
+.c-highlight--cyan {
+  color: var(--f-cyan);
 }
 
 .c-show-random-result {
@@ -1850,7 +1859,7 @@ html:lang(en) .p-result__type {
 .p-card__keywords {
   display: flex;
   column-gap: 0.2em;
-  color: var(--f-gold);
+  color: var(--f-highlight);
 }
 .p-card__description + .p-card__keywords {
   margin-top: -24px;
@@ -1977,13 +1986,21 @@ html:lang(en) .p-result__type {
   --f-light-blue: #d1cef3;
   --f-light-yellow: #fdfdc1;
   --f-light-gray: lightgray;
-  --f-light-green: palegreen;
   --f-blue: dodgerblue;
-  --f-gold: #efc851;
   --f-red: orangered;
   --f-light-purple: mediumorchid;
   --f-purple: purple;
   --f-brown: #dabfa2;
+  --f-cyan: cyan;
+
+  --f-highlight: #efc851;
+  --f-upgraded-green: #5fff99;
+  --f-ui-blue: #8ab5c8;
+  --f-ui-red: #dd7473;
+  --f-ui-transparent: #ffffff55;
+  --f-ui-purple: #c850c8;
+  --f-entity-color: #99ffff;
+  --f-ui-green: #8bc88a;
 }
 
 .u-img-vertical-align {
