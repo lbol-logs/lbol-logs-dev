@@ -159,11 +159,11 @@ function CardModal({ card }: { card: TCard }) {
 
 export default CardModal;
 
-function LazyLoadImage2x({ callback, name, width, height, className }: { callback: Function, name: string, width: string | number, height?: string | number, className?: string }) {
+function LazyLoadImage2x({ callback, name, width, height, alt = "", className }: { callback: Function, name: string, width: string | number, height?: string | number, alt?: string, className?: string }) {
   const props = { srcSet: null };
 
   return (
-    <LazyLoadImage2 className={className} callback={callback} name={`${name}@2x`} width={width} height={height} alt="" props={props} />
+    <LazyLoadImage2 className={className} callback={callback} name={`${name}@2x`} width={width} height={height} alt={alt} props={props} />
   );
 }
 

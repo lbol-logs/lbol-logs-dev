@@ -20,7 +20,12 @@ function CardManaWidget({ mana, is2x }: { mana: string, is2x?: boolean }) {
   let img;
   if (is2x) {
     const size = iconSize * 2;
-    img = <LazyLoadImage2x callback={getCardManaImage} name={mana} width={size} height={size} />;
+    let alt;
+    if ('0123456789X'.includes(mana)) alt = mana;
+    else if ('WUBRGCP'.includes(mana)) alt = t(`mana.${mana}`, { ns: 'common' });
+    else alt = t(`mana.${mana[1]}`, { ns: 'common' }) + '/' + t(`mana.${mana[2]}`, { ns: 'common' });
+
+    img = <LazyLoadImage2x callback={getCardManaImage} name={mana} width={size} height={size} alt={alt} />;
   }
   else {
     img = <LazyLoadImage2 callback={getCardManaImage} name={mana} alt={t(`mana.${mana}`, { ns: 'common' })} />;
