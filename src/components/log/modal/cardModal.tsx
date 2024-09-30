@@ -64,9 +64,11 @@ function CardModal({ card }: { card: TCard }) {
       let cost = allCardConfigs[`${key}Cost`];
       if (cost === undefined) continue;
 
+      const alt = (cost > 0 ? '+' : '') + cost;
+
       const description = (
         <div className="p-card__description p-card__description--teammate" key={key}>
-          <LazyLoadImage2x className="c-teammate-cost" callback={getUnityImage} name={`${type}/${cost}`} width="76" height="38" />
+          <LazyLoadImage2x className="c-teammate-cost" callback={getUnityImage} name={`${type}/${cost}`} width="76" height="38" alt={alt} />
           <DescriptionWidget ns={ns} {..._card} prefix={key} />
         </div>
       );
