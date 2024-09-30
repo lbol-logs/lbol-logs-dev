@@ -1791,7 +1791,7 @@ html:lang(en) .p-result__type {
 .c-card-type__text,
 .p-card__descriptions {
   display: inline-block;
-  line-height: 1em;
+  line-height: 1.3em;
   vertical-align: baseline;
 }
 .p-card__type-text {
@@ -1868,7 +1868,7 @@ html:lang(en) .p-result__type {
   color: var(--f-highlight);
 }
 .p-card__description + .p-card__keywords {
-  margin-top: -24px;
+  margin-top: -28px;
 }
 
 .p-card__upgrade-switcher {

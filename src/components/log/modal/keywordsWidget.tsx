@@ -4,7 +4,7 @@ function KeywordsWidget({ keywords}: { keywords: Array<string> }) {
   const { t } = useTranslation();
 
   return (
-    <div className="p-card__keywords" key="keywords">
+    <div className="p-card__keywords">
       {keywords.map(keyword => {
         return (
           <span className="c-card__keyword" key={keyword}>{t(keyword, { ns: 'keywords' })}</span>

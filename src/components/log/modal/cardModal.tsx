@@ -79,7 +79,7 @@ function CardModal({ card }: { card: TCard }) {
   if (Keywords !== undefined) {
     const keywords = Keywords.filter((keyword: string) => !notAutoAppend.includes(keyword));
     if (keywords.length) {
-      const description = <KeywordsWidget keywords={keywords} />;
+      const description = <KeywordsWidget keywords={keywords} key="keywords" />;
       descriptions.push(description);
     }
   }
@@ -94,12 +94,10 @@ function CardModal({ card }: { card: TCard }) {
       let child;
       if (div.classList.contains('p-card__body')) {
         child = div.firstChild as HTMLDivElement;
-        const children = child.children as HTMLCollectionOf<HTMLDivElement>;
-        if (children.length === 1) {
-          const height = child.offsetHeight;;
-          const description = children[0];
-          const lineHeight = parseInt(getComputedStyle(description).lineHeight);
-          if (height === lineHeight) {
+        if (child.childElementCount === 1) {
+          const height = child.offsetHeight;
+          const lineHeight = parseFloat(getComputedStyle(child).lineHeight);
+          if (height < lineHeight + 1) {
             div.classList.add(oneLine);
             continue;
           }
