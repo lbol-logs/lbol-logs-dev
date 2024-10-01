@@ -115,9 +115,9 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
       const { Node } = Stations[Station];
       exhibit.Station = Node;
 
-      const { BaseMana, Counter } = exhibitsConfigs.get(Id);
-      if (Counter && Type === 'Add') {
-        exhibit.Counter = Counter;
+      const { BaseMana, InitialCounter } = exhibitsConfigs.get(Id);
+      if (InitialCounter && Type === 'Add') {
+        exhibit.Counter = InitialCounter;
       }
 
       if (Id === ExhibitsWithCounter.TiangouYuyi) {
