@@ -6,7 +6,6 @@ import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import CharacterShortName from '../stations/parts/characterShortName';
 import CardManasWidget from './cardManasWidget';
-import CardManaWidget from './cardManaWidget';
 import { TObjElement, TObjAny } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import { configsData } from 'configs/globals';
@@ -23,7 +22,8 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
     PlayerName: <CharacterShortName />
   };
   for (const color in highlightColors) components[`h${color}`] = <Highlight color={color}>{}</Highlight>;
-  for (const mana of '1WUBRGCP') components[`Mana${mana}`] = <CardManaWidget mana={mana} />;
+  for (const mana of '1WUBRGCP') components[`Mana${mana}`] = <CardManasWidget cardMana={new CMana(mana).manas} />;
+  for (const mana of ['WW']) components[`Mana${mana}`] = <CardManasWidget cardMana={new CMana(mana).manas} />;
   const enemies = ['FraudRabbit', 'LoveGirl', 'Long'];
   for (const enemy of enemies) components[enemy] = <span className={`c-enemy--${enemy}`}>{}</span>;
 
