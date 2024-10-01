@@ -51,14 +51,19 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       if (IsUpgraded) addKey(Id, `Upgraded${prefix}`);
       addKey(Id, prefix);
 
-      const { Damage, Block, Shield, Value1, Value2, Mana, Scry, Power, Graze  } = cardConfigs;
+      // TODO: QingxingMeng.Limit
 
-      const args = { Damage, Block, Shield, Value1, Value2, Scry, P: Power, Graze };
+      const { Damage, Block, Shield, Value1, Value2, Mana, Scry, MoneyCost, ToolPlayableTimes, Power, Graze, StartMana, ActiveMana, TotalMana, Heal, MaxHand, Light, Percentage, PassiveColor, AttackTimes, UpgradeDamage, FreezeTimes } = cardConfigs;
+
+      const args = { Damage, Block, Shield, Value1, Value2, Scry, DeckCounter: ToolPlayableTimes, MoneyCost, P: Power, Graze, Heal, MaxHand, Light, Percentage, PassiveColor, AttackTimes, UpgradeDamage, FreezeTimes };
       c.appendDescs(args);
       // Object.assign(values, args);
       if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={Mana} />);
 
       c.insert('SelfName', <span className="c-self-name">{t(`${Id}.Name`, { ns })}</span>)
+      if (StartMana !== undefined) c.insert('StartMana', <CardManasWidget cardMana={new CMana(StartMana).manas} />);
+      if (ActiveMana !== undefined) c.insert('ActiveMana', <CardManasWidget cardMana={new CMana(ActiveMana).manas} />);
+      if (TotalMana !== undefined) c.insert('TotalMana', <CardManasWidget cardMana={new CMana(TotalMana).manas} />);
 
       break;
     }
@@ -121,7 +126,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
         c.appendDescs(args);
       }
 
-      if (Id === 'ExtraBlizzard') {
+      if (['ExtraBlizzard', 'ReimuSilenceSe'].includes(Id)) {
         c.insert('Damage', <Desc value={Level} />);
       }
       if (SourceCardName !== undefined) {
@@ -134,6 +139,10 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       }
       if (Id === 'SeeFengshuiSe') {
         c.insert('Scry', <Desc value={Level} />);
+      }
+      if (Id === 'BailianBlackSe') {
+        const mana = (Limit === 1 ? 0 : 1).toString();
+        c.insert('Mana', <CardManasWidget cardMana={new CMana(mana).manas} />);
       }
 
       break;

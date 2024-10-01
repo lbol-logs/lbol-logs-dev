@@ -5,6 +5,7 @@ import DescriptionWidget from './descriptionWidget';
 
 function StatusEffectModal({ statusEffect }: { statusEffect: TStatusEffect }) {
   const { t } = useTranslation();
+
   const { Id } = statusEffect;
 
   return (
