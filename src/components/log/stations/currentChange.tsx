@@ -76,7 +76,6 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
 
     return Object.entries(exhibits).map(([type, symbol]) => {
       let exhibits: TExhibits | TExhibitObjs = currentExhibits.filter(({ Type }) => Type === type);
-      if (type !== 'Use') exhibits = exhibits.map(({ Id }) => Id);
       if (type === 'Add') {
         const currentExcludes = copyObject(excludeExhibits);
         for (let i = 0; i < excludeExhibits.length; i++) {

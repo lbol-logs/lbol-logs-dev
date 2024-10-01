@@ -1041,6 +1041,9 @@ html:lang(en) .c-entity__text {
   width: auto;
   margin-left: var(--entity-margin);
 }
+.c-exhibit__counter {
+  margin-left: auto;
+}
 
 .p-enemies-container {
   display: flex;
