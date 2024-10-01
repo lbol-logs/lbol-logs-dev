@@ -1858,21 +1858,22 @@ html:lang(en) .p-result__type {
   top: 50%;
   transform: translateY(-50%);
   line-height: 1.5em;
+  --margin: 10px;
+  --margin-teammate: 0.35em;
 }
 .p-card__description:not(:last-child) {
-  margin-bottom: 28px;
+  margin-bottom: var(--margin);
 }
 .p-card__description {
   position: relative;
 }
 .p-card__description--teammate {
-  margin-top: 14px;
+  margin-top: var(--margin-teammate);
 }
 .c-teammate-cost {
   position: absolute;
   left: -80px;
-  top: -14px;
-
+  top: -6px;
   width: 76px;
 }
 
@@ -1883,7 +1884,7 @@ html:lang(en) .p-result__type {
   flex-wrap: wrap;
 }
 .p-card__description + .p-card__keywords {
-  margin-top: -28px;
+  margin-top: calc(var(--margin) * -1);
 }
 
 .p-card__upgrade-switcher {
@@ -1943,9 +1944,6 @@ html:lang(en) .p-result__type {
   display: block;
 }
 
-.c-enemy--Sakuya {
-  color: var(--f-enemy-Sakuya);
-}
 .c-enemy--FraudRabbit {
   color: var(--f-enemy-FraudRabbit);
 }

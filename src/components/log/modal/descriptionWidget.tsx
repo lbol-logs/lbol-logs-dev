@@ -24,7 +24,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
   };
   for (const color in highlightColors) components[`h${color}`] = <Highlight color={color}>{}</Highlight>;
   for (const mana of '1WUBRGCP') components[`Mana${mana}`] = <CardManaWidget mana={mana} />;
-  const enemies = ['Sakuya', 'FraudRabbit', 'LoveGirl', 'Long'];
+  const enemies = ['FraudRabbit', 'LoveGirl', 'Long'];
   for (const enemy of enemies) components[enemy] = <span className={`c-enemy--${enemy}`}>{}</span>;
 
   const values = {};
@@ -51,9 +51,9 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       if (IsUpgraded) addKey(Id, `Upgraded${prefix}`);
       addKey(Id, prefix);
 
-      const { Damage, Block, Shield, Value1, Value2, Mana, Scry } = cardConfigs;
+      const { Damage, Block, Shield, Value1, Value2, Mana, Scry, Power, Graze  } = cardConfigs;
 
-      const args = { Damage, Block, Shield, Value1, Value2, Scry };
+      const args = { Damage, Block, Shield, Value1, Value2, Scry, P: Power, Graze };
       c.appendDescs(args);
       // Object.assign(values, args);
       if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={Mana} />);
@@ -180,6 +180,7 @@ class Components {
 
   appendDescs(o: TObjAny) {
     for (const [id, value] of Object.entries(o)) {
+      if (value === undefined) continue;
       this.appendDesc(id, value);
     }
   }

@@ -117,8 +117,8 @@ function CardModal({ card }: { card: TCard }) {
         const childWidth = child.offsetWidth;
         if (childHeight <= parentHeight && childWidth <= parentWidth) break;
         fontSize--;
-        if (!fontSize) break;
-        div.style.fontSize = (fontSize - 1) + 'px';
+        div.style.fontSize = fontSize + 'px';
+        if (fontSize === 16) break;
       }
     }
   }, [upgraded]);
