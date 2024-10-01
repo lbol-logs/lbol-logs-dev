@@ -1009,7 +1009,10 @@ html:lang(en) .c-entity__text {
   z-index: var(--z-1);
   color: var(--f-white);
 }
-.c-card__text, .c-exhibit__text, .p-card__text {
+.c-card__text,
+.c-exhibit__text,
+.p-card__text,
+.c-status-effect__value {
   font-family: 'Comic Sans', 'Comic Sans MS', 'Chalkboard', 'ChalkboardSE-Regular', sans-serif;
 }
 .c-card--upgraded .c-card__text {
@@ -1589,26 +1592,27 @@ html:lang(en) .p-result__type {
 .c-exhibit-with-counter__counter,
 .c-status-effect .c-status-effect__value {
   position: absolute;
-  font-size: 0.7em;
+  font-size: 1em;
   font-weight: bold;
-  box-shadow: 0 0 0 var(--f-white);
-  --shadow-color: var(--f-white);
+  line-height: 1em;
+  box-shadow: 0 0 0 var(--f-black);
+  --shadow-color: var(--f-black);
 }
 .c-status-effect__value--level {
   right: 0;
   bottom: 0;
-  color: var(--f-red);
+  color: var(--f-ui-red);
 }
 .c-status-effect__value--duration {
   right: 0;
   bottom: 0;
-  color: var(--f-blue);
+  color: var(--f-ui-blue);
 }
 .c-exhibit-with-counter__counter,
 .c-status-effect__value--count {
   right: 0;
   top: 0;
-  color: var(--f-green);
+  color: var(--f-ui-green);
 }
 
 .c-price {
