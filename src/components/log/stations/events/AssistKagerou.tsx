@@ -5,6 +5,7 @@ import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import { TObjAny } from 'utils/types/common';
+import { TChoice } from 'utils/types/others';
 
 function AssistKagerou({ station }: { station: TStation }) {
   const { eventsConfigs, dialoguesConfigs } = configsData;
@@ -20,7 +21,8 @@ function AssistKagerou({ station }: { station: TStation }) {
   const { card } = eventsConfigs.get(id);
 
   const [next] = getNext(options);
-  const chosen = Choices[0];
+  const choices = [0, 2];
+  const chosen = choices.indexOf(Choices[0]) as TChoice;
 
   const props: Array<TObjAny> = [];
   const cards: Array<TCards> = [];
