@@ -1622,6 +1622,12 @@ html:lang(en) .p-result__type {
   align-self: center;
 }
 
+.c-character-short-name {
+  color-scheme: dark;
+}
+.p-modal__card .c-character-short-name {
+  color-scheme: normal;
+}
 .c-character-short-name--Reimu {
   color: var(--reimu);
 }
