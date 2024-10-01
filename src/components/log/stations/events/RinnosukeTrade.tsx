@@ -43,10 +43,12 @@ function RinnosukeTrade({ station }: { station: TStation }) {
 
     const props: Array<TObjAny> = [];
 
-    Object.values(Prices).forEach((price, i: number) => {
-      const values = { 1: price };
-      props[i] = { values };
-    });
+    if (Prices) {
+      Object.values(Prices).forEach((price, i: number) => {
+        const values = { 1: price };
+        props[i] = { values };
+      });
+    }
 
     const dialogueConfigs: TDialogueConfigs = {
       current,
