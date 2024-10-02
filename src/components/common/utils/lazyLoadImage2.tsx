@@ -21,12 +21,6 @@ export type {
 function LazyLoadImage2({ callback, name, alt, width, height, className, props = {} }: TLazyLoadImageArgs) {
   const [srcs, setSrcs] = useState({} as { src: string, srcSet: string });
 
-  const fakeIcons: TObj<Function> = {
-    FakeCardImage: getCardArtImage,
-    FakeExhibitIcon: getExhibitImage,
-    FakeStatusEffectIcon: getStatusEffectImage
-  };
-
   const _props = {
     width: width || iconSize,
     height: height || iconSize,
@@ -51,10 +45,8 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
       srcSet={srcSet}
       alt={alt}
       onError={() => {
-        const fakeIcon = Object.entries(fakeIcons).find(([_, fn]) => fn === callback);
-        if (!fakeIcon) return;
-        const name = fakeIcon[0];
-        if (fakeIcon) getSrcs(getCommonImage, name);
+        const fakeIcon = getFakeIcon(callback);
+        if (fakeIcon) getSrcs(getCommonImage, fakeIcon);
       }}
       {..._props}
     />
@@ -62,3 +54,16 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
 }
 
 export default LazyLoadImage2;
+
+function getFakeIcon(callback: Function) {
+  const fakeIcons: TObj<Function> = {
+    FakeCardImage: getCardArtImage,
+    FakeExhibitIcon: getExhibitImage,
+    FakeStatusEffectIcon: getStatusEffectImage
+  };
+
+  const fakeIcon = Object.entries(fakeIcons).find(([_, fn]) => fn === callback);
+  if (!fakeIcon) return;
+  const name = fakeIcon[0];
+  return name;
+}
