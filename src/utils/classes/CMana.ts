@@ -4,7 +4,7 @@ class CMana {
   private s: string;
   public manas: TCardMana = [];
 
-  constructor(input: string) {
+  constructor(input: string | number) {
     this.s = input.toString();
 
     do {

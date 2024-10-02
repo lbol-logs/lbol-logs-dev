@@ -1,10 +1,13 @@
 import { TCardMana } from 'utils/types/others';
 import CardManaWidget from './cardManaWidget';
+import CMana from 'utils/classes/CMana';
 
-function CardManasWidget({ cardMana, is2x }: { cardMana: TCardMana, is2x?: boolean }) {
+function CardManasWidget({ cardMana, is2x }: { cardMana: TCardMana | string | number, is2x?: boolean }) {
+  const manas = ['string', 'number'].includes(typeof cardMana) ? new CMana(cardMana as string | number).manas : (cardMana as TCardMana);
+
   return (
     <div className="p-card-mana">
-    {cardMana.map((mana, i) => {
+    {manas.map((mana, i) => {
       return (
         <CardManaWidget mana={mana} is2x={is2x} key={i} />
       );

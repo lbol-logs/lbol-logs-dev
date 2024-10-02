@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 import CharacterShortName from '../stations/parts/characterShortName';
 import CardManasWidget from './cardManasWidget';
-import { TObjElement, TObjAny } from 'utils/types/common';
+import { TObjElement, TObjAny, TObj } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import { configsData } from 'configs/globals';
 import CMana from 'utils/classes/CMana';
@@ -24,15 +24,16 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
     Power: <PowerImage />,
     PlayerName: <CharacterShortName />
   };
+  const c = new Components(components);
+
   for (const color in highlightColors) components[`h${color}`] = <Highlight color={color}>{}</Highlight>;
-  for (const mana of '1WUBRGCP') components[`Mana${mana}`] = <CardManasWidget cardMana={new CMana(mana).manas} />;
-  for (const mana of ['WW']) components[`Mana${mana}`] = <CardManasWidget cardMana={new CMana(mana).manas} />;
+  for (const mana of '1WUBRGCP') c.insertManaObj({ [mana]: mana }, 'Mana');
+  for (const mana of ['WW']) c.insertManaObj({ [mana]: mana }, 'Mana');
 
   const values = {};
 
   let Version;
   const keys: Array<string> = [];
-  const c = new Components(components);
 
   function addKey(id: string, prefix: string) {
     keys.push(`${id}.${prefix}Description`);
@@ -59,12 +60,12 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       const args = { Damage, Block, Shield, Value1, Value2, Scry, DeckCounter: ToolPlayableTimes, MoneyCost, P: Power, Graze, Heal, MaxHand, Light, Percentage, PassiveColor, AttackTimes, UpgradeDamage, FreezeTimes };
       c.appendDescs(args);
       // if (isEn) Object.assign(values, args);
-      if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={Mana} />);
+      c.insertManaObj({ Mana });
 
       c.insert('SelfName', <span className="c-self-name">{t(`${Id}.Name`, { ns })}</span>)
-      if (StartMana !== undefined) c.insert('StartMana', <CardManasWidget cardMana={new CMana(StartMana).manas} />);
-      if (ActiveMana !== undefined) c.insert('ActiveMana', <CardManasWidget cardMana={new CMana(ActiveMana).manas} />);
-      if (TotalMana !== undefined) c.insert('TotalMana', <CardManasWidget cardMana={new CMana(TotalMana).manas} />);
+      c.insertManaObj({ StartMana });
+      c.insertManaObj({ ActiveMana });
+      c.insertManaObj({ TotalMana });
 
       break;
     }
@@ -81,7 +82,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       const args = { Value1, Value2, Value3, Counter: counter, InitialCounter };
       c.appendDescs(args);
       if (isEn) Object.assign(values, args);
-      if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={new CMana(Mana).manas} />);
+      c.insertManaObj({ Mana });
       if (BaseMana !== undefined) c.insert('BaseMana', <BaseManasWidget baseMana={BaseMana} />);
 
       break;
@@ -119,7 +120,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       }
 
       const mana = Mana === undefined ? (Level === undefined ? (Limit || 0) : Level) : Mana;
-      if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={new CMana(mana).manas} />);
+      c.insertManaObj({ Mana: mana });
 
       {
         const StackDamage = StackMultiply === undefined ? undefined : (BaseDamage * StackMultiply);
@@ -182,6 +183,16 @@ class Components {
   insertObj(o: TObjElement) {
     const [id, component] = Object.entries(o)[0];
     this.insert(id, component);
+  }
+
+  insertManaObj(o: TObj<string | number>, prefix = '') {
+    const [id, mana] = Object.entries(o)[0];
+    this.insertMana(prefix + id, mana);
+  }
+
+  insertMana(id: string, mana: string | number) {
+    if (mana === undefined) return;
+    this.insert(id, <CardManasWidget cardMana={mana} />);
   }
 
   insert(id: string, component: JSX.Element) {
