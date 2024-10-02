@@ -1,8 +1,8 @@
 import { iconSize } from 'configs/globals';
 import { useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage } from 'utils/functions/getImage';
-import { TObjAny, TObjString } from 'utils/types/common';
+import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage } from 'utils/functions/getImage';
+import { TObj, TObjAny } from 'utils/types/common';
 
 type TLazyLoadImageArgs = {
   callback: Function,
@@ -21,10 +21,10 @@ export type {
 function LazyLoadImage2({ callback, name, alt, width, height, className, props = {} }: TLazyLoadImageArgs) {
   const [srcs, setSrcs] = useState({} as { src: string, srcSet: string });
 
-  const fakeIcons: TObjString = {
-    getCardImage: 'FakeCardImage',
-    getExhibitImage: 'FakeExhibitIcon',
-    getStatusEffectImage: 'FakeStatusEffectIcon'
+  const fakeIcons: TObj<Function> = {
+    FakeCardImage: getCardArtImage,
+    FakeExhibitIcon: getExhibitImage,
+    FakeStatusEffectIcon: getStatusEffectImage
   };
 
   const _props = {
@@ -51,8 +51,10 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
       srcSet={srcSet}
       alt={alt}
       onError={() => {
-        const fakeIcon = fakeIcons[callback.name];
-        if (fakeIcon) getSrcs(getCommonImage, fakeIcon);
+        const fakeIcon = Object.entries(fakeIcons).find(([_, fn]) => fn === callback);
+        if (!fakeIcon) return;
+        const name = fakeIcon[0];
+        if (fakeIcon) getSrcs(getCommonImage, name);
       }}
       {..._props}
     />
