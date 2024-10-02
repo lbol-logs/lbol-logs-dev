@@ -1641,10 +1641,10 @@ html:lang(en) .p-result__type {
   color: var(--f-sakuya);
 }
 .c-character-short-name--Cirno {
-  color: var(--cirno);
+  color: var(--f-cirno);
 }
 .c-character-short-name--Koishi {
-  color: var(--koishi);
+  color: var(--f-koishi);
 }
 
 .c-highlight--orange {
@@ -1928,10 +1928,10 @@ html:lang(en) .p-result__type {
   border: 1px solid var(--gray);
 }
 .c-upgrade-switcher__toggle:checked {
-  background-color: var(--koishi);
+  background-color: var(--lime);
 }
 .c-upgrade-switcher__toggle:checked:after {
-  border-color: var(--koishi);
+  border-color: var(--lime);
   transform: translateX(100%);
 }
 .c-upgrade-switcher__text {
@@ -2007,7 +2007,7 @@ html:lang(en) .p-result__type {
   --f-marisa: #f2e40f;
   --f-sakuya: #b7f0ff;
   --f-cirno: #0f94f2;
-  --koishi: #23ec4d;
+  --f-koishi: #23ec4d;
 
   --f-white: #fff;
   --f-black: #000;
