@@ -10,11 +10,14 @@ import { TObjElement, TObjAny } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import { configsData } from 'configs/globals';
 import CMana from 'utils/classes/CMana';
+import i18next from 'i18next';
 
 function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: string }) {
   const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
   const { act, level, holdings } = useContext(LogContext);
   const { t, i18n } = useTranslation();
+
+  const isEn = i18next.language === 'en';
 
   const components: TObjElement = {
     Money: <MoneyImage />,
@@ -55,7 +58,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
 
       const args = { Damage, Block, Shield, Value1, Value2, Scry, DeckCounter: ToolPlayableTimes, MoneyCost, P: Power, Graze, Heal, MaxHand, Light, Percentage, PassiveColor, AttackTimes, UpgradeDamage, FreezeTimes };
       c.appendDescs(args);
-      // Object.assign(values, args);
+      // if (isEn) Object.assign(values, args);
       if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={Mana} />);
 
       c.insert('SelfName', <span className="c-self-name">{t(`${Id}.Name`, { ns })}</span>)
@@ -77,7 +80,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
 
       const args = { Value1, Value2, Value3, Counter: counter, InitialCounter };
       c.appendDescs(args);
-      Object.assign(values, args);
+      if (isEn) Object.assign(values, args);
       if (Mana !== undefined) c.insert('Mana', <CardManasWidget cardMana={new CMana(Mana).manas} />);
       if (BaseMana !== undefined) c.insert('BaseMana', <BaseManasWidget baseMana={BaseMana} />);
 
@@ -98,7 +101,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
         c.insertObj({ OwnerName });
         const args = { Level, Duration, Count, Limit: Limit || 0 };
         c.appendDescs(args);
-        Object.assign(values, args);
+        if (isEn) Object.assign(values, args);
       }
 
       const { Value, Mana, DamageRate, TriggerLevel, BaseDamage, StackMultiply, SourceCardName, Block } = config;
