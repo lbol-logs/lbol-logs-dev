@@ -24,8 +24,6 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
   for (const color in highlightColors) components[`h${color}`] = <Highlight color={color}>{}</Highlight>;
   for (const mana of '1WUBRGCP') components[`Mana${mana}`] = <CardManasWidget cardMana={new CMana(mana).manas} />;
   for (const mana of ['WW']) components[`Mana${mana}`] = <CardManasWidget cardMana={new CMana(mana).manas} />;
-  const enemies = ['FraudRabbit', 'LoveGirl', 'Long'];
-  for (const enemy of enemies) components[enemy] = <span className={`c-enemy--${enemy}`}>{}</span>;
 
   const values = {};
 
@@ -167,7 +165,7 @@ export default DescriptionWidget;
 function Desc({ value }: { value: string | number | undefined }) {
   if (value === undefined) return <></>;
   return (
-    <span className="p-modal__variable">{value}</span>
+    <span className="p-modal__variable u-text-shadow">{value}</span>
   );
 }
 

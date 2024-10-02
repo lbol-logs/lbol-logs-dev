@@ -1622,20 +1622,23 @@ html:lang(en) .p-result__type {
   align-self: center;
 }
 
+.p-modal__inner--exhibit .p-modal__variable,
+.p-modal__inner--status-effect .p-modal__variable,
 .c-character-short-name {
-  color-scheme: dark;
+  --shadow-color: light-dark(var(--f-black), transparent);
 }
+.p-modal__inner--card .p-modal__variable,
 .p-modal__card .c-character-short-name {
-  color-scheme: normal;
+  --shadow-color: transparent;
 }
 .c-character-short-name--Reimu {
-  color: var(--reimu);
+  color: var(--f-reimu);
 }
 .c-character-short-name--Marisa {
-  color: var(--marisa);
+  color: var(--f-marisa);
 }
 .c-character-short-name--Sakuya {
-  color: var(--sakuya);
+  color: var(--f-sakuya);
 }
 .c-character-short-name--Cirno {
   color: var(--cirno);
@@ -1679,11 +1682,11 @@ html:lang(en) .p-result__type {
 }
 
 .c-show-random-result {
-  color: var(--reimu);
+  color: var(--red);
   font-weight: bold;;
 }
 .c-reload-times {
-  color: var(--cirno);
+  color: var(--blue);
   font-weight: bold;;
 }
 
@@ -1736,10 +1739,6 @@ html:lang(en) .p-result__type {
 
 .p-modal__body {
   padding: var(--padding);
-}
-.p-modal__inner--exhibit .p-modal__variable,
-.p-modal__inner--status-effect .p-modal__variable {
-  color: var(--cirno);
 }
 .p-modal__inner--card .p-modal__variable {
   color: var(--f-value);
@@ -1950,16 +1949,6 @@ html:lang(en) .p-result__type {
   display: block;
 }
 
-.c-enemy--FraudRabbit {
-  color: var(--f-enemy-FraudRabbit);
-}
-.c-enemy--LoveGirl {
-  color: var(--f-enemy-LoveGirl);
-}
-.c-enemy--Long {
-  color: var(--f-enemy-Long);
-}
-
 .c-self-name {
   color: var(--f-value);
 }
@@ -2001,7 +1990,7 @@ html:lang(en) .p-result__type {
   --gray: light-dark(#ccc, #333);
   --blue: light-dark(blue, #0d0df2);
   --green: light-dark(green, #b1fbb1);
-  --red: light-dark(red, #ff0000);
+  --red: light-dark(red, #f20d0d);
   --orange: light-dark(#ff9400, #f2930d);
   --lime: light-dark(#5fff99, #08963c);
   --purple: light-dark(purple, #f986f9);
@@ -2014,11 +2003,11 @@ html:lang(en) .p-result__type {
   --shadow: light-dark(#00000040, #ffffff40);
   --overlay: light-dark(#00000080, #ffffff80);
 
-  --reimu: light-dark(#ff5a5a, #9b0808);
-  --marisa: light-dark(#f2e40f, #e7d918);
-  --sakuya: light-dark(#b7f0ff, #043644);
-  --cirno: light-dark(#0f94f2, #1891e7);
-  --koishi: light-dark(#23ec4d, #1dd344);
+  --f-reimu: #ff5a5a;
+  --f-marisa: #f2e40f;
+  --f-sakuya: #b7f0ff;
+  --f-cirno: #0f94f2;
+  --koishi: #23ec4d;
 
   --f-white: #fff;
   --f-black: #000;

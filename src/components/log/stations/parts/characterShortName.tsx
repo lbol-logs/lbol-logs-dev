@@ -9,7 +9,7 @@ function CharacterShortName() {
   const name = t(Character, { ns: 'units', context: 'short' });
 
   return (
-    <span className={`c-character-short-name c-character-short-name--${Character}`}>
+    <span className={`c-character-short-name c-character-short-name--${Character} u-text-shadow`}>
       {name}
     </span>
   );
