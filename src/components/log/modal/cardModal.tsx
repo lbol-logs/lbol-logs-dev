@@ -16,9 +16,10 @@ function CardModal({ card }: { card: TCard }) {
   const { cardsConfigs } = configsData;
   const { t, i18n } = useTranslation();
 
-  const { Id, IsUpgraded } = card;
+  const { Id, IsUpgraded, UpgradeCounter } = card;
   const [upgraded, setUpgraded] = useState(IsUpgraded);
   const _card = Object.assign({}, card, { IsUpgraded: upgraded });
+  if (upgraded && !UpgradeCounter && Id === 'YuyukoSing') Object.assign(_card, { UpgradeCounter: 1});
 
   const cardConfigs = cardsConfigs.get(_card);
   const allCardConfigs = cardConfigs.getAll();

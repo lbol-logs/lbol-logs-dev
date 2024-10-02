@@ -43,7 +43,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
     case 'cards': {
       const card = o as TCard;
       const {
-        Id, IsUpgraded
+        Id, IsUpgraded, UpgradeCounter
       } = card;
       const config = cardsConfigs.get(card);
       const cardConfigs = config.getAll();
@@ -57,9 +57,13 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
 
       const { Damage, Block, Shield, Value1, Value2, Mana, Scry, MoneyCost, ToolPlayableTimes, Power, Graze, StartMana, ActiveMana, TotalMana, Heal, MaxHand, Light, Percentage, PassiveColor, AttackTimes, UpgradeDamage, FreezeTimes } = cardConfigs;
 
-      const args = { Damage, Block, Shield, Value1, Value2, Scry, DeckCounter: ToolPlayableTimes, MoneyCost, P: Power, Graze, Heal, MaxHand, Light, Percentage, PassiveColor, AttackTimes, UpgradeDamage, FreezeTimes };
+      let damage = Damage;
+      if (UpgradeCounter) {
+        if (IsUpgraded) damage += (UpgradeCounter + 5) * UpgradeCounter;
+      }
+      const args = { Damage: damage, Block, Shield, Value1, Value2, Scry, DeckCounter: ToolPlayableTimes, MoneyCost, P: Power, Graze, Heal, MaxHand, Light, Percentage, PassiveColor, AttackTimes, UpgradeDamage, FreezeTimes };
       c.appendDescs(args);
-      // if (isEn) Object.assign(values, args);
+      if (isEn) Object.assign(values, args);
       c.insertManaObj({ Mana });
 
       c.insert('SelfName', <span className="c-self-name">{t(`${Id}.Name`, { ns })}</span>)
