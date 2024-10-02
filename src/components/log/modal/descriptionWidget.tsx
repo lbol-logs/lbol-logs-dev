@@ -144,7 +144,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       }
       if (Id === 'BailianBlackSe') {
         const mana = (Limit === 1 ? 0 : 1).toString();
-        c.insert('Mana', <CardManasWidget cardMana={new CMana(mana).manas} />);
+        c.insert('Mana', <CardManasWidget cardMana={CMana.get(mana)} />);
       }
 
       break;

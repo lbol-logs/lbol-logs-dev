@@ -3,7 +3,7 @@ import CardManaWidget from './cardManaWidget';
 import CMana from 'utils/classes/CMana';
 
 function CardManasWidget({ cardMana, is2x }: { cardMana: TCardMana | string | number, is2x?: boolean }) {
-  const manas = ['string', 'number'].includes(typeof cardMana) ? new CMana(cardMana as string | number).manas : (cardMana as TCardMana);
+  const manas = ['string', 'number'].includes(typeof cardMana) ? CMana.get(cardMana as string | number) : (cardMana as TCardMana);
 
   return (
     <div className="p-card-mana">

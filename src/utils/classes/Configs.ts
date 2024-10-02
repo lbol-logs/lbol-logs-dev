@@ -63,12 +63,12 @@ class CardsConfigs extends Configs {
       if (Keywords !== undefined) isUnplayable = Keywords.includes('Forbidden');
 
       if (!isUnplayable) {
-        cost = new CMana(Cost).manas;
+        cost = CMana.get(Cost);
         if (IsXCost) cost.unshift('X');
       }
       this.json[id][IsUpgraded].Cost = cost;
     }
-    if (Mana !== undefined) this.json[id][IsUpgraded].Mana = new CMana(Mana).manas;
+    if (Mana !== undefined) this.json[id][IsUpgraded].Mana = CMana.get(Mana);
   }
 }
 
