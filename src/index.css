@@ -1622,15 +1622,6 @@ html:lang(en) .p-result__type {
   align-self: center;
 }
 
-.p-modal__inner--exhibit .p-modal__variable,
-.p-modal__inner--status-effect .p-modal__variable,
-.c-character-short-name {
-  --shadow-color: light-dark(var(--f-black), transparent);
-}
-.p-modal__inner--card .p-modal__variable,
-.p-modal__card .c-character-short-name {
-  --shadow-color: transparent;
-}
 .c-character-short-name--Reimu {
   color: var(--f-reimu);
 }
@@ -1648,9 +1639,6 @@ html:lang(en) .p-result__type {
 }
 
 .c-highlight--orange {
-  color: var(--orange);
-}
-.p-card__description .c-highlight--orange {
   color: var(--f-highlight);
 }
 .c-highlight--updatad-green {
@@ -1717,7 +1705,9 @@ html:lang(en) .p-result__type {
   width: 100%;
   overflow-y: auto;
   scrollbar-width: none;
-  background: var(--light-gray);
+  background: var(--white);
+  color: var(--black);
+  color-scheme: dark;
   max-height: 70vh;
 }
 .p-modal__exhibit .c-exhibit--with-counter,
