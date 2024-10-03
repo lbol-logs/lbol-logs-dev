@@ -10,11 +10,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <I18nextProvider i18n={i18nextModInstance}>
-      <I18nextProvider i18n={i18nextInstance}>
-        <App />
-      </I18nextProvider>
-    </I18nextProvider>
+    <App />
   </React.StrictMode>
 );
 
