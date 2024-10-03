@@ -5,9 +5,10 @@ import { initReactI18next } from 'react-i18next';
 import { languages, namespaces } from 'configs/globals';
 
 const lngs = Object.keys(languages);
-i18next
+const i18nextInstance = i18next.createInstance();
+i18nextInstance
   .use(LanguageDetector)
-  .use(initReactI18next)
+  // .use(initReactI18next)
   .use(resourcesToBackend((language: string, namespace: string, callback: ReadCallback) => {
     import(`/public/assets/locales/${language}/${namespace}.json`)
       .then((resources) => {
@@ -28,4 +29,4 @@ i18next
     ns: namespaces
   });
 
-export default i18next;
+export default i18nextInstance;
