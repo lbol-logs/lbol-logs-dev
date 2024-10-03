@@ -13,7 +13,7 @@ function About() {
   const { t } = useTranslation();
   const { discord } = languages[i18next.language];
 
-  const tasks: Array<string> = t('runLogs.tasks', { ns: 'site', returnObjects: true });
+  const tasks: Array<string> = t('lbolLogs.tasks', { ns: 'site', returnObjects: true });
   const attention: Array<string> = t('attention.value', { ns: 'site', returnObjects: true });
 
   return (
@@ -74,7 +74,7 @@ function About() {
             </div>
 
             <div className="p-about-lbol-logs">
-              <h2 className="p-about-lbol-logs__update">{t('runLogs.update', { ns: 'site' })}</h2>
+              <h2 className="p-about-lbol-logs__update">{t('lbolLogs.update', { ns: 'site' })}</h2>
               <ul className="p-about-lbol-logs__tasks">
                 {tasks.map((task, i) => {
                   return <li className="p-about-lbol-logs__task" key={i}>{task}</li>;
