@@ -9,7 +9,7 @@ function CardCards({ cards, added }: { cards: TCards | TCardsWithPrice, added?: 
   return (
     <div className="c-entities c-cards">
       {cards.map((card, i) => {
-        const isNotAdded = Boolean(added && !added.includes(i))
+        const isNotAdded = Boolean(added && !added.includes(i));
         let price;
         const { Price, IsDiscounted } = card as TCardWithPrice;
         if (Price !== undefined) {

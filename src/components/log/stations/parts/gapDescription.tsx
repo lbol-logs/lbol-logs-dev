@@ -71,7 +71,7 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
       />
       {children}
     </p>
-  )
+  );
 }
 
 export default GapDescription;

@@ -18,7 +18,7 @@ function RequestsTypes({ onRequestsTypesChange, onRequestsChange, showRequests }
   if (showRequests) {
     requestsInput = (
       <RequestsWidget requests={rq || DefaultFilter.get(keys.rq)} onChange={onRequestsChange} />
-    )
+    );
   }
 
   return  (

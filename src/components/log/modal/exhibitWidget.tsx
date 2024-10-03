@@ -15,7 +15,7 @@ function ExhibitWidget({ exhibit }: { exhibit: TExhibitObj}) {
       {counter}
       <ExhibitImage className="c-exhibit-with-counter__img" exhibit={Id} alt={t(`${Id}.Name`, { ns: 'exhibits' })} />
     </span>
-  )
+  );
 }
 
 export default ExhibitWidget;

@@ -35,7 +35,7 @@ function YukariProvide({ station }: { station: TStation }) {
         <DialogueWidget id={id} dialogueConfigs={dialogueConfigs} />
       </div>
     </div>
-  )
+  );
 }
 
 export default YukariProvide;

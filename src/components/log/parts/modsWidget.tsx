@@ -19,7 +19,7 @@ function ModsWidget({ mods }: { mods: Array<TMod & { Url?: string }> }) {
             <div {...props} key={GUID}>
               {inner}
             </div>
-          )
+          );
         }
         else {
           return (

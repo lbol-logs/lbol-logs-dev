@@ -90,7 +90,7 @@ function useBackgroundDancers({ id, Data, configs, eventConfigs }: { id: string,
   if (len > 1) {
 
     for (let i = 1; i < len; i++) {
-      next = copyObject(next)
+      next = copyObject(next);
       props = copyObject(props);
       cards = copyObject(cards);
       exhibits = copyObject(exhibits);

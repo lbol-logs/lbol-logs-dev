@@ -9,7 +9,7 @@ function StatusEffectsWidgetV2({ statusEffects, owner }: { statusEffects: TStatu
 
         return (
           <StatusEffectWidget statusEffect={statusEffect} key={i} />
-        )
+        );
       })}
     </div>
   );

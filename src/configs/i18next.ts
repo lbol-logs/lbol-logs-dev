@@ -15,7 +15,7 @@ i18next
       })
       .catch((error) => {
         callback(error, null);
-      })
+      });
   }))
   .init({
     // debug: true,

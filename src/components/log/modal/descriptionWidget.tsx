@@ -66,7 +66,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       if (isEn) Object.assign(values, args);
       c.insertManaObj({ Mana });
 
-      c.insert('SelfName', <span className="c-self-name">{t(`${Id}.Name`, { ns })}</span>)
+      c.insert('SelfName', <span className="c-self-name">{t(`${Id}.Name`, { ns })}</span>);
       c.insertManaObj({ StartMana });
       c.insertManaObj({ ActiveMana });
       c.insertManaObj({ TotalMana });
