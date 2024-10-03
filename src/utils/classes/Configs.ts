@@ -119,9 +119,11 @@ class ConfigsData {
   private ver: string = '';
   private configs: TObj<TConfigsData> = {};
   private configsData: TConfigsData;
+  private isMods: boolean;
 
-  constructor(configsData: TConfigsData) {
+  constructor(configsData: TConfigsData, isMods: boolean) {
     this.configsData = configsData;
+    this.isMods = isMods;
   }
 
   get(version: string) {
@@ -138,7 +140,7 @@ class ConfigsData {
     for (const name of names) {
       const key = getConfigsKey(name);
       if (key in this.configsData) continue;
-      const configs = use(getConfigs(version, name));
+      const configs = use(getConfigs(version, name, this.isMods));
       const C = name === 'cards' ? CardsConfigs : Configs;
       this.set(key, new C(configs));
     }
@@ -149,7 +151,7 @@ class ConfigsData {
     for (const name of names) {
       const key = getConfigsKey(name);
       if (key in this.configsData) continue;
-      const response = await fetch(getConfigsUrl(version, name));
+      const response = await fetch(getConfigsUrl(version, name, this.isMods));
       const configs = await response.json();
       this.set(key, new Configs(configs));
     }

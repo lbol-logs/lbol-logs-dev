@@ -41,10 +41,14 @@ const versions: Array<string> = [
 ];
 const latestVersion: string = versions[0];
 
+const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+
 const baseUrl: string = process.env.PUBLIC_URL;
 const assetsUrl: string = `${baseUrl}/assets`;
+const modsUrl: string = isDev ? `${baseUrl}/mods/docs` : `${baseUrl}/mods`;
 const imagesUrl: string = `${assetsUrl}/images`;
 const configsUrl: string = `${assetsUrl}/configs`;
+const modsConfigsUrl: string = `${modsUrl}/configs`;
 const logsUrl: string = `${baseUrl}/logs`;
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
@@ -76,10 +80,10 @@ const defaultAsideHoldings = AsideType.right;
 const descriptionMaxLength = 300;
 
 const configsData: TConfigsData = {} as TConfigsData;
-const CONFIGS_DATA: ConfigsData = new ConfigsData(configsData);
+const CONFIGS_DATA: ConfigsData = new ConfigsData(configsData, false);
 
 const modsConfigsData: TConfigsData = {} as TConfigsData;
-const MODS_CONFIGS_DATA: ConfigsData = new ConfigsData(modsConfigsData);
+const MODS_CONFIGS_DATA: ConfigsData = new ConfigsData(modsConfigsData, true);
 
 const commonConfigs: Array<string> = [
   'characters',
@@ -125,6 +129,7 @@ export {
   baseUrl,
   imagesUrl,
   configsUrl,
+  modsConfigsUrl,
   logsUrl,
   gameUrl,
   modUrl,
