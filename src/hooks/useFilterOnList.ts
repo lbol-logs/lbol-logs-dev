@@ -1,5 +1,5 @@
 import DefaultFilter from 'utils/classes/DefaultFilter';
-import { compareArrays, copyObject, getResultType } from 'utils/functions/helpers';
+import { compareArrays, copyObject, getResultType, isMod } from 'utils/functions/helpers';
 import { TObj } from 'utils/types/common';
 import { TFilter, TRunList, TRunListItem } from 'utils/types/others';
 import { TRequests } from 'utils/types/runData';
@@ -38,7 +38,16 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter) {
     }
     else {
       const value = f as Array<string>;
-      if (key === keys.sc) {
+      if (key === keys.ch) {
+        const includesMods = value.includes('Mods');
+        filteredList = filteredList.filter(e => {
+          const character = e[map[key]] as string;
+          const isCharacter = value.includes(character);
+          const isModCharacter = includesMods ? isMod(character) : false;
+          return isCharacter || isModCharacter;
+        });
+      }
+      else if (key === keys.sc) {
         filteredList = filteredList.filter(e => value.includes(e[map.ch] as string + e[map[key]] as string));
       }
       else if (key === keys.rq) {

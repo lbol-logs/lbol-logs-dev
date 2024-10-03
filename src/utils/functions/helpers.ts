@@ -1,5 +1,5 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
-import { resultTypes } from 'configs/globals';
+import { configsData, resultTypes } from 'configs/globals';
 import { AsideType, TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
 import { TRounds } from 'utils/types/others';
 import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
@@ -167,6 +167,11 @@ function getConfigsKey(name: string) {
   return `${name}Configs`;
 }
 
+function isMod(character: string) {
+  const { charactersConfigs } = configsData;
+  return !charactersConfigs.ids.includes(character);
+}
+
 export {
   checkForce,
   validateRunData,
@@ -191,5 +196,6 @@ export {
   checkRounds,
   toggleAside,
   createArray,
-  getConfigsKey
+  getConfigsKey,
+  isMod
 };
