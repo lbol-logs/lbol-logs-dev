@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { getResultImage, getSpellcardImage } from 'utils/functions/getImage';
+import { getResultImage } from 'utils/functions/getImage';
 import { resultSizes } from 'configs/globals';
 import { TObjAny } from 'utils/types/common';
 import ExhibitImage from './exhibitImage';
 import { getResultType } from 'utils/functions/helpers';
+import SpellcardImage from '../utils/spellcardImage';
 
 function ResultWidget({ resultData, name }: { resultData: TObjAny, name: string | undefined }) {
   const { t } = useTranslation();
@@ -22,7 +23,7 @@ function ResultWidget({ resultData, name }: { resultData: TObjAny, name: string 
     <div className="p-result u-text-shadow">
       <LazyLoadImage2 className="p-result__background" callback={getResultImage} name="bg" width={bg} height={height} alt="" />
       <LazyLoadImage2 className="p-result__avatar" callback={getResultImage} name={`${Character}${resultType}`} width={avatar} height={height} alt={`${character} ${type}`} />
-      <LazyLoadImage2 className="p-result__spellcard" callback={getSpellcardImage} name={spellcard} alt={t(`spellcards.${spellcard}`, { ns: 'common' })} />
+      <SpellcardImage className="p-result__spellcard" spellcard={spellcard} />
       <ExhibitImage className="p-result__exhibit" exhibit={exhibit} />
       <span className={`p-result__type p-result__type--${resultType}`}>{type}</span>
       <span className="p-result__difficulty">

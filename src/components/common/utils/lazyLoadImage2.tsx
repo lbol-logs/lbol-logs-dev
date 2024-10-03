@@ -12,14 +12,15 @@ type TLazyLoadImageArgs = {
   width?: string | number,
   height?: string | number,
   className?: string
-  props?: TObjAny
+  props?: TObjAny,
+  isMod?: boolean
 };
 
 export type {
   TLazyLoadImageArgs
 };
 
-function LazyLoadImage2({ callback, name, alt, width, height, className, props = {} }: TLazyLoadImageArgs) {
+function LazyLoadImage2({ callback, name, alt, width, height, className, props = {}, isMod = false }: TLazyLoadImageArgs) {
   const [srcs, setSrcs] = useState({} as { src: string, srcSet: string });
 
   const _props = {
@@ -37,13 +38,7 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
     setSrcs({ src, srcSet });
   }
 
-  let isMod = false;
   switch (callback) {
-    case getSpellcardImage: {
-      const character = name.slice(0, -1);
-      isMod = checkIsMod(character);
-      break;
-    }
     case getAvatarImage: {
       isMod = checkIsMod(name);
       break;

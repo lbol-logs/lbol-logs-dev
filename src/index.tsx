@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'configs/i18next';
-import 'configs/i18nextMods';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
