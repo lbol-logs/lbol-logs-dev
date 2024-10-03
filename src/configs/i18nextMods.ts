@@ -5,9 +5,10 @@ import { initReactI18next, useTranslation } from 'react-i18next';
 import { languages, modsNamespaces } from 'configs/globals';
 
 const lngs = Object.keys(languages);
-i18next
+const i18nextModInstance = i18next.createInstance();
+i18nextModInstance
   .use(LanguageDetector)
-  .use(initReactI18next)
+  // .use(initReactI18next)
   .use(resourcesToBackend((language: string, namespace: string, callback: ReadCallback) => {
     import(`/public/mods/docs/locales/${language}/${namespace}.json`)
       .then((resources) => {
@@ -28,10 +29,10 @@ i18next
     ns: modsNamespaces
   });
 
-export default i18next;
+export default i18nextModInstance;
 
 function useModTranslation() {
-  const { t: tMod } = useTranslation(undefined, { i18n: i18next });
+  const { t: tMod } = useTranslation(undefined, { i18n: i18nextModInstance });
   return { tMod };
 }
 
