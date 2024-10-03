@@ -1,10 +1,10 @@
 import { TConfigsData, TObj, TObjAny } from 'utils/types/common';
 import CMana from './CMana';
-import { configsData } from 'configs/globals';
 import { TCard } from 'utils/types/runData';
 import { TCardMana } from 'utils/types/others';
 import { getConfigsKey } from 'utils/functions/helpers';
-import { getConfigsUrl } from 'utils/functions/fetchData';
+import { getConfigs, getConfigsUrl } from 'utils/functions/fetchData';
+import use from 'utils/functions/use';
 
 class Configs {
   protected json: TObjAny;
@@ -118,6 +118,11 @@ class CardConfigs {
 class ConfigsData {
   private ver: string = '';
   private configs: TObj<TConfigsData> = {};
+  private configsData: TConfigsData;
+
+  constructor(configsData: TConfigsData) {
+    this.configsData = configsData;
+  }
 
   get(version: string) {
     this._init(version);
@@ -126,14 +131,24 @@ class ConfigsData {
 
   set(key: string, configs: Configs) {
     this.configs[this.ver][key] = configs;
-    configsData[key] = configs;
+    this.configsData[key] = configs;
+  }
+
+  fetch(version: string, names: Array<string>) {
+    for (const name of names) {
+      const key = getConfigsKey(name);
+      if (key in this.configsData) continue;
+      const configs = use(getConfigs(version, name));
+      const C = name === 'cards' ? CardsConfigs : Configs;
+      this.set(key, new C(configs));
+    }
   }
 
   async fetchAsync(version: string, names: Array<string>) {
     this.version = version;
     for (const name of names) {
       const key = getConfigsKey(name);
-      if (key in configsData) continue;
+      if (key in this.configsData) continue;
       const response = await fetch(getConfigsUrl(version, name));
       const configs = await response.json();
       this.set(key, new Configs(configs));
@@ -142,7 +157,7 @@ class ConfigsData {
 
   set version(version: string) {
     this._init(version);
-    for (const [key, value] of Object.entries(this.configs[version])) configsData[key] = value;
+    for (const [key, value] of Object.entries(this.configs[version])) this.configsData[key] = value;
   }
 
   private _init(version: string) {

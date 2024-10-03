@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import { getConfigsKey, validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
-import { CONFIGS_DATA, configsData, defaultRunData, logConfigs } from 'configs/globals';
+import { CONFIGS_DATA, configsData, defaultRunData, logConfigs, MODS_CONFIGS_DATA, modsLogConfigs } from 'configs/globals';
 import { TObjAny } from 'utils/types/common';
 import Configs, { CardsConfigs } from 'utils/classes/Configs';
 
@@ -37,13 +37,8 @@ function useRunData(args: TObjAny)  {
   }
 
   const [runData, isValidRunData] = getRunData();
-  for (const name of logConfigs) {
-    const key = getConfigsKey(name);
-    if (key in configsData) continue;
-    const configs = use(getConfigs(version, name));
-    const C = name === 'cards' ? CardsConfigs : Configs;
-    CONFIGS_DATA.set(key, new C(configs));
-  }
+  CONFIGS_DATA.fetch(version, logConfigs);
+  // MODS_CONFIGS_DATA.fetch(version, modsLogConfigs);
 
   useEffect(() => {
     setIsRunDataLoaded(false);
