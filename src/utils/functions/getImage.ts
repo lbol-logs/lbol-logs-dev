@@ -1,11 +1,12 @@
-import { imagesUrl } from 'configs/globals';
+import { imagesUrl, modsImagesUrl } from 'configs/globals';
 
-function getImage(name: string) {
-  return `${imagesUrl}/${name}.avif`;
+function getImage(name: string, isMod: boolean = false) {
+  const baseUrl = isMod ? modsImagesUrl : imagesUrl;
+  return `${baseUrl}/${name}.avif`;
 }
 
-function _getImage(path: string, name: string) {
-  return getImage(`${path}/${name}`);
+function _getImage(path: string, name: string, isMod: boolean = false) {
+  return getImage(`${path}/${name}`, isMod);
 }
 
 function getCommonImage(name: string) {
@@ -36,20 +37,20 @@ function getExhibitImage(name: string) {
   return _getImage('exhibits', name);
 }
 
-function getAvatarImage(name: string) {
-  return _getImage('avatars', name);
+function getAvatarImage(name: string, isMod: boolean = false) {
+  return _getImage('avatars', name, isMod);
 }
 
 function getDifficultyImage(name: string) {
   return _getImage('difficulties', name);
 }
 
-function getResultImage(name: string) {
-  return _getImage('results', name);
+function getResultImage(name: string, isMod: boolean = false) {
+  return _getImage('results', name, isMod);
 }
 
-function getSpellcardImage(name: string) {
-  return _getImage('spellcards', name);
+function getSpellcardImage(name: string, isMod: boolean = false) {
+  return _getImage('spellcards', name, isMod);
 }
 
 function getGapImage(name: string) {

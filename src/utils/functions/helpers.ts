@@ -167,9 +167,9 @@ function getConfigsKey(name: string) {
   return `${name}Configs`;
 }
 
-function isMod(character: string) {
+function checkIsMod(character: string) {
   const { charactersConfigs } = configsData;
-  return !charactersConfigs.ids.includes(character);
+  return charactersConfigs.get(character) === undefined;
 }
 
 export {
@@ -197,5 +197,5 @@ export {
   toggleAside,
   createArray,
   getConfigsKey,
-  isMod
+  checkIsMod
 };
