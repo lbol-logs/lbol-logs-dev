@@ -73,11 +73,11 @@ function About() {
               </div>
             </div>
 
-            <div className="p-about-run-logs">
-              <h2 className="p-about-run-logs__update">{t('runLogs.update', { ns: 'site' })}</h2>
-              <ul className="p-about-run-logs__tasks">
+            <div className="p-about-lbol-logs">
+              <h2 className="p-about-lbol-logs__update">{t('runLogs.update', { ns: 'site' })}</h2>
+              <ul className="p-about-lbol-logs__tasks">
                 {tasks.map((task, i) => {
-                  return <li className="p-about-run-logs__task" key={i}>{task}</li>;
+                  return <li className="p-about-lbol-logs__task" key={i}>{task}</li>;
                 })}
               </ul>
             </div>

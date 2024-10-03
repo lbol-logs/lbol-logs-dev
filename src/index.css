@@ -132,7 +132,7 @@ input {
   flex-wrap: wrap;
   column-gap: 0.625em;
 }
-.p-about-run-logger, .p-about-run-logs {
+.p-about-run-logger, .p-about-lbol-logs {
   flex-basis: calc(50% - 0.3125em);
 }
 
@@ -2069,7 +2069,7 @@ html:lang(en) .p-result__type {
     max-width: 12.5em;
   }
 
-  .p-about-run-logger, .p-about-run-logs {
+  .p-about-run-logger, .p-about-lbol-logs {
     flex-basis: 100%;
   }
 
