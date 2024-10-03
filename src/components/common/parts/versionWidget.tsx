@@ -1,5 +1,5 @@
 import { CommonContext } from 'contexts/commonContext';
-import { CONFIGS_DATA, latestVersion, versions } from 'configs/globals';
+import { CONFIGS_DATA, latestVersion, MODS_CONFIGS_DATA, versions } from 'configs/globals';
 import { ChangeEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,6 +26,7 @@ function VersionWidget({ versionSwitch }: { versionSwitch: boolean }) {
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
     const v = e.target.value;
     CONFIGS_DATA.version = v;
+    MODS_CONFIGS_DATA.version = v;
     setVersion(v);
 
     navigate(`/${v}/`, { replace: true });

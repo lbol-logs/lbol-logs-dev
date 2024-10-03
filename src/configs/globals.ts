@@ -77,17 +77,30 @@ const descriptionMaxLength = 300;
 
 const CONFIGS_DATA: ConfigsData = new ConfigsData();
 const configsData: TConfigsData = {} as TConfigsData;
+
+const MODS_CONFIGS_DATA: ConfigsData = new ConfigsData();
+const modsConfigsData: TConfigsData = {} as TConfigsData;
+
 const commonConfigs: Array<string> = [
   'characters',
-  'requests',
-  'exhibits'
+  'exhibits',
+  'requests'
 ];
 const logConfigs: Array<string> = [
   'cards',
+  'statusEffects',
   'enemyGroups',
   'dialogues',
   'gap',
-  'events',
+  'events'
+];
+
+const modsCommonConfigs: Array<string> = [
+  'characters',
+  'exhibits'
+];
+const modsLogConfigs: Array<string> = [
+  'cards',
   'statusEffects'
 ];
 
@@ -128,8 +141,12 @@ export {
   descriptionMaxLength,
   CONFIGS_DATA,
   configsData,
+  MODS_CONFIGS_DATA,
+  modsConfigsData,
   commonConfigs,
   logConfigs,
+  modsCommonConfigs,
+  modsLogConfigs,
   enemiesShowDetails,
   resultTypes,
   defaultRunData

@@ -3,6 +3,8 @@ import CMana from './CMana';
 import { configsData } from 'configs/globals';
 import { TCard } from 'utils/types/runData';
 import { TCardMana } from 'utils/types/others';
+import { getConfigsKey } from 'utils/functions/helpers';
+import { getConfigsUrl } from 'utils/functions/fetchData';
 
 class Configs {
   protected json: TObjAny;
@@ -125,6 +127,17 @@ class ConfigsData {
   set(key: string, configs: Configs) {
     this.configs[this.ver][key] = configs;
     configsData[key] = configs;
+  }
+
+  async fetchAsync(version: string, names: Array<string>) {
+    this.version = version;
+    for (const name of names) {
+      const key = getConfigsKey(name);
+      if (key in configsData) continue;
+      const response = await fetch(getConfigsUrl(version, name));
+      const configs = await response.json();
+      this.set(key, new Configs(configs));
+    }
   }
 
   set version(version: string) {
