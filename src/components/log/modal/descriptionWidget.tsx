@@ -173,7 +173,7 @@ export default DescriptionWidget;
 function Desc({ value }: { value: string | number | undefined }) {
   if (value === undefined) return <></>;
   return (
-    <span className="p-modal__variable u-text-shadow">{value}</span>
+    <span className="p-modal__variable">{value}</span>
   );
 }
 
