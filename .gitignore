@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 /avif
 /public/assets
+/public/mods
 /public/logs
 /parser
 /public/test
