@@ -23,15 +23,23 @@ const languages: TObj<TObjString> = {
 
 const namespaces: Array<string> = [
   'common',
-  'site',
-  'runList',
-  'log',
   'cards',
   'exhibits',
   'units',
+  'statusEffects',
+  'keywords',
+  'site',
+  'runList',
+  'log',
   'events',
   'dialogues',
-  'gap',
+  'gap'
+];
+const modsNamespaces: Array<string> = [
+  'common',
+  'cards',
+  'exhibits',
+  'units',
   'statusEffects',
   'keywords'
 ];
@@ -128,6 +136,7 @@ const defaultRunData = {} as TRunData;
 export {
   languages,
   namespaces,
+  modsNamespaces,
   versions,
   latestVersion,
   baseUrl,
