@@ -7,7 +7,7 @@ function SpellcardImage({ spellcard, className }: { spellcard: string, className
   const { t } = useTranslation();
 
   const character = spellcard.slice(0, -1);
-  const [isMod, ns] = getNs(character, 'spellcards');
+  const [ns, isMod] = getNs({ ns: 'spellcards', character });
 
   return (
     <LazyLoadImage2 className={className} callback={getSpellcardImage} name={spellcard} alt={t(spellcard, { ns })} isMod={isMod} />

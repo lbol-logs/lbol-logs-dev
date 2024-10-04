@@ -12,7 +12,7 @@ function ResultWidget({ resultData, name }: { resultData: TObjAny, name: string 
   const { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests } = resultData;
   const { bg, avatar, height } = resultSizes;
   const spellcard = Character + PlayerType;
-  const [isMod, ns] = getNs(Character, 'units');
+  const [ns, isMod] = getNs({ ns: 'units', character: Character });
   const character = t(Character, { ns });
   const resultType = getResultType(Type);
   const type = t(`results.${resultType}`, { ns: 'common' });

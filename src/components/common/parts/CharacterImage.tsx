@@ -13,7 +13,7 @@ function CharacterImage({ character }: { character: string }) {
   }
   else {
     let ns: string;
-    [isMod, ns] = getNs(character, 'units');
+    [ns, isMod] = getNs({ ns: 'units', character });
     alt = t(character, { ns });
   }
 

@@ -172,10 +172,10 @@ function checkIsMod(character: string) {
   return !charactersConfigs.has(character);
 }
 
-function getNs(character: string, ns: string): [boolean, string] {
-  const isMod = checkIsMod(character);
+function getNs({ ns, character, isMod }: { ns: string, character?: string, isMod?: boolean }): [string, boolean] {
+  if (character !== undefined) isMod = checkIsMod(character);
   const _ns = (isMod ? 'mods.' : '') + ns;
-  return [isMod, _ns];
+  return [_ns, isMod as boolean];
 }
 
 export {
