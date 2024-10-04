@@ -11,7 +11,7 @@ function GapDescription({ option, maxhp, children }: { option: string, maxhp?: n
   useTranslation();
 
   const props: TObjAny = {};
-  const config = gapConfigs.get(option);
+  const config = gapConfigs.has(option) && gapConfigs.get(option);
 
   switch(option) {
     case 'DrinkTea':
