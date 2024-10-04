@@ -96,7 +96,8 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       const config = statusEffectsConfigs.get(Id) || {};
 
       ({ Version } = config);
-      if (Id === 'TianziRockSe' && Limit === 1) prefix = 'Extra';
+      const { hasExtra, Limit: limit } = config;
+      if (hasExtra && Limit === limit) prefix = 'Extra';
       addKey(Id, prefix);
 
       const isPlayer = [undefined, 'Player'].includes(owner);

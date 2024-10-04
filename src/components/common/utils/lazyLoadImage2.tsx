@@ -60,8 +60,8 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
       break;
     }
     case getStatusEffectImage: {
-      const { statusEffectsConfigs } = modsConfigsData;
-      isMod = statusEffectsConfigs.get(name) !== undefined;
+      const { statusEffectsConfigs } = configsData;
+      isMod = statusEffectsConfigs.get(name) === undefined;
       break;
     }
   }
