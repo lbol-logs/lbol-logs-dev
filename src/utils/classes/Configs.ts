@@ -5,7 +5,7 @@ import { TCardMana } from 'utils/types/others';
 import { getConfigsKey } from 'utils/functions/helpers';
 import { getConfigs, getConfigsUrl } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
-import { modsConfigsData } from 'configs/globals';
+import { configsData, modsConfigsData } from 'configs/globals';
 
 class Configs {
   protected key: string;
@@ -60,6 +60,11 @@ class CardsConfigs extends Configs {
         if (!(key in after)) this.json[id][1][key] = value;
       }
     }
+  }
+
+  override has(card: TCard | string) {
+    const _card = card as TCard;
+    return super.has(_card.Id);
   }
 
   override get(card: TCard | string) {
@@ -130,6 +135,11 @@ class CardConfigs {
     const { Type, Rarity } = this.getAll();
     const _type = this.isMisfortune ? Type : Rarity;
     return _type;
+  }
+
+  get isMod() {
+    const { cardsConfigs } = configsData;
+    return cardsConfigs.has(this.card);
   }
 }
 

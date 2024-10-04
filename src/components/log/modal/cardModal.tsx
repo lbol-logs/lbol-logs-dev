@@ -24,7 +24,7 @@ function CardModal({ card }: { card: TCard }) {
   const cardConfigs = cardsConfigs.get(_card);
   const allCardConfigs = cardConfigs.getAll();
   const { Type, Cost, Owner, IsUpgradable, OverrideUltimateCost, Keywords } = allCardConfigs;
-  const { art } = cardConfigs;
+  const { art, isMod } = cardConfigs;
 
   const isTeammate = Type === 'Friend';
   const ns = 'cards';
@@ -127,7 +127,7 @@ function CardModal({ card }: { card: TCard }) {
   return (
     <div className="p-modal__card">
       <div className="p-card__art c-card__center">
-      <LazyLoadImage2x callback={getCardArtImage} name={art} width="440" height="304" />
+      <LazyLoadImage2x callback={getCardArtImage} name={art} width="440" height="304" isMod={isMod} />
       </div>
       <CardFrame cardConfigs={cardConfigs} />
       {Owner && (
@@ -160,11 +160,11 @@ function CardModal({ card }: { card: TCard }) {
 
 export default CardModal;
 
-function LazyLoadImage2x({ callback, name, width, height, alt = "", className }: { callback: Function, name: string, width: string | number, height?: string | number, alt?: string, className?: string }) {
+function LazyLoadImage2x({ callback, name, width, height, alt = "", className, isMod = false }: { callback: Function, name: string, width: string | number, height?: string | number, alt?: string, className?: string, isMod?: boolean }) {
   const props = { srcSet: null };
 
   return (
-    <LazyLoadImage2 className={className} callback={callback} name={`${name}@2x`} width={width} height={height} alt={alt} props={props} />
+    <LazyLoadImage2 className={className} callback={callback} name={`${name}@2x`} width={width} height={height} alt={alt} props={props} isMod={isMod} />
   );
 }
 

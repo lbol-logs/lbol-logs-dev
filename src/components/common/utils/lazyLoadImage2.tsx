@@ -1,8 +1,7 @@
 import { configsData, iconSize } from 'configs/globals';
 import { useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage } from 'utils/functions/getImage';
-import { checkIsMod } from 'utils/functions/helpers';
+import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage } from 'utils/functions/getImage';
 import { TObj, TObjAny } from 'utils/types/common';
 
 type TLazyLoadImageArgs = {
@@ -39,17 +38,6 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
   }
 
   switch (callback) {
-    case getResultImage: {
-      if (name === 'bg') break;
-      const character = name.replace(/(Failure|Normal|TrueEnd)$/, '');
-      isMod = checkIsMod(character);
-      break;
-    }
-    case getCardArtImage: {
-      const { cardsConfigs } = configsData;
-      isMod = cardsConfigs.get(name) === undefined;
-      break;
-    }
     case getExhibitImage: {
       const { exhibitsConfigs } = configsData;
       isMod = exhibitsConfigs.get(name) === undefined;

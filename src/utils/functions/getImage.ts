@@ -93,8 +93,8 @@ function getCardTypeImage(name: string) {
   return _getImage('cards/types', name);
 }
 
-function getCardArtImage(name: string) {
-  return _getImage('cards/arts', name);
+function getCardArtImage(name: string, isMod: boolean = false) {
+  return _getImage('cards/arts', name, isMod);
 }
 
 function getUnityImage(name: string) {
