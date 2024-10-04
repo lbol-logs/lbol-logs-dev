@@ -95,7 +95,7 @@ function Summary() {
           <h3 className="p-summary__entity">{t('cardsCount', { ns: 'log', count: Cards.length })}</h3>
           <div className="p-summary__rarities">
             {cardRarities.map(rarity => {
-              const count = Cards.filter(card => {
+              const count = Cards.filter((card, i) => {
                 const { type } = cardsConfigs.get(card);
                 return type === rarity;
               }).length;

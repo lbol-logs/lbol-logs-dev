@@ -17,6 +17,7 @@ class Configs {
   }
 
   has(id: string) {
+    if (id === 'Shoot') return true;
     return id in this.json;
   }
 
@@ -25,7 +26,7 @@ class Configs {
     if (this.has(id)) {
       configs = this.json[id];
     }
-    else if (!isMod) {
+    else if (isMod) {
       const modsConfigs = modsConfigsData[this.key];
       configs = modsConfigs.get(id, true);
     }
@@ -63,8 +64,14 @@ class CardsConfigs extends Configs {
   }
 
   override has(card: TCard | string) {
-    const _card = card as TCard;
-    return super.has(_card.Id);
+    let id: string;
+    if (typeof card === 'string') {
+      id = card;
+    }
+    else {
+      ({ Id: id } = card as TCard);
+    }
+    return super.has(id);
   }
 
   override get(card: TCard | string) {
@@ -139,7 +146,7 @@ class CardConfigs {
 
   get isMod() {
     const { cardsConfigs } = configsData;
-    return cardsConfigs.has(this.card);
+    return !cardsConfigs.has(this.card);
   }
 }
 
