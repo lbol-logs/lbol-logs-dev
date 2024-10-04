@@ -33,8 +33,8 @@ function getBossImage(name: string) {
   return _getImage('boss', name);
 }
 
-function getExhibitImage(name: string) {
-  return _getImage('exhibits', name);
+function getExhibitImage(name: string, isMod: boolean = false) {
+  return _getImage('exhibits', name, isMod);
 }
 
 function getAvatarImage(name: string, isMod: boolean = false) {

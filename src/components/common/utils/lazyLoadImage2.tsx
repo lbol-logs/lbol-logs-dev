@@ -38,11 +38,6 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
   }
 
   switch (callback) {
-    case getExhibitImage: {
-      const { exhibitsConfigs } = configsData;
-      isMod = exhibitsConfigs.get(name) === undefined;
-      break;
-    }
     case getStatusEffectImage: {
       const { statusEffectsConfigs } = configsData;
       isMod = statusEffectsConfigs.get(name) === undefined;
