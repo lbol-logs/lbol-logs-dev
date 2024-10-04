@@ -1202,13 +1202,11 @@ html:lang(en) .c-entity__text {
 .p-result__spellcard {
   top: 30%;
   right: 23%;
+  max-height: var(--icon-size);
 }
 .p-result__type {
+  left: var(--left);
   top: 15%;
-  /* left: auto; */
-  right: 10%;
-  text-align: left;
-  min-width: 50%;
 }
 html:lang(en) .p-result__type {
   font-size: 0.9em;
