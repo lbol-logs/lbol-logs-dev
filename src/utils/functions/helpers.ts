@@ -172,6 +172,12 @@ function checkIsMod(character: string) {
   return charactersConfigs.get(character) === undefined;
 }
 
+function getNs(character: string, ns: string): [boolean, string] {
+  const isMod = checkIsMod(character);
+  const _ns = (isMod ? 'mods.' : '') + ns;
+  return [isMod, _ns];
+}
+
 export {
   checkForce,
   validateRunData,
@@ -197,5 +203,6 @@ export {
   toggleAside,
   createArray,
   getConfigsKey,
-  checkIsMod
+  checkIsMod,
+  getNs
 };

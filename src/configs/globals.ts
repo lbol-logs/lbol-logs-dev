@@ -20,14 +20,16 @@ const languages: TObj<TObjString> = {
     discord: 'https://discord.com/channels/1040229874176098344/1282271721898115163'
   }
 };
+const fallbackLanguage = 'en';
 
 const namespaces: Array<string> = [
-  'common',
+  'spellcards',
   'cards',
   'exhibits',
   'units',
   'statusEffects',
   'keywords',
+  'common',
   'site',
   'runList',
   'log',
@@ -36,7 +38,7 @@ const namespaces: Array<string> = [
   'gap'
 ];
 const modsNamespaces: Array<string> = [
-  'common',
+  'spellcards',
   'cards',
   'exhibits',
   'units',
@@ -52,8 +54,12 @@ const latestVersion: string = versions[0];
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 const baseUrl: string = process.env.PUBLIC_URL;
-const assetsUrl: string = `${baseUrl}/assets`;
-const modsUrl: string = isDev ? `${baseUrl}/mods/docs` : `${baseUrl}/mods`;
+
+const assetsDir: string = 'assets';
+const assetsUrl: string = `${baseUrl}/${assetsDir}`
+
+const modsDir: string = 'mods' + (isDev ? '/docs' : '');
+const modsUrl: string = `${baseUrl}/${modsDir}`;
 
 const imagesUrl: string = `${assetsUrl}/images`;
 const configsUrl: string = `${assetsUrl}/configs`;
@@ -135,11 +141,14 @@ const defaultRunData = {} as TRunData;
 
 export {
   languages,
+  fallbackLanguage,
   namespaces,
   modsNamespaces,
   versions,
   latestVersion,
   baseUrl,
+  assetsDir,
+  modsDir,
   imagesUrl,
   configsUrl,
   modsImagesUrl,

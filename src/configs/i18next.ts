@@ -2,15 +2,18 @@ import i18next, { ReadCallback } from 'i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import { languages, namespaces } from 'configs/globals';
+import { assetsDir, fallbackLanguage, languages, modsDir, modsNamespaces, namespaces } from 'configs/globals';
+import ModsNs from 'utils/classes/ModsNs';
 
 const lngs = Object.keys(languages);
-const i18nextInstance = i18next.createInstance();
-i18nextInstance
+i18next
   .use(LanguageDetector)
-  // .use(initReactI18next)
+  .use(initReactI18next)
   .use(resourcesToBackend((language: string, namespace: string, callback: ReadCallback) => {
-    import(`/public/assets/locales/${language}/${namespace}.json`)
+    const dir = ModsNs.is(namespace) ? modsDir : assetsDir;
+    const ns = ModsNs.remove(namespace);
+
+    import(`/public/${dir}/locales/${language}/${ns}.json`)
       .then((resources) => {
         callback(null, resources);
       })
@@ -21,12 +24,12 @@ i18nextInstance
   .init({
     // debug: true,
     supportedLngs: lngs,
-    fallbackLng: false,
+    fallbackLng: fallbackLanguage,
     nsSeparator: false,
     interpolation: {
       escapeValue: false
     },
-    ns: namespaces
+    ns: namespaces.concat(ModsNs.adds(modsNamespaces))
   });
 
-export default i18nextInstance;
+export default i18next;
