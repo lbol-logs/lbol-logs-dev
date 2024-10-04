@@ -1,4 +1,4 @@
-import { configsData, iconSize } from 'configs/globals';
+import { iconSize } from 'configs/globals';
 import { useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage } from 'utils/functions/getImage';
@@ -35,14 +35,6 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
     const src2x = callback(name + '@2x', isMod);
     const srcSet = `${src} 1x, ${src2x} 2x`;
     setSrcs({ src, srcSet });
-  }
-
-  switch (callback) {
-    case getStatusEffectImage: {
-      const { statusEffectsConfigs } = configsData;
-      isMod = statusEffectsConfigs.get(name) === undefined;
-      break;
-    }
   }
 
   useMemo(() => getSrcs(callback, name, isMod), [callback, name, alt, width, height, className]);

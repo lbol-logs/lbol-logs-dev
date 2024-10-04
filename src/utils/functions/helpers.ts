@@ -178,6 +178,13 @@ function getNs({ ns, character, isMod }: { ns: string, character?: string, isMod
   return [_ns, isMod as boolean];
 }
 
+function getStatusEffectNs(statusEffect: string): [string, boolean] {
+  const { statusEffectsConfigs } = configsData;
+  const isMod = !statusEffectsConfigs.has(statusEffect);
+  const [ns] = getNs({ ns: 'statusEffects', isMod });
+  return [ns, isMod];
+}
+
 export {
   checkForce,
   validateRunData,
@@ -204,5 +211,6 @@ export {
   createArray,
   getConfigsKey,
   checkIsMod,
-  getNs
+  getNs,
+  getStatusEffectNs
 };
