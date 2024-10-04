@@ -5,16 +5,34 @@ import { TCardMana } from 'utils/types/others';
 import { getConfigsKey } from 'utils/functions/helpers';
 import { getConfigs, getConfigsUrl } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
+import { modsConfigsData } from 'configs/globals';
 
 class Configs {
+  protected key: string;
   protected json: TObjAny;
 
-  constructor (json: TObjAny) {
+  constructor (key: string, json: TObjAny) {
+    this.key = key;
     this.json = json;
   }
 
-  get(id: string) {
-    return this.json[id];
+  has(id: string) {
+    return id in this.json;
+  }
+
+  get(id: string, isMod = false) {
+    let configs: any;
+    if (this.has(id)) {
+      configs = this.json[id];
+    }
+    else if (!isMod) {
+      const modsConfigs = modsConfigsData[this.key];
+      configs = modsConfigs.get(id, true);
+    }
+    else {
+      console.error(`Id ${id} not found in ${this.key}`);
+    }
+    return configs;
   }
 
   get ids() {
@@ -25,8 +43,8 @@ class Configs {
 export default Configs;
 
 class CardsConfigs extends Configs {
-  constructor (json: TObjAny) {
-    super(json);
+  constructor (key: string, json: TObjAny) {
+    super(key, json);
     for (const [id, configs] of Object.entries(json)) {
       const { 0: before, 1: after } = configs;
 
@@ -142,7 +160,7 @@ class ConfigsData {
       if (key in this.configsData) continue;
       const configs = use(getConfigs(version, name, this.isMods));
       const C = name === 'cards' ? CardsConfigs : Configs;
-      this.set(key, new C(configs));
+      this.set(key, new C(key, configs));
     }
   }
 
@@ -153,7 +171,7 @@ class ConfigsData {
       if (key in this.configsData) continue;
       const response = await fetch(getConfigsUrl(version, name, this.isMods));
       const configs = await response.json();
-      this.set(key, new Configs(configs));
+      this.set(key, new Configs(key, configs));
     }
   }
 

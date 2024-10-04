@@ -1,7 +1,7 @@
-import { configsData, iconSize, modsConfigsData } from 'configs/globals';
+import { configsData, iconSize } from 'configs/globals';
 import { useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getSpellcardImage, getAvatarImage, getResultImage } from 'utils/functions/getImage';
+import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage } from 'utils/functions/getImage';
 import { checkIsMod } from 'utils/functions/helpers';
 import { TObj, TObjAny } from 'utils/types/common';
 
@@ -39,10 +39,6 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
   }
 
   switch (callback) {
-    case getAvatarImage: {
-      isMod = checkIsMod(name);
-      break;
-    }
     case getResultImage: {
       if (name === 'bg') break;
       const character = name.replace(/(Failure|Normal|TrueEnd)$/, '');

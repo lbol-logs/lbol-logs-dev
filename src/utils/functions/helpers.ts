@@ -169,7 +169,7 @@ function getConfigsKey(name: string) {
 
 function checkIsMod(character: string) {
   const { charactersConfigs } = configsData;
-  return charactersConfigs.get(character) === undefined;
+  return !charactersConfigs.has(character);
 }
 
 function getNs(character: string, ns: string): [boolean, string] {
