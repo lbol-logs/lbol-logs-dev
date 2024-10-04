@@ -1,14 +1,17 @@
-import { CommonContext } from 'contexts/commonContext';
 import { CONFIGS_DATA, latestVersion, MODS_CONFIGS_DATA, versions } from 'configs/globals';
-import { ChangeEvent, useContext } from 'react';
+import { ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { TDispatch } from 'utils/types/common';
 
-function VersionWidget({ versionSwitch }: { versionSwitch: boolean }) {
-  const { version, setVersion } = useContext(CommonContext);
+function VersionWidget({ version, setVersion, versionSwitch, className }: { version: string, setVersion: TDispatch<string>, versionSwitch: boolean, className: string }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const isLatestVersion = version === latestVersion;
 
   let ver;
+
   if (versionSwitch) {
     ver = (
       <select className="c-version__select" onChange={handleChange} value={version}>
@@ -23,6 +26,12 @@ function VersionWidget({ versionSwitch }: { versionSwitch: boolean }) {
       <span className={`c-version__text ${isLatestVersion ? 'c-version__text--latest' : ''}`}>{version}</span>
     );
   }
+
+  let latest = null;
+  if (isLatestVersion) {
+    latest = <span className="c-version__latest">{t('latest', { ns: 'common' })}</span>;
+  }
+
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
     const v = e.target.value;
     CONFIGS_DATA.version = v;
@@ -33,7 +42,8 @@ function VersionWidget({ versionSwitch }: { versionSwitch: boolean }) {
   }
 
   return (
-    <div className="l-header__version">
+    <div className={className}>
+      {latest}
       {ver}
     </div>
   );

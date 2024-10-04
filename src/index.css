@@ -61,19 +61,31 @@ input {
   flex-wrap: wrap;
   margin-left: auto;
 }
-.l-header__version, .l-header__language {
-  display: flex;
+.l-header__version, .l-header__language, .p-mods__version {
+  display: inline-flex;
   align-items: center;
+  column-gap: 0.5em;
 }
-.c-version__text {
+.c-version__text, .c-version__latest {
   display: flex;
   align-items: center;
   padding: 0 1em;
   background: var(--gray);
   border-radius: 0.8em;
 }
-.c-version__text--latest {
+.c-version__text--latest, .c-version__latest {
   background: var(--light-green);
+}
+.c-version__latest {
+  font-size: 0.8rem;
+  font-weight: initial;
+}
+.p-mods__version {
+  margin-left: 1em;
+  vertical-align: middle;
+}
+.p-mods__version .c-version__latest {
+  order: 2;
 }
 
 .l-footer {

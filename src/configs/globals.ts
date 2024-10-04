@@ -119,7 +119,8 @@ const logConfigs: Array<string> = [
 
 const modsCommonConfigs: Array<string> = [
   'characters',
-  'exhibits'
+  'exhibits',
+  'mods'
 ];
 const modsLogConfigs: Array<string> = [
   'cards',

@@ -23,7 +23,7 @@ function ModsWidget({ mods }: { mods: Array<TMod & { Url?: string }> }) {
         }
         else {
           return (
-            <ExternalLink {...props} href={Url}>
+            <ExternalLink {...props} href={Url} key={GUID}>
               {inner}
             </ExternalLink>
           );
