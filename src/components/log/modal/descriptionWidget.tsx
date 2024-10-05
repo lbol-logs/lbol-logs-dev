@@ -74,6 +74,12 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       c.insertManaObj({ ActiveMana });
       c.insertManaObj({ TotalMana });
 
+      const { SalvoCount, RemoveCount, doubleValue, manatype } = cardConfigs;
+      const modsArgs = { SalvoCount, RemoveCount, doubleValue };
+      c.appendDescs(modsArgs);
+      if (isEn) Object.assign(values, modsArgs);
+      c.insertMana('manatype', manatype);
+
       break;
     }
     case 'exhibit': {
@@ -114,7 +120,6 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       }
 
       const { Value, Mana, DamageRate, TriggerLevel, BaseDamage, StackMultiply, SourceCardName, Block } = config;
-      const { manatype, HeatDamageRatio } = config;
 
       if (Value !== undefined) {
         let v = Value;
@@ -155,6 +160,8 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         const mana = (Limit === 1 ? 0 : 1).toString();
         c.insert('Mana', <CardManasWidget cardMana={CMana.get(mana)} />);
       }
+
+      const { manatype, HeatDamageRatio } = config;
       c.insertMana('manatype', manatype);
       if (HeatDamageRatio !== undefined) {
         const HeatDamage = Math.floor(Level as number * HeatDamageRatio);
