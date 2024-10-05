@@ -1,7 +1,7 @@
 import { ChangeEventHandler, useContext } from 'react';
 import { RunListContext } from 'contexts/runListContext';
 import { toggleIsChecked } from 'utils/functions/helpers';
-import CharacterImage from 'components/common/parts/characterImage_';
+import CharacterImage from 'components/common/parts/characterImage';
 
 function CharactersWidget({ onChange, characters }: { onChange: ChangeEventHandler, characters: Array<string> }) {
   const { filter } = useContext(RunListContext);
