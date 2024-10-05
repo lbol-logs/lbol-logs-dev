@@ -2,7 +2,7 @@ import { TConfigsData, TObj, TObjAny } from 'utils/types/common';
 import CMana from './CMana';
 import { TCard } from 'utils/types/runData';
 import { TCardMana } from 'utils/types/others';
-import { getConfigsKey } from 'utils/functions/helpers';
+import { copyObject, getConfigsKey } from 'utils/functions/helpers';
 import { getConfigs, getConfigsUrl } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
 import { configsData, modsConfigsData } from 'configs/globals';
@@ -29,6 +29,7 @@ class Configs {
     else if (!isMod) {
       const modsConfigs = modsConfigsData[this.key];
       configs = modsConfigs.get(id, true);
+      return configs;
     }
     else {
       console.error(`Id ${id} not found in ${this.key}`);
@@ -74,7 +75,7 @@ class CardsConfigs extends Configs {
     return super.has(id);
   }
 
-  override get(card: TCard | string) {
+  override get(card: TCard | string, isMod = false) {
     let _card: TCard;
     if (typeof card === 'string') {
       _card = { Id: card, IsUpgraded: false };
@@ -82,7 +83,21 @@ class CardsConfigs extends Configs {
     else {
       _card = card as TCard;
     }
-    const configs = super.get(_card.Id);
+    const id = _card.Id;
+
+    let configs: any;
+    if (this.has(id)) {
+      configs = this.json[id];
+    }
+    else if (!isMod) {
+      const { cardsConfigs } = modsConfigsData;
+      const cardConfigs = cardsConfigs.get(_card, true) as CardConfigs;
+      return cardConfigs;
+    }
+    else {
+      console.error(`Id ${id} not found in ${this.key}`);
+    }
+
     const cardConfigs = new CardConfigs(configs, _card);
     return cardConfigs;
   }
@@ -123,7 +138,11 @@ class CardConfigs {
     const { IsUpgraded } = this.card;
     const configs = this.configs;
     const key = IsUpgraded ? 1 : 0;
-    return { ...configs, ...configs[key] };
+    const all = copyObject(configs);
+    delete all['0'];
+    delete all['1'];
+    Object.assign(all, configs[key]);
+    return all;
   }
 
   get art() {
