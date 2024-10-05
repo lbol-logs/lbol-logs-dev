@@ -22,6 +22,7 @@ type TSettings = {
   IsAutoSeed: boolean,
   Difficulty: string,
   Requests: TRequests,
+  JadeBoxes?: TJadeBoxes,
   Mods?: TMods,
   Status: TStatus
 };
@@ -30,6 +31,7 @@ type TCharacter = string;
 type TPlayerType = 'A' | 'B';
 
 type TRequests = Array<string>;
+type TJadeBoxes = Array<string>;
 
 type TMod = {
   GUID: string,

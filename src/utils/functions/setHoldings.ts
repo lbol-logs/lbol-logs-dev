@@ -1,11 +1,11 @@
-import { ExhibitsWithCounter, RequestType, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
+import { ExhibitsWithCounter, RequestType, SpecialExhibit, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
 import { copyObject } from 'utils/functions/helpers';
 import Configs from 'utils/classes/Configs';
 
 function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsConfigs, requestsConfigs, eventsConfigs }: { runData: TRunData, dispatchHoldings: THoldingsReducer, charactersConfigs: Configs, exhibitsConfigs: Configs, requestsConfigs: Configs, eventsConfigs: TObjAny }) {
   const { Stations } = runData;
-  const { Character, PlayerType } = runData.Settings;
+  const { Character, PlayerType, JadeBoxes } = runData.Settings;
   const { BaseMana, [PlayerType]: { Cards, Exhibit } } = charactersConfigs.get(Character);
 
   const actions = [];
@@ -32,17 +32,19 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
   // BaseDeck
   // eslint-disable-next-line no-lone-blocks
   {
-    for (const card of Cards) {
-      const action: THoldingAction = {
-        type: 'Card',
-        change: {
-          Type: 'Add',
-          Station,
-          Id: card,
-          IsUpgraded: false
-        }
-      };
-      actions.push(action);
+    if (!(JadeBoxes !== undefined && (JadeBoxes.includes('Start50') || JadeBoxes.includes('SelectCard')))) {
+      for (const card of Cards) {
+        const action: THoldingAction = {
+          type: 'Card',
+          change: {
+            Type: 'Add',
+            Station,
+            Id: card,
+            IsUpgraded: false
+          }
+        };
+        actions.push(action);
+      }
     }
 
     const StartMisfortune = RequestType.StartMisfortune.toString();
@@ -77,7 +79,13 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
     }
 
     {
-      const { BaseMana } = exhibitsConfigs.get(Exhibit);
+      let BaseMana;
+      if (JadeBoxes !== undefined && JadeBoxes.includes('TwoColorStart')) {
+        BaseMana = 'P';
+      }
+      else {
+        ({ BaseMana } = exhibitsConfigs.get(Exhibit));
+      }
       const action: THoldingAction = {
         type: 'BaseMana',
         change: {
@@ -108,6 +116,19 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
 
   // Exhibits
   {
+    if (JadeBoxes !== undefined && JadeBoxes.includes('StartWithJingjie')) {
+      const Id = SpecialExhibit.JingjieGanzhiyi.toString();
+      const action: THoldingAction = {
+        type: 'Exhibit',
+        change: {
+          Type: 'Add',
+          Station,
+          Id
+        }
+      };
+      actions.push(action);
+    }
+
     const { Exhibits } = runData;
     for (const Exhibit of Exhibits) {
       const exhibit: any = copyObject(Exhibit);
