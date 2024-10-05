@@ -2,7 +2,7 @@ import { TConfigsData, TObj, TObjAny } from 'utils/types/common';
 import CMana from './CMana';
 import { TCard } from 'utils/types/runData';
 import { TCardMana } from 'utils/types/others';
-import { getConfigsKey } from 'utils/functions/helpers';
+import { checkIsMod, getConfigsKey } from 'utils/functions/helpers';
 import { getConfigs, getConfigsUrl } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
 import { configsData, modsConfigsData } from 'configs/globals';
@@ -26,7 +26,7 @@ class Configs {
     if (this.has(id)) {
       configs = this.json[id];
     }
-    else if (isMod) {
+    else if (!isMod) {
       const modsConfigs = modsConfigsData[this.key];
       configs = modsConfigs.get(id, true);
     }
@@ -75,7 +75,13 @@ class CardsConfigs extends Configs {
   }
 
   override get(card: TCard | string) {
-    const _card = card as TCard;
+    let _card: TCard;
+    if (typeof card === 'string') {
+      _card = { Id: card, IsUpgraded: false };
+    }
+    else {
+      _card = card as TCard;
+    }
     const configs = super.get(_card.Id);
     const cardConfigs = new CardConfigs(configs, _card);
     return cardConfigs;
