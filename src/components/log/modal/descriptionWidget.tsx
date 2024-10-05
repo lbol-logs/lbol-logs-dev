@@ -111,6 +111,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       }
 
       const { Value, Mana, DamageRate, TriggerLevel, BaseDamage, StackMultiply, SourceCardName, Block } = config;
+      const { manatype, HeatDamageRatio } = config;
 
       if (Value !== undefined) {
         let v = Value;
@@ -150,6 +151,11 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       if (Id === 'BailianBlackSe') {
         const mana = (Limit === 1 ? 0 : 1).toString();
         c.insert('Mana', <CardManasWidget cardMana={CMana.get(mana)} />);
+      }
+      c.insertMana('manatype', manatype);
+      if (HeatDamageRatio !== undefined) {
+        const HeatDamage = Math.floor(Level as number * HeatDamageRatio);
+        c.appendDescs({ HeatDamage });
       }
 
       break;
