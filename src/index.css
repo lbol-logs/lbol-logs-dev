@@ -1651,6 +1651,10 @@ html:lang(en) .p-result__type {
   color: var(--f-koishi);
 }
 
+.c-character-short-name--Utsuho {
+  color: var(--f-utsuho);
+}
+
 .c-highlight--orange {
   color: var(--f-highlight);
 }
@@ -2011,6 +2015,8 @@ html:lang(en) .p-result__type {
   --f-sakuya: #b7f0ff;
   --f-cirno: #0f94f2;
   --f-koishi: #23ec4d;
+
+  --f-utsuho: #e58c27;
 
   --f-white: #fff;
   --f-black: #000;
