@@ -4,6 +4,7 @@ import { TExhibit, TExhibitChange, TExhibitObj } from 'utils/types/runData';
 import ExhibitImage from 'components/common/parts/exhibitImage';
 import { LogContext } from 'contexts/logContext';
 import { configsData } from 'configs/globals';
+import { getEntityNs } from 'utils/functions/helpers';
 
 function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj | TExhibitChange, isNotAdded?: boolean }) {
   const { exhibitsConfigs } = configsData;
@@ -12,6 +13,7 @@ function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj 
 
   const isExhibit = typeof exhibit === 'string';
   const _exhibit = isExhibit ? { Id: exhibit } : exhibit;
+  const [ns] = getEntityNs({ exhibit: _exhibit });
 
   const { Id } = _exhibit;
   const { Rarity } = exhibitsConfigs.get(Id);
@@ -35,7 +37,7 @@ function ExhibitCard({ exhibit, isNotAdded }: { exhibit: TExhibit | TExhibitObj 
   return (
     <span className={`c-entity c-entity--${Rarity} ${isNotAdded === true ? 'c-entity--not-added' : ''} c-exhibit`} onClick={onClick}>
       <ExhibitImage className="c-exhibit__img" exhibit={Id} alt="" />
-      <span className="c-entity__text c-exhibit__text">{t(`${Id}.Name`, { ns: 'exhibits' })}</span>
+      <span className="c-entity__text c-exhibit__text">{t(`${Id}.Name`, { ns })}</span>
       {counter}
     </span>
   );

@@ -110,8 +110,9 @@ function CurrentChange({ station, excludes }: { station: TStation, excludes?: { 
     const { Id, Data } = station;
     if (!Data) return null;
 
-    const config = eventsConfigs.get(Id as string);
-    if (!config) return null;
+    const id = Id as string;
+    if (!eventsConfigs.has(id)) return null;
+    const config = eventsConfigs.get(id);
 
     const { mana } = config;
     const { Color } = Data;

@@ -1,5 +1,5 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
-import { resultTypes } from 'configs/globals';
+import { configsData, resultTypes } from 'configs/globals';
 import { AsideType, TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
 import { TRounds } from 'utils/types/others';
 import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
@@ -167,6 +167,27 @@ function getConfigsKey(name: string) {
   return `${name}Configs`;
 }
 
+function checkIsMod(character: string) {
+  const { charactersConfigs } = configsData;
+  return !charactersConfigs.has(character);
+}
+
+function getNs({ ns, character, isMod }: { ns: string, character?: string, isMod?: boolean }): [string, boolean] {
+  if (character !== undefined) isMod = checkIsMod(character);
+  const _ns = (isMod ? 'mods.' : '') + ns;
+  return [_ns, isMod as boolean];
+}
+
+function getEntityNs(o: TObjAny): [string, boolean] {
+  const [name, entity] = Object.entries(o)[0];
+  const ns = name + 's';
+  const { Id } = entity;
+  const configs = configsData[getConfigsKey(ns)];
+  const isMod = !configs.has(Id);
+  const [_ns] = getNs({ ns, isMod });
+  return [_ns, isMod];
+}
+
 export {
   checkForce,
   validateRunData,
@@ -191,5 +212,8 @@ export {
   checkRounds,
   toggleAside,
   createArray,
-  getConfigsKey
+  getConfigsKey,
+  checkIsMod,
+  getNs,
+  getEntityNs
 };

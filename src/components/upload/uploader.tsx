@@ -76,7 +76,7 @@ function Uploader() {
   if (isProcessing && !hasError) {
     processing = (
       <p className="p-upload__processing">{t('processing', { ns: 'common' })}</p>
-    )
+    );
   }
 
   return (

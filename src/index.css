@@ -61,19 +61,33 @@ input {
   flex-wrap: wrap;
   margin-left: auto;
 }
-.l-header__version, .l-header__language {
-  display: flex;
+.l-header__version, .l-header__language, .p-mods__version {
+  display: inline-flex;
   align-items: center;
+  column-gap: 0.5em;
 }
-.c-version__text {
+.c-version__text, .c-version__latest {
   display: flex;
   align-items: center;
   padding: 0 1em;
   background: var(--gray);
   border-radius: 0.8em;
 }
-.c-version__text--latest {
+.c-version__text--latest, .c-version__latest {
   background: var(--light-green);
+}
+.c-version__latest {
+  font-size: 0.8rem;
+  font-weight: initial;
+}
+.p-mods__text {
+  margin-right: 1em;
+}
+.p-mods__version {
+  vertical-align: middle;
+}
+.p-mods__version .c-version__latest {
+  order: 2;
 }
 
 .l-footer {
@@ -132,7 +146,7 @@ input {
   flex-wrap: wrap;
   column-gap: 0.625em;
 }
-.p-about-run-logger, .p-about-run-logs {
+.p-about-run-logger, .p-about-lbol-logs {
   flex-basis: calc(50% - 0.3125em);
 }
 
@@ -236,11 +250,13 @@ input {
 .p-run-list__table {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 }
 .p-run-list__header, .p-run-list__body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  overflow-x: hidden;
 }
 .p-run-list__item, .p-run-list__item--header {
   display: flex;
@@ -1202,6 +1218,7 @@ html:lang(en) .c-entity__text {
 .p-result__spellcard {
   top: 30%;
   right: 23%;
+  max-height: var(--icon-size);
 }
 .p-result__type {
   left: var(--left);
@@ -1638,6 +1655,10 @@ html:lang(en) .p-result__type {
   color: var(--f-koishi);
 }
 
+.c-character-short-name--Utsuho {
+  color: var(--f-utsuho);
+}
+
 .c-highlight--orange {
   color: var(--f-highlight);
 }
@@ -1999,6 +2020,8 @@ html:lang(en) .p-result__type {
   --f-cirno: #0f94f2;
   --f-koishi: #23ec4d;
 
+  --f-utsuho: #e58c27;
+
   --f-white: #fff;
   --f-black: #000;
   --f-red: red;
@@ -2069,7 +2092,7 @@ html:lang(en) .p-result__type {
     max-width: 12.5em;
   }
 
-  .p-about-run-logger, .p-about-run-logs {
+  .p-about-run-logger, .p-about-lbol-logs {
     flex-basis: 100%;
   }
 

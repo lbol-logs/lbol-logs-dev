@@ -1,7 +1,7 @@
 import { TDialogueConfigs, TExhibit, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TObj, TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { getEntityNs, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
@@ -32,7 +32,8 @@ function Supply({ station }: { station: TStation }) {
   if (Both) {
     const values: TObj<string> = {};
     Exhibits.forEach((exhibit: TExhibit, i: number) => {
-      values[i] = t(`${exhibit}.Name`, { ns: 'exhibits' });
+      const [ns] = getEntityNs({ exhibit: { Id: exhibit} });
+      values[i] = t(`${exhibit}.Name`, { ns });
     });
     props[2] = { values };
     exhibits[2] = Exhibits

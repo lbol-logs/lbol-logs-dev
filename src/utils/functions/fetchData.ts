@@ -1,4 +1,4 @@
-import { configsUrl, gasUrl, logsUrl } from 'configs/globals';
+import { configsUrl, gasUrl, logsUrl, modsConfigsUrl } from 'configs/globals';
 
 const cache = new Map();
 
@@ -55,13 +55,14 @@ function getGasUrl(version: string, id: string) {
   return url;
 }
 
-function getConfigs(version: string, name: string) {
-  const url = getConfigsUrl(version, name);
+function getConfigs(version: string, name: string, isMods: boolean = false) {
+  const url = getConfigsUrl(version, name, isMods);
   return _getData(url);
 }
 
-function getConfigsUrl(version: string, name: string) {
-  const url = `${configsUrl}/${version}/${name}.json`;
+function getConfigsUrl(version: string, name: string, isMods: boolean = false) {
+  const baseUrl = isMods ? modsConfigsUrl : configsUrl;
+  const url = `${baseUrl}/${version}/${name}.json`;
   return url;
 }
 

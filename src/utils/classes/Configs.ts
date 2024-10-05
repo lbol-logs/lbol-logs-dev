@@ -1,18 +1,40 @@
 import { TConfigsData, TObj, TObjAny } from 'utils/types/common';
 import CMana from './CMana';
-import { configsData } from 'configs/globals';
 import { TCard } from 'utils/types/runData';
 import { TCardMana } from 'utils/types/others';
+import { copyObject, getConfigsKey } from 'utils/functions/helpers';
+import { getConfigs, getConfigsUrl } from 'utils/functions/fetchData';
+import use from 'utils/functions/use';
+import { configsData, modsConfigsData } from 'configs/globals';
 
 class Configs {
+  protected key: string;
   protected json: TObjAny;
 
-  constructor (json: TObjAny) {
+  constructor (key: string, json: TObjAny) {
+    this.key = key;
     this.json = json;
   }
 
-  get(id: string) {
-    return this.json[id];
+  has(id: string) {
+    if (id === 'Shoot') return true;
+    return id in this.json;
+  }
+
+  get(id: string, isMod = false) {
+    let configs: any;
+    if (this.has(id)) {
+      configs = this.json[id];
+    }
+    else if (!isMod) {
+      const modsConfigs = modsConfigsData[this.key];
+      configs = modsConfigs.get(id, true);
+      return configs;
+    }
+    else {
+      console.error(`Id ${id} not found in ${this.key}`);
+    }
+    return configs;
   }
 
   get ids() {
@@ -23,8 +45,8 @@ class Configs {
 export default Configs;
 
 class CardsConfigs extends Configs {
-  constructor (json: TObjAny) {
-    super(json);
+  constructor (key: string, json: TObjAny) {
+    super(key, json);
     for (const [id, configs] of Object.entries(json)) {
       const { 0: before, 1: after } = configs;
 
@@ -42,9 +64,40 @@ class CardsConfigs extends Configs {
     }
   }
 
-  override get(card: TCard | string) {
-    const _card = card as TCard;
-    const configs = super.get(_card.Id);
+  override has(card: TCard | string) {
+    let id: string;
+    if (typeof card === 'string') {
+      id = card;
+    }
+    else {
+      ({ Id: id } = card as TCard);
+    }
+    return super.has(id);
+  }
+
+  override get(card: TCard | string, isMod = false) {
+    let _card: TCard;
+    if (typeof card === 'string') {
+      _card = { Id: card, IsUpgraded: false };
+    }
+    else {
+      _card = card as TCard;
+    }
+    const id = _card.Id;
+
+    let configs: any;
+    if (this.has(id)) {
+      configs = this.json[id];
+    }
+    else if (!isMod) {
+      const { cardsConfigs } = modsConfigsData;
+      const cardConfigs = cardsConfigs.get(_card, true) as CardConfigs;
+      return cardConfigs;
+    }
+    else {
+      console.error(`Id ${id} not found in ${this.key}`);
+    }
+
     const cardConfigs = new CardConfigs(configs, _card);
     return cardConfigs;
   }
@@ -85,7 +138,11 @@ class CardConfigs {
     const { IsUpgraded } = this.card;
     const configs = this.configs;
     const key = IsUpgraded ? 1 : 0;
-    return { ...configs, ...configs[key] };
+    const all = copyObject(configs);
+    delete all['0'];
+    delete all['1'];
+    Object.assign(all, configs[key]);
+    return all;
   }
 
   get art() {
@@ -111,11 +168,23 @@ class CardConfigs {
     const _type = this.isMisfortune ? Type : Rarity;
     return _type;
   }
+
+  get isMod() {
+    const { cardsConfigs } = configsData;
+    return !cardsConfigs.has(this.card);
+  }
 }
 
 class ConfigsData {
   private ver: string = '';
   private configs: TObj<TConfigsData> = {};
+  private configsData: TConfigsData;
+  private isMods: boolean;
+
+  constructor(configsData: TConfigsData, isMods: boolean) {
+    this.configsData = configsData;
+    this.isMods = isMods;
+  }
 
   get(version: string) {
     this._init(version);
@@ -124,12 +193,33 @@ class ConfigsData {
 
   set(key: string, configs: Configs) {
     this.configs[this.ver][key] = configs;
-    configsData[key] = configs;
+    this.configsData[key] = configs;
+  }
+
+  fetch(version: string, names: Array<string>) {
+    for (const name of names) {
+      const key = getConfigsKey(name);
+      if (key in this.configsData) continue;
+      const configs = use(getConfigs(version, name, this.isMods));
+      const C = name === 'cards' ? CardsConfigs : Configs;
+      this.set(key, new C(key, configs));
+    }
+  }
+
+  async fetchAsync(version: string, names: Array<string>) {
+    this.version = version;
+    for (const name of names) {
+      const key = getConfigsKey(name);
+      if (key in this.configsData) continue;
+      const response = await fetch(getConfigsUrl(version, name, this.isMods));
+      const configs = await response.json();
+      this.set(key, new Configs(key, configs));
+    }
   }
 
   set version(version: string) {
     this._init(version);
-    for (const [key, value] of Object.entries(this.configs[version])) configsData[key] = value;
+    for (const [key, value] of Object.entries(this.configs[version])) this.configsData[key] = value;
   }
 
   private _init(version: string) {

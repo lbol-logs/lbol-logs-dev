@@ -8,12 +8,13 @@ import ExternalLink from 'components/common/parts/externalLink';
 import Compatability from 'components/common/parts/compatability';
 import Init from 'components/common/layouts/init';
 import Title from 'components/common/layouts/title';
+import AboutMods from './aboutMods';
 
 function About() {
   const { t } = useTranslation();
   const { discord } = languages[i18next.language];
 
-  const tasks: Array<string> = t('runLogs.tasks', { ns: 'site', returnObjects: true });
+  const tasks: Array<string> = t('lbolLogs.tasks', { ns: 'site', returnObjects: true });
   const attention: Array<string> = t('attention.value', { ns: 'site', returnObjects: true });
 
   return (
@@ -73,13 +74,16 @@ function About() {
               </div>
             </div>
 
-            <div className="p-about-run-logs">
-              <h2 className="p-about-run-logs__update">{t('runLogs.update', { ns: 'site' })}</h2>
-              <ul className="p-about-run-logs__tasks">
-                {tasks.map((task, i) => {
-                  return <li className="p-about-run-logs__task" key={i}>{task}</li>;
-                })}
-              </ul>
+            <div className="p-about-lbol-logs">
+              <div className="p-about-lbol-logs__block">
+                <h2 className="p-about-lbol-logs__update">{t('lbolLogs.update', { ns: 'site' })}</h2>
+                <ul className="p-about-lbol-logs__tasks">
+                  {tasks.map((task, i) => {
+                    return <li className="p-about-lbol-logs__task" key={i}>{task}</li>;
+                  })}
+                </ul>
+              </div>
+              <AboutMods />
             </div>
 
             <div className="p-about__attention">

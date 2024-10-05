@@ -20,18 +20,28 @@ const languages: TObj<TObjString> = {
     discord: 'https://discord.com/channels/1040229874176098344/1282271721898115163'
   }
 };
+const fallbackLanguage = 'en';
 
 const namespaces: Array<string> = [
+  'spellcards',
+  'cards',
+  'exhibits',
+  'units',
+  'statusEffects',
+  'keywords',
   'common',
   'site',
   'runList',
   'log',
+  'events',
+  'dialogues',
+  'gap'
+];
+const modsNamespaces: Array<string> = [
+  'spellcards',
   'cards',
   'exhibits',
   'units',
-  'events',
-  'dialogues',
-  'gap',
   'statusEffects',
   'keywords'
 ];
@@ -41,10 +51,22 @@ const versions: Array<string> = [
 ];
 const latestVersion: string = versions[0];
 
+const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+
 const baseUrl: string = process.env.PUBLIC_URL;
-const assetsUrl: string = `${baseUrl}/assets`;
+
+const assetsDir: string = 'assets';
+const assetsUrl: string = `${baseUrl}/${assetsDir}`
+
+const modsDir: string = 'mods' + (isDev ? '/docs' : '');
+const modsUrl: string = `${baseUrl}/${modsDir}`;
+
 const imagesUrl: string = `${assetsUrl}/images`;
 const configsUrl: string = `${assetsUrl}/configs`;
+
+const modsImagesUrl: string = `${modsUrl}/images`;
+const modsConfigsUrl: string = `${modsUrl}/configs`;
+
 const logsUrl: string = `${baseUrl}/logs`;
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
@@ -75,19 +97,33 @@ const defaultAsideHoldings = AsideType.right;
 
 const descriptionMaxLength = 300;
 
-const CONFIGS_DATA: ConfigsData = new ConfigsData();
 const configsData: TConfigsData = {} as TConfigsData;
+const CONFIGS_DATA: ConfigsData = new ConfigsData(configsData, false);
+
+const modsConfigsData: TConfigsData = {} as TConfigsData;
+const MODS_CONFIGS_DATA: ConfigsData = new ConfigsData(modsConfigsData, true);
+
 const commonConfigs: Array<string> = [
   'characters',
-  'requests',
-  'exhibits'
+  'exhibits',
+  'requests'
 ];
 const logConfigs: Array<string> = [
   'cards',
+  'statusEffects',
   'enemyGroups',
   'dialogues',
   'gap',
-  'events',
+  'events'
+];
+
+const modsCommonConfigs: Array<string> = [
+  'characters',
+  'exhibits',
+  'mods'
+];
+const modsLogConfigs: Array<string> = [
+  'cards',
   'statusEffects'
 ];
 
@@ -106,12 +142,18 @@ const defaultRunData = {} as TRunData;
 
 export {
   languages,
+  fallbackLanguage,
   namespaces,
+  modsNamespaces,
   versions,
   latestVersion,
   baseUrl,
+  assetsDir,
+  modsDir,
   imagesUrl,
   configsUrl,
+  modsImagesUrl,
+  modsConfigsUrl,
   logsUrl,
   gameUrl,
   modUrl,
@@ -128,8 +170,12 @@ export {
   descriptionMaxLength,
   CONFIGS_DATA,
   configsData,
+  MODS_CONFIGS_DATA,
+  modsConfigsData,
   commonConfigs,
   logConfigs,
+  modsCommonConfigs,
+  modsLogConfigs,
   enemiesShowDetails,
   resultTypes,
   defaultRunData

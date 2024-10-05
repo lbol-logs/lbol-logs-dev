@@ -4,8 +4,11 @@ import LanguageSwitcher from 'components/common/parts/languageSwitcher';
 import VersionWidget from 'components/common/parts/versionWidget';
 import Logo from '../parts/logo';
 import Meta from './meta';
+import { useContext } from 'react';
+import { CommonContext } from 'contexts/commonContext';
 
 function Header({ versionSwitch }: { versionSwitch?: boolean }) {
+  const { version, setVersion } = useContext(CommonContext);
   const { t } = useTranslation();
 
   versionSwitch = versionSwitch === undefined ? true : versionSwitch;
@@ -26,7 +29,7 @@ function Header({ versionSwitch }: { versionSwitch?: boolean }) {
           <Link className="l-header__button u-button" to="/upload/">{t('upload', { ns: 'site' })}</Link>
         </div>
         <div className="l-header__widgets">
-          <VersionWidget versionSwitch={!!versionSwitch} />
+          <VersionWidget className="l-header__version" version={version} setVersion={setVersion} versionSwitch={!!versionSwitch} />
           <LanguageSwitcher />
         </div>
       </div>

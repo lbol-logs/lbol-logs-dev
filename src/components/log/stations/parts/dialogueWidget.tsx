@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { TDialogueConfigs } from 'utils/types/runData';
 import { MoneyImage, PowerImage, RevealImage } from './stationWidgets';
-import { concatObjects } from 'utils/functions/helpers';
+import { concatObjects, getEntityNs } from 'utils/functions/helpers';
 import { TObjString } from 'utils/types/common';
 import CardCards from 'components/log/entityCards/cardCards';
 import ExhibitCards from 'components/log/entityCards/exhibitCards';
@@ -53,7 +53,8 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
             if (hasCards) {
               const values = cards[i].reduce((a: TObjString, b, i) => {
-                a[i + offset] = t(`${b.Id}.Name`, { ns: 'cards' });
+                const [ns] = getEntityNs({ card: b });
+                a[i + offset] = t(`${b.Id}.Name`, { ns });
                 return a;
               }, {});
               offset += cards[i].length;
@@ -62,7 +63,8 @@ function DialogueWidget({ id, dialogueConfigs }: { id: string, dialogueConfigs: 
 
             if (hasExhibit) {
               const values = exhibits[i].reduce((a: TObjString, b, i) => {
-                a[i + offset] = t(`${b}.Name`, { ns: 'exhibits' });
+                const [ns] = getEntityNs({ exhibit: { Id: b } });
+                a[i + offset] = t(`${b}.Name`, { ns });
                 return a;
               }, {});
               _props = concatObjects(_props, { values });

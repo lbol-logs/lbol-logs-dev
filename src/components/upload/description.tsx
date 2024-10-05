@@ -31,7 +31,7 @@ function Description() {
         onChange={onChange}
       ></textarea>
     </div>
-  )
+  );
 }
 
 export default Description;

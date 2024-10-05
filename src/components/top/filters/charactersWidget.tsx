@@ -7,6 +7,9 @@ function CharactersWidget({ onChange, characters }: { onChange: ChangeEventHandl
   const { filter } = useContext(RunListContext);
   const { ch } = filter;
 
+  const character = 'Mods';
+  const isChecked = ch ? ch.includes(character) : false;
+
   return (
     <>
       {characters.map(character => {
@@ -19,6 +22,10 @@ function CharactersWidget({ onChange, characters }: { onChange: ChangeEventHandl
           </label>
         );
       })}
+      <label className={`p-filter__toggle ${toggleIsChecked(isChecked)} u-button`} key={character}>
+        <CharacterImage character={character} />
+        <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="ch" value={character} checked={isChecked} />
+      </label>
     </>
   );
 }

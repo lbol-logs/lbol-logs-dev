@@ -16,7 +16,7 @@ function EventHead({ id, callback, name }: { id: string, callback?: Function, na
         <p className="p-event__host">{t(`${id}.Host`, { ns: 'events' })}</p>
       </div>
     </div>
-  )
+  );
 }
 
 export default EventHead;

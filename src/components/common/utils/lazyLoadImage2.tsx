@@ -11,14 +11,15 @@ type TLazyLoadImageArgs = {
   width?: string | number,
   height?: string | number,
   className?: string
-  props?: TObjAny
+  props?: TObjAny,
+  isMod?: boolean
 };
 
 export type {
   TLazyLoadImageArgs
 };
 
-function LazyLoadImage2({ callback, name, alt, width, height, className, props = {} }: TLazyLoadImageArgs) {
+function LazyLoadImage2({ callback, name, alt, width, height, className, props = {}, isMod = false }: TLazyLoadImageArgs) {
   const [srcs, setSrcs] = useState({} as { src: string, srcSet: string });
 
   const _props = {
@@ -29,14 +30,14 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
   Object.assign(_props, props);
   if (alt !== '') Object.assign(_props, { title: alt });
 
-  function getSrcs(callback: Function, name: string) {
-    const src = callback(name);
-    const src2x = callback(name + '@2x');
+  function getSrcs(callback: Function, name: string, isMod: boolean = false) {
+    const src = callback(name, isMod);
+    const src2x = callback(name + '@2x', isMod);
     const srcSet = `${src} 1x, ${src2x} 2x`;
     setSrcs({ src, srcSet });
   }
 
-  useMemo(() => getSrcs(callback, name), [callback, name, alt, width, height, className]);
+  useMemo(() => getSrcs(callback, name, isMod), [callback, name, alt, width, height, className]);
   const { src, srcSet } = srcs;
 
   return (

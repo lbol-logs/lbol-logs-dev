@@ -6,7 +6,7 @@ function BattleDetailsItem({ label, children }: { label: string, children: JSX.E
         {children}
       </div>
     </div>
-  )
+  );
 }
 
 export default BattleDetailsItem;

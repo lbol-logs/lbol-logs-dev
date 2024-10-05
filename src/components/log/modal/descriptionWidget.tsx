@@ -11,13 +11,16 @@ import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import { configsData } from 'configs/globals';
 import CMana from 'utils/classes/CMana';
 import i18next from 'i18next';
+import { getEntityNs } from 'utils/functions/helpers';
 
-function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: string }) {
+function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, prefix?: string }) {
   const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
   const { act, level, holdings } = useContext(LogContext);
   const { t, i18n } = useTranslation();
 
   const isEn = i18next.language === 'en';
+  const [ns] = getEntityNs(entityObj);
+  const [entityType, entity] = Object.entries(entityObj)[0];
 
   const components: TObjElement = {
     Money: <MoneyImage />,
@@ -39,9 +42,9 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
     keys.push(`${id}.${prefix}Description`);
   }
 
-  switch (ns) {
-    case 'cards': {
-      const card = o as TCard;
+  switch (entityType) {
+    case 'card': {
+      const card = entity as TCard;
       const {
         Id, IsUpgraded, UpgradeCounter
       } = card;
@@ -66,15 +69,21 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       if (isEn) Object.assign(values, args);
       c.insertManaObj({ Mana });
 
-      c.insert('SelfName', <span className="c-self-name">{t(`${Id}.Name`, { ns })}</span>)
+      c.insert('SelfName', <span className="c-self-name">{t(`${Id}.Name`, { ns })}</span>);
       c.insertManaObj({ StartMana });
       c.insertManaObj({ ActiveMana });
       c.insertManaObj({ TotalMana });
 
+      const { SalvoCount, RemoveCount, doubleValue, manatype } = cardConfigs;
+      const modsArgs = { SalvoCount, RemoveCount, doubleValue };
+      c.appendDescs(modsArgs);
+      if (isEn) Object.assign(values, modsArgs);
+      c.insertMana('manatype', manatype);
+
       break;
     }
-    case 'exhibits': {
-      const { Id, Counter } = o as TExhibitObj;
+    case 'exhibit': {
+      const { Id, Counter } = entity as TExhibitObj;
       const config = exhibitsConfigs.get(Id);
 
       ({ Version } = config);
@@ -91,12 +100,13 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
 
       break;
     }
-    case 'statusEffects': {
-      const { Id, Level, Duration, Count, Limit, owner } = o as TStatusEffect;
+    case 'statusEffect': {
+      const { Id, Level, Duration, Count, Limit, owner } = entity as TStatusEffect;
       const config = statusEffectsConfigs.get(Id) || {};
 
       ({ Version } = config);
-      if (Id === 'TianziRockSe' && Limit === 1) prefix = 'Extra';
+      const { hasExtra, Limit: limit } = config;
+      if (hasExtra && Limit === limit) prefix = 'Extra';
       addKey(Id, prefix);
 
       const isPlayer = [undefined, 'Player'].includes(owner);
@@ -136,7 +146,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
         c.insert('Damage', <Desc value={Level} />);
       }
       if (SourceCardName !== undefined) {
-        const name = t(`${SourceCardName}.Name`, { ns: 'cards' });
+        const name = t(`${SourceCardName}.Name`, { ns });
         c.insert('SourceCardName', <Desc value={name} />);
       }
       if (Id === 'MeihongPowerSe') {
@@ -149,6 +159,13 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
       if (Id === 'BailianBlackSe') {
         const mana = (Limit === 1 ? 0 : 1).toString();
         c.insert('Mana', <CardManasWidget cardMana={CMana.get(mana)} />);
+      }
+
+      const { manatype, HeatDamageRatio } = config;
+      c.insertMana('manatype', manatype);
+      if (HeatDamageRatio !== undefined) {
+        const HeatDamage = Math.floor(Level as number * HeatDamageRatio);
+        c.appendDescs({ HeatDamage });
       }
 
       break;
@@ -173,7 +190,7 @@ export default DescriptionWidget;
 function Desc({ value }: { value: string | number | undefined }) {
   if (value === undefined) return <></>;
   return (
-    <span className="p-modal__variable u-text-shadow">{value}</span>
+    <span className="p-modal__variable">{value}</span>
   );
 }
 

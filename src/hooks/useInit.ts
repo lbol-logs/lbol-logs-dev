@@ -1,11 +1,8 @@
-import { commonConfigs, CONFIGS_DATA, configsData, latestVersion, versions } from 'configs/globals';
+import { commonConfigs, CONFIGS_DATA, latestVersion, MODS_CONFIGS_DATA, modsCommonConfigs, versions } from 'configs/globals';
 import { useEffect, useMemo } from 'react';
-import { getConfigsUrl } from 'utils/functions/fetchData';
 import { TDispatch, TObj } from 'utils/types/common';
 import { NavigateFunction } from 'react-router-dom';
 import { flushSync } from 'react-dom';
-import Configs from 'utils/classes/Configs';
-import { getConfigsKey } from 'utils/functions/helpers';
 
 function useInit({ version, setVersion, navigate, isInitialized, setIsInitialized, ver }: { version: string, setVersion: TDispatch<string>, navigate: NavigateFunction, isInitialized: TObj<boolean>, setIsInitialized: TDispatch<TObj<boolean>>, ver?: string })  {
   const [_ver, isValidVersion, isValidInit] = useMemo(() => {
@@ -25,14 +22,9 @@ function useInit({ version, setVersion, navigate, isInitialized, setIsInitialize
     else {
       if (isValidInit) {
         (async () => {
-          CONFIGS_DATA.version = _ver;
-          for (const name of commonConfigs) {
-            const key = getConfigsKey(name);
-            if (key in configsData) continue;
-            const response = await fetch(getConfigsUrl(_ver, name));
-            const json = await response.json();
-            CONFIGS_DATA.set(key, new Configs(json));
-          }
+          await CONFIGS_DATA.fetchAsync(_ver, commonConfigs);
+          await MODS_CONFIGS_DATA.fetchAsync(_ver, modsCommonConfigs);
+
           flushSync(() => {
             setVersion(_ver);
             setIsInitialized(Object.assign(isInitialized, { [_ver]: true }));
