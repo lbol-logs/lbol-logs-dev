@@ -69,8 +69,8 @@ function getStationImage(name: string) {
   return _getImage('station', name);
 }
 
-function getStatusEffectImage(name: string) {
-  return _getImage('statusEffects', name);
+function getStatusEffectImage(name: string, isMod: boolean = false) {
+  return _getImage('statusEffects', name, isMod);
 }
 
 function getNazrinImage(name: string) {
@@ -85,8 +85,8 @@ function getCardFrameImage(name: string) {
   return _getImage('cards/frames', name);
 }
 
-function getCardWatermarkImage(name: string) {
-  return _getImage('cards/watermarks', name);
+function getCardWatermarkImage(name: string, isMod: boolean = false) {
+  return _getImage('cards/watermarks', name, isMod);
 }
 
 function getCardTypeImage(name: string) {
