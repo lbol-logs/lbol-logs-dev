@@ -2,7 +2,7 @@ import { TConfigsData, TObj, TObjAny } from 'utils/types/common';
 import CMana from './CMana';
 import { TCard } from 'utils/types/runData';
 import { TCardMana } from 'utils/types/others';
-import { checkIsMod, getConfigsKey } from 'utils/functions/helpers';
+import { getConfigsKey } from 'utils/functions/helpers';
 import { getConfigs, getConfigsUrl } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
 import { configsData, modsConfigsData } from 'configs/globals';
