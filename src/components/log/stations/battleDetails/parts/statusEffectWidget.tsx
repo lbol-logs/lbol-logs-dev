@@ -3,7 +3,7 @@ import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getStatusEffectImage } from 'utils/functions/getImage';
-import { getStatusEffectNs } from 'utils/functions/helpers';
+import { getEntityNs } from 'utils/functions/helpers';
 import { TStatusEffect } from 'utils/types/runData';
 
 function StatusEffectWidget({ statusEffect }: { statusEffect: TStatusEffect }) {
@@ -24,7 +24,7 @@ function StatusEffectWidget({ statusEffect }: { statusEffect: TStatusEffect }) {
     setEntityModal({ statusEffect });
   }
 
-  const [ns, isMod] = getStatusEffectNs(Id);
+  const [ns, isMod] = getEntityNs({ statusEffect });
 
   return (
     <span className="c-status-effect" onClick={onClick}>

@@ -178,11 +178,14 @@ function getNs({ ns, character, isMod }: { ns: string, character?: string, isMod
   return [_ns, isMod as boolean];
 }
 
-function getStatusEffectNs(statusEffect: string): [string, boolean] {
-  const { statusEffectsConfigs } = configsData;
-  const isMod = !statusEffectsConfigs.has(statusEffect);
-  const [ns] = getNs({ ns: 'statusEffects', isMod });
-  return [ns, isMod];
+function getEntityNs(o: TObjAny): [string, boolean] {
+  const [name, entity] = Object.entries(o)[0];
+  const ns = name + 's';
+  const { Id } = entity;
+  const configs = configsData[getConfigsKey(ns)];
+  const isMod = !configs.has(Id);
+  const [_ns] = getNs({ ns, isMod });
+  return [_ns, isMod];
 }
 
 export {
@@ -212,5 +215,5 @@ export {
   getConfigsKey,
   checkIsMod,
   getNs,
-  getStatusEffectNs
+  getEntityNs
 };

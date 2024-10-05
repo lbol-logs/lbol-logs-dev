@@ -11,6 +11,7 @@ import CardFrame from './cardFrame';
 import CardManasWidget from './cardManasWidget';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import KeywordsWidget, { notAutoAppend } from './keywordsWidget';
+import { getEntityNs } from 'utils/functions/helpers';
 
 function CardModal({ card }: { card: TCard }) {
   const { cardsConfigs } = configsData;
@@ -27,7 +28,7 @@ function CardModal({ card }: { card: TCard }) {
   const { art, isMod } = cardConfigs;
 
   const isTeammate = Type === 'Friend';
-  const ns = 'cards';
+  const [ns] = getEntityNs({ card: _card });
 
   const descriptions: TComponents = [];
 
@@ -38,7 +39,7 @@ function CardModal({ card }: { card: TCard }) {
   if (exist) {
     const description = (
       <div className="p-card__description" key="Description">
-        <DescriptionWidget ns={ns} {..._card} />
+        <DescriptionWidget entityObj={{ card: _card }} />
       </div>
     );
     descriptions.push(description);
@@ -70,7 +71,7 @@ function CardModal({ card }: { card: TCard }) {
       const description = (
         <div className="p-card__description p-card__description--teammate" key={key}>
           <LazyLoadImage2x className="c-teammate-cost" callback={getUnityImage} name={`${type}/${cost}`} width="76" height="38" alt={alt} />
-          <DescriptionWidget ns={ns} {..._card} prefix={key} />
+          <DescriptionWidget entityObj={{ card: _card}} prefix={key} />
         </div>
       );
       descriptions.push(description);
@@ -132,7 +133,7 @@ function CardModal({ card }: { card: TCard }) {
       <CardFrame cardConfigs={cardConfigs} />
       {Owner && (
         <div className="p-card__watermark c-card__center">
-          <LazyLoadImage2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" />
+          <LazyLoadImage2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" isMod={isMod} />
         </div>
       )}
       <div className="p-card__type-icon">
