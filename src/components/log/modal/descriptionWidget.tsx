@@ -11,13 +11,16 @@ import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import { configsData } from 'configs/globals';
 import CMana from 'utils/classes/CMana';
 import i18next from 'i18next';
+import { getEntityNs } from 'utils/functions/helpers';
 
-function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: string }) {
+function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, prefix?: string }) {
   const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
   const { act, level, holdings } = useContext(LogContext);
   const { t, i18n } = useTranslation();
 
   const isEn = i18next.language === 'en';
+  const [ns] = getEntityNs(entityObj);
+  const [entityType, entity] = Object.entries(entityObj)[0];
 
   const components: TObjElement = {
     Money: <MoneyImage />,
@@ -39,9 +42,9 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
     keys.push(`${id}.${prefix}Description`);
   }
 
-  switch (ns) {
-    case 'cards': {
-      const card = o as TCard;
+  switch (entityType) {
+    case 'card': {
+      const card = entity as TCard;
       const {
         Id, IsUpgraded, UpgradeCounter
       } = card;
@@ -73,8 +76,8 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
 
       break;
     }
-    case 'exhibits': {
-      const { Id, Counter } = o as TExhibitObj;
+    case 'exhibit': {
+      const { Id, Counter } = entity as TExhibitObj;
       const config = exhibitsConfigs.get(Id);
 
       ({ Version } = config);
@@ -91,8 +94,8 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
 
       break;
     }
-    case 'statusEffects': {
-      const { Id, Level, Duration, Count, Limit, owner } = o as TStatusEffect;
+    case 'statusEffect': {
+      const { Id, Level, Duration, Count, Limit, owner } = entity as TStatusEffect;
       const config = statusEffectsConfigs.get(Id) || {};
 
       ({ Version } = config);
@@ -138,7 +141,7 @@ function DescriptionWidget({ ns, prefix = '', ...o }: { ns: string, prefix?: str
         c.insert('Damage', <Desc value={Level} />);
       }
       if (SourceCardName !== undefined) {
-        const name = t(`${SourceCardName}.Name`, { ns: 'cards' });
+        const name = t(`${SourceCardName}.Name`, { ns });
         c.insert('SourceCardName', <Desc value={name} />);
       }
       if (Id === 'MeihongPowerSe') {
