@@ -80,8 +80,10 @@ input {
   font-size: 0.8rem;
   font-weight: initial;
 }
+.p-mods__text {
+  margin-right: 1em;
+}
 .p-mods__version {
-  margin-left: 1em;
   vertical-align: middle;
 }
 .p-mods__version .c-version__latest {
