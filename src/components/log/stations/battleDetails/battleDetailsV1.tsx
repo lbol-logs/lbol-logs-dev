@@ -1,4 +1,4 @@
-import CharacterImage from 'components/common/parts/characterImage';
+import CharacterImage from 'components/common/parts/characterImage_';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';

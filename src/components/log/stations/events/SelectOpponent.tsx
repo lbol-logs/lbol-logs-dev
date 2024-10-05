@@ -4,7 +4,7 @@ import { TComponents, TObjAny } from 'utils/types/common';
 import { getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
-import CharacterImage from 'components/common/parts/characterImage';
+import CharacterImage from 'components/common/parts/characterImage_';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
 
