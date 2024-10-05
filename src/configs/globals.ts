@@ -58,7 +58,8 @@ const baseUrl: string = process.env.PUBLIC_URL;
 const assetsDir: string = 'assets';
 const assetsUrl: string = `${baseUrl}/${assetsDir}`
 
-const modsDir: string = 'mods' + (isDev ? '/docs' : '');
+const modsDirDev = 'mods/docs';
+const modsDir: string = isDev ? modsDirDev : 'mods';
 const modsUrl: string = `${baseUrl}/${modsDir}`;
 
 const imagesUrl: string = `${assetsUrl}/images`;
@@ -149,7 +150,7 @@ export {
   latestVersion,
   baseUrl,
   assetsDir,
-  modsDir,
+  modsDirDev,
   imagesUrl,
   configsUrl,
   modsImagesUrl,
