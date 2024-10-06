@@ -19,7 +19,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
   const { t, i18n } = useTranslation();
 
   const isEn = i18next.language === 'en';
-  const [ns] = getEntityNs(entityObj);
+  const [ns, isMod] = getEntityNs(entityObj);
   const [entityType, entity] = Object.entries(entityObj)[0];
 
   const components: TObjElement = {
@@ -77,7 +77,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       const { SalvoCount, RemoveCount, doubleValue, manatype } = cardConfigs;
       const modsArgs = { SalvoCount, RemoveCount, doubleValue };
       c.appendDescs(modsArgs);
-      if (isEn) Object.assign(values, modsArgs);
+      if (isEn || isMod) Object.assign(values, modsArgs);
       c.insertMana('manatype', manatype);
 
       break;
