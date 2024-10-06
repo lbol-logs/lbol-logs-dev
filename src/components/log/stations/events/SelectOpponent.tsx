@@ -1,7 +1,7 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TComponents, TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { getNext, getNs } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import CharacterImage from 'components/common/parts/characterImage';
@@ -29,7 +29,8 @@ function SelectOpponent({ station }: { station: TStation }) {
   const afters: TComponents = [];
 
   Opponents.forEach((opponent: string, i: number) => {
-    const values = { 0: t(opponent, { ns: 'units' }) };
+    const [ns] = getNs({ ns: 'units', character: opponent });
+    const values = { 0: t(opponent, { ns }) };
     props[i] = { values };
   });
   {
