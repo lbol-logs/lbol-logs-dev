@@ -1387,6 +1387,23 @@ html:lang(en) .p-result__type {
   opacity: 1;
 }
 
+.p-filter__mod {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  position: relative;
+  display :flex;
+  justify-content: center;
+  align-items: center;
+}
+.p-filter__mod-icon {
+  opacity: 0.5;
+}
+.p-filter__mod-text {
+  position: absolute;
+  text-align: center;
+  line-height: 1em;
+}
+
 .p-gap-choices,
 .p-dialogue__options,
 .p-nazrin-results {

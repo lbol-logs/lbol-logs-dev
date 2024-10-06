@@ -3,10 +3,16 @@ import { TObj } from 'utils/types/common';
 import ExhibitWidget from './exhibitWidget';
 import { TExhibits } from 'utils/types/runData';
 import { RunListContext } from 'contexts/runListContext';
+import ModOption from './modOption';
+import { toggleIsChecked } from 'utils/functions/helpers';
 
 function StartingExhibitsWidget({ onChange, startingExhibits, characters }: { onChange: ChangeEventHandler, startingExhibits: TObj<TExhibits>, characters: Array<string> }) {
   const { filter } = useContext(RunListContext);
   const { ch, st } = filter;
+
+  const character = 'Mods';
+  const isCharacterChecked = ch ? (!ch.length || ch.includes(character)) : true;
+  const playerTypes = ['A', 'B'];
 
   return (
     <>
@@ -25,6 +31,19 @@ function StartingExhibitsWidget({ onChange, startingExhibits, characters }: { on
           </div>
         );
       })}
+      <div className={`p-filter__character-exhibits ${isCharacterChecked ? 'p-filter__character-exhibits--visible' : ''}`} key={character}>
+        {playerTypes.map(type => {
+          const exhibit = `Mod${type}`;
+          const isExhibitChecked = st ? st.includes(exhibit) && isCharacterChecked : false;
+
+          return (
+            <label className={`p-filter__toggle ${toggleIsChecked(isExhibitChecked)} u-button`}>
+              <ModOption><>Mod<br />{type}</></ModOption>
+              <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="st" value={exhibit} checked={isExhibitChecked} />
+            </label>
+          );
+        })}
+      </div>
     </>
   );
 }

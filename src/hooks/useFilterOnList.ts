@@ -1,8 +1,9 @@
+import { modsConfigsData } from 'configs/globals';
 import DefaultFilter from 'utils/classes/DefaultFilter';
-import { compareArrays, copyObject, getResultType, checkIsMod } from 'utils/functions/helpers';
+import { compareArrays, copyObject, getResultType, checkIsMod, getEntityNs } from 'utils/functions/helpers';
 import { TObj } from 'utils/types/common';
 import { TFilter, TRunList, TRunListItem } from 'utils/types/others';
-import { TRequests } from 'utils/types/runData';
+import { TExhibits, TRequests } from 'utils/types/runData';
 
 function useFilterOnList(list: TRunList, currentFilter: TFilter) {
   let filteredList = copyObject(list);
@@ -48,13 +49,53 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter) {
         });
       }
       else if (key === keys.sc) {
-        filteredList = filteredList.filter(e => value.includes(e[map.ch] as string + e[map[key]] as string));
+        const includesMods = value.filter(v => ['ModA', 'ModB'].includes(v)).map(v => v.replace(/^Mod/, ''));
+        filteredList = filteredList.filter(e => {
+          const character = e[map.ch] as string;
+          const spellcard = character + e[map[key]] as string;
+          const isSpellcard = value.includes(spellcard);
+          if (isSpellcard) return true;
+
+          if (!includesMods.length) return false;
+
+          const isModCharacter = checkIsMod(character);
+          if (!isModCharacter) return false;
+
+          const isModSpellcard = includesMods.some(v => spellcard.endsWith(v));
+          return isModSpellcard;
+        });
       }
       else if (key === keys.rq) {
         filteredList = filteredList.filter(e => compareArrays(value, e[map[key]] as TRequests));
       }
       else if (key === keys.re) {
         filteredList = filteredList.filter(e => value.includes(getResultType(e[map[key]] as string)));
+      }
+      else if (key === keys.st) {
+        const exhibits: TExhibits = [];
+        const modsExhibits: TExhibits = [];
+        for (const exhibit of value) {
+          const [, isMod] = getEntityNs({ exhibit: { Id: exhibit } });
+          if (isMod) modsExhibits.push(exhibit.replace(/^Mod/, ''));
+          else exhibits.push(exhibit);
+        }
+
+        filteredList = filteredList.filter(e => {
+          const exhibit = e[map[key]] as string;
+          const isExhibit = exhibits.includes(exhibit);
+          if (isExhibit) return true;
+
+          const character = e[map.ch] as string;
+          const isModCharacter = checkIsMod(character);
+          if (!isModCharacter) return false;
+
+          const { charactersConfigs } = modsConfigsData;
+          const characterConfigs = charactersConfigs.get(character);
+          if (characterConfigs === undefined) return false;
+
+          const isModExhibit = modsExhibits.some(type => characterConfigs[type].Exhibit === exhibit);
+          return isModExhibit;
+        });
       }
       else {
         filteredList = filteredList.filter(e => value.includes(e[map[key]] as string));
