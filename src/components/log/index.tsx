@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 import Loading from 'components/common/layouts/loading';
 import Init from 'components/common/layouts/init';
 import { useTranslation } from 'react-i18next';
-import { getNs, getResultType } from 'utils/functions/helpers';
+import { getEntityNs, getNs, getResultType } from 'utils/functions/helpers';
 import Title from 'components/common/layouts/title';
 import ScrollToTop from 'components/common/utils/scrollToTop';
 import LogProvider from 'contexts/logContext';
@@ -20,10 +20,13 @@ function Log() {
   if (array.length === 6) {
     const [, Character, PlayerType, shining, difficultyRequest, Type] = array
     const resultType = getResultType(Type);
-    const [ns] = getNs({ ns: 'units', character: Character });
+
+    const [nsCharacter] = getNs({ ns: 'units', character: Character });
+    const [nsShining] = getEntityNs({ exhibit: { Id: shining } });
+
     name = [
-      t(Character, { ns, context: 'short' }) + PlayerType,
-      t(`${shining}.Name`, { ns: 'exhibits' }),
+      t(Character, { ns: nsCharacter, context: 'short' }) + PlayerType,
+      t(`${shining}.Name`, { ns: nsShining }),
       difficultyRequest,
       t(`results.${resultType}`, { ns: 'common', context: 'title' })
     ].join(' ');
