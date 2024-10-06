@@ -3,11 +3,11 @@ import LazyLoadImage2 from '../utils/lazyLoadImage2';
 import { getAvatarImage } from 'utils/functions/getImage';
 import { getNs } from 'utils/functions/helpers';
 
-function CharacterImage({ character }: { character: string }) {
+function CharacterImage({ character, className }: { character: string, className?: string }) {
   const { t } = useTranslation();
 
   let alt: string, isMod: boolean;
-  if (character === 'Mods') {
+  if (character === 'Mod') {
     alt = character;
     isMod = false;
   }
@@ -17,7 +17,7 @@ function CharacterImage({ character }: { character: string }) {
     alt = t(character, { ns });
   }
 
-  return <LazyLoadImage2 callback={getAvatarImage} name={character} alt={alt} isMod={isMod} />;
+  return <LazyLoadImage2 className={className} callback={getAvatarImage} name={character} alt={alt} isMod={isMod} />;
 }
 
 export default CharacterImage;
