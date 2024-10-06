@@ -1396,7 +1396,7 @@ html:lang(en) .p-result__type {
   align-items: center;
 }
 .p-filter__mod-icon {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 .p-filter__mod-text {
   position: absolute;
