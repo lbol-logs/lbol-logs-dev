@@ -2,7 +2,7 @@ import Header from 'components/common/layouts/header';
 import { latestVersion } from 'configs/globals';
 import { useParams } from 'react-router-dom';
 import RunData from './runData';
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 import Loading from 'components/common/layouts/loading';
 import Init from 'components/common/layouts/init';
 import { useTranslation } from 'react-i18next';
@@ -14,8 +14,6 @@ import LogProvider from 'contexts/logContext';
 function Log() {
   const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();
   const { t, i18n } = useTranslation();
-  const [character, setCharacter] = useState('');
-  const [exhibit, setExhibit] = useState('');
 
   let name;
   const array = id.split('_');
