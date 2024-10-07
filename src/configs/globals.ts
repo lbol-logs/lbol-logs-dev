@@ -142,7 +142,7 @@ const resultTypes: TObjString = {
 const defaultRunData = {} as TRunData;
 
 const whitelistDomains: Array<string> = [
-  'https://youtube.com/',
+  'https://www.youtube.com/',
   'https://youtu.be/'
 ];
 

@@ -12,7 +12,8 @@ import IsAutoSeedWidget from './parts/isAutoSeedWidget';
 import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
 import { getResultData } from 'utils/functions/helpers';
-import { configsData, whitelistDomains } from 'configs/globals';
+import { configsData } from 'configs/globals';
+import LogDescription from './logDescription';
 
 function Summary() {
   const { exhibitsConfigs, cardsConfigs } = configsData;
@@ -33,23 +34,6 @@ function Summary() {
 
   const exhibitRarities = ["Mythic", "Shining", "Rare", "Uncommon", "Common"];
   const cardRarities = ["Rare", "Uncommon", "Common", "Misfortune"];
-
-  let description = null;
-  if (Description) {
-    const regExp = new RegExp(`((?:${whitelistDomains.join('|')})\\S*)`, 'g');
-    desc = Description.replace(regExp, '  ')
-
-    description = (
-      <div className="p-description">
-        <h3 className="p-summary__description">{t('description', { ns: 'log' })}</h3>
-        {desc.split('\n').map((e, i) => {
-          return (
-            <p className="p-description__line" key={i}>{e}</p>
-          );
-        })}
-      </div>
-    );
-  }
 
   return (
     <section className="p-summary">
@@ -72,7 +56,7 @@ function Summary() {
         </div>
         {Mods !== undefined && <ModsWidget mods={Mods} />}
       </div>
-      {description}
+      <LogDescription description={Description} />
       <div className="p-summary__exhibits">
         <div className="p-summary__pivot">
           <h3 className="p-summary__entity">{t('exhibitsCount', { ns: 'log', count: Exhibits.length })}</h3>
