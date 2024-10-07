@@ -195,6 +195,7 @@ export {
   compareArrays,
   getLength,
   toggleIsChecked,
+  isSameStation,
   getCurrentLevel,
   getSameCardIndex,
   getSameExhibitIndex,
