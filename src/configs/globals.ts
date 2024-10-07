@@ -141,6 +141,11 @@ const resultTypes: TObjString = {
 
 const defaultRunData = {} as TRunData;
 
+const whitelistDomains: Array<string> = [
+  'https://youtube.com/',
+  'https://youtu.be/'
+];
+
 export {
   languages,
   fallbackLanguage,
@@ -179,5 +184,6 @@ export {
   modsLogConfigs,
   enemiesShowDetails,
   resultTypes,
-  defaultRunData
+  defaultRunData,
+  whitelistDomains
 };

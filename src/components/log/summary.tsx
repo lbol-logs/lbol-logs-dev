@@ -12,7 +12,7 @@ import IsAutoSeedWidget from './parts/isAutoSeedWidget';
 import ReloadTimesWidget from './parts/reloadTimesWidget';
 import ModsWidget from './parts/modsWidget';
 import { getResultData } from 'utils/functions/helpers';
-import { configsData } from 'configs/globals';
+import { configsData, whitelistDomains } from 'configs/globals';
 
 function Summary() {
   const { exhibitsConfigs, cardsConfigs } = configsData;
@@ -36,10 +36,13 @@ function Summary() {
 
   let description = null;
   if (Description) {
+    const regExp = new RegExp(`((?:${whitelistDomains.join('|')})\\S*)`, 'g');
+    desc = Description.replace(regExp, '  ')
+
     description = (
       <div className="p-description">
         <h3 className="p-summary__description">{t('description', { ns: 'log' })}</h3>
-        {Description.split('\n').map((e, i) => {
+        {desc.split('\n').map((e, i) => {
           return (
             <p className="p-description__line" key={i}>{e}</p>
           );
