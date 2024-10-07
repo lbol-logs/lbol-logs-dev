@@ -37,7 +37,7 @@ function StartingExhibitsWidget({ onChange, startingExhibits, characters }: { on
           const isExhibitChecked = st ? st.includes(exhibit) && isCharacterChecked : false;
 
           return (
-            <label className={`p-filter__toggle ${toggleIsChecked(isExhibitChecked)} u-button`}>
+            <label className={`p-filter__toggle ${toggleIsChecked(isExhibitChecked)} u-button`} key={exhibit}>
               <ModOption><>Mod<br />{type}</></ModOption>
               <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="st" value={exhibit} checked={isExhibitChecked} />
             </label>

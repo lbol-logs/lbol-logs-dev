@@ -39,7 +39,7 @@ function SpellcardsWidget({ onChange, characters }: { onChange: ChangeEventHandl
           const isSpellcardChecked = sc ? sc.includes(spellcard) && isCharacterChecked : false;
 
           return (
-            <label className={`p-filter__toggle ${toggleIsChecked(isSpellcardChecked)} u-button`}>
+            <label className={`p-filter__toggle ${toggleIsChecked(isSpellcardChecked)} u-button`} key={spellcard}>
               <ModOption><>Mod<br />{type}</></ModOption>
               <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="sc" value={spellcard} checked={isSpellcardChecked} />
             </label>
