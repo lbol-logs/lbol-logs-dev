@@ -1644,6 +1644,9 @@ html:lang(en) .p-result__type {
 .c-status-effects .c-status-effect {
   cursor: zoom-in;
 }
+.c-status-effect__img {
+  min-width: var(--icon-size);
+}
 .c-exhibit-with-counter__counter,
 .c-status-effect .c-status-effect__value {
   position: absolute;
