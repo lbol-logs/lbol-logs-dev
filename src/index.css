@@ -1826,7 +1826,6 @@ html:lang(en) .p-result__type {
   line-height: var(--size);
 }
 .p-card-name__text {
-  max-width: 100%;
   --shadow-thickness: 2px;
   ---shadow-thickness: calc(var(--shadow-thickness) * -1);
 }

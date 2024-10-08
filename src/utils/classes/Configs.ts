@@ -29,6 +29,10 @@ class Configs {
     else if (!isMod) {
       const modsConfigs = modsConfigsData[this.key];
       configs = modsConfigs.get(id, true);
+      if (!configs) {
+        if (this.key === 'exhibitsConfigs') configs = this.json.KongZhanpinhe;
+        else if (this.key === 'statusEffectsConfigs') configs = { Id: 'NotAvailable' };
+      }
       return configs;
     }
     else {
@@ -91,8 +95,15 @@ class CardsConfigs extends Configs {
     }
     else if (!isMod) {
       const { cardsConfigs } = modsConfigsData;
-      const cardConfigs = cardsConfigs.get(_card, true) as CardConfigs;
-      return cardConfigs;
+      if (cardsConfigs.has(id)) {
+        const cardConfigs = cardsConfigs.get(_card, true) as CardConfigs;
+        return cardConfigs;
+      }
+      {
+        const id = 'HistoryCard';
+        _card = { Id: id, IsUpgraded: false };
+        configs = this.json[id];
+      }
     }
     else {
       console.error(`Id ${id} not found in ${this.key}`);
