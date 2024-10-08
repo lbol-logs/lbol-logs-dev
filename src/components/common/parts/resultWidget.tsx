@@ -16,6 +16,7 @@ function ResultWidget({ resultData, name }: { resultData: TObjAny, name: string 
   const character = t(Character, { ns });
   const resultType = getResultType(Type);
   const type = t(`results.${resultType}`, { ns: 'common' });
+  const resultAlt = `${character} ${type}`;
   const count = Requests.length;
   const requests = count ? ` (${count})` : '';
   const date = new Date(Timestamp).toLocaleString();
@@ -23,7 +24,8 @@ function ResultWidget({ resultData, name }: { resultData: TObjAny, name: string 
   return (
     <div className="p-result u-text-shadow">
       <LazyLoadImage2 className="p-result__background" callback={getResultImage} name="bg" width={bg} height={height} alt="" />
-      <LazyLoadImage2 className="p-result__avatar" callback={getResultImage} name={`${Character}${resultType}`} width={avatar} height={height} alt={`${character} ${type}`} isMod={isMod} />
+      <LazyLoadImage2 className="p-result__avatar" callback={getResultImage} name={`${Character}${resultType}`} width={avatar} height={height} alt={resultAlt} isMod={isMod} />
+      <span className="p-result__result-text">{resultAlt}</span>
       <SpellcardImage className="p-result__spellcard" spellcard={spellcard} />
       <ExhibitImage className="p-result__exhibit" exhibit={exhibit} />
       <span className={`p-result__type p-result__type--${resultType}`}>{type}</span>

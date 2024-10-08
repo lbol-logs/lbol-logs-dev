@@ -1,7 +1,7 @@
 import { iconSize } from 'configs/globals';
 import { useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage } from 'utils/functions/getImage';
+import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage } from 'utils/functions/getImage';
 import { TObj, TObjAny } from 'utils/types/common';
 
 type TLazyLoadImageArgs = {
@@ -45,7 +45,8 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
       src={src}
       srcSet={srcSet}
       alt={alt}
-      onError={() => {
+      onError={(e) => {
+        if (callback === getResultImage) (e.target as HTMLImageElement).outerHTML = '';
         const fakeIcon = getFakeIcon(callback);
         if (fakeIcon) getSrcs(getCommonImage, fakeIcon);
       }}

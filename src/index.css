@@ -1224,6 +1224,15 @@ html:lang(en) .c-entity__text {
   max-height: 100%;
   top: 0;
 }
+.p-result__result-text {
+  width: 40%;
+  top: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+}
+.p-result__avatar + .p-result__result-text {
+  display: none;
+}
 .p-result__spellcard {
   top: 30%;
   right: 23%;
