@@ -17,6 +17,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
   };
 
   const isSwapping = Stations[0].Data.Choices[0] === 1;
+  const attackOrder = 2;
 
   // Cards
   {
@@ -181,25 +182,18 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
             }
           }
         }
-        finalCards = currentCards.map(({ Id }) => Id);
-
-        for (const id of finalCards) {
-          const m = id.match(/Attack([WUBRGC])$/);
-          if (m) {
-            main = m[1];
-            break;
-          }
-        }
-        for (const id of finalCards) {
-          const m = id.match(/Block([WUBRGC])$/);
-          if (m) {
-            sub = m[1];
-            break;
-          }
-        }
+        finalCards = currentCards.map(({ Id }) => Id).sort((a, b) => {
+          const { i, main: _main, sub: _sub } = getSortIndex(a);
+          const { i: j } = getSortIndex(b);
+          if (_main) main = _main;
+          else if (_sub) sub = _sub;
+          return i - j;
+        });
       }
 
-      for (const card of finalCards) {
+      if (isStartMisfortune) actions.unshift(startMisfortuneAction);
+
+      for (const card of finalCards.reverse()) {
         const action: THoldingAction = {
           type: 'Card',
           change: {
@@ -209,11 +203,24 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
             IsUpgraded: false
           }
         };
-        actions.push(action);
+        actions.unshift(action);
       }
     }
+  }
 
-    if (isStartMisfortune) actions.push(startMisfortuneAction);
+  function getSortIndex(id: string) {
+    const isAttack = id.match(/Attack([WUBRG])$/);
+    const isBlock = id.match(/Block([WUBRG])$/);
+    const isShoot = id === 'Shoot';
+    const isBoundary = id === 'Boundary';
+    const order = [isShoot, isBoundary, Boolean(isAttack), Boolean(isBlock)];
+    let i = order.indexOf(true);
+    if (i === -1) i = attackOrder + 0.5;
+
+    let main, sub;
+    if (isAttack) main = isAttack[1];
+    else if (isBlock) sub = isBlock[1];
+    return { i, main, sub };
   }
 
   // BaseBaseMana
@@ -269,7 +276,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
           Id: finalExhibit
         }
       };
-      actions.push(action);
+      actions.unshift(action);
     }
 
     let baseMana;
