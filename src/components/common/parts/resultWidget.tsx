@@ -32,6 +32,7 @@ function ResultWidget({ resultData, name }: { resultData: TObjAny, name: string 
       </span>
       <time className="p-result__timestamp" dateTime={Timestamp}>{date}</time>
       {name && <span className="p-result__name">{name}</span>}
+      {isMod && <span className="p-result__modded">Mod</span>}
     </div>
   );
 }

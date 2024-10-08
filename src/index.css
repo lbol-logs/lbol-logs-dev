@@ -1201,14 +1201,22 @@ html:lang(en) .c-entity__text {
 .p-result > * {
   position: absolute;
 }
-.p-result__name {
+.p-result__name, .p-result__modded {
   left: 0;
-  background: color-mix(in srgb, var(--f-black) 70%, transparent);
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
   --padding: 0.2em;
   padding: var(--padding) 0.3em;
 }
 .p-result__name, .p-result__timestamp {
   bottom: calc(17% - var(--padding, 0px));
+  line-height: 1em;
+}
+.p-result__name {
+  --bg: var(--f-black);
+}
+.p-result__modded {
+  --bg: var(--f-red);
+  top: 0;
   line-height: 1em;
 }
 .p-result__avatar {
