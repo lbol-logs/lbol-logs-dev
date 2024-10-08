@@ -1202,7 +1202,6 @@ html:lang(en) .c-entity__text {
   position: absolute;
 }
 .p-result__name, .p-result__modded {
-  left: 0;
   background: color-mix(in srgb, var(--bg) 70%, transparent);
   --padding: 0.2em;
   padding: var(--padding) 0.3em;
@@ -1213,10 +1212,12 @@ html:lang(en) .c-entity__text {
 }
 .p-result__name {
   --bg: var(--f-black);
+  left: 0;
 }
 .p-result__modded {
   --bg: var(--f-red);
   top: 0;
+  right: 0;
   line-height: 1em;
 }
 .p-result__avatar {
