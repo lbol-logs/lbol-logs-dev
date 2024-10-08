@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCardManaImage } from 'utils/functions/getImage';
-import { LazyLoadImage2x } from './cardModal';
 import { iconSize } from 'configs/globals';
 
 function CardManaWidget({ mana, is2x }: { mana: string, is2x?: boolean }) {
@@ -25,7 +24,7 @@ function CardManaWidget({ mana, is2x }: { mana: string, is2x?: boolean }) {
     else if ('WUBRGCP'.includes(mana)) alt = t(`mana.${mana}`, { ns: 'common' });
     else alt = t(`mana.${mana[1]}`, { ns: 'common' }) + '/' + t(`mana.${mana[2]}`, { ns: 'common' });
 
-    img = <LazyLoadImage2x callback={getCardManaImage} name={mana} width={size} height={size} alt={alt} />;
+    img = <LazyLoadImage2 callback={getCardManaImage} name={mana} width={size} height={size} alt={alt} is2x={true} />;
   }
   else {
     img = <LazyLoadImage2 callback={getCardManaImage} name={mana} alt={t(`mana.${mana}`, { ns: 'common' })} />;

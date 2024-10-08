@@ -52,7 +52,7 @@ function CardModal({ card }: { card: TCard }) {
 
     unity = (
       <div className="p-card__unity">
-        <LazyLoadImage2x callback={getUnityImage} name="Unity" width="92" height="92" />
+        <LazyLoadImage2 callback={getUnityImage} name="Unity" width="92" height="92" alt="" is2x={true} />
         <span className="c-card-unity__text p-card__text u-text-shadow">{Loyalty}</span>
       </div>
     );
@@ -70,7 +70,7 @@ function CardModal({ card }: { card: TCard }) {
 
       const description = (
         <div className="p-card__description p-card__description--teammate" key={key}>
-          <LazyLoadImage2x className="c-teammate-cost" callback={getUnityImage} name={`${type}/${cost}`} width="76" height="38" alt={alt} />
+          <LazyLoadImage2 className="c-teammate-cost" callback={getUnityImage} name={`${type}/${cost}`} width="76" height="38" alt={alt} is2x={true} />
           <DescriptionWidget entityObj={{ card: _card}} prefix={key} />
         </div>
       );
@@ -128,16 +128,16 @@ function CardModal({ card }: { card: TCard }) {
   return (
     <div className="p-modal__card">
       <div className="p-card__art c-card__center">
-      <LazyLoadImage2x callback={getCardArtImage} name={art} width="440" height="304" isMod={isMod} />
+      <LazyLoadImage2 callback={getCardArtImage} name={art} width="440" height="304" alt="" isMod={isMod} is2x={true} />
       </div>
       <CardFrame cardConfigs={cardConfigs} />
       {Owner && (
         <div className="p-card__watermark c-card__center">
-          <LazyLoadImage2x callback={getCardWatermarkImage} name={Owner} width="460" height="240" isMod={isMod} />
+          <LazyLoadImage2 callback={getCardWatermarkImage} name={Owner} width="460" height="240" alt="" isMod={isMod} is2x={true} />
         </div>
       )}
       <div className="p-card__type-icon">
-        <LazyLoadImage2x callback={getCardTypeImage} name={Type} width="72" height="72" />
+        <LazyLoadImage2 callback={getCardTypeImage} name={Type} width="72" height="72" alt="" is2x={true} />
       </div>
       <div className="p-card__type-text c-card__resize js-resize">
         <span className="c-card-type__text p-card__text u-text-shadow">{t(`cardTypes.${Type}`, { ns: 'log' })}</span>
@@ -160,15 +160,3 @@ function CardModal({ card }: { card: TCard }) {
 }
 
 export default CardModal;
-
-function LazyLoadImage2x({ callback, name, width, height, alt = "", className, isMod = false }: { callback: Function, name: string, width: string | number, height?: string | number, alt?: string, className?: string, isMod?: boolean }) {
-  const props = { srcSet: null };
-
-  return (
-    <LazyLoadImage2 className={className} callback={callback} name={`${name}@2x`} width={width} height={height} alt={alt} props={props} isMod={isMod} />
-  );
-}
-
-export {
-  LazyLoadImage2x
-};

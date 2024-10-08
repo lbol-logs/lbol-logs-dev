@@ -1,6 +1,6 @@
 import { getCardFrameImage } from 'utils/functions/getImage';
-import { LazyLoadImage2x } from './cardModal';
 import { CardConfigs } from 'utils/classes/Configs';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 
 function CardFrame({ cardConfigs }: { cardConfigs: CardConfigs }) {
   const { Type, Rarity, Colors } = cardConfigs.getAll();
@@ -36,6 +36,6 @@ export default CardFrame;
 
 function Frame({ name, className }: { name: string, className: string }) {
   return (
-    <LazyLoadImage2x className={className} callback={getCardFrameImage} name={name} width="512" height="714" />
+    <LazyLoadImage2 className={className} callback={getCardFrameImage} name={name} width="512" height="714" alt="" is2x={true} />
   );
 }

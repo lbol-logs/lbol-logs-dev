@@ -2,7 +2,7 @@ import { iconSize } from 'configs/globals';
 import { useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage } from 'utils/functions/getImage';
-import { TObj, TObjAny } from 'utils/types/common';
+import { TObj } from 'utils/types/common';
 
 type TLazyLoadImageArgs = {
   callback: Function,
@@ -10,30 +10,33 @@ type TLazyLoadImageArgs = {
   alt: string,
   width?: string | number,
   height?: string | number,
-  className?: string
-  props?: TObjAny,
-  isMod?: boolean
+  className?: string,
+  isMod?: boolean,
+  is2x?:  boolean
 };
 
 export type {
   TLazyLoadImageArgs
 };
 
-function LazyLoadImage2({ callback, name, alt, width, height, className, props = {}, isMod = false }: TLazyLoadImageArgs) {
-  const [srcs, setSrcs] = useState({} as { src: string, srcSet: string });
+function LazyLoadImage2({ callback, name, alt, width, height, className, isMod = false, is2x = false }: TLazyLoadImageArgs) {
+  const [srcs, setSrcs] = useState({} as { src: string, srcSet: string | undefined });
 
-  const _props = {
+  const props = {
     width: width || iconSize,
     height: height || iconSize,
     className: className
   };
-  Object.assign(_props, props);
-  if (alt !== '') Object.assign(_props, { title: alt });
+  if (alt !== '') Object.assign(props, { title: alt });
 
   function getSrcs(callback: Function, name: string, isMod: boolean = false) {
-    const src = callback(name, isMod);
-    const src2x = callback(name + '@2x', isMod);
-    const srcSet = `${src} 1x, ${src2x} 2x`;
+    const _name = is2x ? `${name}@2x` : name;
+    const src = callback(_name, isMod);
+    let srcSet;
+    if (!is2x) {
+      const src2x = callback(name + '@2x', isMod);
+      srcSet = `${src} 1x, ${src2x} 2x`;
+    }
     setSrcs({ src, srcSet });
   }
 
@@ -50,7 +53,7 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, props =
         const fakeIcon = getFakeIcon(callback);
         if (fakeIcon) getSrcs(getCommonImage, fakeIcon);
       }}
-      {..._props}
+      {...props}
     />
   );
 }
