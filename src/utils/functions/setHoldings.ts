@@ -1,7 +1,8 @@
-import { CardsWithUpgradeCounter, ExhibitsWithCounter, RequestType, SpecialExhibit, TCard, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
+import { CardsWithUpgradeCounter, ExhibitsWithCounter, RequestType, SpecialExhibit, TBaseManaObj, TCard, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
 import { copyObject, getSameCardIndex } from 'utils/functions/helpers';
 import Configs from 'utils/classes/Configs';
+import BMana from 'utils/classes/BMana';
 
 function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsConfigs, requestsConfigs, eventsConfigs }: { runData: TRunData, dispatchHoldings: THoldingsReducer, charactersConfigs: Configs, exhibitsConfigs: Configs, requestsConfigs: Configs, eventsConfigs: TObjAny }) {
   const { Stations } = runData;
@@ -127,8 +128,6 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
     }
   }
 
-  let main = 'A'
-  let sub = 'A';
   // BaseDeck
   // eslint-disable-next-line no-lone-blocks
   {
@@ -183,10 +182,8 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
           }
         }
         finalCards = currentCards.map(({ Id }) => Id).sort((a, b) => {
-          const { i, main: _main, sub: _sub } = getSortIndex(a);
-          const { i: j } = getSortIndex(b);
-          if (_main) main = _main;
-          else if (_sub) sub = _sub;
+          const i = getSortIndex(a);
+          const j = getSortIndex(b);
           return i - j;
         });
       }
@@ -213,39 +210,33 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
     const isBlock = id.match(/Block([WUBRG])$/);
     const isShoot = id === 'Shoot';
     const isBoundary = id === 'Boundary';
-    const order = [isShoot, isBoundary, Boolean(isAttack), Boolean(isBlock)];
+    const order: Array<boolean> = [isShoot, isBoundary, Boolean(isAttack), Boolean(isBlock)];
     let i = order.indexOf(true);
     if (i === -1) i = attackOrder + 0.5;
-
-    let main, sub;
-    if (isAttack) main = isAttack[1];
-    else if (isBlock) sub = isBlock[1];
-    return { i, main, sub };
+    return i;
   }
 
   // BaseBaseMana
   {
-    // let finalBaseMana: string;
-    // if (BaseMana) {
-    //   finalBaseMana = BaseMana;
-    // }
-    // else  {
-    //   const { BaseMana } = runData.Result;
-    //   let currentBaseMana = BaseMana;
-    //   const baseManaActions = actions.filter(({ type }) => type === 'BaseMana').reverse();
-    //   for (const action of baseManaActions) {
-    //     const { Type, BaseMana: baseMana } = action.change as TBaseManaObj & THoldingChange;
-    //     if (Type === 'Remove') {
-    //       currentBaseMana = BMana.add(currentBaseMana, baseMana);
-    //     }
-    //     else if (Type === 'Add') {
-    //       currentBaseMana = BMana.remove(currentBaseMana, baseMana);
-    //     }
-    //   }
-    //   finalBaseMana = currentBaseMana;
-    // }
-
-    const finalBaseMana = BaseMana || `${main}${main}${sub}${sub}`;
+    let finalBaseMana: string;
+    if (BaseMana) {
+      finalBaseMana = BaseMana;
+    }
+    else  {
+      const { BaseMana } = runData.Result;
+      let currentBaseMana = BaseMana;
+      const baseManaActions = actions.filter(({ type }) => type === 'BaseMana').reverse();
+      for (const action of baseManaActions) {
+        const { Type, BaseMana: baseMana } = action.change as TBaseManaObj & THoldingChange;
+        if (Type === 'Remove') {
+          currentBaseMana = BMana.add(currentBaseMana, baseMana);
+        }
+        else if (Type === 'Add') {
+          currentBaseMana = BMana.remove(currentBaseMana, baseMana);
+        }
+      }
+      finalBaseMana = currentBaseMana;
+    }
 
     const action: THoldingAction = {
       type: 'BaseMana',
@@ -279,58 +270,56 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
       actions.unshift(action);
     }
 
-    let baseMana;
-    if (JadeBoxes !== undefined && JadeBoxes.includes('TwoColorStart')) {
-      baseMana = 'P';
-    }
-    else if (BaseMana) {
-      ({ BaseMana: baseMana } = exhibitsConfigs.get(Exhibit));
-    }
-    else {
-      baseMana = main;
-    }
-
-    const action: THoldingAction = {
-      type: 'BaseMana',
-      change: {
-        Type: 'Add',
-        Station,
-        BaseMana: baseMana
+    if (BaseMana) {
+      let baseMana;
+      if (JadeBoxes !== undefined && JadeBoxes.includes('TwoColorStart')) {
+        baseMana = 'P';
       }
-    };
-    actions.push(action);
+      else {
+        ({ BaseMana: baseMana } = exhibitsConfigs.get(Exhibit));
+      }
 
-    if (isSwapping) {
-      const { Exhibits } = runData;
-      for (let i = 0; i < 2; i++) {
-        const Exhibit = Exhibits[i];
-        const exhibit: any = copyObject(Exhibit);
-        const { Id, Type } = Exhibit;
-        exhibit.Station = Station;
-  
-        const { BaseMana } = exhibitsConfigs.get(Id);
-        const currentBaseMana = BaseMana || main;
-  
-        {
-          const action: THoldingAction = {
-            type: 'Exhibit',
-            change: {
-              ...exhibit
-            }
-          };
-          actions.push(action);
+      const action: THoldingAction = {
+        type: 'BaseMana',
+        change: {
+          Type: 'Add',
+          Station,
+          BaseMana: baseMana
         }
+      };
+      actions.push(action);
 
-        {
-          const action: THoldingAction = {
-            type: 'BaseMana',
-            change: {
-              Type,
-              Station,
-              BaseMana: currentBaseMana
-            }
-          };
-          actions.push(action);
+      if (isSwapping) {
+        const { Exhibits } = runData;
+        for (let i = 0; i < 2; i++) {
+          const Exhibit = Exhibits[i];
+          const exhibit: any = copyObject(Exhibit);
+          const { Id, Type } = Exhibit;
+          exhibit.Station = Station;
+    
+          const { BaseMana } = exhibitsConfigs.get(Id);
+    
+          {
+            const action: THoldingAction = {
+              type: 'Exhibit',
+              change: {
+                ...exhibit
+              }
+            };
+            actions.push(action);
+          }
+
+          {
+            const action: THoldingAction = {
+              type: 'BaseMana',
+              change: {
+                Type,
+                Station,
+                BaseMana
+              }
+            };
+            actions.push(action);
+          }
         }
       }
     }
