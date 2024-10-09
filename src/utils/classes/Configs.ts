@@ -36,7 +36,7 @@ class Configs {
       return configs;
     }
     else {
-      console.error(`Id ${id} not found in ${this.key}`);
+      console.info(`Id ${id} not found in ${this.key}`);
     }
     return configs;
   }
@@ -106,7 +106,7 @@ class CardsConfigs extends Configs {
       }
     }
     else {
-      console.error(`Id ${id} not found in ${this.key}`);
+      console.info(`Id ${id} not found in ${this.key}`);
     }
 
     const cardConfigs = new CardConfigs(configs, _card);
