@@ -1,7 +1,7 @@
 import { TBaseMana } from 'utils/types/runData';
 
 class BMana {
-  private static _colors = 'WUBRGCPA';
+  private static _colors = 'WUBRGCPAN';
 
   static add(before: TBaseMana, change: TBaseMana) {
     const after = before.split('');

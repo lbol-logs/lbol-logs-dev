@@ -8,7 +8,7 @@ function BaseManaWidget({ mana }: { mana: TBaseMana }) {
 
   const imgs = [];
   const isA = mana === 'A';
-  const _mana = isA ? 'P' : mana;
+  const _mana = isA ? 'P' : (mana === 'N' ? 'Unknown' : mana);
 
   imgs[0] = (
     <LazyLoadImage2 callback={getBaseManaImage} name={_mana} alt={isA ? '' : t(`mana.${_mana}`, { ns: 'common' })} key={_mana} />

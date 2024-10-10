@@ -20,6 +20,34 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
   const isSwapping = Stations[0].Data.Choices[0] === 1;
   const attackOrder = 2;
 
+  function sortActions({ actions, Type, addMissing = false }: { actions: Array<THoldingAction>, Type?: string, addMissing?: boolean }) {
+    const sortedActions: Array<THoldingAction> = [];
+    const _actions = Type ? actions.filter(({ type }) => type === Type) : actions;
+    for (const { Node: { Act, Level, Y } } of Stations) {
+      const currentActions = _actions.filter(({ change: { Station: { Act: _act, Level: _level } } }) => Act === _act && Level === _level);
+      if (currentActions.length) {
+        sortedActions.push(...currentActions);
+      }
+      else {
+        if (!addMissing) continue;
+
+        const currentAction: THoldingAction = {
+          type: '',
+          change: {
+            Type: 'Add',
+            Station: {
+              Act,
+              Level,
+              Y
+            }
+          }
+        };
+        sortedActions.push(currentAction);
+      }
+    }
+    return sortedActions;
+  }
+
   // Cards
   {
     const { Cards } = runData;
@@ -155,7 +183,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
       else {
         const { Cards } = runData.Result;
         const currentCards = copyObject(Cards);
-        const cardsActions = actions.filter(({ type }) => type === 'Card').reverse();
+        const cardsActions = sortActions({ actions, Type: 'Card' }).reverse();
 
         if (isStartMisfortune) cardsActions.push(startMisfortuneAction);
         for (const action of cardsActions) {
@@ -223,19 +251,33 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
       finalBaseMana = BaseMana;
     }
     else  {
-      const { BaseMana } = runData.Result;
-      let currentBaseMana = BaseMana;
-      const baseManaActions = actions.filter(({ type }) => type === 'BaseMana').reverse();
-      for (const action of baseManaActions) {
-        const { Type, BaseMana: baseMana } = action.change as TBaseManaObj & THoldingChange;
-        if (Type === 'Remove') {
-          currentBaseMana = BMana.add(currentBaseMana, baseMana);
+      try {
+        const { BaseMana } = runData.Result;
+        let currentBaseMana = BaseMana;
+        const baseManaActions = sortActions({ actions, Type: 'BaseMana' }).reverse();
+        for (const action of baseManaActions) {
+          const { Type, BaseMana: baseMana } = action.change as TBaseManaObj & THoldingChange;
+          if (Type === 'Remove') {
+            currentBaseMana = BMana.add(currentBaseMana, baseMana);
+          }
+          else if (Type === 'Add') {
+            currentBaseMana = BMana.remove(currentBaseMana, baseMana);
+          }
         }
-        else if (Type === 'Add') {
-          currentBaseMana = BMana.remove(currentBaseMana, baseMana);
-        }
+        finalBaseMana = currentBaseMana;
       }
-      finalBaseMana = currentBaseMana;
+      catch (e) {
+        console.error(e);
+        let fifthBaseMana = 'N';
+        if (isSwapping) {
+          const { Exhibits } = runData;
+          const Exhibit = Exhibits[1];
+          const { Id } = Exhibit;
+          const { BaseMana } = exhibitsConfigs.get(Id);
+          if (BaseMana !== undefined) fifthBaseMana = BaseMana;
+        }
+        finalBaseMana = BMana.add('AAAA', fifthBaseMana);
+      }
     }
 
     const action: THoldingAction = {
@@ -325,28 +367,8 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
     }
   }
 
-  const sortedActions: Array<THoldingAction> = [];
   // Add missing stations
-  for (const { Node: { Act, Level, Y } } of Stations) {
-    const currentActions = actions.filter(({ change: { Station: { Act: _act, Level: _level } } }) => Act === _act && Level === _level);
-    if (currentActions.length) {
-      sortedActions.push(...currentActions);
-    }
-    else {
-      const currentAction: THoldingAction = {
-        type: '',
-        change: {
-          Type: 'Add',
-          Station: {
-            Act,
-            Level,
-            Y
-          }
-        }
-      };
-      sortedActions.push(currentAction);
-    }
-  }
+  const sortedActions = sortActions({ actions, addMissing: true });
 
   for (const action of sortedActions) {
     dispatchHoldings(action);
