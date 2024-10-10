@@ -8,10 +8,11 @@ function BaseManaWidget({ mana }: { mana: TBaseMana }) {
 
   const imgs = [];
   const isA = mana === 'A';
-  const _mana = isA ? 'P' : (mana === 'N' ? 'Unknown' : mana);
+  const _mana = isA ? 'P' : mana;
+  const name = mana === 'N' ? 'Unknown' : _mana;
 
   imgs[0] = (
-    <LazyLoadImage2 callback={getBaseManaImage} name={_mana} alt={isA ? '' : t(`mana.${_mana}`, { ns: 'common' })} key={_mana} />
+    <LazyLoadImage2 callback={getBaseManaImage} name={name} alt={isA ? '' : t(`mana.${_mana}`, { ns: 'common' })} key={_mana} />
   );
   if (isA) {
     const img = (
