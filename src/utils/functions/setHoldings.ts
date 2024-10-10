@@ -17,7 +17,8 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
     Y: 0
   };
 
-  const isSwapping = Stations[0].Data.Choices[0] === 1;
+  let isSwapping = false;
+  if (Stations[0] && Stations[0].Data.Choices[0] === 1) isSwapping = true;;
   const attackOrder = 2;
 
   function sortActions({ actions, Type, addMissing = false }: { actions: Array<THoldingAction>, Type?: string, addMissing?: boolean }) {
@@ -339,7 +340,8 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
           const { Id, Type } = Exhibit;
           exhibit.Station = Station;
     
-          const { BaseMana } = exhibitsConfigs.get(Id);
+          let { BaseMana } = exhibitsConfigs.get(Id);
+          if (BaseMana === undefined) BaseMana = 'N';
     
           {
             const action: THoldingAction = {

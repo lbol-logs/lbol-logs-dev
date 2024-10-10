@@ -20,6 +20,7 @@ class ActLevel {
   }
 
   public maxAct() {
+    if (!this._runData.Stations.length) return 0;
     const maxAct = getLength(this._runData.Acts) as TAct;
     this._maxAct = maxAct;
     return maxAct;
@@ -43,7 +44,7 @@ class ActLevel {
   public rounds(): TRounds {
     const defaultRounds = {} as TRounds;
     const lastStation = this._runData.Stations.at(-1) as TStation;
-    const { Id } =  lastStation;
+    const { Id } =  lastStation || {};
     if (!Id || !enemiesShowDetails.includes(Id)) return defaultRounds;
     const { Data } = lastStation;
     if (!Data) return defaultRounds;

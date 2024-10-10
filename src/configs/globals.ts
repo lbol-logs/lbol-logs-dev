@@ -125,7 +125,8 @@ const modsCommonConfigs: Array<string> = [
 ];
 const modsLogConfigs: Array<string> = [
   'cards',
-  'statusEffects'
+  'statusEffects',
+  'enemyGroups'
 ];
 
 const enemiesShowDetails: Array<string> = [
