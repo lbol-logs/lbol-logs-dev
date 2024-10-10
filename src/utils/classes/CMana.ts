@@ -19,10 +19,10 @@ class CMana {
     }
 
     function _remove(string: string) {
-      s = s.slice(string.length);
+      s = s.replace(string, '');
     }
 
-    do {
+    while (s.length) {
       const m = s.match(/\{(\d)([^}]+)\}/);
       if (m) {
         for (let i = 0; i < Number(m[1]); i++) _handle(m[2], false);
@@ -31,7 +31,7 @@ class CMana {
       else {
         _handle(s);
       }
-    } while (s.length);
+    };
 
     return manas;
   }
