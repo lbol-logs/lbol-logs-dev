@@ -1,17 +1,13 @@
 import ExternalLink from 'components/common/parts/externalLink';
-import { CommonContext } from 'contexts/commonContext';
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { TModConfigs } from 'utils/types/others';
 
-function ModsWidget({ mods, showLogs = false }: { mods: Array<TModConfigs>, showLogs?: boolean }) {
-  const { version } = useContext(CommonContext);
-
+function ModsWidget({ mods, version }: { mods: Array<TModConfigs>, version?: string }) {
   return (
     <div className="p-mods">
       {mods.map(({ GUID, Name, Version, Character, Url }) => {
         let logs = null;
-        if (showLogs) {
+        if (version) {
           logs = (
             <Link className="p-mod__logs" to={`/${version}/?ch=${Character}`}>Logs</Link>
           );

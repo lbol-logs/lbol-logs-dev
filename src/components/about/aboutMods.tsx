@@ -18,7 +18,7 @@ function AboutMods() {
         <span className="p-mods__text">{t('lbolLogs.supportedCharacterMods', { ns: 'site' })}</span>
         <VersionWidget className="p-mods__version" version={version} setVersion={setVersion} versionSwitch={true} />
       </h2>
-      <ModsWidget mods={mods} showLogs={true} />
+      <ModsWidget mods={mods} version={version} />
     </div>
   );
 }
