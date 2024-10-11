@@ -68,6 +68,11 @@ function RunList() {
   }
 
   useEffect(() => {
+    const div = document.querySelector('.js-runList') as HTMLDivElement;
+    setTimeout(() => div.scrollIntoView({ behavior: 'smooth' }), 1);
+  }, [currentFilter]);
+
+  useEffect(() => {
     const height = topScrollHeights[version];
     if (height !== undefined) window.scrollTo(0, height);
 
