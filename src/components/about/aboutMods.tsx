@@ -1,8 +1,8 @@
-import VersionWidget from "components/common/parts/versionWidget";
-import ModsWidget from "components/log/parts/modsWidget";
-import { latestVersion, modsConfigsData } from "configs/globals";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import VersionWidget from 'components/common/parts/versionWidget';
+import ModsWidget from 'components/log/parts/modsWidget';
+import { latestVersion, modsConfigsData } from 'configs/globals';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function AboutMods() {
   const [version, setVersion] = useState(latestVersion);

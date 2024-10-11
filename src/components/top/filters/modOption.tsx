@@ -1,4 +1,4 @@
-import CharacterImage from "components/common/parts/characterImage";
+import CharacterImage from 'components/common/parts/characterImage';
 
 function ModOption({ children }: { children: JSX.Element | string }) {
   const character = 'Mod';
