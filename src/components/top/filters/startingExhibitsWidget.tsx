@@ -5,13 +5,15 @@ import { TExhibits } from 'utils/types/runData';
 import { RunListContext } from 'contexts/runListContext';
 import ModOption from './modOption';
 import { toggleIsChecked } from 'utils/functions/helpers';
+import { getModdedCharacters } from './charactersWidget';
 
 function StartingExhibitsWidget({ onChange, startingExhibits, characters }: { onChange: ChangeEventHandler, startingExhibits: TObj<TExhibits>, characters: Array<string> }) {
   const { filter } = useContext(RunListContext);
   const { ch, st } = filter;
 
   const character = 'Mods';
-  const isCharacterChecked = ch ? (!ch.length || ch.includes(character)) : true;
+  const moddedCharacters = getModdedCharacters({ characters, ch });
+  const isCharacterChecked = ch ? (!ch.length || ch.includes(character) || moddedCharacters.length > 0) : true;
   const playerTypes = ['A', 'B'];
 
   return (

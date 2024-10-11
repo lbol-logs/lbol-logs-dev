@@ -4,6 +4,7 @@ import SpellcardWidget from './spellcardWidget';
 import { configsData } from 'configs/globals';
 import ModOption from './modOption';
 import { toggleIsChecked } from 'utils/functions/helpers';
+import { getModdedCharacters } from './charactersWidget';
 
 function SpellcardsWidget({ onChange, characters }: { onChange: ChangeEventHandler, characters: Array<string> }) {
   const { charactersConfigs } = configsData;
@@ -11,7 +12,8 @@ function SpellcardsWidget({ onChange, characters }: { onChange: ChangeEventHandl
   const { ch, sc } = filter;
 
   const character = 'Mods';
-  const isCharacterChecked = ch ? (!ch.length || ch.includes(character)) : true;
+  const moddedCharacters = getModdedCharacters({ characters, ch });
+  const isCharacterChecked = ch ? (!ch.length || ch.includes(character) || moddedCharacters.length > 0) : true;
   const playerTypes = ['A', 'B'];
 
   return (
