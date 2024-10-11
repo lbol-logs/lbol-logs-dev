@@ -3,6 +3,12 @@ import { iconSize } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { getUnitImage } from 'utils/functions/getImage';
 import { getNs } from 'utils/functions/helpers';
+import { TObjString } from 'utils/types/common';
+
+const models: TObjString = {
+  RavenWen3: 'RavenWen',
+  RavenGuo3: 'RavenGuo'
+};
 
 function EnemyCards({ enemies }: { enemies: Array<string> }) {
   const { t, i18n } = useTranslation();
@@ -12,19 +18,7 @@ function EnemyCards({ enemies }: { enemies: Array<string> }) {
   return (
     <div className="p-enemies">
       {enemies.map((enemy, i) => {
-        let name: string;
-        switch (enemy) {
-          case 'RavenWen3':
-            name = 'RavenWen';
-            break;
-          case 'RavenGuo3':
-            name = 'RavenGuo';
-            break;
-          default:
-            name = enemy;
-            break;
-        }
-
+        const name = models[enemy] || enemy;
         let ns = 'units';
         if (!i18n.exists(name, { ns })) {
           [ns] = getNs({ ns, isMod: true });
