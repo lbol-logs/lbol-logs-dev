@@ -1,5 +1,5 @@
 import { TObj, TObjAny, TRange4 } from './common';
-import { TAct, TCard, TExhibit, TExhibitObj, TLevel, TRequests, TStation, TStatusEffect } from './runData';
+import { TAct, TCard, TExhibit, TExhibitObj, TLevel, TMod, TRequests, TStation, TStatusEffect } from './runData';
 
 type TRunListItem = {
   id: string,
@@ -58,6 +58,11 @@ type TEntityModel = {
 
 type TCardMana = Array<string>;
 
+type TModConfigs = TMod & {
+  Character?: string,
+  Url? : string
+};
+
 enum ErrorType {
   invalidFile = 'invalidFile',
   invalidVersion = 'invalidVersion',
@@ -78,7 +83,8 @@ export type {
   TEventComponent,
   TRounds,
   TEntityModel,
-  TCardMana
+  TCardMana,
+  TModConfigs
 };
 
 export {
