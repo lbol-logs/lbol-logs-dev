@@ -1,15 +1,25 @@
+import { MouseEvent } from 'react';
 import ExternalLink from 'components/common/parts/externalLink';
-import { Link } from 'react-router-dom';
 import { TModConfigs } from 'utils/types/others';
+import { useNavigate } from 'react-router-dom';
 
 function ModsWidget({ mods, version }: { mods: Array<TModConfigs>, version?: string }) {
+  const navigate = useNavigate();
+
   return (
     <div className="p-mods">
       {mods.map(({ GUID, Name, Version, Character, Url }) => {
         let logs = null;
+
+        const onClick = (e: MouseEvent<HTMLSpanElement>) => {
+          e.preventDefault();
+          const href = `/${version}/?ch=${Character}`;
+          navigate(href);
+        };
+
         if (version) {
           logs = (
-            <Link className="p-mod__logs" to={`/${version}/?ch=${Character}`}>Logs</Link>
+            <span className="p-mod__logs" onClick={onClick}>Logs</span>
           );
         }
 
