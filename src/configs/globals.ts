@@ -89,6 +89,8 @@ const resultSizes = {
   height: 100
 };
 
+const logsPerPage = 30;
+
 const scrollTolerance = 70;
 
 const defaultHoldingsHeight = 144;
@@ -169,6 +171,7 @@ export {
   iconSize,
   cardSize,
   resultSizes,
+  logsPerPage,
   scrollTolerance,
   defaultHoldingsHeight,
   defaultHoldingsWidth,

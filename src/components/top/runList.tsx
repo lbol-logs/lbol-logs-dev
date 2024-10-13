@@ -11,6 +11,7 @@ import DefaultFilter from 'utils/classes/DefaultFilter';
 import RunListItems from './runListItems';
 import RunListResults from './runListResults';
 import { RunListContext } from 'contexts/runListContext';
+import RunListPager from './runListPager';
 
 function RunList() {
   const { version, topScrollHeights, setTopScrollHeights } = useContext(CommonContext);
@@ -36,6 +37,7 @@ function RunList() {
         (currentFilter[key] as Array<string>).push(value);
       }
     }
+    console.log({currentFilter});
     return currentFilter;
   }, [searchParams]);
 
@@ -70,6 +72,7 @@ function RunList() {
       <div className="p-run-list__output js-runList">
         <div className="p-run-list__line">
           <RunListResults />
+          <RunListPager />
           <p className="p-run-list__remark">
             <Trans
               i18nKey="remark"

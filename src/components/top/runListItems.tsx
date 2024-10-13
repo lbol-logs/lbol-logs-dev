@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import ResultWidget from 'components/common/parts/resultWidget';
 import RequestsWidget from 'components/common/parts/requestsWidget';
 import { TRequests } from 'utils/types/runData';
@@ -7,13 +7,18 @@ import { TComponents, TObjNumber } from 'utils/types/common';
 import { useContext } from 'react';
 import { CommonContext } from 'contexts/commonContext';
 import { RunListContext } from 'contexts/runListContext';
+import Pager from 'utils/classes/Pager';
 
 function RunListItems({ ids }: { ids: TObjNumber }) {
   const { version } = useContext(CommonContext);
   const { filteredList } = useContext(RunListContext);
+  const [searchParams] = useSearchParams();
+
+  const pager = new Pager(filteredList, searchParams);
+  const { min, max } = pager;
 
   const items: TComponents = [];
-  for (let i = filteredList.length - 1; i >= 0; i--) {
+  for (let i = max; i >= min; i--) {
     const {
       id,
       name,

@@ -106,7 +106,7 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter, setFilteredList
 
   useEffect(() => {
     setFilteredList(filteredList);
-  }, [list]);
+  }, [list, currentFilter]);
 }
 
 export default useFilterOnList;

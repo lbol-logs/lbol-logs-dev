@@ -240,10 +240,39 @@ input {
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
+  margin-bottom: 1em;
 }
 .p-run-list__results, .p-run-list__remark {
   margin: 0;
 }
+
+.p-run-list__pager {
+  margin: 0 auto;
+}
+.p-pager {
+  display: flex;
+  list-style: none;
+  column-gap: 0.2em;
+  margin: 0;
+  padding: 0;
+}
+.p-pager__page {
+  width: 1.5em;
+  height: 1.5em;
+  border: 1px solid var(--black);
+  text-align: center;
+}
+.p-pager__page--current {
+  font-weight: bold;
+}
+.p-pager__page--valid {
+  cursor: pointer;
+  color: var(--blue);
+}
+.p-pager__page--valid:hover {
+  opacity: 0.8;
+}
+
 .p-run-list__remark {
   font-size: 0.9em;
 }
@@ -2179,6 +2208,11 @@ html:lang(en) .p-result__type {
   }
   .p-filter__requests-types {
     justify-content: center;
+  }
+
+  .p-run-list__pager {
+    order: 2;
+    margin-top: 1em;
   }
 
   .p-modal__outer {
