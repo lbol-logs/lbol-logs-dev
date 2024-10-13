@@ -1,11 +1,12 @@
 import { modsConfigsData } from 'configs/globals';
+import { useEffect } from 'react';
 import DefaultFilter from 'utils/classes/DefaultFilter';
 import { compareArrays, copyObject, getResultType, checkIsMod, getEntityNs } from 'utils/functions/helpers';
-import { TObj } from 'utils/types/common';
+import { TDispatch, TObj } from 'utils/types/common';
 import { TFilter, TRunList, TRunListItem } from 'utils/types/others';
 import { TExhibits, TRequests } from 'utils/types/runData';
 
-function useFilterOnList(list: TRunList, currentFilter: TFilter) {
+function useFilterOnList(list: TRunList, currentFilter: TFilter, setFilteredList: TDispatch<TRunList>) {
   let filteredList = copyObject(list);
   const map: TObj<keyof TRunListItem> = {
     ch: 'character',
@@ -103,7 +104,9 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter) {
     }
   }
 
-  return filteredList;
+  useEffect(() => {
+    setFilteredList(filteredList);
+  }, [list]);
 }
 
 export default useFilterOnList;

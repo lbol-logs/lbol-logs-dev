@@ -1,8 +1,10 @@
+import { RunListContext } from 'contexts/runListContext';
+import { useContext } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { getLength } from 'utils/functions/helpers';
-import { TRunList } from 'utils/types/others';
 
-function RunListResults({ list, filteredList }: { list: TRunList, filteredList: TRunList }) {
+function RunListResults() {
+  const { list, filteredList } = useContext(RunListContext);
   useTranslation();
 
   const found = <Trans

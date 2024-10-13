@@ -10,13 +10,15 @@ import useFilterOnList from 'hooks/useFilterOnList';
 import DefaultFilter from 'utils/classes/DefaultFilter';
 import RunListItems from './runListItems';
 import RunListResults from './runListResults';
+import { RunListContext } from 'contexts/runListContext';
 
 function RunList() {
   const { version, topScrollHeights, setTopScrollHeights } = useContext(CommonContext);
+  const { list, setList, setFilteredList } = useContext(RunListContext);
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
 
-  const list = useRunList(version);
+  useRunList(version, setList);
 
   const currentFilter = useMemo(() => {
     const currentFilter: TFilter = {};
@@ -37,7 +39,7 @@ function RunList() {
     return currentFilter;
   }, [searchParams]);
 
-  const filteredList = useFilterOnList(list, currentFilter);
+  useFilterOnList(list, currentFilter, setFilteredList);
 
   const ids = useMemo(() => {
     return list.reduce((a: TObjNumber, b, i) => {
@@ -67,7 +69,7 @@ function RunList() {
       <Filter />
       <div className="p-run-list__output js-runList">
         <div className="p-run-list__line">
-          <RunListResults list={list} filteredList={filteredList} />
+          <RunListResults />
           <p className="p-run-list__remark">
             <Trans
               i18nKey="remark"
@@ -96,7 +98,7 @@ function RunList() {
             })}
           </div>
           <div className="p-run-list__body">
-            <RunListItems ids={ids} filteredList={filteredList} />
+            <RunListItems ids={ids} />
           </div>
         </div>
       </div>
