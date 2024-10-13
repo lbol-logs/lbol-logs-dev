@@ -1127,6 +1127,7 @@ html:lang(en) .c-entity__text {
 
 .p-base-mana {
   display: flex;
+  height: var(--icon-size);
 }
 .c-base-mana {
   position: relative;
@@ -1235,7 +1236,8 @@ html:lang(en) .c-entity__text {
 .p-result {
   --left: 40%;
   position: relative;
-  width: fit-content;
+  width: 292px;
+  height: 100px;
   font-size: 0.8em;
   color: var(--f-white);
 }

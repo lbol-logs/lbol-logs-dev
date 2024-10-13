@@ -37,7 +37,6 @@ function RunList() {
         (currentFilter[key] as Array<string>).push(value);
       }
     }
-    console.log({currentFilter});
     return currentFilter;
   }, [searchParams]);
 

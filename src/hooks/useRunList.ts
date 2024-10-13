@@ -8,7 +8,7 @@ function useRunList(version: string, setList: TDispatch<TRunList>) {
   const list = use(getRunList(version)) as TRunList;
   useEffect(() => {
     setList(list);
-  }, []);
+  }, [list]);
 }
 
 export default useRunList;
