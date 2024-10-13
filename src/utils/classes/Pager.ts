@@ -21,19 +21,14 @@ class Pager {
     return maxPage;
   }
 
-  private get i() {
-    const i = this.maxPage - this.currentPage;
-    return i;
+  get max() {
+    const max = Math.max(this.count - logsPerPage * (this.currentPage - 1), 0) - 1;
+    return max;
   }
 
   get min() {
-    const min = logsPerPage * this.i;
-    return min
-  }
-
-  get max() {
-    const max = Math.min(logsPerPage * (this.i + 1), this.count) - 1;
-    return max;
+    const min = Math.max(this.max - logsPerPage + 1, 0);
+    return min;
   }
 
   get currentPage() {

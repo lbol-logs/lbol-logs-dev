@@ -10,7 +10,7 @@ function RunListResults() {
   const pager = new Pager(filteredList, searchParams);
   const { min, max, count } = pager;
 
-  const range = count ? `${min + 1} - ${max + 1}` : 0;
+  const range = count ? `${max + 1} - ${min + 1}` : 0;
   const results = `${range} / ${count}`;
 
   return (
