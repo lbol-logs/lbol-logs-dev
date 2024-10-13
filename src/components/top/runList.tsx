@@ -6,10 +6,10 @@ import useRunList from 'hooks/useRunList';
 import { TFilter, TFilterRadio, TFilterText } from 'utils/types/others';
 import { TObjNumber } from 'utils/types/common';
 import Filter from './filters/filter';
-import { getLength } from 'utils/functions/helpers';
 import useFilterOnList from 'hooks/useFilterOnList';
 import DefaultFilter from 'utils/classes/DefaultFilter';
 import RunListItems from './runListItems';
+import RunListResults from './runListResults';
 
 function RunList() {
   const { version, topScrollHeights, setTopScrollHeights } = useContext(CommonContext);
@@ -38,21 +38,6 @@ function RunList() {
   }, [searchParams]);
 
   const filteredList = useFilterOnList(list, currentFilter);
-  const found = <Trans
-    i18nKey="results.found"
-    ns="runList"
-    count={getLength(filteredList)}
-  />;
-  const total = <Trans
-    i18nKey="results.total"
-    ns="runList"
-    count={getLength(list)}
-  />;
-  const results = <Trans
-    i18nKey="results.format"
-    ns="runList"
-    components={{ found, total }}
-  />;
 
   const ids = useMemo(() => {
     return list.reduce((a: TObjNumber, b, i) => {
@@ -82,7 +67,7 @@ function RunList() {
       <Filter />
       <div className="p-run-list__output js-runList">
         <div className="p-run-list__line">
-          <p className="p-run-list__results">{results}</p>
+          <RunListResults list={list} filteredList={filteredList} />
           <p className="p-run-list__remark">
             <Trans
               i18nKey="remark"
