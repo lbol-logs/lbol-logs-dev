@@ -12,8 +12,8 @@ import { LogContext } from 'contexts/logContext';
 
 function Debut({ station }: { station: TStation }) {
   const { requestsConfigs, eventsConfigs, dialoguesConfigs } = configsData;
-  const { runData } = useContext(LogContext);
-  const { HasClearBonus, Requests } = runData.Settings;
+  const { runData: { Settings } } = useContext(LogContext);
+  const { HasClearBonus, Requests } = Settings;
 
   const { Data } = station;
 
@@ -34,14 +34,16 @@ function Debut({ station }: { station: TStation }) {
       0: 'money'
     };
     if (HasClearBonus && Options) {
+      const { JadeBoxes } = Settings;
+      const shining = 'shining' + ((JadeBoxes && JadeBoxes.includes('TwoColorStart')) ? '_invalid' : '');
       Object.assign(options, {
-        1: 'shining',
+        1: shining,
         2: Options[0],
         3: Options[1]
       });
     }
     const choices = Object.values(options);
-    const [next] = getNext(_next, choices);
+    const [next, invalids] = getNext(_next, choices);
     const chosen = Choices[0];
 
     const props: Array<TObjAny> = [];
@@ -100,6 +102,7 @@ function Debut({ station }: { station: TStation }) {
       next,
       chosen,
       props,
+      invalids,
       cards,
       exhibits
     };
