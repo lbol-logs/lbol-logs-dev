@@ -1167,6 +1167,7 @@ html:lang(en) .c-entity__text {
 }
 .p-modal__exhibit .p-modal__body img,
 .p-modal__status-effect .p-modal__body img,
+.p-modal__request .p-modal__body img,
 .p-modal__jade-box .p-modal__body img {
   width: 1.5em;
 }
@@ -1186,6 +1187,9 @@ html:lang(en) .c-entity__text {
   outline-offset: calc(var(--dot-border) * -1 );
   border-radius: 50%;
   position: relative;
+}
+.c-request--modal {
+  cursor: zoom-in;
 }
 .c-request:not(:last-child):after {
   content: '';
@@ -1346,6 +1350,9 @@ html:lang(en) .p-result__type {
   border-radius: 0.5em;
   margin: 0.2em 0;
   overflow: hidden;
+}
+.p-filter__row--requests {
+  overflow: visible;
 }
 .p-filter__row:nth-child(odd) {
   background: var(--light-blue);
@@ -1823,6 +1830,7 @@ html:lang(en) .p-result__type {
 }
 .p-modal__inner--exhibit,
 .p-modal__inner--status-effect,
+.p-modal__inner--request,
 .p-modal__inner--jade-box {
   width: 100%;
   overflow-y: auto;

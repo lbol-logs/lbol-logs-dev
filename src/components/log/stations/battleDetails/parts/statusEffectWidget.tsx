@@ -1,5 +1,5 @@
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
-import { LogContext } from 'contexts/logContext';
+import { CommonContext } from 'contexts/commonContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getStatusEffectImage } from 'utils/functions/getImage';
@@ -7,7 +7,7 @@ import { getEntityNs } from 'utils/functions/helpers';
 import { TStatusEffect } from 'utils/types/runData';
 
 function StatusEffectWidget({ statusEffect }: { statusEffect: TStatusEffect }) {
-  const { setEntityModal } = useContext(LogContext);
+  const { setEntityModal } = useContext(CommonContext);
   const { t } = useTranslation();
 
   const { Id, Level, Duration, Count } = statusEffect;

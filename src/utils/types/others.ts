@@ -1,5 +1,5 @@
 import { TObj, TObjAny, TRange4 } from './common';
-import { TAct, TCard, TExhibit, TExhibitObj, TJadeBox, TLevel, TMod, TRequests, TStation, TStatusEffect } from './runData';
+import { TAct, TCard, TExhibit, TExhibitObj, TJadeBox, TLevel, TMod, TRequest, TRequests, TStation, TStatusEffect } from './runData';
 
 type TRunListItem = {
   id: string,
@@ -50,6 +50,9 @@ type TRounds = {
   maxLevel: TLevel
 };
 
+type TRequestObj = {
+  Id: TRequest
+};
 type TJadeBoxObj = {
   Id: TJadeBox
 };
@@ -57,6 +60,7 @@ type TEntityModel = {
   card?: TCard,
   exhibit?: TExhibitObj,
   statusEffect?: TStatusEffect,
+  request?: TRequestObj,
   jadeBox?: TJadeBoxObj
 };
 
@@ -86,6 +90,7 @@ export type {
   TFilter,
   TEventComponent,
   TRounds,
+  TRequestObj,
   TJadeBoxObj,
   TEntityModel,
   TCardMana,

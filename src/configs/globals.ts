@@ -36,6 +36,7 @@ const namespaces: Array<string> = [
   'events',
   'dialogues',
   'gap',
+  'requests',
   'jadeBoxes'
 ];
 const modsNamespaces: Array<string> = [

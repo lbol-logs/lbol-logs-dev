@@ -119,7 +119,7 @@ function Filter() {
             <DifficultiesWidget onChange={onCheckboxChange} difficulties={difficultyConfigs as Array<string>} />
           </div>
         </div>
-        <div className="p-filter__row">
+        <div className="p-filter__row p-filter__row--requests">
           <div className="p-filter__label">{t('requests', { ns: 'runList' })}</div>
           <div className="p-filter__values u-flex-col">
             <RequestsTypes onRequestsTypesChange={onRequestsTypesChange} onRequestsChange={onCheckboxChange} showRequests={showRequests} />

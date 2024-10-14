@@ -12,7 +12,7 @@ import { configsData } from 'configs/globals';
 import CMana from 'utils/classes/CMana';
 import i18next from 'i18next';
 import { getEntityNs } from 'utils/functions/helpers';
-import { TJadeBoxObj } from 'utils/types/others';
+import { TJadeBoxObj, TRequestObj } from 'utils/types/others';
 
 function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, prefix?: string }) {
   const { act, level, holdings } = useContext(LogContext);
@@ -170,6 +170,16 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         const HeatDamage = Math.floor(Level as number * HeatDamageRatio);
         c.appendDescs({ HeatDamage });
       }
+
+      break;
+    }
+    case 'request': {
+      const { Id } = entity as TRequestObj;
+      const { requestsConfigs } = configsData;
+      const config = requestsConfigs.get(Id) || {};
+
+      ({ Version } = config);
+      addKey(Id, prefix);
 
       break;
     }

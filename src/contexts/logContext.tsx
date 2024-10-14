@@ -2,7 +2,7 @@ import { defaultRunData } from 'configs/globals';
 import holdingsReducer from 'hooks/holdingsReducer';
 import { createContext, ReactNode, useReducer, useState } from 'react';
 import { TDispatch } from 'utils/types/common';
-import { TEntityModel, TRounds } from 'utils/types/others';
+import { TRounds } from 'utils/types/others';
 import { TAct, THoldingChange, THoldings, THoldingsReducer, TLevel, TRunData } from 'utils/types/runData';
 
 const defaultIsRunDataLoaded = false;
@@ -14,7 +14,6 @@ const defaultIsStationsLoaded = false;
 const defaultHoldings = [] as THoldings;
 const defaultShowMap = true;
 const defaultIgnoredPaths = [] as Array<THoldingChange>;
-const defaultEntityModal = {};
 
 type TLogContext = {
   isRunDataLoaded: boolean,
@@ -36,9 +35,7 @@ type TLogContext = {
   showMap: boolean,
   setShowMap: TDispatch<boolean>,
   ignoredPaths: Array<THoldingChange>,
-  setIgnoredPaths: TDispatch<Array<THoldingChange>>,
-  entityModal: TEntityModel,
-  setEntityModal: TDispatch<TEntityModel>
+  setIgnoredPaths: TDispatch<Array<THoldingChange>>
 };
 
 export const LogContext = createContext<TLogContext>({
@@ -61,9 +58,7 @@ export const LogContext = createContext<TLogContext>({
   showMap: defaultShowMap,
   setShowMap: () => {},
   ignoredPaths: defaultIgnoredPaths,
-  setIgnoredPaths: () => {},
-  entityModal: defaultEntityModal,
-  setEntityModal: () => {}
+  setIgnoredPaths: () => {}
 });
 
 function LogProvider({ children }: { children: ReactNode }) {
@@ -77,7 +72,6 @@ function LogProvider({ children }: { children: ReactNode }) {
   const [holdings, dispatchHoldings] = useReducer(holdingsReducer, defaultHoldings);
   const [showMap, setShowMap] = useState(defaultShowMap);
   const [ignoredPaths, setIgnoredPaths] = useState(defaultIgnoredPaths);
-  const [entityModal, setEntityModal] = useState(defaultEntityModal);
 
   const value = {
     isRunDataLoaded,
@@ -99,9 +93,7 @@ function LogProvider({ children }: { children: ReactNode }) {
     showMap,
     setShowMap,
     ignoredPaths,
-    setIgnoredPaths,
-    entityModal,
-    setEntityModal
+    setIgnoredPaths
   };
 
   return (

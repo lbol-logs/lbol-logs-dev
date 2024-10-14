@@ -1,4 +1,5 @@
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
+import { CommonContext } from 'contexts/commonContext';
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +7,8 @@ import { getCommonImage } from 'utils/functions/getImage';
 import { TJadeBoxObj } from 'utils/types/others';
 
 function JadeBoxes() {
-  const { runData, setEntityModal } = useContext(LogContext);
+  const { runData } = useContext(LogContext);
+  const { setEntityModal } = useContext(CommonContext);
   const { t } = useTranslation();
 
   const { JadeBoxes } = runData.Settings;

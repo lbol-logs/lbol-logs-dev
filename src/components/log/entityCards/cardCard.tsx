@@ -1,13 +1,13 @@
 import { cardSize, configsData } from 'configs/globals';
-import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCardArtImage } from 'utils/functions/getImage';
 import { TCard } from 'utils/types/runData';
 import CardName from './cardName';
+import { CommonContext } from 'contexts/commonContext';
 
 function CardCard({ card, isNotAdded }: { card: TCard, isNotAdded?: boolean }) {
-  const { setEntityModal } = useContext(LogContext);
+  const { setEntityModal } = useContext(CommonContext);
   const { cardsConfigs } = configsData;
   const { IsUpgraded } = card;
 

@@ -264,6 +264,7 @@ export type {
   TRunData,
   TCharacter,
   TPlayerType,
+  TRequest,
   TJadeBox,
   TAct,
   TLevel,

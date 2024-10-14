@@ -1,13 +1,14 @@
-import { LogContext } from 'contexts/logContext';
 import { useContext, useEffect, useRef } from 'react';
 import CardModal from './cardModal';
 import ExhibitModal from './exhibitModal';
 import StatusEffectModal from './statusEffectModal';
 import JadeBoxModal from './jadeBoxModal';
+import { CommonContext } from 'contexts/commonContext';
+import RequestModal from './requestModal';
 
 function Modal() {
-  const { entityModal, setEntityModal } = useContext(LogContext);
-  const { card, exhibit, statusEffect, jadeBox } = entityModal;
+  const { entityModal, setEntityModal } = useContext(CommonContext);
+  const { card, exhibit, statusEffect, request, jadeBox } = entityModal;
 
   let type;
   let entity;
@@ -23,6 +24,10 @@ function Modal() {
   else if (statusEffect) {
     type = 'status-effect';
     entity = <StatusEffectModal statusEffect={statusEffect} />;
+  }
+  else if (request) {
+    type = 'request';
+    entity = <RequestModal request={request} />;
   }
   else if (jadeBox) {
     type = 'jade-box';

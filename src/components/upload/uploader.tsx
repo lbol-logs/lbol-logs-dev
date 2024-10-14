@@ -8,6 +8,7 @@ import { getResultData, validateRunData } from 'utils/functions/helpers';
 import ResultWidget from 'components/common/parts/resultWidget';
 import RequestsWidget from 'components/common/parts/requestsWidget';
 import Description from './description';
+import Modal from 'components/log/modal';
 
 function Uploader() {
   const { t } = useTranslation();
@@ -54,9 +55,10 @@ function Uploader() {
 
     preview = (
       <div className="p-upload__preview">
+        <Modal />
         <div className="p-upload__result-requests">
           <ResultWidget resultData={getResultData(previewData)} name={Name} />
-          <RequestsWidget requests={Requests} />
+          <RequestsWidget requests={Requests} showModal={true} />
         </div>
         <Description />
       </div>

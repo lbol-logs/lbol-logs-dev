@@ -41,7 +41,7 @@ function Summary() {
       <div className="p-summary__head">
         <div className="p-summary__widgets">
           <ResultWidget resultData={resultData} name={Name} />
-          <RequestsWidget requests={Requests} />
+          <RequestsWidget requests={Requests} showModal={true} />
           <BaseManasWidget baseMana={BaseMana} />
         </div>
         <div className="p-summary__settings">
