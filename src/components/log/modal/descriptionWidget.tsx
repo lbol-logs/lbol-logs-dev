@@ -105,7 +105,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
     case 'statusEffect': {
       const { Id, Level, Duration, Count, Limit, owner } = entity as TStatusEffect;
       const { statusEffectsConfigs } = configsData;
-      const config = statusEffectsConfigs.get(Id) || {};
+      const config = statusEffectsConfigs.get(Id);
 
       ({ Version } = config);
       const { hasExtra, Limit: limit } = config;
@@ -176,7 +176,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
     case 'request': {
       const { Id } = entity as TRequestObj;
       const { requestsConfigs } = configsData;
-      const config = requestsConfigs.get(Id) || {};
+      const config = requestsConfigs.get(Id);
 
       ({ Version } = config);
       addKey(Id, prefix);
