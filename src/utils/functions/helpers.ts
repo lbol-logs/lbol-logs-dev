@@ -180,7 +180,7 @@ function getNs({ ns, character, isMod }: { ns: string, character?: string, isMod
 
 function getEntityNs(o: TObjAny): [string, boolean] {
   const [name, entity] = Object.entries(o)[0];
-  const ns = name + 's';
+  const ns = name + (name === 'jadeBox' ? 'es' : 's');
   const { Id } = entity;
   const configs = configsData[getConfigsKey(ns)];
   const isMod = !configs.has(Id);

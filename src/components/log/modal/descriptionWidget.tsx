@@ -12,9 +12,9 @@ import { configsData } from 'configs/globals';
 import CMana from 'utils/classes/CMana';
 import i18next from 'i18next';
 import { getEntityNs } from 'utils/functions/helpers';
+import { TJadeBoxObj } from 'utils/types/others';
 
 function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, prefix?: string }) {
-  const { exhibitsConfigs, cardsConfigs, statusEffectsConfigs } = configsData;
   const { act, level, holdings } = useContext(LogContext);
   const { t, i18n } = useTranslation();
 
@@ -48,6 +48,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       const {
         Id, IsUpgraded, UpgradeCounter
       } = card;
+      const { cardsConfigs } = configsData;
       const config = cardsConfigs.get(card);
       const cardConfigs = config.getAll();
 
@@ -84,6 +85,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
     }
     case 'exhibit': {
       const { Id, Counter } = entity as TExhibitObj;
+      const { exhibitsConfigs } = configsData;
       const config = exhibitsConfigs.get(Id);
 
       ({ Version } = config);
@@ -102,6 +104,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
     }
     case 'statusEffect': {
       const { Id, Level, Duration, Count, Limit, owner } = entity as TStatusEffect;
+      const { statusEffectsConfigs } = configsData;
       const config = statusEffectsConfigs.get(Id) || {};
 
       ({ Version } = config);
@@ -167,6 +170,23 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         const HeatDamage = Math.floor(Level as number * HeatDamageRatio);
         c.appendDescs({ HeatDamage });
       }
+
+      break;
+    }
+    case 'jadeBox': {
+      const { Id } = entity as TJadeBoxObj;
+      const { jadeBoxesConfigs } = configsData;
+      const config = jadeBoxesConfigs.get(Id);
+
+      ({ Version } = config);
+      addKey(Id, prefix);
+
+      const { Value1, Value2, Value3, Mana } = config;
+
+      const args = { Value1, Value2, Value3 };
+      c.appendDescs(args);
+      if (isEn) Object.assign(values, args);
+      c.insertManaObj({ Mana });
 
       break;
     }

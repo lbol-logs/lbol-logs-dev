@@ -14,6 +14,7 @@ import ModsWidget from './parts/modsWidget';
 import { getResultData } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import LogDescription from './logDescription';
+import JadeBoxes from './parts/jadeBoxes';
 
 function Summary() {
   const { exhibitsConfigs, cardsConfigs } = configsData;
@@ -44,15 +45,18 @@ function Summary() {
           <BaseManasWidget baseMana={BaseMana} />
         </div>
         <div className="p-summary__settings">
-          <div className="p-summary__line">
-            {Seed !== undefined && <span className="p-summary__seed">{Seed}</span>}
-            <IsAutoSeedWidget is={IsAutoSeed} />
+          <div className="p-summary__block">
+            <div className="p-summary__line">
+              {Seed !== undefined && <span className="p-summary__seed">{Seed}</span>}
+              <IsAutoSeedWidget is={IsAutoSeed} />
+            </div>
+            <div className="p-summary__line">
+              <span className="p-summary__version">{Version}</span>
+              <ShowRandomResultWidget show={ShowRandomResult} />
+              {ReloadTimes !== undefined && <ReloadTimesWidget count={ReloadTimes} />}
+            </div>
           </div>
-          <div className="p-summary__line">
-            <span className="p-summary__version">{Version}</span>
-            <ShowRandomResultWidget show={ShowRandomResult} />
-            {ReloadTimes !== undefined && <ReloadTimesWidget count={ReloadTimes} />}
-          </div>
+          <JadeBoxes />
         </div>
         {Mods !== undefined && <ModsWidget mods={Mods} />}
       </div>

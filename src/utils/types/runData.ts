@@ -30,8 +30,11 @@ type TSettings = {
 type TCharacter = string;
 type TPlayerType = 'A' | 'B';
 
-type TRequests = Array<string>;
-type TJadeBoxes = Array<string>;
+type TRequest = string;
+type TRequests = Array<TRequest>;
+
+type TJadeBox = string;
+type TJadeBoxes = Array<TJadeBox>;
 
 type TMod = {
   GUID: string,
@@ -261,6 +264,7 @@ export type {
   TRunData,
   TCharacter,
   TPlayerType,
+  TJadeBox,
   TAct,
   TLevel,
   TActObj,

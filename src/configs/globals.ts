@@ -35,7 +35,8 @@ const namespaces: Array<string> = [
   'log',
   'events',
   'dialogues',
-  'gap'
+  'gap',
+  'jadeBoxes'
 ];
 const modsNamespaces: Array<string> = [
   'spellcards',
@@ -117,7 +118,8 @@ const logConfigs: Array<string> = [
   'enemyGroups',
   'dialogues',
   'gap',
-  'events'
+  'events',
+  'jadeBoxes'
 ];
 
 const modsCommonConfigs: Array<string> = [

@@ -3,10 +3,11 @@ import { useContext, useEffect, useRef } from 'react';
 import CardModal from './cardModal';
 import ExhibitModal from './exhibitModal';
 import StatusEffectModal from './statusEffectModal';
+import JadeBoxModal from './jadeBoxModal';
 
 function Modal() {
   const { entityModal, setEntityModal } = useContext(LogContext);
-  const { card, exhibit, statusEffect } = entityModal;
+  const { card, exhibit, statusEffect, jadeBox } = entityModal;
 
   let type;
   let entity;
@@ -22,6 +23,10 @@ function Modal() {
   else if (statusEffect) {
     type = 'status-effect';
     entity = <StatusEffectModal statusEffect={statusEffect} />;
+  }
+  else if (jadeBox) {
+    type = 'jade-box';
+    entity = <JadeBoxModal jadeBox={jadeBox} />;
   }
 
   const innerRef = useRef<HTMLDivElement>(null);
