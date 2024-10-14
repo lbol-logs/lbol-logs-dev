@@ -702,7 +702,7 @@ input {
   padding: 0.2em 0;
   display: flex;
   flex-direction: column;
-  row-gap: 0.5em;;
+  row-gap: 1em;;
 }
 .p-summary__line {
   display: flex;
