@@ -15,9 +15,10 @@ function AboutMods() {
   return (
     <div className="p-about-lbol-logs__block">
       <h2 className="p-about-lbol-logs__mods">
-        <span className="p-mods__text">{t('lbolLogs.supportedCharacterMods', { ns: 'site' })}</span>
+        <span className="p-mods__text">{t('lbolLogs.fullSupport', { ns: 'site' })}</span>
         <VersionWidget className="p-mods__version" version={version} setVersion={setVersion} versionSwitch={true} />
       </h2>
+      <p>{t('lbolLogs.fullSupportRemark', { ns: 'site' })}</p>
       <ModsWidget mods={mods} version={version} />
     </div>
   );
