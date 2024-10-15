@@ -1761,6 +1761,9 @@ html:lang(en) .p-result__type {
 .c-character-short-name--Utsuho {
   color: var(--f-utsuho);
 }
+.c-character-short-name--YoumuMod {
+  color: var(--f-youmu);
+}
 
 .c-highlight--orange {
   color: var(--f-highlight);
@@ -2129,6 +2132,7 @@ html:lang(en) .p-result__type {
   --f-koishi: #23ec4d;
 
   --f-utsuho: #e58c27;
+  --f-youmu: #00b789;
 
   --f-white: #fff;
   --f-black: #000;
