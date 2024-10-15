@@ -75,11 +75,24 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       c.insertManaObj({ ActiveMana });
       c.insertManaObj({ TotalMana });
 
-      const { SalvoCount, RemoveCount, doubleValue, manatype } = cardConfigs;
-      const modsArgs = { SalvoCount, RemoveCount, doubleValue };
-      c.appendDescs(modsArgs);
-      if (isEn || isMod) Object.assign(values, modsArgs);
-      c.insertMana('manatype', manatype);
+      // Utsuho
+      {
+        const { SalvoCount, RemoveCount, doubleValue, manatype } = cardConfigs;
+        const modsArgs = { SalvoCount, RemoveCount, doubleValue };
+        c.appendDescs(modsArgs);
+        if (isEn || isMod) Object.assign(values, modsArgs);
+        c.insertMana('manatype', manatype);
+      }
+
+      // Youmu
+      {
+        const { ManaEthereal, ManaEmpty, ManaGreen, UnsheathedThreshold1, UnsheathedThreshold2, UnsheathedThreshold3 } = cardConfigs;
+        const modsArgs = { UnsheathedThreshold1, UnsheathedThreshold2, UnsheathedThreshold3 };
+        c.appendDescs(modsArgs);
+        c.insertMana('ManaEthereal', ManaEthereal);
+        c.insertMana('ManaEmpty', ManaEmpty);
+        c.insertMana('ManaGreen', ManaGreen);
+      }
 
       break;
     }
