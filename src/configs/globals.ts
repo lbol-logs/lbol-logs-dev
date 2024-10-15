@@ -20,7 +20,10 @@ const languages: TObj<TObjString> = {
     discord: 'https://discord.com/channels/1040229874176098344/1282271721898115163'
   }
 };
-const fallbackLanguage = 'en';
+const fallbackLanguage = {
+  'zh-cmn-Hant': ['zh-cmn-Hans', 'en'],
+  default: ['en']
+};
 
 const namespaces: Array<string> = [
   'spellcards',
