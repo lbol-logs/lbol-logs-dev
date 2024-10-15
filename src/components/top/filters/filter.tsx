@@ -42,7 +42,8 @@ function Filter() {
     reset
   } = useFilter({ filter, setFilter, version, searchParams });
 
-  const { na } = filter;
+  let { na } = filter;
+  na = na ? na[0] : '';
 
   function onClick() {
     setShowFilter(!showFilter);
