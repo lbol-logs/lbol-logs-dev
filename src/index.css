@@ -1297,6 +1297,9 @@ html:lang(en) .c-entity__text {
   right: 23%;
   max-height: var(--icon-size);
 }
+.p-result__spellcard .p-filter__mod-icon {
+  opacity: 1;
+}
 .p-result__type {
   left: var(--left);
   top: 15%;

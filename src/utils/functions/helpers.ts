@@ -188,6 +188,10 @@ function getEntityNs(o: TObjAny): [string, boolean] {
   return [_ns, isMod];
 }
 
+function getSpellcardType(spellcard: string) {
+  return spellcard.slice(-1);
+}
+
 export {
   checkForce,
   validateRunData,
@@ -216,5 +220,6 @@ export {
   getConfigsKey,
   checkIsMod,
   getNs,
-  getEntityNs
+  getEntityNs,
+  getSpellcardType
 };

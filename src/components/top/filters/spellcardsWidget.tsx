@@ -42,7 +42,7 @@ function SpellcardsWidget({ onChange, characters }: { onChange: ChangeEventHandl
 
           return (
             <label className={`p-filter__toggle ${toggleIsChecked(isSpellcardChecked)} u-button`} key={spellcard}>
-              <ModOption><>Mod<br />{type}</></ModOption>
+              <ModSpellcardWidget type={type} />
               <input className="p-filter__checkbox" type="checkbox" onChange={onChange} name="sc" value={spellcard} checked={isSpellcardChecked} />
             </label>
           );
@@ -53,3 +53,13 @@ function SpellcardsWidget({ onChange, characters }: { onChange: ChangeEventHandl
 }
 
 export default SpellcardsWidget;
+
+function ModSpellcardWidget({ type }: { type: string }) {
+  return (
+    <ModOption><>Mod<br />{type}</></ModOption>
+  );
+}
+
+export {
+  ModSpellcardWidget
+};
