@@ -5,7 +5,7 @@ import { TCardMana } from 'utils/types/others';
 import { copyObject, getConfigsKey } from 'utils/functions/helpers';
 import { getConfigs, getConfigsUrl } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
-import { configsData, modsConfigsData } from 'configs/globals';
+import { configsData, isDev, modsConfigsData } from 'configs/globals';
 
 class Configs {
   protected key: string;
@@ -36,7 +36,7 @@ class Configs {
       return configs;
     }
     else {
-      console.info(`Id ${id} not found in ${this.key}`);
+      if (isDev) console.info(`Id ${id} not found in ${this.key}`);
     }
     return configs;
   }
@@ -106,7 +106,7 @@ class CardsConfigs extends Configs {
       }
     }
     else {
-      console.info(`Id ${id} not found in ${this.key}`);
+      if (isDev) console.info(`Id ${id} not found in ${this.key}`);
     }
 
     const cardConfigs = new CardConfigs(configs, _card);

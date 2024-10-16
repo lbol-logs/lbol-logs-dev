@@ -162,6 +162,7 @@ export {
   modsNamespaces,
   versions,
   latestVersion,
+  isDev,
   baseUrl,
   assetsDir,
   modsDirDev,
