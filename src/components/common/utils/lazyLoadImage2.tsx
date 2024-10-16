@@ -1,8 +1,9 @@
+import ModOption from 'components/top/filters/modOption';
 import { ModSpellcardWidget } from 'components/top/filters/spellcardsWidget';
 import { iconSize } from 'configs/globals';
 import { ReactNode, useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage, getSpellcardImage } from 'utils/functions/getImage';
+import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage, getSpellcardImage, getAvatarImage } from 'utils/functions/getImage';
 import { getSpellcardType } from 'utils/functions/helpers';
 import { TObj } from 'utils/types/common';
 
@@ -43,7 +44,10 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, isMod =
     setSrcs({ src, srcSet });
   }
 
-  useMemo(() => getSrcs(callback, name, isMod), [callback, name, alt, width, height, className]);
+  useMemo(() => {
+    if (override !== null) return;
+    getSrcs(callback, name, isMod)
+  }, [callback, name, alt, width, height, className, override]);
   const { src, srcSet } = srcs;
 
   if (override !== null) return <>{override}</>;
@@ -66,7 +70,11 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, isMod =
                 <ModSpellcardWidget type={type} />
               </span>
             );
-            setOverride(mod)
+            setOverride(mod);
+            break;
+          }
+          case getAvatarImage: {
+            setOverride(<ModOption>Mod</ModOption>);
             break;
           }
           default: {
