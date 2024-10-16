@@ -1,7 +1,7 @@
 import { iconSize } from 'configs/globals';
-import { useMemo, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage } from 'utils/functions/getImage';
+import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage, getSpellcardImage } from 'utils/functions/getImage';
 import { TObj } from 'utils/types/common';
 
 type TLazyLoadImageArgs = {
@@ -21,6 +21,7 @@ export type {
 
 function LazyLoadImage2({ callback, name, alt, width, height, className, isMod = false, is2x = false }: TLazyLoadImageArgs) {
   const [srcs, setSrcs] = useState({} as { src: string, srcSet: string | undefined });
+  const [override, setOverride] = useState(null as ReactNode);
 
   const props = {
     width: width || iconSize,
@@ -43,15 +44,31 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, isMod =
   useMemo(() => getSrcs(callback, name, isMod), [callback, name, alt, width, height, className]);
   const { src, srcSet } = srcs;
 
+  if (override !== null) return <>{override}</>;
+
   return (
     <LazyLoadImage
       src={src}
       srcSet={srcSet}
       alt={alt}
       onError={(e) => {
-        if (callback === getResultImage) (e.target as HTMLImageElement).outerHTML = '';
-        const fakeIcon = getFakeIcon(callback);
-        if (fakeIcon) getSrcs(getCommonImage, fakeIcon);
+        switch (callback) {
+          case getResultImage: {
+            const img = e.target as HTMLImageElement;
+            const { alt } = img;
+            setOverride(<span className="p-result__result-text">{alt}</span>);
+            break;
+          }
+          case getSpellcardImage: {
+
+            break;
+          }
+          default: {
+            const fakeIcon = getFakeIcon(callback);
+            if (fakeIcon) getSrcs(getCommonImage, fakeIcon);
+            break;
+          }
+        }
       }}
       {...props}
     />
