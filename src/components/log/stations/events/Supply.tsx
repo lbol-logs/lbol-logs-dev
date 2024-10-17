@@ -5,6 +5,7 @@ import { getEntityNs, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
+import { TChoice } from 'utils/types/others';
 
 function Supply({ station }: { station: TStation }) {
   const { dialoguesConfigs } = configsData;
@@ -22,7 +23,8 @@ function Supply({ station }: { station: TStation }) {
   if (!Both) delete options[2];
 
   const [next] = getNext(options);
-  const chosen = Choices[0];
+  const choices = Object.keys(options).map(option => Number(option));
+  const chosen = choices.indexOf(Choices[0]) as TChoice;
 
   const props: Array<TObjAny> = [];
   const exhibits: Array<TExhibits> = [];
