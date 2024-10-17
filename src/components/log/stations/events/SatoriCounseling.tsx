@@ -60,7 +60,7 @@ function SatoriCounseling({ station }: { station: TStation }) {
 
         const props: Array<TObjAny> = [];
 
-        const components = { Player: <CharacterShortName /> };
+        const components = { PlayerName: <CharacterShortName /> };
         props[0] = { components };
 
         const dialogueConfigs: TDialogueConfigs = {
