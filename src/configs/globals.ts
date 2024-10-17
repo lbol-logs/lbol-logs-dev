@@ -47,8 +47,7 @@ const modsNamespaces: Array<string> = [
   'cards',
   'exhibits',
   'units',
-  'statusEffects',
-  'keywords'
+  'statusEffects'
 ];
 
 const versions: Array<string> = [
