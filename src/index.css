@@ -458,7 +458,7 @@ input {
   height: 100%;
   background: var(--overlay);
   color: var(--white);
-  z-index: var(--z-4);
+  z-index: var(--z-3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -669,11 +669,9 @@ input {
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: var(--z-1);
 }
 .c-map-icon__img {
   position: absolute;
-  z-index: var(--z-1);
 }
 .c-map-icon__bg {
   position: absolute;
@@ -903,7 +901,7 @@ input {
   background: var(--light-gray);
   height: var(--control-height);
   width: 100%;
-  z-index: var(--z-5);
+  z-index: var(--z-4);
 }
 .p-control__inner {
   display: flex;
@@ -1177,7 +1175,7 @@ html:lang(en) .c-entity__text {
   --dot-color: var(--orange);
   display: flex;
   column-gap: var(--dot-size);
-  z-index: var(--z-4);
+  z-index: var(--z-3);
   position: relative;
 }
 .c-request {
@@ -1221,7 +1219,7 @@ html:lang(en) .c-entity__text {
   bottom: 100%;
   left: 50%;
   transform: translate(-50%);
-  z-index: var(--z-6);
+  z-index: var(--z-5);
 }
 .c-request__dot:hover:after {
   content: attr(data-name);
@@ -1236,7 +1234,7 @@ html:lang(en) .c-entity__text {
   justify-content: center;
   align-items: center;
   pointer-events: none;
-  z-index: var(--z-6);
+  z-index: var(--z-5);
 }
 .c-request:first-child .c-request__dot:hover:after {
   left: calc(0% - 0.3em);
@@ -1826,7 +1824,7 @@ html:lang(en) .p-result__type {
   width: 100%;
   height: 100%;
   background: var(--overlay);
-  z-index: var(--z-6);
+  z-index: var(--z-5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2116,7 +2114,6 @@ html:lang(en) .p-result__type {
   --z-3: 3;
   --z-4: 4;
   --z-5: 5;
-  --z-6: 6;
 
   --white: light-dark(#fff, #121212);
   --black: light-dark(#000, #fff);

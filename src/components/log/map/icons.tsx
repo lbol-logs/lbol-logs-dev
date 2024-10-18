@@ -68,9 +68,9 @@ function Icons({ ActObj }: { ActObj: TActObj }) {
 
     return (
       <div className={`c-map-icon ${isBoss ? 'c-map-icon--boss' : ''}`} key={`Act${Act}_x${X}y${Y}`} style={{ left, top }}>
-        {visited}
-        <LazyLoadImage2 className="c-map-icon__img" callback={callback} name={type} width={_size} height={_size} alt={t(`stations.${Type}`, { ns: 'log' })} />
         <LazyLoadImage2 className={`c-map-icon__bg ${isActive ? 'c-map-icon__bg--active' : ''}`} callback={getMapImage} name="bg" width={_size} height={_size} alt="" />
+        <LazyLoadImage2 className="c-map-icon__img" callback={callback} name={type} width={_size} height={_size} alt={t(`stations.${Type}`, { ns: 'log' })} />
+        {visited}
       </div>
     );
   });
