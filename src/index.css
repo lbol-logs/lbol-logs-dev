@@ -1742,8 +1742,15 @@ html:lang(en) .p-result__type {
   color: var(--f-ui-green);
 }
 
+.c-entity--with-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .c-price {
-  align-self: center;
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
 }
 
 .c-character-short-name--Reimu {
