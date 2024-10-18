@@ -21,9 +21,9 @@ function RemiliaMeet({ station }: { station: TStation }) {
   const { current, next: options } = configs;
   const { cards: _cards, misfortune, exhibit } = eventsConfigs.get(id);
 
-  const choices = [0, HasExhibit ? '1_invalid' : 1, 2];
+  const choices = [0, HasExhibit ? 1 : '1_invalid', 2];
 
-  const [next] = getNext(options, choices);
+  const [next, invalids] = getNext(options, choices);
   const chosen = Choices[0];
 
   const props: Array<TObjAny> = [];
@@ -47,6 +47,7 @@ function RemiliaMeet({ station }: { station: TStation }) {
     next,
     chosen,
     props,
+    invalids,
     cards,
     exhibits
   };
