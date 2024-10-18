@@ -10,7 +10,7 @@ function ExhibitCards({ exhibits, added, prices }: { exhibits: TExhibits | TExhi
         const isNotAdded = Boolean(added && !added.includes(i));
         if (prices === undefined) {
           return (
-            <ExhibitCard exhibit={exhibit} isNotAdded={isNotAdded} />
+            <ExhibitCard exhibit={exhibit} isNotAdded={isNotAdded} key={i} />
           );
         }
         else {
