@@ -33,7 +33,7 @@ function RunListItems({ ids }: { ids: TObjNumber }) {
     const resultData = { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests };
 
     const item = (
-      <Link className="p-run-list__item u-button" key={id} to={getLogLink(version, id)}>
+      <Link className="p-run-list__item u-button" key={id} to={getLogLink(version, id)} state={{ isFromList: true }}>
         <div className="p-run-list__cell p-run-list__cell--id">{ids[id]}</div>
         <div className="p-run-list__cell p-run-list__cell--result-requests">
           <div className=" p-run-list__cell--result">

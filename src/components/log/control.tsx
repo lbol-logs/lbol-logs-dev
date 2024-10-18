@@ -1,6 +1,6 @@
 import { LogContext } from 'contexts/logContext';
 import { useContext } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Loading from 'components/common/layouts/loading';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getCommonImage, getControlImage } from 'utils/functions/getImage';
@@ -15,8 +15,9 @@ function Control() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { state } = useLocation();
 
-  const o = useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams, asideHoldings, setAsideHoldings });
+  const o = useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams, asideHoldings, setAsideHoldings, state });
 
   if (!o) return <Loading />;
 
