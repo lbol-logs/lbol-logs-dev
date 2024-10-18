@@ -1509,7 +1509,7 @@ html:lang(en) .p-result__type {
 }
 .p-shop-card-service {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 .p-shop-card-service__inner {
   align-items: center;
