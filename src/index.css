@@ -661,7 +661,7 @@ input {
   height: var(--icon-size);
 }
 
-.c-map-icon--boss {
+.c-map-icon--boss, .c-map-icon__boss-text {
   width: calc(var(--icon-size) * 2);
   height: calc(var(--icon-size) * 2);
 }
@@ -671,8 +671,18 @@ input {
   bottom: 0;
   right: 0;
 }
-.c-map-icon__img {
+.c-map-icon__img, .c-map-icon__boss-text {
   position: absolute;
+}
+.c-map-icon__boss-text {
+  overflow-wrap: anywhere;
+  color: var(--f-white);
+  line-height: 1em;
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 .c-map-icon__bg {
   position: absolute;

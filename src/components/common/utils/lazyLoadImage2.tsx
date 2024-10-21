@@ -3,7 +3,7 @@ import { ModSpellcardWidget } from 'components/top/filters/spellcardsWidget';
 import { iconSize } from 'configs/globals';
 import { ReactNode, useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage, getSpellcardImage, getAvatarImage } from 'utils/functions/getImage';
+import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage, getSpellcardImage, getAvatarImage, getBossImage } from 'utils/functions/getImage';
 import { getSpellcardType } from 'utils/functions/helpers';
 import { TObj } from 'utils/types/common';
 
@@ -61,6 +61,15 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, isMod =
         switch (callback) {
           case getResultImage: {
             setOverride(<span className="p-result__result-text">{alt}</span>);
+            break;
+          }
+          case getBossImage: {
+            const mod = (
+              <span className="c-map-icon__img c-map-icon__boss-text u-text-shadow">
+                <span>{alt}</span>
+              </span>
+            );
+            setOverride(mod);
             break;
           }
           case getSpellcardImage: {
