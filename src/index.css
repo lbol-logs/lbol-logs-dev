@@ -1778,6 +1778,9 @@ html:lang(en) .p-result__type {
   color: var(--f-koishi);
 }
 
+.c-character-short-name--Sanae_Kochiya {
+  color: var(--f-sanae);
+}
 .c-character-short-name--Utsuho {
   color: var(--f-utsuho);
 }
@@ -2150,6 +2153,7 @@ html:lang(en) .p-result__type {
   --f-cirno: #0f94f2;
   --f-koishi: #23ec4d;
 
+  --f-sanae: #28e25a;
   --f-utsuho: #e58c27;
   --f-youmu: #00b789;
 

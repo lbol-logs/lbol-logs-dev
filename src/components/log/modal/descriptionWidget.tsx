@@ -30,7 +30,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
   const c = new Components(components);
 
   for (const color in highlightColors) components[`h${color}`] = <Highlight color={color}>{}</Highlight>;
-  for (const mana of '1WUBRGCP') c.insertManaObj({ [mana]: mana }, 'Mana');
+  for (const mana of '01WUBRGCP') c.insertManaObj({ [mana]: mana }, 'Mana');
   for (const mana of ['WW']) c.insertManaObj({ [mana]: mana }, 'Mana');
 
   const values = {};
@@ -74,6 +74,13 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       c.insertManaObj({ StartMana });
       c.insertManaObj({ ActiveMana });
       c.insertManaObj({ TotalMana });
+
+      // Sanae
+      {
+        const { Value3 } = cardConfigs;
+        const modsArgs = { Value3 };
+        c.appendDescs(modsArgs);
+      }
 
       // Utsuho
       {
@@ -127,13 +134,11 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
 
       const isPlayer = [undefined, 'Player'].includes(owner);
 
-      {
-        const OwnerName = isPlayer ? <CharacterShortName /> : <>{t(owner as string, { ns: 'units' })}</>;
-        c.insertObj({ OwnerName });
-        const args = { Level, Duration, Count, Limit: Limit || 0 };
-        c.appendDescs(args);
-        if (isEn) Object.assign(values, args);
-      }
+      const OwnerName = isPlayer ? <CharacterShortName /> : <>{t(owner as string, { ns: 'units' })}</>;
+      c.insertObj({ OwnerName });
+      const args = { Level, Duration, Count, Limit: Limit || 0 };
+      c.appendDescs(args);
+      if (isEn) Object.assign(values, args);
 
       const { Value, Mana, DamageRate, TriggerLevel, BaseDamage, StackMultiply, SourceCardName, Block } = config;
 
@@ -177,11 +182,19 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         c.insert('Mana', <CardManasWidget cardMana={CMana.get(mana)} />);
       }
 
-      const { manatype, HeatDamageRatio } = config;
-      c.insertMana('manatype', manatype);
-      if (HeatDamageRatio !== undefined) {
-        const HeatDamage = Math.floor(Level as number * HeatDamageRatio);
-        c.appendDescs({ HeatDamage });
+      // Sanae
+      {
+        if (!isEn) Object.assign(values, args);
+      }
+
+      // Utsuho
+      {
+        const { manatype, HeatDamageRatio } = config;
+        c.insertMana('manatype', manatype);
+        if (HeatDamageRatio !== undefined) {
+          const HeatDamage = Math.floor(Level as number * HeatDamageRatio);
+          c.appendDescs({ HeatDamage });
+        }
       }
 
       break;
