@@ -9,7 +9,7 @@ import { CommonContext } from 'contexts/commonContext';
 import { RunListContext } from 'contexts/runListContext';
 import Pager from 'utils/classes/Pager';
 
-function RunListItems({ ids }: { ids: TObjNumber }) {
+function RunListItems({ ids, onClick }: { ids: TObjNumber, onClick: (event: React.MouseEvent<HTMLElement>) => void }) {
   const { version } = useContext(CommonContext);
   const { filteredList } = useContext(RunListContext);
   const [searchParams] = useSearchParams();
@@ -33,7 +33,7 @@ function RunListItems({ ids }: { ids: TObjNumber }) {
     const resultData = { Character, PlayerType, Type, Timestamp, Difficulty, exhibit, Requests };
 
     const item = (
-      <Link className="p-run-list__item u-button" key={id} to={getLogLink(version, id)} state={{ isFromList: true }}>
+      <Link className="p-run-list__item u-button" key={id} to={getLogLink(version, id)} state={{ isFromList: true }} onClick={onClick}>
         <div className="p-run-list__cell p-run-list__cell--id">{ids[id]}</div>
         <div className="p-run-list__cell p-run-list__cell--result-requests">
           <div className=" p-run-list__cell--result">

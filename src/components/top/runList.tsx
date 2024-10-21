@@ -1,5 +1,5 @@
 import { CommonContext } from 'contexts/commonContext';
-import { useContext, useEffect, useMemo } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useRef } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import useRunList from 'hooks/useRunList';
@@ -57,13 +57,8 @@ function RunList() {
 
   useEffect(() => {
     const height = topScrollHeights[version];
-    if (height !== undefined) window.scrollTo(0, height);
-
-    const anchors = Array.from(document.querySelectorAll('a'));
-    anchors.forEach(a => a.addEventListener('click', onClick));
+    if (height !== undefined) setTimeout(() => window.scrollTo(0, height), 100);
   }, []);
-
-  // TODO: pagination
 
   return (
     <section className="p-run-list">
@@ -100,7 +95,7 @@ function RunList() {
             })}
           </div>
           <div className="p-run-list__body">
-            <RunListItems ids={ids} />
+            <RunListItems ids={ids} onClick={onClick} />
           </div>
         </div>
       </div>
