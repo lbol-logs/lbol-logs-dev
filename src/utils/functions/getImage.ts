@@ -29,8 +29,8 @@ function getCardManaImage(name: string) {
   return _getImage('mana/cardMana', name);
 }
 
-function getBossImage(name: string) {
-  return _getImage('boss', name);
+function getBossImage(name: string, isMod: boolean = false) {
+  return _getImage('boss', name, isMod);
 }
 
 function getExhibitImage(name: string, isMod: boolean = false) {
@@ -61,8 +61,8 @@ function getEventImage(name: string) {
   return _getImage('events', name);
 }
 
-function getUnitImage(name: string) {
-  return _getImage('units', name);
+function getUnitImage(name: string, isMod: boolean = false) {
+  return _getImage('units', name, isMod);
 }
 
 function getStationImage(name: string) {

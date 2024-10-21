@@ -183,6 +183,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       }
 
       // Sanae
+      // eslint-disable-next-line no-lone-blocks
       {
         if (!isEn) Object.assign(values, args);
       }

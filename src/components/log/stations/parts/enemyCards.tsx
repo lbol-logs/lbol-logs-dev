@@ -23,14 +23,16 @@ function EnemyCards({ id }: { id: string }) {
     inner = enemies.map((enemy, i) => {
       const name = models[enemy] || enemy;
       let ns = 'units';
+      let isMod = false;
       if (!i18n.exists(name, { ns })) {
-        [ns] = getNs({ ns, isMod: true });
+        isMod = true;
+        [ns] = getNs({ ns, isMod });
       }
       const text = t(name, { ns });
 
       return (
         <div className="p-enemy" key={i}>
-          <LazyLoadImage2 className="p-enemy__img" callback={getUnitImage} name={name} width={size} height={size} alt="" />
+          <LazyLoadImage2 className="p-enemy__img" callback={getUnitImage} name={name} width={size} height={size} alt="" isMod={isMod} />
           <span className="p-enemy__text">{text}</span>
         </div>
       );

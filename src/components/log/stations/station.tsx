@@ -6,6 +6,7 @@ import { LogContext } from 'contexts/logContext';
 import StationType from './stationTypes/stationType';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { getBossImage, getMapImage } from 'utils/functions/getImage';
+import { getEntityNs } from 'utils/functions/helpers';
 
 function Station({ station, innerRef }: { station: TStation, innerRef?: RefObject<HTMLDivElement> }) {
   const { t } = useTranslation();
@@ -21,10 +22,13 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
   let type: string = Type;
   const isBoss = type === 'Boss';
 
+  let isMod = false;
+
   if (isBoss) {
     const { Boss } = Acts.find(({ Act: _act }) => _act === Act) as TActObj;
     type = Boss as string;
     callback = getBossImage;
+    [, isMod] = getEntityNs({ enemyGroup: { Id: Boss } });
   }
   else {
     if (type === 'Enemy') {
@@ -53,7 +57,7 @@ function Station({ station, innerRef }: { station: TStation, innerRef?: RefObjec
             }}
           />
         </h3>
-        <LazyLoadImage2 className="p-station__icon" callback={callback} name={type} alt={t(`stations.${Type}`, { ns: 'log' })} />
+        <LazyLoadImage2 className="p-station__icon" callback={callback} name={type} alt={t(`stations.${Type}`, { ns: 'log' })} isMod={isMod} />
         <StatusWidget status={Status} lastStatus={lastStatus as TStatus} />
       </div>
 

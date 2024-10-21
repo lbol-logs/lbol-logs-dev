@@ -65,7 +65,7 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, isMod =
           }
           case getBossImage: {
             const mod = (
-              <span className="c-map-icon__img c-map-icon__boss-text u-text-shadow">
+              <span className="c-map-icon__boss-text u-text-shadow">
                 <span>{alt}</span>
               </span>
             );
