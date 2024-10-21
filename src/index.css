@@ -16,6 +16,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  overflow: hidden;
 }
 input {
   font-size: 16px;

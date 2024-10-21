@@ -9,7 +9,7 @@ import RoundsWidget from '../parts/roundsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
 
 function YachieOppression({ station }: { station: TStation }) {
-  const { eventsConfigs, dialoguesConfigs, enemyGroupsConfigs } = configsData;
+  const { eventsConfigs, dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
@@ -64,7 +64,6 @@ function YachieOppression({ station }: { station: TStation }) {
         exhibits
       };
 
-      const enemies = enemyGroupsConfigs.get(enemyGroupId);
       const money = (
         <span className="c-station__money">
           <MoneyImage />
@@ -74,7 +73,7 @@ function YachieOppression({ station }: { station: TStation }) {
 
       second = (
         <>
-          <EnemyCards enemies={enemies} />
+          <EnemyCards id={enemyGroupId} />
           <div className="c-station__stats">
             <RoundsWidget rounds={Rounds} />
             {money}

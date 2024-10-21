@@ -9,7 +9,7 @@ import EnemyCards from '../parts/enemyCards';
 import RoundsWidget from '../parts/roundsWidget';
 
 function MiyoiBartender({ station }: { station: TStation }) {
-  const { eventsConfigs, dialoguesConfigs, enemyGroupsConfigs } = configsData;
+  const { eventsConfigs, dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
@@ -43,10 +43,8 @@ function MiyoiBartender({ station }: { station: TStation }) {
     afters[2] = (
       <div className="p-enemies-container">
         {Ids.map((id: string, i: number) => {
-          const enemies = enemyGroupsConfigs.get(id);
-
           return (
-            <EnemyCards enemies={enemies} key={i} />
+            <EnemyCards id={id} key={i} />
           );
         })}
       </div>
@@ -83,11 +81,9 @@ function MiyoiBartender({ station }: { station: TStation }) {
         exhibits
       };
 
-      const enemies = enemyGroupsConfigs.get(enemyGroupId);
-
       second = (
         <>
-          <EnemyCards enemies={enemies} />
+          <EnemyCards id={enemyGroupId} />
           <div className="c-station__stats">
             <RoundsWidget rounds={Rounds} />
           </div>
