@@ -4,11 +4,11 @@ import ActLevel from 'utils/classes/ActLevel';
 import { copyObject, toggleAside } from 'utils/functions/helpers';
 import scrollToLevel from 'utils/functions/scrollToLevel';
 import updateQs from 'utils/functions/updateQs';
-import { AsideType, TDispatch, TObjAny } from 'utils/types/common';
+import { AsideType, TDispatch } from 'utils/types/common';
 import { TRounds } from 'utils/types/others';
 import { TAct, TLevel, TRunData } from 'utils/types/runData';
 
-function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams, asideHoldings, setAsideHoldings, state }: { isRunDataLoaded: boolean, runData: TRunData, act: TAct, setAct: TDispatch<TAct>, setLevel: TDispatch<TLevel>, rounds: TRounds, setRounds: TDispatch<TRounds>, showMap: boolean, setShowMap: TDispatch<boolean>, navigate: NavigateFunction, searchParams: URLSearchParams, setSearchParams: SetURLSearchParams, asideHoldings: AsideType, setAsideHoldings: TDispatch<AsideType>, state: TObjAny }) {
+function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams, asideHoldings, setAsideHoldings, isFromList }: { isRunDataLoaded: boolean, runData: TRunData, act: TAct, setAct: TDispatch<TAct>, setLevel: TDispatch<TLevel>, rounds: TRounds, setRounds: TDispatch<TRounds>, showMap: boolean, setShowMap: TDispatch<boolean>, navigate: NavigateFunction, searchParams: URLSearchParams, setSearchParams: SetURLSearchParams, asideHoldings: AsideType, setAsideHoldings: TDispatch<AsideType>, isFromList: boolean }) {
   if (!isRunDataLoaded) return;
 
   const al = new ActLevel(runData, act);
@@ -17,7 +17,6 @@ function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, s
   const maxLevel: TLevel = al.maxLevel();
 
   function backToTop() {
-    const { isFromList } = state || {};
     if (isFromList) navigate(-1);
     else navigate('../');
   }
