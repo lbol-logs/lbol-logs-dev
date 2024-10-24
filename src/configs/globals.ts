@@ -72,7 +72,8 @@ const configsUrl: string = `${assetsUrl}/configs`;
 const modsImagesUrl: string = `${modsUrl}/images`;
 const modsConfigsUrl: string = `${modsUrl}/configs`;
 
-const logsUrl: string = `${baseUrl}/logs`;
+const logsDir: string = 'logs' + (isDev ? '/docs' : '');
+const logsUrl: string = `${baseUrl}/${logsDir}`;
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
 const modUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p/ed_ev/LBoL_Run_Logger/';
