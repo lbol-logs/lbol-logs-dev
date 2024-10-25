@@ -1,7 +1,7 @@
 import { defaultHoldingsHeight, defaultHoldingsWidth } from 'configs/globals';
 import { createContext, ReactNode, useState } from 'react';
 import { AsideType, TAsideHoldings, TDispatch, TObjNumber } from 'utils/types/common';
-import { TEntityModel } from 'utils/types/others';
+import { TEntityModal } from 'utils/types/others';
 
 const defaultVersion = '';
 const defaultAsideHoldings = AsideType.none;
@@ -19,8 +19,8 @@ type TCommonContext = {
   setAsideHoldings: TDispatch<TAsideHoldings>,
   topScrollHeights: TObjNumber,
   setTopScrollHeights: TDispatch<TObjNumber>,
-  entityModal: TEntityModel,
-  setEntityModal: TDispatch<TEntityModel>
+  entityModal: TEntityModal,
+  setEntityModal: TDispatch<TEntityModal>
 };
 
 export const CommonContext = createContext<TCommonContext>({

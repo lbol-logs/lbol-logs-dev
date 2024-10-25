@@ -56,7 +56,7 @@ type TRequestObj = {
 type TJadeBoxObj = {
   Id: TJadeBox
 };
-type TEntityModel = {
+type TEntityModal = {
   card?: TCard,
   exhibit?: TExhibitObj,
   statusEffect?: TStatusEffect,
@@ -92,7 +92,7 @@ export type {
   TRounds,
   TRequestObj,
   TJadeBoxObj,
-  TEntityModel,
+  TEntityModal,
   TCardMana,
   TModConfigs
 };
