@@ -5,10 +5,11 @@ import StatusEffectModal from './statusEffectModal';
 import JadeBoxModal from './jadeBoxModal';
 import { CommonContext } from 'contexts/commonContext';
 import RequestModal from './requestModal';
+import ShareModal from './shareModal';
 
 function Modal() {
   const { entityModal, setEntityModal } = useContext(CommonContext);
-  const { card, exhibit, statusEffect, request, jadeBox } = entityModal;
+  const { card, exhibit, statusEffect, request, jadeBox, share } = entityModal;
 
   let type;
   let entity;
@@ -32,6 +33,10 @@ function Modal() {
   else if (jadeBox) {
     type = 'jade-box';
     entity = <JadeBoxModal jadeBox={jadeBox} />;
+  }
+  else if (share) {
+    type = 'share';
+    entity = <ShareModal share={share} />;
   }
 
   const innerRef = useRef<HTMLDivElement>(null);

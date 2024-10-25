@@ -910,6 +910,24 @@ input {
   color: var(--red);
 }
 
+.p-share {
+  --padding: calc(var(--icon-size) * 2);
+  position: fixed;
+  bottom: calc(var(--control-height) + var(--padding));
+  right: var(--padding);
+  z-index: var(--z-4);
+}
+.c-share__url {
+  width: 100%;
+  direction: rtl;
+}
+.c-share__buttons {
+  display: flex;
+  justify-self: center;
+  column-gap: 1em;
+  margin: 1em 0;
+}
+
 .p-control {
   position: fixed;
   bottom: 0;
@@ -1862,7 +1880,8 @@ html:lang(en) .p-result__type {
 .p-modal__inner--exhibit,
 .p-modal__inner--status-effect,
 .p-modal__inner--request,
-.p-modal__inner--jade-box {
+.p-modal__inner--jade-box,
+.p-modal__inner--share {
   width: 100%;
   overflow-y: auto;
   scrollbar-width: none;
@@ -1870,6 +1889,9 @@ html:lang(en) .p-result__type {
   color: var(--black);
   color-scheme: dark;
   max-height: 70vh;
+}
+.p-modal__inner--share {
+  color-scheme: initial;
 }
 .p-modal__exhibit .c-exhibit--with-counter,
 .p-modal__status-effect .c-status-effect {

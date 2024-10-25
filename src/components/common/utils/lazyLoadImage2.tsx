@@ -15,14 +15,15 @@ type TLazyLoadImageArgs = {
   height?: string | number,
   className?: string,
   isMod?: boolean,
-  is2x?:  boolean
+  is2x?:  boolean,
+  is1x?: boolean
 };
 
 export type {
   TLazyLoadImageArgs
 };
 
-function LazyLoadImage2({ callback, name, alt, width, height, className, isMod = false, is2x = false }: TLazyLoadImageArgs) {
+function LazyLoadImage2({ callback, name, alt, width, height, className, isMod = false, is2x = false, is1x = false }: TLazyLoadImageArgs) {
   const [srcs, setSrcs] = useState({} as { src: string, srcSet: string | undefined });
   const [override, setOverride] = useState(null as ReactNode);
 
@@ -37,7 +38,7 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, isMod =
     const _name = is2x ? `${name}@2x` : name;
     const src = callback(_name, isMod);
     let srcSet;
-    if (!is2x) {
+    if (!is2x && !is1x) {
       const src2x = callback(name + '@2x', isMod);
       srcSet = `${src} 1x, ${src2x} 2x`;
     }

@@ -1,4 +1,4 @@
-import { imagesUrl, modsImagesUrl } from 'configs/globals';
+import { imagesUrl, modsImagesUrl, ogpBaseUrl } from 'configs/globals';
 
 function getImage(name: string, isMod: boolean = false) {
   const baseUrl = isMod ? modsImagesUrl : imagesUrl;
@@ -101,6 +101,15 @@ function getUnityImage(name: string) {
   return _getImage('cards/unities', name);
 }
 
+function getOgpImage(pathname: string) {
+  return [
+    ogpBaseUrl,
+    '/ogp',
+    pathname.slice(0, -1),
+    '.png'
+  ].join('');
+}
+
 export {
   getImage,
   getCommonImage,
@@ -125,5 +134,6 @@ export {
   getCardFrameImage,
   getCardWatermarkImage,
   getCardTypeImage,
-  getUnityImage
+  getUnityImage,
+  getOgpImage
 };
