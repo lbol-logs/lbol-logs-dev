@@ -110,10 +110,6 @@ function getOgpImage(pathname: string) {
   ].join('');
 }
 
-function getSvg(name: string) {
-  return `${imagesUrl}/common/${name}.svg`;
-}
-
 export {
   getImage,
   getCommonImage,
@@ -139,6 +135,5 @@ export {
   getCardWatermarkImage,
   getCardTypeImage,
   getUnityImage,
-  getOgpImage,
-  getSvg
+  getOgpImage
 };

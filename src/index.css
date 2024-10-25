@@ -931,21 +931,23 @@ input {
 }
 .c-share__buttons {
   display: flex;
-  justify-self: center;
+  justify-content: center;
   align-items: center;
   column-gap: 1em;
   margin: 1em 0;
 }
 .c-share__button {
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .c-share__svg {
   height: 24px;
+  width: auto;
 }
-@media (prefers-color-scheme: light) {
-  .c-share__svg {
-    filter: invert(1);
-  }
+.c-share__svg path {
+  fill: var(--black);
 }
 
 .p-control {
