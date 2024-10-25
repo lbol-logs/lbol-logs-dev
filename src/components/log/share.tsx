@@ -14,6 +14,7 @@ function Share() {
     setEntityModal({ share });
   }
 
+  // TODO: icon
   return (
     <div className="p-share" onClick={onClick}>
       share

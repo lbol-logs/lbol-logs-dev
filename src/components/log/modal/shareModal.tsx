@@ -12,13 +12,11 @@ function ShareModal({ share }: { share: TShareObj }) {
 
   return (
     <div className="p-modal__share">
-      <div className="p-modal__line">
-        {/* <span className="p-modal__name">{t(`${Id}.Name`, { ns })}</span> */}
-      </div>
       <div className="p-modal__body">
         <LazyLoadImage2 className="c-share_ogp" callback={getOgpImage} name={pathname} width={width} height={height} alt="" is1x={true} />
         <input className="c-share__url" value={url} readOnly />
         <div className="c-share__buttons">
+          {/* TODO: buttons */}
           <span>copy</span>
           <span>Discord</span>
           <span>X</span>
