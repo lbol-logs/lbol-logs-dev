@@ -80,6 +80,8 @@ const modUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p
 const gasUrl: string = 'https://script.google.com/macros/s/AKfycbxQZf9xkxJX-YNYxXAjssmqT2-HFmH1EPZ6bjbcoz1RxvfWdHoP1eWC8D4XiQkIpmLvbw/exec';
 const ogpBaseUrl: string = 'https://lbol-logs.netlify.app';
 
+const logUpdate = 10;
+
 const GA4_MEASUREMENT_ID = 'G-8Q07V7QP73';
 
 const iconSize = 36;
@@ -176,6 +178,7 @@ export {
   modUrl,
   gasUrl,
   ogpBaseUrl,
+  logUpdate,
   GA4_MEASUREMENT_ID,
   iconSize,
   cardSize,

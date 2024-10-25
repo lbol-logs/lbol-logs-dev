@@ -56,17 +56,13 @@ type TRequestObj = {
 type TJadeBoxObj = {
   Id: TJadeBox
 };
-type TShareObj = {
-  pathname: string,
-  url: string
-}
 type TEntityModal = {
   card?: TCard,
   exhibit?: TExhibitObj,
   statusEffect?: TStatusEffect,
   request?: TRequestObj,
   jadeBox?: TJadeBoxObj,
-  share?: TShareObj
+  share?: boolean
 };
 
 type TCardMana = Array<string>;
@@ -97,7 +93,6 @@ export type {
   TRounds,
   TRequestObj,
   TJadeBoxObj,
-  TShareObj,
   TEntityModal,
   TCardMana,
   TModConfigs

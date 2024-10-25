@@ -1,23 +1,18 @@
-import { ogpBaseUrl } from 'configs/globals';
+import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { getCardTypeImage } from 'utils/functions/getImage';
 
 function Share() {
   const { setEntityModal } = useContext(CommonContext);
-  const { pathname, search } = useLocation();
 
   function onClick() {
-    const url = ogpBaseUrl + pathname + search;
-    const share = { pathname, url };
-    console.log(share);
-    setEntityModal({ share });
+    setEntityModal({ share: true });
   }
 
-  // TODO: icon
   return (
     <div className="p-share" onClick={onClick}>
-      share
+      <LazyLoadImage2 callback={getCardTypeImage} name="Friend" alt="Share" is2x={true} />
     </div>
   );
 }

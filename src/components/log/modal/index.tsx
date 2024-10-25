@@ -36,7 +36,7 @@ function Modal() {
   }
   else if (share) {
     type = 'share';
-    entity = <ShareModal share={share} />;
+    entity = <ShareModal />;
   }
 
   const innerRef = useRef<HTMLDivElement>(null);

@@ -12,6 +12,7 @@ import RunListItems from './runListItems';
 import RunListResults from './runListResults';
 import { RunListContext } from 'contexts/runListContext';
 import RunListPager from './runListPager';
+import { logUpdate } from 'configs/globals';
 
 function RunList() {
   const { version, topScrollHeights, setTopScrollHeights } = useContext(CommonContext);
@@ -71,7 +72,7 @@ function RunList() {
             <Trans
               i18nKey="remark"
               ns="runList"
-              values={{ min: 10 }}
+              values={{ min: logUpdate }}
             />
           </p>
         </div>

@@ -915,17 +915,37 @@ input {
   position: fixed;
   bottom: calc(var(--control-height) + var(--padding));
   right: var(--padding);
+  padding: 1em;
+  background: var(--light-orange);
+  border-radius: 50%;
+  cursor: pointer;
   z-index: var(--z-4);
 }
 .c-share__url {
   width: 100%;
-  direction: rtl;
+  border: 1px solid var(--black);
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
 }
 .c-share__buttons {
   display: flex;
   justify-self: center;
+  align-items: center;
   column-gap: 1em;
   margin: 1em 0;
+}
+.c-share__button {
+  cursor: pointer;
+}
+.c-share__svg {
+  height: 24px;
+}
+@media (prefers-color-scheme: light) {
+  .c-share__svg {
+    filter: invert(1);
+  }
 }
 
 .p-control {
@@ -2316,6 +2336,10 @@ html:lang(en) .p-result__type {
 
   .p-mod {
     flex-basis: 100%;
+  }
+
+  .p-share {
+    --padding: var(--icon-size);
   }
 
   .p-summary__pivot {
