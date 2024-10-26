@@ -941,6 +941,8 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 .c-share__svg {
   height: 24px;
