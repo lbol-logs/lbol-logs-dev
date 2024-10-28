@@ -7,6 +7,7 @@ import RewardsWidget from '../parts/rewardsWidget';
 import { MoneyImage } from '../parts/stationWidgets';
 import { enemiesShowDetails } from 'configs/globals';
 import BattleDetails from '../battleDetails';
+import StatusEffectsWidgetV2 from '../battleDetails/parts/statusEffectsWidgetV2';
 
 function BattleStation({ station }: { station: TStation }) {
   const { runData: { Stations } } = useContext(LogContext);
@@ -29,6 +30,12 @@ function BattleStation({ station }: { station: TStation }) {
 
   const id = Id as string;
 
+  let teammates = null;
+  const { Teammates } = Data;
+  if (Teammates !== undefined) {
+    teammates = <StatusEffectsWidgetV2 statusEffects={Teammates} owner="Cirno" />;
+  }
+
   if (enemiesShowDetails.includes(id)) {
     const { Details } = Data;
     if (Details) {
@@ -45,6 +52,7 @@ function BattleStation({ station }: { station: TStation }) {
     <div className="p-station__body">
       <div className="p-station__main p-station__main--battle">
         <EnemyCards id={id} />
+        {teammates}
         <div className="c-station__stats">
           <RoundsWidget rounds={Rounds} />
           {money}
