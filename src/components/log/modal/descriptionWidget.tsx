@@ -75,6 +75,14 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       c.insertManaObj({ ActiveMana });
       c.insertManaObj({ TotalMana });
 
+      // Patchouli
+      {
+        const { BoostThreshold1, BoostThreshold2, BoostThreshold3, BonusMana } = cardConfigs;
+        const modsArgs = { BoostThreshold1, BoostThreshold2, BoostThreshold3 };
+        c.appendDescs(modsArgs);
+        c.insertMana('BonusMana', BonusMana);
+      }
+
       // Sanae
       {
         const { Value3 } = cardConfigs;
