@@ -9,7 +9,6 @@ import CardManasWidget from './cardManasWidget';
 import { TObjElement, TObjAny, TObj } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import { configsData } from 'configs/globals';
-import CMana from 'utils/classes/CMana';
 import i18next from 'i18next';
 import { getEntityNs } from 'utils/functions/helpers';
 import { TJadeBoxObj, TRequestObj } from 'utils/types/others';
@@ -80,7 +79,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         const { Value3, BoostThreshold1, BoostThreshold2, BoostThreshold3, BonusMana } = cardConfigs;
         const modsArgs = { Value3, BoostThreshold1, BoostThreshold2, BoostThreshold3 };
         c.appendDescs(modsArgs);
-        c.insertMana('BonusMana', BonusMana);
+        c.insertManaObj({ BonusMana });
       }
 
       // Sanae
@@ -193,8 +192,8 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         c.insert('Scry', <Desc value={Level} />);
       }
       if (Id === 'BailianBlackSe') {
-        const mana = (Limit === 1 ? 0 : 1).toString();
-        c.insert('Mana', <CardManasWidget cardMana={CMana.get(mana)} />);
+        const mana = Limit === 1 ? 0 : 1;
+        c.insertManaObj({ Mana: mana });
       }
 
       // Patchouli
