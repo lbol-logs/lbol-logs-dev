@@ -31,8 +31,10 @@ function ModsWidget({ mods, version, collapse = false }: { mods: Array<TModConfi
           <>
             <p className="p-mod__name">{Name}</p>
             <p className="p-mod__guid">{GUID}</p>
-            {logs}
-            <p className="p-mod__version">{Version}</p>
+            <div className="p-mod__right">
+              {logs}
+              <p className="p-mod__version">{Version}</p>
+            </div>
           </>
         );
 

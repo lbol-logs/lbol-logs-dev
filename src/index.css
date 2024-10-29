@@ -817,13 +817,24 @@ input {
 .p-mod__logs:hover {
   opacity: 0.8;
 }
-.p-mod__logs, .p-mod__version {
+.p-mod__right {
   grid-row: 1 / span 2;
   grid-column: 2;
   align-self: center;
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
 }
-.p-mod__logs + .p-mod__version {
-  grid-column: 3;
+.p-mod__version {
+  margin: 0;
+  line-height: 1em;
+  overflow-wrap: anywhere;
+}
+.p-about .p-mod__name {
+  font-size: 0.9em;
+}
+.p-about .p-mod__version {
+  width: 3.25em;
 }
 
 .p-stations {
