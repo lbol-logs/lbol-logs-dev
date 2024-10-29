@@ -2350,6 +2350,21 @@ html:lang(en) .p-result__type {
     --padding: var(--icon-size);
   }
 
+  .p-summary {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+  }
+  .p-summary__head {
+    display: contents;
+  }
+  .p-summary .p-mods {
+    order: 1;
+    margin-top: 2em;
+  }
+  .p-summary__description {
+    margin-top: 0.5em;
+  }
   .p-summary__pivot {
     justify-content: flex-end;
   }
