@@ -77,8 +77,8 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
 
       // Patchouli
       {
-        const { BoostThreshold1, BoostThreshold2, BoostThreshold3, BonusMana } = cardConfigs;
-        const modsArgs = { BoostThreshold1, BoostThreshold2, BoostThreshold3 };
+        const { Value3, BoostThreshold1, BoostThreshold2, BoostThreshold3, BonusMana } = cardConfigs;
+        const modsArgs = { Value3, BoostThreshold1, BoostThreshold2, BoostThreshold3 };
         c.appendDescs(modsArgs);
         c.insertMana('BonusMana', BonusMana);
       }
@@ -127,6 +127,13 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       if (isEn) Object.assign(values, args);
       c.insertManaObj({ Mana });
       if (BaseMana !== undefined) c.insert('BaseMana', <BaseManasWidget baseMana={BaseMana} />);
+
+      // Patchouli
+      {
+        const { BoostThreshold1 } = config;
+        const modsArgs = { BoostThreshold1 };
+        c.appendDescs(modsArgs);
+      }
 
       break;
     }
@@ -188,6 +195,33 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       if (Id === 'BailianBlackSe') {
         const mana = (Limit === 1 ? 0 : 1).toString();
         c.insert('Mana', <CardManasWidget cardMana={CMana.get(mana)} />);
+      }
+
+      // Patchouli
+      {
+        const { BoostThreshold1, BoostThreshold2, BoostThreshold3, BasePassive, BaseActive, Mana } = config;
+        const modsArgs = { BoostThreshold1, BoostThreshold2, BoostThreshold3 };
+        c.appendDescs(modsArgs);
+        if (BasePassive !== undefined) {
+          const PassiveAmount = BasePassive * (Level as number);
+          c.appendDescs({ PassiveAmount });
+        }
+        if (BaseActive !== undefined) {
+          const ActiveAmount = BaseActive * (Level as number);
+          c.appendDescs({ ActiveAmount });
+        }
+        if (Id === 'PatchouliOneWeekGirlSe') {
+          const NextSign = (Count as number + 1) % 7;
+          Object.assign(values, { NextSign });
+        }
+        if (Id === 'PatchouliSatelliteHimawariSe') {
+          const BonusDamage = (Level as number) * (Count as number);
+          c.appendDescs({ BonusDamage });
+        }
+        if (Id === 'PatchouliVoileSe') {
+          const mana = new Array(Level as number).fill(Mana).join('');
+          c.insertManaObj({ Mana: mana });
+        }
       }
 
       // Sanae
