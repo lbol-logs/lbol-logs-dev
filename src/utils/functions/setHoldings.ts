@@ -339,10 +339,10 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
           const exhibit: any = copyObject(Exhibit);
           const { Id, Type } = Exhibit;
           exhibit.Station = Station;
-    
+
           let { BaseMana } = exhibitsConfigs.get(Id);
           if (BaseMana === undefined) BaseMana = 'N';
-    
+
           {
             const action: THoldingAction = {
               type: 'Exhibit',
