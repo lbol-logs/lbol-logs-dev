@@ -80,7 +80,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         const { Value3, BoostThreshold1, BoostThreshold2, BoostThreshold3, BonusMana } = cardConfigs;
         const modsArgs = { Value3, BoostThreshold1, BoostThreshold2, BoostThreshold3 };
         c.appendDescs(modsArgs);
-        c.insertMana('BonusMana', BonusMana);
+        c.insertManaObj({ BonusMana });
       }
 
       // Sanae
