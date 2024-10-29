@@ -108,6 +108,8 @@ const defaultAsideHoldings = AsideType.right;
 
 const descriptionMaxLength = 300;
 
+const modsThreshold = 6;
+
 const configsData: TConfigsData = {} as TConfigsData;
 const CONFIGS_DATA: ConfigsData = new ConfigsData(configsData, false);
 
@@ -190,6 +192,7 @@ export {
   asideHoldingsthreshold,
   defaultAsideHoldings,
   descriptionMaxLength,
+  modsThreshold,
   CONFIGS_DATA,
   configsData,
   MODS_CONFIGS_DATA,

@@ -58,7 +58,7 @@ function Summary() {
           </div>
           <JadeBoxes />
         </div>
-        {Mods !== undefined && <ModsWidget mods={Mods} />}
+        {Mods !== undefined && <ModsWidget mods={Mods} collapse={true} />}
       </div>
       <LogDescription description={Description} />
       <div className="p-summary__exhibits">

@@ -1,14 +1,16 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, useState } from 'react';
 import ExternalLink from 'components/common/parts/externalLink';
 import { TModConfigs } from 'utils/types/others';
 import { useNavigate } from 'react-router-dom';
+import { modsThreshold } from 'configs/globals';
 
-function ModsWidget({ mods, version }: { mods: Array<TModConfigs>, version?: string }) {
+function ModsWidget({ mods, version, collapse = false }: { mods: Array<TModConfigs>, version?: string, collapse?: boolean }) {
   const navigate = useNavigate();
+  const [collapsed, setCollapsed] = useState(Boolean(collapse));
 
-  return (
-    <div className="p-mods">
-      {mods.map(({ GUID, Name, Version, Character, Url }) => {
+  const inner = (
+    <div className="p-mods__inner">
+      {mods.map(({ GUID, Name, Version, Character, Url }, i) => {
         let logs = null;
 
         const onClick = (e: MouseEvent<HTMLSpanElement>) => {
@@ -23,7 +25,8 @@ function ModsWidget({ mods, version }: { mods: Array<TModConfigs>, version?: str
           );
         }
 
-        const props = { className: 'p-mod' };
+        const isCollapsed = collapsed && i >= modsThreshold;
+        const props = { className: `p-mod ${isCollapsed ? 'p-mod--collapsed': ''}` };
         const inner = (
           <>
             <p className="p-mod__name">{Name}</p>
@@ -48,6 +51,24 @@ function ModsWidget({ mods, version }: { mods: Array<TModConfigs>, version?: str
           );
         }
       })}
+    </div>
+  );
+
+  let toggle = null;
+  if (collapse && mods.length > modsThreshold) {
+    const onClick = () => setCollapsed(!collapsed);
+
+    toggle = (
+      <div className={`p-mods__button ${collapsed ? 'p-mods__button--collapsed' : ''}`} onClick={onClick}>
+        {collapsed ? '▼': '▲'}
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-mods">
+      {inner}
+      {toggle}
     </div>
   );
 }
