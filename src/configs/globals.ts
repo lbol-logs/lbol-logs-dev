@@ -157,7 +157,8 @@ const defaultRunData = {} as TRunData;
 
 const whitelistDomains: Array<string> = [
   'https://www.youtube.com/',
-  'https://youtu.be/'
+  'https://youtu.be/',
+  'https://docs.google.com/'
 ];
 
 export {
