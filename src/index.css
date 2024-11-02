@@ -730,8 +730,11 @@ input {
   cursor: zoom-in;
 }
 
-.p-summary__description {
+.p-description__head {
   margin: 1.5em 0 0.5em;
+}
+.p-description__link {
+  overflow-wrap: anywhere;
 }
 .p-summary__pivot {
   display: flex;
