@@ -19,7 +19,7 @@ function LogDescription({ description }: { description: string | undefined }) {
     const inner: JSX.Element = (
       <>
         {before}
-        <ExternalLink href={url}>{url}</ExternalLink>
+        <ExternalLink className="p-description__link" href={url}>{url}</ExternalLink>
         {_after}
       </>
     );
@@ -28,7 +28,7 @@ function LogDescription({ description }: { description: string | undefined }) {
 
   return (
     <div className="p-description">
-      <h3 className="p-summary__description">{t('description', { ns: 'log' })}</h3>
+      <h3 className="p-description__head">{t('description', { ns: 'log' })}</h3>
       {description.split('\n').map((line, i) => {
         const urls = line.match(regExp);
         let inner: JSX.Element;
