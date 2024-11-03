@@ -1,10 +1,10 @@
 import ModOption from 'components/top/filters/modOption';
 import { ModSpellcardWidget } from 'components/top/filters/spellcardsWidget';
-import { iconSize, logUpdate } from 'configs/globals';
+import { iconSize } from 'configs/globals';
 import { ReactNode, useMemo, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage, getSpellcardImage, getAvatarImage, getBossImage, getOgpImage } from 'utils/functions/getImage';
+import { getCommonImage, getCardArtImage, getExhibitImage, getStatusEffectImage, getResultImage, getSpellcardImage, getAvatarImage, getBossImage } from 'utils/functions/getImage';
 import { getSpellcardType } from 'utils/functions/helpers';
 import { TObj } from 'utils/types/common';
 
@@ -87,19 +87,6 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, isMod =
           }
           case getAvatarImage: {
             setOverride(<ModOption>Mod</ModOption>);
-            break;
-          }
-          case getOgpImage: {
-            const mod = (
-              <p>
-                <Trans
-                  i18nKey="ogp"
-                  ns="site"
-                  values={{ min: logUpdate }}
-                />
-              </p>
-            );
-            setOverride(mod);
             break;
           }
           default: {

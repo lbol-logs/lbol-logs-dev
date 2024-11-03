@@ -72,13 +72,11 @@ const configsUrl: string = `${assetsUrl}/configs`;
 const modsImagesUrl: string = `${modsUrl}/images`;
 const modsConfigsUrl: string = `${modsUrl}/configs`;
 
-const logsDir: string = 'logs' + (isDev ? '/docs' : '');
-const logsUrl: string = `${baseUrl}/${logsDir}`;
+const logsUrl: string = `${baseUrl}/logs`;
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
 const modUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p/ed_ev/LBoL_Run_Logger/';
 const gasUrl: string = 'https://script.google.com/macros/s/AKfycbxQZf9xkxJX-YNYxXAjssmqT2-HFmH1EPZ6bjbcoz1RxvfWdHoP1eWC8D4XiQkIpmLvbw/exec';
-const ogpBaseUrl: string = 'https://lbol-logs.netlify.app';
 
 const logUpdate = 10;
 
@@ -180,7 +178,6 @@ export {
   gameUrl,
   modUrl,
   gasUrl,
-  ogpBaseUrl,
   logUpdate,
   GA4_MEASUREMENT_ID,
   iconSize,
