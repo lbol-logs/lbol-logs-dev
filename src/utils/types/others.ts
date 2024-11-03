@@ -61,8 +61,7 @@ type TEntityModal = {
   exhibit?: TExhibitObj,
   statusEffect?: TStatusEffect,
   request?: TRequestObj,
-  jadeBox?: TJadeBoxObj,
-  share?: boolean
+  jadeBox?: TJadeBoxObj
 };
 
 type TCardMana = Array<string>;
