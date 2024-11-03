@@ -1,6 +1,6 @@
 import { CommonContext } from 'contexts/commonContext';
 import { useContext, useEffect, useMemo } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import useRunList from 'hooks/useRunList';
 import { TFilter, TFilterRadio, TFilterText } from 'utils/types/others';
@@ -9,10 +9,8 @@ import Filter from './filters/filter';
 import useFilterOnList from 'hooks/useFilterOnList';
 import DefaultFilter from 'utils/classes/DefaultFilter';
 import RunListItems from './runListItems';
-import RunListResults from './runListResults';
 import { RunListContext } from 'contexts/runListContext';
-import RunListPager from './runListPager';
-import { logUpdate } from 'configs/globals';
+import RunListLine from './runListLine';
 
 function RunList() {
   const { version, topScrollHeights, setTopScrollHeights } = useContext(CommonContext);
@@ -65,17 +63,7 @@ function RunList() {
     <section className="p-run-list">
       <Filter />
       <div className="p-run-list__output js-runList">
-        <div className="p-run-list__line">
-          <RunListResults />
-          <RunListPager />
-          <p className="p-run-list__remark">
-            <Trans
-              i18nKey="remark"
-              ns="runList"
-              values={{ min: logUpdate }}
-            />
-          </p>
-        </div>
+        <RunListLine onlyPager={false} />
         <div className="p-run-list__table">
           <div className="p-run-list__header">
             {['', 'p-run-list__item--tb', 'p-run-list__item--pc'].map((className, i) => {
@@ -99,6 +87,7 @@ function RunList() {
             <RunListItems ids={ids} onClick={onClick} />
           </div>
         </div>
+        <RunListLine onlyPager={true} />
       </div>
     </section>
   );
