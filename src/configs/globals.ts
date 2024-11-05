@@ -97,7 +97,7 @@ const resultSizes = {
 
 const logsPerPage = 30;
 
-const scrollTolerance = 70;
+const scrollTolerance = 300;
 
 const defaultHoldingsHeight = 144;
 const defaultHoldingsWidth = 801;
