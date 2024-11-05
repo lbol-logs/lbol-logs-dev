@@ -47,11 +47,12 @@ function getCurrentLevel<T extends TCardChanges | TExhibitChanges>(changes: T, s
   }) as T;
 }
 
-function getSameCardIndex(cards: TCards, card: TCard): number {
-  return cards.findIndex(({ Id, IsUpgraded, UpgradeCounter }) =>
+function getSameCardIndex(cards: TCards, card: TCard, excludes: Array<number> = []): number {
+  return cards.findIndex(({ Id, IsUpgraded, UpgradeCounter }, i) =>
     Id === card.Id &&
     IsUpgraded === card.IsUpgraded &&
-    UpgradeCounter === card.UpgradeCounter
+    UpgradeCounter === card.UpgradeCounter &&
+    !excludes.includes(i)
   );
 }
 
