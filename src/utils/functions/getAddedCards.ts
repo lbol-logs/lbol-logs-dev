@@ -1,4 +1,4 @@
-import { copyObject, createArray, getCurrentLevel, getSameCardIndex } from 'utils/functions/helpers';
+import { createArray, getCurrentLevel, getSameCardIndex } from 'utils/functions/helpers';
 import { TCard, TCardChanges, TCards, TStation, TStations } from 'utils/types/runData';
 
 function getAddedCards({ CardRewards, CardChanges, Stations, station }: { CardRewards: Array<TCards>, CardChanges: TCardChanges, Stations: TStations, station: TStation }) {
