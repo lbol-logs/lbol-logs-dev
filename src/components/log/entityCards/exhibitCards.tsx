@@ -8,7 +8,7 @@ function ExhibitCards({ exhibits, added, prices }: { exhibits: TExhibits | TExhi
     <div className="c-entities c-exhibits">
       {exhibits.map((exhibit, i) => {
         const isNotAdded = Boolean(added && !added.includes(i));
-        if (prices === undefined) {
+        if (prices === undefined || !Object.keys(prices).length) {
           return (
             <ExhibitCard exhibit={exhibit} isNotAdded={isNotAdded} key={i} />
           );
