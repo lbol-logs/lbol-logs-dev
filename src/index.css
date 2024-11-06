@@ -1181,12 +1181,7 @@ html:lang(en) .c-entity__text {
   width: calc(var(--icon-size) * 2);
 }
 .p-enemy__img {
-  --shadow-thickness: 1px;
-  ---shadow-thickness: calc(var(--shadow-thickness) * -1);
-  --shadow-color: var(--black);
-  filter:
-    drop-shadow(var(--shadow-thickness) var(--shadow-thickness) 0 var(--shadow-color))
-    drop-shadow(var(---shadow-thickness) var(---shadow-thickness) 0 var(--shadow-color));
+  filter: drop-shadow(0 0 1px var(--black));
 }
 .p-enemy__text {
   font-size: 0.8em;
