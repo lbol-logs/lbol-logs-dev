@@ -1157,6 +1157,7 @@ html:lang(en) .c-entity__text {
   height: calc(var(--entity-height) * 0.7);
   width: auto;
   margin-left: var(--entity-margin);
+  flex-shrink: 0;
 }
 .c-exhibit__counter {
   margin-left: auto;
