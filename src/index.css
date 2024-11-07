@@ -527,6 +527,7 @@ input {
   position: sticky;
   top: 0;
   scrollbar-width: none;
+  background: var(--white);
 }
 .p-holdings__head {
   padding: var(--padding);
@@ -968,6 +969,9 @@ input {
   width: var(--icon-size);
   height: var(--icon-size);
 }
+.c-share__button--save {
+  transform: rotate(90deg);
+}
 
 .p-control {
   position: fixed;
@@ -1152,6 +1156,7 @@ html:lang(en) .c-entity__text {
 .c-card__text {
   z-index: var(--z-1);
   color: var(--f-white);
+  position: relative;
 }
 .c-card__text,
 .c-exhibit__text,
@@ -1162,7 +1167,7 @@ html:lang(en) .c-entity__text {
 .c-card--upgraded .c-card__text {
   color: var(--f-upgraded-green);
 }
-.c-entity__text.c-card__text:after {
+.c-entity.c-card:before {
   content: '';
   position: absolute;
   top: 0;
@@ -1171,7 +1176,7 @@ html:lang(en) .c-entity__text {
   height: 100%;
   background: var(--f-white);
   opacity: var(--opacity-overlay);
-  z-index: var(--z--1);
+  z-index: var(--z-1);
 }
 
 .c-card__img {

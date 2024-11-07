@@ -10,14 +10,22 @@ function Screenshot() {
   const type = 'image/png';
 
   function onClick() {
+    const target = document.body;
     const options = {
       x: window.scrollX,
       y: window.scrollY,
       width: window.innerWidth,
       height: window.innerHeight
     };
-    html2canvas(document.body, options).then((canvas: HTMLCanvasElement) => {
+
+    const style = document.createElement('style');
+    document.head.appendChild(style);
+    const css = style.sheet as CSSStyleSheet;
+    css.insertRule('.c-entity{box-shadow:none}');
+
+    html2canvas(target, options).then((canvas: HTMLCanvasElement) => {
       const screenshot = canvas.toDataURL(type);
+      style.remove();
       setEntityModal({ screenshot });
     });
   }
