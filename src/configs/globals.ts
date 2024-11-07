@@ -159,6 +159,11 @@ const whitelistDomains: Array<string> = [
   'https://docs.google.com/'
 ];
 
+const screenshotConfigs = {
+  type: 'image/png',
+  name: 'LBoL-Logs.png'
+};
+
 export {
   languages,
   fallbackLanguage,
@@ -202,5 +207,6 @@ export {
   enemiesShowDetails,
   resultTypes,
   defaultRunData,
-  whitelistDomains
+  whitelistDomains,
+  screenshotConfigs
 };

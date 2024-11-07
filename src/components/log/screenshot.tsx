@@ -1,4 +1,5 @@
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
+import { screenshotConfigs } from 'configs/globals';
 import { CommonContext } from 'contexts/commonContext';
 import html2canvas from 'html2canvas-pro';
 import { useContext } from 'react';
@@ -7,7 +8,7 @@ import { getCommonImage } from 'utils/functions/getImage';
 function Screenshot() {
   const { setEntityModal } = useContext(CommonContext);
 
-  const type = 'image/png';
+  const { type } = screenshotConfigs;
 
   function onClick() {
     const target = document.body;

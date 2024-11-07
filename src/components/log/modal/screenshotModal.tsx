@@ -1,9 +1,9 @@
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
+import { screenshotConfigs } from 'configs/globals';
 import { getCommonImage, getControlImage } from 'utils/functions/getImage';
 
 function ScreenshotModal({ screenshot }: { screenshot: string }) {
-  const type = 'image/png';
-  const name = 'LBoL.png';
+  const { type, name } = screenshotConfigs;
 
   async function copy() {
     const blob = await (await fetch(screenshot)).blob();
