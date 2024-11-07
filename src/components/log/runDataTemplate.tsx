@@ -11,6 +11,7 @@ import { scrollTolerance } from 'configs/globals';
 import CurrentHoldings from './currentHoldings';
 import { checkRounds, getScrollHeight } from 'utils/functions/helpers';
 import Modal from './modal';
+import Screenshot from './screenshot';
 
 function RunDataTemplate() {
   const { isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap } = useContext(LogContext);
@@ -44,6 +45,7 @@ function RunDataTemplate() {
   return (
     <>
       <Modal />
+      <Screenshot />
       {isSummary && (
         <Summary />
       )}
