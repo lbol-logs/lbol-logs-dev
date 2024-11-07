@@ -1577,7 +1577,7 @@ html:lang(en) .p-result__type {
 .p-nazrin-result {
   border-radius: 0.5em;
   padding: 0.2em 0.5em;
-  outline: 1px solid var(--black);
+  border: 1px solid var(--black);
 }
 .p-gap-choice,
 .p-nazrin-result,
@@ -1600,8 +1600,8 @@ html:lang(en) .p-result__type {
 .p-gap-choice--chosen,
 .p-dialogue__option--chosen,
 .p-nazrin-result--chosen {
-  outline-width: 2px;
-  outline-color: var(--red);
+  border-width: 2px;
+  border-color: var(--red);
 }
 .p-gap-choice__descs,
 .p-nazrin-result__descs {
