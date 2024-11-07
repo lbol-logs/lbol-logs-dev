@@ -979,11 +979,6 @@ input {
   width: var(--icon-size);
   height: var(--icon-size);
 }
-@supports (-webkit-touch-callout: none) {
-  .c-share__button--copy {
-    display: none;
-  }
-}
 .c-share__button-img--save {
   transform: rotate(90deg);
 }

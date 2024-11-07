@@ -5,18 +5,28 @@ import { getCommonImage, getControlImage } from 'utils/functions/getImage';
 function ScreenshotModal({ screenshot }: { screenshot: string }) {
   const { type, name } = screenshotConfigs;
 
+  let blob: Blob;
+  let file: File;
+
+  async function getBlob() {
+    if (blob === undefined) {
+      blob = await (await fetch(screenshot)).blob();
+    }
+    return blob;
+  }
+
   async function copy() {
-    const blob = await (await fetch(screenshot)).blob();
-    navigator.clipboard.write([
-      new ClipboardItem({
-          [type]: blob
-      })
-    ]);
+    const makeImagePromise = async () => await getBlob();
+    await navigator.clipboard.write(
+      [new ClipboardItem({[type]: makeImagePromise() })]
+    )
   }
 
   async function share() {
-    const blob = await (await fetch(screenshot)).blob();
-    const file = new File([blob], name, { type });
+    if (file === undefined) {
+      const blob = await getBlob();
+      file = new File([blob], name, { type });
+    }
     navigator.share({
       files: [file]
     })
@@ -41,7 +51,7 @@ function ScreenshotModal({ screenshot }: { screenshot: string }) {
       <div className="p-modal__body">
         <img src={screenshot} alt="" />
         <div className="c-share__buttons">
-          <span className="c-share__button c-share__button--copy" onClick={copy}>
+          <span className="c-share__button" onClick={copy}>
             <LazyLoadImage2 callback={getCommonImage} name="Copy" alt="Copy" />
           </span>
           <span className="c-share__button" onClick={share}>
