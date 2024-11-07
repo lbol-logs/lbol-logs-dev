@@ -41,14 +41,14 @@ function ScreenshotModal({ screenshot }: { screenshot: string }) {
       <div className="p-modal__body">
         <img src={screenshot} alt="" />
         <div className="c-share__buttons">
-          <span className="c-share__button" onClick={copy}>
+          <span className="c-share__button c-share__button--copy" onClick={copy}>
             <LazyLoadImage2 callback={getCommonImage} name="Copy" alt="Copy" />
           </span>
           <span className="c-share__button" onClick={share}>
             <LazyLoadImage2 callback={getCommonImage} name="Share" alt="Share" />
           </span>
           <span className="c-share__button" onClick={save}>
-            <LazyLoadImage2 className="c-share__button--save" callback={getControlImage} name="Arrow" alt="Save" />
+            <LazyLoadImage2 className="c-share__button-img--save" callback={getControlImage} name="Arrow" alt="Save" />
           </span>
         </div>
       </div>
