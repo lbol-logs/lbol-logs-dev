@@ -22,6 +22,7 @@ function Screenshot() {
     document.head.appendChild(style);
     const css = style.sheet as CSSStyleSheet;
     css.insertRule('.c-entity{box-shadow:none}');
+    css.insertRule('.p-holdings--horizontal .c-entity.c-card:before{display:none}');
 
     html2canvas(target, options).then((canvas: HTMLCanvasElement) => {
       const screenshot = canvas.toDataURL(type);
