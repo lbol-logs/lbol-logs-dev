@@ -2253,7 +2253,7 @@ html:lang(en) .p-result__type {
   --white: light-dark(#fff, #121212);
   --black: light-dark(#000, #fff);
   --gray: light-dark(#ccc, #333);
-  --blue: light-dark(blue, #0d0df2);
+  --blue: light-dark(blue, dodgerblue);
   --green: light-dark(green, #b1fbb1);
   --red: light-dark(red, #f20d0d);
   --orange: light-dark(#ff9400, #f2930d);
