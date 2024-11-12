@@ -151,10 +151,15 @@ input {
   flex-basis: calc(50% - 0.3125em);
 }
 
-.p-about__about, .p-upload__about {
+.p-about__about,
+.p-upload__about,
+.p-upload__error,
+.p-upload__success {
   padding: 0.625em;
-  background: var(--skyblue);
   margin: 0 auto;
+}
+.p-about__about, .p-upload__about {
+  background: var(--skyblue);
 }
 
 .p-upload {
@@ -162,10 +167,6 @@ input {
   flex-direction: column;
   align-items: center;
   row-gap: 1em;
-}
-.p-upload__error, .p-upload__success {
-  padding: 0.625em;
-  margin: 0 auto;
 }
 .p-upload__error {
   background: var(--light-pink);
