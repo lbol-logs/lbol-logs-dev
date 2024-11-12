@@ -54,6 +54,11 @@ const versions: Array<string> = [
   '1.5.1'
 ];
 const latestVersion: string = versions[0];
+const islatestVersionWip: boolean = true;
+// const islatestVersionWip: boolean = false;
+const islatestVersionModsWip: boolean = true;
+// const islatestVersionModsWip: boolean = false;
+
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
@@ -171,6 +176,8 @@ export {
   modsNamespaces,
   versions,
   latestVersion,
+  islatestVersionWip,
+  islatestVersionModsWip,
   isDev,
   baseUrl,
   assetsDir,

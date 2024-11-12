@@ -154,10 +154,12 @@ input {
 .p-about__about,
 .p-upload__about,
 .p-upload__error,
-.p-upload__success {
+.p-upload__success,
+.p-announcement {
   padding: 0.625em;
   margin: 0 auto;
 }
+
 .p-about__about, .p-upload__about {
   background: var(--skyblue);
 }
@@ -227,6 +229,14 @@ input {
 }
 .p-file-zone--reject {
   border-color: var(--red);
+}
+
+.p-announcement {
+  background: var(--light-pink);
+  width: fit-content;
+}
+.p-announcement__text {
+  margin: 0;
 }
 
 .p-run-list__output {
@@ -1578,7 +1588,7 @@ html:lang(en) .p-result__type {
   width: var(--icon-size);
   height: var(--icon-size);
   position: relative;
-  display :flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
