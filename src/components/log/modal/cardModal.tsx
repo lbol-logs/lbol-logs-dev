@@ -24,7 +24,7 @@ function CardModal({ card }: { card: TCard }) {
 
   const cardConfigs = cardsConfigs.get(_card);
   const allCardConfigs = cardConfigs.getAll();
-  const { Type, Cost, Owner, IsUpgradable, OverrideUltimateCost, Keywords } = allCardConfigs;
+  const { Type, Cost, Owner, IsUpgradable, Keywords } = allCardConfigs;
   const { art, isMod } = cardConfigs;
 
   const isTeammate = Type === 'Friend';
@@ -57,21 +57,39 @@ function CardModal({ card }: { card: TCard }) {
       </div>
     );
 
-    const keys = {
-      Passive: 'Passive',
-      Active: 'Active',
-      Ultimate: OverrideUltimateCost ? 'Active' : 'Ultimate'
-    };
-    for (const [key, type] of Object.entries(keys)) {
-      let cost = allCardConfigs[`${key}Cost`];
+    const teammateKeys = [
+      {
+        type: 'Passive',
+        config: 'PassiveCost',
+        locale: 'Passive'
+      },
+      {
+        type: 'Active',
+        config: 'ActiveCost',
+        locale: 'Active'
+      },
+      {
+        type: 'Active',
+        config: 'ActiveCost2',
+        locale: 'Active2'
+      },
+      {
+        type: 'Ultimate',
+        config: 'UltimateCost',
+        locale: 'Ultimate'
+      }
+    ];
+
+    for (const { type, config, locale } of teammateKeys) {
+      let cost = allCardConfigs[config];
       if (cost === undefined) continue;
 
       const alt = (cost > 0 ? '+' : '') + cost;
 
       const description = (
-        <div className="p-card__description p-card__description--teammate" key={key}>
+        <div className="p-card__description p-card__description--teammate" key={config}>
           <LazyLoadImage2 className="c-teammate-cost" callback={getUnityImage} name={`${type}/${cost}`} width="76" height="38" alt={alt} is2x={true} />
-          <DescriptionWidget entityObj={{ card: _card}} prefix={key} />
+          <DescriptionWidget entityObj={{ card: _card}} prefix={locale} />
         </div>
       );
       descriptions.push(description);
