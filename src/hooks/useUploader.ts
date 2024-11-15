@@ -1,4 +1,4 @@
-import { defaultRunData, gasUrl, tempVersionStartingWith, versions } from 'configs/globals';
+import { defaultRunData, gasUrl, tempVersion, versions } from 'configs/globals';
 import { useCallback } from 'react';
 import { SetURLSearchParams } from 'react-router-dom';
 import { getLogUrl } from 'utils/functions/fetchData';
@@ -44,10 +44,11 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
   async function tryUpload() {
     const runData = getRunData(previewData);
     const { Version } = runData;
+    const version = isTempVersion(Version) ? 'temp' : Version;
     const id = getId(runData);
 
     {
-      const { error, isOnGithub, url } = await checkGithub(Version, id);
+      const { error, isOnGithub, url } = await checkGithub(version, id);
       if (error) {
         setSearchParams(error, { replace: true });
         return;
@@ -64,7 +65,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     }
 
     {
-      const { error, isNew, url: _url } = await checkGas({ version: Version, id, runData });
+      const { error, isNew, url: _url } = await checkGas({ version, id, runData });
       const url = encodeURIComponent(_url);
       if (error) {
         if (!isNew) Object.assign(error, { url });
@@ -96,7 +97,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
   }
 
   function isTempVersion(version: string) {
-    return tempVersionStartingWith && (version.startsWith(tempVersionStartingWith) || version.startsWith('debug'))
+    return tempVersion && (version.startsWith(tempVersion) || version.startsWith('debug'))
   }
 
   function validateFile(text: string) {
@@ -112,7 +113,6 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
 
         const { Version } = runData;
         if (isTempVersion(Version)) {
-          Object.assign(runData, { Version: 'temp' });
         }
         else if (!versions.includes(Version)) {
           return {
