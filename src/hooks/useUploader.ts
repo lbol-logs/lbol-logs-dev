@@ -1,4 +1,4 @@
-import { defaultRunData, gasUrl, versions } from 'configs/globals';
+import { allowDebug, defaultRunData, gasUrl, versions } from 'configs/globals';
 import { useCallback } from 'react';
 import { SetURLSearchParams } from 'react-router-dom';
 import { getLogUrl } from 'utils/functions/fetchData';
@@ -107,7 +107,10 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
         }
 
         const { Version } = runData;
-        if (!versions.includes(Version)) {
+        if (allowDebug && Version.startsWith('debug')) {
+          Object.assign(runData, { Version: 'temp' });
+        }
+        else if (!versions.includes(Version)) {
           return {
             error: ErrorType.invalidVersion.toString(),
             version: Version

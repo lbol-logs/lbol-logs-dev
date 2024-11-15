@@ -51,9 +51,14 @@ const modsNamespaces: Array<string> = [
 ];
 
 const versions: Array<string> = [
-  '1.6.0',
+  // '1.6.0',
   '1.5.1'
 ];
+
+const allowDebug = true;
+// const allowDebug = false;
+if (allowDebug) versions.unshift('temp');
+
 const latestVersion: string = versions[0];
 const islatestVersionWip: boolean = true;
 // const islatestVersionWip: boolean = false;
@@ -176,6 +181,7 @@ export {
   namespaces,
   modsNamespaces,
   versions,
+  allowDebug,
   latestVersion,
   islatestVersionWip,
   islatestVersionModsWip,
