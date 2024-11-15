@@ -6,13 +6,16 @@ import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import CharacterShortName from '../parts/characterShortName';
+import { useContext } from 'react';
+import { LogContext } from 'contexts/logContext';
 
 function SatoriCounseling({ station }: { station: TStation }) {
+  const { runData: { Settings: { Character } } } = useContext(LogContext);
   const { dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
-  const { Choices, Values, HasMoney } = Data;
+  const { Choices, Values } = Data;
 
   const id = Id as string;
   const configs = dialoguesConfigs.get(id);
@@ -22,9 +25,21 @@ function SatoriCounseling({ station }: { station: TStation }) {
   let third = null;
 
   {
-    const { current, next: options } = configs[0];
+    const isKoishi = Character === 'Koishi';
+    const config = configs[0];
+    const { next: options } = config;
+    const currentKoishi = config.current_Koishi;
+    const current = isKoishi ? currentKoishi : config.current;
 
-    const choices = [HasMoney ? 0 : '0_invalid', 1, 2];
+    const choices: Array<number | string> = [currentKoishi === undefined ? 2 : 3];
+    if (isKoishi) {
+      choices.unshift(2);
+    }
+    else {
+      const { HasMoney } = Data;
+      choices.unshift(1);
+      choices.unshift(HasMoney ? 0 : '0_invalid');
+    }
 
     const [next, invalids] = getNext(options, choices);
     const chosen = Choices[0];
@@ -37,7 +52,7 @@ function SatoriCounseling({ station }: { station: TStation }) {
     }
     {
       const values = { 0: Values[1] };
-      props[2] = { values };
+      props[choices.length - 1] = { values };
     }
 
     const dialogueConfigs: TDialogueConfigs = {
