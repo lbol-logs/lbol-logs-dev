@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TDispatch } from 'utils/types/common';
 
-function VersionWidget({ version, setVersion, versionSwitch, className }: { version: string, setVersion: TDispatch<string>, versionSwitch: boolean, className: string }) {
+function VersionWidget({ version, setVersion, versionSwitch, className, redirect = true }: { version: string, setVersion: TDispatch<string>, versionSwitch: boolean, className: string, redirect?: boolean }) {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -38,7 +38,7 @@ function VersionWidget({ version, setVersion, versionSwitch, className }: { vers
     MODS_CONFIGS_DATA.version = v;
     setVersion(v);
 
-    navigate(`/${v}/`, { replace: true });
+    if (redirect) navigate(`/${v}/`, { replace: true });
   }
 
   return (
