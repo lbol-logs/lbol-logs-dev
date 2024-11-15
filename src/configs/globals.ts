@@ -55,9 +55,9 @@ const versions: Array<string> = [
   '1.5.1'
 ];
 
-const allowDebug = true;
-// const allowDebug = false;
-if (allowDebug) versions.unshift('temp');
+const tempVersionStartingWith = '1.6.0';
+// const tempVersionStartingWith = '';
+if (tempVersionStartingWith) versions.unshift('temp');
 
 const latestVersion: string = versions[0];
 const islatestVersionWip: boolean = true;
@@ -181,7 +181,7 @@ export {
   namespaces,
   modsNamespaces,
   versions,
-  allowDebug,
+  tempVersionStartingWith,
   latestVersion,
   islatestVersionWip,
   islatestVersionModsWip,
