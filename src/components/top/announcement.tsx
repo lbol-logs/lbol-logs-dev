@@ -1,4 +1,4 @@
-import { islatestVersionModsWip, islatestVersionWip, latestVersion } from 'configs/globals';
+import { islatestVersionModsWip, islatestVersionWip, latestVersion, tempVersion } from 'configs/globals';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext } from 'react';
 
@@ -15,7 +15,7 @@ function Announcement() {
 
   return (
     <div className="p-announcement">
-      <p className="p-announcement__text">You can upload {version} log now but configs, texts and images are WIP: {wip}</p>
+      <p className="p-announcement__text">You can upload {tempVersion || version} log now but configs, texts and images are WIP: {wip}</p>
     </div>
   )
 }
