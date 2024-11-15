@@ -11,7 +11,7 @@ import { LogContext } from 'contexts/logContext';
 
 function SatoriCounseling({ station }: { station: TStation }) {
   const { runData: { Settings: { Character } } } = useContext(LogContext);
-  const { dialoguesConfigs } = configsData;
+  const { eventsConfigs, dialoguesConfigs } = configsData;
 
   const { Data, Id } = station;
 
@@ -27,11 +27,14 @@ function SatoriCounseling({ station }: { station: TStation }) {
   {
     const isKoishi = Character === 'Koishi';
     const config = configs[0];
+
     const { next: options } = config;
+    const { leave } = eventsConfigs.get(id);
+
     const currentKoishi = config.current_Koishi;
     const current = isKoishi ? currentKoishi : config.current;
 
-    const choices: Array<number | string> = [currentKoishi === undefined ? 2 : 3];
+    const choices: Array<number | string> = [leave];
     if (isKoishi) {
       choices.unshift(2);
     }
