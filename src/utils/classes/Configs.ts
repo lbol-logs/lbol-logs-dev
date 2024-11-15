@@ -210,7 +210,7 @@ class ConfigsData {
   fetch(version: string, names: Array<string>) {
     for (const name of names) {
       const key = getConfigsKey(name);
-      if (key in this.configsData) continue;
+      // if (key in this.configsData) continue;
       const configs = use(getConfigs(version, name, this.isMods));
       const C = name === 'cards' ? CardsConfigs : Configs;
       this.set(key, new C(key, configs));
@@ -221,7 +221,7 @@ class ConfigsData {
     this.version = version;
     for (const name of names) {
       const key = getConfigsKey(name);
-      if (key in this.configsData) continue;
+      // if (key in this.configsData) continue;
       const response = await fetch(getConfigsUrl(version, name, this.isMods));
       const configs = await response.json();
       this.set(key, new Configs(key, configs));
@@ -230,7 +230,11 @@ class ConfigsData {
 
   set version(version: string) {
     this._init(version);
-    for (const [key, value] of Object.entries(this.configs[version])) this.configsData[key] = value;
+    const c = this.configs[version];
+    for (const key in this.configsData) {
+      const configs = c[key];
+      if (configs !== undefined) this.set(key, configs);
+    }
   }
 
   private _init(version: string) {
