@@ -29,12 +29,12 @@ function SatoriCounseling({ station }: { station: TStation }) {
     const config = configs[0];
 
     const { next: options } = config;
-    const { leave } = eventsConfigs.get(id);
+    const { heal } = eventsConfigs.get(id);
 
     const currentKoishi = config.current_Koishi;
     const current = isKoishi ? currentKoishi : config.current;
 
-    const choices: Array<number | string> = [leave];
+    const choices: Array<number | string> = [heal];
     if (isKoishi) {
       choices.unshift(2);
     }
