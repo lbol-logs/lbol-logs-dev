@@ -151,10 +151,17 @@ input {
   flex-basis: calc(50% - 0.3125em);
 }
 
-.p-about__about, .p-upload__about {
+.p-about__about,
+.p-upload__about,
+.p-upload__error,
+.p-upload__success,
+.p-announcement {
   padding: 0.625em;
-  background: var(--skyblue);
   margin: 0 auto;
+}
+
+.p-about__about, .p-upload__about {
+  background: var(--skyblue);
 }
 
 .p-upload {
@@ -162,10 +169,6 @@ input {
   flex-direction: column;
   align-items: center;
   row-gap: 1em;
-}
-.p-upload__error, .p-upload__success {
-  padding: 0.625em;
-  margin: 0 auto;
 }
 .p-upload__error {
   background: var(--light-pink);
@@ -226,6 +229,14 @@ input {
 }
 .p-file-zone--reject {
   border-color: var(--red);
+}
+
+.p-announcement {
+  background: var(--light-pink);
+  width: fit-content;
+}
+.p-announcement__text {
+  margin: 0;
 }
 
 .p-run-list__output {
@@ -1577,7 +1588,7 @@ html:lang(en) .p-result__type {
   width: var(--icon-size);
   height: var(--icon-size);
   position: relative;
-  display :flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -2242,7 +2253,7 @@ html:lang(en) .p-result__type {
   --white: light-dark(#fff, #121212);
   --black: light-dark(#000, #fff);
   --gray: light-dark(#ccc, #333);
-  --blue: light-dark(blue, #0d0df2);
+  --blue: light-dark(blue, dodgerblue);
   --green: light-dark(green, #b1fbb1);
   --red: light-dark(red, #f20d0d);
   --orange: light-dark(#ff9400, #f2930d);

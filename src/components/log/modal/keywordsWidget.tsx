@@ -49,6 +49,8 @@ const notAutoAppend = [
   'FriendSummoned',
   'Loyalty',
   'Mood',
+  'FollowAttack',
+  'Dream',
   'Deploy',
   'Magic',
   'Leave'
