@@ -29,7 +29,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
   const c = new Components(components);
 
   for (const color in highlightColors) components[`h${color}`] = <Highlight color={color}>{}</Highlight>;
-  for (const mana of '01WUBRGCP') c.insertManaObj({ [mana]: mana }, 'Mana');
+  for (const mana of '012WUBRGCP') c.insertManaObj({ [mana]: mana }, 'Mana');
   for (const mana of ['WW']) c.insertManaObj({ [mana]: mana }, 'Mana');
 
   const values = {};
@@ -154,7 +154,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       c.appendDescs(args);
       if (isEn) Object.assign(values, args);
 
-      const { Value, Mana, DamageRate, TriggerLevel, BaseDamage, StackMultiply, SourceCardName, Block } = config;
+      const { Value, Mana, DamageRate, TriggerLevel, BaseDamage, StackMultiply, SourceCardName, Block, Percentage } = config;
 
       if (Value !== undefined) {
         let v = Value;
@@ -173,7 +173,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
 
       {
         const StackDamage = StackMultiply === undefined ? undefined : (BaseDamage * StackMultiply);
-        const args = { DamageRate, TriggerLevel, BaseDamage, StackMultiply, StackDamage, Block };
+        const args = { DamageRate, TriggerLevel, BaseDamage, StackMultiply, StackDamage, Block, Percentage };
         c.appendDescs(args);
       }
 
