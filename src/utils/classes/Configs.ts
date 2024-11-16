@@ -210,7 +210,7 @@ class ConfigsData {
   fetch(version: string, names: Array<string>) {
     for (const name of names) {
       const key = getConfigsKey(name);
-      // if (key in this.configsData) continue;
+      if (key in this.configsData) continue;
       const configs = use(getConfigs(version, name, this.isMods));
       const C = name === 'cards' ? CardsConfigs : Configs;
       this.set(key, new C(key, configs));
