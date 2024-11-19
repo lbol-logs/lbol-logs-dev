@@ -14,7 +14,13 @@ import { flushSync } from 'react-dom';
 
 function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, setFilter: TDispatch<TPool>, version: string, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
+
   const [loaded, setLoaded] = useState(false);
+  const [showPatchouliPhilosophy, setShowPatchouliPhilosophy] = useState(false);
+  const [showJunkoColorless, setShowJunkoColorless] = useState(false);
+
+  const PatchouliPhilosophy = t('PatchouliPhilosophy.Title', { ns: 'events' });
+  const JunkoColorless = t('JunkoColorless.Title', { ns: 'events' });
   
   useMemo(() => {
     setLoaded(false);
@@ -88,13 +94,31 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
     apply();
   }
 
+  function onEventsTypesChange(e: ChangeEvent<HTMLInputElement>) {
+    const input = e.target as HTMLInputElement;
+    const value = input.value;
+    reflectEventsTypes(value);
+    onRadioChange(e);
+  }
+
   function reflectTypes(key: string, value: string) {
     // if (key === DefaultPool.keys.et) reflectExhibitsTypes(value);
     // else if (key === DefaultPool.keys.rt) reflectRequestsTypes(value);
   }
 
-  function reflectRequestsTypes(value: string) {
-    // seteShowRequests(value === DefaultPool.rt.active);
+  function reflectEventsTypes(value: string) {
+    if (!value || value === DefaultPool.et.none) {
+      setShowPatchouliPhilosophy(false);
+      setShowJunkoColorless(false);
+    }
+    if (value === 'PatchouliPhilosophy') {
+      setShowPatchouliPhilosophy(true);
+      setShowJunkoColorless(false);
+    }
+    else if (value === 'JunkoColorless') {
+      setShowPatchouliPhilosophy(false);
+      setShowJunkoColorless(true);
+    }
   }
 
   function apply() {
@@ -147,12 +171,17 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
   }, []);
 
   return {
+    showPatchouliPhilosophy,
+    showJunkoColorless,
     characters,
     startingExhibits,
     swappedExhibits,
+    PatchouliPhilosophy,
+    JunkoColorless,
     formRef,
     onCheckboxChange,
     onRadioChange,
+    onEventsTypesChange,
     reset
   };
 }

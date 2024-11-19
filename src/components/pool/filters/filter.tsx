@@ -7,6 +7,7 @@ import { Form, useSearchParams } from 'react-router-dom';
 import { CardPoolContext } from 'contexts/cardPoolContext';
 import usePool from 'hooks/usePool';
 import { latestVersion } from 'configs/globals';
+import EventsTypes from './eventsTypes';
 
 function Filter() {
   const { t } = useTranslation();
@@ -15,12 +16,17 @@ function Filter() {
   const [searchParams] = useSearchParams();
 
   const {
+    showPatchouliPhilosophy,
+    showJunkoColorless,
     characters,
     startingExhibits,
     swappedExhibits,
+    PatchouliPhilosophy,
+    JunkoColorless,
     formRef,
     onCheckboxChange,
     onRadioChange,
+    onEventsTypesChange,
     reset
   } = usePool({ filter, setFilter, version, searchParams });
 
@@ -40,6 +46,12 @@ function Filter() {
               <StartingExhibitsWidget onChange={onCheckboxChange} startingExhibits={startingExhibits} characters={characters} />
             </div>
             <ColorsWidget onChange={onCheckboxChange} swappedExhibits={swappedExhibits} />
+          </div>
+        </div>
+        <div className="p-filter__row">
+          <div className="p-filter__label">{t('stations.Adventure', { ns: 'log' })}</div>
+          <div className="p-filter__values u-flex-col-sp">
+            <EventsTypes onChange={onEventsTypesChange} PatchouliPhilosophy={PatchouliPhilosophy} JunkoColorless={JunkoColorless} />
           </div>
         </div>
         <div className="p-filter__buttons">

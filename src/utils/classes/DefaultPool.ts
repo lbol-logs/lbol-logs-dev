@@ -3,13 +3,13 @@ class DefaultPool {
   static keys = {
     ch: 'ch',
     ex: 'ex',
-    ev: 'ev',
+    et: 'et',
     pp: 'pp',
     jc: 'jc'
   };
 
   // TODO
-  static ev = {
+  static et = {
     none: 'none',
     pp: 'pp',
     jc: 'jc'
@@ -17,7 +17,7 @@ class DefaultPool {
 
   static radios = [
     this.keys.ch,
-    this.keys.ev
+    this.keys.et
   ];
 
   static get(name: string) {
@@ -31,8 +31,8 @@ class DefaultPool {
 
   static check(name: string) {
     switch (name) {
-      case this.keys.ev:
-        return this.ev.none;
+      case this.keys.et:
+        return this.et.none;
     }
   }
 }
