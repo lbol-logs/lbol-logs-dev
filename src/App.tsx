@@ -9,6 +9,7 @@ import Top from 'components/top';
 import Log from 'components/log';
 import About from 'components/about';
 import Upload from 'components/upload';
+import Pool from 'components/pool';
 
 function Layout() {
   const { t } = useTranslation();
@@ -53,6 +54,10 @@ function App() {
             {
               path: 'upload/',
               element: <Upload />
+            },
+            {
+              path: 'pool/',
+              element: <Pool />
             },
             {
               path: ':ver/',
