@@ -13,8 +13,8 @@ function ExhibitsTypes({ onChange, startingExhibit, swappedExhibit }: { onChange
 
   const o = {
     all: t('all', { ns: 'runList' }),
-    startingExhibit: startingExhibit,
-    swappedExhibit: swappedExhibit
+    startingExhibit,
+    swappedExhibit
   };
   const defaultType = DefaultFilter.check(DefaultFilter.keys.et)
   const hasSpellcard = sc ? sc.length : false;
