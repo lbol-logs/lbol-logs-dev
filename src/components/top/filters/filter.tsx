@@ -69,11 +69,11 @@ function Filter() {
   if (showSwappedExhibits) {
     swappedExhibitsRow = (
       <div className="p-filter__row">
-      <div className="p-filter__label">{swappedExhibit}</div>
-      <div className="p-filter__values u-flex-col">
-        <ColorsWidget onChange={onCheckboxChange} swappedExhibits={swappedExhibits} />
+        <div className="p-filter__label">{swappedExhibit}</div>
+        <div className="p-filter__values u-flex-col">
+          <ColorsWidget onChange={onCheckboxChange} swappedExhibits={swappedExhibits} />
+        </div>
       </div>
-    </div>
     );
   }
 
