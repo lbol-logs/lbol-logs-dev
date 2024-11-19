@@ -17,7 +17,6 @@ class Configs {
   }
 
   has(id: string) {
-    if (id === 'Shoot') return true;
     return id in this.json;
   }
 

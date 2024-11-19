@@ -27,7 +27,7 @@ function RunListLine({ onlyPager }: { onlyPager: boolean }) {
     <div className={`p-run-list__line`}>
       {items}
     </div>
-  )
+  );
 }
 
 export default RunListLine;

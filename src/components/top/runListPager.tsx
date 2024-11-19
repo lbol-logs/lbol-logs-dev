@@ -28,7 +28,7 @@ function RunListPager() {
       if (_pages.includes(page)) continue;
       const diff = Math.abs(page - lastPage);
       if (diff > 1) _pages.push(undefined);
-      _pages.push(page)
+      _pages.push(page);
       lastPage = page;
     }
     return _pages;

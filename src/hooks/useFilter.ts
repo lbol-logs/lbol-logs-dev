@@ -132,7 +132,7 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
   function apply(e: MouseEvent<HTMLButtonElement>) {
     const data = deleteValues();
     submit(data);
-    scroll()
+    scroll();
     e.preventDefault();
   }
 
@@ -140,7 +140,7 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
     setFilter({});
     reflectExhibitsTypes(DefaultFilter.get(DefaultFilter.keys.et) as string);
     submit(null);
-    scroll()
+    scroll();
     e.preventDefault();
   }
 
