@@ -10,7 +10,7 @@ import PoolTemplate from './poolTemplate';
 
 function Pool() {
   const { t } = useTranslation();
-  
+
   return (
     <Init>
       <Title name={t('cardPool', { ns: 'site' })} />

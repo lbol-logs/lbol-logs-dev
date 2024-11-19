@@ -21,7 +21,7 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
 
   const PatchouliPhilosophy = t('PatchouliPhilosophy.Title', { ns: 'events' });
   const JunkoColorless = t('JunkoColorless.Title', { ns: 'events' });
-  
+
   useMemo(() => {
     setLoaded(false);
     (async() => {
