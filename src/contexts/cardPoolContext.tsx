@@ -2,48 +2,38 @@ import { createContext, ReactNode, useState } from 'react';
 import { TDispatch } from 'utils/types/common';
 import { TPool, TRunList } from 'utils/types/others';
 
+type TCardIds = Array<string>;
+
+export type {
+  TCardIds
+};
+
 const defaultFilter: TPool = {};
-const defaultShowFilter: boolean = false;
-const defaultList: TRunList = [];
-const defaultFilteredList: TRunList = [];
+const defaultFilteredPool: TCardIds = [];
 
 type TCardPoolContext = {
   filter: TPool
   setFilter: TDispatch<TPool>,
-  showFilter: boolean,
-  setShowFilter: TDispatch<boolean>,
-  list: TRunList,
-  setList: TDispatch<TRunList>,
-  filteredList: TRunList,
-  setFilteredList: TDispatch<TRunList>
+  filteredPool: TCardIds,
+  setFilteredPool: TDispatch<TCardIds>
 };
 
 export const CardPoolContext = createContext<TCardPoolContext>({
   filter: defaultFilter,
   setFilter: () => {},
-  showFilter: defaultShowFilter,
-  setShowFilter: () => {},
-  list: defaultList,
-  setList: () => {},
-  filteredList: defaultFilteredList,
-  setFilteredList: () => {}
+  filteredPool: defaultFilteredPool,
+  setFilteredPool: () => {}
 });
 
 function CardPoolProvider({ children }: { children: ReactNode }) {
   const [filter, setFilter] = useState(defaultFilter);
-  const [showFilter, setShowFilter] = useState(defaultShowFilter);
-  const [list, setList] = useState(defaultList);
-  const [filteredList, setFilteredList] = useState(defaultFilteredList);
+  const [filteredPool, setFilteredPool] = useState(defaultFilteredPool);
 
   const value = {
     filter,
     setFilter,
-    showFilter,
-    setShowFilter,
-    list,
-    setList,
-    filteredList,
-    setFilteredList
+    filteredPool,
+    setFilteredPool
   };
 
   return (

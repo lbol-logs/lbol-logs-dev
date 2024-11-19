@@ -10,6 +10,7 @@ import DefaultPool from 'utils/classes/DefaultPool';
 import { useSubmit } from 'react-router-dom';
 import { CONFIGS_DATA, configsData } from 'configs/globals';
 import Configs from 'utils/classes/Configs';
+import { flushSync } from 'react-dom';
 
 function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, setFilter: TDispatch<TPool>, version: string, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
@@ -74,6 +75,7 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
     const isChecked = input.checked;
     const currentFilter = updateCheckbox(filter, name, value, isChecked);
     setFilter(currentFilter);
+    apply();
   }
 
   function onRadioChange(e: ChangeEvent<HTMLInputElement>) {
@@ -83,6 +85,7 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
     const currentFilter = copyObject(filter) as TPoolRadio;
     currentFilter[name] = value;
     setFilter(currentFilter as TPool);
+    apply();
   }
 
   function reflectTypes(key: string, value: string) {
@@ -92,6 +95,27 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
 
   function reflectRequestsTypes(value: string) {
     // seteShowRequests(value === DefaultPool.rt.active);
+  }
+
+  function apply() {
+    const data = deleteValues();
+    submit(data);
+  }
+
+  function reset(e: MouseEvent<HTMLButtonElement>) {
+    setFilter({});
+    // reflectExhibitsTypes(DefaultPool.get(DefaultPool.keys.et) as string);
+    submit(null);
+    e.preventDefault();
+  }
+
+  function deleteValues() {
+    const data = new FormData(formRef.current as HTMLFormElement);
+    for (const key of DefaultPool.radios) {
+      const value = data.get(key);
+      if (value === DefaultPool.check(key)) data.delete(key);
+    }
+    return data;
   }
 
   function updateTypesFilter(currentFilter: TPool, key: string) {
@@ -110,6 +134,7 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
       if (!(key in keys)) continue;
       if (radios.includes(key)) continue;
       const _key = key as keyof TPoolCheckbox;
+      console.log({_key, value, currentFilter: JSON.parse(JSON.stringify(currentFilter))})
       if (!(key in currentFilter)) currentFilter[_key] = [];
       (currentFilter[_key] as Array<string>).push(value);
     }
@@ -119,7 +144,7 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
     }
 
     setFilter(currentFilter);
-  }, [searchParams]);
+  }, []);
 
   return {
     characters,
@@ -127,7 +152,8 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
     swappedExhibits,
     formRef,
     onCheckboxChange,
-    onRadioChange
+    onRadioChange,
+    reset
   };
 }
 

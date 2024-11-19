@@ -2,51 +2,37 @@
 class DefaultPool {
   static keys = {
     ch: 'ch',
-    sc: 'sc',
-    et: 'et',
-    st: 'st',
-    sw: 'sw',
-    di: 'di',
-    rt: 'rt',
-    rq: 'rq',
-    re: 're'
+    ex: 'ex',
+    ev: 'ev',
+    pp: 'pp',
+    jc: 'jc'
   };
 
-  static et = {
-    all: 'all',
-    co: 'co',
-    sw: 'sw'
-  };
-
-  static rt = {
-    both: 'both',
-    inactive: 'inactive',
-    active: 'active'
+  // TODO
+  static ev = {
+    none: 'none',
+    pp: 'pp',
+    jc: 'jc'
   };
 
   static radios = [
     this.keys.ch,
-    this.keys.et,
-    this.keys.rt
+    this.keys.ev
   ];
 
   static get(name: string) {
     switch (name) {
-      case this.keys.et:
-        return '';
-      case this.keys.rt:
-        return '';
-      default:
+      case this.keys.ex:
         return [];
+      default:
+        return '';
     }
   }
 
   static check(name: string) {
     switch (name) {
-      case this.keys.et:
-        return this.et.all;
-      case this.keys.rt:
-        return this.rt.both;
+      case this.keys.ev:
+        return this.ev.none;
     }
   }
 }

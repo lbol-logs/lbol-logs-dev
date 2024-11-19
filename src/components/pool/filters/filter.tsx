@@ -8,10 +8,6 @@ import { CardPoolContext } from 'contexts/cardPoolContext';
 import usePool from 'hooks/usePool';
 import { latestVersion } from 'configs/globals';
 
-const toggleCheckedClassName = 'p-filter__toggle--checked';
-
-export { toggleCheckedClassName };
-
 function Filter() {
   const { t } = useTranslation();
   const { filter, setFilter } = useContext(CardPoolContext);
@@ -25,10 +21,11 @@ function Filter() {
     formRef,
     onCheckboxChange,
     onRadioChange,
+    reset
   } = usePool({ filter, setFilter, version, searchParams });
 
   return (
-    <Form action="" className="p-filter" ref={formRef}>
+    <Form action="./" className="p-filter" ref={formRef}>
       <div className="p-filter__rows">
         <div className="p-filter__row">
           <div className="p-filter__label">{t('character', { ns: 'runList' })}</div>
@@ -44,6 +41,9 @@ function Filter() {
             </div>
             <ColorsWidget onChange={onCheckboxChange} swappedExhibits={swappedExhibits} />
           </div>
+        </div>
+        <div className="p-filter__buttons">
+          <button className="p-filter__button p-filter__button--reset" onClick={reset}>{t('reset', { ns: 'runList' })}</button>
         </div>
       </div>
     </Form>

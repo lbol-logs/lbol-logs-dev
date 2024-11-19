@@ -12,6 +12,7 @@ function ColorsWidget({ onChange, swappedExhibits }: { onChange: ChangeEventHand
   return (
     <>
       {Object.entries(swappedExhibits).map(([color, exhibits]) => {
+        if (color === 'A') return;
         const exhibitWidgets = exhibits.map(exhibit => {
           const isExhibitChecked = ex ? ex.includes(exhibit) : false;
 
