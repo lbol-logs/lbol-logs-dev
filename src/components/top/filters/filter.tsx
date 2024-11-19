@@ -88,7 +88,7 @@ function Filter() {
         <div className="p-filter__label p-filter__label--head p-filter__button p-filter__button--apply" onClick={onClick}>{t('filter', { ns: 'runList' })}</div>
       </div>
       <div className={`p-filter__rows ${!showFilter ? 'p-filter__rows--hide' : ''}`}>
-      <div className="p-filter__row">
+        <div className="p-filter__row">
           <div className="p-filter__label">{t('name', { ns: 'runList' })}</div>
           <div className="p-filter__values">
             <input className="p-filter__input" name="na" defaultValue={na} />
