@@ -19,7 +19,7 @@ function ScreenshotModal({ screenshot }: { screenshot: string }) {
     const makeImagePromise = async () => await getBlob();
     await navigator.clipboard.write(
       [new ClipboardItem({[type]: makeImagePromise() })]
-    )
+    );
   }
 
   async function share() {
@@ -29,7 +29,7 @@ function ScreenshotModal({ screenshot }: { screenshot: string }) {
     }
     navigator.share({
       files: [file]
-    })
+    });
   }
 
   function save() {

@@ -16,7 +16,7 @@ function ExhibitsTypes({ onChange, startingExhibit, swappedExhibit }: { onChange
     startingExhibit,
     swappedExhibit
   };
-  const defaultType = DefaultFilter.check(DefaultFilter.keys.et)
+  const defaultType = DefaultFilter.check(DefaultFilter.keys.et);
   const hasSpellcard = sc ? sc.length : false;
 
   return (

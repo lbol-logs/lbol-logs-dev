@@ -17,7 +17,7 @@ function Announcement() {
     <div className="p-announcement">
       <p className="p-announcement__text">You can upload {tempVersion || version} log now but configs, texts and images are WIP: {wip}</p>
     </div>
-  )
+  );
 }
 
 export default Announcement;

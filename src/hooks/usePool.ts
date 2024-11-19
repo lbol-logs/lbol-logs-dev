@@ -158,7 +158,6 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
       if (!(key in keys)) continue;
       if (radios.includes(key)) continue;
       const _key = key as keyof TPoolCheckbox;
-      console.log({_key, value, currentFilter: JSON.parse(JSON.stringify(currentFilter))})
       if (!(key in currentFilter)) currentFilter[_key] = [];
       (currentFilter[_key] as Array<string>).push(value);
     }

@@ -49,7 +49,7 @@ function LazyLoadImage2({ callback, name, alt, width, height, className, isMod =
 
   useMemo(() => {
     if (override !== null) return;
-    getSrcs(callback, name, isMod)
+    getSrcs(callback, name, isMod);
   }, [callback, name, alt, width, height, className, override]);
   const { src, srcSet } = srcs;
 
