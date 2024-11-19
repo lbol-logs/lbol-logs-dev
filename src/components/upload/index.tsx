@@ -66,15 +66,15 @@ function Upload() {
       <main className="l-upload">
         <div className="l-inner">
           <section className="p-upload">
-              <div className="p-upload__about">
-                <Compatability />
-              </div>
-              {_success}
-              {_error}
-              <Suspense fallback={<Loading />}>
+            <div className="p-upload__about">
+              <Compatability />
+            </div>
+            {_success}
+            {_error}
+            <Suspense fallback={<Loading />}>
               <Uploader />
-              </Suspense>
-            </section>
+            </Suspense>
+          </section>
         </div>
       </main>
       <Footer />
