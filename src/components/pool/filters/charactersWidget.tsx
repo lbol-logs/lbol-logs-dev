@@ -6,7 +6,7 @@ import { CardPoolContext } from 'contexts/cardPoolContext';
 function CharactersWidget({ onChange, characters }: { onChange: ChangeEventHandler, characters: Array<string> }) {
   const { filter } = useContext(CardPoolContext);
   const { ch } = filter;
-console.log({filter});
+
   return (
     <>
       {characters.map(character => {

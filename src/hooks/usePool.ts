@@ -8,11 +8,11 @@ import { useTranslation } from 'react-i18next';
 import { TPoolCheckbox, TPoolRadio, TPool } from 'utils/types/others';
 import DefaultPool from 'utils/classes/DefaultPool';
 import { useSubmit } from 'react-router-dom';
-import { CONFIGS_DATA, configsData } from 'configs/globals';
+import { CONFIGS_DATA, configsData, latestVersion } from 'configs/globals';
 import Configs from 'utils/classes/Configs';
 import { flushSync } from 'react-dom';
 
-function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, setFilter: TDispatch<TPool>, version: string, searchParams: URLSearchParams }) {
+function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter: TDispatch<TPool>, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
 
   const [loaded, setLoaded] = useState(false);
@@ -25,10 +25,11 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
   useMemo(() => {
     setLoaded(false);
     (async() => {
-        await CONFIGS_DATA.fetchAsync(version, ['characters', 'exhibits']);
+        await CONFIGS_DATA.fetchAsync(latestVersion, ['characters', 'exhibits']);
         setLoaded(true);
     })();
-  }, [version]);
+  }, []);
+
   const dummyConfigs = new Configs('dummy', {});
   let charactersConfigs = dummyConfigs;
   let exhibitsConfigs = dummyConfigs;
@@ -102,8 +103,7 @@ function usePool({ filter, setFilter, version, searchParams }: { filter: TPool, 
   }
 
   function reflectTypes(key: string, value: string) {
-    // if (key === DefaultPool.keys.et) reflectExhibitsTypes(value);
-    // else if (key === DefaultPool.keys.rt) reflectRequestsTypes(value);
+    if (key === DefaultPool.keys.et) reflectEventsTypes(value);
   }
 
   function reflectEventsTypes(value: string) {

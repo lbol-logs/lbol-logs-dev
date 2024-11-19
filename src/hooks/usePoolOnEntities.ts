@@ -1,14 +1,17 @@
-import { configsData, modsConfigsData } from 'configs/globals';
+import { CONFIGS_DATA, configsData, latestVersion, modsConfigsData } from 'configs/globals';
 import { TCardIds } from 'contexts/cardPoolContext';
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import BMana from 'utils/classes/BMana';
+import Configs from 'utils/classes/Configs';
 import DefaultPool from 'utils/classes/DefaultPool';
 import { compareArrays, copyObject, getResultType, checkIsMod, getEntityNs } from 'utils/functions/helpers';
-import { TDispatch } from 'utils/types/common';
+import { TDispatch, TObjString } from 'utils/types/common';
 import { TPool } from 'utils/types/others';
 import { TExhibits, TRequests } from 'utils/types/runData';
 
 function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCardIds>) {
+  const [loaded, setLoaded] = useState(false);
+
   // TODO
   // let filteredList = copyObject({});
   const filteredList: TCardIds = [];
@@ -97,11 +100,28 @@ function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCar
     setFilteredPool(filteredList);
   }, [currentFilter]);
 
-  const { ch, ex } = currentFilter;
+  const { ch, ex, et } = currentFilter;
 
-  if (!ch || !ex || !ex.length) return;
+  const invalid = !ch || !ex || !ex.length;
 
-  const { charactersConfigs, exhibitsConfigs } = configsData;
+  useMemo(() => {
+    if (invalid) return;
+    setLoaded(false);
+    (async() => {
+        await CONFIGS_DATA.fetchAsync(latestVersion, ['characters', 'exhibits', 'events']);
+        setLoaded(true);
+    })();
+  }, []);
+
+  if (invalid || !loaded) return;
+
+  const dummyConfigs = new Configs('dummy', {});
+  let charactersConfigs = dummyConfigs;
+  let exhibitsConfigs = dummyConfigs;
+  if (loaded) {
+    ({ charactersConfigs, exhibitsConfigs } = configsData);
+  }
+
   const characterConfigs = charactersConfigs.get(ch);
   const { BaseMana } = characterConfigs;
 
@@ -112,12 +132,36 @@ function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCar
     baseMana = BMana.add(baseMana, BaseMana);
   }
 
+  const baseManaWithoutEvent = baseMana;
+
+  const defaultType = DefaultPool.check(DefaultPool.keys.et);
+  if (et !== undefined && et !== defaultType) {
+    const { eventsConfigs } = configsData;
+    if (eventsConfigs.has(et)) {
+      const config = eventsConfigs.get(et);
+      const { mana } = config;
+
+      const key = DefaultPool.ev[et as keyof typeof DefaultPool.ev];
+      const remove = currentFilter[key as keyof TPool] as string;
+
+      if (remove) {
+        baseMana = BMana.remove(baseMana, remove);
+        baseMana = BMana.add(baseMana, mana);
+      }
+    }
+  }
+
   // TODO: setAdd, setRemove (last currentCardIds)
   // TODO: setCurrentCardIds
 
   return {
-    baseMana
+    baseMana,
+    baseManaWithoutEvent
   };
 }
 
 export default usePoolOnEntities;
+
+function setLoaded(arg0: boolean) {
+  throw new Error('Function not implemented.');
+}

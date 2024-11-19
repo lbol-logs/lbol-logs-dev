@@ -12,7 +12,7 @@ function EventsTypes({ onChange, PatchouliPhilosophy, JunkoColorless }: { onChan
     PatchouliPhilosophy,
     JunkoColorless
   };
-  const defaultType = DefaultPool.check(DefaultPool.keys.et)
+  const defaultType = DefaultPool.check(DefaultPool.keys.et);
 
   return (
     <>

@@ -29,13 +29,16 @@ function PoolTemplate() {
     return currentFilter;
   }, [searchParams]);
   const o = usePoolOnEntities(currentFilter, setFilteredPool);
-  const { baseMana = '' } = o || {};
+  const {
+    baseMana = '',
+    baseManaWithoutEvent
+  } = o || {};
   // const BaseMana = 'RRWW';
 
   return (
     <section className="p-card-pool">
       <BaseManasWidget baseMana={baseMana} />
-      <Filter />
+      <Filter baseManaWithoutEvent={baseManaWithoutEvent} />
     </section>
   );
 }

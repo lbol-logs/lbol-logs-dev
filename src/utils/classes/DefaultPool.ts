@@ -15,9 +15,16 @@ class DefaultPool {
     jc: 'jc'
   };
 
+  static ev = {
+    PatchouliPhilosophy: 'pp',
+    JunkoColorless: 'jc',
+  };
+
   static radios = [
     this.keys.ch,
-    this.keys.et
+    this.keys.et,
+    this.keys.pp,
+    this.keys.jc
   ];
 
   static get(name: string) {

@@ -42,7 +42,7 @@ type TFilter = TFilterText & TFilterRadio & TFilterCheckbox;
 
 type TPoolRadio = {
   ch?: string
-  ev?: string,
+  et?: string,
   pp?: string,
   jc?: string
 };

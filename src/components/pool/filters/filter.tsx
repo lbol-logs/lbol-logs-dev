@@ -8,11 +8,12 @@ import { CardPoolContext } from 'contexts/cardPoolContext';
 import usePool from 'hooks/usePool';
 import { latestVersion } from 'configs/globals';
 import EventsTypes from './eventsTypes';
+import DefaultPool from 'utils/classes/DefaultPool';
+import EventManasWidget from './eventManasWidget';
 
-function Filter() {
+function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
   const { t } = useTranslation();
   const { filter, setFilter } = useContext(CardPoolContext);
-  const version = latestVersion;
   const [searchParams] = useSearchParams();
 
   const {
@@ -28,7 +29,32 @@ function Filter() {
     onRadioChange,
     onEventsTypesChange,
     reset
-  } = usePool({ filter, setFilter, version, searchParams });
+  } = usePool({ filter, setFilter, searchParams });
+
+  let PatchouliPhilosophyRow = null;
+  let JunkoColorlessRow = null;
+
+  if (showPatchouliPhilosophy) {
+    PatchouliPhilosophyRow = (
+      <div className="p-filter__row">
+        <div className="p-filter__label">{PatchouliPhilosophy}</div>
+        <div className="p-filter__values">
+          <EventManasWidget onChange={onRadioChange} name={DefaultPool.et.pp} baseMana={baseManaWithoutEvent} excludes="P" />
+        </div>
+      </div>
+    );
+  }
+
+  if (showJunkoColorless) {
+    JunkoColorlessRow = (
+      <div className="p-filter__row">
+        <div className="p-filter__label">{JunkoColorless}</div>
+        <div className="p-filter__values">
+        <EventManasWidget onChange={onRadioChange} name={DefaultPool.et.jc} baseMana={baseManaWithoutEvent} excludes="CP" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Form action="./" className="p-filter" ref={formRef}>
@@ -54,6 +80,8 @@ function Filter() {
             <EventsTypes onChange={onEventsTypesChange} PatchouliPhilosophy={PatchouliPhilosophy} JunkoColorless={JunkoColorless} />
           </div>
         </div>
+        {PatchouliPhilosophyRow}
+        {JunkoColorlessRow}
         <div className="p-filter__buttons">
           <button className="p-filter__button p-filter__button--reset" onClick={reset}>{t('reset', { ns: 'runList' })}</button>
         </div>
