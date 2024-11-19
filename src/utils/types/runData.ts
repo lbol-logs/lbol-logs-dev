@@ -178,7 +178,7 @@ type TResult = {
   Timestamp: string,
   Cards: TCards,
   Exhibits: TExhibits,
-  BaseMana: string,
+  BaseMana: TBaseMana,
   ReloadTimes?: number,
   Seed?: string
 };

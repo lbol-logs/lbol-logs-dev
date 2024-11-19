@@ -1,4 +1,4 @@
-import { CardsWithUpgradeCounter, ExhibitsWithCounter, RequestType, SpecialExhibit, TBaseManaObj, TCard, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
+import { CardsWithUpgradeCounter, ExhibitsWithCounter, RequestType, SpecialExhibit, TBaseMana, TBaseManaObj, TCard, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
 import { copyObject, getSameCardIndex } from 'utils/functions/helpers';
 import Configs from 'utils/classes/Configs';
@@ -247,7 +247,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
 
   // BaseBaseMana
   {
-    let finalBaseMana: string;
+    let finalBaseMana: TBaseMana;
     if (BaseMana) {
       finalBaseMana = BaseMana;
     }
