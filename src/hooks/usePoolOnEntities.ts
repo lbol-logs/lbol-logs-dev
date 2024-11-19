@@ -1,104 +1,14 @@
-import { CONFIGS_DATA, configsData, latestVersion, modsConfigsData } from 'configs/globals';
-import { TCardIds } from 'contexts/cardPoolContext';
+import { CONFIGS_DATA, configsData, latestVersion } from 'configs/globals';
 import { useEffect, useMemo, useState } from 'react';
 import BMana from 'utils/classes/BMana';
-import Configs from 'utils/classes/Configs';
 import DefaultPool from 'utils/classes/DefaultPool';
-import { compareArrays, copyObject, getResultType, checkIsMod, getEntityNs } from 'utils/functions/helpers';
-import { TDispatch, TObjString } from 'utils/types/common';
+import { convertCards } from 'utils/functions/helpers';
+import { TDispatch } from 'utils/types/common';
 import { TPool } from 'utils/types/others';
-import { TExhibits, TRequests } from 'utils/types/runData';
+import { TCards } from 'utils/types/runData';
 
-function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCardIds>) {
+function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCards>) {
   const [loaded, setLoaded] = useState(false);
-
-  // TODO
-  // let filteredList = copyObject({});
-  const filteredList: TCardIds = [];
-
-  const radios = DefaultPool.radios;
-  const keys = DefaultPool.keys;
-
-  // TODO
-  // for (const [key, f] of Object.entries(currentFilter)) {
-  //   const isRadio = radios.includes(key);
-  //   if (isRadio) {
-  //     if (key === keys.rt) {
-  //       const value = f as string;
-  //       if (value === DefaultPool.rt.inactive) {
-  //         filteredList = filteredList.filter(e => e.requests.length === 0);
-  //       }
-  //     }
-  //   }
-  //   else {
-  //     const value = f as Array<string>;
-  //     if (key === keys.ch) {
-  //       const includesMods = value.includes('Mods');
-  //       filteredList = filteredList.filter(e => {
-  //         const character = e[map[key]] as string;
-  //         const isCharacter = value.includes(character);
-  //         const isModCharacter = includesMods ? checkIsMod(character) : false;
-  //         return isCharacter || isModCharacter;
-  //       });
-  //     }
-  //     else if (key === keys.sc) {
-  //       const includesMods = value.filter(v => ['ModA', 'ModB'].includes(v)).map(v => v.replace(/^Mod/, ''));
-  //       filteredList = filteredList.filter(e => {
-  //         const character = e[map.ch] as string;
-  //         const spellcard = character + e[map[key]] as string;
-  //         const isSpellcard = value.includes(spellcard);
-  //         if (isSpellcard) return true;
-
-  //         if (!includesMods.length) return false;
-
-  //         const isModCharacter = checkIsMod(character);
-  //         if (!isModCharacter) return false;
-
-  //         const isModSpellcard = includesMods.some(v => spellcard.endsWith(v));
-  //         return isModSpellcard;
-  //       });
-  //     }
-  //     else if (key === keys.rq) {
-  //       filteredList = filteredList.filter(e => compareArrays(value, e[map[key]] as TRequests));
-  //     }
-  //     else if (key === keys.re) {
-  //       filteredList = filteredList.filter(e => value.includes(getResultType(e[map[key]] as string)));
-  //     }
-  //     else if (key === keys.st) {
-  //       const exhibits: TExhibits = [];
-  //       const modsExhibits: TExhibits = [];
-  //       for (const exhibit of value) {
-  //         const [, isMod] = getEntityNs({ exhibit: { Id: exhibit } });
-  //         if (isMod) modsExhibits.push(exhibit.replace(/^Mod/, ''));
-  //         else exhibits.push(exhibit);
-  //       }
-
-  //       filteredList = filteredList.filter(e => {
-  //         const exhibit = e[map[key]] as string;
-  //         const isExhibit = exhibits.includes(exhibit);
-  //         if (isExhibit) return true;
-
-  //         const character = e[map.ch] as string;
-  //         const isModCharacter = checkIsMod(character);
-  //         if (!isModCharacter) return false;
-
-  //         const { charactersConfigs } = modsConfigsData;
-  //         const characterConfigs = charactersConfigs.get(character);
-  //         if (characterConfigs === undefined) return false;
-
-  //         const isModExhibit = modsExhibits.some(type => characterConfigs[type].Exhibit === exhibit);
-  //         return isModExhibit;
-  //       });
-  //     }
-  //     else {
-  //       filteredList = filteredList.filter(e => value.includes(e[map[key]] as string));
-  //     }
-  //   }
-  // }
-
-  useEffect(() => {
-    setFilteredPool(filteredList);
-  }, [currentFilter]);
 
   const { ch, ex, et } = currentFilter;
 
@@ -107,20 +17,37 @@ function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCar
   useMemo(() => {
     if (invalid) return;
     setLoaded(false);
+    CONFIGS_DATA.fetch(latestVersion, ['cards']);
     (async() => {
         await CONFIGS_DATA.fetchAsync(latestVersion, ['characters', 'exhibits', 'events']);
         setLoaded(true);
     })();
-  }, []);
+  }, [invalid]);
 
-  if (invalid || !loaded) return;
+  const notReady = invalid || !loaded;
 
-  const dummyConfigs = new Configs('dummy', {});
-  let charactersConfigs = dummyConfigs;
-  let exhibitsConfigs = dummyConfigs;
-  if (loaded) {
-    ({ charactersConfigs, exhibitsConfigs } = configsData);
-  }
+  useEffect(() => {
+    const cardIds: Array<string> = [];
+    if (!notReady) {
+      const { cardsConfigs } = configsData;
+      const { ids } = cardsConfigs;
+
+      for (const id of ids) {
+        const config = cardsConfigs.get(id);
+        const cardConfigs = config.getAll();
+        const { Owner, isMisfortune } = cardConfigs;
+
+        if (isMisfortune) continue;
+        if (Owner === ch) cardIds.push(id);
+      }
+    }
+    const filteredList = convertCards(cardIds);
+    setFilteredPool(filteredList);
+  }, [currentFilter, notReady]);
+
+  if (notReady) return;
+
+  const { charactersConfigs, exhibitsConfigs } = configsData;
 
   const characterConfigs = charactersConfigs.get(ch);
   const { BaseMana } = characterConfigs;

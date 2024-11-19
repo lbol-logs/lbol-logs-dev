@@ -6,9 +6,10 @@ import { CardPoolContext } from 'contexts/cardPoolContext';
 import { useSearchParams } from 'react-router-dom';
 import { TPool, TPoolCheckbox, TPoolRadio } from 'utils/types/others';
 import DefaultPool from 'utils/classes/DefaultPool';
+import CardCards from 'components/log/entityCards/cardCards';
 
 function PoolTemplate() {
-  const { setFilteredPool } = useContext(CardPoolContext);
+  const { filteredPool, setFilteredPool } = useContext(CardPoolContext);
   const [searchParams] = useSearchParams();
 
   const currentFilter = useMemo(() => {
@@ -38,6 +39,8 @@ function PoolTemplate() {
     <section className="p-card-pool">
       <BaseManasWidget baseMana={baseMana} />
       <Filter baseManaWithoutEvent={baseManaWithoutEvent} />
+      <h2>WIP</h2>
+      <CardCards cards={filteredPool} />
     </section>
   );
 }

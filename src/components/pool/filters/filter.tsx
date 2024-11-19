@@ -15,6 +15,9 @@ function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
   const { filter, setFilter } = useContext(CardPoolContext);
   const [searchParams] = useSearchParams();
 
+  const o = usePool({ filter, setFilter, searchParams });
+  if (!o) return null;
+
   const {
     showPatchouliPhilosophy,
     showJunkoColorless,
@@ -28,7 +31,7 @@ function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
     onRadioChange,
     onEventsTypesChange,
     reset
-  } = usePool({ filter, setFilter, searchParams });
+  } = o;
 
   let PatchouliPhilosophyRow = null;
   let JunkoColorlessRow = null;

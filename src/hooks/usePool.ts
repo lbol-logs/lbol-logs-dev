@@ -27,19 +27,42 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
     })();
   }, []);
 
-  const dummyConfigs = new Configs('dummy', {});
-  let charactersConfigs = dummyConfigs;
-  let exhibitsConfigs = dummyConfigs;
-  if (loaded) {
-    ({ charactersConfigs, exhibitsConfigs } = configsData);
-  }
-
-  const characters = charactersConfigs.ids;
-
-  const [startingExhibits, swappedExhibits] = getExhibits(exhibitsConfigs);
+  // const dummyConfigs = new Configs('dummy', {});
+  // let charactersConfigs = dummyConfigs;
+  // let exhibitsConfigs = dummyConfigs;
+  // if (loaded) {
+  //   ({ charactersConfigs, exhibitsConfigs } = configsData);
+  // }
 
   const formRef = useRef<HTMLFormElement>(null);
   const submit = useSubmit();
+
+  useEffect(() => {
+    let currentFilter: TPool = {};
+    const keys = DefaultPool.keys;
+    const radios = DefaultPool.radios;
+
+    for (const [key, value] of Array.from(searchParams.entries())) {
+      if (!(key in keys)) continue;
+      if (radios.includes(key)) continue;
+      const _key = key as keyof TPoolCheckbox;
+      if (!(key in currentFilter)) currentFilter[_key] = [];
+      (currentFilter[_key] as Array<string>).push(value);
+    }
+
+    for (const key of radios) {
+      currentFilter = updateTypesFilter(currentFilter, key);
+    }
+
+    setFilter(currentFilter);
+  }, []);
+
+  if (!loaded) return;
+
+  const { charactersConfigs, exhibitsConfigs } = configsData;
+  const characters = charactersConfigs.ids;
+
+  const [startingExhibits, swappedExhibits] = getExhibits(exhibitsConfigs);
 
   function getExhibits(configs: Configs) {
     const startingExhibits: TObj<TExhibits> = {};
@@ -145,26 +168,6 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
     reflectTypes(key, value);
     return currentFilter;
   }
-
-  useEffect(() => {
-    let currentFilter: TPool = {};
-    const keys = DefaultPool.keys;
-    const radios = DefaultPool.radios;
-
-    for (const [key, value] of Array.from(searchParams.entries())) {
-      if (!(key in keys)) continue;
-      if (radios.includes(key)) continue;
-      const _key = key as keyof TPoolCheckbox;
-      if (!(key in currentFilter)) currentFilter[_key] = [];
-      (currentFilter[_key] as Array<string>).push(value);
-    }
-
-    for (const key of radios) {
-      currentFilter = updateTypesFilter(currentFilter, key);
-    }
-
-    setFilter(currentFilter);
-  }, []);
 
   return {
     showPatchouliPhilosophy,
