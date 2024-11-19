@@ -161,7 +161,3 @@ function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCar
 }
 
 export default usePoolOnEntities;
-
-function setLoaded(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}

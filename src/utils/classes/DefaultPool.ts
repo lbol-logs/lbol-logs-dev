@@ -1,4 +1,3 @@
-// TODO
 class DefaultPool {
   static keys = {
     ch: 'ch',
@@ -8,7 +7,6 @@ class DefaultPool {
     jc: 'jc'
   };
 
-  // TODO
   static et = {
     none: 'none',
     pp: 'pp',

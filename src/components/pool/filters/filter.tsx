@@ -6,7 +6,6 @@ import StartingExhibitsWidget from './startingExhibitsWidget';
 import { Form, useSearchParams } from 'react-router-dom';
 import { CardPoolContext } from 'contexts/cardPoolContext';
 import usePool from 'hooks/usePool';
-import { latestVersion } from 'configs/globals';
 import EventsTypes from './eventsTypes';
 import DefaultPool from 'utils/classes/DefaultPool';
 import EventManasWidget from './eventManasWidget';

@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from 'react';
 import { TDispatch } from 'utils/types/common';
-import { TPool, TRunList } from 'utils/types/others';
+import { TPool } from 'utils/types/others';
 
 type TCardIds = Array<string>;
 
@@ -11,6 +11,7 @@ export type {
 const defaultFilter: TPool = {};
 const defaultFilteredPool: TCardIds = [];
 
+// TODO: last, add, remove card ids
 type TCardPoolContext = {
   filter: TPool
   setFilter: TDispatch<TPool>,

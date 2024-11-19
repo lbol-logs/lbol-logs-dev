@@ -1,8 +1,6 @@
 import { ChangeEvent, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { TDispatch, TObj } from 'utils/types/common';
 import { TExhibits } from 'utils/types/runData';
-import { getConfigs } from 'utils/functions/fetchData';
-import use from 'utils/functions/use';
 import { copyObject } from 'utils/functions/helpers';
 import { useTranslation } from 'react-i18next';
 import { TPoolCheckbox, TPoolRadio, TPool } from 'utils/types/others';
@@ -10,7 +8,6 @@ import DefaultPool from 'utils/classes/DefaultPool';
 import { useSubmit } from 'react-router-dom';
 import { CONFIGS_DATA, configsData, latestVersion } from 'configs/globals';
 import Configs from 'utils/classes/Configs';
-import { flushSync } from 'react-dom';
 
 function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter: TDispatch<TPool>, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
@@ -128,7 +125,7 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
 
   function reset(e: MouseEvent<HTMLButtonElement>) {
     setFilter({});
-    // reflectExhibitsTypes(DefaultPool.get(DefaultPool.keys.et) as string);
+    reflectEventsTypes(DefaultPool.get(DefaultPool.keys.et) as string);
     submit(null);
     e.preventDefault();
   }

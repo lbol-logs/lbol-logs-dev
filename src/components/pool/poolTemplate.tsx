@@ -11,7 +11,6 @@ function PoolTemplate() {
   const { setFilteredPool } = useContext(CardPoolContext);
   const [searchParams] = useSearchParams();
 
-  // TODO
   const currentFilter = useMemo(() => {
     const currentFilter: TPool = {};
     const keys = DefaultPool.keys;
@@ -28,12 +27,12 @@ function PoolTemplate() {
     }
     return currentFilter;
   }, [searchParams]);
+
   const o = usePoolOnEntities(currentFilter, setFilteredPool);
   const {
     baseMana = '',
     baseManaWithoutEvent
   } = o || {};
-  // const BaseMana = 'RRWW';
 
   return (
     <section className="p-card-pool">
