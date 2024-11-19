@@ -1520,6 +1520,9 @@ html:lang(en) .p-result__type {
   flex-wrap: wrap;
   gap: var(--gap);
 }
+.p-filter__exhibits--pool {
+  margin-bottom: 1em;
+}
 
 .p-filter__character-spellcards,
 .p-filter__character-exhibits {

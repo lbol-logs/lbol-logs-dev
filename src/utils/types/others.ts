@@ -40,6 +40,17 @@ type TFilterRadio = {
 type TFilterCheckbox = TObj<Array<string>>;
 type TFilter = TFilterText & TFilterRadio & TFilterCheckbox;
 
+type TPoolRadio = {
+  ch?: string
+  ev?: string,
+  pp?: string,
+  jc?: string
+};
+type TPoolCheckbox = {
+  ex?: Array<string>
+};
+type TPool = TPoolRadio & TPoolCheckbox;
+
 type TEventComponent = ({ station }: { station: TStation }) => JSX.Element;
 
 type TRounds = {
@@ -89,6 +100,9 @@ export type {
   TFilterRadio,
   TFilterCheckbox,
   TFilter,
+  TPoolRadio,
+  TPoolCheckbox,
+  TPool,
   TEventComponent,
   TRounds,
   TRequestObj,

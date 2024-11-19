@@ -1,15 +1,15 @@
 import { createContext, ReactNode, useState } from 'react';
 import { TDispatch } from 'utils/types/common';
-import { TFilter, TRunList } from 'utils/types/others';
+import { TPool, TRunList } from 'utils/types/others';
 
-const defaultFilter: TFilter = {};
+const defaultFilter: TPool = {};
 const defaultShowFilter: boolean = false;
 const defaultList: TRunList = [];
 const defaultFilteredList: TRunList = [];
 
 type TCardPoolContext = {
-  filter: TFilter
-  setFilter: TDispatch<TFilter>,
+  filter: TPool
+  setFilter: TDispatch<TPool>,
   showFilter: boolean,
   setShowFilter: TDispatch<boolean>,
   list: TRunList,

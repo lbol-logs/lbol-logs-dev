@@ -4,16 +4,17 @@ import { Link, Navigate, useLocation, useSearchParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import Init from 'components/common/layouts/init';
 import Title from 'components/common/layouts/title';
-import Filter from './filters/filter';
 import { Suspense } from 'react';
 import Loading from 'components/common/layouts/loading';
 import CardPoolContext from 'contexts/cardPoolContext';
+import PoolTemplate from './poolTemplate';
 
 function Pool() {
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
   const { t } = useTranslation();
 
+  // TODO
   let _success = null;
   let _error = null;
 
@@ -67,7 +68,7 @@ function Pool() {
         <div className="l-inner">
           <Suspense fallback={<Loading />}>
             <CardPoolContext>
-              <Filter />
+              <PoolTemplate />
             </CardPoolContext>
           </Suspense>
         </div>
