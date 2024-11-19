@@ -27,13 +27,6 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
     })();
   }, []);
 
-  // const dummyConfigs = new Configs('dummy', {});
-  // let charactersConfigs = dummyConfigs;
-  // let exhibitsConfigs = dummyConfigs;
-  // if (loaded) {
-  //   ({ charactersConfigs, exhibitsConfigs } = configsData);
-  // }
-
   const formRef = useRef<HTMLFormElement>(null);
   const submit = useSubmit();
 
@@ -70,13 +63,14 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
     for (const id of configs.ids) {
       const { Rarity, BaseMana, Owner } = configs.get(id);
       if (Rarity !== 'Shining') continue;
+      const baseMana = BaseMana[0];
       if (Owner) {
         if (!(Owner in startingExhibits)) startingExhibits[Owner] = [];
          startingExhibits[Owner].push(id);
       }
       else {
-        if (!(BaseMana in swappedExhibits)) swappedExhibits[BaseMana] = [];
-        swappedExhibits[BaseMana].push(id);
+        if (!(baseMana in swappedExhibits)) swappedExhibits[baseMana] = [];
+        swappedExhibits[baseMana].push(id);
       }
     }
     return [startingExhibits, swappedExhibits];
