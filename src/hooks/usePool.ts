@@ -150,8 +150,23 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
   function deleteValues() {
     const data = new FormData(formRef.current as HTMLFormElement);
     for (const key of DefaultPool.radios) {
-      const value = data.get(key);
-      if (value === DefaultPool.check(key)) data.delete(key);
+      if (key === DefaultPool.keys.et) {
+        const value = data.get(key);
+        if (value === DefaultPool.check(key)) {
+          data.delete(key);
+        }
+        else {
+          for (const [ev, name] of Object.entries(DefaultPool.ev)) {
+            if (value === ev) {
+              const v = filter[name as keyof TPoolRadio] as string;
+              if (v) data.set(name, v);
+            }
+            else {
+              data.delete(name);
+            }
+          }
+        }
+      }
     }
     return data;
   }
