@@ -106,7 +106,7 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
     const currentFilter = copyObject(filter) as TPoolRadio;
     currentFilter[name] = value;
     setFilter(currentFilter as TPool);
-    apply();
+    apply(currentFilter);
   }
 
   function onEventsTypesChange(e: ChangeEvent<HTMLInputElement>) {
@@ -135,8 +135,8 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
     }
   }
 
-  function apply() {
-    const data = deleteValues();
+  function apply(currentFilter: TPoolRadio = {}) {
+    const data = deleteValues(currentFilter);
     submit(data);
   }
 
@@ -147,7 +147,7 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
     e.preventDefault();
   }
 
-  function deleteValues() {
+  function deleteValues(currentFilter: TPoolRadio) {
     const data = new FormData(formRef.current as HTMLFormElement);
     for (const key of DefaultPool.radios) {
       if (key === DefaultPool.keys.et) {
@@ -158,7 +158,7 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
         else {
           for (const [ev, name] of Object.entries(DefaultPool.ev)) {
             if (value === ev) {
-              const v = filter[name as keyof TPoolRadio] as string;
+              const v = currentFilter[name as keyof TPoolRadio] as string;
               if (v) data.set(name, v);
             }
             else {
