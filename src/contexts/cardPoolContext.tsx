@@ -5,7 +5,6 @@ import { TCards } from 'utils/types/runData';
 
 const defaultFilter: TPool = {};
 const defaultValidCards: TCards = [];
-const defaultLastValidCards: TCards = [];
 const defaultAddedValidCards: TCards = [];
 const defaultRemovedValidCards: TCards = [];
 
