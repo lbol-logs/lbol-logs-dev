@@ -41,11 +41,12 @@ function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCar
       for (const id of ids) {
         const config = cardsConfigs.get(id);
         const cardConfigs = config.getAll();
-        const { IsPooled, Owner, Colors = '', Cost, Type, isMisfortune } = cardConfigs;
+        const { IsPooled, Owner, Colors = '', Cost, Type, Keywords, isMisfortune } = cardConfigs;
 
         if (IsPooled === false) continue;
         if (Type === 'Tool') continue;
         if (isMisfortune) continue;
+        if (Keywords && Keywords.includes('Gadgets')) continue;
 
         const isValidCharacter = checkCharactersPool(Owner, charactersPool);
         if (!isValidCharacter) continue;
