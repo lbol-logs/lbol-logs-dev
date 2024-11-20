@@ -84,12 +84,13 @@ function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
         </div>
         {PatchouliPhilosophyRow}
         {JunkoColorlessRow}
-        <div className="p-filter__row">
+        {/* TODO */}
+        {/* <div className="p-filter__row">
           <div className="p-filter__label">{t('filter', { ns: 'runList' })}</div>
           <div className="p-filter__values u-flex-col-sp">
             <EventsTypes onChange={onEventsTypesChange} PatchouliPhilosophy={PatchouliPhilosophy} JunkoColorless={JunkoColorless} />
           </div>
-        </div>
+        </div> */}
         <div className="p-filter__buttons">
           <button className="p-filter__button p-filter__button--reset" onClick={reset}>{t('reset', { ns: 'runList' })}</button>
         </div>

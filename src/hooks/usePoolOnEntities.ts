@@ -155,9 +155,6 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
     }
   }
 
-  // TODO: setAdd, setRemove (last currentCardIds)
-  // TODO: setCurrentCardIds
-
   return {
     baseMana,
     baseManaWithoutEvent
