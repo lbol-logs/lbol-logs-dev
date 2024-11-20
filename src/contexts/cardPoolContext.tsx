@@ -4,32 +4,55 @@ import { TPool } from 'utils/types/others';
 import { TCards } from 'utils/types/runData';
 
 const defaultFilter: TPool = {};
-const defaultFilteredPool: TCards = [];
+const defaultValidCards: TCards = [];
+const defaultLastValidCards: TCards = [];
+const defaultAddedValidCards: TCards = [];
+const defaultRemovedValidCards: TCards = [];
 
-// TODO: last, add, remove card ids
 type TCardPoolContext = {
   filter: TPool
   setFilter: TDispatch<TPool>,
-  filteredPool: TCards,
-  setFilteredPool: TDispatch<TCards>
+  validCards: TCards,
+  setValidCards: TDispatch<TCards>,
+  lastValidCards: TCards,
+  setLastValidCards: TDispatch<TCards>,
+  addedValidCards: TCards,
+  setAddedValidCards: TDispatch<TCards>,
+  removedValidCards: TCards,
+  setRemovedValidCards: TDispatch<TCards>
 };
 
 export const CardPoolContext = createContext<TCardPoolContext>({
   filter: defaultFilter,
   setFilter: () => {},
-  filteredPool: defaultFilteredPool,
-  setFilteredPool: () => {}
+  validCards: defaultValidCards,
+  setValidCards: () => {},
+  lastValidCards: defaultLastValidCards,
+  setLastValidCards: () => {},
+  addedValidCards: defaultAddedValidCards,
+  setAddedValidCards: () => {},
+  removedValidCards: defaultRemovedValidCards,
+  setRemovedValidCards: () => {}
 });
 
 function CardPoolProvider({ children }: { children: ReactNode }) {
   const [filter, setFilter] = useState(defaultFilter);
-  const [filteredPool, setFilteredPool] = useState(defaultFilteredPool);
+  const [validCards, setValidCards] = useState(defaultValidCards);
+  const [lastValidCards, setLastValidCards] = useState(defaultLastValidCards);
+  const [addedValidCards, setAddedValidCards] = useState(defaultAddedValidCards);
+  const [removedValidCards, setRemovedValidCards] = useState(defaultRemovedValidCards);
 
   const value = {
     filter,
     setFilter,
-    filteredPool,
-    setFilteredPool
+    validCards,
+    setValidCards,
+    lastValidCards,
+    setLastValidCards,
+    addedValidCards,
+    setAddedValidCards,
+    removedValidCards,
+    setRemovedValidCards
   };
 
   return (

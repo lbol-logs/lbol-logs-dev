@@ -2222,6 +2222,23 @@ html:lang(en) .p-result__type {
   color: var(--f-value);
 }
 
+.p-card-pool__cards {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 1em;
+  padding: 0 0.5em 0.5em;
+  margin: 1em 0;
+}
+.p-card-pool__cards--pool {
+  border-color: var(--orange);
+}
+.p-card-pool__cards--added {
+  border-color: var(--green);
+}
+.p-card-pool__cards--removed {
+  border-color: var(--red);
+}
+
 :root {
   color-scheme: light dark;
   --padding-inner: 0.625em;

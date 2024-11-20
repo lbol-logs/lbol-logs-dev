@@ -2,12 +2,12 @@ import { CONFIGS_DATA, configsData, latestVersion } from 'configs/globals';
 import { useEffect, useMemo, useState } from 'react';
 import BMana from 'utils/classes/BMana';
 import DefaultPool from 'utils/classes/DefaultPool';
-import { convertCards } from 'utils/functions/helpers';
+import { convertCards, copyObject } from 'utils/functions/helpers';
 import { TDispatch } from 'utils/types/common';
 import { TCardMana, TPool } from 'utils/types/others';
 import { TCards } from 'utils/types/runData';
 
-function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCards>) {
+function usePoolOnEntities({ currentFilter, validCards, setValidCards, setLastValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCards, setValidCards: TDispatch<TCards>, setLastValidCards: TDispatch<TCards>, setAddedValidCards: TDispatch<TCards>, setRemovedValidCards: TDispatch<TCards> }) {
   const [loaded, setLoaded] = useState(false);
 
   const { ch, ex, et } = currentFilter;
@@ -66,8 +66,18 @@ function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCar
         cardIds.push(id);
       }
     }
-    const filteredList = convertCards(cardIds);
-    setFilteredPool(filteredList);
+    const filteredCards = convertCards(cardIds);
+
+    const lastValidCards = copyObject(validCards);
+    console.log(filteredCards.length, lastValidCards.length)
+    if (lastValidCards.length && filteredCards.length) {
+      const addedValidCards = filteredCards.filter(({ Id }) => lastValidCards.findIndex(card => card.Id === Id) === -1);
+      setAddedValidCards(addedValidCards);
+      const removedValidCards = lastValidCards.filter(({ Id }) => filteredCards.findIndex(card => card.Id === Id) === -1);
+      setRemovedValidCards(removedValidCards);
+    }
+    // setLastValidCards(lastValidCards);
+    setValidCards(filteredCards);
   }, [currentFilter, notReady]);
 
   if (notReady) return;

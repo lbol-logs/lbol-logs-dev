@@ -8,10 +8,12 @@ import { TPool, TPoolCheckbox, TPoolRadio } from 'utils/types/others';
 import DefaultPool from 'utils/classes/DefaultPool';
 import CardCards from 'components/log/entityCards/cardCards';
 import Modal from 'components/log/modal';
+import { useTranslation } from 'react-i18next';
 
 function PoolTemplate() {
-  const { filteredPool, setFilteredPool } = useContext(CardPoolContext);
+  const { validCards, setValidCards, lastValidCards, setLastValidCards, addedValidCards, setAddedValidCards, removedValidCards, setRemovedValidCards } = useContext(CardPoolContext);
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
 
   const currentFilter = useMemo(() => {
     const currentFilter: TPool = {};
@@ -30,7 +32,7 @@ function PoolTemplate() {
     return currentFilter;
   }, [searchParams]);
 
-  const o = usePoolOnEntities(currentFilter, setFilteredPool);
+  const o = usePoolOnEntities({ currentFilter, validCards, setValidCards, setLastValidCards, setAddedValidCards, setRemovedValidCards });
   const {
     baseMana = '',
     baseManaWithoutEvent = ''
@@ -39,10 +41,17 @@ function PoolTemplate() {
   return (
     <section className="p-card-pool">
       <Modal />
-      <BaseManasWidget baseMana={baseMana} />
       <Filter baseManaWithoutEvent={baseManaWithoutEvent} />
-      <h2>WIP</h2>
-      <CardCards cards={filteredPool} />
+      <BaseManasWidget baseMana={baseMana} />
+      {Object.entries({ added: addedValidCards, removed: removedValidCards, pool: validCards }).map(([key, cards]) => {
+        if (!cards.length) return null;
+        return (
+          <div className={`p-card-pool__cards p-card-pool__cards--${key}`} key={key}>
+            <h2>{t('cardsCount', { ns: 'log', count: cards.length })}</h2>
+            <CardCards cards={cards} />
+          </div>
+        );
+      })}
     </section>
   );
 }
