@@ -4,7 +4,7 @@ import BMana from 'utils/classes/BMana';
 import DefaultPool from 'utils/classes/DefaultPool';
 import { convertCards } from 'utils/functions/helpers';
 import { TDispatch } from 'utils/types/common';
-import { TPool } from 'utils/types/others';
+import { TCardMana, TPool } from 'utils/types/others';
 import { TCards } from 'utils/types/runData';
 
 function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCards>) {
@@ -25,20 +25,44 @@ function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCar
   }, [invalid]);
 
   const notReady = invalid || !loaded;
+  let baseMana: string;
 
   useEffect(() => {
     const cardIds: Array<string> = [];
-    if (!notReady) {
-      const { cardsConfigs } = configsData;
+    if (!notReady && baseMana) {
+      const { cardsConfigs, exhibitsConfigs } = configsData;
       const { ids } = cardsConfigs;
+      const charactersPool = [ch];
+      ex.forEach(exhibit => {
+        const { Owner } = exhibitsConfigs.get(exhibit);
+        if (Owner && !charactersPool.includes(Owner)) charactersPool.push(Owner);
+      });
 
       for (const id of ids) {
         const config = cardsConfigs.get(id);
         const cardConfigs = config.getAll();
-        const { Owner, isMisfortune } = cardConfigs;
+        const { IsPooled, Owner, Colors = '', Cost, Type, isMisfortune } = cardConfigs;
 
+        if (IsPooled === false) continue;
+        if (Type === 'Tool') continue;
         if (isMisfortune) continue;
-        if (Owner === ch) cardIds.push(id);
+
+        const isValidCharacter = checkCharactersPool(Owner, charactersPool);
+        if (!isValidCharacter) continue;
+
+        const isValidColor = checkColorsPool(Colors);
+        if (!isValidColor) continue;
+
+        const canPayColorManas = checkColorManas(Cost);
+        if (!canPayColorManas) continue;
+
+        const canPayHybridManas = checkHybridManas(Cost);
+        if (!canPayHybridManas) continue;
+
+        const canPayAllManas = checkAllManas(Cost);
+        if (!canPayAllManas) continue;
+          
+        cardIds.push(id);
       }
     }
     const filteredList = convertCards(cardIds);
@@ -47,12 +71,54 @@ function usePoolOnEntities(currentFilter: TPool, setFilteredPool: TDispatch<TCar
 
   if (notReady) return;
 
+  function checkCharactersPool(Owner: string, charactersPool: Array<string>) {
+    return !Owner || charactersPool.includes(Owner);
+  }
+
+  function checkColorsPool(Colors: string) {
+    return ex?.includes('KongbaiKapai') || Colors.split('').every(color => baseMana.includes(color));
+  }
+
+  function checkColorManas(Cost: TCardMana) {
+    let shortage = 0;
+    const b = baseMana.split('');
+    for (const color of 'WUBRGC') {
+      const k = Cost.filter(c => c === color).length;
+      if (!k) continue;
+      const diff = b.filter(c => c === color).length - k;
+      if (diff < 0) shortage -= diff;
+    }
+    if (shortage > 0) shortage -= b.filter(c => c === 'P').length;
+    return shortage <= 0;
+  }
+
+  function checkHybridManas(Cost: TCardMana) {
+    const b = baseMana.split('');
+    const hybrid = Cost.find(c => c.startsWith('H'));
+    if (!hybrid) return true;
+
+    const k = Cost.filter(c => c === hybrid).length;
+    const [, main, sub] = hybrid.split('');
+    const sum = [main, sub, 'P'].reduce((a, color) => a + b.filter(c => c === color).length, 0);
+    return sum >= k;
+  }
+
+  function checkAllManas(Cost: TCardMana) {
+    let k = Cost.length;
+    const number = parseInt(Cost[0]);
+    if (!isNaN(number)) {
+      k = k - 1 + number;
+    }
+    if (k > 5) return true;
+    return baseMana.split('').filter(c => c !== 'A').length >= k;
+  }
+
   const { charactersConfigs, exhibitsConfigs } = configsData;
 
   const characterConfigs = charactersConfigs.get(ch);
   const { BaseMana } = characterConfigs;
 
-  let baseMana = BaseMana;
+  baseMana = BaseMana;
   for (const exhibit of ex) {
     const exhibitConfigs = exhibitsConfigs.get(exhibit);
     const { BaseMana } = exhibitConfigs;
