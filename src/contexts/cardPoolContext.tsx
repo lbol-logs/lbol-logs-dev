@@ -14,8 +14,6 @@ type TCardPoolContext = {
   setFilter: TDispatch<TPool>,
   validCards: TCards,
   setValidCards: TDispatch<TCards>,
-  lastValidCards: TCards,
-  setLastValidCards: TDispatch<TCards>,
   addedValidCards: TCards,
   setAddedValidCards: TDispatch<TCards>,
   removedValidCards: TCards,
@@ -27,8 +25,6 @@ export const CardPoolContext = createContext<TCardPoolContext>({
   setFilter: () => {},
   validCards: defaultValidCards,
   setValidCards: () => {},
-  lastValidCards: defaultLastValidCards,
-  setLastValidCards: () => {},
   addedValidCards: defaultAddedValidCards,
   setAddedValidCards: () => {},
   removedValidCards: defaultRemovedValidCards,
@@ -38,7 +34,6 @@ export const CardPoolContext = createContext<TCardPoolContext>({
 function CardPoolProvider({ children }: { children: ReactNode }) {
   const [filter, setFilter] = useState(defaultFilter);
   const [validCards, setValidCards] = useState(defaultValidCards);
-  const [lastValidCards, setLastValidCards] = useState(defaultLastValidCards);
   const [addedValidCards, setAddedValidCards] = useState(defaultAddedValidCards);
   const [removedValidCards, setRemovedValidCards] = useState(defaultRemovedValidCards);
 
@@ -47,8 +42,6 @@ function CardPoolProvider({ children }: { children: ReactNode }) {
     setFilter,
     validCards,
     setValidCards,
-    lastValidCards,
-    setLastValidCards,
     addedValidCards,
     setAddedValidCards,
     removedValidCards,

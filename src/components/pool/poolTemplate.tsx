@@ -11,7 +11,7 @@ import Modal from 'components/log/modal';
 import { useTranslation } from 'react-i18next';
 
 function PoolTemplate() {
-  const { validCards, setValidCards, lastValidCards, setLastValidCards, addedValidCards, setAddedValidCards, removedValidCards, setRemovedValidCards } = useContext(CardPoolContext);
+  const { validCards, setValidCards, addedValidCards, setAddedValidCards, removedValidCards, setRemovedValidCards } = useContext(CardPoolContext);
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
 
@@ -32,7 +32,7 @@ function PoolTemplate() {
     return currentFilter;
   }, [searchParams]);
 
-  const o = usePoolOnEntities({ currentFilter, validCards, setValidCards, setLastValidCards, setAddedValidCards, setRemovedValidCards });
+  const o = usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards });
   const {
     baseMana = '',
     baseManaWithoutEvent = ''

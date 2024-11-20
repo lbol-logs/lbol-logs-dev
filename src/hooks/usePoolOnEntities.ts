@@ -7,7 +7,7 @@ import { TDispatch } from 'utils/types/common';
 import { TCardMana, TPool } from 'utils/types/others';
 import { TCards } from 'utils/types/runData';
 
-function usePoolOnEntities({ currentFilter, validCards, setValidCards, setLastValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCards, setValidCards: TDispatch<TCards>, setLastValidCards: TDispatch<TCards>, setAddedValidCards: TDispatch<TCards>, setRemovedValidCards: TDispatch<TCards> }) {
+function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCards, setValidCards: TDispatch<TCards>, setAddedValidCards: TDispatch<TCards>, setRemovedValidCards: TDispatch<TCards> }) {
   const [loaded, setLoaded] = useState(false);
 
   const { ch, ex, et } = currentFilter;
