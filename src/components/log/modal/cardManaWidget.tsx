@@ -8,7 +8,7 @@ function CardManaWidget({ mana, is2x }: { mana: string, is2x?: boolean }) {
 
   let bigNumber = null;
 
-  let number = parseInt(mana);
+  const number = parseInt(mana);
   if (!isNaN(number)) {
     if (number > 9) {
       bigNumber = `${mana}x`;
