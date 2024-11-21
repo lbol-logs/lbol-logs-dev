@@ -7,6 +7,7 @@ const defaultFilter: TPool = {};
 const defaultValidCards: TCards = [];
 const defaultAddedValidCards: TCards = [];
 const defaultRemovedValidCards: TCards = [];
+const defaultShowDiff: boolean = true;
 
 type TCardPoolContext = {
   filter: TPool
@@ -16,7 +17,9 @@ type TCardPoolContext = {
   addedValidCards: TCards,
   setAddedValidCards: TDispatch<TCards>,
   removedValidCards: TCards,
-  setRemovedValidCards: TDispatch<TCards>
+  setRemovedValidCards: TDispatch<TCards>,
+  showDiff: boolean,
+  setShowDiff: TDispatch<boolean>
 };
 
 export const CardPoolContext = createContext<TCardPoolContext>({
@@ -27,7 +30,9 @@ export const CardPoolContext = createContext<TCardPoolContext>({
   addedValidCards: defaultAddedValidCards,
   setAddedValidCards: () => {},
   removedValidCards: defaultRemovedValidCards,
-  setRemovedValidCards: () => {}
+  setRemovedValidCards: () => {},
+  showDiff: defaultShowDiff,
+  setShowDiff: () => {}
 });
 
 function CardPoolProvider({ children }: { children: ReactNode }) {
@@ -35,6 +40,7 @@ function CardPoolProvider({ children }: { children: ReactNode }) {
   const [validCards, setValidCards] = useState(defaultValidCards);
   const [addedValidCards, setAddedValidCards] = useState(defaultAddedValidCards);
   const [removedValidCards, setRemovedValidCards] = useState(defaultRemovedValidCards);
+  const [showDiff, setShowDiff] = useState(defaultShowDiff);
 
   const value = {
     filter,
@@ -44,7 +50,9 @@ function CardPoolProvider({ children }: { children: ReactNode }) {
     addedValidCards,
     setAddedValidCards,
     removedValidCards,
-    setRemovedValidCards
+    setRemovedValidCards,
+    showDiff,
+    setShowDiff
   };
 
   return (

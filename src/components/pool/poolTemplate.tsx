@@ -11,7 +11,7 @@ import Modal from 'components/log/modal';
 import { useTranslation } from 'react-i18next';
 
 function PoolTemplate() {
-  const { validCards, setValidCards, addedValidCards, setAddedValidCards, removedValidCards, setRemovedValidCards } = useContext(CardPoolContext);
+  const { validCards, setValidCards, addedValidCards, setAddedValidCards, removedValidCards, setRemovedValidCards, showDiff } = useContext(CardPoolContext);
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
 
@@ -42,12 +42,14 @@ function PoolTemplate() {
     {
       type: 'added',
       cards: addedValidCards,
-      prefix: '＋'
+      prefix: '＋',
+      hidden: !showDiff
     },
     {
       type: 'removed',
       cards: removedValidCards,
-      prefix: '－'
+      prefix: '－',
+      hidden: !showDiff
     },
     {
       type: 'valid',
@@ -61,8 +63,9 @@ function PoolTemplate() {
       <Modal />
       <Filter baseManaWithoutEvent={baseManaWithoutEvent} />
       <BaseManasWidget baseMana={baseMana} />
-      {pools.map(({ type, cards, prefix }) => {
+      {pools.map(({ type, cards, prefix, hidden }) => {
         if (!cards.length) return null;
+        if (hidden) return null;
         return (
           <div className={`p-card-pool__cards p-card-pool__cards--${type}`} key={type}>
             <h2>

@@ -11,6 +11,7 @@ import DefaultPool from 'utils/classes/DefaultPool';
 import EventManasWidget from './eventManasWidget';
 import FiltersTypes from './filterTypes';
 import CustomFilters from './customFilters/customFilters';
+import ShowDiff from './showDiff';
 
 function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
   const { t } = useTranslation();
@@ -93,6 +94,12 @@ function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
         </div>
         {PatchouliPhilosophyRow}
         {JunkoColorlessRow}
+        <div className="p-filter__row">
+          <div className="p-filter__label">{t('showDiff', { ns: 'site' })}</div>
+          <div className="p-filter__values">
+            <ShowDiff />
+          </div>
+        </div>
         <div className="p-filter__row">
           <div className="p-filter__label">{t('filter', { ns: 'runList' })}</div>
           <div className="p-filter__values p-filter__values--filterTypes u-flex-col-sp">
