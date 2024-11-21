@@ -2226,6 +2226,9 @@ html:lang(en) .p-result__type {
   color: var(--f-value);
 }
 
+.p-card-pool {
+  padding-bottom: 50vh;
+}
 .p-card-pool__cards {
   border-width: 1px;
   border-style: solid;
