@@ -1,10 +1,8 @@
 import { CardPoolContext } from 'contexts/cardPoolContext';
 import { ChangeEventHandler, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import DefaultFilter from 'utils/classes/DefaultFilter';
 import DefaultPool from 'utils/classes/DefaultPool';
 import { TPoolRadio } from 'utils/types/others';
-import { TExhibit } from 'utils/types/runData';
 
 function FilterTypes({ onChange }: { onChange: ChangeEventHandler }) {
   const { t } = useTranslation();
