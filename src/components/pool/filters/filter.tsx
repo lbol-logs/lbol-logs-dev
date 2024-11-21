@@ -9,7 +9,7 @@ import usePool from 'hooks/usePool';
 import EventsTypes from './eventsTypes';
 import DefaultPool from 'utils/classes/DefaultPool';
 import EventManasWidget from './eventManasWidget';
-import FilterTypes from './filterTypes';
+import FiltersTypes from './filterTypes';
 import CustomFilters from './customFilters/customFilters';
 
 function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
@@ -96,7 +96,7 @@ function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
         <div className="p-filter__row">
           <div className="p-filter__label">{t('filter', { ns: 'runList' })}</div>
           <div className="p-filter__values p-filter__values--filterTypes u-flex-col-sp">
-            <FilterTypes onChange={onFilterTypesChange} />
+            <FiltersTypes onChange={onFilterTypesChange} />
           </div>
         </div>
         {customFiltersRows}

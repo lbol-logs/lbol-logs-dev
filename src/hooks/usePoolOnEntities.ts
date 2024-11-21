@@ -10,7 +10,7 @@ import { TCards } from 'utils/types/runData';
 function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCards, setValidCards: TDispatch<TCards>, setAddedValidCards: TDispatch<TCards>, setRemovedValidCards: TDispatch<TCards> }) {
   const [loaded, setLoaded] = useState(false);
 
-  const { ch, ex, et } = currentFilter;
+  const { ch, ex, et, ft } = currentFilter;
 
   const invalid = !ch || !ex || !ex.length;
 
@@ -45,6 +45,9 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
 
         if (IsPooled === false) continue;
         if (Type === 'Tool') continue;
+        if (ft === DefaultPool.CardFilters.ChooseFriend) {
+          if (Type !== 'Friend') continue;
+        }
         if (isMisfortune) continue;
         if (Keywords && Keywords.includes('Gadgets')) continue;
 
@@ -81,10 +84,13 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
   if (notReady) return;
 
   function checkCharactersPool(Owner: string, charactersPool: Array<string>) {
+    if (ft === DefaultPool.CardFilters.LilyChun || ft === DefaultPool.CardFilters.ChooseFriend) return true;
+    else if (ft === DefaultPool.CardFilters.FindCollection) return Owner !== charactersPool[0];
     return !Owner || charactersPool.includes(Owner);
   }
 
   function checkColorsPool(Colors: string) {
+    if (ft === DefaultPool.CardFilters.ChooseFriend) return true;
     return ex?.includes('KongbaiKapai') || Colors.split('').every(color => baseMana.includes(color));
   }
 
@@ -118,6 +124,8 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
     if (!isNaN(number)) {
       totalCost = totalCost - 1 + number;
     }
+    if (ft === DefaultPool.CardFilters.LilyChun) return totalCost === 1;
+    else if (ft === DefaultPool.CardFilters.ChooseFriend) return totalCost < 5;
     if (totalCost > 5) return true;
     const baseManaCount = baseMana.split('').filter(c => c !== 'A').length;
     return baseManaCount >= totalCost;
