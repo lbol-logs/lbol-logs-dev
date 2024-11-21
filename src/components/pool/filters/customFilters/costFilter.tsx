@@ -14,7 +14,7 @@ function CostFilter({ onChange }: { onChange: ChangeEventHandler }) {
   return (
     <>
       <div className="p-filter__row">
-        <div className="p-filter__label">{t('color', { ns: 'site' })}</div>
+        <div className="p-filter__label">{t('totalCost', { ns: 'site' })}</div>
         <div className="p-filter__values">
           {costs.map(cost => {
             const isChecked = tc ? tc.includes(cost) : false;
