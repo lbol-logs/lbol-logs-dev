@@ -1,3 +1,8 @@
+enum ExhibitTypes {
+  startingExhibit = 'startingExhibit',
+  swappedExhibit = 'swappedExhibit'
+};
+
 class DefaultFilter {
   static keys = {
     na: 'na',
@@ -11,6 +16,8 @@ class DefaultFilter {
     rq: 'rq',
     re: 're'
   };
+
+  static ExhibitTypes = ExhibitTypes;
 
   static et = {
     all: 'all',

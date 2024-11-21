@@ -25,8 +25,8 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
   const characters = charactersConfigs.ids;
 
   const [startingExhibits, swappedExhibits] = getExhibits(exhibitsConfigs);
-  const startingExhibit = t('startingExhibit', { ns: 'runList' });
-  const swappedExhibit = t('swappedExhibit', { ns: 'runList' });
+  const startingExhibit = t(DefaultFilter.ExhibitTypes.startingExhibit, { ns: 'runList' });
+  const swappedExhibit = t(DefaultFilter.ExhibitTypes.swappedExhibit, { ns: 'runList' });
 
   const formRef = useRef<HTMLFormElement>(null);
   const submit = useSubmit();
@@ -116,11 +116,11 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
       setShowStartingExhibits(false);
       setShowSwappedExhibits(false);
     }
-    if (value === 'startingExhibit') {
+    if (value === DefaultFilter.ExhibitTypes.startingExhibit) {
       setShowStartingExhibits(true);
       setShowSwappedExhibits(false);
     }
-    else if (value === 'swappedExhibit') {
+    else if (value === DefaultFilter.ExhibitTypes.swappedExhibit) {
       setShowStartingExhibits(false);
       setShowSwappedExhibits(true);
     }
