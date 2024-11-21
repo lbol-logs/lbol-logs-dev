@@ -931,15 +931,18 @@ input {
 }
 
 .p-entity__symbol--add,
-.p-entity__symbol--Add {
+.p-entity__symbol--Add,
+.p-card-pool__type--added {
   color: var(--green);
 }
 .p-entity__symbol--remove,
-.p-entity__symbol--Remove {
+.p-entity__symbol--Remove,
+.p-card-pool__type--removed {
   color: var(--red);
 }
 .p-entity__symbol--upgrade,
-.p-entity__symbol--Upgrade {
+.p-entity__symbol--Upgrade,
+.p-card-pool__type--valid {
   color: var(--orange);
 }
 .p-entity__symbol--use,
@@ -2230,7 +2233,7 @@ html:lang(en) .p-result__type {
   padding: 0 0.5em 0.5em;
   margin: 1em 0;
 }
-.p-card-pool__cards--pool {
+.p-card-pool__cards--valid {
   border-color: var(--orange);
 }
 .p-card-pool__cards--added {

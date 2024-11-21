@@ -38,16 +38,37 @@ function PoolTemplate() {
     baseManaWithoutEvent = ''
   } = o || {};
 
+  const pools = [
+    {
+      type: 'added',
+      cards: addedValidCards,
+      prefix: '＋'
+    },
+    {
+      type: 'removed',
+      cards: removedValidCards,
+      prefix: '－'
+    },
+    {
+      type: 'valid',
+      cards: validCards,
+      prefix: '▲'
+    }
+  ];
+
   return (
     <section className="p-card-pool">
       <Modal />
       <Filter baseManaWithoutEvent={baseManaWithoutEvent} />
       <BaseManasWidget baseMana={baseMana} />
-      {Object.entries({ added: addedValidCards, removed: removedValidCards, pool: validCards }).map(([key, cards]) => {
+      {pools.map(({ type, cards, prefix }) => {
         if (!cards.length) return null;
         return (
-          <div className={`p-card-pool__cards p-card-pool__cards--${key}`} key={key}>
-            <h2>{t('cardsCount', { ns: 'log', count: cards.length })}</h2>
+          <div className={`p-card-pool__cards p-card-pool__cards--${type}`} key={type}>
+            <h2>
+              <span className={`p-card-pool__type--${type}`}>{prefix}</span>
+              {t('cardsCount', { ns: 'log', count: cards.length })}
+            </h2>
             <CardCards cards={cards} />
           </div>
         );
