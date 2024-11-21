@@ -8,6 +8,7 @@ import EventHead from '../parts/eventHead';
 import CharacterShortName from '../parts/characterShortName';
 import { useContext } from 'react';
 import { LogContext } from 'contexts/logContext';
+import { TChoice } from 'utils/types/others';
 
 function SatoriCounseling({ station }: { station: TStation }) {
   const { runData: { Settings: { Character } } } = useContext(LogContext);
@@ -45,7 +46,7 @@ function SatoriCounseling({ station }: { station: TStation }) {
     }
 
     const [next, invalids] = getNext(options, choices);
-    const chosen = Choices[0];
+    const chosen = choices.indexOf(Choices[0]) as TChoice;
 
     const props: Array<TObjAny> = [];
 
