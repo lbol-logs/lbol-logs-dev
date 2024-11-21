@@ -50,7 +50,8 @@ type TPoolRadio = {
 type TPoolCheckbox = {
   ex?: Array<string>,
   co?: Array<string>
-  rr?: Array<string>
+  rr?: Array<string>,
+  ct?: Array<string>,
 };
 type TPool = TPoolRadio & TPoolCheckbox;
 

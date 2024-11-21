@@ -10,7 +10,7 @@ import { TCards } from 'utils/types/runData';
 function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCards, setValidCards: TDispatch<TCards>, setAddedValidCards: TDispatch<TCards>, setRemovedValidCards: TDispatch<TCards> }) {
   const [loaded, setLoaded] = useState(false);
 
-  const { ch, ex, et, ft, co, rr } = currentFilter;
+  const { ch, ex, et, ft, co, rr, ct } = currentFilter;
 
   const invalid = !ch || !ex || !ex.length;
 
@@ -54,6 +54,7 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
         const colors: Array<string> = Colors.split('');
         if (co && colors.every(color => !co.includes(color))) continue;
         if (rr && !rr.includes(Rarity)) continue;
+        if (ct && !ct.includes(Type)) continue;
 
         const isValidCharacter = checkCharactersPool(Owner, charactersPool);
         if (!isValidCharacter) continue;
