@@ -62,21 +62,19 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
 
         const canPayAllManas = checkAllManas(Cost);
         if (!canPayAllManas) continue;
-          
+
         cardIds.push(id);
       }
     }
     const filteredCards = convertCards(cardIds);
 
     const lastValidCards = copyObject(validCards);
-    console.log(filteredCards.length, lastValidCards.length)
     if (lastValidCards.length && filteredCards.length) {
       const addedValidCards = filteredCards.filter(({ Id }) => lastValidCards.findIndex(card => card.Id === Id) === -1);
       setAddedValidCards(addedValidCards);
       const removedValidCards = lastValidCards.filter(({ Id }) => filteredCards.findIndex(card => card.Id === Id) === -1);
       setRemovedValidCards(removedValidCards);
     }
-    // setLastValidCards(lastValidCards);
     setValidCards(filteredCards);
   }, [currentFilter, notReady]);
 
