@@ -68,7 +68,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
   // Exhibits
   {
     if (JadeBoxes !== undefined && JadeBoxes.includes('StartWithJingjie')) {
-      const Id = SpecialExhibit.JingjieGanzhiyi.toString();
+      const Id = SpecialExhibit.JingjieGanzhiyi;
       const action: THoldingAction = {
         type: 'Exhibit',
         change: {
@@ -160,7 +160,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
   // BaseDeck
   // eslint-disable-next-line no-lone-blocks
   {
-    const StartMisfortune = RequestType.StartMisfortune.toString();
+    const StartMisfortune = RequestType.StartMisfortune;
     const isStartMisfortune = runData.Settings.Requests.includes(StartMisfortune);
     let startMisfortuneAction: THoldingAction = {} as THoldingAction;
     if (isStartMisfortune) {

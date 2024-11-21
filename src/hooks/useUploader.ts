@@ -56,7 +56,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
 
       if (isOnGithub) {
         const error = {
-          error: ErrorType.alreadyExist.toString(),
+          error: ErrorType.alreadyExist,
           url: encodeURIComponent(url)
         };
         setSearchParams(error, { replace: true });
@@ -107,7 +107,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
       try {
         if (!validateRunData(runData)) {
           return {
-            error: ErrorType.invalidFile.toString()
+            error: ErrorType.invalidFile
           };
         }
 
@@ -116,7 +116,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
         }
         else if (!versions.includes(Version)) {
           return {
-            error: ErrorType.invalidVersion.toString(),
+            error: ErrorType.invalidVersion,
             version: Version
           };
         }
@@ -136,7 +136,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
         ] as Array<unknown>;
         if (array.includes(undefined)) {
           return {
-            error: ErrorType.invalidFile.toString()
+            error: ErrorType.invalidFile
           };
         }
 
@@ -144,13 +144,13 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
       }
       catch (_) {
         return {
-          error: ErrorType.unknownError.toString()
+          error: ErrorType.unknownError
         };
       }
     }
     catch (_) {
       return {
-        error: ErrorType.invalidFile.toString()
+        error: ErrorType.invalidFile
       };
     }
   }
@@ -172,7 +172,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     }
     catch(_) {
       error = {
-        error: ErrorType.unknownError.toString()
+        error: ErrorType.unknownError
       };
     }
     finally {
@@ -200,13 +200,13 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
       ({ isNew } = json);
       if (!isNew) {
         error = {
-          error: ErrorType.alreadyExist.toString()
+          error: ErrorType.alreadyExist
         };
       }
     }
     catch (_) {
       error = {
-        error: ErrorType.unknownError.toString()
+        error: ErrorType.unknownError
       };
     }
     finally {

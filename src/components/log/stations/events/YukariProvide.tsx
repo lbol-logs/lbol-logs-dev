@@ -12,7 +12,7 @@ function YukariProvide({ station }: { station: TStation }) {
 
   const id = 'YukariProvide';
   const title = t(`${id}.Title`, { ns: 'events' });
-  const exhibits = [[SpecialExhibit.WaijieYanshuang.toString(), SpecialExhibit.JingjieGanzhiyi.toString()]];
+  const exhibits = [[SpecialExhibit.WaijieYanshuang, SpecialExhibit.JingjieGanzhiyi]];
 
   const configs = dialoguesConfigs.get(id);
   const { current, next: _next } = configs;

@@ -43,7 +43,7 @@ function Control() {
   let buttonRight2 = null;
   const isSummary = act === 0;
   const isLastAct = act === maxAct;
-  const isAside = asideHoldings.toString() !== '';
+  const isAside = asideHoldings !== '';
 
   let value = level;
   let max = maxLevel;
@@ -89,7 +89,7 @@ function Control() {
     if (isAside) {
       buttonRight2 = (
         <span className="p-control__component p-control__arrow" onClick={handleAside}>
-            <LazyLoadImage2 callback={getControlImage} name="Arrow" alt={t(`control.${toggleAside(asideHoldings).toString()}`, { ns: 'log' })} />
+            <LazyLoadImage2 callback={getControlImage} name="Arrow" alt={t(`control.${toggleAside(asideHoldings)}`, { ns: 'log' })} />
         </span>
       );
     }

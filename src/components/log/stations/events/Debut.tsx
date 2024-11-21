@@ -119,7 +119,7 @@ function Debut({ station }: { station: TStation }) {
 
     const props: Array<TObjAny> = [];
 
-    const HalfDrug = RequestType.HalfDrug.toString();
+    const HalfDrug = RequestType.HalfDrug;
     const x = Requests.includes(HalfDrug) ? requestsConfigs.get(HalfDrug) : 1;
 
     Object.keys(options).forEach(key => {

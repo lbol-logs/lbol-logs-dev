@@ -21,7 +21,7 @@ function RunData({ ver, id }: { ver: string, id: string }) {
   };
   const [isValidRunData, redirect] = useRunData(args);
 
-  const aside = asideHoldings.toString();
+  const aside = asideHoldings;
   const isAside = aside !== '';
   const isSummary = act === 0;
   const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;

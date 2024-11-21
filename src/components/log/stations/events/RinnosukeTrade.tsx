@@ -14,7 +14,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
 
   const { Choices, Prices } = Data;
 
-  const id = TradeStation.RinnosukeTrade.toString();
+  const id = TradeStation.RinnosukeTrade;
   const configs = dialoguesConfigs.get(id);
 
   let sell = null;
@@ -67,7 +67,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
 
-      const exhibits = [[SpecialExhibit.WaijieYanjing.toString(), SpecialExhibit.WaijieYouxiji.toString()]];
+      const exhibits = [[SpecialExhibit.WaijieYanjing, SpecialExhibit.WaijieYouxiji]];
 
       const [next] = getNext(options);
 

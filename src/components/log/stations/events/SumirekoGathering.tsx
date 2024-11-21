@@ -12,7 +12,7 @@ function SumirekoGathering({ station }: { station: TStation }) {
 
   const { Choices, Card, Cards, HasMoney } = Data;
 
-  const id = TradeStation.SumirekoGathering.toString();
+  const id = TradeStation.SumirekoGathering;
   const configs = dialoguesConfigs.get(id);
 
   let card = null;
@@ -68,7 +68,7 @@ function SumirekoGathering({ station }: { station: TStation }) {
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
 
-      const exhibits = [[SpecialExhibit.WaijieYouxiji.toString(), SpecialExhibit.WaijieYanshuang.toString()]];
+      const exhibits = [[SpecialExhibit.WaijieYouxiji, SpecialExhibit.WaijieYanshuang]];
 
       const [next] = getNext(options);
 
