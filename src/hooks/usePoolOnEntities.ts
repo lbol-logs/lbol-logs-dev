@@ -92,9 +92,9 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
     let shortage = 0;
     const b = baseMana.split('');
     for (const color of 'WUBRGC') {
-      const k = Cost.filter(c => c === color).length;
-      if (!k) continue;
-      const diff = b.filter(c => c === color).length - k;
+      const hasColorCost = Cost.filter(c => c === color).length;
+      if (!hasColorCost) continue;
+      const diff = b.filter(c => c === color).length - hasColorCost;
       if (diff < 0) shortage -= diff;
     }
     if (shortage > 0) shortage -= b.filter(c => c === 'P').length;
@@ -103,23 +103,24 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
 
   function checkHybridManas(Cost: TCardMana) {
     const b = baseMana.split('');
-    const hybrid = Cost.find(c => c.startsWith('H'));
-    if (!hybrid) return true;
+    const hybridMana = Cost.find(c => c.startsWith('H'));
+    if (!hybridMana) return true;
 
-    const k = Cost.filter(c => c === hybrid).length;
-    const [, main, sub] = hybrid.split('');
+    const hybridCount = Cost.filter(c => c === hybridMana).length;
+    const [, main, sub] = hybridMana.split('');
     const sum = [main, sub, 'P'].reduce((a, color) => a + b.filter(c => c === color).length, 0);
-    return sum >= k;
+    return sum >= hybridCount;
   }
 
   function checkAllManas(Cost: TCardMana) {
-    let k = Cost.length;
+    let totalCost = Cost.length;
     const number = parseInt(Cost[0]);
     if (!isNaN(number)) {
-      k = k - 1 + number;
+      totalCost = totalCost - 1 + number;
     }
-    if (k > 5) return true;
-    return baseMana.split('').filter(c => c !== 'A').length >= k;
+    if (totalCost > 5) return true;
+    const baseManaCount = baseMana.split('').filter(c => c !== 'A').length;
+    return baseManaCount >= totalCost;
   }
 
   const { charactersConfigs, exhibitsConfigs } = configsData;
