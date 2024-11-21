@@ -33,8 +33,8 @@ function Summary() {
   const { Cards, Exhibits, BaseMana, Seed, ReloadTimes } = Result;
   const resultData = getResultData(runData);
 
-  const exhibitRarities = ["Mythic", "Shining", "Rare", "Uncommon", "Common"];
-  const cardRarities = ["Rare", "Uncommon", "Common", "Misfortune"];
+  const exhibitRarities = ['Mythic', 'Shining', 'Rare', 'Uncommon', 'Common'];
+  const cardRarities = ['Rare', 'Uncommon', 'Common', 'Misfortune'];
 
   return (
     <section className="p-summary">
