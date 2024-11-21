@@ -1,7 +1,7 @@
 import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import { getCardArtImage, getCardWatermarkImage, getCardTypeImage, getUnityImage } from 'utils/functions/getImage';
-import { TCard } from 'utils/types/runData';
+import { CardsWithUpgradeCounter, TCard } from 'utils/types/runData';
 import DescriptionWidget from './descriptionWidget';
 import CardName from '../entityCards/cardName';
 import { useEffect, useState } from 'react';
@@ -20,7 +20,7 @@ function CardModal({ card }: { card: TCard }) {
   const { Id, IsUpgraded, UpgradeCounter } = card;
   const [upgraded, setUpgraded] = useState(IsUpgraded);
   const _card = Object.assign({}, card, { IsUpgraded: upgraded });
-  if (upgraded && !UpgradeCounter && Id === 'YuyukoSing') Object.assign(_card, { UpgradeCounter: 1});
+  if (upgraded && !UpgradeCounter && Id === CardsWithUpgradeCounter.YuyukoSing) Object.assign(_card, { UpgradeCounter: 1});
 
   const cardConfigs = cardsConfigs.get(_card);
   const allCardConfigs = cardConfigs.getAll();
