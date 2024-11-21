@@ -6,7 +6,7 @@ import { toggleIsChecked } from 'utils/functions/helpers';
 
 function ColorFilter({ onChange }: { onChange: ChangeEventHandler }) {
   const { filter } = useContext(CardPoolContext);
-  // const { ex } = filter;
+  const { co } = filter;
   const { t } = useTranslation();
 
   return (
@@ -15,7 +15,7 @@ function ColorFilter({ onChange }: { onChange: ChangeEventHandler }) {
         <div className="p-filter__label">{t('color', { ns: 'site' })}</div>
         <div className="p-filter__values">
           {'WUBRGC'.split('').map(color => {
-            const isChecked = false;
+            const isChecked = co ? co.includes(color): false;
 
             return (
               <label className={`p-filter__toggle ${toggleIsChecked(isChecked)} u-button`} key={color}>

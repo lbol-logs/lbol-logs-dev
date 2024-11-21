@@ -10,7 +10,7 @@ import { TCards } from 'utils/types/runData';
 function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCards, setValidCards: TDispatch<TCards>, setAddedValidCards: TDispatch<TCards>, setRemovedValidCards: TDispatch<TCards> }) {
   const [loaded, setLoaded] = useState(false);
 
-  const { ch, ex, et, ft } = currentFilter;
+  const { ch, ex, et, ft, co } = currentFilter;
 
   const invalid = !ch || !ex || !ex.length;
 
@@ -51,10 +51,13 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
         if (isMisfortune) continue;
         if (Keywords && Keywords.includes('Gadgets')) continue;
 
+        const colors: Array<string> = Colors.split('');
+        if (co && colors.every(color => !co.includes(color))) continue;
+
         const isValidCharacter = checkCharactersPool(Owner, charactersPool);
         if (!isValidCharacter) continue;
 
-        const isValidColor = checkColorsPool(Colors);
+        const isValidColor = checkColorsPool(colors);
         if (!isValidColor) continue;
 
         const canPayColorManas = checkColorManas(Cost);
@@ -70,14 +73,16 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
       }
     }
     const filteredCards = convertCards(cardIds);
+    let addedValidCards: TCards = [];
+    let removedValidCards: TCards = [];
 
     const lastValidCards = copyObject(validCards);
     if (lastValidCards.length && filteredCards.length) {
-      const addedValidCards = filteredCards.filter(({ Id }) => lastValidCards.findIndex(card => card.Id === Id) === -1);
-      setAddedValidCards(addedValidCards);
-      const removedValidCards = lastValidCards.filter(({ Id }) => filteredCards.findIndex(card => card.Id === Id) === -1);
-      setRemovedValidCards(removedValidCards);
+      addedValidCards = filteredCards.filter(({ Id }) => lastValidCards.findIndex(card => card.Id === Id) === -1);
+      removedValidCards = lastValidCards.filter(({ Id }) => filteredCards.findIndex(card => card.Id === Id) === -1);
     }
+    setAddedValidCards(addedValidCards);
+    setRemovedValidCards(removedValidCards);
     setValidCards(filteredCards);
   }, [currentFilter, notReady]);
 
@@ -89,9 +94,9 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
     return !Owner || charactersPool.includes(Owner);
   }
 
-  function checkColorsPool(Colors: string) {
+  function checkColorsPool(colors: Array<string>) {
     if (ft === DefaultPool.CardFilters.ChooseFriend) return true;
-    return ex?.includes('KongbaiKapai') || Colors.split('').every(color => baseMana.includes(color));
+    return ex?.includes('KongbaiKapai') || colors.every(color => baseMana.includes(color));
   }
 
   function checkColorManas(Cost: TCardMana) {

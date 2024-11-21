@@ -41,14 +41,8 @@ class DefaultFilter {
   ];
 
   static get(name: string) {
-    switch (name) {
-      case this.keys.et:
-        return '';
-      case this.keys.rt:
-        return '';
-      default:
-        return [];
-    }
+    if (this.radios.includes(name)) return '';
+    else return [];
   }
 
   static check(name: string) {

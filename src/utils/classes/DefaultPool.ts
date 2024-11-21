@@ -16,7 +16,8 @@ class DefaultPool {
     et: 'et',
     pp: 'pp',
     jc: 'jc',
-    ft: 'ft'
+    ft: 'ft',
+    co: 'co'
   };
 
   static Events = Events;
@@ -49,12 +50,8 @@ class DefaultPool {
   ];
 
   static get(name: string) {
-    switch (name) {
-      case this.keys.ex:
-        return [];
-      default:
-        return '';
-    }
+    if (this.radios.includes(name)) return '';
+    else return [];
   }
 
   static check(name: string) {
