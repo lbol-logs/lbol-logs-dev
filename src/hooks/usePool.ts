@@ -15,6 +15,7 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
   const [loaded, setLoaded] = useState(false);
   const [showPatchouliPhilosophy, setShowPatchouliPhilosophy] = useState(false);
   const [showJunkoColorless, setShowJunkoColorless] = useState(false);
+  const [showCustomFilters, setShowCustomFilters] = useState(false);
 
   const PatchouliPhilosophy = t('PatchouliPhilosophy.Title', { ns: 'events' });
   const JunkoColorless = t('JunkoColorless.Title', { ns: 'events' });
@@ -133,29 +134,19 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
       setShowPatchouliPhilosophy(false);
       setShowJunkoColorless(false);
     }
-    if (value === 'PatchouliPhilosophy') {
+    if (value === DefaultPool.Events.PatchouliPhilosophy) {
       setShowPatchouliPhilosophy(true);
       setShowJunkoColorless(false);
     }
-    else if (value === 'JunkoColorless') {
+    else if (value === DefaultPool.Events.JunkoColorless) {
       setShowPatchouliPhilosophy(false);
       setShowJunkoColorless(true);
     }
   }
 
   function reflectFilterTypes(value: string) {
-    if (!value || value === DefaultPool.ft.all) {
-      setShowPatchouliPhilosophy(false);
-      setShowJunkoColorless(false);
-    }
-    if (value === 'PatchouliPhilosophy') {
-      setShowPatchouliPhilosophy(true);
-      setShowJunkoColorless(false);
-    }
-    else if (value === 'JunkoColorless') {
-      setShowPatchouliPhilosophy(false);
-      setShowJunkoColorless(true);
-    }
+    const showCustomFilters = !!value && value === DefaultPool.ft.custom;
+    setShowCustomFilters(showCustomFilters);
   }
 
   function apply(currentFilter: TPoolRadio = {}) {
@@ -173,12 +164,11 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
   function deleteValues(currentFilter: TPoolRadio) {
     const data = new FormData(formRef.current as HTMLFormElement);
     for (const key of DefaultPool.radios) {
+      const value = data.get(key);
+      if (value === DefaultPool.check(key)) data.delete(key);
+
       if (key === DefaultPool.keys.et) {
-        const value = data.get(key);
-        if (value === DefaultPool.check(key)) {
-          data.delete(key);
-        }
-        else {
+        if (value !== DefaultPool.check(key)) {
           for (const [ev, name] of Object.entries(DefaultPool.ev)) {
             if (value === ev) {
               const v = currentFilter[name as keyof TPoolRadio] as string;
@@ -204,6 +194,7 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
   return {
     showPatchouliPhilosophy,
     showJunkoColorless,
+    showCustomFilters,
     characters,
     startingExhibits,
     swappedExhibits,

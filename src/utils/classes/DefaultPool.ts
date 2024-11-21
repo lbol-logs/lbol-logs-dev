@@ -1,3 +1,14 @@
+enum Events {
+  PatchouliPhilosophy = 'PatchouliPhilosophy',
+  JunkoColorless = 'JunkoColorless'
+};
+
+enum CardFilters {
+  LilyChun = 'LilyChun',
+  ChooseFriend = 'ChooseFriend',
+  FindCollection = 'FindCollection'
+};
+
 class DefaultPool {
   static keys = {
     ch: 'ch',
@@ -8,6 +19,10 @@ class DefaultPool {
     ft: 'ft'
   };
 
+  static Events = Events;
+
+  static CardFilters = CardFilters;
+
   static et = {
     none: 'none',
     pp: 'pp',
@@ -15,27 +30,22 @@ class DefaultPool {
   };
 
   static ev = {
-    PatchouliPhilosophy: 'pp',
-    JunkoColorless: 'jc',
+    [this.Events.PatchouliPhilosophy]: 'pp',
+    [this.Events.JunkoColorless]: 'jc',
   };
-
-  static cardFilters = [
-    'LilyChun',
-    'ChooseFriend',
-    'FindCollection'
-  ];
 
   static ft = {
     all: 'all',
     custom: 'custom',
-    ...this.cardFilters.reduce((a, b) => Object.assign(a, { [b]: b }), {})
+    ...Object.keys(this.CardFilters).reduce((a, b) => Object.assign(a, { [b]: b }), {})
   };
 
   static radios = [
     this.keys.ch,
     this.keys.et,
     this.keys.pp,
-    this.keys.jc
+    this.keys.jc,
+    this.keys.ft
   ];
 
   static get(name: string) {

@@ -14,7 +14,7 @@ function FilterTypes({ onChange }: { onChange: ChangeEventHandler }) {
   const o = {
     all: t('all', { ns: 'runList' }),
     custom: t('custom', { ns: 'site' }),
-    ...DefaultPool.cardFilters.reduce((a, b) => Object.assign(a, { [b]: t(`${b}.Name`, { ns: 'cards' }) }), {})
+    ...Object.keys(DefaultPool.CardFilters).reduce((a, b) => Object.assign(a, { [b]: t(`${b}.Name`, { ns: 'cards' }) }), {})
   };
   const defaultType = DefaultPool.check(DefaultPool.keys.ft);
 

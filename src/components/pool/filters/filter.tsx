@@ -10,6 +10,7 @@ import EventsTypes from './eventsTypes';
 import DefaultPool from 'utils/classes/DefaultPool';
 import EventManasWidget from './eventManasWidget';
 import FilterTypes from './filterTypes';
+import CustomFilters from './customFilters/customFilters';
 
 function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
   const { t } = useTranslation();
@@ -22,6 +23,7 @@ function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
   const {
     showPatchouliPhilosophy,
     showJunkoColorless,
+    showCustomFilters,
     characters,
     startingExhibits,
     swappedExhibits,
@@ -31,11 +33,13 @@ function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
     onCheckboxChange,
     onRadioChange,
     onEventsTypesChange,
+    onFilterTypesChange,
     reset
   } = o;
 
   let PatchouliPhilosophyRow = null;
   let JunkoColorlessRow = null;
+  let customFiltersRows = null;
 
   if (showPatchouliPhilosophy) {
     PatchouliPhilosophyRow = (
@@ -53,10 +57,14 @@ function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
       <div className="p-filter__row">
         <div className="p-filter__label">{JunkoColorless}</div>
         <div className="p-filter__values">
-        <EventManasWidget onChange={onRadioChange} name={DefaultPool.et.jc} baseMana={baseManaWithoutEvent} excludes="CP" />
+          <EventManasWidget onChange={onRadioChange} name={DefaultPool.et.jc} baseMana={baseManaWithoutEvent} excludes="CP" />
         </div>
       </div>
     );
+  }
+
+  if (showCustomFilters) {
+    customFiltersRows = <CustomFilters onChange={onCheckboxChange} />;
   }
 
   return (
@@ -88,9 +96,10 @@ function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
         <div className="p-filter__row">
           <div className="p-filter__label">{t('filter', { ns: 'runList' })}</div>
           <div className="p-filter__values p-filter__values--filterTypes u-flex-col-sp">
-            <FilterTypes onChange={onEventsTypesChange} />
+            <FilterTypes onChange={onFilterTypesChange} />
           </div>
         </div>
+        {customFiltersRows}
         <div className="p-filter__buttons">
           <button className="p-filter__button p-filter__button--reset" onClick={reset}>{t('reset', { ns: 'runList' })}</button>
         </div>
