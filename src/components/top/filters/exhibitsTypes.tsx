@@ -22,7 +22,7 @@ function ExhibitsTypes({ onChange, startingExhibit, swappedExhibit }: { onChange
   return (
     <>
       {Object.entries(o).map(([value, text]) => {
-        if (hasSpellcard && value === 'startingExhibit') return null;
+        if (hasSpellcard && text === startingExhibit) return null;
         const isChecked = (et || defaultType) === value;
 
         return (
