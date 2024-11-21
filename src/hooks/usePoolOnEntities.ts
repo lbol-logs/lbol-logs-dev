@@ -26,7 +26,7 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
 
   const notReady = invalid || !loaded;
   let baseMana: string;
-
+// TODO: filterTypes
   useEffect(() => {
     const cardIds: Array<string> = [];
     if (!notReady && baseMana) {
