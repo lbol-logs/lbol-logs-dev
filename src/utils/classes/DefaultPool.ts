@@ -4,7 +4,8 @@ class DefaultPool {
     ex: 'ex',
     et: 'et',
     pp: 'pp',
-    jc: 'jc'
+    jc: 'jc',
+    ft: 'ft'
   };
 
   static et = {
@@ -16,6 +17,18 @@ class DefaultPool {
   static ev = {
     PatchouliPhilosophy: 'pp',
     JunkoColorless: 'jc',
+  };
+
+  static cardFilters = [
+    'LilyChun',
+    'ChooseFriend',
+    'FindCollection'
+  ];
+
+  static ft = {
+    all: 'all',
+    custom: 'custom',
+    ...this.cardFilters.reduce((a, b) => Object.assign(a, { [b]: b }), {})
   };
 
   static radios = [
@@ -38,6 +51,8 @@ class DefaultPool {
     switch (name) {
       case this.keys.et:
         return this.et.none;
+      case this.keys.ft:
+        return this.ft.all;
     }
   }
 }

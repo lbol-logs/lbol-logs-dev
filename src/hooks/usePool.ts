@@ -116,12 +116,35 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
     onRadioChange(e);
   }
 
+  function onFilterTypesChange(e: ChangeEvent<HTMLInputElement>) {
+    const input = e.target as HTMLInputElement;
+    const value = input.value;
+    reflectFilterTypes(value);
+    onRadioChange(e);
+  }
+
   function reflectTypes(key: string, value: string) {
     if (key === DefaultPool.keys.et) reflectEventsTypes(value);
+    else if (key === DefaultPool.keys.ft) reflectFilterTypes(value);
   }
 
   function reflectEventsTypes(value: string) {
     if (!value || value === DefaultPool.et.none) {
+      setShowPatchouliPhilosophy(false);
+      setShowJunkoColorless(false);
+    }
+    if (value === 'PatchouliPhilosophy') {
+      setShowPatchouliPhilosophy(true);
+      setShowJunkoColorless(false);
+    }
+    else if (value === 'JunkoColorless') {
+      setShowPatchouliPhilosophy(false);
+      setShowJunkoColorless(true);
+    }
+  }
+
+  function reflectFilterTypes(value: string) {
+    if (!value || value === DefaultPool.ft.all) {
       setShowPatchouliPhilosophy(false);
       setShowJunkoColorless(false);
     }
@@ -190,6 +213,7 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
     onCheckboxChange,
     onRadioChange,
     onEventsTypesChange,
+    onFilterTypesChange,
     reset
   };
 }

@@ -9,6 +9,7 @@ import usePool from 'hooks/usePool';
 import EventsTypes from './eventsTypes';
 import DefaultPool from 'utils/classes/DefaultPool';
 import EventManasWidget from './eventManasWidget';
+import FilterTypes from './filterTypes';
 
 function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
   const { t } = useTranslation();
@@ -84,13 +85,12 @@ function Filter({ baseManaWithoutEvent }: { baseManaWithoutEvent: string }) {
         </div>
         {PatchouliPhilosophyRow}
         {JunkoColorlessRow}
-        {/* TODO */}
-        {/* <div className="p-filter__row">
+        <div className="p-filter__row">
           <div className="p-filter__label">{t('filter', { ns: 'runList' })}</div>
-          <div className="p-filter__values u-flex-col-sp">
-            <EventsTypes onChange={onEventsTypesChange} PatchouliPhilosophy={PatchouliPhilosophy} JunkoColorless={JunkoColorless} />
+          <div className="p-filter__values p-filter__values--filterTypes u-flex-col-sp">
+            <FilterTypes onChange={onEventsTypesChange} />
           </div>
-        </div> */}
+        </div>
         <div className="p-filter__buttons">
           <button className="p-filter__button p-filter__button--reset" onClick={reset}>{t('reset', { ns: 'runList' })}</button>
         </div>
