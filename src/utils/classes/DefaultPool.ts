@@ -17,7 +17,8 @@ class DefaultPool {
     pp: 'pp',
     jc: 'jc',
     ft: 'ft',
-    co: 'co'
+    co: 'co',
+    rr: 'rr'
   };
 
   static Events = Events;

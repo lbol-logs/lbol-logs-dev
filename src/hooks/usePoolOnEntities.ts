@@ -10,7 +10,7 @@ import { TCards } from 'utils/types/runData';
 function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCards, setValidCards: TDispatch<TCards>, setAddedValidCards: TDispatch<TCards>, setRemovedValidCards: TDispatch<TCards> }) {
   const [loaded, setLoaded] = useState(false);
 
-  const { ch, ex, et, ft, co } = currentFilter;
+  const { ch, ex, et, ft, co, rr } = currentFilter;
 
   const invalid = !ch || !ex || !ex.length;
 
@@ -41,18 +41,19 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
       for (const id of ids) {
         const config = cardsConfigs.get(id);
         const cardConfigs = config.getAll();
-        const { IsPooled, Owner, Colors = '', Cost, Type, Keywords, isMisfortune } = cardConfigs;
+        const { IsPooled, Owner, Colors = '', Cost, Rarity, Type, Keywords, isMisfortune } = cardConfigs;
 
         if (IsPooled === false) continue;
         if (Type === 'Tool') continue;
-        if (ft === DefaultPool.CardFilters.ChooseFriend) {
-          if (Type !== 'Friend') continue;
-        }
         if (isMisfortune) continue;
         if (Keywords && Keywords.includes('Gadgets')) continue;
 
+        if (ft === DefaultPool.CardFilters.ChooseFriend) {
+          if (Type !== 'Friend') continue;
+        }
         const colors: Array<string> = Colors.split('');
         if (co && colors.every(color => !co.includes(color))) continue;
+        if (rr && !rr.includes(Rarity)) continue;
 
         const isValidCharacter = checkCharactersPool(Owner, charactersPool);
         if (!isValidCharacter) continue;
