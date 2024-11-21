@@ -5,7 +5,7 @@ import { CardPoolContext } from 'contexts/cardPoolContext';
 import { TPool } from 'utils/types/others';
 import { toggleIsChecked } from 'utils/functions/helpers';
 
-function EventManasWidget({ onChange, name, baseMana, excludes }: { onChange: ChangeEventHandler, name: string, baseMana: TBaseMana, excludes: string }) { 
+function EventManasWidget({ onChange, name, baseMana, excludes }: { onChange: ChangeEventHandler, name: string, baseMana: TBaseMana, excludes: string }) {
   const { filter } = useContext(CardPoolContext);
 
   if (!baseMana) return null;
