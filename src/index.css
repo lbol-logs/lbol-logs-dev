@@ -1489,6 +1489,7 @@ html:lang(en) .p-result__type {
   flex-wrap: wrap;
   padding: 0.2em 0.5em;
   gap: var(--gap);
+  max-width: 17em;
 }
 .p-filter__input {
   width: 100%;
