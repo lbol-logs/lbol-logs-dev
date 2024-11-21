@@ -52,6 +52,7 @@ type TPoolCheckbox = {
   co?: Array<string>
   rr?: Array<string>,
   ct?: Array<string>,
+  tc?: Array<string>
 };
 type TPool = TPoolRadio & TPoolCheckbox;
 

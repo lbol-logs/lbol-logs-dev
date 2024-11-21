@@ -10,7 +10,7 @@ import { TCards } from 'utils/types/runData';
 function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCards, setValidCards: TDispatch<TCards>, setAddedValidCards: TDispatch<TCards>, setRemovedValidCards: TDispatch<TCards> }) {
   const [loaded, setLoaded] = useState(false);
 
-  const { ch, ex, et, ft, co, rr, ct } = currentFilter;
+  const { ch, ex, et, ft, co, rr, ct, tc } = currentFilter;
 
   const invalid = !ch || !ex || !ex.length;
 
@@ -26,7 +26,7 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
 
   const notReady = invalid || !loaded;
   let baseMana: string;
-// TODO: filterTypes
+
   useEffect(() => {
     const cardIds: Array<string> = [];
     if (!notReady && baseMana) {
@@ -41,7 +41,7 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
       for (const id of ids) {
         const config = cardsConfigs.get(id);
         const cardConfigs = config.getAll();
-        const { IsPooled, Owner, Colors = '', Cost, Rarity, Type, Keywords, isMisfortune } = cardConfigs;
+        const { IsPooled, Owner, Colors = '', Cost, Rarity, Type, IsXCost, Keywords, isMisfortune } = cardConfigs;
 
         if (IsPooled === false) continue;
         if (Type === 'Tool') continue;
@@ -56,6 +56,17 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
         if (rr && !rr.includes(Rarity)) continue;
         if (ct && !ct.includes(Type)) continue;
 
+        let totalCost = Cost.length;
+        const number = parseInt(Cost[0]);
+        if (!isNaN(number)) {
+          totalCost = totalCost - 1 + number;
+        }
+
+        if (tc && !tc.includes(totalCost.toString())) {
+          const matchX = tc.includes('X') && IsXCost;
+          if (!matchX) continue;
+        }
+
         const isValidCharacter = checkCharactersPool(Owner, charactersPool);
         if (!isValidCharacter) continue;
 
@@ -68,7 +79,7 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
         const canPayHybridManas = checkHybridManas(Cost);
         if (!canPayHybridManas) continue;
 
-        const canPayAllManas = checkAllManas(Cost);
+        const canPayAllManas = checkAllManas(totalCost);
         if (!canPayAllManas) continue;
 
         cardIds.push(id);
@@ -125,12 +136,7 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
     return sum >= hybridCount;
   }
 
-  function checkAllManas(Cost: TCardMana) {
-    let totalCost = Cost.length;
-    const number = parseInt(Cost[0]);
-    if (!isNaN(number)) {
-      totalCost = totalCost - 1 + number;
-    }
+  function checkAllManas(totalCost: number) {
     if (ft === DefaultPool.CardFilters.LilyChun) return totalCost === 1;
     else if (ft === DefaultPool.CardFilters.ChooseFriend) return totalCost < 5;
     if (totalCost > 5) return true;

@@ -2,6 +2,7 @@ import { ChangeEventHandler } from 'react';
 import ColorFilter from './colorFilter';
 import RarityFilter from './rarityFilter';
 import CardTypeFilter from './cardTypeFilter';
+import CostFilter from './costFilter';
 
 function CustomFilters({ onChange }: { onChange: ChangeEventHandler }) {
   return (
@@ -9,7 +10,7 @@ function CustomFilters({ onChange }: { onChange: ChangeEventHandler }) {
       <ColorFilter onChange={onChange} />
       <RarityFilter onChange={onChange} />
       <CardTypeFilter onChange={onChange} />
-      {/* <CostFilter onChange={onChange} /> */}
+      <CostFilter onChange={onChange} />
     </>
   );
 }
