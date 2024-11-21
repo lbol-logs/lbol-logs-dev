@@ -12,18 +12,18 @@ function CustomFilters({ onChange }: { onChange: ChangeEventHandler }) {
   return (
     <>
       <div className="p-filter__row">
-        <div className="p-filter__label">A</div>
+        <div className="p-filter__label">WIP</div>
         <div className="p-filter__values">
-          A
+          
         </div>
       </div>
 
-      <div className="p-filter__row">
+      {/* <div className="p-filter__row">
         <div className="p-filter__label">B</div>
         <div className="p-filter__values">
           B
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
