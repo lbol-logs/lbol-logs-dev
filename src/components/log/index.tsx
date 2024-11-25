@@ -15,6 +15,9 @@ function Log() {
   const { t, i18n } = useTranslation();
 
   const configs: Array<string> = [
+    'characters',
+    'exhibits',
+    'requests',
     'cards',
     'statusEffects',
     'enemyGroups',
@@ -24,6 +27,8 @@ function Log() {
     'jadeBoxes'
   ];
   const modsConfigs: Array<string> = [
+    'characters',
+    'exhibits',
     'cards',
     'statusEffects',
     'enemyGroups'
