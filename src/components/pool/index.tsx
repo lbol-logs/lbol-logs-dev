@@ -7,6 +7,7 @@ import { Suspense } from 'react';
 import Loading from 'components/common/layouts/loading';
 import CardPoolContext from 'contexts/cardPoolContext';
 import PoolTemplate from './poolTemplate';
+import { latestVersion } from 'configs/globals';
 
 function Pool() {
   const { t } = useTranslation();
@@ -14,7 +15,7 @@ function Pool() {
   return (
     <Init>
       <Title name={t('cardPool', { ns: 'site' })} />
-      <Header />
+      <Header versionSwitch={false} versionOverride={latestVersion} />
       <main className="l-pool">
         <div className="l-inner">
           <Suspense fallback={<Loading />}>

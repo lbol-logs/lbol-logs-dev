@@ -7,7 +7,7 @@ import Meta from './meta';
 import { useContext } from 'react';
 import { CommonContext } from 'contexts/commonContext';
 
-function Header({ versionSwitch }: { versionSwitch?: boolean }) {
+function Header({ versionSwitch, versionOverride }: { versionSwitch?: boolean, versionOverride?: string }) {
   const { version, setVersion } = useContext(CommonContext);
   const { t } = useTranslation();
 
@@ -30,7 +30,7 @@ function Header({ versionSwitch }: { versionSwitch?: boolean }) {
           <Link className="l-header__button u-button" to="/pool/">{t('cardPool', { ns: 'site' })}</Link>
         </div>
         <div className="l-header__widgets">
-          <VersionWidget className="l-header__version" version={version} setVersion={setVersion} versionSwitch={!!versionSwitch} />
+          <VersionWidget className="l-header__version" version={versionOverride || version} setVersion={setVersion} versionSwitch={!!versionSwitch} />
           <LanguageSwitcher />
         </div>
       </div>
