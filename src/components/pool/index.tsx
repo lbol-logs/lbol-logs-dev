@@ -13,9 +13,9 @@ function Pool() {
   const { t } = useTranslation();
 
   const configs: Array<string> = [
-    'cards',
     'characters',
     'exhibits',
+    'cards',
     'events'
   ];
 
