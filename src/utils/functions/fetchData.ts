@@ -73,6 +73,5 @@ export {
   getLogUrl,
   getLog2,
   getGasUrl,
-  getConfigs,
-  getConfigsUrl
+  getConfigs
 };

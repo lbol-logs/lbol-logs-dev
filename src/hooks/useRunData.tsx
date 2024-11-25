@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import { validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
-import { CONFIGS_DATA, configsData, defaultRunData, MODS_CONFIGS_DATA } from 'configs/globals';
+import { configsData, defaultRunData } from 'configs/globals';
 import { TObjAny } from 'utils/types/common';
 import Configs from 'utils/classes/Configs';
 

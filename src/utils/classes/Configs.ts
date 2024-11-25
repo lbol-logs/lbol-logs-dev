@@ -3,7 +3,7 @@ import CMana from './CMana';
 import { TCard } from 'utils/types/runData';
 import { TCardMana } from 'utils/types/others';
 import { copyObject, getConfigsKey } from 'utils/functions/helpers';
-import { getConfigs, getConfigsUrl } from 'utils/functions/fetchData';
+import { getConfigs } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
 import { configsData, isDev, modsConfigsData } from 'configs/globals';
 
@@ -219,7 +219,6 @@ class ConfigsData {
     const c = this._getConfigs(version);
     for (const key in this.configsData) {
       const configs = c[key];
-      // if (configs !== undefined) this._set(key, configs);
       this._setConfigs(key, configs);
     }
   }

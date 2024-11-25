@@ -1,5 +1,5 @@
-import { CONFIGS_DATA, configsData, latestVersion } from 'configs/globals';
-import { useEffect, useMemo, useState } from 'react';
+import { configsData } from 'configs/globals';
+import { useEffect } from 'react';
 import BMana from 'utils/classes/BMana';
 import DefaultPool from 'utils/classes/DefaultPool';
 import { convertCards, copyObject } from 'utils/functions/helpers';
@@ -8,30 +8,15 @@ import { TCardMana, TPool } from 'utils/types/others';
 import { TCards } from 'utils/types/runData';
 
 function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCards, setValidCards: TDispatch<TCards>, setAddedValidCards: TDispatch<TCards>, setRemovedValidCards: TDispatch<TCards> }) {
-  const [loaded, setLoaded] = useState(false);
-
   const { ch, ex, et, ft, co, rr, ct, tc } = currentFilter;
 
   const invalid = !ch || !ex || !ex.length;
 
-  useMemo(() => {
-    if (invalid) return;
-    setLoaded(false);
-    // TODO
-    // CONFIGS_DATA.fetch(latestVersion, ['cards']);
-    (async() => {
-        // TODO
-        // await CONFIGS_DATA.fetchAsync(latestVersion, ['characters', 'exhibits', 'events']);
-        setLoaded(true);
-    })();
-  }, [invalid]);
-
-  const notReady = invalid || !loaded;
   let baseMana: string;
 
   useEffect(() => {
     const cardIds: Array<string> = [];
-    if (!notReady && baseMana) {
+    if (!invalid && baseMana) {
       const { cardsConfigs, exhibitsConfigs } = configsData;
       const { ids } = cardsConfigs;
       const charactersPool = [ch];
@@ -99,9 +84,9 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
     setAddedValidCards(addedValidCards);
     setRemovedValidCards(removedValidCards);
     setValidCards(filteredCards);
-  }, [currentFilter, notReady]);
+  }, [currentFilter, invalid]);
 
-  if (notReady) return;
+  if (invalid) return;
 
   function checkCharactersPool(Owner: string, charactersPool: Array<string>) {
     if (ft === DefaultPool.CardFilters.LilyChun || ft === DefaultPool.CardFilters.ChooseFriend) return true;

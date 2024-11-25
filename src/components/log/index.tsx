@@ -1,5 +1,4 @@
 import Header from 'components/common/layouts/header';
-import { latestVersion } from 'configs/globals';
 import { useParams } from 'react-router-dom';
 import RunData from './runData';
 import { Suspense } from 'react';
