@@ -26,7 +26,7 @@ function About() {
   return (
     <Init configs={configs} modsConfigs={modsConfigs}>
       <Title name="About" />
-      <Header alwaysLatest={true} />
+      <Header />
       <main className="l-about">
         <div className="l-inner">
           <section className="p-about">

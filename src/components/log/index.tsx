@@ -57,7 +57,7 @@ function Log() {
     <Init configs={configs} modsConfigs={modsConfigs} ver={ver}>
       {name && <Title name={name} />}
       <Suspense fallback={<Loading />}>
-        <Header />
+        <Header showVersion={true} />
         <LogProvider>
           <ScrollToTop />
           <RunData ver={ver} id={id} />
