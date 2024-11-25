@@ -23,6 +23,8 @@ class DefaultPool {
     tc: 'tc'
   };
 
+  static sd = 'sd';
+
   static Events = Events;
 
   static CardFilters = CardFilters;

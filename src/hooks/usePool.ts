@@ -169,6 +169,7 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
           }
         }
       }
+      data.delete(DefaultPool.sd);
     }
     return data;
   }
