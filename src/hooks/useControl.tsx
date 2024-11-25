@@ -8,7 +8,7 @@ import { AsideType, TDispatch } from 'utils/types/common';
 import { TRounds } from 'utils/types/others';
 import { TAct, TLevel, TRunData } from 'utils/types/runData';
 
-function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams, asideHoldings, setAsideHoldings, isFromList }: { isRunDataLoaded: boolean, runData: TRunData, act: TAct, setAct: TDispatch<TAct>, setLevel: TDispatch<TLevel>, rounds: TRounds, setRounds: TDispatch<TRounds>, showMap: boolean, setShowMap: TDispatch<boolean>, navigate: NavigateFunction, searchParams: URLSearchParams, setSearchParams: SetURLSearchParams, asideHoldings: AsideType, setAsideHoldings: TDispatch<AsideType>, isFromList: boolean }) {
+function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams, setAsideHoldings, isFromList }: { isRunDataLoaded: boolean, runData: TRunData, act: TAct, setAct: TDispatch<TAct>, setLevel: TDispatch<TLevel>, rounds: TRounds, setRounds: TDispatch<TRounds>, showMap: boolean, setShowMap: TDispatch<boolean>, navigate: NavigateFunction, searchParams: URLSearchParams, setSearchParams: SetURLSearchParams, setAsideHoldings: TDispatch<AsideType>, isFromList: boolean }) {
   if (!isRunDataLoaded) return;
 
   const al = new ActLevel(runData, act);
@@ -54,8 +54,7 @@ function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, s
   }
 
   function handleAside() {
-    const aside = toggleAside(asideHoldings);
-    setAsideHoldings(aside);
+    setAsideHoldings(asideHoldings => toggleAside(asideHoldings));
   }
 
   return {

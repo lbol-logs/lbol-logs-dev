@@ -22,7 +22,7 @@ function Control() {
     if (state && state.isFromList) setIsFromList(true);
   }, []);
 
-  const o = useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams, asideHoldings, setAsideHoldings, isFromList });
+  const o = useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, setRounds, showMap, setShowMap, navigate, searchParams, setSearchParams, setAsideHoldings, isFromList });
 
   if (!o) return <Loading />;
 
