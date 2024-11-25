@@ -11,11 +11,8 @@ function AboutMods() {
 
   useMemo(() => {
     setLoaded(false);
-    (async() => {
-      // TODO
-        // await MODS_CONFIGS_DATA.fetchAsync(version, ['mods']);
-        setLoaded(true);
-    })();
+      MODS_CONFIGS_DATA.fetch(version, ['mods']);
+      setLoaded(true);
   }, [version]);
 
   let mods : Array<any> = [];
