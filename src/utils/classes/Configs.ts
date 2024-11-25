@@ -198,9 +198,8 @@ class ConfigsData {
   }
 
   private _saveConfigs(key: string, configs: Configs) {
-    if (key === 'charactersConfigs') console.log({key, configs, ver:this.ver, CONFIGS:this.configs})
     this.configs[this.ver][key] = configs;
-    this.configsData[key] = configs;
+    this._setConfigs(key, configs);
   }
 
   fetch(version: string, names: Array<string>) {
@@ -215,17 +214,6 @@ class ConfigsData {
       keys.push(key);
     }
   }
-
-  // async fetchAsync(version: string, names: Array<string>) {
-  //   this.version = version;
-  //   for (const name of names) {
-  //     const key = getConfigsKey(name);
-  //     // if (key in this.configsData) continue;
-  //     const response = await fetch(getConfigsUrl(version, name, this.isMods));
-  //     const configs = await response.json();
-  //     this._set(key, new Configs(key, configs));
-  //   }
-  // }
 
   set version(version: string) {
     const c = this._getConfigs(version);

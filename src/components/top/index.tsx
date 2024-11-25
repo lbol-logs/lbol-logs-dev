@@ -10,7 +10,7 @@ import RunListProvider from 'contexts/runListContext';
 import Init from 'components/common/layouts/init';
 
 function Top() {
-  const { ver = latestVersion } = useParams<{ ver: string }>();
+  const { ver } = useParams<{ ver: string }>();
 
   const configs: Array<string> = [
     'characters',

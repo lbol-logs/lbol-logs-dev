@@ -12,7 +12,7 @@ import ScrollToTop from 'components/common/utils/scrollToTop';
 import LogProvider from 'contexts/logContext';
 
 function Log() {
-  const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();
+  const { ver = '', id = '' } = useParams<{ ver: string, id: string }>();
   const { t, i18n } = useTranslation();
 
   const configs: Array<string> = [
