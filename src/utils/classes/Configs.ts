@@ -190,51 +190,59 @@ class ConfigsData {
   private configs: TObj<TConfigsData> = {};
   private configsData: TConfigsData;
   private isMods: boolean;
-  // TODO: add isInitialized
+  private savedConfigs: TObj<Array<string>> = {};
 
   constructor(configsData: TConfigsData, isMods: boolean) {
     this.configsData = configsData;
     this.isMods = isMods;
   }
 
-  get(version: string) {
-    this._init(version);
-    return this.configs[version];
-  }
-
-  set(key: string, configs: Configs) {
+  private _saveConfigs(key: string, configs: Configs) {
+    if (key === 'charactersConfigs') console.log({key, configs, ver:this.ver, CONFIGS:this.configs})
     this.configs[this.ver][key] = configs;
     this.configsData[key] = configs;
   }
 
   fetch(version: string, names: Array<string>) {
+    if (!(version in this.savedConfigs)) this.savedConfigs[version] = [];
+    const keys = this.savedConfigs[version];
     for (const name of names) {
       const key = getConfigsKey(name);
-      if (key in this.configsData) continue;
+      if (keys.includes(key)) continue;
       const configs = use(getConfigs(version, name, this.isMods));
       const C = name === 'cards' ? CardsConfigs : Configs;
-      this.set(key, new C(key, configs));
+      this._saveConfigs(key, new C(key, configs));
+      keys.push(key);
     }
   }
 
-  async fetchAsync(version: string, names: Array<string>) {
-    this.version = version;
-    for (const name of names) {
-      const key = getConfigsKey(name);
-      // if (key in this.configsData) continue;
-      const response = await fetch(getConfigsUrl(version, name, this.isMods));
-      const configs = await response.json();
-      this.set(key, new Configs(key, configs));
-    }
-  }
+  // async fetchAsync(version: string, names: Array<string>) {
+  //   this.version = version;
+  //   for (const name of names) {
+  //     const key = getConfigsKey(name);
+  //     // if (key in this.configsData) continue;
+  //     const response = await fetch(getConfigsUrl(version, name, this.isMods));
+  //     const configs = await response.json();
+  //     this._set(key, new Configs(key, configs));
+  //   }
+  // }
 
   set version(version: string) {
-    this._init(version);
-    const c = this.configs[version];
+    const c = this._getConfigs(version);
     for (const key in this.configsData) {
       const configs = c[key];
-      if (configs !== undefined) this.set(key, configs);
+      // if (configs !== undefined) this._set(key, configs);
+      this._setConfigs(key, configs);
     }
+  }
+
+  private _setConfigs(key: string, configs: Configs) {
+    this.configsData[key] = configs;
+  }
+
+  private _getConfigs(version: string) {
+    this._init(version);
+    return this.configs[version];
   }
 
   private _init(version: string) {

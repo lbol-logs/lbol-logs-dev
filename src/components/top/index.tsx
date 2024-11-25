@@ -12,8 +12,18 @@ import Init from 'components/common/layouts/init';
 function Top() {
   const { ver = latestVersion } = useParams<{ ver: string }>();
 
+  const configs: Array<string> = [
+    'characters',
+    'exhibits',
+    'requests'
+  ];
+  const modsConfigs: Array<string> = [
+    'characters',
+    'exhibits'
+  ];
+
   return (
-    <Init ver={ver}>
+    <Init configs={configs} modsConfigs={modsConfigs} ver={ver}>
       <Header versionSwitch={true} />
       <main className="l-top">
         <div className="l-inner">

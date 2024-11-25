@@ -127,32 +127,6 @@ const CONFIGS_DATA: ConfigsData = new ConfigsData(configsData, false);
 const modsConfigsData: TConfigsData = {} as TConfigsData;
 const MODS_CONFIGS_DATA: ConfigsData = new ConfigsData(modsConfigsData, true);
 
-const commonConfigs: Array<string> = [
-  'characters',
-  'exhibits',
-  'requests'
-];
-const logConfigs: Array<string> = [
-  'cards',
-  'statusEffects',
-  'enemyGroups',
-  'dialogues',
-  'gap',
-  'events',
-  'jadeBoxes'
-];
-
-const modsCommonConfigs: Array<string> = [
-  'characters',
-  'exhibits',
-  'mods'
-];
-const modsLogConfigs: Array<string> = [
-  'cards',
-  'statusEffects',
-  'enemyGroups'
-];
-
 const enemiesShowDetails: Array<string> = [
   'Seija'
 ];
@@ -216,10 +190,6 @@ export {
   configsData,
   MODS_CONFIGS_DATA,
   modsConfigsData,
-  commonConfigs,
-  logConfigs,
-  modsCommonConfigs,
-  modsLogConfigs,
   enemiesShowDetails,
   resultTypes,
   defaultRunData,

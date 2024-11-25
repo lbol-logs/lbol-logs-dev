@@ -11,8 +11,15 @@ import PoolTemplate from './poolTemplate';
 function Pool() {
   const { t } = useTranslation();
 
+  const configs: Array<string> = [
+    'cards',
+    'characters',
+    'exhibits',
+    'events'
+  ];
+
   return (
-    <Init>
+    <Init configs={configs}>
       <Title name={t('cardPool', { ns: 'site' })} />
       <Header alwaysLatest={true} />
       <main className="l-pool">

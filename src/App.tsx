@@ -10,6 +10,8 @@ import Log from 'components/log';
 import About from 'components/about';
 import Upload from 'components/upload';
 import Pool from 'components/pool';
+import Loading from 'components/common/layouts/loading';
+import { Suspense } from 'react';
 
 function Layout() {
   const { t } = useTranslation();
@@ -29,7 +31,9 @@ function Layout() {
 
       <RemoveTrailingSlash />
       <CommonProvider>
+      <Suspense fallback={<Loading />}>
         <Outlet />
+      </Suspense>
       </CommonProvider>
     </HelmetProvider>
   );

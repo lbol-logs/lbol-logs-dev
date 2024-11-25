@@ -1,15 +1,16 @@
-import { commonConfigs, CONFIGS_DATA, latestVersion, MODS_CONFIGS_DATA, modsCommonConfigs, versions } from 'configs/globals';
-import { useEffect, useMemo } from 'react';
+import { CONFIGS_DATA, latestVersion, MODS_CONFIGS_DATA, versions } from 'configs/globals';
+import { useEffect, useMemo, useState } from 'react';
 import { TDispatch } from 'utils/types/common';
 import { NavigateFunction } from 'react-router-dom';
 import { flushSync } from 'react-dom';
 
-function useInit({ version, setVersion, navigate, ver }: { version: string, setVersion: TDispatch<string>, navigate: NavigateFunction, ver?: string })  {
-  const [_ver, isValidVersion] = useMemo(() => {
-    const _ver = (ver || version) || latestVersion;
-    const isValidVersion = versions.includes(_ver);
-    return [_ver, isValidVersion];
-  }, [ver]);
+function useInit({ configs, modsConfigs, version, setVersion, navigate, ver }: { configs: Array<string>, modsConfigs: Array<string>, version: string, setVersion: TDispatch<string>, navigate: NavigateFunction, ver?: string })  {
+  const _ver = (ver || version) || latestVersion;
+  const [prevVersion, setPrevVersion] = useState('');
+
+  const isValidVersion = versions.includes(_ver);
+  const isVersionChanged = prevVersion !== _ver;
+  console.log({isVersionChanged, _ver, prevVersion})
 
   const redirect = useMemo(() => {
     let redirect;
@@ -17,18 +18,21 @@ function useInit({ version, setVersion, navigate, ver }: { version: string, setV
       redirect = () => navigate('/', { replace: true });
     }
     else {
-      (async () => {
-        // TODO
-        await CONFIGS_DATA.fetchAsync(_ver, commonConfigs);
-        await MODS_CONFIGS_DATA.fetchAsync(_ver, modsCommonConfigs);
-
-        flushSync(() => {
-          setVersion(_ver);
-        });
-      })();
+      if (isVersionChanged) {
+        console.log('changed to', _ver)
+        CONFIGS_DATA.version = _ver;
+        MODS_CONFIGS_DATA.version = _ver;
+        CONFIGS_DATA.fetch(_ver, configs);
+        MODS_CONFIGS_DATA.fetch(_ver, modsConfigs);
+      }
     }
     return redirect;
-  }, [_ver, isValidVersion]);
+  }, [_ver, isValidVersion, isVersionChanged]);
+
+  useEffect(() => {
+    if (!version) setVersion(_ver);
+    if (isVersionChanged) setPrevVersion(_ver);
+  }, [version]);
 
   useEffect(() => {
     if (redirect) redirect();

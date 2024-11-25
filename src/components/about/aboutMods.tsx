@@ -13,7 +13,7 @@ function AboutMods() {
     setLoaded(false);
     (async() => {
       // TODO
-        await MODS_CONFIGS_DATA.fetchAsync(version, ['mods']);
+        // await MODS_CONFIGS_DATA.fetchAsync(version, ['mods']);
         setLoaded(true);
     })();
   }, [version]);

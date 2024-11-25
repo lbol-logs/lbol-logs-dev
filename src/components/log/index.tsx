@@ -15,6 +15,21 @@ function Log() {
   const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();
   const { t, i18n } = useTranslation();
 
+  const configs: Array<string> = [
+    'cards',
+    'statusEffects',
+    'enemyGroups',
+    'dialogues',
+    'gap',
+    'events',
+    'jadeBoxes'
+  ];
+  const modsConfigs: Array<string> = [
+    'cards',
+    'statusEffects',
+    'enemyGroups'
+  ];
+
   let name;
   const array = id.split('_');
   if (array.length === 6) {
@@ -39,7 +54,7 @@ function Log() {
   }
 
   return (
-    <Init ver={ver}>
+    <Init configs={configs} modsConfigs={modsConfigs} ver={ver}>
       {name && <Title name={name} />}
       <Suspense fallback={<Loading />}>
         <Header />

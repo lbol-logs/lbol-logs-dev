@@ -24,7 +24,7 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
     setLoaded(false);
     (async() => {
       // TODO
-        await CONFIGS_DATA.fetchAsync(latestVersion, ['characters', 'exhibits']);
+        // await CONFIGS_DATA.fetchAsync(latestVersion, ['characters', 'exhibits']);
         setLoaded(true);
     })();
   }, []);
