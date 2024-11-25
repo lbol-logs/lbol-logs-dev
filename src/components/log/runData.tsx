@@ -24,13 +24,16 @@ function RunData({ ver, id }: { ver: string, id: string }) {
   const aside = asideHoldings;
   const isAside = aside !== '';
   const isSummary = act === 0;
+  const showAside = isAside && !isSummary;
+
   const currentHolding = holdings.find(({ Act, Level }) => Act === act && Level === level) as THolding;
+  const o = useHoldings({ level, currentHolding, setHoldingsWidth, isHidden: !showAside });
   const {
     holdingsRef,
     holding,
     startResizing,
     stopResizing
-  } = useHoldings({ level, currentHolding, setHoldingsWidth, isAside });
+  } = o;
 
   useEffect(() => {
     if (!isValidRunData) return;
@@ -40,7 +43,6 @@ function RunData({ ver, id }: { ver: string, id: string }) {
     }
   }, []);
 
-  const showAside = isAside && !isSummary;
   const style = (showAside ? { '--holdings-width': Math.min(Math.max(487, holdingsWidth), 801) + 'px' } : {}) as React.CSSProperties;
   const n = (holdingsWidth < 641 ? { '--exhibits-n': 1 } : {}) as React.CSSProperties;
 

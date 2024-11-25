@@ -9,7 +9,7 @@ import ExhibitCards from 'components/log/entityCards/exhibitCards';
 import CardCards from 'components/log/entityCards/cardCards';
 import i18next from 'i18next';
 
-function useHoldings({ level, currentHolding, setHoldingsHeight, setHoldingsWidth, isAside }: { level: TLevel, currentHolding: THolding, setHoldingsHeight?: TDispatch<number>, setHoldingsWidth?: TDispatch<number>, isAside?: boolean }) {
+function useHoldings({ level, currentHolding, setHoldingsHeight, setHoldingsWidth, isHidden = false }: { level: TLevel, currentHolding: THolding, setHoldingsHeight?: TDispatch<number>, setHoldingsWidth?: TDispatch<number>, isHidden?: boolean }) {
   const defaultHolding = <Processing />;
   const [holding, setHolding] = useState(defaultHolding);
   const holdingsRef = useRef<HTMLDivElement>(null);
@@ -62,6 +62,8 @@ function useHoldings({ level, currentHolding, setHoldingsHeight, setHoldingsWidt
   }, [isResizing]);
 
   useEffect(() => {
+    if (isHidden) return;
+
     const resizer = (document.querySelector('.js-resizer') as HTMLDivElement);
     if (!resizer) return;
     const o: TObj<[Window & typeof globalThis | HTMLDivElement, EventListenerOrEventListenerObject]> = {
@@ -80,6 +82,8 @@ function useHoldings({ level, currentHolding, setHoldingsHeight, setHoldingsWidt
   }, [holding, resize, stopResizing]);
 
   useEffect(() => {
+    if (isHidden) return;
+
     if (currentHolding) {
       const { Cards, Exhibits, BaseMana } = currentHolding;
       const holding = (
@@ -140,6 +144,8 @@ function useHoldings({ level, currentHolding, setHoldingsHeight, setHoldingsWidt
       setHolding(defaultHolding);
     }
   }, [currentHolding, i18next.language]);
+
+  if (isHidden) return {};
 
   return {
     holdingsRef,
