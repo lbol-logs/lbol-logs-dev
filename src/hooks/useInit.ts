@@ -18,6 +18,7 @@ function useInit({ version, setVersion, navigate, ver }: { version: string, setV
     }
     else {
       (async () => {
+        // TODO
         await CONFIGS_DATA.fetchAsync(_ver, commonConfigs);
         await MODS_CONFIGS_DATA.fetchAsync(_ver, modsCommonConfigs);
 

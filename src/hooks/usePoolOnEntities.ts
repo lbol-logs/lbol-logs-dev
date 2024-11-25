@@ -17,8 +17,10 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
   useMemo(() => {
     if (invalid) return;
     setLoaded(false);
+    // TODO
     CONFIGS_DATA.fetch(latestVersion, ['cards']);
     (async() => {
+        // TODO
         await CONFIGS_DATA.fetchAsync(latestVersion, ['characters', 'exhibits', 'events']);
         setLoaded(true);
     })();

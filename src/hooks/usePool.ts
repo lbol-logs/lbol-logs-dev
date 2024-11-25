@@ -23,6 +23,7 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
   useMemo(() => {
     setLoaded(false);
     (async() => {
+      // TODO
         await CONFIGS_DATA.fetchAsync(latestVersion, ['characters', 'exhibits']);
         setLoaded(true);
     })();

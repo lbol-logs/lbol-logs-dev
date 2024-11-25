@@ -119,9 +119,11 @@ const descriptionMaxLength = 300;
 
 const modsThreshold = 6;
 
+// TODO
 const configsData: TConfigsData = {} as TConfigsData;
 const CONFIGS_DATA: ConfigsData = new ConfigsData(configsData, false);
 
+// TODO
 const modsConfigsData: TConfigsData = {} as TConfigsData;
 const MODS_CONFIGS_DATA: ConfigsData = new ConfigsData(modsConfigsData, true);
 

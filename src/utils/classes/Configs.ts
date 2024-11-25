@@ -190,6 +190,7 @@ class ConfigsData {
   private configs: TObj<TConfigsData> = {};
   private configsData: TConfigsData;
   private isMods: boolean;
+  // TODO: add isInitialized
 
   constructor(configsData: TConfigsData, isMods: boolean) {
     this.configsData = configsData;

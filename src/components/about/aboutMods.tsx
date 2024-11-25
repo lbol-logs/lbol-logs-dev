@@ -12,6 +12,7 @@ function AboutMods() {
   useMemo(() => {
     setLoaded(false);
     (async() => {
+      // TODO
         await MODS_CONFIGS_DATA.fetchAsync(version, ['mods']);
         setLoaded(true);
     })();
