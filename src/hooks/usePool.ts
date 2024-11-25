@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import { TDispatch, TObj } from 'utils/types/common';
 import { TExhibits } from 'utils/types/runData';
 import { copyObject } from 'utils/functions/helpers';
@@ -6,27 +6,18 @@ import { useTranslation } from 'react-i18next';
 import { TPoolCheckbox, TPoolRadio, TPool } from 'utils/types/others';
 import DefaultPool from 'utils/classes/DefaultPool';
 import { useSubmit } from 'react-router-dom';
-import { CONFIGS_DATA, configsData, latestVersion } from 'configs/globals';
+import { configsData } from 'configs/globals';
 import Configs from 'utils/classes/Configs';
 
 function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter: TDispatch<TPool>, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
 
-  const [loaded, setLoaded] = useState(false);
   const [showPatchouliPhilosophy, setShowPatchouliPhilosophy] = useState(false);
   const [showJunkoColorless, setShowJunkoColorless] = useState(false);
   const [showCustomFilters, setShowCustomFilters] = useState(false);
 
   const PatchouliPhilosophy = t('PatchouliPhilosophy.Title', { ns: 'events' });
   const JunkoColorless = t('JunkoColorless.Title', { ns: 'events' });
-
-  useMemo(() => {
-    setLoaded(false);
-    (async() => {
-        await CONFIGS_DATA.fetchAsync(latestVersion, ['characters', 'exhibits']);
-        setLoaded(true);
-    })();
-  }, []);
 
   const formRef = useRef<HTMLFormElement>(null);
   const submit = useSubmit();
@@ -50,8 +41,6 @@ function usePool({ filter, setFilter, searchParams }: { filter: TPool, setFilter
 
     setFilter(currentFilter);
   }, []);
-
-  if (!loaded) return;
 
   const { charactersConfigs, exhibitsConfigs } = configsData;
   const characters = charactersConfigs.ids;

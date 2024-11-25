@@ -12,10 +12,17 @@ import { latestVersion } from 'configs/globals';
 function Pool() {
   const { t } = useTranslation();
 
+  const configs: Array<string> = [
+    'cards',
+    'characters',
+    'exhibits',
+    'events'
+  ];
+
   return (
-    <Init>
+    <Init configs={configs} ver={latestVersion} >
       <Title name={t('cardPool', { ns: 'site' })} />
-      <Header versionSwitch={false} versionOverride={latestVersion} />
+      <Header />
       <main className="l-pool">
         <div className="l-inner">
           <Suspense fallback={<Loading />}>

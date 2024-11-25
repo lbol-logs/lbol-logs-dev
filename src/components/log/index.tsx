@@ -1,5 +1,4 @@
 import Header from 'components/common/layouts/header';
-import { latestVersion } from 'configs/globals';
 import { useParams } from 'react-router-dom';
 import RunData from './runData';
 import { Suspense } from 'react';
@@ -12,8 +11,23 @@ import ScrollToTop from 'components/common/utils/scrollToTop';
 import LogProvider from 'contexts/logContext';
 
 function Log() {
-  const { ver = latestVersion, id = '' } = useParams<{ ver: string, id: string }>();
+  const { ver = '', id = '' } = useParams<{ ver: string, id: string }>();
   const { t, i18n } = useTranslation();
+
+  const configs: Array<string> = [
+    'cards',
+    'statusEffects',
+    'enemyGroups',
+    'dialogues',
+    'gap',
+    'events',
+    'jadeBoxes'
+  ];
+  const modsConfigs: Array<string> = [
+    'cards',
+    'statusEffects',
+    'enemyGroups'
+  ];
 
   let name;
   const array = id.split('_');
@@ -39,10 +53,10 @@ function Log() {
   }
 
   return (
-    <Init ver={ver}>
+    <Init configs={configs} modsConfigs={modsConfigs} ver={ver}>
       {name && <Title name={name} />}
       <Suspense fallback={<Loading />}>
-        <Header versionSwitch={false} />
+        <Header showVersion={true} />
         <LogProvider>
           <ScrollToTop />
           <RunData ver={ver} id={id} />

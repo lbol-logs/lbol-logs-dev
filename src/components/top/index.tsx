@@ -1,6 +1,5 @@
 
 import Header from 'components/common/layouts/header';
-import { latestVersion } from 'configs/globals';
 import { useParams } from 'react-router-dom';
 import RunList from './runList';
 import Footer from 'components/common/layouts/footer';
@@ -10,11 +9,21 @@ import RunListProvider from 'contexts/runListContext';
 import Init from 'components/common/layouts/init';
 
 function Top() {
-  const { ver = latestVersion } = useParams<{ ver: string }>();
+  const { ver } = useParams<{ ver: string }>();
+
+  const configs: Array<string> = [
+    'characters',
+    'exhibits',
+    'requests'
+  ];
+  const modsConfigs: Array<string> = [
+    'characters',
+    'exhibits'
+  ];
 
   return (
-    <Init ver={ver}>
-      <Header />
+    <Init configs={configs} modsConfigs={modsConfigs} ver={ver}>
+      <Header showVersion={true} versionSwitch={true} />
       <main className="l-top">
         <div className="l-inner">
           <Suspense fallback={<Loading />}>

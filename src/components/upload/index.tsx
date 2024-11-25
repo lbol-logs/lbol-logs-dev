@@ -8,11 +8,22 @@ import { Suspense } from 'react';
 import Loading from 'components/common/layouts/loading';
 import Init from 'components/common/layouts/init';
 import Title from 'components/common/layouts/title';
+import { latestVersion } from 'configs/globals';
 
 function Upload() {
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
   const { t } = useTranslation();
+
+  const configs: Array<string> = [
+    'characters',
+    'exhibits',
+    'requests'
+  ];
+  const modsConfigs: Array<string> = [
+    'characters',
+    'exhibits'
+  ];
 
   let _success = null;
   let _error = null;
@@ -59,7 +70,7 @@ function Upload() {
   }
 
   return (
-    <Init>
+    <Init configs={configs} modsConfigs={modsConfigs} ver={latestVersion}>
       <Navigate replace to={{ pathname }}/>
       <Title name={t('upload', { ns: 'site' })} />
       <Header />

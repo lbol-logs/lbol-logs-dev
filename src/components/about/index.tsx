@@ -14,11 +14,17 @@ function About() {
   const { t } = useTranslation();
   const { discord } = languages[i18next.language];
 
+  const configs: Array<string> = [
+  ];
+  const modsConfigs: Array<string> = [
+    'mods'
+  ];
+
   const tasks: Array<string> = t('lbolLogs.tasks', { ns: 'site', returnObjects: true });
   const attention: Array<string> = t('attention.value', { ns: 'site', returnObjects: true });
 
   return (
-    <Init>
+    <Init configs={configs} modsConfigs={modsConfigs}>
       <Title name="About" />
       <Header />
       <main className="l-about">

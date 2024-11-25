@@ -1,16 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import useInit from 'hooks/useInit';
-import { ReactNode, useContext, useState } from 'react';
+import { ReactNode, useContext } from 'react';
 import { CommonContext } from 'contexts/commonContext';
-import { TObj } from 'utils/types/common';
 
-const defaultIsInitilized: TObj<boolean> = {};
-
-function Init({ children, ver }: { children?: ReactNode, ver?: string }) {
+function Init({ configs, modsConfigs = [], children, ver }: { configs: Array<string>, modsConfigs?: Array<string>, children?: ReactNode, ver?: string }) {
   const { version, setVersion } = useContext(CommonContext);
-  const [isInitialized, setIsInitialized] = useState(defaultIsInitilized);
   const navigate = useNavigate();
-  useInit({ version, setVersion, navigate, isInitialized, setIsInitialized, ver });
+  useInit({ configs, modsConfigs, version, setVersion, navigate, ver });
+
+  if (!version) return null;
 
   return (
     <>
