@@ -42,7 +42,7 @@ function Log() {
     <Init ver={ver}>
       {name && <Title name={name} />}
       <Suspense fallback={<Loading />}>
-        <Header versionSwitch={false} />
+        <Header />
         <LogProvider>
           <ScrollToTop />
           <RunData ver={ver} id={id} />

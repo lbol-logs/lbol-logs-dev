@@ -20,7 +20,7 @@ function About() {
   return (
     <Init>
       <Title name="About" />
-      <Header />
+      <Header alwaysLatest={true} />
       <main className="l-about">
         <div className="l-inner">
           <section className="p-about">

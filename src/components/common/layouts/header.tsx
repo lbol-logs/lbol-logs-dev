@@ -6,12 +6,11 @@ import Logo from '../parts/logo';
 import Meta from './meta';
 import { useContext } from 'react';
 import { CommonContext } from 'contexts/commonContext';
+import { latestVersion } from 'configs/globals';
 
-function Header({ versionSwitch, versionOverride }: { versionSwitch?: boolean, versionOverride?: string }) {
+function Header({ versionSwitch = false, alwaysLatest = false }: { versionSwitch?: boolean, alwaysLatest?: boolean }) {
   const { version, setVersion } = useContext(CommonContext);
   const { t } = useTranslation();
-
-  versionSwitch = versionSwitch === undefined ? true : versionSwitch;
 
   return (
     <header className="l-header">
@@ -30,7 +29,7 @@ function Header({ versionSwitch, versionOverride }: { versionSwitch?: boolean, v
           <Link className="l-header__button u-button" to="/pool/">{t('cardPool', { ns: 'site' })}</Link>
         </div>
         <div className="l-header__widgets">
-          <VersionWidget className="l-header__version" version={versionOverride || version} setVersion={setVersion} versionSwitch={!!versionSwitch} />
+          <VersionWidget className="l-header__version" version={alwaysLatest ? latestVersion : version} setVersion={setVersion} versionSwitch={!!versionSwitch} />
           <LanguageSwitcher />
         </div>
       </div>

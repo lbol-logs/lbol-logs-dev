@@ -14,7 +14,7 @@ function Top() {
 
   return (
     <Init ver={ver}>
-      <Header />
+      <Header versionSwitch={true} />
       <main className="l-top">
         <div className="l-inner">
           <Suspense fallback={<Loading />}>
