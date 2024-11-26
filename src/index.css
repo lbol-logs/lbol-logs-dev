@@ -2229,6 +2229,9 @@ html:lang(en) .p-result__type {
 .p-card-pool {
   padding-bottom: 50vh;
 }
+.p-card-pool__line {
+  display: flex;
+}
 .p-card-pool__block {
   border-width: 1px;
   border-style: solid;

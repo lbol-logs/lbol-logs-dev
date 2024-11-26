@@ -10,6 +10,8 @@ import Modal from 'components/log/modal';
 import { useTranslation } from 'react-i18next';
 import CardPools from './cardPools';
 import { getCardPoolLength } from 'utils/functions/helpers';
+import CharacterImage from 'components/common/parts/characterImage';
+import ExhibitImages from 'components/common/parts/exhibitImages';
 
 function PoolTemplate() {
   const { validCards, setValidCards, addedValidCards, setAddedValidCards, removedValidCards, setRemovedValidCards, showDiff } = useContext(CardPoolContext);
@@ -32,6 +34,8 @@ function PoolTemplate() {
     }
     return currentFilter;
   }, [searchParams]);
+
+  const { ch, ex } = currentFilter;
 
   const o = usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards });
   const {
@@ -63,6 +67,10 @@ function PoolTemplate() {
     <section className="p-card-pool">
       <Modal />
       <Filter baseManaWithoutEvent={baseManaWithoutEvent} />
+      <div className="p-card-pool__line">
+        <CharacterImage character={ch || 'Neutral'} />
+        <ExhibitImages exhibits={ex || []} />
+      </div>
       <BaseManasWidget baseMana={baseMana} />
       {pools.map(({ type, cardPool, prefix, hidden }) => {
         const count = getCardPoolLength(cardPool);
