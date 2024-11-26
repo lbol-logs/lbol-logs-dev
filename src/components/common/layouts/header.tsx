@@ -6,8 +6,9 @@ import Logo from '../parts/logo';
 import Meta from './meta';
 import { useContext } from 'react';
 import { CommonContext } from 'contexts/commonContext';
+import { latestVersion } from 'configs/globals';
 
-function Header({ showVersion = false, versionSwitch = false }: { showVersion?: boolean, versionSwitch?: boolean }) {
+function Header({ showVersion = false, versionSwitch = false, alwaysLatest = false }: { showVersion?: boolean, versionSwitch?: boolean, alwaysLatest?: boolean }) {
   const { version, setVersion } = useContext(CommonContext);
   const { t } = useTranslation();
 
@@ -28,7 +29,7 @@ function Header({ showVersion = false, versionSwitch = false }: { showVersion?: 
           <Link className="l-header__button u-button" to="/pool/">{t('cardPool', { ns: 'site' })}</Link>
         </div>
         <div className="l-header__widgets">
-          {showVersion && <VersionWidget className="l-header__version" version={version} setVersion={setVersion} versionSwitch={!!versionSwitch} />}
+          {showVersion && <VersionWidget className="l-header__version" version={alwaysLatest ? latestVersion : version} setVersion={setVersion} versionSwitch={!!versionSwitch} />}
           <LanguageSwitcher />
         </div>
       </div>

@@ -22,7 +22,7 @@ function Pool() {
   return (
     <Init configs={configs} ver={latestVersion} >
       <Title name={t('cardPool', { ns: 'site' })} />
-      <Header />
+      <Header showVersion={true} alwaysLatest={true} />
       <main className="l-pool">
         <div className="l-inner">
           <Suspense fallback={<Loading />}>
