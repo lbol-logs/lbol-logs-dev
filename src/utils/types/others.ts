@@ -1,5 +1,5 @@
 import { TObj, TObjAny, TRange4 } from './common';
-import { TAct, TCard, TExhibit, TExhibitObj, TJadeBox, TLevel, TMod, TRequest, TRequests, TStation, TStatusEffect } from './runData';
+import { TAct, TCard, TCards, TExhibit, TExhibitObj, TJadeBox, TLevel, TMod, TRequest, TRequests, TStation, TStatusEffect } from './runData';
 
 type TRunListItem = {
   id: string,
@@ -88,6 +88,8 @@ type TModConfigs = TMod & {
   Url? : string
 };
 
+type TCardPool = TObj<TCards>;
+
 enum ErrorType {
   invalidFile = 'invalidFile',
   invalidVersion = 'invalidVersion',
@@ -114,7 +116,8 @@ export type {
   TJadeBoxObj,
   TEntityModal,
   TCardMana,
-  TModConfigs
+  TModConfigs,
+  TCardPool
 };
 
 export {

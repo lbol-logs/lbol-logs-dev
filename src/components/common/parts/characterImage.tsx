@@ -11,6 +11,10 @@ function CharacterImage({ character, className }: { character: string, className
     alt = character;
     isMod = false;
   }
+  else if (character === 'Neutral') {
+    alt = t('neutral', { ns: 'site' });
+    isMod = false;
+  }
   else {
     let ns: string;
     [ns, isMod] = getNs({ ns: 'units', character });
