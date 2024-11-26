@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, MouseEvent } from 'react';
 import { NavigateFunction, SetURLSearchParams } from 'react-router-dom';
 import ActLevel from 'utils/classes/ActLevel';
 import { copyObject, toggleAside } from 'utils/functions/helpers';
@@ -26,10 +26,20 @@ function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, s
     triggerChange(nextAct, 0);
   }
 
-  function changeLevel(e: ChangeEvent<HTMLInputElement>) {
+  function onChange(e: ChangeEvent<HTMLInputElement>) {
     const nextLevel = Number(e.target.value) as TLevel;
     triggerChange(act, nextLevel);
   }
+
+  function onMouseDown(e: MouseEvent<HTMLInputElement>) {
+    (e.target as HTMLInputElement).classList.add('active');
+  }
+
+  function onMouseUp(e: MouseEvent<HTMLInputElement>) {
+    (e.target as HTMLInputElement).classList.remove('active');
+  }
+
+  const rangeProps = { onChange, onMouseDown, onMouseUp };
 
   function triggerChange(a: TAct, l: TLevel) {
     a = al.act(a);
@@ -63,7 +73,7 @@ function useControl({ isRunDataLoaded, runData, act, setAct, setLevel, rounds, s
     maxLevel,
     backToTop,
     changeAct,
-    changeLevel,
+    rangeProps,
     handleToggle,
     handleAside
   };

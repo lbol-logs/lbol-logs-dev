@@ -32,7 +32,7 @@ function Control() {
     maxLevel,
     backToTop,
     changeAct,
-    changeLevel,
+    rangeProps,
     handleToggle,
     handleAside
   } = o;
@@ -81,7 +81,7 @@ function Control() {
     );
     centerArea = (
       <span className="p-control__component p-control__component--center">
-        <input className="p-control__range" type="range" value={value} min={minLevel} max={max} onChange={changeLevel} />
+        <input className="p-control__range js-range" type="range" value={value} min={minLevel} max={max} {...rangeProps} />
       </span>
     );
 
