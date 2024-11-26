@@ -2229,21 +2229,34 @@ html:lang(en) .p-result__type {
 .p-card-pool {
   padding-bottom: 50vh;
 }
-.p-card-pool__cards {
+.p-card-pool__block {
   border-width: 1px;
   border-style: solid;
   border-radius: 1em;
   padding: 0 0.5em 0.5em;
   margin: 1em 0;
 }
-.p-card-pool__cards--valid {
+.p-card-pool__block--valid {
   border-color: var(--orange);
 }
-.p-card-pool__cards--added {
+.p-card-pool__block--added {
   border-color: var(--green);
 }
-.p-card-pool__cards--removed {
+.p-card-pool__block--removed {
   border-color: var(--red);
+}
+.p-card-pool__card-pools {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2em;
+}
+.p-card-pool__card-pool {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+.p-card-pool__owner {
+  flex-shrink: 0;
 }
 
 :root {
@@ -2476,6 +2489,11 @@ html:lang(en) .p-result__type {
   }
   .p-card__upgrade-switcher {
     --size: 36px;
+  }
+
+  .p-card-pool__card-pool {
+    flex-direction: column;
+    align-items: center;
   }
 
   .u-pc {

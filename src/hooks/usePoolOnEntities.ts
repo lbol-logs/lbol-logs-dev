@@ -2,12 +2,12 @@ import { configsData } from 'configs/globals';
 import { useEffect } from 'react';
 import BMana from 'utils/classes/BMana';
 import DefaultPool from 'utils/classes/DefaultPool';
-import { convertCards, copyObject } from 'utils/functions/helpers';
-import { TDispatch } from 'utils/types/common';
-import { TCardMana, TPool } from 'utils/types/others';
+import { convertCards, copyObject, getCardPoolLength, getOwner } from 'utils/functions/helpers';
+import { TDispatch, TObj } from 'utils/types/common';
+import { TCardMana, TCardPool, TPool } from 'utils/types/others';
 import { TCards } from 'utils/types/runData';
 
-function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCards, setValidCards: TDispatch<TCards>, setAddedValidCards: TDispatch<TCards>, setRemovedValidCards: TDispatch<TCards> }) {
+function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedValidCards, setRemovedValidCards }: { currentFilter: TPool, validCards: TCardPool, setValidCards: TDispatch<TCardPool>, setAddedValidCards: TDispatch<TCardPool>, setRemovedValidCards: TDispatch<TCardPool> }) {
   const { ch, ex, et, ft, co, rr, ct, tc } = currentFilter;
 
   const invalid = !ch || !ex || !ex.length;
@@ -15,7 +15,7 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
   let baseMana: string;
 
   useEffect(() => {
-    const cardIds: Array<string> = [];
+    const cardIds: TObj<Array<string>> = {};
     if (!invalid && baseMana) {
       const { cardsConfigs, exhibitsConfigs } = configsData;
       const { ids } = cardsConfigs;
@@ -69,22 +69,41 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
         const canPayAllManas = checkAllManas(totalCost);
         if (!canPayAllManas) continue;
 
-        cardIds.push(id);
+        const owner = getOwner(Owner);
+        if (!(owner in cardIds)) cardIds[owner] = [];
+        cardIds[owner].push(id);
       }
     }
-    const filteredCards = convertCards(cardIds);
-    let addedValidCards: TCards = [];
-    let removedValidCards: TCards = [];
+    const filteredCards = Object.entries(cardIds).reduce((a, [owner, cards]) => {
+      a[owner] = convertCards(cards);
+      return a;
+    }, {} as TCardPool);
+    let addedValidCards: TCardPool = {};
+    let removedValidCards: TCardPool = {};
 
     const lastValidCards = copyObject(validCards);
-    if (lastValidCards.length && filteredCards.length) {
-      addedValidCards = filteredCards.filter(({ Id }) => lastValidCards.findIndex(card => card.Id === Id) === -1);
-      removedValidCards = lastValidCards.filter(({ Id }) => filteredCards.findIndex(card => card.Id === Id) === -1);
+    if (getCardPoolLength(lastValidCards) && getCardPoolLength(filteredCards)) {
+      addedValidCards = filterCardPoolDiff(filteredCards, lastValidCards);
+      removedValidCards = filterCardPoolDiff(lastValidCards, filteredCards);
     }
     setAddedValidCards(addedValidCards);
     setRemovedValidCards(removedValidCards);
     setValidCards(filteredCards);
   }, [currentFilter, invalid]);
+
+  function filterCardPoolDiff(a: TCardPool, b: TCardPool) {
+    const cardPool: TCardPool = {};
+    for (const [owner, cards] of Object.entries(a)) {
+      const _cards: TCards = [];
+      const cardsB = b[owner] || [];
+      for (const card of cards) {
+        const isDiff = cardsB.findIndex(({ Id }) => card.Id === Id) === -1;
+        if (isDiff) _cards.push(card);
+      }
+      if (_cards.length) cardPool[owner] = _cards;
+    }
+    return cardPool;
+  }
 
   if (invalid) return;
 

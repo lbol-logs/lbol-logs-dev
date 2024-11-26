@@ -6,9 +6,10 @@ import { CardPoolContext } from 'contexts/cardPoolContext';
 import { useSearchParams } from 'react-router-dom';
 import { TPool, TPoolCheckbox, TPoolRadio } from 'utils/types/others';
 import DefaultPool from 'utils/classes/DefaultPool';
-import CardCards from 'components/log/entityCards/cardCards';
 import Modal from 'components/log/modal';
 import { useTranslation } from 'react-i18next';
+import CardPools from './cardPools';
+import { getCardPoolLength } from 'utils/functions/helpers';
 
 function PoolTemplate() {
   const { validCards, setValidCards, addedValidCards, setAddedValidCards, removedValidCards, setRemovedValidCards, showDiff } = useContext(CardPoolContext);
@@ -41,19 +42,19 @@ function PoolTemplate() {
   const pools = [
     {
       type: 'added',
-      cards: addedValidCards,
+      cardPool: addedValidCards,
       prefix: '＋',
       hidden: !showDiff
     },
     {
       type: 'removed',
-      cards: removedValidCards,
+      cardPool: removedValidCards,
       prefix: '－',
       hidden: !showDiff
     },
     {
       type: 'valid',
-      cards: validCards,
+      cardPool: validCards,
       prefix: '▲'
     }
   ];
@@ -63,16 +64,18 @@ function PoolTemplate() {
       <Modal />
       <Filter baseManaWithoutEvent={baseManaWithoutEvent} />
       <BaseManasWidget baseMana={baseMana} />
-      {pools.map(({ type, cards, prefix, hidden }) => {
-        if (!cards.length) return null;
+      {pools.map(({ type, cardPool, prefix, hidden }) => {
+        const count = getCardPoolLength(cardPool);
+        if (!count) return null;
         if (hidden) return null;
+
         return (
-          <div className={`p-card-pool__cards p-card-pool__cards--${type}`} key={type}>
+          <div className={`p-card-pool__block p-card-pool__block--${type}`} key={type}>
             <h2>
               <span className={`p-card-pool__type--${type}`}>{prefix}</span>
-              {t('cardsCount', { ns: 'log', count: cards.length })}
+              {t('cardsCount', { ns: 'log', count })}
             </h2>
-            <CardCards cards={cards} />
+            <CardPools cardPool={cardPool} />
           </div>
         );
       })}

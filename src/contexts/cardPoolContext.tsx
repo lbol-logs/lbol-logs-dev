@@ -1,23 +1,22 @@
 import { createContext, ReactNode, useState } from 'react';
 import { TDispatch } from 'utils/types/common';
-import { TPool } from 'utils/types/others';
-import { TCards } from 'utils/types/runData';
+import { TCardPool, TPool } from 'utils/types/others';
 
 const defaultFilter: TPool = {};
-const defaultValidCards: TCards = [];
-const defaultAddedValidCards: TCards = [];
-const defaultRemovedValidCards: TCards = [];
+const defaultValidCards: TCardPool = {};
+const defaultAddedValidCards: TCardPool = {};
+const defaultRemovedValidCards: TCardPool = {};
 const defaultShowDiff: boolean = true;
 
 type TCardPoolContext = {
   filter: TPool
   setFilter: TDispatch<TPool>,
-  validCards: TCards,
-  setValidCards: TDispatch<TCards>,
-  addedValidCards: TCards,
-  setAddedValidCards: TDispatch<TCards>,
-  removedValidCards: TCards,
-  setRemovedValidCards: TDispatch<TCards>,
+  validCards: TCardPool,
+  setValidCards: TDispatch<TCardPool>,
+  addedValidCards: TCardPool,
+  setAddedValidCards: TDispatch<TCardPool>,
+  removedValidCards: TCardPool,
+  setRemovedValidCards: TDispatch<TCardPool>,
   showDiff: boolean,
   setShowDiff: TDispatch<boolean>
 };

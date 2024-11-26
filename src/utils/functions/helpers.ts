@@ -1,7 +1,7 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { configsData, resultTypes } from 'configs/globals';
 import { AsideType, TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
-import { TRounds } from 'utils/types/others';
+import { TCardPool, TRounds } from 'utils/types/others';
 import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
@@ -193,6 +193,14 @@ function getSpellcardType(spellcard: string) {
   return spellcard.slice(-1);
 }
 
+function getOwner(owner: string) {
+  return owner || 'Neutral';
+}
+
+function getCardPoolLength(cards: TCardPool) {
+  return Object.values(cards).flat().length;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -222,5 +230,7 @@ export {
   checkIsMod,
   getNs,
   getEntityNs,
-  getSpellcardType
+  getSpellcardType,
+  getOwner,
+  getCardPoolLength
 };
