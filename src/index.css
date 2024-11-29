@@ -2256,7 +2256,7 @@ html:lang(en) .p-result__type {
 .p-card-pool__card-pool {
   display: flex;
   align-items: flex-start;
-  gap: 0.5em;
+  gap: 1em;
 }
 .p-card-pool__owner {
   flex-shrink: 0;
