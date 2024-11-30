@@ -201,6 +201,11 @@ function getCardPoolLength(cards: TCardPool) {
   return Object.values(cards).flat().length;
 }
 
+function scroll() {
+  const div = document.querySelector('.js-runList') as HTMLDivElement;
+  div.scrollIntoView({ behavior: 'smooth' });
+}
+
 export {
   checkForce,
   validateRunData,
@@ -232,5 +237,6 @@ export {
   getEntityNs,
   getSpellcardType,
   getOwner,
-  getCardPoolLength
+  getCardPoolLength,
+  scroll
 };

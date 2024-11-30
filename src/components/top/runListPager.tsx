@@ -2,6 +2,7 @@ import { RunListContext } from 'contexts/runListContext';
 import { useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Pager from 'utils/classes/Pager';
+import { scroll } from 'utils/functions/helpers';
 import { TObjAny } from 'utils/types/common';
 
 function RunListPager() {
@@ -40,6 +41,7 @@ function RunListPager() {
     if (page === 1) searchParams.delete('p');
     else searchParams.set('p', page.toString());
     setSearchParams(searchParams, { replace: true });
+    scroll();
   }
 
   const className = 'p-pager__page';

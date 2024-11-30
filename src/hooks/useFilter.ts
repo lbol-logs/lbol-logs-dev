@@ -3,7 +3,7 @@ import { TDispatch, TObj } from 'utils/types/common';
 import { TExhibits } from 'utils/types/runData';
 import { getConfigs } from 'utils/functions/fetchData';
 import use from 'utils/functions/use';
-import { copyObject } from 'utils/functions/helpers';
+import { copyObject, scroll } from 'utils/functions/helpers';
 import { useTranslation } from 'react-i18next';
 import { TFilter, TFilterCheckbox, TFilterRadio } from 'utils/types/others';
 import DefaultFilter from 'utils/classes/DefaultFilter';
@@ -143,11 +143,6 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
     submit(null);
     scroll();
     e.preventDefault();
-  }
-
-  function scroll() {
-    const div = document.querySelector('.js-runList') as HTMLDivElement;
-    div.scrollIntoView({ behavior: 'smooth' });
   }
 
   function deleteValues() {
