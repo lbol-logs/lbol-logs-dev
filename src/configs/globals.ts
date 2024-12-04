@@ -96,8 +96,8 @@ const GA4_MEASUREMENT_ID = 'G-8Q07V7QP73';
 const iconSize = 36;
 
 const cardSize = {
-  width: 144,
-  height: 40
+  width: 220,
+  height: 152
 };
 
 const resultSizes = {
