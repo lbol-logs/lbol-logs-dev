@@ -25,9 +25,11 @@ function Stations() {
     const range = document.querySelector('.js-range') as HTMLInputElement;
     const timer = timerRef.current as NodeJS.Timeout;
     if (timer) clearTimeout(timer);
-      const _timer = setTimeout(() => {
-      const isActive = range.classList.contains('active');
-      if (isActive) return;
+    const _timer = setTimeout(() => {
+      if (range) {
+        const isActive = range.classList.contains('active');
+        if (isActive) return;
+      }
 
       const selector = showMap ? '.js-map' : '.js-holdings';
       const element = document.querySelector(selector) as HTMLDivElement;
