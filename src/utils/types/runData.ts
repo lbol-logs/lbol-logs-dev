@@ -39,7 +39,8 @@ type TJadeBoxes = Array<TJadeBox>;
 type TMod = {
   GUID: string,
   Name: string,
-  Version: string
+  Version: string,
+  Configs?: TObjAny
 };
 type TMods = Array<TMod>;
 

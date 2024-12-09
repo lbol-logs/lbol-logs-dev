@@ -10,11 +10,11 @@ import { TObjElement, TObjAny, TObj } from 'utils/types/common';
 import BaseManasWidget from 'components/common/parts/baseManasWidget';
 import { configsData } from 'configs/globals';
 import i18next from 'i18next';
-import { getEntityNs } from 'utils/functions/helpers';
+import { getEntityNs, getPatchouliModConfigs } from 'utils/functions/helpers';
 import { TJadeBoxObj, TRequestObj } from 'utils/types/others';
 
 function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, prefix?: string }) {
-  const { act, level, holdings } = useContext(LogContext);
+  const { act, level, holdings, runData } = useContext(LogContext);
   const { t, i18n } = useTranslation();
 
   const isEn = i18next.language === 'en';
@@ -80,6 +80,11 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         const modsArgs = { Value3, BoostThreshold1, BoostThreshold2, BoostThreshold3 };
         c.appendDescs(modsArgs);
         c.insertManaObj({ BonusMana });
+
+        if (Id === 'PatchouliElementalManipulation') {
+          const { startingCardSign } = getPatchouliModConfigs(runData);
+          Object.assign(values, { Sign: startingCardSign });
+        }
       }
 
       // Sanae
@@ -132,6 +137,11 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         const { BoostThreshold1 } = config;
         const modsArgs = { BoostThreshold1 };
         c.appendDescs(modsArgs);
+
+        if (Id === 'PatchouliExhibitB') {
+          const { startingExhibitSign } = getPatchouliModConfigs(runData);
+          Object.assign(values, { Sign: startingExhibitSign });
+        }
       }
 
       break;

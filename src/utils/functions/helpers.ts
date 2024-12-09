@@ -2,7 +2,7 @@ import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { configsData, resultTypes } from 'configs/globals';
 import { AsideType, TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
 import { TCardPool, TRounds } from 'utils/types/others';
-import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
+import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TMods, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
@@ -206,6 +206,10 @@ function scroll() {
   div.scrollIntoView({ behavior: 'smooth' });
 }
 
+function getPatchouliModConfigs(runData: TRunData) {
+  return runData.Settings.Mods?.find(({ GUID }) => GUID === 'rmrfmaxx.lbol.PatchouliCharacterMod')?.Configs || { startingExhibitSign: 0, startingCardSign: 0 };
+}
+
 export {
   checkForce,
   validateRunData,
@@ -238,5 +242,6 @@ export {
   getSpellcardType,
   getOwner,
   getCardPoolLength,
-  scroll
+  scroll,
+  getPatchouliModConfigs
 };
