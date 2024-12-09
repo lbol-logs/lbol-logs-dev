@@ -2,7 +2,7 @@ import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { configsData, resultTypes } from 'configs/globals';
 import { AsideType, TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
 import { TCardPool, TRounds } from 'utils/types/others';
-import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TMods, TRunData, TStation, TStations } from 'utils/types/runData';
+import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
