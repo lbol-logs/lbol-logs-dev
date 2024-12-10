@@ -31,7 +31,8 @@ type TPromise = {
 };
 
 type TFilterText = {
-  na?: string
+  na?: string,
+  no?: string
 };
 type TFilterRadio = {
   et?: string

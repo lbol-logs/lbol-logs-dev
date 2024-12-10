@@ -42,8 +42,9 @@ function Filter() {
     reset
   } = useFilter({ filter, setFilter, version, searchParams });
 
-  let { na } = filter;
+  let { na, no } = filter;
   na = na ? na[0] : '';
+  no = no ? no[0] : '';
 
   function onClick() {
     setShowFilter(!showFilter);
@@ -92,6 +93,12 @@ function Filter() {
           <div className="p-filter__label">{t('name', { ns: 'runList' })}</div>
           <div className="p-filter__values">
             <input className="p-filter__input" name="na" defaultValue={na} key={na} />
+          </div>
+        </div>
+        <div className="p-filter__row">
+          <div className="p-filter__label">NOT</div>
+          <div className="p-filter__values">
+            <input className="p-filter__input" name="no" defaultValue={no} key={no} />
           </div>
         </div>
         <div className="p-filter__row">

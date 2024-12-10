@@ -29,6 +29,10 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter, setFilteredList
         const value = (f as string).toLowerCase();
         filteredList = filteredList.filter(e => e.name && e.name.toLowerCase().includes(value));
       }
+      if (key === keys.no) {
+        const value = (f as string).toLowerCase();
+        filteredList = filteredList.filter(e => !e.name || !e.name.toLowerCase().includes(value));
+      }
     }
     else if (isRadio) {
       if (key === keys.rt) {

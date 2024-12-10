@@ -6,6 +6,7 @@ enum ExhibitTypes {
 class DefaultFilter {
   static keys = {
     na: 'na',
+    no: 'no',
     ch: 'ch',
     sc: 'sc',
     et: 'et',
@@ -32,7 +33,8 @@ class DefaultFilter {
   };
 
   static texts = [
-    this.keys.na
+    this.keys.na,
+    this.keys.no
   ];
 
   static radios = [
