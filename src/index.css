@@ -1895,6 +1895,10 @@ html:lang(en) .p-result__type {
   color: var(--f-koishi);
 }
 
+.c-character-short-name--momiji,
+.c-character-short-name--Momiji {
+  color: var(--f-momiji);
+}
 .c-character-short-name--patchoulimod,
 .c-character-short-name--PatchouliMod {
   color: var(--f-patchouli);
@@ -2317,6 +2321,7 @@ html:lang(en) .p-result__type {
   --f-cirno: #0f94f2;
   --f-koishi: #23ec4d;
 
+  --f-momiji: #e58c27;
   --f-patchouli: #d2c5df;
   --f-sanae: #28e25a;
   --f-utsuho: #e58c27;
