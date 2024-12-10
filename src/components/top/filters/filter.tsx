@@ -91,7 +91,7 @@ function Filter() {
         <div className="p-filter__row">
           <div className="p-filter__label">{t('name', { ns: 'runList' })}</div>
           <div className="p-filter__values">
-            <input className="p-filter__input" name="na" defaultValue={na} />
+            <input className="p-filter__input" name="na" defaultValue={na} key={na} />
           </div>
         </div>
         <div className="p-filter__row">
