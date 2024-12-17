@@ -35,7 +35,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rd /s /q \"./build/assets\" \"./build/mods\" \"./build/logs\" && copy build\\index.html build\\404.html",
+    "prebuild": "for /F \"tokens=*\" %f in (paths.txt) do (robocopy ./public/%f ../temp/%f /e /MOVE /NFL /NDL /NJH /NJS /nc /ns /np) &",
+    "build": "react-scripts build && rd /s /q \"./build/assets\" \"./build/mods\" && copy build\\index.html build\\404.html",
+    "postbuild": "for /F \"tokens=*\" %f in (paths.txt) do (robocopy ../temp/%f ./public/%f /e /MOVE /NFL /NDL /NJH /NJS /nc /ns /np) &",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

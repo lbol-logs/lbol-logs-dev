@@ -1,0 +1,7 @@
+assets/configs
+assets/images
+logs
+mods/docs/configs
+mods/docs/images
+mods/ExportModImgs
+mods/mods
