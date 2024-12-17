@@ -191,6 +191,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         c.insert('Damage', <Desc value={Level} />);
       }
       if (SourceCardName !== undefined) {
+        const [ns] = getEntityNs({ card: { Id: SourceCardName } });
         const name = t(`${SourceCardName}.Name`, { ns });
         c.insert('SourceCardName', <Desc value={name} />);
       }
