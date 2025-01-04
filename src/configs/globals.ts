@@ -139,6 +139,7 @@ const resultTypes: TObjString = {
 const defaultRunData = {} as TRunData;
 
 const whitelistDomains: Array<string> = [
+  'https://lbol-logs.github.io/',
   'https://www.youtube.com/',
   'https://youtu.be/',
   'https://docs.google.com/'
