@@ -36,7 +36,7 @@ export default StatusWidget;
 
 function getValuWithChange(value: number, lastValue: number | undefined) {
   let change;
-  if (lastValue) {
+  if (lastValue !== undefined) {
     const diff = value - lastValue;
     if (diff) {
       const isPositive = diff > 0;
