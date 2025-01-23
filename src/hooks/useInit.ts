@@ -3,8 +3,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { TDispatch } from 'utils/types/common';
 import { NavigateFunction } from 'react-router-dom';
 
-function useInit({ configs, modsConfigs, version, setVersion, navigate, ver }: { configs: Array<string>, modsConfigs: Array<string>, version: string, setVersion: TDispatch<string>, navigate: NavigateFunction, ver?: string })  {
-  const _ver = (ver || version) || latestVersion;
+function useInit({ configs, modsConfigs, version, setVersion, navigate, ver, tempRedirectVersion }: { configs: Array<string>, modsConfigs: Array<string>, version: string, setVersion: TDispatch<string>, navigate: NavigateFunction, ver?: string, tempRedirectVersion?: string }) {
+  const _ver = tempRedirectVersion || (ver || version) || latestVersion;
   const [prevVersion, setPrevVersion] = useState('');
 
   const isValidVersion = versions.includes(_ver);
@@ -25,9 +25,9 @@ function useInit({ configs, modsConfigs, version, setVersion, navigate, ver }: {
   }, [_ver, isValidVersion, isVersionChanged]);
 
   useEffect(() => {
-    if (!version) setVersion(_ver);
+    if (!version || tempRedirectVersion) setVersion(_ver);
     if (isVersionChanged) setPrevVersion(_ver);
-  }, [version]);
+  }, [version, tempRedirectVersion]);
 
   useEffect(() => {
     if (redirect) redirect();

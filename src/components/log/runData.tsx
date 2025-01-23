@@ -9,15 +9,18 @@ import { useContext, useEffect } from 'react';
 import { AsideType } from 'utils/types/common';
 import useHoldings from 'hooks/useHoldings';
 import { THolding } from 'utils/types/runData';
+import { useLocation } from 'react-router-dom';
 
 function RunData({ ver, id }: { ver: string, id: string }) {
-  const { holdingsWidth, setHoldingsWidth, asideHoldings, setAsideHoldings } = useContext(CommonContext);
+  const { holdingsWidth, setHoldingsWidth, asideHoldings, setAsideHoldings, tempRedirectVersion, setTempRedirectVersion } = useContext(CommonContext);
   const { act, level, holdings } = useContext(LogContext);
   const { setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths } = useContext(LogContext);
+  const { search } = useLocation();
 
   const args = {
     version: ver, id,
-    setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths
+    setIsRunDataLoaded, setRunDataId, setRunData, dispatchHoldings, setIgnoredPaths,
+    search, setTempRedirectVersion
   };
   const [isValidRunData, redirect] = useRunData(args);
 
@@ -41,7 +44,7 @@ function RunData({ ver, id }: { ver: string, id: string }) {
       const width = window.screen.width;
       setAsideHoldings(width >= asideHoldingsthreshold ? defaultAsideHoldings : AsideType.none);
     }
-  }, []);
+  }, [tempRedirectVersion]);
 
   const style = (showAside ? { '--holdings-width': Math.min(Math.max(487, holdingsWidth), 801) + 'px' } : {}) as React.CSSProperties;
   const n = (holdingsWidth < 641 ? { '--exhibits-n': 1 } : {}) as React.CSSProperties;

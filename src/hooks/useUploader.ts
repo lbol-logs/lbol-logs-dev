@@ -97,7 +97,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
   }
 
   function isTempVersion(version: string) {
-    return tempVersion && (version.startsWith(tempVersion) || version.startsWith('debug'));
+    return tempVersion && (version.split('.').slice(0, 3).join('.') === tempVersion || version.startsWith('debug'));
   }
 
   function validateFile(text: string) {

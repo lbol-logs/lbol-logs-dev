@@ -7,6 +7,7 @@ const defaultVersion = '';
 const defaultAsideHoldings = AsideType.none;
 const defaultTopScrollHeights = {};
 const defaultEntityModal = {};
+const defaultTempRedirectVersion = '';
 
 type TCommonContext = {
   version: string
@@ -20,7 +21,9 @@ type TCommonContext = {
   topScrollHeights: TObjNumber,
   setTopScrollHeights: TDispatch<TObjNumber>,
   entityModal: TEntityModal,
-  setEntityModal: TDispatch<TEntityModal>
+  setEntityModal: TDispatch<TEntityModal>,
+  tempRedirectVersion: string,
+  setTempRedirectVersion: TDispatch<string>
 };
 
 export const CommonContext = createContext<TCommonContext>({
@@ -35,7 +38,9 @@ export const CommonContext = createContext<TCommonContext>({
   topScrollHeights: defaultTopScrollHeights,
   setTopScrollHeights: () => {},
   entityModal: defaultEntityModal,
-  setEntityModal: () => {}
+  setEntityModal: () => {},
+  tempRedirectVersion: defaultTempRedirectVersion,
+  setTempRedirectVersion: () => {}
 });
 
 function CommonProvider({ children }: { children: ReactNode }) {
@@ -45,6 +50,7 @@ function CommonProvider({ children }: { children: ReactNode }) {
   const [asideHoldings, setAsideHoldings] = useState(defaultAsideHoldings);
   const [topScrollHeights, setTopScrollHeights] = useState(defaultTopScrollHeights);
   const [entityModal, setEntityModal] = useState(defaultEntityModal);
+  const [tempRedirectVersion, setTempRedirectVersion] = useState(defaultTempRedirectVersion);
 
   const value = {
     version,
@@ -58,7 +64,9 @@ function CommonProvider({ children }: { children: ReactNode }) {
     topScrollHeights,
     setTopScrollHeights,
     entityModal,
-    setEntityModal
+    setEntityModal,
+    tempRedirectVersion,
+    setTempRedirectVersion
   };
 
   return (

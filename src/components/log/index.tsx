@@ -1,7 +1,7 @@
 import Header from 'components/common/layouts/header';
 import { useParams } from 'react-router-dom';
 import RunData from './runData';
-import { Suspense } from 'react';
+import { Suspense, useContext } from 'react';
 import Loading from 'components/common/layouts/loading';
 import Init from 'components/common/layouts/init';
 import { useTranslation } from 'react-i18next';
@@ -9,10 +9,12 @@ import { getNs, getResultType } from 'utils/functions/helpers';
 import Title from 'components/common/layouts/title';
 import ScrollToTop from 'components/common/utils/scrollToTop';
 import LogProvider from 'contexts/logContext';
+import { CommonContext } from 'contexts/commonContext';
 
 function Log() {
   const { ver = '', id = '' } = useParams<{ ver: string, id: string }>();
   const { t, i18n } = useTranslation();
+  const { tempRedirectVersion } = useContext(CommonContext);
 
   const configs: Array<string> = [
     'characters',
@@ -58,7 +60,7 @@ function Log() {
   }
 
   return (
-    <Init configs={configs} modsConfigs={modsConfigs} ver={ver}>
+    <Init configs={configs} modsConfigs={modsConfigs} ver={ver} tempRedirectVersion={tempRedirectVersion}>
       {name && <Title name={name} />}
       <Suspense fallback={<Loading />}>
         <Header showVersion={true} />
