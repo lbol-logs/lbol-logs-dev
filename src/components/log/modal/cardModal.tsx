@@ -24,7 +24,7 @@ function CardModal({ card }: { card: TCard }) {
 
   const cardConfigs = cardsConfigs.get(_card);
   const allCardConfigs = cardConfigs.getAll();
-  const { Type, Cost, Owner, IsUpgradable, OverrideUltimateCost, Keywords } = allCardConfigs;
+  const { Type, Cost, Owner, IsUpgradable, OverrideUltimateCost, Keywords, Version } = allCardConfigs;
   const { art, isMod } = cardConfigs;
 
   const isTeammate = Type === 'Friend';
@@ -34,7 +34,7 @@ function CardModal({ card }: { card: TCard }) {
 
   const keys = [`${Id}.Description`];
   if (upgraded) keys.unshift(`${Id}.UpgradedDescription`);
-  const exist = i18n.exists(keys, { ns });
+  const exist = i18n.exists(keys, { ns, context: Version });
 
   if (exist) {
     const description = (
