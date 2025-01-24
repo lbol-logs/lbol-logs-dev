@@ -6,7 +6,7 @@ import { toggleIsChecked } from 'utils/functions/helpers';
 
 function ColorFilter({ onChange }: { onChange: ChangeEventHandler }) {
   const { filter } = useContext(CardPoolContext);
-  const { tc: co } = filter;
+  const { co } = filter;
   const { t } = useTranslation();
 
   const colors = 'WUBRGC'.split('');
