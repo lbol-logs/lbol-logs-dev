@@ -54,7 +54,7 @@ function Log() {
   }
 
   function getTranslation(key: string, ns: string, context?: string) {
-    if (i18n.exists(key, { ns })) return t(key, { ns, context });
+    if (i18n.exists(key, { ns, context })) return t(key, { ns, context });
     const [_ns] = getNs({ ns, isMod: true });
     return t(key, { ns: _ns, context });
   }

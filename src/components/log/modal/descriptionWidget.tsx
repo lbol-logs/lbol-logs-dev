@@ -283,7 +283,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
 
   let key = keys[0];
   for (let i = 1; i < keys.length; i++) {
-    if (!i18n.exists(key, { ns })) key = keys[i];
+    if (!i18n.exists(key, { ns, context: Version })) key = keys[i];
     else break;
   }
 
