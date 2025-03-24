@@ -17,8 +17,8 @@ function KeywordsWidget({ keywords}: { keywords: Array<string> }) {
 export default KeywordsWidget;
 
 const notAutoAppend = [
-  'GamerunInitial',
   'Basic',
+  'Yinyang',
   'Ability',
   'Misfortune',
   'Gadgets',
@@ -52,8 +52,9 @@ const notAutoAppend = [
   'FollowAttack',
   'Dream',
   'Deploy',
-  'Magic',
-  'Leave'
+  'Promote',
+  'Kicker',
+  'GamerunInitial'
 ];
 
 export {
