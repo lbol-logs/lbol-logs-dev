@@ -62,10 +62,10 @@ const tempVersion = '';
 if (tempVersion) versions.unshift('temp');
 
 const latestVersion: string = versions[0];
-const islatestVersionWip: boolean = true;
-// const islatestVersionWip: boolean = false;
-const islatestVersionModsWip: boolean = true;
-// const islatestVersionModsWip: boolean = false;
+const latestVersionWips: TObj<boolean> = {
+  islatestVersionWip: true,
+  islatestVersionModsWip: true
+};
 
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
@@ -160,8 +160,7 @@ export {
   versions,
   tempVersion,
   latestVersion,
-  islatestVersionWip,
-  islatestVersionModsWip,
+  latestVersionWips,
   isDev,
   baseUrl,
   assetsDir,

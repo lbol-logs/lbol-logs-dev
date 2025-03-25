@@ -1,4 +1,4 @@
-import { islatestVersionModsWip, islatestVersionWip, latestVersion, tempVersion } from 'configs/globals';
+import { latestVersion, latestVersionWips, tempVersion } from 'configs/globals';
 import { CommonContext } from 'contexts/commonContext';
 import { useContext } from 'react';
 
@@ -6,6 +6,7 @@ function Announcement() {
   const { version } = useContext(CommonContext);
 
   if (version !== latestVersion) return null;
+  const { islatestVersionWip, islatestVersionModsWip } = latestVersionWips;
   if (!islatestVersionWip && !islatestVersionModsWip) return null;
 
   const array: Array<string> = [];
