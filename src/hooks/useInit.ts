@@ -7,7 +7,7 @@ function useInit({ configs, modsConfigs, version, setVersion, navigate, ver, tem
   const _ver = tempRedirectVersion || (ver || version) || latestVersion;
   const [prevVersion, setPrevVersion] = useState('');
 
-  const isValidVersion = versions.includes(_ver);
+  const isValidVersion = versions.includes(_ver) || _ver === 'temp';
   const isVersionChanged = prevVersion !== _ver;
 
   const redirect = useMemo(() => {

@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import { validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
-import { configsData, defaultRunData, versions } from 'configs/globals';
+import { configsData, defaultRunData, tempVersion, versions } from 'configs/globals';
 import { TObjAny } from 'utils/types/common';
 import Configs from 'utils/classes/Configs';
 
@@ -32,7 +32,7 @@ function useRunData(args: TObjAny) {
       isValidRunData = validateRunData(runData);
 
       if (!isValidRunData && version === 'temp') {
-        v = versions[1];
+        v = versions[tempVersion ? 1 : 0];
         runData = use(getLog(v, id)) as TRunData;
         isValidRunData = validateRunData(runData);
 
