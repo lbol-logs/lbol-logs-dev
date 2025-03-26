@@ -44,7 +44,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
   async function tryUpload() {
     const runData = getRunData(previewData);
     const { Version } = runData;
-    const version = isTempVersion(Version) ? 'temp' : Version;
+    const version = isTempVersion(Version) ? 'temp' : parseVersion(Version);
     const id = getId(runData);
 
     {
@@ -97,7 +97,11 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
   }
 
   function isTempVersion(version: string) {
-    return tempVersion && (version.split('.').slice(0, 3).join('.') === tempVersion || version.startsWith('debug'));
+    return tempVersion && (parseVersion(version) === tempVersion || version.startsWith('debug'));
+  }
+
+  function parseVersion(version: string) {
+    return version.split('.').slice(0, 3).join('.');
   }
 
   function validateFile(text: string) {
@@ -112,12 +116,13 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
         }
 
         const { Version } = runData;
-        if (isTempVersion(Version)) {
+        const version = parseVersion(Version);
+        if (isTempVersion(version)) {
         }
-        else if (!versions.includes(Version)) {
+        else if (!versions.includes(version)) {
           return {
             error: ErrorType.invalidVersion,
-            version: Version
+            version
           };
         }
 
