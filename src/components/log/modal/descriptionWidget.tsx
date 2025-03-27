@@ -164,7 +164,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       c.appendDescs(args);
       if (isEn) Object.assign(values, args);
 
-      const { Value, Mana, DamageRate, TriggerLevel, BaseDamage, StackMultiply, SourceCardName, Block, Percentage } = config;
+      const { Value, Mana, DamageRate, TriggerLevel, BaseDamage, StackMultiply, SourceCardName, Block, Percentage, MaxHand } = config;
 
       if (Value !== undefined) {
         let v = Value;
@@ -183,7 +183,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
 
       {
         const StackDamage = StackMultiply === undefined ? undefined : (BaseDamage * StackMultiply);
-        const args = { DamageRate, TriggerLevel, BaseDamage, StackMultiply, StackDamage, Block, Percentage };
+        const args = { DamageRate, TriggerLevel, BaseDamage, StackMultiply, StackDamage, Block, Percentage, MaxHand };
         c.appendDescs(args);
       }
 
