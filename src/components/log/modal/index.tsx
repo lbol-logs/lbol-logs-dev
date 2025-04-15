@@ -5,11 +5,10 @@ import StatusEffectModal from './statusEffectModal';
 import JadeBoxModal from './jadeBoxModal';
 import { CommonContext } from 'contexts/commonContext';
 import RequestModal from './requestModal';
-import ScreenshotModal from './screenshotModal';
 
 function Modal() {
   const { entityModal, setEntityModal } = useContext(CommonContext);
-  const { card, exhibit, statusEffect, request, jadeBox, screenshot } = entityModal;
+  const { card, exhibit, statusEffect, request, jadeBox } = entityModal;
 
   let type;
   let entity;
@@ -33,10 +32,6 @@ function Modal() {
   else if (jadeBox) {
     type = 'jade-box';
     entity = <JadeBoxModal jadeBox={jadeBox} />;
-  }
-  else if (screenshot) {
-    type = 'screenshot';
-    entity = <ScreenshotModal screenshot={screenshot} />;
   }
 
   const innerRef = useRef<HTMLDivElement>(null);

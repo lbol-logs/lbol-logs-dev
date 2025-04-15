@@ -967,36 +967,6 @@ input {
   color: var(--red);
 }
 
-.p-screenshot {
-  --padding: calc(var(--icon-size) * 2);
-  position: fixed;
-  bottom: calc(var(--control-height) + var(--padding));
-  right: var(--padding);
-  padding: 1em;
-  background: var(--f-ui-blue);
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: var(--z-4);
-}
-.c-share__buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 1em;
-  margin: 1em 0;
-}
-.c-share__button {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: var(--icon-size);
-  height: var(--icon-size);
-}
-.c-share__button-img--save {
-  transform: rotate(90deg);
-}
-
 .p-control {
   position: fixed;
   bottom: 0;
@@ -1985,8 +1955,7 @@ html:lang(en) .p-result__type {
 .p-modal__inner--exhibit,
 .p-modal__inner--status-effect,
 .p-modal__inner--request,
-.p-modal__inner--jade-box,
-.p-modal__inner--screenshot {
+.p-modal__inner--jade-box {
   width: 100%;
   overflow-y: auto;
   scrollbar-width: none;
@@ -1994,9 +1963,6 @@ html:lang(en) .p-result__type {
   color: var(--black);
   color-scheme: dark;
   max-height: 70vh;
-}
-.p-modal__inner--screenshot {
-  color-scheme: initial;
 }
 .p-modal__exhibit .c-exhibit--with-counter,
 .p-modal__status-effect .c-status-effect {
@@ -2466,10 +2432,6 @@ html:lang(en) .p-result__type {
 
   .p-mod {
     flex-basis: 100%;
-  }
-
-  .p-screenshot {
-    --padding: var(--icon-size);
   }
 
   .p-summary {
