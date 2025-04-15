@@ -769,27 +769,21 @@ input {
   column-gap: 0.8em;
   font-weight: bold;
 }
-.p-summary__rarity--common,
 .p-summary__rarity--Common {
   color: var(--f-gray);
 }
-.p-summary__rarity--uncommon,
 .p-summary__rarity--Uncommon {
   color: var(--f-blue);
 }
-.p-summary__rarity--rare,
 .p-summary__rarity--Rare {
   color: var(--f-highlight);
 }
-.p-summary__rarity--shining,
 .p-summary__rarity--Shining {
   color: var(--f-red);
 }
-.p-summary__rarity--mythic,
 .p-summary__rarity--Mythic {
   color: var(--f-purple);
 }
-.p-summary__rarity--misfortune,
 .p-summary__rarity--Misfortune {
   color: var(--f-purple);
 }
@@ -930,22 +924,18 @@ input {
   align-items: center;
 }
 
-.p-entity__symbol--add,
 .p-entity__symbol--Add,
 .p-card-pool__type--added {
   color: var(--green);
 }
-.p-entity__symbol--remove,
 .p-entity__symbol--Remove,
 .p-card-pool__type--removed {
   color: var(--red);
 }
-.p-entity__symbol--upgrade,
 .p-entity__symbol--Upgrade,
 .p-card-pool__type--valid {
   color: var(--orange);
 }
-.p-entity__symbol--use,
 .p-entity__symbol--Use {
   color: var(--purple);
 }
@@ -1093,23 +1083,18 @@ input {
 .c-entity--not-added.c-exhibit {
   background: var(--light-gray);
 }
-.c-entity--common,
 .c-entity--Common {
   border-color: color-mix(in srgb, var(--f-light-gray) var(--opacity-border), transparent);
 }
-.c-entity--uncommon,
 .c-entity--Uncommon {
   border-color: color-mix(in srgb, var(--f-blue) var(--opacity-border), transparent);
 }
-.c-entity--rare,
 .c-entity--Rare {
   border-color: color-mix(in srgb, var(--f-highlight) var(--opacity-border), transparent);
 }
-.c-entity--shining,
 .c-entity--Shining {
   border-color: color-mix(in srgb, var(--f-red) var(--opacity-border), transparent);
 }
-.c-entity--mythic,
 .c-entity--Mythic {
   background:
     linear-gradient(var(--white) 0 0) padding-box,
@@ -1123,11 +1108,9 @@ input {
     ) border-box;
   border-color: transparent;
 }
-.c-entity--misfortune,
 .c-entity--Misfortune {
   border-color: color-mix(in srgb, var(--f-light-purple) var(--opacity-border), transparent);
 }
-.c-entity--misfortune-unremovable,
 .c-entity--Misfortune-Unremovable {
   border-color: color-mix(in srgb, var(--f-purple) var(--opacity-border), transparent);
 }
@@ -1391,15 +1374,12 @@ html:lang(en) .c-entity__text {
 html:lang(en) .p-result__type {
   font-size: 0.9em;
 }
-.p-result__type--failure,
 .p-result__type--Failure {
   color: var(--f-red);
 }
-.p-result__type--normal,
 .p-result__type--Normal {
   color: var(--f-light-blue);
 }
-.p-result__type--trueend,
 .p-result__type--TrueEnd {
   color: var(--f-light-yellow);
 }
@@ -1844,44 +1824,34 @@ html:lang(en) .p-result__type {
   column-gap: 0.5em;
 }
 
-.c-character-short-name--reimu,
 .c-character-short-name--Reimu {
   color: var(--f-reimu);
 }
-.c-character-short-name--marisa,
 .c-character-short-name--Marisa {
   color: var(--f-marisa);
 }
-.c-character-short-name--sakuya,
 .c-character-short-name--Sakuya {
   color: var(--f-sakuya);
 }
-.c-character-short-name--cirno,
 .c-character-short-name--Cirno {
   color: var(--f-cirno);
 }
-.c-character-short-name--koishi,
 .c-character-short-name--Koishi {
   color: var(--f-koishi);
 }
 
-.c-character-short-name--momiji,
 .c-character-short-name--Momiji {
   color: var(--f-momiji);
 }
-.c-character-short-name--patchoulimod,
 .c-character-short-name--PatchouliMod {
   color: var(--f-patchouli);
 }
-.c-character-short-name--sanae_kochiya,
 .c-character-short-name--Sanae_Kochiya {
   color: var(--f-sanae);
 }
-.c-character-short-name--utsuho,
 .c-character-short-name--Utsuho {
   color: var(--f-utsuho);
 }
-.c-character-short-name--youmumod,
 .c-character-short-name--YoumuMod {
   color: var(--f-youmu);
 }
@@ -2346,8 +2316,6 @@ html:lang(en) .p-result__type {
 }
 
 @media screen and (min-width: 601px) {
-  .p-entity--boss-exhibits .c-entity--shining:nth-child(1),
-  .p-entity--boss-exhibits .c-entity--shining:nth-child(3),
   .p-entity--boss-exhibits .c-entity--Shining:nth-child(1),
   .p-entity--boss-exhibits .c-entity--Shining:nth-child(3) {
     order: -1;
