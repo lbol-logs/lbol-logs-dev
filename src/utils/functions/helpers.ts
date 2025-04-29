@@ -2,7 +2,7 @@ import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { configsData, resultTypes } from 'configs/globals';
 import { AsideType, TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
 import { TCardPool, TRounds } from 'utils/types/others';
-import { TCard, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
+import { TCard, TCardChange, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
 function checkForce(Nodes: TNodes) {
@@ -42,7 +42,8 @@ function isSameStation(station1: TStation, station2: TStation): boolean {
 
 function getCurrentLevel<T extends TCardChanges | TExhibitChanges>(changes: T, stations: TStations, station: TStation): T {
   return (changes as any[]).filter(({ Station }: { Station: number }) => {
-    const isCurrentLevel = isSameStation(station, stations[Station]);
+    const _station = getStation(Station);
+    const isCurrentLevel = isSameStation(station, stations[_station]);
     return isCurrentLevel;
   }) as T;
 }
@@ -210,6 +211,17 @@ function getPatchouliModConfigs(runData: TRunData) {
   return runData.Settings.Mods?.find(({ GUID }) => GUID === 'rmrfmaxx.lbol.PatchouliCharacterMod')?.Configs || { startingExhibitSign: 0, startingCardSign: 0 };
 }
 
+function getStation(Station: number) {
+  const station = Station === -1 ? 0 : Station;
+  return station;
+}
+
+function getChangeStation(stations: TStations, change: TCardChange | TExhibitChange) {
+  const { Station } = change;
+  const station = getStation(Station);
+  return stations[station].Node;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -243,5 +255,7 @@ export {
   getOwner,
   getCardPoolLength,
   scroll,
-  getPatchouliModConfigs
+  getPatchouliModConfigs,
+  getStation,
+  getChangeStation
 };

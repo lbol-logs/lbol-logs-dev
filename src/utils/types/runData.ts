@@ -290,6 +290,7 @@ export type {
   TStatusEffects,
   TExhibit,
   TExhibits,
+  TCardChange,
   TCardChanges,
   TExhibitChange,
   TExhibitChanges,

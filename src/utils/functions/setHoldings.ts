@@ -1,6 +1,6 @@
 import { CardsWithUpgradeCounter, ExhibitsWithCounter, RequestType, SpecialExhibit, TBaseMana, TBaseManaObj, TCard, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
-import { copyObject, getSameCardIndex } from 'utils/functions/helpers';
+import { copyObject, getChangeStation, getSameCardIndex } from 'utils/functions/helpers';
 import Configs from 'utils/classes/Configs';
 import BMana from 'utils/classes/BMana';
 
@@ -54,7 +54,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
     const { Cards } = runData;
     for (const Card of Cards) {
       const card: any = copyObject(Card);
-      card.Station = Stations[Card.Station].Node;
+      card.Station = getChangeStation(Stations, Card);
       const action: THoldingAction = {
         type: 'Card',
         change: {
@@ -87,10 +87,9 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
 
       const Exhibit = Exhibits[i];
       const exhibit: any = copyObject(Exhibit);
-      const { Id, Type, Station } = Exhibit;
-      const currentStation = Stations[Station];
-      const { Node } = currentStation;
-      exhibit.Station = Node;
+      const { Id, Type } = Exhibit;
+      const Station = getChangeStation(Stations, Exhibit);
+      exhibit.Station = Station;
 
       const { BaseMana, InitialCounter } = exhibitsConfigs.get(Id);
       if (InitialCounter && Type === 'Add') {
@@ -98,7 +97,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
       }
 
       if (Id === ExhibitsWithCounter.TiangouYuyi) {
-        ignoredPaths.push({ Type, Station: Node });
+        ignoredPaths.push({ Type, Station });
       }
 
       const action: THoldingAction = {
@@ -114,7 +113,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
           type: 'BaseMana',
           change: {
             Type,
-            Station: Node,
+            Station,
             BaseMana
           }
         };
@@ -176,61 +175,59 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
       };
     }
 
-    if (!(JadeBoxes !== undefined && (JadeBoxes.includes('Start50') || JadeBoxes.includes('SelectCard')))) {
-      let finalCards: Array<string>;
-      if (Cards !== undefined) {
-        finalCards = Cards;
-      }
-      else {
-        const { Cards } = runData.Result;
-        const currentCards = copyObject(Cards);
-        const cardsActions = sortActions({ actions, Type: 'Card' }).reverse();
+    let finalCards: Array<string>;
+    if (Cards !== undefined) {
+      finalCards = Cards;
+    }
+    else {
+      const { Cards } = runData.Result;
+      const currentCards = copyObject(Cards);
+      const cardsActions = sortActions({ actions, Type: 'Card' }).reverse();
 
-        if (isStartMisfortune) cardsActions.push(startMisfortuneAction);
-        for (const action of cardsActions) {
-          const card = action.change as TCard & THoldingChange;
-          const { Type } = card;
-          if (Type === 'Remove') {
-            currentCards.push(card);
+      if (isStartMisfortune) cardsActions.push(startMisfortuneAction);
+      for (const action of cardsActions) {
+        const card = action.change as TCard & THoldingChange;
+        const { Type } = card;
+        if (Type === 'Remove') {
+          currentCards.push(card);
+        }
+        else if (Type === 'Add') {
+          const index = getSameCardIndex(currentCards, card);
+          currentCards.splice(index, 1);
+        }
+        else if (Type === 'Upgrade') {
+          const index = getSameCardIndex(currentCards, card);
+          const { Id } = card;
+          if (Id === CardsWithUpgradeCounter.YuyukoSing) {
+            const { UpgradeCounter } = card;
+            (currentCards[index].UpgradeCounter as number)--;
+            if (UpgradeCounter === 1) currentCards[index].IsUpgraded = false;
           }
-          else if (Type === 'Add') {
-            const index = getSameCardIndex(currentCards, card);
-            currentCards.splice(index, 1);
-          }
-          else if (Type === 'Upgrade') {
-            const index = getSameCardIndex(currentCards, card);
-            const { Id } = card;
-            if (Id === CardsWithUpgradeCounter.YuyukoSing) {
-              const { UpgradeCounter } = card;
-              (currentCards[index].UpgradeCounter as number)--;
-              if (UpgradeCounter === 1) currentCards[index].IsUpgraded = false;
-            }
-            else {
-              currentCards[index].IsUpgraded = false;
-            }
+          else {
+            currentCards[index].IsUpgraded = false;
           }
         }
-        finalCards = currentCards.map(({ Id }) => Id).sort((a, b) => {
-          const i = getSortIndex(a);
-          const j = getSortIndex(b);
-          return i - j;
-        });
       }
+      finalCards = currentCards.map(({ Id }) => Id).sort((a, b) => {
+        const i = getSortIndex(a);
+        const j = getSortIndex(b);
+        return i - j;
+      });
+    }
 
-      if (isStartMisfortune) actions.unshift(startMisfortuneAction);
+    if (isStartMisfortune) actions.unshift(startMisfortuneAction);
 
-      for (const card of finalCards.reverse()) {
-        const action: THoldingAction = {
-          type: 'Card',
-          change: {
-            Type: 'Add',
-            Station,
-            Id: card,
-            IsUpgraded: false
-          }
-        };
-        actions.unshift(action);
-      }
+    for (const card of finalCards.reverse()) {
+      const action: THoldingAction = {
+        type: 'Card',
+        change: {
+          Type: 'Add',
+          Station,
+          Id: card,
+          IsUpgraded: false
+        }
+      };
+      actions.unshift(action);
     }
   }
 
