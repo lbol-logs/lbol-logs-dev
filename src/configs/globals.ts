@@ -51,6 +51,7 @@ const modsNamespaces: Array<string> = [
 ];
 
 const versions: Array<string> = [
+  '1.7.2',
   '1.7.1',
   '1.7.0',
   '1.6.1',
@@ -64,7 +65,7 @@ if (tempVersion) versions.unshift('temp');
 
 const latestVersion: string = versions[0];
 const latestVersionWips: TObj<boolean> = {
-  // islatestVersionWip: true,
+  islatestVersionWip: true,
   // islatestVersionModsWip: true
 };
 
