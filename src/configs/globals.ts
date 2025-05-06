@@ -65,7 +65,7 @@ if (tempVersion) versions.unshift('temp');
 
 const latestVersion: string = versions[0];
 const latestVersionWips: TObj<boolean> = {
-  islatestVersionWip: true,
+  // islatestVersionWip: true,
   // islatestVersionModsWip: true
 };
 
