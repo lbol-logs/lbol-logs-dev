@@ -186,8 +186,8 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
 
       if (isStartMisfortune) cardsActions.push(startMisfortuneAction);
       for (const action of cardsActions) {
-        const card = action.change as TCard & THoldingChange;
-        const { Type } = card;
+        const card = copyObject(action.change as TCard & THoldingChange) as TCard;
+        const { Type } = action.change;
         if (Type === 'Remove') {
           currentCards.push(card);
         }
