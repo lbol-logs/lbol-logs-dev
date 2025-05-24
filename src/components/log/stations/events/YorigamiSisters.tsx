@@ -11,6 +11,8 @@ function YorigamiSisters({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices, Values } = Data;
 
   const id = Id as string;

@@ -13,6 +13,8 @@ function HinaCollect({ station }: { station: TStation }) {
 
   const { Data, Id, Node: { Act, Level } } = station;
 
+  if (!Data) return null;
+
   const { Choices, Card } = Data;
 
   const id = Id as string;

@@ -12,6 +12,8 @@ function AssistKagerou({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices, Values, Exhibit } = Data;
 
   const id = Id as string;

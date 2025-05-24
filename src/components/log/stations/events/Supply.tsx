@@ -13,6 +13,8 @@ function Supply({ station }: { station: TStation }) {
 
   const { Type, Data } = station;
 
+  if (!Data) return null;
+
   const { Choices, Exhibits, Both } = Data;
 
   const id = Type;

@@ -13,6 +13,8 @@ function YachieOppression({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices, Exhibit, Id: enemyGroupId, Rounds } = Data;
 
   const id = Id as string;

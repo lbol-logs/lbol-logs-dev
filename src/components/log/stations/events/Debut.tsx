@@ -17,6 +17,8 @@ function Debut({ station }: { station: TStation }) {
 
   const { Data } = station;
 
+  if (!Data) return null;
+
   const { Choices, Options } = Data;
 
   const id = 'Debut';

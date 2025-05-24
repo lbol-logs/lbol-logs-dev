@@ -10,6 +10,8 @@ function SumirekoGathering({ station }: { station: TStation }) {
 
   const { Data } = station;
 
+  if (!Data) return null;
+
   const { Choices, Card, Cards, HasMoney } = Data;
 
   const id = TradeStation.SumirekoGathering;

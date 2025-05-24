@@ -13,6 +13,8 @@ function RingoEmp({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices, Cards } = Data;
 
   const id = Id as string;

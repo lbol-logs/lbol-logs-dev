@@ -13,6 +13,8 @@ function MiyoiBartender({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices, Ids, Id: enemyGroupId, Exhibit, Rounds } = Data;
 
   const id = Id as string;

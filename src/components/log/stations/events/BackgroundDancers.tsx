@@ -15,6 +15,8 @@ function BackgroundDancers({ station }: { station: TStation }) {
 
   const dialogues = useBackgroundDancers({ id, Data, configs, eventConfigs });
 
+  if (!Data) return null;
+
   return (
     <div className="p-station__body">
       <div className="p-station__main">

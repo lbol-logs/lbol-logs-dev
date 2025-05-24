@@ -11,6 +11,8 @@ function DoremyPortal({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices, Exhibit } = Data;
 
   const id = Id as string;

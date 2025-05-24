@@ -8,10 +8,13 @@ import YukariProvide from '../events/YukariProvide';
 import { TChoice } from 'utils/types/others';
 
 function GapStation({ station }: { station: TStation }) {
+  const { t } = useTranslation();
 
   const { Data } = station;
+
+  if (!Data) return <></>;
+
   const { Choice, Options, Choices } = Data as { Choice: string, Options: Array<string>, Choices: Array<TChoice> };
-  const { t } = useTranslation();
 
   let littleChat = null;
 

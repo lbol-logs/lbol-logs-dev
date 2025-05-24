@@ -14,6 +14,9 @@ function SelectOpponent({ station }: { station: TStation }) {
   const { t } = useTranslation();
 
   const { Data } = station;
+
+  if (!Data) return null;
+
   const { Choices, Opponents } = Data;
 
   const id = 'SelectOpponent';

@@ -14,6 +14,8 @@ function PatchouliPhilosophy({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices, BaseMana } = Data;
 
   const id = Id as string;

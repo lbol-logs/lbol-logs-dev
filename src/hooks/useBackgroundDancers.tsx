@@ -4,6 +4,7 @@ import { TComponents, TObjAny, TObjNumber } from 'utils/types/common';
 import { TCards, TDialogueConfigs, TExhibits } from 'utils/types/runData';
 
 function useBackgroundDancers({ id, Data, configs, eventConfigs }: { id: string, Data: TObjAny, configs: TObjAny, eventConfigs: TObjAny }) {
+  if (!Data) return;
   const { Choices, Hp, Options, Tools, Exhibits, Abilities } = Data;
 
   const { current: _current, next: _next } = configs[0];

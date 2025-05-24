@@ -12,6 +12,8 @@ function ShinmyoumaruForge({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices, HasUpgradableBasics, HasNonBasics, LoseMax } = Data;
 
   const id = Id as string;

@@ -12,6 +12,8 @@ function RinnosukeTrade({ station }: { station: TStation }) {
 
   const { Data } = station;
 
+  if (!Data) return null;
+
   const { Choices, Prices } = Data;
 
   const id = TradeStation.RinnosukeTrade;

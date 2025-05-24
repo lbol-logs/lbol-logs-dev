@@ -12,6 +12,8 @@ function HecatiaTshirt({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices } = Data;
 
   const id = Id as string;

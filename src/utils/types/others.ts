@@ -57,7 +57,7 @@ type TPoolCheckbox = {
 };
 type TPool = TPoolRadio & TPoolCheckbox;
 
-type TEventComponent = ({ station }: { station: TStation }) => JSX.Element;
+type TEventComponent = ({ station }: { station: TStation }) => JSX.Element | null;
 
 type TRounds = {
   current: number,

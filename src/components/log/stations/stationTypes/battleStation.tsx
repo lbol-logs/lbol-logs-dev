@@ -31,22 +31,27 @@ function BattleStation({ station }: { station: TStation }) {
   const id = Id as string;
 
   let teammates = null;
-  const { Teammates } = Data;
-  if (Teammates !== undefined) {
-    teammates = <StatusEffectsWidgetV2 statusEffects={Teammates} owner="Cirno" />;
-  }
+  let rounds = null;
 
-  if (enemiesShowDetails.includes(id)) {
-    const { Details } = Data;
-    if (Details) {
-      const { Act: a, Level: l } = station.Node;
-      const currentStationIndex = Stations.findIndex(({ Node: { Act, Level } }) => Act === a && Level === l);
-      const { Status } = Stations[currentStationIndex - 1];
-      details = <BattleDetails details={Details} enemy={id} status={Status} />;
+  if (Data) {
+    const { Teammates } = Data;
+    if (Teammates !== undefined) {
+      teammates = <StatusEffectsWidgetV2 statusEffects={Teammates} owner="Cirno" />;
     }
-  }
 
-  const { Rounds } = Data;
+    if (enemiesShowDetails.includes(id)) {
+      const { Details } = Data;
+      if (Details) {
+        const { Act: a, Level: l } = station.Node;
+        const currentStationIndex = Stations.findIndex(({ Node: { Act, Level } }) => Act === a && Level === l);
+        const { Status } = Stations[currentStationIndex - 1];
+        details = <BattleDetails details={Details} enemy={id} status={Status} />;
+      }
+    }
+
+    const { Rounds } = Data;
+    rounds = <RoundsWidget rounds={Rounds} />;
+  }
 
   return (
     <div className="p-station__body">
@@ -54,7 +59,7 @@ function BattleStation({ station }: { station: TStation }) {
         <EnemyCards id={id} />
         {teammates}
         <div className="c-station__stats">
-          <RoundsWidget rounds={Rounds} />
+          {rounds}
           {money}
         </div>
       </div>

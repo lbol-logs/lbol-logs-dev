@@ -11,6 +11,8 @@ function EternityAscension({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices, Card } = Data;
 
   const id = Id as string;

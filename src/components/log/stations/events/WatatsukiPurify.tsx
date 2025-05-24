@@ -11,6 +11,8 @@ function WatatsukiPurify({ station }: { station: TStation }) {
 
   const { Data, Id } = station;
 
+  if (!Data) return null;
+
   const { Choices, LoseMax } = Data;
 
   const id = Id as string;
