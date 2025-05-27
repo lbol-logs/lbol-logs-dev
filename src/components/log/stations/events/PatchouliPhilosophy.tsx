@@ -1,7 +1,7 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TComponents, TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
@@ -24,7 +24,7 @@ function PatchouliPhilosophy({ station }: { station: TStation }) {
   const { current, next: options } = configs;
 
   const [next] = getNext(options, [0, 1]);
-  const chosen = Choices[0];
+  const chosen = getChosen(Choices, 0);
 
   const props: Array<TObjAny> = [];
   const befores: TComponents = [];

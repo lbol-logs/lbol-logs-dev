@@ -1,6 +1,6 @@
 import { CardsWithUpgradeCounter, ExhibitsWithCounter, RequestType, SpecialExhibit, TBaseMana, TBaseManaObj, TCard, THoldingAction, THoldingChange, THoldingsReducer, TNodeObj, TRunData } from 'utils/types/runData';
 import { TObjAny } from 'utils/types/common';
-import { copyObject, getChangeStation, getSameCardIndex } from 'utils/functions/helpers';
+import { copyObject, getChangeStation, getChosen, getSameCardIndex } from 'utils/functions/helpers';
 import Configs from 'utils/classes/Configs';
 import BMana from 'utils/classes/BMana';
 
@@ -18,7 +18,7 @@ function setHoldings({ runData, dispatchHoldings, charactersConfigs, exhibitsCon
   };
 
   let isSwapping = false;
-  if (Stations[0] && Stations[0].Data?.Choices[0] === 1) isSwapping = true;;
+  if (Stations[0] && getChosen(Stations[0].Data?.Choices, 0) === 1) isSwapping = true;;
   const attackOrder = 2;
 
   function sortActions({ actions, Type, addMissing = false }: { actions: Array<THoldingAction>, Type?: string, addMissing?: boolean }) {

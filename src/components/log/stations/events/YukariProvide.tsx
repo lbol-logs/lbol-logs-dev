@@ -1,5 +1,5 @@
 import { configsData } from 'configs/globals';
-import { getNext } from 'utils/functions/helpers';
+import { getChosen, getNext } from 'utils/functions/helpers';
 import { SpecialExhibit, TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { useTranslation } from 'react-i18next';
@@ -17,7 +17,8 @@ function YukariProvide({ station }: { station: TStation }) {
   const configs = dialoguesConfigs.get(id);
   const { current, next: _next } = configs;
   const [next] = getNext(_next);
-  const chosen = Choices[0] === 2 ? 1 : Choices[0];
+  const _chosen = getChosen(Choices, 0);
+  const chosen = _chosen === 2 ? 1 : _chosen;
 
   const dialogueConfigs: TDialogueConfigs = {
     current,

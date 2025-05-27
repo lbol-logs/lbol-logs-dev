@@ -1,11 +1,10 @@
 import { TCards, TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { convertCards, getNext } from 'utils/functions/helpers';
+import { convertCards, getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
 import { TObjAny } from 'utils/types/common';
-import { TChoice } from 'utils/types/others';
 
 function AssistKagerou({ station }: { station: TStation }) {
   const { eventsConfigs, dialoguesConfigs } = configsData;
@@ -24,7 +23,7 @@ function AssistKagerou({ station }: { station: TStation }) {
 
   const [next] = getNext(options);
   const choices = [0, 2];
-  const chosen = choices.indexOf(Choices[0]) as TChoice;
+  const chosen = getChosen(Choices, 0, choices);
 
   const props: Array<TObjAny> = [];
   const cards: Array<TCards> = [];

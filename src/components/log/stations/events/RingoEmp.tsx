@@ -1,6 +1,6 @@
 import { TCards, TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { convertCards, getNext } from 'utils/functions/helpers';
+import { convertCards, getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
@@ -24,7 +24,7 @@ function RingoEmp({ station }: { station: TStation }) {
   const { card, misfortune } = eventsConfigs.get(id);
 
   const [next] = getNext(options);
-  const chosen = Choices[0];
+  const chosen = getChosen(Choices, 0);
 
   const props: Array<TObjAny> = [];
   const cards: Array<TCards> = [];

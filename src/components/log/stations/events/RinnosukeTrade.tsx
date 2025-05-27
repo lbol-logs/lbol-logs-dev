@@ -1,7 +1,7 @@
 import { SpecialExhibit, TDialogueConfigs, TExhibits, TradeStation, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
@@ -41,7 +41,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
     choices.push(2);
 
     const [next, invalids] = getNext(options, choices);
-    const chosen = Choices[0];
+    const chosen = getChosen(Choices, 0);
 
     const props: Array<TObjAny> = [];
 
@@ -65,7 +65,7 @@ function RinnosukeTrade({ station }: { station: TStation }) {
   }
 
   {
-    const chosen = Choices[1];
+    const chosen = getChosen(Choices, 1);
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
 

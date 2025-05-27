@@ -1,6 +1,6 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { getNext } from 'utils/functions/helpers';
+import { getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
@@ -23,7 +23,7 @@ function BuduSuanming({ station }: { station: TStation }) {
   let first = null;
   let second = null;
 
-  const chosen = Choices[0];
+  const chosen = getChosen(Choices, 0);
   {
     const { current, next: options } = configs[0];
     const { money } = eventsConfigs.get(id);

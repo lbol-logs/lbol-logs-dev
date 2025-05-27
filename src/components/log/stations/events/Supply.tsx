@@ -1,11 +1,10 @@
 import { TDialogueConfigs, TExhibit, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TObj, TObjAny } from 'utils/types/common';
-import { getEntityNs, getNext } from 'utils/functions/helpers';
+import { getChosen, getEntityNs, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
-import { TChoice } from 'utils/types/others';
 
 function Supply({ station }: { station: TStation }) {
   const { dialoguesConfigs } = configsData;
@@ -26,7 +25,7 @@ function Supply({ station }: { station: TStation }) {
 
   const [next] = getNext(options);
   const choices = Object.keys(options).map(option => Number(option));
-  const chosen = choices.indexOf(Choices[0]) as TChoice;
+  const chosen = getChosen(Choices, 0, choices);
 
   const props: Array<TObjAny> = [];
   const exhibits: Array<TExhibits> = [];

@@ -1,6 +1,6 @@
 import { TCards, TDialogueConfigs, TExhibits, TRewards, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { convertCards, getNext } from 'utils/functions/helpers';
+import { convertCards, getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
@@ -28,7 +28,7 @@ function YachieOppression({ station }: { station: TStation }) {
     const { misfortune } = eventsConfigs.get(id);
 
     const [next] = getNext(options);
-    const chosen = Choices[0];
+    const chosen = getChosen(Choices, 0);
 
     const cards: Array<TCards> = [];
     const exhibits: Array<TExhibits> = [];
@@ -48,7 +48,7 @@ function YachieOppression({ station }: { station: TStation }) {
   }
 
   {
-    const chosen = Choices[1];
+    const chosen = getChosen(Choices, 1);
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
       const { Money } = station.Rewards as TRewards;

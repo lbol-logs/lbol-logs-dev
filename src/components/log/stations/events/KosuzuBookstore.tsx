@@ -1,11 +1,10 @@
 import { TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TObjAny } from 'utils/types/common';
-import { createArray, getNext } from 'utils/functions/helpers';
+import { createArray, getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
-import { TChoice } from 'utils/types/others';
 
 function KosuzuBookstore({ station }: { station: TStation }) {
   const { eventsConfigs, dialoguesConfigs } = configsData;
@@ -28,7 +27,7 @@ function KosuzuBookstore({ station }: { station: TStation }) {
 
     const choices: Array<number> = createArray(Exhibits.length, (_, i) => i);
     choices.push(3);
-    const chosen = choices.indexOf(Choices[0]) as TChoice;
+    const chosen = getChosen(Choices, 0, choices);
 
     const exhibits: Array<TExhibits> = [];
 
@@ -47,7 +46,7 @@ function KosuzuBookstore({ station }: { station: TStation }) {
   }
 
   {
-    const chosen = Choices[1];
+    const chosen = getChosen(Choices, 1);
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
       const { Returns } = Data;

@@ -1,7 +1,7 @@
 import { toggleCheckedClassName } from 'components/top/filters/filter';
 import { configsData, resultTypes } from 'configs/globals';
 import { AsideType, TObj, TObjAny, TObjElement, TObjString } from 'utils/types/common';
-import { TCardPool, TRounds } from 'utils/types/others';
+import { TCardPool, TChoice, TRounds } from 'utils/types/others';
 import { TCard, TCardChange, TCardChanges, TCards, TExhibit, TExhibitChange, TExhibitChanges, TExhibitObj, TExhibitObjs, TExhibits, TLevel, TRunData, TStation, TStations } from 'utils/types/runData';
 import { TNodes, TNodeY } from 'utils/types/runData';
 
@@ -222,6 +222,15 @@ function getChangeStation(stations: TStations, change: TCardChange | TExhibitCha
   return stations[station].Node;
 }
 
+function getChosen(Choices: Array<number> | null, i: number, choices?: Array<number | string>) {
+  let chosen;
+  if (Choices) {
+    if (!choices) chosen = Choices[i] ;
+    else chosen = choices.indexOf(Choices[i]);
+  }
+  return chosen as TChoice;
+}
+
 export {
   checkForce,
   validateRunData,
@@ -257,5 +266,6 @@ export {
   scroll,
   getPatchouliModConfigs,
   getStation,
-  getChangeStation
+  getChangeStation,
+  getChosen
 };

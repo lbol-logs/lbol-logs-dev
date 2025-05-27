@@ -3,7 +3,7 @@ import { getUnitImage } from 'utils/functions/getImage';
 import { configsData, iconSize } from 'configs/globals';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TObj, TObjAny } from 'utils/types/common';
-import { applyRate, convertCards, getNext } from 'utils/functions/helpers';
+import { applyRate, convertCards, getChosen, getNext } from 'utils/functions/helpers';
 import EventHead from '../parts/eventHead';
 import LazyLoadImage2 from 'components/common/utils/lazyLoadImage2';
 import RewardsWidget from '../parts/rewardsWidget';
@@ -46,7 +46,7 @@ function Debut({ station }: { station: TStation }) {
     }
     const choices = Object.values(options);
     const [next, invalids] = getNext(_next, choices);
-    const chosen = Choices[0];
+    const chosen = getChosen(Choices, 0);
 
     const props: Array<TObjAny> = [];
     const cards: Array<TCards> = [];
@@ -117,7 +117,7 @@ function Debut({ station }: { station: TStation }) {
     const { current, next: options } = configs[1];
 
     const [next] = getNext(options);
-    const chosen = Choices[1];
+    const chosen = getChosen(Choices, 1);
 
     const props: Array<TObjAny> = [];
 
@@ -151,7 +151,7 @@ function Debut({ station }: { station: TStation }) {
   }
 
   {
-    const chosen = Choices[2];
+    const chosen = getChosen(Choices, 2);
     if (chosen !== undefined) {
       const { exhibits: _exhibits } = eventsConfigs.get(id);
 

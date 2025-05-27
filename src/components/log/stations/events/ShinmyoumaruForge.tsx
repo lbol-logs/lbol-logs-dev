@@ -1,11 +1,10 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
-import { TChoice } from 'utils/types/others';
 
 function ShinmyoumaruForge({ station }: { station: TStation }) {
   const { eventsConfigs, dialoguesConfigs } = configsData;
@@ -29,7 +28,7 @@ function ShinmyoumaruForge({ station }: { station: TStation }) {
   choices.push(2, 3);
 
   const [next] = getNext(options, choices);
-  const chosen = choices.indexOf(Choices[0]) as TChoice;
+  const chosen = getChosen(Choices, 0, choices);
 
   const props: Array<TObjAny> = [];
 

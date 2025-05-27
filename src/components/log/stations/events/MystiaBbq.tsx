@@ -1,7 +1,7 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
@@ -27,7 +27,7 @@ function MystiaBbq({ station }: { station: TStation }) {
     const { current, next: options } = configs[0];
 
     const [next] = getNext(options);
-    const chosen = Choices[0];
+    const chosen = getChosen(Choices, 0);
 
     const props: Array<TObjAny> = [];
 
@@ -51,9 +51,9 @@ function MystiaBbq({ station }: { station: TStation }) {
   }
 
   {
-    const chosen = Choices[1];
+    const chosen = getChosen(Choices, 1);
     if (chosen !== undefined) {
-      const { current, next: options } = configs[1][Choices[0]];
+      const { current, next: options } = configs[1][getChosen(Choices, 0)];
 
       const [next] = getNext(options);
 

@@ -1,6 +1,6 @@
 import { TDialogueConfigs, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
-import { getNext } from 'utils/functions/helpers';
+import { getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
@@ -22,7 +22,7 @@ function KaguyaVersusMokou({ station }: { station: TStation }) {
   const { exhibits: _exhibits } = eventsConfigs.get(id);
 
   const [next] = getNext(options);
-  const chosen = Choices[0];
+  const chosen = getChosen(Choices, 0);
 
   const props: Array<TObjAny> = [];
   const exhibits: Array<TExhibits> = [];

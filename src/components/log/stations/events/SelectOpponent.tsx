@@ -1,7 +1,7 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TComponents, TObjAny } from 'utils/types/common';
-import { getNext, getNs } from 'utils/functions/helpers';
+import { getChosen, getNext, getNs } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import CharacterImage from 'components/common/parts/characterImage';
@@ -26,7 +26,7 @@ function SelectOpponent({ station }: { station: TStation }) {
   const { current, next: options } = configs;
 
   const [next] = getNext(options);
-  const chosen = Choices[0];
+  const chosen = getChosen(Choices, 0);
 
   const props: Array<TObjAny> = [];
   const afters: TComponents = [];

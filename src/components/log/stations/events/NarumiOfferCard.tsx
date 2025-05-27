@@ -1,7 +1,7 @@
 import { TDialogueConfigs, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TObjAny } from 'utils/types/common';
-import { getNext } from 'utils/functions/helpers';
+import { getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
@@ -26,7 +26,7 @@ function NarumiOfferCard({ station }: { station: TStation }) {
     const { current, next: options } = configs[0];
 
     const [next] = getNext(options);
-    const chosen = Choices[0];
+    const chosen = getChosen(Choices, 0);
 
     const dialogueConfigs: TDialogueConfigs = {
       current,
@@ -45,7 +45,7 @@ function NarumiOfferCard({ station }: { station: TStation }) {
     const { current, next: options } = configs[1][type];
 
     const [next] = getNext(options);
-    const chosen = Choices[1];
+    const chosen = getChosen(Choices, 1);
 
     const props: Array<TObjAny> = [];
 

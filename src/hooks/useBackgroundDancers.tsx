@@ -1,5 +1,5 @@
 import DialogueWidget from 'components/log/stations/parts/dialogueWidget';
-import { convertCards, copyObject, getNext } from 'utils/functions/helpers';
+import { convertCards, copyObject, getChosen, getNext } from 'utils/functions/helpers';
 import { TComponents, TObjAny, TObjNumber } from 'utils/types/common';
 import { TCards, TDialogueConfigs, TExhibits } from 'utils/types/runData';
 
@@ -29,7 +29,7 @@ function useBackgroundDancers({ id, Data, configs, eventConfigs }: { id: string,
 
   const choices = Object.values(options);
   let [next] = getNext(_next, choices);
-  let chosen = Choices[0];
+  let chosen = getChosen(Choices, 0) as any;
   let choice;
 
   let props: Array<TObjAny> = [];
