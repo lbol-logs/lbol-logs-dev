@@ -62,12 +62,14 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
     }
     card.IsUpgraded = IsUpgraded;
     const index = getSameCardIndex(currentHolding.Cards, card);
+    if (index === -1) console.error('not found', change);
     return index;
   }
 
   function findExhibit(entity: any) {
     const { Id } = entity as TExhibitObj;
     const index = currentHolding.Exhibits.findIndex((exhibit: TExhibitObj) => exhibit.Id === Id);
+    if (index === -1) console.error('not found', change);
     return index;
   }
 
@@ -101,21 +103,21 @@ function holdingsReducer(holdings: THoldings, action: THoldingAction): THoldings
   else if (Type === 'Remove') {
     if (type === 'Card') {
       const index = findCard(entity);
-      currentHolding.Cards.splice(index, 1);
+      if (index !== -1) currentHolding.Cards.splice(index, 1);
     }
     else if (type === 'Exhibit') {
       const index = findExhibit(entity);
-      currentHolding.Exhibits.splice(index, 1);
+      if (index !== -1) currentHolding.Exhibits.splice(index, 1);
     }
   }
   else if (Type === 'Upgrade') {
     if (type === 'Card') {
       const index = findCard(entity, true);
-      upgradeCard(index);
+      if (index !== -1) upgradeCard(index);
     }
     else if (type === 'Exhibit') {
       const index = findExhibit(entity);
-      currentHolding.Exhibits[index].Counter = (entity as TExhibitObj).Counter;
+      if (index !== -1) currentHolding.Exhibits[index].Counter = (entity as TExhibitObj).Counter;
     }
   }
   else if (Type === 'Use') {
