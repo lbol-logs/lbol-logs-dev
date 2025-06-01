@@ -121,6 +121,7 @@ type TTurn = {
   Round: number
   Turn: number
   Id: string,
+  Mana?: string,
   Cards?: TCards,
   Intentions?: TIntentions,
   Status: TBattleStatus,

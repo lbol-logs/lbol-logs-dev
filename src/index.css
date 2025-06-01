@@ -1725,6 +1725,20 @@ html:lang(en) .p-result__type {
   filter: hue-rotate(45deg);
 }
 
+.p-battle-mana {
+  display: flex;
+  flex-wrap: wrap;
+}
+.c-battle-mana {
+  position: relative
+}
+.c-battle-mana-count {
+  position: absolute;
+  color: var(--f-white);
+  right: 0;
+  bottom: 0;
+}
+
 .p-intentions {
   display: flex;
   column-gap: 1em;

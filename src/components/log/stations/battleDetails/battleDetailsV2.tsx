@@ -7,6 +7,7 @@ import IntentionsWidget from './parts/intentionsWidget';
 import RoundTurnWidget from './parts/roundTurnWidget';
 import BattleStatusWidget from './parts/battleStatusWidget';
 import BattleDetailsItem from './parts/battleDetailsItem';
+import BattleManasWidget from './parts/battleManasWidget';
 
 function BattleDetailsV2({ details, enemy, status: lastStatus }: { details: Array<TObjAny>, enemy: string, status: TStatus }) {
   const { t } = useTranslation();
@@ -25,11 +26,12 @@ function BattleDetailsV2({ details, enemy, status: lastStatus }: { details: Arra
   return (
     <div className="p-battle-details">
       {turns.map((turn, i) => {
-        const { Round, Turn, Id, Cards, Intentions, Status, StatusEffects } = turn;
+        const { Round, Turn, Id, Mana, Cards, Intentions, Status, StatusEffects } = turn;
         const isPlayer = Id === 'Player';
 
-        let cards, intentions;
+        let mana, cards, intentions;
 
+        if (Mana) mana = <BattleDetailsItem label={startOfTurn} children={<BattleManasWidget mana={Mana} />} />;
         if (Cards) cards = <BattleDetailsItem label={startOfTurn} children={<CardCards cards={Cards} />} />;
         if (Intentions) intentions = <BattleDetailsItem label={endOfTurn} children={<IntentionsWidget intentions={Intentions} />} />;
 
@@ -42,6 +44,7 @@ function BattleDetailsV2({ details, enemy, status: lastStatus }: { details: Arra
           <div className={`p-battle-details__row ${isPlayer ? 'p-battle-details__row--player' : 'p-battle-details__row--enemy'} js-round-${Round}`} key={i}>
             <div className="p-battle-details__body">
               <RoundTurnWidget round={Round} turn={Turn} id={Id} />
+              {mana}
               {cards}
               {status}
               {se}
