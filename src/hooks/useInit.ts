@@ -25,9 +25,12 @@ function useInit({ configs, modsConfigs, version, setVersion, navigate, ver, tem
   }, [_ver, isValidVersion, isVersionChanged]);
 
   useEffect(() => {
-    if (!version || tempRedirectVersion) setVersion(_ver);
-    if (isVersionChanged) setPrevVersion(_ver);
-  }, [version, tempRedirectVersion]);
+    if (isVersionChanged) {
+      setVersion(_ver);
+      setPrevVersion(_ver);
+    }
+    else if (!version || tempRedirectVersion) setVersion(_ver);
+  }, [version, tempRedirectVersion, _ver]);
 
   useEffect(() => {
     if (redirect) redirect();
