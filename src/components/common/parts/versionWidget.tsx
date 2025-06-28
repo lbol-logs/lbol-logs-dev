@@ -39,7 +39,7 @@ function VersionWidget({ version, setVersion, versionSwitch, className, redirect
     MODS_CONFIGS_DATA.version = v;
     setVersion(v);
 
-    if (redirect) navigate(`/${v}/${search}`, { replace: true });
+    if (redirect) navigate(`/${v}/${search}`);
   }
 
   return (
