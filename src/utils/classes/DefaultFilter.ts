@@ -15,7 +15,8 @@ class DefaultFilter {
     di: 'di',
     rt: 'rt',
     rq: 'rq',
-    re: 're'
+    re: 're',
+    rs: 'rs'
   };
 
   static ExhibitTypes = ExhibitTypes;
@@ -34,7 +35,8 @@ class DefaultFilter {
 
   static texts = [
     this.keys.na,
-    this.keys.no
+    this.keys.no,
+    this.keys.rs
   ];
 
   static radios = [

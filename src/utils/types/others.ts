@@ -10,6 +10,7 @@ type TRunListItem = {
   difficulty: string,
   requests: TRequests,
   result: string,
+  restarts?: number,
   timestamp: string
 };
 
@@ -32,7 +33,8 @@ type TPromise = {
 
 type TFilterText = {
   na?: string,
-  no?: string
+  no?: string,
+  rs?: string
 };
 type TFilterRadio = {
   et?: string

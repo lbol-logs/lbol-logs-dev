@@ -345,13 +345,13 @@ input {
     background: var(--light-green);
   }
 }
-@media screen and (683px <= width < 1012px) {
+@media screen and (699px <= width < 1036px) {
   .p-run-list__item--pc {
     display: none;
   }
 
   .p-run-list__table {
-    max-width: 663px;
+    max-width: 679px;
   }
 
   .p-run-list__item:nth-child(4n + 1),
@@ -387,9 +387,9 @@ input {
     display: block;
   }
 }
-@media screen and (1012px <= width) {
+@media screen and (1036px <= width) {
   .p-run-list__table {
-    max-width: 992px;
+    max-width: 1016px;
   }
 
   .p-run-list__item:nth-child(6n + 1),
@@ -444,7 +444,7 @@ input {
   align-items: center;
 }
 .p-run-list__cell--id {
-  width: 2em;
+  width: 2.5em;
   display: flex;
   justify-content: center;
   align-items: center;

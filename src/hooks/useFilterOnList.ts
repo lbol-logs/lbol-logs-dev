@@ -33,6 +33,11 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter, setFilteredList
         const value = (f as string).toLowerCase();
         filteredList = filteredList.filter(e => !e.name || !e.name.toLowerCase().includes(value));
       }
+      if (key === keys.rs) {
+        const value = Number(f as string);
+        console.log(value, !isNaN(value));
+        if (!isNaN(value)) filteredList = filteredList.filter(e => e.restarts !== undefined && e.restarts <= value);
+      }
     }
     else if (isRadio) {
       if (key === keys.rt) {

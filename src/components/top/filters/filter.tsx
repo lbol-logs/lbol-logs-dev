@@ -42,9 +42,10 @@ function Filter() {
     reset
   } = useFilter({ filter, setFilter, version, searchParams });
 
-  let { na, no } = filter;
+  let { na, no, rs } = filter;
   na = na ? na[0] : '';
   no = no ? no[0] : '';
+  rs = rs ? rs[0] : '';
 
   function onClick() {
     setShowFilter(!showFilter);
@@ -137,6 +138,17 @@ function Filter() {
           <div className="p-filter__label">{t('result', { ns: 'runList' })}</div>
           <div className="p-filter__values u-flex-col-sp">
             <ResultsWidget onChange={onCheckboxChange} results={resultConfigs as Array<string>} />
+          </div>
+        </div>
+        <div className="p-filter__row">
+          <div className="p-filter__label">{t('restarts', { ns: 'runList' })}</div>
+          <div className="p-filter__values">
+          <div className="p-filter__values">
+            <div>
+              {'<='}
+              <input name="rs" defaultValue={rs} key={rs} type="number" inputMode="numeric" min="0" />
+            </div>
+          </div>
           </div>
         </div>
         <div className="p-filter__buttons">
