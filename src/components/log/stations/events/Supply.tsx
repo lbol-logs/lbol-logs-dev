@@ -1,7 +1,7 @@
 import { TDialogueConfigs, TExhibit, TExhibits, TStation } from 'utils/types/runData';
 import DialogueWidget from '../parts/dialogueWidget';
 import { TObj, TObjAny } from 'utils/types/common';
-import { getChosen, getEntityNs, getNext } from 'utils/functions/helpers';
+import { copyObject, getChosen, getEntityNs, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import { useTranslation } from 'react-i18next';
 import RewardsWidget from '../parts/rewardsWidget';
@@ -19,8 +19,9 @@ function Supply({ station }: { station: TStation }) {
   const id = Type;
   const configs = dialoguesConfigs.get(id);
 
-  const { current, next: options } = configs;
+  const { current, next: _options } = configs;
 
+  const options = copyObject(_options);
   if (!Both) delete options[2];
 
   const [next] = getNext(options);
