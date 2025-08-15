@@ -1,12 +1,12 @@
 import { CONFIGS_DATA, latestVersion, MODS_CONFIGS_DATA, versions } from 'configs/globals';
 import { ChangeEvent } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TDispatch } from 'utils/types/common';
 
 function VersionWidget({ version, setVersion, versionSwitch, className, redirect = true }: { version: string, setVersion: TDispatch<string>, versionSwitch: boolean, className: string, redirect?: boolean }) {
   const navigate = useNavigate();
-  const { search } = useLocation();
+  const [searchParams] = useSearchParams();
   const { t } = useTranslation();
 
   const isLatestVersion = version === latestVersion;
@@ -39,7 +39,11 @@ function VersionWidget({ version, setVersion, versionSwitch, className, redirect
     MODS_CONFIGS_DATA.version = v;
     setVersion(v);
 
-    if (redirect) navigate(`/${v}/${search}`);
+    if (redirect) {
+      searchParams.delete('p');
+      const url = `/${v}/` + searchParams.keys() ? `?${searchParams.toString()}` : '';
+      navigate(url);
+    }
   }
 
   return (
