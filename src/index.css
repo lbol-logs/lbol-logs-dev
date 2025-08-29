@@ -1246,7 +1246,10 @@ html:lang(en) .c-entity__text {
   z-index: var(--z-3);
   position: relative;
 }
-.c-request {
+.p-filter__values .c-requests {
+  --dot-size: calc(0.9 * var(--result-width) / (var(--requests-count) * 2 - 1));
+}
+.c-request, .c-request.u-button {
   width: var(--dot-size);
   height: var(--dot-size);
   border: var(--dot-border) solid var(--dot-color);
