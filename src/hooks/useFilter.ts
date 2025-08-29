@@ -17,7 +17,7 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
   const [showModFilter, setShowModFilter] = useState(false);
   const [showStartingExhibits, setShowStartingExhibits] = useState(false);
   const [showSwappedExhibits, setShowSwappedExhibits] = useState(false);
-  const [showRequests, seteShowRequests] = useState(false);
+  const [showRequests, setShowRequests] = useState(false);
 
   const { charactersConfigs, exhibitsConfigs } = configsData;
   const difficultyConfigs = use(getConfigs(version, 'difficulties'));
@@ -130,7 +130,7 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
   }
 
   function reflectRequestsTypes(value: string) {
-    seteShowRequests(value === DefaultFilter.rt.active);
+    setShowRequests(value === DefaultFilter.rt.active);
   }
 
   function apply(e: MouseEvent<HTMLButtonElement>) {
