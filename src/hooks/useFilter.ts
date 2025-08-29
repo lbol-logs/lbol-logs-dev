@@ -114,6 +114,13 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
     else if (key === DefaultFilter.keys.rt) reflectRequestsTypes(value);
   }
 
+  function reflectModFilter(currentFilter: TFilter) {
+    const key = DefaultFilter.keys.ch;
+    const value = searchParams.getAll(key);
+    const showModFilter = value && value.includes(DefaultFilter.ch.Mods);
+    setShowModFilter(showModFilter);
+  }
+
   function reflectExhibitsTypes(value: string) {
     if (!value || value === DefaultFilter.et.all) {
       setShowStartingExhibits(false);
@@ -155,9 +162,12 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
       if (value === DefaultFilter.check(key)) data.delete(key);
     }
     for (const key of DefaultFilter.texts) {
-      const value = (data.get(key) as string).trim();
-      if (value === '') data.delete(key);
-      else data.set(key, value);
+      const s = data.get(key) as string;
+      if (s !== null) {
+        const value = s.trim();
+        if (value === '') data.delete(key);
+        else data.set(key, value);
+      }
     }
     data.delete(DefaultFilter.et.co);
     return data;
@@ -182,6 +192,7 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
       (currentFilter[key] as Array<string>).push(value);
     }
 
+    reflectModFilter(currentFilter);
     for (const key of radios) {
       currentFilter = updateTypesFilter(currentFilter, key);
     }
