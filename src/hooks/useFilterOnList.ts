@@ -35,7 +35,6 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter, setFilteredList
       }
       if (key === keys.rs) {
         const value = Number(f as string);
-        console.log(value, !isNaN(value));
         if (!isNaN(value)) filteredList = filteredList.filter(e => e.restarts !== undefined && e.restarts <= value);
       }
     }

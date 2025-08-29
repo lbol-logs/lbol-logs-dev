@@ -81,7 +81,6 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
     const value = input.value;
     const isChecked = input.checked;
     let currentFilter = updateCheckbox(filter, name, value, isChecked);
-    console.log({name,value})
     if (name === DefaultFilter.keys.ch && value === DefaultFilter.ch.Mods) setShowModFilter(isChecked);
     if (name === DefaultFilter.et.co) currentFilter = handleColor(currentFilter, input, isChecked);
     setFilter(currentFilter);
