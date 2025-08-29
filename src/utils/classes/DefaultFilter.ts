@@ -8,6 +8,7 @@ class DefaultFilter {
     na: 'na',
     no: 'no',
     ch: 'ch',
+    mc: 'mc',
     sc: 'sc',
     et: 'et',
     st: 'st',
@@ -20,6 +21,10 @@ class DefaultFilter {
   };
 
   static ExhibitTypes = ExhibitTypes;
+
+  static ch = {
+    Mods: 'Mods'
+  };
 
   static et = {
     all: 'all',
@@ -36,6 +41,7 @@ class DefaultFilter {
   static texts = [
     this.keys.na,
     this.keys.no,
+    this.keys.mc,
     this.keys.rs
   ];
 

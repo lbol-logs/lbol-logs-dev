@@ -14,6 +14,7 @@ import Configs from 'utils/classes/Configs';
 function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilter, setFilter: TDispatch<TFilter>, version: string, searchParams: URLSearchParams }) {
   const { t } = useTranslation();
 
+  const [showModFilter, setShowModFilter] = useState(false);
   const [showStartingExhibits, setShowStartingExhibits] = useState(false);
   const [showSwappedExhibits, setShowSwappedExhibits] = useState(false);
   const [showRequests, seteShowRequests] = useState(false);
@@ -80,6 +81,8 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
     const value = input.value;
     const isChecked = input.checked;
     let currentFilter = updateCheckbox(filter, name, value, isChecked);
+    console.log({name,value})
+    if (name === DefaultFilter.keys.ch && value === DefaultFilter.ch.Mods) setShowModFilter(isChecked);
     if (name === DefaultFilter.et.co) currentFilter = handleColor(currentFilter, input, isChecked);
     setFilter(currentFilter);
   }
@@ -187,6 +190,7 @@ function useFilter({ filter, setFilter, version, searchParams }: { filter: TFilt
   }, [searchParams]);
 
   return {
+    showModFilter,
     showStartingExhibits,
     showSwappedExhibits,
     showRequests,

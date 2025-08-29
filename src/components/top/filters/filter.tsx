@@ -24,6 +24,7 @@ function Filter() {
   const [searchParams] = useSearchParams();
 
   const {
+    showModFilter,
     showStartingExhibits,
     showSwappedExhibits,
     showRequests,
@@ -42,20 +43,33 @@ function Filter() {
     reset
   } = useFilter({ filter, setFilter, version, searchParams });
 
-  let { na, no, rs } = filter;
+  let { na, no, mc, rs } = filter;
   na = na ? na[0] : '';
   no = no ? no[0] : '';
+  mc = mc ? mc[0] : '';
   rs = rs ? rs[0] : '';
 
   function onClick() {
     setShowFilter(!showFilter);
   }
 
+  let modFilterRow = null;
   let startingExhibitsRow = null;
   let swappedExhibitsRow = null;
 
   const { sc } = filter;
   const hasSpellcard = sc ? sc.length : false;
+
+  if (showModFilter) {
+    modFilterRow = (
+      <div className="p-filter__row">
+        <div className="p-filter__label">Mod</div>
+        <div className="p-filter__values">
+          <input className="p-filter__input" name="mc" defaultValue={mc} />
+        </div>
+      </div>
+    )
+  }
 
   if (!hasSpellcard && showStartingExhibits) {
     startingExhibitsRow = (
@@ -93,13 +107,13 @@ function Filter() {
         <div className="p-filter__row">
           <div className="p-filter__label">{t('name', { ns: 'runList' })}</div>
           <div className="p-filter__values">
-            <input className="p-filter__input" name="na" defaultValue={na} key={na} />
+            <input className="p-filter__input" name="na" defaultValue={na} />
           </div>
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">NOT</div>
           <div className="p-filter__values">
-            <input className="p-filter__input" name="no" defaultValue={no} key={no} />
+            <input className="p-filter__input" name="no" defaultValue={no} />
           </div>
         </div>
         <div className="p-filter__row">
@@ -108,6 +122,7 @@ function Filter() {
             <CharactersWidget onChange={onCheckboxChange} characters={characters} />
           </div>
         </div>
+        {modFilterRow}
         <div className="p-filter__row">
           <div className="p-filter__label">{t('spellcard', { ns: 'runList' })}</div>
           <div className="p-filter__values">
@@ -146,7 +161,7 @@ function Filter() {
           <div className="p-filter__values">
             <div>
               {'<='}
-              <input name="rs" defaultValue={rs} key={rs} type="number" inputMode="numeric" min="0" />
+              <input name="rs" defaultValue={rs} type="number" inputMode="numeric" min="0" />
             </div>
           </div>
           </div>

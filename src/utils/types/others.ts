@@ -34,6 +34,7 @@ type TPromise = {
 type TFilterText = {
   na?: string,
   no?: string,
+  mc?: string,
   rs?: string
 };
 type TFilterRadio = {

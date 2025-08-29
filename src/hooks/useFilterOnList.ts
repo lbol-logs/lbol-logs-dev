@@ -55,7 +55,12 @@ function useFilterOnList(list: TRunList, currentFilter: TFilter, setFilteredList
           const character = e[map[key]] as string;
           const isCharacter = value.includes(character);
           const isModCharacter = includesMods ? checkIsMod(character) : false;
-          return isCharacter || isModCharacter;
+          let isFilteredModCharacter = true;
+          if (includesMods) {
+            const value = currentFilter[keys.mc] as unknown as string;
+            if (value && character !== value) isFilteredModCharacter = false;
+          }
+          return isCharacter || (isModCharacter && isFilteredModCharacter);
         });
       }
       else if (key === keys.sc) {
