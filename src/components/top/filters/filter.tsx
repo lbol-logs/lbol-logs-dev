@@ -65,7 +65,7 @@ function Filter() {
       <div className="p-filter__row">
         <div className="p-filter__label">Mod</div>
         <div className="p-filter__values">
-          <input className="p-filter__input" name="mc" defaultValue={mc} />
+          <input className="p-filter__input" name="mc" defaultValue={mc} key={mc} />
         </div>
       </div>
     )
@@ -107,13 +107,13 @@ function Filter() {
         <div className="p-filter__row">
           <div className="p-filter__label">{t('name', { ns: 'runList' })}</div>
           <div className="p-filter__values">
-            <input className="p-filter__input" name="na" defaultValue={na} />
+            <input className="p-filter__input" name="na" defaultValue={na} key={na} />
           </div>
         </div>
         <div className="p-filter__row">
           <div className="p-filter__label">NOT</div>
           <div className="p-filter__values">
-            <input className="p-filter__input" name="no" defaultValue={no} />
+            <input className="p-filter__input" name="no" defaultValue={no} key={no} />
           </div>
         </div>
         <div className="p-filter__row">
@@ -161,7 +161,7 @@ function Filter() {
           <div className="p-filter__values">
             <div>
               {'<='}
-              <input name="rs" defaultValue={rs} type="number" inputMode="numeric" min="0" />
+              <input name="rs" defaultValue={rs} key={rs} type="number" inputMode="numeric" min="0" />
             </div>
           </div>
           </div>
