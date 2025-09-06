@@ -1,27 +1,19 @@
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 import ExternalLink from 'components/common/parts/externalLink';
 import { TModConfigs } from 'utils/types/others';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { modsThreshold } from 'configs/globals';
 
 function ModsWidget({ mods, version, collapse = false }: { mods: Array<TModConfigs>, version?: string, collapse?: boolean }) {
-  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(Boolean(collapse));
 
   const inner = (
     <div className="p-mods__inner">
       {mods.map(({ GUID, Name, Version, Character, Url }, i) => {
         let logs = null;
-
-        const onClick = (e: MouseEvent<HTMLSpanElement>) => {
-          e.preventDefault();
-          const href = `/${version}/?ch=${Character}`;
-          navigate(href);
-        };
-
         if (version) {
           logs = (
-            <span className="p-mod__logs" onClick={onClick}>Logs</span>
+            <Link className="p-mod__logs" to={`/${version}/?ch=Mods&mc=${Character}`}>Logs</Link>
           );
         }
 
