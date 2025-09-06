@@ -207,6 +207,33 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
         c.insertManaObj({ Mana: mana });
       }
 
+      // Rumia
+      {
+        const { lim, mana } = config;
+        const modsArgs = { lim };
+        c.appendDescs(modsArgs);
+        c.insert('SelfName', <span className="c-self-name">{t(`${Id}.Name`, { ns })}</span>);
+        if (mana !== undefined) {
+          c.insertManaObj({ mana });
+        }
+        if (['seadrenaline', 'sebloodyhell', 'setearmedo'].includes(Id)) {
+          const atkincrease = Level as number * 5;
+          c.appendDescs({ atkincrease });
+        }
+        if (Id === 'sebloodclot') {
+          const Value = Math.min((Level as number || 1) * 5, 100);
+          c.appendDescs({ Value });
+        }
+        if (Id === 'sebloodmark') {
+          const Value = (Level as number || 1) * 20;
+          c.appendDescs({ Value });
+        }
+        if (Id === 'setorn') {
+          const increase = Level as number * 10;
+          c.appendDescs({ increase });
+        }
+      }
+
       // Patchouli
       {
         const { BoostThreshold1, BoostThreshold2, BoostThreshold3, BasePassive, BaseActive, Mana } = config;
