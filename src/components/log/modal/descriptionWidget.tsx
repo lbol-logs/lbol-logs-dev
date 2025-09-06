@@ -75,6 +75,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       c.insertManaObj({ TotalMana });
 
       // Rumia
+      // eslint-disable-next-line no-lone-blocks
       {
         if (Id === 'cardtenshaded') {
           const { Value3 } = cardConfigs;
