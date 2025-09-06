@@ -74,6 +74,14 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       c.insertManaObj({ ActiveMana });
       c.insertManaObj({ TotalMana });
 
+      // Rumia
+      {
+        if (Id === 'cardtenshaded') {
+          const { Value3 } = cardConfigs;
+          Object.assign(values, { Value3 });
+        }
+      }
+
       // Patchouli
       {
         const { Value3, BoostThreshold1, BoostThreshold2, BoostThreshold3, BonusMana } = cardConfigs;
