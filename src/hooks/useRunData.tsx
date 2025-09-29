@@ -5,9 +5,10 @@ import { Navigate } from 'react-router-dom';
 import { validateRunData } from 'utils/functions/helpers';
 import use from 'utils/functions/use';
 import setHoldings from 'utils/functions/setHoldings';
-import { configsData, defaultRunData, tempVersion, versions } from 'configs/globals';
+import { configsData, defaultRunData } from 'configs/globals';
 import { TObjAny } from 'utils/types/common';
 import Configs from 'utils/classes/Configs';
+import getTempLogVersion from 'utils/functions/tempLogs';
 
 function useRunData(args: TObjAny) {
   const {
@@ -32,11 +33,12 @@ function useRunData(args: TObjAny) {
       isValidRunData = validateRunData(runData);
 
       if (!isValidRunData && version === 'temp') {
-        v = versions[tempVersion ? 1 : 0];
-        runData = use(getLog(v, id)) as TRunData;
-        isValidRunData = validateRunData(runData);
-
-        if (isValidRunData) redirect = <Navigate to={`/${v}/${id}/${search}`} replace />;
+        v = getTempLogVersion(id);
+        if (v !== '') {
+          runData = use(getLog(v, id)) as TRunData;
+          isValidRunData = validateRunData(runData);
+          if (isValidRunData) redirect = <Navigate to={`/${v}/${id}/${search}`} replace />;
+        }
       }
 
       if (!isValidRunData) {
