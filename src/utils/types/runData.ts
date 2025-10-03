@@ -15,6 +15,8 @@ type TRunData = {
 };
 
 type TSettings = {
+  GameMode?: string,
+  Packs?: Array<string>,
   Character: TCharacter,
   PlayerType: TPlayerType,
   HasClearBonus: boolean,

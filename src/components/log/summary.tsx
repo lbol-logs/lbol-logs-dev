@@ -15,6 +15,8 @@ import { getResultData } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import LogDescription from './logDescription';
 import JadeBoxes from './parts/jadeBoxes';
+import GameModeWidget from './parts/gameModeWidget';
+import Packs from './parts/packs';
 
 function Summary() {
   const { exhibitsConfigs, cardsConfigs } = configsData;
@@ -47,6 +49,9 @@ function Summary() {
         <div className="p-summary__settings">
           <div className="p-summary__block">
             <div className="p-summary__line">
+              <GameModeWidget />
+            </div>
+            <div className="p-summary__line">
               {Seed !== undefined && <span className="p-summary__seed">{Seed}</span>}
               <IsAutoSeedWidget is={IsAutoSeed} />
             </div>
@@ -57,6 +62,7 @@ function Summary() {
             </div>
           </div>
           <JadeBoxes />
+          <Packs />
         </div>
         {Mods !== undefined && <ModsWidget mods={Mods} collapse={true} />}
       </div>
