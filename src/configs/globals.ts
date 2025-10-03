@@ -59,13 +59,13 @@ const versions: Array<string> = [
   '1.5.1'
 ];
 
-// const tempVersion = '1.7.0';
-const tempVersion = '';
+const tempVersion = '1.8.0';
+// const tempVersion = '';
 if (tempVersion) versions.unshift('temp');
 
 const latestVersion: string = versions[0];
 const latestVersionWips: TObj<boolean> = {
-  // islatestVersionWip: true,
+  islatestVersionWip: true,
   // islatestVersionModsWip: true
 };
 

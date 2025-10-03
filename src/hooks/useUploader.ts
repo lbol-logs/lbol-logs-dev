@@ -97,7 +97,7 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
   }
 
   function isTempVersion(version: string) {
-    return tempVersion && (parseVersion(version) === tempVersion || version.startsWith('debug'));
+    return tempVersion && (parseVersion(version) === tempVersion);
   }
 
   function parseVersion(version: string) {
