@@ -312,7 +312,7 @@ input {
   text-align: center;
 }
 .p-run-list__item--dummy {
-  width: 20.25em;
+  width: calc(var(--id-width) + var(--result-width));
   height: calc(6.25em + var(--dot-size));
   padding-left: 0;
   display: none;
@@ -444,7 +444,7 @@ input {
   align-items: center;
 }
 .p-run-list__cell--id {
-  width: 2.5em;
+  width: var(--id-width);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2228,6 +2228,7 @@ html:lang(en) .p-result__type {
   --control-height: 36px;
   --control-gap: 1em;
   --icon-size: 36px;
+  --id-width: 2.5em;
   --result-width: 292px;
   --requests-count: 7;
   --dot-size: calc(var(--result-width) / (var(--requests-count) * 2 - 1));
