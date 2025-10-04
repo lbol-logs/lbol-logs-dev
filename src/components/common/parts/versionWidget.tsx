@@ -41,7 +41,7 @@ function VersionWidget({ version, setVersion, versionSwitch, className, redirect
 
     if (redirect) {
       searchParams.delete('p');
-      const url = `/${v}/` + searchParams.keys() ? `?${searchParams.toString()}` : '';
+      const url = `/${v}/` + (searchParams.keys() ? `?${searchParams.toString()}` : '');
       navigate(url);
     }
   }
