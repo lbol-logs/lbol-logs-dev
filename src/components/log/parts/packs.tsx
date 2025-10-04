@@ -15,7 +15,7 @@ function Packs() {
   return (
     <div className="p-summary__packs">
       <div className="p-summary__line">
-        <LazyLoadImage2 callback={getCommonImage} name="pack" alt="" />
+        <LazyLoadImage2 callback={getCommonImage} name="pack" height="24" alt="" />
         {t('Pack', { ns: 'log' })}
       </div>
       <ul className="p-packs">
