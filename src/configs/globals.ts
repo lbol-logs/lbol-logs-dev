@@ -51,6 +51,7 @@ const modsNamespaces: Array<string> = [
 ];
 
 const versions: Array<string> = [
+  '1.8.0',
   '1.7.2',
   '1.7.1',
   '1.7.0',
@@ -59,8 +60,8 @@ const versions: Array<string> = [
   '1.5.1'
 ];
 
-const tempVersion = '1.8.0';
-// const tempVersion = '';
+// const tempVersion = '1.8.0';
+const tempVersion = '';
 if (tempVersion) versions.unshift('temp');
 
 const latestVersion: string = versions[0];
