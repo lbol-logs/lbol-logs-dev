@@ -1909,6 +1909,18 @@ html:lang(en) .p-result__type {
 .c-highlight--royalblue {
   color: var(--f-general);
 }
+.c-highlight--decrease {
+  color: var(--f-decrease);
+}
+.c-highlight--increase {
+  color: var(--f-increase);
+}
+.c-highlight--skyblue {
+  color: var(--f-skyblue);
+}
+.c-highlight--keyword {
+  color: var(--f-highlight);
+}
 
 .c-show-random-result {
   color: var(--red);
@@ -2309,6 +2321,9 @@ html:lang(en) .p-result__type {
   --f-entity-color: #99ffff;
   --f-ui-green: #8bc88a;
   --f-general: #5270ef;
+  --f-decrease: #ff99ff;
+  --f-increase: #ff9500;
+  --f-skyblue: #3781e1;
 
   --f-enemy-Sakuya: #b7f0ff;
   --f-enemy-FraudRabbit: #b7646b;

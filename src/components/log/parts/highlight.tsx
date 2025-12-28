@@ -22,7 +22,11 @@ const highlightColors: TObjString = {
   'f': 'green',
   'r': 'red',
   'c': 'cyan',
-  'b': 'royalblue'
+  'b': 'royalblue',
+  'l': 'decrease',
+  'i': 'increase',
+  's': 'skyblue',
+  'k': 'keyword'
 };
 
 export {
