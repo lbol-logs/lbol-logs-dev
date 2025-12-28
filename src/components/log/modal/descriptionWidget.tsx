@@ -156,8 +156,7 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       // Reimu
       {
         const { Mana2 } = config;
-        const modsArgs = { Mana2 };
-        c.appendDescs(modsArgs);
+        c.insertManaObj({ Mana2 });
       }
 
       break;
