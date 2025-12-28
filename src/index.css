@@ -1866,6 +1866,9 @@ html:lang(en) .p-result__type {
 .c-character-short-name--PatchouliMod {
   color: var(--f-patchouli);
 }
+.c-character-short-name--ReimuUnifierMod {
+  color: var(--f-reimu-unifier);
+}
 .c-character-short-name--Sanae_Kochiya {
   color: var(--f-sanae);
 }
@@ -2293,6 +2296,7 @@ html:lang(en) .p-result__type {
   --f-rumia: #ff0808;
   --f-momiji: #e58c27;
   --f-patchouli: #d2c5df;
+  --f-reimu-unifier: #e58c27;
   --f-sanae: #28e25a;
   --f-utsuho: #e58c27;
   --f-youmu: #00b789;
