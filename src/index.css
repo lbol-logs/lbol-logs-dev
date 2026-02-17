@@ -750,6 +750,9 @@ input {
 .p-description__link {
   overflow-wrap: anywhere;
 }
+.p-website__head {
+  font-weight: bold;
+}
 .p-summary__pivot {
   display: flex;
   flex-wrap: wrap;

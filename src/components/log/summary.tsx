@@ -17,6 +17,7 @@ import LogDescription from './logDescription';
 import JadeBoxes from './parts/jadeBoxes';
 import GameModeWidget from './parts/gameModeWidget';
 import Packs from './parts/packs';
+import LogWebsite from './logWebsite';
 
 function Summary() {
   const { exhibitsConfigs, cardsConfigs } = configsData;
@@ -30,7 +31,7 @@ function Summary() {
 
   if (!isRunDataLoaded) return <Loading />;
 
-  const { Version, Name, Settings, Result, Description } = runData;
+  const { Version, Name, Settings, Result, Description, Website } = runData;
   const { Requests, ShowRandomResult, IsAutoSeed, Mods } = Settings;
   const { Cards, Exhibits, BaseMana, Seed, ReloadTimes } = Result;
   const resultData = getResultData(runData);
@@ -67,6 +68,7 @@ function Summary() {
         {Mods !== undefined && <ModsWidget mods={Mods} collapse={true} />}
       </div>
       <LogDescription description={Description} />
+      <LogWebsite website={Website} />
       <div className="p-summary__exhibits">
         <div className="p-summary__pivot">
           <h3 className="p-summary__entity">{t('exhibitsCount', { ns: 'log', count: Exhibits.length })}</h3>
