@@ -189,16 +189,30 @@ input {
   display: flex;
   justify-content: space-between;
 }
-.p-upload-description__title {
+.p-upload-description__title, .p-upload-website__title {
   display: flex;
   column-gap: 0.5em;
   align-items: center;
 }
-.p-upload-description__head {
+.p-upload-description__head, .p-upload-website__head {
   margin: 0;
 }
-.p-upload-description__optional {
+.p-upload-description__optional, .p-upload-website__optional {
   font-size: 0.8em;
+}
+.p-upload-website__line {
+  margin-bottom: 0.5em;
+}
+.p-upload-website__label {
+  display: flex;
+  column-gap: 0.5em;
+}
+.p-upload-website__span {
+  width: 3em;
+  font-weight: bold;
+}
+.p-upload-website__input {
+  flex-grow: 1;
 }
 
 .p-file--uploading {

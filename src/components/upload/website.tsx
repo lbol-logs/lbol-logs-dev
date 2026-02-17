@@ -13,14 +13,14 @@ function Website() {
         </div>
       </div>
       <div className="p-upload-website__line">
-        <label>
-          <span className="p-upload-website__label">Title: </span>
+        <label className="p-upload-website__label">
+          <span className="p-upload-website__span">Title: </span>
           <input className="p-upload-website__input js-title" name="title" maxLength={websiteTitleMaxLength} />
         </label>
       </div>
       <div className="p-upload-website__line">
-        <label>
-          <span className="p-upload-website__label">URL: </span>
+        <label className="p-upload-website__label">
+          <span className="p-upload-website__span">URL: </span>
           <input className="p-upload-website__input js-url" name="url" maxLength={websiteUrlMaxLength} />
         </label>
       </div>
