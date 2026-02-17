@@ -121,6 +121,8 @@ const asideHoldingsthreshold = 1536;
 const defaultAsideHoldings = AsideType.right;
 
 const descriptionMaxLength = 300;
+const websiteTitleMaxLength = 50;
+const websiteUrlMaxLength = 300;
 
 const modsThreshold = 6;
 
@@ -183,6 +185,8 @@ export {
   asideHoldingsthreshold,
   defaultAsideHoldings,
   descriptionMaxLength,
+  websiteTitleMaxLength,
+  websiteUrlMaxLength,
   modsThreshold,
   CONFIGS_DATA,
   configsData,
