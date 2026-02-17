@@ -11,7 +11,8 @@ type TRunData = {
   Cards: TCardChanges,
   Exhibits: TExhibitChanges,
   Result: TResult,
-  Description?: string
+  Description?: string,
+  Website?: TWebsite
 };
 
 type TSettings = {
@@ -264,6 +265,11 @@ type TDialogueConfigs = {
   afters?: TComponents
 };
 
+type TWebsite = {
+  Title: string,
+  Url: string
+};
+
 export type {
   TRunData,
   TCharacter,
@@ -310,7 +316,8 @@ export type {
   TRequests,
   TMod,
   TMods,
-  TDialogueConfigs
+  TDialogueConfigs,
+  TWebsite
 };
 
 export {

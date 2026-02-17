@@ -189,6 +189,15 @@ function useUploader(setSearchParams: SetURLSearchParams, setIsUploading: TDispa
     const textarea = document.querySelector('.js-textarea') as HTMLTextAreaElement;
     const Description = textarea.value.trim();
     if (Description !== '') Object.assign(previewData, { Description });
+
+    const titleInput = document.querySelector('.js-title') as HTMLInputElement;
+    const urlInput = document.querySelector('.js-url') as HTMLInputElement;
+    const Title = titleInput.value.trim();
+    const Url = urlInput.value.trim();
+    if (Title !== '' && Url.startsWith('https://')) {
+      const Website = { Title, Url };
+      Object.assign(previewData, { Website });
+    }
     return previewData;
   }
 

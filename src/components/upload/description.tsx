@@ -25,6 +25,7 @@ function Description() {
       </div>
       <textarea
         className="p-upload-description__textarea js-textarea"
+        name="description"
         maxLength={descriptionMaxLength}
         rows={10}
         cols={100}

@@ -9,6 +9,7 @@ import ResultWidget from 'components/common/parts/resultWidget';
 import RequestsWidget from 'components/common/parts/requestsWidget';
 import Description from './description';
 import Modal from 'components/log/modal';
+import Website from './website';
 
 function Uploader() {
   const { t } = useTranslation();
@@ -61,6 +62,7 @@ function Uploader() {
           <RequestsWidget requests={Requests} showModal={true} />
         </div>
         <Description />
+        <Website />
       </div>
     );
   }
