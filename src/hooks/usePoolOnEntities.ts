@@ -48,6 +48,9 @@ function usePoolOnEntities({ currentFilter, validCards, setValidCards, setAddedV
         if (!isNaN(number)) {
           totalCost = totalCost - 1 + number;
         }
+        if (IsXCost) {
+          totalCost = totalCost - 1;
+        }
 
         if (tc && !tc.includes(totalCost.toString())) {
           const matchX = tc.includes('X') && IsXCost;
