@@ -16,8 +16,8 @@ function NarumiOfferCard({ station }: { station: TStation }) {
   const { Choices } = Data;
 
   const id = Id as string;
-  const eventConfigs = eventsConfigs.get(id);
   const configs = dialoguesConfigs.get(id);
+  const eventConfigs = eventsConfigs.get(id);
 
   let first = null;
   let second = null;

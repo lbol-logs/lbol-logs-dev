@@ -20,8 +20,8 @@ function SelectOpponent({ station }: { station: TStation }) {
   const { Choices, Opponents } = Data;
 
   const id = 'SelectOpponent';
-  const { power } = eventsConfigs.get(id);
   const configs = dialoguesConfigs.get(id);
+  const { power } = eventsConfigs.get(id);
 
   const { current, next: options } = configs;
 

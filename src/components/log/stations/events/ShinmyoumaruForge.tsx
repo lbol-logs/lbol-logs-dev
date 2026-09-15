@@ -18,8 +18,8 @@ function ShinmyoumaruForge({ station }: { station: TStation }) {
   const id = Id as string;
   const configs = dialoguesConfigs.get(id);
 
-  const { upgrade, transform } = eventsConfigs.get(id);
   const { current, next: options } = configs;
+  const { upgrade, transform } = eventsConfigs.get(id);
 
   const choices: Array<number | string> = [];
 

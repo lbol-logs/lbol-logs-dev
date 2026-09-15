@@ -10,8 +10,8 @@ function BackgroundDancers({ station }: { station: TStation }) {
   const { Data, Id } = station;
 
   const id = Id as string;
-  const eventConfigs = eventsConfigs.get(id);
   const configs = dialoguesConfigs.get(id);
+  const eventConfigs = eventsConfigs.get(id);
 
   const dialogues = useBackgroundDancers({ id, Data, configs, eventConfigs });
 

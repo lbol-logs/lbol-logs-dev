@@ -18,8 +18,8 @@ function DoremyPortal({ station }: { station: TStation }) {
   const id = Id as string;
   const configs = dialoguesConfigs.get(id);
 
-  const { money, exhibit, misfortune } = eventsConfigs.get(id);
   const { current, next: options } = configs;
+  const { money, exhibit, misfortune } = eventsConfigs.get(id);
 
   const [next] = getNext(options);
   const chosen = getChosen(Choices, 0);

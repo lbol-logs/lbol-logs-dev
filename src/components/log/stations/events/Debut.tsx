@@ -22,8 +22,8 @@ function Debut({ station }: { station: TStation }) {
   const { Choices, Options } = Data;
 
   const id = 'Debut';
-  const { money } = eventsConfigs.get(id);
   const configs = dialoguesConfigs.get(id);
+  const { money } = eventsConfigs.get(id);
 
   let advantages = null;
   let pills = null;

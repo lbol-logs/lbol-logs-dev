@@ -18,8 +18,8 @@ function WatatsukiPurify({ station }: { station: TStation }) {
   const id = Id as string;
   const configs = dialoguesConfigs.get(id);
 
-  const { maxhp, cards: _cards, misfortune } = eventsConfigs.get(id);
   const { current, next: options } = configs;
+  const { maxhp, cards: _cards, misfortune } = eventsConfigs.get(id);
 
   const [next] = getNext(options);
   const chosen = getChosen(Choices, 0);
