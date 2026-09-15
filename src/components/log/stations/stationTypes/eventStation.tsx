@@ -1,5 +1,6 @@
 import { TStation } from 'utils/types/runData';
 import { TObj } from 'utils/types/common';
+import { TEventComponent } from 'utils/types/others';
 import DoremyPortal from '../events/DoremyPortal';
 import JunkoColorless from '../events/JunkoColorless';
 import PatchouliPhilosophy from '../events/PatchouliPhilosophy';
@@ -32,7 +33,9 @@ import MedicinePoison from '../events/MedicinePoison';
 import MikoDonation from '../events/MikoDonation';
 import SatoriCounseling from '../events/SatoriCounseling';
 import BuduSuanming from '../events/BuduSuanming';
-import { TEventComponent } from 'utils/types/others';
+import NarekoPuzzle from '../events/NarekoPuzzle';
+import PrismriverChaos from '../events/PrismriverChaos';
+import NueUfo from '../events/NueUfo';
 
 function EventStation({ station }: { station: TStation }) {
   const events: TObj<TEventComponent> = {
@@ -67,7 +70,10 @@ function EventStation({ station }: { station: TStation }) {
     MedicinePoison: MedicinePoison,
     MikoDonation: MikoDonation,
     SatoriCounseling: SatoriCounseling,
-    BuduSuanming: BuduSuanming
+    BuduSuanming: BuduSuanming,
+    NarekoPuzzle: NarekoPuzzle,
+    PrismriverChaos: PrismriverChaos,
+    NueUfo: NueUfo
   };
   const Id = station.Id as string;
   if (!(Id in events)) return null;
