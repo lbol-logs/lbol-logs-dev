@@ -51,7 +51,8 @@ function YachieOppression({ station }: { station: TStation }) {
     const chosen = getChosen(Choices, 1);
     if (chosen !== undefined) {
       const { current, next: options } = configs[1];
-      const { Money } = station.Rewards as TRewards;
+      const { Rewards } = station;
+      const { Money } = Rewards as TRewards || {};
 
       const [next] = getNext(options);
 
@@ -66,12 +67,15 @@ function YachieOppression({ station }: { station: TStation }) {
         exhibits
       };
 
-      const money = (
-        <span className="c-station__money">
-          <MoneyImage />
-          {Money}
-        </span>
-      );
+      let money = null;
+      if (Rewards && Money) {
+        money = (
+          <span className="c-station__money">
+            <MoneyImage />
+            {Money}
+          </span>
+        );
+      }
 
       second = (
         <>
