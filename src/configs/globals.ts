@@ -51,6 +51,7 @@ const modsNamespaces: Array<string> = [
 ];
 
 const versions: Array<string> = [
+  '1.8.1',
   '1.8.0',
   '1.7.2',
   '1.7.1',
