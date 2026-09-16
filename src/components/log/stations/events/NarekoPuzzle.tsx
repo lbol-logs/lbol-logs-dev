@@ -21,9 +21,7 @@ function NarekoPuzzle({ station }: { station: TStation }) {
 
   const keys = ['A', 'B', 'C'];
   const choices: Array<number> = Object.keys(Trade).map(k => keys.indexOf(k));
-  console.log(choices);
   choices.push(3);
-  console.log(choices);
 
   const [next] = getNext(options, choices);
   const chosen = getChosen(Choices, 0, choices);
@@ -33,8 +31,8 @@ function NarekoPuzzle({ station }: { station: TStation }) {
 
   for (const k of Object.keys(Trade)) {
     const i = choices.indexOf(keys.indexOf(k));
-    const { Card, Exhibit } = Trade[k];
-    cards[i] = convertCards([Card]);
+    const { Card, IsUpgraded, Exhibit } = Trade[k];
+    cards[i] = convertCards([Card], IsUpgraded);
     if (Exhibit) exhibits[i] = [Exhibit];
   }
 
