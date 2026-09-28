@@ -4,6 +4,7 @@ import { getChosen, getNext } from 'utils/functions/helpers';
 import { configsData } from 'configs/globals';
 import RewardsWidget from '../parts/rewardsWidget';
 import EventHead from '../parts/eventHead';
+import { TObjAny } from 'utils/types/common';
 
 function NueUfo({ station }: { station: TStation }) {
   const { eventsConfigs, dialoguesConfigs } = configsData;
@@ -12,7 +13,7 @@ function NueUfo({ station }: { station: TStation }) {
 
   if (!Data) return null;
 
-  const { Choices } = Data;
+  const { Choices, Values = {}, LoseMax } = Data;
 
   const id = Id as string;
   const configs = dialoguesConfigs.get(id);
@@ -23,12 +24,23 @@ function NueUfo({ station }: { station: TStation }) {
   const [next] = getNext(options);
   const chosen = getChosen(Choices, 0);
 
+  const props: Array<TObjAny> = [];
   const exhibits: Array<TExhibits> = [[exhibit0], [exhibit1]];
+
+  {
+    const values = { 0: Values[0] };
+    props[0] = { values };
+  }
+  {
+    const values = { 0: LoseMax };
+    props[1] = { values };
+  }
 
   const dialogueConfigs: TDialogueConfigs = {
     current,
     next,
     chosen,
+    props,
     exhibits
   };
 

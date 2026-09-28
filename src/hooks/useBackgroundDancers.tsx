@@ -5,7 +5,7 @@ import { TCards, TDialogueConfigs, TExhibits } from 'utils/types/runData';
 
 function useBackgroundDancers({ id, Data, configs, eventConfigs }: { id: string, Data: TObjAny, configs: TObjAny, eventConfigs: TObjAny }) {
   if (!Data) return;
-  const { Choices, Hp, Options, Tools, Exhibits, Abilities } = Data;
+  const { Choices, Hp, MaxHp, Options, Tools, Exhibits, Abilities } = Data;
 
   const { current: _current, next: _next } = configs[0];
   const { money, power, maxhp } = eventConfigs;
@@ -49,7 +49,7 @@ function useBackgroundDancers({ id, Data, configs, eventConfigs }: { id: string,
         break;
       }
       case 2: {
-        values = { 0: Hp, 1: maxhp };
+        values = { 0: Hp, 1: MaxHp || maxhp };
         break;
       }
       case 3: {
