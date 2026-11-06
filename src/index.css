@@ -2397,7 +2397,9 @@ html:lang(en) .p-result__type {
   background-image: url(https://lbol-logs.github.io/icons/thunderstore.svg);
 }
 .u-external-link--unknown:after {
-  background-image: url(https://lbol-logs.github.io/icons/external.svg);
+  background-color: currentColor;
+  -webkit-mask: url(https://lbol-logs.github.io/icons/external.svg) no-repeat center / contain;
+  mask: url(https://lbol-logs.github.io/icons/external.svg) no-repeat center / contain;
 }
 
 @media screen and (min-width: 601px) {
