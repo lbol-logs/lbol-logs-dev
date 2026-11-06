@@ -35,9 +35,9 @@ function About() {
                 i18nKey="about"
                 ns="site"
                 components={{
-                  steam: <ExternalLink href={gameUrl} />,
+                  steam: <ExternalLink href={gameUrl} type="steam" />,
                   compatability: <Compatability />,
-                  discord: <ExternalLink href={discord} />
+                  discord: <ExternalLink href={discord} type="discord" />
                 }}
               />
             </div>
@@ -52,14 +52,14 @@ function About() {
                     <Trans
                       i18nKey="runLogger.step1"
                       ns="site"
-                      components={{ r2modman: <ExternalLink href="https://thunderstore.io/package/ebkr/r2modman/" /> }}
+                      components={{ r2modman: <ExternalLink href="https://thunderstore.io/package/ebkr/r2modman/" type="thunderstore" /> }}
                     />
                   </li>
                   <li className="p-about-run-logger__step">
                     <Trans
                       i18nKey="runLogger.step2"
                       ns="site"
-                      components={{ mod: <ExternalLink href={modUrl} /> }}
+                      components={{ mod: <ExternalLink href={modUrl} type="thunderstore" /> }}
                     />
                   </li>
                   <li className="p-about-run-logger__step">{t('runLogger.step3', { ns: 'site' })}</li>

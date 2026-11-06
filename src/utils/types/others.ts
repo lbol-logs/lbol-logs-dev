@@ -16,12 +16,6 @@ type TRunListItem = {
 
 type TRunList = Array<TRunListItem>;
 
-type TAboutComponent = {
-  className: string,
-  category: string,
-  array: Array<string>
-};
-
 type TChoice = TRange4 | string;
 
 type TPromise = {
@@ -93,6 +87,8 @@ type TModConfigs = TMod & {
 
 type TCardPool = TObj<TCards>;
 
+type TExternalLinkType = 'steam' | 'discord' | 'thunderstore';
+
 enum ErrorType {
   invalidFile = 'invalidFile',
   invalidVersion = 'invalidVersion',
@@ -103,7 +99,6 @@ enum ErrorType {
 export type {
   TRunListItem,
   TRunList,
-  TAboutComponent,
   TChoice,
   TPromise,
   TFilterText,
@@ -120,7 +115,8 @@ export type {
   TEntityModal,
   TCardMana,
   TModConfigs,
-  TCardPool
+  TCardPool,
+  TExternalLinkType
 };
 
 export {

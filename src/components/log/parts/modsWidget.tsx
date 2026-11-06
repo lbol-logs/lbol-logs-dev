@@ -18,7 +18,7 @@ function ModsWidget({ mods, version, collapse = false }: { mods: Array<TModConfi
         }
 
         const isCollapsed = collapsed && i >= modsThreshold;
-        const props = { className: `p-mod ${isCollapsed ? 'p-mod--collapsed': ''}` };
+        const className = `p-mod ${isCollapsed ? 'p-mod--collapsed': ''}`
         const inner = (
           <>
             <p className="p-mod__name">{Name}</p>
@@ -32,14 +32,14 @@ function ModsWidget({ mods, version, collapse = false }: { mods: Array<TModConfi
 
         if (Url === undefined) {
           return (
-            <div {...props} key={GUID}>
+            <div className={className} key={GUID}>
               {inner}
             </div>
           );
         }
         else {
           return (
-            <ExternalLink {...props} href={Url} key={GUID}>
+            <ExternalLink className={className} type="thunderstore" href={Url} key={GUID}>
               {inner}
             </ExternalLink>
           );

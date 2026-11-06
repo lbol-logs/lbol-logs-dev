@@ -2373,6 +2373,33 @@ html:lang(en) .p-result__type {
   flex-basis: 100%;
 }
 
+.u-external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
+}
+.u-external-link:after {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.u-external-link--steam:after {
+  background-image: url(https://lbol-logs.github.io/icons/steam.svg);
+}
+.u-external-link--discord:after {
+  background-image: url(https://lbol-logs.github.io/icons/discord.svg);
+}
+.u-external-link--thunderstore:after {
+  background-image: url(https://lbol-logs.github.io/icons/thunderstore.svg);
+}
+.u-external-link--unknown:after {
+  background-image: url(https://lbol-logs.github.io/icons/external.svg);
+}
+
 @media screen and (min-width: 601px) {
   .p-entity--boss-exhibits .c-entity--Shining:nth-child(1),
   .p-entity--boss-exhibits .c-entity--Shining:nth-child(3) {
