@@ -92,7 +92,8 @@ const modsConfigsUrl: string = `${modsUrl}/configs`;
 const logsUrl: string = `${baseUrl}/logs`;
 
 const gameUrl: string = 'https://store.steampowered.com/app/1140150/';
-const modUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p/ed_ev/LBoL_Run_Logger/';
+const steamWorkshopUrl: string = 'https://steamcommunity.com/sharedfiles/filedetails/?id=3578190834'
+const thunderstoreUrl: string = 'https://thunderstore.io/c/touhou-lost-branch-of-legend/p/ed_ev/LBoL_Run_Logger/';
 const gasUrl: string = 'https://script.google.com/macros/s/AKfycbxQZf9xkxJX-YNYxXAjssmqT2-HFmH1EPZ6bjbcoz1RxvfWdHoP1eWC8D4XiQkIpmLvbw/exec';
 
 const logUpdate = 10;
@@ -172,7 +173,8 @@ export {
   modsConfigsUrl,
   logsUrl,
   gameUrl,
-  modUrl,
+  steamWorkshopUrl,
+  thunderstoreUrl,
   gasUrl,
   logUpdate,
   GA4_MEASUREMENT_ID,

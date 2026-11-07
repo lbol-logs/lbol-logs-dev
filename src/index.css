@@ -142,16 +142,6 @@ input {
   width: calc(100% - var(--holdings-width));
 }
 
-.p-about {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 0.625em;
-}
-.p-about-run-logger, .p-about-lbol-logs {
-  flex-basis: calc(50% - 0.3125em);
-}
-
-.p-about__about,
 .p-upload__about,
 .p-upload__error,
 .p-upload__success,
@@ -160,7 +150,7 @@ input {
   margin: 0 auto;
 }
 
-.p-about__about, .p-upload__about {
+.p-upload__about {
   background: var(--skyblue);
 }
 
@@ -803,6 +793,12 @@ input {
 }
 .p-summary__rarity--Misfortune {
   color: var(--f-purple);
+}
+
+.p-about {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2em;
 }
 
 .p-mods {
@@ -2369,20 +2365,16 @@ html:lang(en) .p-result__type {
   flex-direction: column;
 }
 
-.u-break {
-  flex-basis: 100%;
-}
-
 .u-external-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.2em;
 }
 .u-external-link:after {
   content: '';
   display: inline-block;
   width: 1em;
   height: 1em;
+  margin: 0 0.2em;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -2419,10 +2411,6 @@ html:lang(en) .p-result__type {
 @media screen and (max-width: 600px) {
   .l-footer__link {
     max-width: 12.5em;
-  }
-
-  .p-about-run-logger, .p-about-lbol-logs {
-    flex-basis: 100%;
   }
 
   .p-station__main {
