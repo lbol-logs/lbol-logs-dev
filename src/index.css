@@ -838,7 +838,8 @@ input {
   background: linear-gradient(transparent, var(--white));
 }
 
-.p-mod__left, .p-mod__right {
+.p-mods__inner--avatar .p-mod__left,
+.p-mods__inner--avatar .p-mod__right {
   flex: 1;
 }
 .p-mod__left {

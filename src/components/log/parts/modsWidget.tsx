@@ -22,6 +22,16 @@ function ModsWidget({ mods, version, collapse = false, showAvatar = false }: { m
         const avatar = showAvatar && (
           <CharacterImage className="p-mod__img" character={Character!} isMod={true} />
         );
+        const links = showAvatar && (
+          <div className="p-mod__links">
+            <div className="p-mod__link">
+              {SteamWorkshop && <ExternalLink className="p-mod__link" type="steam" href={SteamWorkshop} />}
+            </div>
+            <div className="p-mod__link">
+              {Thunderstore && <ExternalLink className="p-mod__link" type="thunderstore" href={Thunderstore} />}
+            </div>
+          </div>
+        );
 
         return (
           <div className={`p-mod ${isCollapsed ? 'p-mod--collapsed': ''}`} key={GUID}>
@@ -33,14 +43,7 @@ function ModsWidget({ mods, version, collapse = false, showAvatar = false }: { m
               </div>
             </div>
             <div className="p-mod__right">
-              <div className="p-mod__links">
-                <div className="p-mod__link">
-                  {SteamWorkshop && <ExternalLink className="p-mod__link" type="steam" href={SteamWorkshop} />}
-                </div>
-                <div className="p-mod__link">
-                  {Thunderstore && <ExternalLink className="p-mod__link" type="thunderstore" href={Thunderstore} />}
-                </div>
-              </div>
+              {links}
               <p className="p-mod__version">{Version}</p>
               {logs}
             </div>
