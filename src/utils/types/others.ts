@@ -82,7 +82,8 @@ type TCardMana = Array<string>;
 
 type TModConfigs = TMod & {
   Character?: string,
-  Url? : string
+  SteamWorkshop? : string,
+  Thunderstore? : string
 };
 
 type TCardPool = TObj<TCards>;

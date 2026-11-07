@@ -9,7 +9,7 @@ function ModsWidget({ mods, version, collapse = false }: { mods: Array<TModConfi
 
   const inner = (
     <div className="p-mods__inner">
-      {mods.map(({ GUID, Name, Version, Character, Url }, i) => {
+      {mods.map(({ GUID, Name, Version, Character, SteamWorkshop, Thunderstore }, i) => {
         let logs = null;
         if (version) {
           logs = (
@@ -18,32 +18,25 @@ function ModsWidget({ mods, version, collapse = false }: { mods: Array<TModConfi
         }
 
         const isCollapsed = collapsed && i >= modsThreshold;
-        const className = `p-mod ${isCollapsed ? 'p-mod--collapsed': ''}`
-        const inner = (
-          <>
+
+        return (
+          <div className={`p-mod ${isCollapsed ? 'p-mod--collapsed': ''}`} key={GUID}>
             <p className="p-mod__name">{Name}</p>
             <p className="p-mod__guid">{GUID}</p>
             <div className="p-mod__right">
-              {logs}
+              <div className="p-mod__links">
+                <div className="p-mod__link">
+                  {SteamWorkshop && <ExternalLink className="p-mod__link" type="steam" href={SteamWorkshop} />}
+                </div>
+                <div className="p-mod__link">
+                  {Thunderstore && <ExternalLink className="p-mod__link" type="thunderstore" href={Thunderstore} />}
+                </div>
+              </div>
               <p className="p-mod__version">{Version}</p>
+              {logs}
             </div>
-          </>
+          </div>
         );
-
-        if (Url === undefined) {
-          return (
-            <div className={className} key={GUID}>
-              {inner}
-            </div>
-          );
-        }
-        else {
-          return (
-            <ExternalLink className={className} type="thunderstore" href={Url} key={GUID}>
-              {inner}
-            </ExternalLink>
-          );
-        }
       })}
     </div>
   );
