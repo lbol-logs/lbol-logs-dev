@@ -29,7 +29,7 @@ function AboutMods() {
         <VersionWidget className="p-mods__version" version={version} setVersion={setVersion} versionSwitch={true} redirect={false} />
       </h2>
       <p>{t('lbolLogs.fullSupportRemark', { ns: 'site' })}</p>
-      <ModsWidget mods={mods} version={version} />
+      <ModsWidget mods={mods} version={version} showAvatar={true} />
     </div>
   );
 }

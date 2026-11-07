@@ -3,21 +3,19 @@ import LazyLoadImage2 from '../utils/lazyLoadImage2';
 import { getAvatarImage } from 'utils/functions/getImage';
 import { getNs } from 'utils/functions/helpers';
 
-function CharacterImage({ character, className }: { character: string, className?: string }) {
+function CharacterImage({ character, className, isMod = false }: { character: string, className?: string, isMod?: boolean }) {
   const { t } = useTranslation();
 
-  let alt: string, isMod: boolean;
+  let alt: string;
   if (character === 'Mod') {
     alt = character;
-    isMod = false;
   }
   else if (character === 'Neutral') {
     alt = t('neutral', { ns: 'site' });
-    isMod = false;
   }
   else {
     let ns: string;
-    [ns, isMod] = getNs({ ns: 'units', character });
+    [ns, isMod] = getNs({ ns: 'units', character, isMod });
     alt = t(character, { ns });
   }
 

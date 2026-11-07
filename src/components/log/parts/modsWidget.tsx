@@ -3,12 +3,13 @@ import ExternalLink from 'components/common/parts/externalLink';
 import { TModConfigs } from 'utils/types/others';
 import { Link } from 'react-router-dom';
 import { modsThreshold } from 'configs/globals';
+import CharacterImage from 'components/common/parts/characterImage';
 
-function ModsWidget({ mods, version, collapse = false }: { mods: Array<TModConfigs>, version?: string, collapse?: boolean }) {
+function ModsWidget({ mods, version, collapse = false, showAvatar = false }: { mods: Array<TModConfigs>, version?: string, collapse?: boolean, showAvatar?: boolean }) {
   const [collapsed, setCollapsed] = useState(Boolean(collapse));
 
   const inner = (
-    <div className="p-mods__inner">
+    <div className={`p-mods__inner ${showAvatar ? 'p-mods__inner--avatar' : ''}`}>
       {mods.map(({ GUID, Name, Version, Character, SteamWorkshop, Thunderstore }, i) => {
         let logs = null;
         if (version) {
@@ -18,11 +19,19 @@ function ModsWidget({ mods, version, collapse = false }: { mods: Array<TModConfi
         }
 
         const isCollapsed = collapsed && i >= modsThreshold;
+        const avatar = showAvatar && (
+          <CharacterImage className="p-mod__img" character={Character!} isMod={true} />
+        );
 
         return (
           <div className={`p-mod ${isCollapsed ? 'p-mod--collapsed': ''}`} key={GUID}>
-            <p className="p-mod__name">{Name}</p>
-            <p className="p-mod__guid">{GUID}</p>
+            <div className="p-mod__left">
+              {avatar}
+              <div className="p-mod__info">
+                <p className="p-mod__name">{Name}</p>
+                <p className="p-mod__guid">{GUID}</p>
+              </div>
+            </div>
             <div className="p-mod__right">
               <div className="p-mod__links">
                 <div className="p-mod__link">
