@@ -873,7 +873,7 @@ input {
   font-size: 0.9em;
 }
 .p-about .p-mod__version {
-  width: 3.25em;
+  width: 3.5em;
 }
 .p-mod__logs {
   padding: 0.1em 0.5em;
@@ -1888,6 +1888,12 @@ html:lang(en) .p-result__type {
   color: var(--f-koishi);
 }
 
+.c-character-short-name--AyaPlayerUnit {
+  color: var(--f-aya);
+}
+.c-character-short-name--FlandrePlayerUnit {
+  color: var(--f-flandre);
+}
 .c-character-short-name--lvalonexrumia {
   color: var(--f-rumia);
 }
@@ -2324,6 +2330,8 @@ html:lang(en) .p-result__type {
   --f-cirno: #0f94f2;
   --f-koishi: #23ec4d;
 
+  --f-aya: #ab9561;
+  --f-flandre: #ffd700;
   --f-rumia: #ff0808;
   --f-momiji: #e58c27;
   --f-patchouli: #d2c5df;
