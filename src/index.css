@@ -846,6 +846,9 @@ input {
   display: flex;
   align-items: center;
 }
+.p-mod__img {
+  flex-shrink: 0;
+}
 .p-mod__info > * {
   margin: 0;
 }
