@@ -24,7 +24,7 @@ function CardModal({ card }: { card: TCard }) {
 
   const cardConfigs = cardsConfigs.get(_card);
   const allCardConfigs = cardConfigs.getAll();
-  const { Type, Cost, Owner, IsUpgradable, OverrideUltimateCost, Keywords, Version } = allCardConfigs;
+  const { Type, Cost, Owner, IsUpgradable, OverrideActiveCost, OverrideUltimateCost, Keywords, Version } = allCardConfigs;
   const { art, isMod } = cardConfigs;
 
   const isTeammate = Type === 'Friend';
@@ -64,6 +64,11 @@ function CardModal({ card }: { card: TCard }) {
         locale: 'Passive'
       },
       {
+        type: 'Passive',
+        config: 'PassiveCost2',
+        locale: 'Passive2'
+      },
+      {
         type: 'Active',
         config: 'ActiveCost',
         locale: 'Active'
@@ -74,7 +79,7 @@ function CardModal({ card }: { card: TCard }) {
         locale: 'Active2'
       },
       {
-        type: OverrideUltimateCost ? 'Active' : 'Ultimate',
+        type: OverrideUltimateCost ? 'Active' : (OverrideActiveCost ? 'Passive' : 'Ultimate'),
         config: 'UltimateCost',
         locale: 'Ultimate'
       }

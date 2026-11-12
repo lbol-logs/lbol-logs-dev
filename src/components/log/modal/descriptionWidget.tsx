@@ -74,6 +74,14 @@ function DescriptionWidget({ entityObj, prefix = '' }: { entityObj: TObjAny, pre
       c.insertManaObj({ ActiveMana });
       c.insertManaObj({ TotalMana });
 
+      // Aya
+      // eslint-disable-next-line no-lone-blocks
+      {
+        if (['AyaArsenalBirdDrone', 'AyaFriendMomiji'].includes(Id)) {
+          Object.assign(values, { Damage2: damage * 2 });
+        }
+      }
+
       // Rumia
       // eslint-disable-next-line no-lone-blocks
       {
